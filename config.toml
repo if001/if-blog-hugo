@@ -1,0 +1,47 @@
+baseURL = "http://example.org/"
+languageCode = "ja"
+title = "ほんのめも"
+theme = "harbor"
+
+DefaultContentLanguage = "en"
+enableInlineShortcodes = true
+footnoteReturnLinkContents = "^"
+
+[Author]
+  name = "if_004"
+
+[outputs]
+  section = ["JSON", "HTML"]
+
+[[params.nav]]
+  identifier = "home"
+  name = "Home"
+  icon = "fas fa-home fa-lg"
+  url = "/"
+  weight = 3
+  
+[[params.nav]]
+  identifier = "about"
+  name = "About"
+  icon = "fas fa-user fa-lg"
+  url = "/pages/about"
+  weight = 3
+  
+[[params.nav]]
+  identifier = "tags"
+  name = "Tags"
+  icon = "fas fa-tag fa-lg"
+  url = "tags"
+  weight = 3
+  
+[[params.nav]]
+  identifier = "search"
+  name = "Search"
+  icon = "fas fa-search fa-lg"
+  url = "search"
+  weight = 3
+  
+[[params.social]]
+  name= "twitter"
+  url="https://twitter.com/if_004"
+  icon="fab fa-twitter"
