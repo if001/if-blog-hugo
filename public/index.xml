@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>ほんのめも on ほんのめも</title>
+		<link>http://example.org/</link>
+		<description>Recent content in ほんのめも </description>
+		<generator>Hugo -- gohugo.io</generator>
+		
+  		<language>ja</language>
+		
+		<managingEditor>Page(&#34;ほんのめも&#34;) (if_004)</managingEditor>
+    	
+  		<lastBuildDate>Sat, 15 Feb 2020 20:00:00 +0900</lastBuildDate>
+		
+		<atom:link href="/" rel="self" type="application/rss+xml" />
+		
+	</channel>
+</rss>

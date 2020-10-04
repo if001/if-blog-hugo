@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>tag4 on ほんのめも</title>
+		<link>http://example.org/tags/tag4/</link>
+		<description>Recent content in tag4 </description>
+		<generator>Hugo -- gohugo.io</generator>
+		
+  		<language>ja</language>
+		
+		<managingEditor>Page(/tags/tag4) (if_004)</managingEditor>
+    	
+  		<lastBuildDate>Sat, 15 Feb 2020 20:00:00 +0900</lastBuildDate>
+		
+		<atom:link href="/tags/tag4/" rel="self" type="application/rss+xml" />
+		
+	</channel>
+</rss>
