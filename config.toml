@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "https://if001.github.io/book_impressions/"
 languageCode = "ja"
 title = "ほんのめも"
 theme = "harbor"

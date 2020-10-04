@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>tag3 on ほんのめも</title>
-		<link>http://example.org/tags/tag3/</link>
+		<link>https://if001.github.io/book_impressions/tags/tag3/</link>
 		<description>Recent content in tag3 </description>
 		<generator>Hugo -- gohugo.io</generator>
 		
@@ -11,7 +11,7 @@
     	
   		<lastBuildDate>Sat, 15 Feb 2020 20:00:00 +0900</lastBuildDate>
 		
-		<atom:link href="/tags/tag3/" rel="self" type="application/rss+xml" />
+		<atom:link href="/book_impressions/tags/tag3/" rel="self" type="application/rss+xml" />
 		
 	</channel>
 </rss>
