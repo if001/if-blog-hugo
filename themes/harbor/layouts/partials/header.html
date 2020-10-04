@@ -17,8 +17,12 @@
         <div class="{{ .Type }}-heading">
           {{ if eq .Type "list" }}
             <h1>{{ if .Data.Singular }}#{{ end }}{{ .Title }}</h1>
-          {{ else }}
-            <h1>{{ with $title }}{{.}}{{ else }}<br/>{{ end }}</h1>
+            {{ else }}
+	    {{ if .IsHome }}
+	    <img src="{{ .Site.BaseURL }}/images/title.png">
+	    {{ else }}
+	    <h1>{{ with $title }}{{.}}{{ else }}<br/>{{ end }}</h1>
+	    {{ end }}
           {{ end }}
           {{ if eq .Type "post" }}
             {{ partial "postmeta.html" . }}
