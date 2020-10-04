@@ -6,6 +6,7 @@ theme = "harbor"
 DefaultContentLanguage = "en"
 enableInlineShortcodes = true
 footnoteReturnLinkContents = "^"
+publishDir= "docs"
 
 [Author]
   name = "if_004"
