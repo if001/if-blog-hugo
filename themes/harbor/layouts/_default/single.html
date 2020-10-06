@@ -8,6 +8,9 @@
         <a href="{{ $.Site.BaseURL }}/tags/{{ . | urlize }}/">{{ . }}</a>&nbsp;
         {{ end }}
       </div>
+      <div style="text-align:right;">
+        <i class="fa fa-calendar-alt"></i>&nbsp;{{ .Lastmod.Format ( .Site.Params.dateformat | default "Jan 2, 2006") }}
+      </div>
       {{ end }}
       {{ partial "toc.html" . }}
     </article>

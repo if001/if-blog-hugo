@@ -3,7 +3,7 @@ languageCode = "ja"
 title = "ほんのめも"
 theme = "harbor"
 
-DefaultContentLanguage = "en"
+DefaultContentLanguage = "ja"
 enableInlineShortcodes = true
 footnoteReturnLinkContents = "^"
 publishDir= "docs"
@@ -13,6 +13,14 @@ publishDir= "docs"
 
 [outputs]
   section = ["JSON", "HTML"]
+ 
+[markup]
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 2
+    
+hasCJKLanguage = true
 
 [[params.nav]]
   identifier = "home"
