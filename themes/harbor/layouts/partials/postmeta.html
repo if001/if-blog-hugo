@@ -8,7 +8,7 @@
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i>&nbsp;{{ .Lastmod.Format ( .Site.Params.dateformat | default "Jan 2, 2006") }}
+  <i class="fa fa-calendar-alt"></i>&nbsp;{{ .Lastmod.Format ( .Site.Params.dateformat | default "2006-01-02") }}
   {{ if .Params.categories }}
     &nbsp;&nbsp;&nbsp;<i class="fa fa-folder-open"></i>&nbsp;
     {{ range .Params.categories }}
