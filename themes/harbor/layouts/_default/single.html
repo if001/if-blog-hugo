@@ -12,6 +12,17 @@
         <i class="fa fa-calendar-alt"></i>&nbsp;{{ .Lastmod.Format ( .Site.Params.dateformat | default "2006-01-02") }}
       </div>
       {{ end }}
+      
+      {{ if .Params.item_link }}
+      <div style="text-align: center">
+	<a href={{ .Params.item_link }} target="_blank">
+	  {{ if .Params.item_img }}
+	  <img src={{ .Params.item_img }} />
+	  {{ end }}
+	</a>	
+      </div>
+      {{ end }}
+      
       {{ partial "toc.html" . }}
     </article>
     {{ if and (gt .WordCount 400) (.Param "backtotop") }}
