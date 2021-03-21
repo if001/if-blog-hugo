@@ -1,11 +1,14 @@
 +++
 title = "死の接吻"
 date = 2020-10-11T20:00:00+09:00
-tags = ["ミステリー", "早川文庫", "ネタバレなし"]
+tags = ["ミステリー", "早川文庫"]
+author = ["アイラ・レヴィン/中田耕治"]
 draft = false
 toc = true
 backtotop = true
 disable_comment = true
+item_link = "https://hb.afl.rakuten.co.jp/hgc/g00q0726.tce2a7a5.g00q0726.tce2b697/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F241677%2F"
+item_img = "https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/noimage_01.gif?_ex=120x120"
 +++
 
 主人公は、恋人を殺すため、自殺に見せかけた殺人を計画する。
@@ -16,7 +19,6 @@ disable_comment = true
 3部からなる構成で、2部から一気に引き込まれる展開。
 読みやすく、序盤から中盤もだれることなく、一気に読めた。
 
-[死の接吻　（ハヤカワ・ミステリ文庫）](https://hb.afl.rakuten.co.jp/hgc/g00q0726.tce2a7a5.g00q0726.tce2b697/?pc=https%3A%2F%2Fbooks.rakuten.co.jp%2Frb%2F241677%2F)
 
 ## 第1部
 主人公は、お金を目的として、資産家の令嬢のドロシイと付き合っていた。二人は同じ大学に通う。

@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>東京創元社 on ほんのめも</title>
+		<link>https://if001.github.io/book_impressions/tags/%E6%9D%B1%E4%BA%AC%E5%89%B5%E5%85%83%E7%A4%BE/</link>
+		<description>Recent content in 東京創元社 </description>
+		<generator>Hugo -- gohugo.io</generator>
+		
+  		<language>ja</language>
+		
+		<managingEditor>Page(/tags/東京創元社) (if_004)</managingEditor>
+    	
+  		<lastBuildDate>Sun, 11 Oct 2020 20:00:00 +0900</lastBuildDate>
+		
+		<atom:link href="/book_impressions/tags/%E6%9D%B1%E4%BA%AC%E5%89%B5%E5%85%83%E7%A4%BE/" rel="self" type="application/rss+xml" />
+		
+	</channel>
+</rss>

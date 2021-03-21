@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Wシリーズ on ほんのめも</title>
+		<link>https://if001.github.io/book_impressions/tags/w%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA/</link>
+		<description>Recent content in Wシリーズ </description>
+		<generator>Hugo -- gohugo.io</generator>
+		
+  		<language>ja</language>
+		
+		<managingEditor>Page(/tags/wシリーズ) (if_004)</managingEditor>
+    	
+  		<lastBuildDate>Tue, 22 Dec 2020 20:00:00 +0900</lastBuildDate>
+		
+		<atom:link href="/book_impressions/tags/w%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA/" rel="self" type="application/rss+xml" />
+		
+	</channel>
+</rss>

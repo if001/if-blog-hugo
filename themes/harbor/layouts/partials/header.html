@@ -24,6 +24,12 @@
 	  	  
 	  {{ if eq .Type "posts" }}
 	  <h1>{{ with $title }}{{.}}{{ else }}<br/>{{ end }}</h1>
+	  {{ range .Params.Author }}
+	  <div style="text-align:center;">
+	    {{ . }}
+	  </div>
+  {{ end }}
+
 	  {{ end }}
 	  
 	  {{ if eq .Type "tags" }}

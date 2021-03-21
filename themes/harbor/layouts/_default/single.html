@@ -8,11 +8,8 @@
         <a href="{{ $.Site.BaseURL }}/tags/{{ . | urlize }}/">{{ . }}</a>&nbsp;
         {{ end }}
       </div>
-      <div style="text-align:right;">
-        <i class="fa fa-calendar-alt"></i>&nbsp;{{ .Lastmod.Format ( .Site.Params.dateformat | default "2006-01-02") }}
-      </div>
       {{ end }}
-      
+            
       {{ if .Params.item_link }}
       <div style="text-align: center">
 	<a href={{ .Params.item_link }} target="_blank">
@@ -23,6 +20,10 @@
       </div>
       {{ end }}
       
+      <div style="text-align:right;">
+        <i class="fa fa-calendar-alt"></i>&nbsp;{{ .Lastmod.Format ( .Site.Params.dateformat | default "2006-01-02") }}
+      </div>
+
       {{ partial "toc.html" . }}
     </article>
     {{ if and (gt .WordCount 400) (.Param "backtotop") }}

@@ -1,7 +1,8 @@
 +++
 title = "ストーンサークルの殺人"
 date = 2020-10-19T20:00:00+09:00
-tags = ["ミステリー", "早川文庫", "ネタバレなし"]
+tags = ["ミステリー", "早川文庫"]
+author = ["M・W・クレイヴン/東野さやか"]
 draft = false
 toc = true
 backtotop = true
