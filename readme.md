@@ -28,3 +28,12 @@ $ npm run build-prod
 
 ## theme
 https://github.com/matsuyoshi30/harbor
+
+
+## submodule
+git submodule add {URL}
+
+### submodule内の変更
+submodule内に入って、commit
+submoduleの外で、add、commit
+
