@@ -2,7 +2,7 @@
     
         
             {
-                "ref": "https://if001.github.io/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/",
                 "title": "End-to-End Text Classification via Image-basedEmbedding using Character-level Networks",
                 "section": "posts",
                 "date" : "2020-12-30",
@@ -12,7 +12,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/",
                 "title": "Enhanced character embedding for Chinese named entity recognition",
                 "section": "posts",
                 "date" : "2020-12-30",
@@ -22,7 +22,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/android/bottom-sheet/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/android/bottom-sheet/",
                 "title": "Bottom Sheetをつける",
                 "section": "posts",
                 "date" : "2020-03-01",
@@ -32,7 +32,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/android/android-introduction/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/android/android-introduction/",
                 "title": "Webアプリケーションしか作ったことがない人がAndroidの開発を始めたときの情報収集の流れ",
                 "section": "posts",
                 "date" : "2020-02-28",
@@ -42,7 +42,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/edgwbs/book-storage-vue/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/edgwbs/book-storage-vue/",
                 "title": "Vue.js+typescriptでVuetifyを使いマテリアルデザインに入門する",
                 "section": "posts",
                 "date" : "2019-11-09",
@@ -52,7 +52,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/gatsby/gatsby-intro/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/gatsby/gatsby-intro/",
                 "title": "技術ブログ用にGatsbyを整える",
                 "section": "posts",
                 "date" : "2019-10-14",
@@ -62,7 +62,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/edgwbs/book-reports-firebase-hosting/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/edgwbs/book-reports-firebase-hosting/",
                 "title": "Firebase Hostingを使ってみた",
                 "section": "posts",
                 "date" : "2019-10-10",
@@ -72,7 +72,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/edgwbs/book-reports-firebase-cloud-functions/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/edgwbs/book-reports-firebase-cloud-functions/",
                 "title": "Firebase Cloud Functionsを使ってTwitterのOGPを設定する",
                 "section": "posts",
                 "date" : "2019-09-30",
@@ -82,7 +82,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/edgwbs/book-reports-firebase-auth/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/edgwbs/book-reports-firebase-auth/",
                 "title": "Vue.js + Golang + Firebase Authenticationでログイン処理",
                 "section": "posts",
                 "date" : "2019-09-28",
@@ -92,7 +92,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/edgwbs/book-reports-review/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/edgwbs/book-reports-review/",
                 "title": "三行で読書感想文を書いて、SNSでシェアできるサービスを作った",
                 "section": "posts",
                 "date" : "2019-09-25",
@@ -102,7 +102,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/neuralnet/pepar-summary/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/neuralnet/pepar-summary/",
                 "title": "Deeplearningまわりの最新論文を浅く広くみてまわる",
                 "section": "posts",
                 "date" : "2019-09-24",
@@ -112,7 +112,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/others/http-portal-for-blog/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/others/http-portal-for-blog/",
                 "title": "Hugoで作ったwebサイトを公開する",
                 "section": "posts",
                 "date" : "2019-09-24",
@@ -122,7 +122,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/neuralnet/combine-model/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/neuralnet/combine-model/",
                 "title": "kerasでモデルを結合する",
                 "section": "posts",
                 "date" : "2019-09-24",
@@ -132,7 +132,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/others/aws-cli-at-pyenv/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/others/aws-cli-at-pyenv/",
                 "title": "pyenv環境でaws cli入れたらコマンドが見つからない",
                 "section": "posts",
                 "date" : "2019-09-24",
@@ -142,7 +142,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/others/rust-macro-use-another/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/others/rust-macro-use-another/",
                 "title": "Rustでmodule間にまたがるmacro呼び出し",
                 "section": "posts",
                 "date" : "2019-09-24",
@@ -152,7 +152,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/nlp/seqgan-paper/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/nlp/seqgan-paper/",
                 "title": "SeqGANの論文を読む",
                 "section": "posts",
                 "date" : "2019-09-24",
@@ -162,7 +162,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/nlp/word2vec-output-word/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/nlp/word2vec-output-word/",
                 "title": "word2vecでベクトルから単語を出力する",
                 "section": "posts",
                 "date" : "2019-09-24",
@@ -172,7 +172,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/nlp/diversity-neural-conversation-model/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/nlp/diversity-neural-conversation-model/",
                 "title": "ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数",
                 "section": "posts",
                 "date" : "2019-09-24",
@@ -182,7 +182,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/nlp/char-vec/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/nlp/char-vec/",
                 "title": "文字をベクトル化する",
                 "section": "posts",
                 "date" : "2019-09-24",
@@ -192,7 +192,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/others/tex-notation-numerical-formula/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/others/tex-notation-numerical-formula/",
                 "title": "機械学習系の数式によく出てくる記号などのTex表記まとめ",
                 "section": "posts",
                 "date" : "2019-09-24",
@@ -202,7 +202,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/nlp/nlp-parse-overview-1/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/nlp/nlp-parse-overview-1/",
                 "title": "自然言語処理シリーズの構文解析を読む（概要）",
                 "section": "posts",
                 "date" : "2019-09-24",
@@ -212,7 +212,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/emacs/emacs-hinamatsuri/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/emacs/emacs-hinamatsuri/",
                 "title": "emacsひな祭りいってきたのでためになったpackageなどをまとめておく",
                 "section": "posts",
                 "date" : "2019-03-08",
@@ -222,7 +222,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/emacs/lsp-mode/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/emacs/lsp-mode/",
                 "title": "lsp-modeを導入する",
                 "section": "posts",
                 "date" : "2018-11-20",
@@ -232,7 +232,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/emacs/emacs-use-package/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/emacs/emacs-use-package/",
                 "title": "use-packagesを使ってみる",
                 "section": "posts",
                 "date" : "2018-11-20",
@@ -242,7 +242,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/falcon/falcon-img-upload/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/falcon/falcon-img-upload/",
                 "title": "falconでアップロードサーバーを作る",
                 "section": "posts",
                 "date" : "2018-10-16",
@@ -252,7 +252,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/falcon/falcon-tips/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/falcon/falcon-tips/",
                 "title": "falconを使ってみた",
                 "section": "posts",
                 "date" : "2018-10-16",
@@ -262,7 +262,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/hugo/hugo-start-article/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/hugo/hugo-start-article/",
                 "title": "Hugoでブログを作る",
                 "section": "posts",
                 "date" : "2018-10-16",
@@ -272,7 +272,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/hugo/hugo-href-to-target-blank/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/hugo/hugo-href-to-target-blank/",
                 "title": "Hugoでリンクを新しいウィンドウで開く",
                 "section": "posts",
                 "date" : "2018-10-16",
@@ -282,7 +282,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/hugo/hugo-ga/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/hugo/hugo-ga/",
                 "title": "Hugoにgoogle analyticsを導入する",
                 "section": "posts",
                 "date" : "2018-10-16",
@@ -292,7 +292,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/hugo/hugo-long-time-no-see/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/hugo/hugo-long-time-no-see/",
                 "title": "Hugoのディレクトリ構造やデプロイ方法の備忘録",
                 "section": "posts",
                 "date" : "2018-10-16",
@@ -302,7 +302,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/hugo/hugo-code-highlight/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/hugo/hugo-code-highlight/",
                 "title": "Hugoの記事でコードハイライトする",
                 "section": "posts",
                 "date" : "2018-10-16",
@@ -312,7 +312,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/hugo/hugo-add-site-description/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/hugo/hugo-add-site-description/",
                 "title": "Hugoの記事にdescriptionを追加する",
                 "section": "posts",
                 "date" : "2018-10-16",
@@ -322,7 +322,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/hugo/hugo-on-image/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/hugo/hugo-on-image/",
                 "title": "Hugoの記事に画像を載せる",
                 "section": "posts",
                 "date" : "2018-10-16",
@@ -332,7 +332,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/hugo/hugo-date-sort/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/hugo/hugo-date-sort/",
                 "title": "Hugoの記事を更新順にソートする",
                 "section": "posts",
                 "date" : "2018-10-16",
@@ -342,7 +342,7 @@
     ,
         
             {
-                "ref": "https://if001.github.io/posts/hugo/hugo-git-pages/",
+                "ref": "https://if001.github.io/if-blog-hugo/posts/hugo/hugo-git-pages/",
                 "title": "HugoをGitHub Pagesで公開する",
                 "section": "posts",
                 "date" : "2018-10-16",

@@ -1,4 +1,4 @@
-baseURL = "https://if001.github.io"
+baseURL = "https://if001.github.io/if-blog-hugo/"
 languageCode = "ja"
 title = "アンドロイドは推理小説を書くか?"
 theme = "my_harbor"

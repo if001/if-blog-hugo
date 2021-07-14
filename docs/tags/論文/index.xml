@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>論文 on アンドロイドは推理小説を書くか?</title>
-		<link>https://if001.github.io/tags/%E8%AB%96%E6%96%87/</link>
+		<link>https://if001.github.io/if-blog-hugo/tags/%E8%AB%96%E6%96%87/</link>
 		<description>Recent content in 論文 </description>
 		<generator>Hugo -- gohugo.io</generator>
 		
@@ -11,7 +11,7 @@
     	
   		<lastBuildDate>Wed, 30 Dec 2020 00:00:00 +0900</lastBuildDate>
 		
-		<atom:link href="/tags/%E8%AB%96%E6%96%87/" rel="self" type="application/rss+xml" />
+		<atom:link href="/if-blog-hugo/tags/%E8%AB%96%E6%96%87/" rel="self" type="application/rss+xml" />
 		
 	</channel>
 </rss>
