@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>技術ブログ用にGatsbyを整える</title>
+
+  <meta name="description" content="自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。" />
+
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://if001.github.ioindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://if001.github.iocss/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://if001.github.iofontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://if001.github.io/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://if001.github.iojs/bundle.js"></script>
+<script src="https://if001.github.iojs/instantpage.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="これまでHugoを使っていたが、gatsbyを使ってみようと思います。 https://www.gatsbyjs.org/
+gatsbyは、react製の静的サイトジェネレーターです。PWAやOGPなどがあらかじめ設定してあり(themeによる？)便利です。また、記事などの任意のデータ取得のためのイ" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+                <h1>
+                  技術ブログ用にGatsbyを整える
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://if001.github.io/tags/react/">react</a
+            >&nbsp;
+          
+            <a href="https://if001.github.io/tags/gatsby/">gatsby</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div>
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2019-10-14
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>これまでHugoを使っていたが、gatsbyを使ってみようと思います。
+<a href="https://www.gatsbyjs.org/">https://www.gatsbyjs.org/</a></p>
+<p>gatsbyは、react製の静的サイトジェネレーターです。PWAやOGPなどがあらかじめ設定してあり(themeによる？)便利です。また、記事などの任意のデータ取得のためのインターフェスとしてGraphQLを使用しているのが特徴です。(GraphQLは別途用意する必要はなく、gatsbyのbuild時に作成されます。)<br>
+<a href="https://www.gatsbyjs.org/docs/graphql-concepts/">GraphQL Concepts</a></p>
+<p>静的サイトジェネレーター一覧はここがすごいわかりやすかった<br>
+<a href="https://www.staticgen.com/">https://www.staticgen.com/</a></p>
+<p>gatsbyを選んだのは、reactに入門したかったのと、Hugoのテーマがスマホ対応していなかったので手を加えたかったということでタイミングがよかったからです。</p>
+<p>以下に、今回使ったものを備忘録として残しておきます。<br>
+ここにあげるもの一通り導入し、デザインを入れれば、基本的な技術ブログが作れるかと思います。</p>
+<h2 id="theme">theme</h2>
+<p>今回は、テーマに変更を加える形で作ります。</p>
+<p>テーマは以下から選びます。
+<a href="https://www.gatsbyjs.org/starters/?v=2">https://www.gatsbyjs.org/starters/?v=2</a></p>
+<p>以下のコマンドでテーマ入った状態で、gatsbyのプロジェクトが生成されます。</p>
+<p><code>$ gatsby new gatsby-starter-default</code><br>
+<a href="https://github.com/gatsbyjs/gatsby-starter-default">https://github.com/gatsbyjs/gatsby-starter-default</a></p>
+<p>gatsbyのチュートリアルに目を通しつつ、themeに手を加えていきます。</p>
+<h2 id="markdownで記事を書く">Markdownで記事を書く</h2>
+<p>以下のページを参考にしました。</p>
+<p><a href="https://www.gatsbyjs.org/docs/adding-markdown-pages/">https://www.gatsbyjs.org/docs/adding-markdown-pages/</a><br>
+ある程度試して使い方がわかれば、markdownに対応したthemeがあるので、そちらを使った方が楽かと思います。</p>
+<p>以下のようなqueryで一覧が取得できます。</p>
+<pre><code>{
+  allMarkdownRemark {
+    edges {
+      node {
+        html
+        headings {
+          depth
+          value
+        }
+        frontmatter {
+          # Assumes you're using title in your frontmatter.
+          title
+        }
+      }
+    }
+  }
+}
+</code></pre><p>日付順にソート、limit、skipを与えることで、ページング処理もできます。</p>
+<pre><code>   allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: $limit
+      skip: $skip
+    ) {
+    .
+    .
+</code></pre><h2 id="icons">icons</h2>
+<p>以下のものがすぐに使えてよかったです。</p>
+<p><a href="https://react-icons.netlify.com/#/">https://react-icons.netlify.com/#/</a><br>
+(emacsがないのが解せぬ…)</p>
+<h2 id="コードのハイライト">コードのハイライト</h2>
+<p>技術ブログなので、コードのハイライトは必須です。Gatsbyで使えるものがいくつかあるようですが、自分の使う言語に対応していたので以下を使いました。</p>
+<p>Prism: <a href="https://prismjs.com/">https://prismjs.com/</a></p>
+<p>Prismを使ったGatsbyのプラグイン: <a href="https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/">https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/</a></p>
+<p>gatsby-config.jsには、プラグインの記事に従ってプラグインを追加。<br>
+また、gatsby-browser.jsに以下を追加</p>
+<p><code>require(&quot;prismjs/themes/prism-solarizedlight.css&quot;);</code></p>
+<p>行数を表示するには、更に以下を追加</p>
+<p><code>require(&quot;prismjs/plugins/line-numbers/prism-line-numbers.css&quot;);</code></p>
+<p>その他のthemeもあるので好きなのを使う。単一のラインのハイライトや、ハイライト開始/終了の行数指定も可能だが、自前でcssを調節する必要がある。</p>
+<p>コードハイライトにファイル名やタイトルを表示させたかったので、以下を使いました。<br>
+<a href="https://www.gatsbyjs.org/packages/gatsby-remark-code-titles/?=gatsby-remark-code-titles">https://www.gatsbyjs.org/packages/gatsby-remark-code-titles/?=gatsby-remark-code-titles</a></p>
+<p>例</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json:title=test.json" data-lang="json:title=test.json">{
+    <span style="color:#ff79c6">&#34;test&#34;</span>: <span style="color:#f1fa8c">&#34;test&#34;</span>
+}
+</code></pre></div><h2 id="katex">katex</h2>
+<p>記事中に数式を書くことがあるので、必要でした。以下のプラグインを使うと簡単にできます。</p>
+<p><a href="https://www.gatsbyjs.org/packages/gatsby-remark-katex/">https://www.gatsbyjs.org/packages/gatsby-remark-katex/</a></p>
+<p><code>\tags</code> 使うとparse errorで怒られる。(v3.1.13)</p>
+<p>前に使って重い印象があったので、使いませんでしたが、mathjaxもあるみたいです。<br>
+<a href="https://www.gatsbyjs.org/packages/gatsby-remark-mathjax/">https://www.gatsbyjs.org/packages/gatsby-remark-mathjax/</a></p>
+<h2 id="画像表示">画像表示</h2>
+<p>markdonwの記事に画像を追加します。
+一般的には、<code>![画像タイトル](URL)</code>のように画像を追加しますが、gatsbyではプラグインを入れる必要があります。</p>
+<p><a href="https://www.gatsbyjs.org/docs/working-with-images-in-markdown/">https://www.gatsbyjs.org/docs/working-with-images-in-markdown/</a></p>
+<p>ただ、markdownで画像をリサイズして表示したいときは、どうするのかわからない。自前で作るしかない？？</p>
+<h2 id="目次">目次</h2>
+<p>プラグインgatsby-remark-tocを使うことで目次をつけることができます。ただ、記事のトップにしかつけることができず、Qiitaのようなサイドバーに目次をつけたかったので、以下のようにしました。</p>
+<p>queryに<code>tableOfContents</code>を加えると、目次が取得できます。</p>
+<p>例</p>
+<pre><code>markdownRemark(fields: { slug: { eq: $slug } }) {
+      html
+      frontmatter {
+        title
+        date(formatString: &quot;YYYY-MM-DD&quot;)
+        tags
+      }
+      tableOfContents
+    }
+  }
+</code></pre><p>取得したものを表示します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">const</span> tableOfContens <span style="color:#ff79c6">=</span> props.data.markdownRemarks.tableOfContents;
+<span style="color:#ff79c6">&lt;</span>div dangerouslySetInnerHTML<span style="color:#ff79c6">=</span>{{<span style="color:#bd93f9">__</span>html<span style="color:#ff79c6">:</span> tableOfContens}}<span style="color:#ff79c6">/&gt;</span>
+</code></pre></div><p>参考<br>
+<a href="https://nakawork.net/posts/gatsby-toc">https://nakawork.net/posts/gatsby-toc</a></p>
+<p>スクロールで目次のハイライトもスクロールも試したかったけど、それはまた今度</p>
+<h2 id="google-analytics">google analytics</h2>
+<p><a href="https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/">https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/</a></p>
+<h2 id="google-adsense">google adsense</h2>
+<p><code>$ npm install --save gatsby-plugin-google-adsense</code></p>
+<pre><code class="language-jsonld=" data-lang="jsonld=">// In your gatsby-config.js file
+plugins: [
+    {
+      resolve: `gatsby-plugin-google-adsense`,
+      options: {
+        publisherId: `ca-pub-xxxxxxxxxx`
+      },
+    },
+]
+</code></pre><p>プロジェクトのrootディレクトリにstaticディレクトリを作成。<br>
+staticディレクトリ以下に、CNAMEファイル、ads.txtを追加。</p>
+<h2 id="サイトマップ">サイトマップ</h2>
+<p>以下のプラグインを使うことで、build時にsitemap.xmlが生成されます。</p>
+<p><a href="https://www.gatsbyjs.org/packages/gatsby-plugin-sitemap/">https://www.gatsbyjs.org/packages/gatsby-plugin-sitemap/</a></p>
+<h2 id="関連記事の表示">関連記事の表示</h2>
+<p>プラグインがないみたいです。以下の記事が参考になりそうです。今後試してみます。</p>
+<p>参考<br>
+<a href="https://khalilstemmler.com/articles/gatsby-related-posts-component/">https://khalilstemmler.com/articles/gatsby-related-posts-component/</a></p>
+<h2 id="github-pages">github pages</h2>
+<p>参考<br>
+<a href="https://www.gatsbyjs.org/docs/how-gatsby-works-with-github-pages/">https://www.gatsbyjs.org/docs/how-gatsby-works-with-github-pages/</a></p>
+<p>subdomainの場合は、以下の手順</p>
+<p>gh-pagesをインストール</p>
+<p><code>$ npm install gh-pages --save-dev</code></p>
+<p>以下を追加</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json:title=package.json" data-lang="json:title=package.json">{
+  <span style="color:#ff79c6">&#34;scripts&#34;</span>: {
+    <span style="color:#ff79c6">&#34;deploy&#34;</span>: <span style="color:#f1fa8c">&#34;gatsby build &amp;&amp; gh-pages -d public&#34;</span>
+  }
+}
+</code></pre></div><p>デプロイ</p>
+<p><code>$ npm run deploy</code></p>
+<h2 id="まとめ">まとめ</h2>
+<p>プラグインが豊富で基本的なことは全てプラグインを使えば実現できるので便利。ただ、プラグインに依存しすぎて、バージョン依存の問題とかで盛大に死にそうな未来がうっすら見える。</p>
+<p>GraphQLのコンセプトは面白いし使いやすいけど、コードの中にquery書くのはインデントあわなさすぎてしんどい。<code>localhost:8000___graphql</code>でqueryが確認できるのでなんとか頑張れるけど、APIほしかった。</p>
+<p>今後は以下の記事がチューニングの参考になりそう</p>
+<p>GatsbyでGoogle Lighthouseで満点を取るブログを一から作る<br>
+<a href="https://qiita.com/so99ynoodles/items/87e136d09644baac634c">https://qiita.com/so99ynoodles/items/87e136d09644baac634c</a></p>
+<p>Gatsbyプラグイン45選<br>
+<a href="https://takumon.github.io/gatsby-starter-qiita/f18d04ac-9b1a-5ac8-8d43-8aa3d8f746a7/">https://takumon.github.io/gatsby-starter-qiita/f18d04ac-9b1a-5ac8-8d43-8aa3d8f746a7/</a></p>
+
+      </div>
+    </article>
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://if001.github.iopages/about">if_004</a>
+      &nbsp;&copy;
+      2020
+      
+        &nbsp;/&nbsp;
+        <a href="https://if001.github.io">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

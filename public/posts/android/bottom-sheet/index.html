@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Bottom Sheetをつける</title>
+
+  <meta name="description" content="自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。" />
+
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://if001.github.ioindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://if001.github.iocss/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://if001.github.iofontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://if001.github.io/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://if001.github.iojs/bundle.js"></script>
+<script src="https://if001.github.iojs/instantpage.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="Google Mapで下から引っ張ると出てくるやつ。
+調べたら以外と簡単にできた。
+dependenciesを追加。
+dependencies { implementation &#39;com.google.android.material:material:1.0.0&#39; } 例
+&amp;lt;androidx" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+                <h1>
+                  Bottom Sheetをつける
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://if001.github.io/tags/android/">android</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div>
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2020-03-01
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>Google Mapで下から引っ張ると出てくるやつ。</p>
+<p><img src="../../../images/android/bottom_sheet.jpg" alt="activity"></p>
+<p>調べたら以外と簡単にできた。</p>
+<p>dependenciesを追加。</p>
+<pre><code>dependencies {
+    implementation 'com.google.android.material:material:1.0.0'
+}
+</code></pre><p>例</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#ff79c6">&lt;androidx.coordinatorlayout.widget.CoordinatorLayout</span> ..... <span style="color:#ff79c6">&gt;</span>
+ <span style="color:#ff79c6">&lt;LinearLayout</span>
+        <span style="color:#50fa7b">android:id=</span><span style="color:#f1fa8c">&#34;@+id/bottomSheetLayout&#34;</span>
+        <span style="color:#50fa7b">android:layout_width=</span><span style="color:#f1fa8c">&#34;match_parent&#34;</span>
+        <span style="color:#50fa7b">android:layout_height=</span><span style="color:#f1fa8c">&#34;match_parent&#34;</span>
+        <span style="color:#50fa7b">app:behavior_hideable=</span><span style="color:#f1fa8c">&#34;false&#34;</span>
+        <span style="color:#50fa7b">app:behavior_peekHeight=</span><span style="color:#f1fa8c">&#34;56dp&#34;</span>
+        <span style="color:#50fa7b">app:layout_behavior=</span><span style="color:#f1fa8c">&#34;@string/bottom_sheet_behavior&#34;</span><span style="color:#ff79c6">&gt;</span>
+ 中身
+<span style="color:#ff79c6">&lt;/LinearLayout&gt;</span>
+<span style="color:#ff79c6">&lt;/androidx.coordinatorlayout.widget.CoordinatorLayout&gt;</span>
+</code></pre></div><p>bottm sheetにしたいコンテンツ、今回の例ではLinearLayout、のlayout_behaviorを以下のように指定。</p>
+<p><code>app:layout_behavior=&quot;@string/bottom_sheet_behavior</code></p>
+<p>CoordinatorLayoutの一番下に配置する。</p>
+<p>開いたり閉じたりをコードで制御する場合は、activity/fragmentの中で以下のように設定する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin">bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetLayout)
+
+
+<span style="color:#6272a4">// 隠す
+</span><span style="color:#6272a4"></span>bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+
+<span style="color:#6272a4">// 開く
+</span><span style="color:#6272a4"></span>bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+</code></pre></div><p>コールバックも設定できる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kotlin" data-lang="kotlin"> bottomSheetBehavior.setBottomSheetCallback(<span style="color:#ff79c6">object</span>: BottomSheetBehavior.BottomSheetCallback(){
+            <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onSlide</span>(p0: View, p1: Float) {
+                TODO(<span style="color:#f1fa8c">&#34;not implemented&#34;</span>) <span style="color:#6272a4">//To change body of created functions use File | Settings | File Templates.
+</span><span style="color:#6272a4"></span>            }
+
+            <span style="color:#ff79c6">override</span> <span style="color:#ff79c6">fun</span> <span style="color:#50fa7b">onStateChanged</span>(p0: View, p1: Int) {
+                TODO(<span style="color:#f1fa8c">&#34;not implemented&#34;</span>) <span style="color:#6272a4">//To change body of created functions use File | Settings | File Templates.
+</span><span style="color:#6272a4"></span>            }
+
+        })
+</code></pre></div><p>参考<br>
+<a href="https://blog.mindorks.com/android-bottomsheet-in-kotlin">https://blog.mindorks.com/android-bottomsheet-in-kotlin</a><br>
+<a href="https://qiita.com/fumiyakawauso/items/1d0fa27aa508a3e0570a">https://qiita.com/fumiyakawauso/items/1d0fa27aa508a3e0570a</a></p>
+
+      </div>
+    </article>
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://if001.github.iopages/about">if_004</a>
+      &nbsp;&copy;
+      2020
+      
+        &nbsp;/&nbsp;
+        <a href="https://if001.github.io">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

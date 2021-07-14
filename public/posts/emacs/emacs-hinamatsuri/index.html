@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>emacsひな祭りいってきたのでためになったpackageなどをまとめておく</title>
+
+  <meta name="description" content="自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。" />
+
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://if001.github.ioindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://if001.github.iocss/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://if001.github.iofontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://if001.github.io/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://if001.github.iojs/bundle.js"></script>
+<script src="https://if001.github.iojs/instantpage.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="2019年3月3日に開催された東京Emacsひなまつりにいってきました。
+https://tokyo-emacs.connpass.com/event/121603/
+随時コメント追加していきます。
+ ox-hugo
+https://ox-hugo.scripter.co/
+Ox-hugo
+http" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+                <h1>
+                  emacsひな祭りいってきたのでためになったpackageなどをまとめておく
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://if001.github.io/tags/emacs/">emacs</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div>
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2019-03-08
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>2019年3月3日に開催された東京Emacsひなまつりにいってきました。<br>
+<a href="https://tokyo-emacs.connpass.com/event/121603/">https://tokyo-emacs.connpass.com/event/121603/</a></p>
+<p>随時コメント追加していきます。</p>
+<h2 id="heading"></h2>
+<p>ox-hugo<br>
+<a href="https://ox-hugo.scripter.co/">https://ox-hugo.scripter.co/</a></p>
+<p>Ox-hugo<br>
+<a href="https://sfus.net/blog/2018/12/org-mode-with-ox-hugo/">https://sfus.net/blog/2018/12/org-mode-with-ox-hugo/</a></p>
+<p>Atomic-chrome<br>
+<a href="https://qiita.com/alpha22jp/items/f67bda3ed0c4ac84c29f">https://qiita.com/alpha22jp/items/f67bda3ed0c4ac84c29f</a></p>
+<p>LSP<br>
+<a href="https://qiita.com/blue0513/items/acc962738c7f4da26656">https://qiita.com/blue0513/items/acc962738c7f4da26656</a><br>
+eglot<br>
+<a href="https://howm.osdn.jp/index-j.html">https://howm.osdn.jp/index-j.html</a></p>
+<p>Ivy<br>
+<a href="https://qiita.com/tadsan/items/33ebb8db2271897a462b#ivycounsel">https://qiita.com/tadsan/items/33ebb8db2271897a462b#ivycounsel</a></p>
+<p>Org-chapture<br>
+<a href="https://www.5ing-myway.com/org-capture/">https://www.5ing-myway.com/org-capture/</a></p>
+<p>child-frame<br>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Child-Frames.html">https://www.gnu.org/software/emacs/manual/html_node/elisp/Child-Frames.html</a></p>
+<p>highlight-indent-guides.el<br>
+<a href="https://qiita.com/blue0513/items/acc962738c7f4da26656">https://qiita.com/blue0513/items/acc962738c7f4da26656</a></p>
+<p>doom-theme<br>
+<a href="https://github.com/hlissner/emacs-doom-themes">https://github.com/hlissner/emacs-doom-themes</a></p>
+<p>doom-modeline<br>
+<a href="https://github.com/seagle0128/doom-modeline">https://github.com/seagle0128/doom-modeline</a></p>
+<p>git-gutter<br>
+<a href="https://emacs-jp.github.io/packages/vcs/git-gutter">https://emacs-jp.github.io/packages/vcs/git-gutter</a><br>
+<a href="https://qiita.com/syohex/items/a669b35fbbfcdda0cbf2">https://qiita.com/syohex/items/a669b35fbbfcdda0cbf2</a></p>
+<p>White-space mode<br>
+<a href="https://qiita.com/itiut@github/items/4d74da2412a29ef59c3a">https://qiita.com/itiut@github/items/4d74da2412a29ef59c3a</a></p>
+<p>Projectile<br>
+<a href="https://github.com/bbatsov/projectile">https://github.com/bbatsov/projectile</a></p>
+<p>Ddss<br>
+<a href="http://emacs.rubikitch.com/sd1408-ddskk/">http://emacs.rubikitch.com/sd1408-ddskk/</a></p>
+<p>ripgrep<br>
+<a href="https://github.com/dajva/rg.el">https://github.com/dajva/rg.el</a><br>
+<a href="http://emacs.rubikitch.com/ripgrep/">http://emacs.rubikitch.com/ripgrep/</a></p>
+<h2 id="感想">感想</h2>
+<p>もっとゴリゴリな変態emacs使い(褒め言葉)ばかりかと思ってたけど、実用性の高い話が聞けてよかったです。emacs歴は7,8年ほどですが普段はpythonやmarkdownなどちょっとした開発にemacsを使う程度で、scalaやhtml、jsや規模の大きいプロジェクトなどではIDEを使っています。今回ので良い知見が得られたのでこれからはしっかりemacs使っていこうと思います。
+ORGモード人気。</p>
+
+      </div>
+    </article>
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://if001.github.iopages/about">if_004</a>
+      &nbsp;&copy;
+      2020
+      
+        &nbsp;/&nbsp;
+        <a href="https://if001.github.io">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

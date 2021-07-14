@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>lsp-modeを導入する</title>
+
+  <meta name="description" content="自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。" />
+
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://if001.github.ioindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://if001.github.iocss/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://if001.github.iofontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://if001.github.io/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://if001.github.iojs/bundle.js"></script>
+<script src="https://if001.github.iojs/instantpage.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="大学時代から使っていたemacsの設定たちを綺麗にするという目的で、ついでにlsp-modeを導入してみようと思う。
+lsp-mode
+https://github.com/emacs-lsp/lsp-mode
+language server protocolとは language server p" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+                <h1>
+                  lsp-modeを導入する
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://if001.github.io/tags/emacs/">emacs</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div>
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2018-11-20
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>大学時代から使っていたemacsの設定たちを綺麗にするという目的で、ついでにlsp-modeを導入してみようと思う。</p>
+<p>lsp-mode<br>
+<a href="https://github.com/emacs-lsp/lsp-mode">https://github.com/emacs-lsp/lsp-mode</a></p>
+<h2 id="language-server-protocolとは">language server protocolとは</h2>
+<p><a href="https://microsoft.github.io/language-server-protocol/">language server protocol(lsp)</a>とは、IDEやエディタとIDEが提供する機能(補間、定義jump、ドキュメントの表示など)の間で使用されるプロトコルを定義したものである。<br>
+これまで、IDEなどの提供する機能(補間、定義へのjump、ドキュメントの表示など)は言語ごと、IDEごとに提供されていた。<br>
+それを取りまとめるプロトコルが定義されることで、IDEごとの格差が緩和され、emacsでもIDEと同様の機能が実現でき流ようになるということです。<br>
+詳しくは、以下が参考になると思う。</p>
+<p><a href="https://microsoft.github.io/language-server-protocol/">https://microsoft.github.io/language-server-protocol/</a><br>
+<a href="https://github.com/Microsoft/language-server-protocol">https://github.com/Microsoft/language-server-protocol</a><br>
+<a href="https://qiita.com/atsushieno/items/ce31df9bd88e98eec5c4">https://qiita.com/atsushieno/items/ce31df9bd88e98eec5c4</a></p>
+<h2 id="lsp-mode">lsp-mode</h2>
+<p>emacsでは、lsp-modeとeglotがlspをサポートしているみたい。今回はlsp-modeを導入する。<br>
+lsp-mode: <a href="https://github.com/emacs-lsp/lsp-mode">https://github.com/emacs-lsp/lsp-mode</a><br>
+を見ながら設定していく。</p>
+<p>melpaからインストール</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">M-x package-install <span style="color:#ff79c6">[</span>RET<span style="color:#ff79c6">]</span> lsp-mode <span style="color:#ff79c6">[</span>RET<span style="color:#ff79c6">]</span>
+</code></pre></div><p>以下のように設定する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">lsp-mode</span>
+  <span style="color:#f1fa8c">:custom</span>
+  (<span style="color:#8be9fd;font-style:italic">lsp-print-io</span> t)
+  (<span style="color:#8be9fd;font-style:italic">lsp-prefer-flymake</span> <span style="color:#f1fa8c">&#39;flymake</span>)
+  <span style="color:#f1fa8c">:commands</span> <span style="color:#8be9fd;font-style:italic">lsp</span>)
+</code></pre></div><p><code>lsp-print-io</code>で全てのログを<code>*lsp-log*</code>に表示する。今回はflymakeを使うので、<code>(lsp-prefer-flymake 'flymake)</code> を設定しておく。</p>
+<p>続いて、lsp-modeのバックエンドにcompanyを使うためにcompany-lspを、lsp-modeのUIをリッチにしてくれるlsp-uiを入れる。<br>
+それぞれmelpaからインストールします。</p>
+<h3 id="company-lsp">company-lsp</h3>
+<p><a href="https://github.com/tigersoldier/company-lsp">https://github.com/tigersoldier/company-lsp</a></p>
+<p>companyのバックエンドに設定</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#50fa7b">use-package</span> <span style="color:#f1fa8c">&#39;company-lsp</span>
+  <span style="color:#f1fa8c">:after</span> (<span style="color:#8be9fd;font-style:italic">lsp-mode</span> <span style="color:#8be9fd;font-style:italic">company</span>)
+  <span style="color:#f1fa8c">:init</span> (<span style="color:#8be9fd;font-style:italic">push</span> <span style="color:#f1fa8c">&#39;company-lsp</span> <span style="color:#8be9fd;font-style:italic">company-backends</span>)
+ )
+</code></pre></div><h3 id="lsp-ui">lsp-ui</h3>
+<p><a href="https://github.com/emacs-lsp/lsp-ui">https://github.com/emacs-lsp/lsp-ui</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">lsp-ui</span>
+  <span style="color:#f1fa8c">:custom</span>
+  <span style="color:#6272a4">;; lsp-ui-doc</span>
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-doc-enable</span> nil)
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-doc-header</span> t)
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-doc-include-signature</span> t)
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-doc-position</span> <span style="color:#f1fa8c">&#39;at-point</span>) <span style="color:#6272a4">;; top, bottom, or at-point</span>
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-doc-max-width</span> <span style="color:#bd93f9">150</span>)
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-doc-max-height</span> <span style="color:#bd93f9">30</span>)
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-doc-use-childframe</span> t)
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-doc-use-webkit</span> t)
+  
+  <span style="color:#6272a4">;; lsp-ui-flycheck</span>
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-flycheck-enable</span> nil)
+
+  <span style="color:#6272a4">;; lsp-ui-peek</span>
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-peek-enable</span> t)
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-peek-peek-height</span> <span style="color:#bd93f9">20</span>)
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-peek-list-width</span> <span style="color:#bd93f9">50</span>)
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-peek-fontify</span> <span style="color:#f1fa8c">&#39;on-demand</span>) <span style="color:#6272a4">;; never, on-demand, or always</span>
+  
+  <span style="color:#6272a4">;; lsp-ui-imenu</span>
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-imenu-enable</span> nil)
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-imenu-kind-position</span> <span style="color:#f1fa8c">&#39;top</span>)
+  
+  <span style="color:#6272a4">;; lsp-ui-sideline</span>
+  (<span style="color:#8be9fd;font-style:italic">lsp-ui-sideline-enable</span> nil)
+  
+  <span style="color:#f1fa8c">:commands</span> <span style="color:#8be9fd;font-style:italic">lsp-ui-mode</span>
+  <span style="color:#f1fa8c">:config</span>
+  (<span style="color:#8be9fd;font-style:italic">add-hook</span> <span style="color:#f1fa8c">&#39;lsp-mode-hook</span> <span style="color:#f1fa8c">&#39;lsp-ui-mode</span>)
+  (<span style="color:#8be9fd;font-style:italic">eval-after-load</span> <span style="color:#f1fa8c">&#34;flymake&#34;</span>
+    (<span style="color:#ff79c6">setq</span> <span style="color:#8be9fd;font-style:italic">flymake-fringe-indicator-position</span> nil)
+    )
+  )
+</code></pre></div><p>主な機能は以下</p>
+<ul>
+<li>lsp-ui-doc:<br>
+リファレンス表示<br>
+(lsp-ui-doc-use-childframe t)でchildframeを使ったドキュメント表示ができる。webkitでもできるみたいだけどうまくいかない</li>
+<li>lsp-ui-peek:<br>
+定義ジャンプ</li>
+<li>lsp-ui-sideline<br>
+現在行の情報を表示(肩情報はchildframeで表示され、表示情報が重複しているので非表示にした)</li>
+</ul>
+<p>動いている様子は、各GitHubのページで確認</p>
+<p>以上で、lsp-modeの設定は終了</p>
+<h2 id="各言語の設定">各言語の設定</h2>
+<p>goのLanguage Serverはbingoを使うと良いそうです。</p>
+<p>bingo<br>
+<a href="https://github.com/saibing/bingo">https://github.com/saibing/bingo</a></p>
+<p>これもmelpaでインストールし、以下のように設定</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">go-mode</span>
+  <span style="color:#f1fa8c">:config</span>
+  (<span style="color:#8be9fd;font-style:italic">add-hook</span> <span style="color:#f1fa8c">&#39;go-mode-hook</span> <span style="color:#50fa7b">#&#39;</span><span style="color:#8be9fd;font-style:italic">lsp</span>)
+ )
+</code></pre></div><h2 id="まとめ">まとめ</h2>
+<p>lsp-modeを使って、IDEで提供されている機能をemacsでも使えるように設定しました。これでgo langで補間、リファレンス参照、定義ジャンプなどできるようになりました。その他設定の見直しは今後記事に落としていくということで。</p>
+
+      </div>
+    </article>
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://if001.github.iopages/about">if_004</a>
+      &nbsp;&copy;
+      2020
+      
+        &nbsp;/&nbsp;
+        <a href="https://if001.github.io">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

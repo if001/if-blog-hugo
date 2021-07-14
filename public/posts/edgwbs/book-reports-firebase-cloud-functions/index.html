@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Firebase Cloud Functionsを使ってTwitterのOGPを設定する</title>
+
+  <meta name="description" content="自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。" />
+
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://if001.github.ioindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://if001.github.iocss/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://if001.github.iofontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://if001.github.io/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://if001.github.iojs/bundle.js"></script>
+<script src="https://if001.github.iojs/instantpage.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="Vue.jsで作ったWebAppをFirebase Hostingで公開し、そこでTwitter用のOGPを設定しようとしましたが、Twitterのクローラーがjavascriptを解釈できないということで、別途方法を考える必要がありました。そこで、Firebase Cloud Functionsを" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+                <h1>
+                  Firebase Cloud Functionsを使ってTwitterのOGPを設定する
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://if001.github.io/tags/firebase/">firebase</a
+            >&nbsp;
+          
+            <a href="https://if001.github.io/tags/webapp/">WebApp</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div>
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2019-09-30
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>Vue.jsで作ったWebAppをFirebase Hostingで公開し、そこでTwitter用のOGPを設定しようとしましたが、Twitterのクローラーがjavascriptを解釈できないということで、別途方法を考える必要がありました。そこで、Firebase Cloud Functionsを使ってtwitter：OGPを設定してみようと思います。</p>
+<p>Firebase Cloud Functionsとは</p>
+<blockquote>
+<p>Cloud Functions for Firebase を使用すると、Firebase 機能や HTTPS リクエストによってトリガーされたイベントに応じて、バックエンド コードを自動的に実行できます。コードは Google のクラウドに保存され、マネージド環境で実行されます。独自のサーバーを管理およびスケーリングする必要はありません。</p>
+</blockquote>
+<p>引用： <a href="https://firebase.google.com/docs/functions/?hl=ja">https://firebase.google.com/docs/functions/?hl=ja</a></p>
+<p>今回は、HTTPSリクエストをトリガーに使いましたが、FirebaseのDatabaseへの書き込みやGitHubのpush/commitなどもトリガーにできるようです。色々と便利に使えそうです。</p>
+<p>Cloud Functions で可能な処理:<br>
+<a href="https://firebase.google.com/docs/functions/use-cases?hl=ja">https://firebase.google.com/docs/functions/use-cases?hl=ja</a></p>
+<p>Firebase Cloud Functionsで使える言語は、今のところNode.js(javascript)だけのようです。Google CLoud Functionsでは、Node.js(javascript)、python、（Golang）がサポートされているので今後このあたりの言語もサポートされるのではないでしょうか。
+Firebase Cloud Functions用に、javascriptのライブラリが提供されており、どうしても別の言語で書きたいという場合でなければ、不便なく使えるかと思います。</p>
+<p>作ったアプリはこれ。</p>
+<p><img src="../../../images/bookreports_edgwbs/logo.png" alt="logo"></p>
+<p><a href="https://bookreports.edgwbs.net">三行読書感想文</a></p>
+<h2 id="ogp設定">OGP設定</h2>
+<p>今回は、ページによって設定したいOGPが異なるため、ページごとに動的に設定する必要があります。<br>
+ページごとに異なる情報は、Firebase CloudStoreに保存してあるので、そこから取得します。</p>
+<p>また、ツイッターのクローラーからのリクエストならばOGP用のページを返却し、通常のアクセスならばページを表示するというような振り分けも行います。</p>
+<p>リクエストが来てからのフローは以下の用になります</p>
+<ul>
+<li>リクエストの振り分け</li>
+<li>DBからデータの取得</li>
+<li>リダイレクト or OGP設定</li>
+</ul>
+<p><img src="../../../images/bookreports_edgwbs/vuejs_golang_firebase_functions.png" alt="vuejs_golang_firebase_functions"></p>
+<h2 id="シンプルなリスポンス例">シンプルなリスポンス例</h2>
+<p>200を返すシンプルなfunctionsの例は以下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">import</span> <span style="color:#ff79c6">*</span> as functions from <span style="color:#f1fa8c">&#39;firebase-functions&#39;</span>;
+
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> share <span style="color:#ff79c6">=</span> functions.https.onRequest((req, res) =&gt; {
+          res.status(<span style="color:#bd93f9">200</span>).send(<span style="color:#f1fa8c">&#34;hello world&#34;</span>);
+})
+</code></pre></div><h2 id="リクエストの振り分け">リクエストの振り分け</h2>
+<p>Twitterのクローラーは、User-Agentが<code>User-agent: Twitterbot</code>なので、これを使います。<br>
+UAがTwitterbotの場合はOGPを設定し返却、それ以外の場合は通常のページへリダイレクトさせるようにします。</p>
+<p>UAは以下の用に取得できます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">const</span> ua <span style="color:#ff79c6">=</span> req.header(<span style="color:#f1fa8c">&#39;user-agent&#39;</span>);
+console.log(<span style="color:#f1fa8c">&#39;ua:&#39;</span>,ua);
+</code></pre></div><p>リクエストを振り分けるために、エンドポイントを<code>firebase.json</code>を修正します。<br>
+<code>/for_twitter</code>にアクセスが来るとFunctionsが呼ばれ、それ以外は通常のページを返します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">  <span style="color:#f1fa8c">&#34;rewrites&#34;</span>: [
+		{
+		    <span style="color:#ff79c6">&#34;source&#34;</span>: <span style="color:#f1fa8c">&#34;/for_twitter/*&#34;</span>,
+		    <span style="color:#ff79c6">&#34;function&#34;</span>: <span style="color:#f1fa8c">&#34;for_twitter&#34;</span>
+		},
+		{
+		    <span style="color:#ff79c6">&#34;source&#34;</span>: <span style="color:#f1fa8c">&#34;**&#34;</span>,
+		    <span style="color:#ff79c6">&#34;destination&#34;</span>: <span style="color:#f1fa8c">&#34;/index.html&#34;</span>
+		}
+	]
+</code></pre></div><h2 id="cloud-storeからデータを取得">Cloud Storeからデータを取得</h2>
+<p>Firebase Admin SDKを使うと、FunctionsからDB/Storageに対し管理者としてアクセスが可能になります。もちろんですが、サーバー側空だけでフロント側から使わないように注意です。</p>
+<p>サーバーに Firebase Admin SDK を追加する:<br>
+<a href="https://firebase.google.com/docs/admin/setup?hl=ja">https://firebase.google.com/docs/admin/setup?hl=ja</a></p>
+<p>環境変数にsevice accountを追加します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8be9fd;font-style:italic">export</span> <span style="color:#8be9fd;font-style:italic">GOOGLE_APPLICATION_CREDENTIALS</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/home/user/Downloads/service-account-file.json&#34;</span>
+</code></pre></div><p>以下のようにSKDの初期化を行います。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">import</span> <span style="color:#ff79c6">*</span> as admin from <span style="color:#f1fa8c">&#39;firebase-admin&#39;</span>;
+
+admin.initializeApp({
+  credential<span style="color:#ff79c6">:</span> admin.credential.applicationDefault(),
+  databaseURL<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;https://&lt;DATABASE_NAME&gt;.firebaseio.com&#39;</span>
+});
+</code></pre></div><p>あとは、adminを使って、firestoreへアクセス可能です。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">const</span> ref <span style="color:#ff79c6">=</span> admin.firestore().collection(<span style="color:#f1fa8c">&#39;test&#39;</span>);
+ref.get().then((snapshot) =&gt; {
+	<span style="color:#6272a4">// ...
+</span></code></pre></div><p>データの取得などはドキュメント参考<br>
+<a href="https://firebase.google.com/docs/firestore?hl=ja">https://firebase.google.com/docs/firestore?hl=ja</a></p>
+<h2 id="twiter-ogpの設定">Twiter OGPの設定</h2>
+<p>以下の４つが設定できるようです。</p>
+<ul>
+<li>Summary Card</li>
+<li>Summary Card with Large Image</li>
+<li>App Card</li>
+<li>Player Card</li>
+</ul>
+<p>Optimize Tweets with Cards<br>
+<a href="https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards">https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards</a></p>
+<p><img src="../../../images/bookreports_edgwbs/twitter_card.png" alt="twitter_card"></p>
+<p><img src="../../../images/bookreports_edgwbs/twitter_card_large.png" alt="twitter_card_large"></p>
+<p>今回はSummary Card with Large Imageを使います。ヘッダーに以下を追加します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;twitter:card&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;summary_large_image&#34;</span>&gt;&lt;/<span style="color:#ff79c6">meta</span>&gt;
+&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">property</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;og:image&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;imageURL&#34;</span>&gt;
+</code></pre></div><p>UAがTwitterbotの場合は、以下の関数を利用し、headerを設定します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#8be9fd;font-style:italic">function</span> buildHtmlWithPost (id<span style="color:#ff79c6">:</span> string, siteUrl<span style="color:#ff79c6">:</span>string, imageURL) <span style="color:#ff79c6">:</span> string {
+    <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">`&lt;!DOCTYPE html&gt;&lt;head&gt;
+</span><span style="color:#f1fa8c">  &lt;title&gt;&lt;/title&gt;
+</span><span style="color:#f1fa8c">  &lt;meta name=&#34;twitter:card&#34; content=&#34;summary_large_image&#34;/&gt;
+</span><span style="color:#f1fa8c">  &lt;meta name=&#34;twitter:title&#34; property=&#34;og:title&#34; content=&#34;タイトル&#34;/&gt;
+</span><span style="color:#f1fa8c">  &lt;meta property=&#34;og:url&#34; content=&#34;</span><span style="color:#f1fa8c">${</span>siteURL<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;&gt;
+</span><span style="color:#f1fa8c">  &lt;meta property=&#34;og:image&#34; content=&#34;</span><span style="color:#f1fa8c">${</span>imageURL<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;&gt;
+</span><span style="color:#f1fa8c">  &lt;meta property=&#34;og:image:width&#34; content=&#34;600&#34;&gt; 
+</span><span style="color:#f1fa8c">  &lt;/head&gt;
+</span><span style="color:#f1fa8c">  &lt;body&gt;&lt;/body&gt;
+</span><span style="color:#f1fa8c">  &lt;/html&gt;`</span>
+}
+</code></pre></div><p>正しく設定できているかは以下から確認できます。</p>
+<p><a href="https://cards-dev.twitter.com/validator">https://cards-dev.twitter.com/validator</a></p>
+<h2 id="まとめ">まとめ</h2>
+<p>Firebase Cloud Functionsを使って、Twitter用のOGPを設定しました。<br>
+HTTPSリクエストをトリガーにし、Firebase Storageから情報を取得、headerを付与し返却するという使い方でしたが、簡単に使うことができました。他のFirebaseのサービスへのアクセスは簡単なので、Firebaseを利用したいろいろなアプリケーションが簡単に作れそうです。他のトリガーなども使ってみたいと思います。</p>
+
+      </div>
+    </article>
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://if001.github.iopages/about">if_004</a>
+      &nbsp;&copy;
+      2020
+      
+        &nbsp;/&nbsp;
+        <a href="https://if001.github.io">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

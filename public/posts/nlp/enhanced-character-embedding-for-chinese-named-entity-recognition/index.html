@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Enhanced character embedding for Chinese named entity recognition</title>
+
+  <meta name="description" content="自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。" />
+
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://if001.github.ioindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://if001.github.iocss/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://if001.github.iofontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://if001.github.io/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://if001.github.iojs/bundle.js"></script>
+<script src="https://if001.github.iojs/instantpage.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="Enhanced character embedding for Chinese named entity recognition https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456
+ 従来の名前付き実体認識方法では、主に手作業" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+                <h1>
+                  Enhanced character embedding for Chinese named entity recognition
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://if001.github.io/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://if001.github.io/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://if001.github.io/tags/%E8%AB%96%E6%96%87/">論文</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div>
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2020-12-30
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <h1 id="enhanced-character-embedding-for-chinese-named-entity-recognition">Enhanced character embedding for Chinese named entity recognition</h1>
+<p><a href="https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456">https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456</a></p>
+<blockquote>
+<p>従来の名前付き実体認識方法では、主に手作業による特徴の応用を模索しています。現在では、ディープラーニングの普及に伴い、名前付き実体認識のための深い特徴を捕捉するためにニューラルネットワークが導入されている。しかし、既存の手法の多くは、現代のコーパスを対象としたものに限られている。古文献の名前付き実体認識は、名前が時間の経過とともに進化してきたために困難である。本論文では、文字や筆跡の特徴を探ることで実体認識を試みる。トランスフォーマーとストロークからの双方向エンコーダ表現に基づいて、ECEMと名付けられた拡張文字埋め込みモデルを提案する。第一に、ECEMは単語の文脈に応じて動的に意味ベクトルを生成することができる。第二に、提案するアルゴリズムは、中国語の単語の形態素レベルの情報を導入する。最後に、強化された文字埋め込みは、学習のために双方向性の長期短期記憶条件付きランダムフィールドモデルに供給される。提案したアルゴリズムの効果を調べるために，実験 を古文と現代文の両方のコーパスで実施した．その結果，我々のアルゴリズムが非常に有効であることがわかった．従来のものと比較して、強力である。</p>
+</blockquote>
+<h2 id="the-proposed-recognition-algorithm">The proposed recognition algorithm</h2>
+<p>提案アルゴリズムであるECEMでは、前処理、embedding、BiLSTM Layer、CRF Layerの４つのコンポーネントからなる。</p>
+<p>embeddingでは、cw2vecとBERTを用いる。
+NERには、BIO schemeを用いる。</p>
+<h3 id="data-pre-processing">Data pre-processing</h3>
+<p>固有表現抽出/the named entity recognition (NER)</p>
+<h3 id="enhanced-character-embedding">Enhanced character embedding</h3>
+<h3 id="bert">BERT</h3>
+<h3 id="bilstm-layer">BiLSTM layer</h3>
+<h3 id="crf-layer">CRF layer</h3>
+<p>input sequence: <code>X = (x_1, x_2, ... x_n)</code></p>
+<p>predictin sequence: <code>y = (y_1, y_2, ... y_n)</code></p>
+<p>the equence yの確率は、softmaxを使って計算される。</p>
+<pre><code>p(y | X) softmax(e^f(X, y))
+</code></pre><p>ここで、f(X,y)は、以下の用に計算される。</p>
+<pre><code>f(X,y)=
+</code></pre><p>ただし、PはBiLSTMの出力した行列である。</p>
+
+      </div>
+    </article>
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://if001.github.iopages/about">if_004</a>
+      &nbsp;&copy;
+      2020
+      
+        &nbsp;/&nbsp;
+        <a href="https://if001.github.io">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

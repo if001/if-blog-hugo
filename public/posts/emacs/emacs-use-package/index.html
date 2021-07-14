@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>use-packagesを使ってみる</title>
+
+  <meta name="description" content="自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。" />
+
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://if001.github.ioindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://if001.github.iocss/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://if001.github.iofontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://if001.github.io/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://if001.github.iojs/bundle.js"></script>
+<script src="https://if001.github.iojs/instantpage.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="これまで長い間放置しててきたemacsの設定たちを見直すついでに、use-pacakgeを使ってみようと思う。
+https://github.com/jwiegley/use-package
+use-packageとは、emacsのパッケージ管理を強化するパッケージです。
+use-packageのマ" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+                <h1>
+                  use-packagesを使ってみる
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://if001.github.io/tags/emacs/">emacs</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div>
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2018-11-20
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>これまで長い間放置しててきたemacsの設定たちを見直すついでに、use-pacakgeを使ってみようと思う。<br>
+<a href="https://github.com/jwiegley/use-package">https://github.com/jwiegley/use-package</a></p>
+<p>use-packageとは、emacsのパッケージ管理を強化するパッケージです。</p>
+<p>use-packageのマクロを使用することで、</p>
+<ul>
+<li>統一した記述による可読性が向上</li>
+<li>パッケージの遅延ロードの設定を簡潔にかけることによる起動の高速化</li>
+</ul>
+<p>などのメリットがあります。</p>
+<h2 id="シンプルな例">シンプルな例</h2>
+<p>requireでのライブラリの読み込みは次のように書き換えることができます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"> (<span style="color:#50fa7b">require</span> <span style="color:#f1fa8c">&#39;foo</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"> (<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">foo</span>)
+</code></pre></div><p>use-packageではキーワードを使うことで、パッケージロード時の振る舞いを指定することができます。</p>
+<h2 id="init">:init</h2>
+<p>パッケージが読み込まれる前に実行される。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"> (<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">foo</span>
+   <span style="color:#f1fa8c">:init</span>
+   (<span style="color:#ff79c6">setq</span> <span style="color:#8be9fd;font-style:italic">foo-variable</span> t))
+</code></pre></div><h2 id="config">:config</h2>
+<p>パッケージがロードされた後に実行される。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">foo</span>
+  <span style="color:#f1fa8c">:init</span>
+  (<span style="color:#ff79c6">setq</span> <span style="color:#8be9fd;font-style:italic">foo-variable</span> t)
+  <span style="color:#f1fa8c">:config</span>
+  (<span style="color:#8be9fd;font-style:italic">foo-mode</span> <span style="color:#bd93f9">1</span>))
+</code></pre></div><h2 id="commands">:commands</h2>
+<p><code>auto-load</code>するコマンドを指定する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">color-moccur</span>
+  <span style="color:#f1fa8c">:commands</span> (<span style="color:#8be9fd;font-style:italic">isearch-moccur</span> <span style="color:#8be9fd;font-style:italic">isearch-all</span>)
+  <span style="color:#f1fa8c">:bind</span> ((<span style="color:#f1fa8c">&#34;M-s O&#34;</span> <span style="color:#ff79c6">.</span> <span style="color:#8be9fd;font-style:italic">moccur</span>)
+         <span style="color:#f1fa8c">:map</span> <span style="color:#8be9fd;font-style:italic">isearch-mode-map</span>
+         (<span style="color:#f1fa8c">&#34;M-o&#34;</span> <span style="color:#ff79c6">.</span> <span style="color:#8be9fd;font-style:italic">isearch-moccur</span>)
+         (<span style="color:#f1fa8c">&#34;M-O&#34;</span> <span style="color:#ff79c6">.</span> <span style="color:#8be9fd;font-style:italic">isearch-moccur-all</span>))
+  <span style="color:#f1fa8c">:init</span>
+  (<span style="color:#ff79c6">setq</span> <span style="color:#8be9fd;font-style:italic">isearch-lazy-highlight</span> t)
+  <span style="color:#f1fa8c">:config</span>
+  (<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">moccur-edit</span>))
+</code></pre></div><p>この場合、<code>isearch-moccur</code>と<code>isearch-all</code>が<code>color-moccur.el</code>から<code>auto-load</code>される。</p>
+<h2 id="key-binding">key-binding</h2>
+<p><code>:bind</code>キーワードを使用し以下のように設定する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">ace-jump-mode</span>
+  <span style="color:#f1fa8c">:bind</span> (<span style="color:#f1fa8c">&#34;C-.&#34;</span> <span style="color:#ff79c6">.</span> <span style="color:#8be9fd;font-style:italic">ace-jump-mode</span>))
+</code></pre></div><p>リストを使い以下のように複数のキーバインドを設定することも可能</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">hi-lock</span>
+  <span style="color:#f1fa8c">:bind</span> ((<span style="color:#f1fa8c">&#34;M-o l&#34;</span> <span style="color:#ff79c6">.</span> <span style="color:#8be9fd;font-style:italic">highlight-lines-matching-regexp</span>)
+         (<span style="color:#f1fa8c">&#34;M-o r&#34;</span> <span style="color:#ff79c6">.</span> <span style="color:#8be9fd;font-style:italic">highlight-regexp</span>)
+         (<span style="color:#f1fa8c">&#34;M-o w&#34;</span> <span style="color:#ff79c6">.</span> <span style="color:#8be9fd;font-style:italic">highlight-phrase</span>)))
+</code></pre></div><p>キーバインドは<code>:init</code>と:<code>:commands</code>キーワードを使用し、以下のようにも設定できる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"> (<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">ace-jump-mode</span>
+   <span style="color:#f1fa8c">:commands</span> <span style="color:#8be9fd;font-style:italic">ace-jump-mode</span>
+   <span style="color:#f1fa8c">:init</span>
+   (<span style="color:#8be9fd;font-style:italic">bind-key</span> <span style="color:#f1fa8c">&#34;C-.&#34;</span> <span style="color:#f1fa8c">&#39;ace-jump-mode</span>))
+</code></pre></div><h2 id="mode">:mode</h2>
+<p>拡張子とメジャーモードの対応づけは<code>auto-mode-alist</code>で行なっていたが、<code>:mode</code>キーワードを使うことで簡潔に設定できるようになります。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">python-mode</span>
+  <span style="color:#f1fa8c">:mode</span> ((<span style="color:#f1fa8c">&#34;\\.py\\&#39;&#34;</span>)
+             (<span style="color:#f1fa8c">&#34;\\.pyx\\&#39;&#34;</span>))
+  )
+</code></pre></div><h2 id="interpreter">:interpreter</h2>
+<p>シェバンとメジャーモードの対応づけは、<code>:interpreter</code>キーワードを使って設定できます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"> (<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">python-mode</span>
+     <span style="color:#f1fa8c">:interpreter</span> ((<span style="color:#f1fa8c">&#34;python&#34;</span> <span style="color:#ff79c6">.</span> <span style="color:#8be9fd;font-style:italic">python-mode</span>)
+                        (<span style="color:#f1fa8c">&#34;python&#34;</span> <span style="color:#ff79c6">.</span> <span style="color:#8be9fd;font-style:italic">python-mode</span>))
+</code></pre></div><h2 id="hooks">:hooks</h2>
+<p><code>:hook</code>キーワードを使用して、以下のように設定できます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"> (<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">ace-jump-mode</span>
+    <span style="color:#f1fa8c">:hook</span> <span style="color:#8be9fd;font-style:italic">prog-mode</span>)
+	
+  (<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">ace-jump-mode</span>
+    <span style="color:#f1fa8c">:hook</span> (<span style="color:#8be9fd;font-style:italic">prog-mode</span> <span style="color:#ff79c6">.</span> <span style="color:#8be9fd;font-style:italic">ace-jump-mode</span>))
+</code></pre></div><p>また、従来のように<code>add-hook</code>を用いても設定が可能。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"> (<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">ace-jump-mode</span>
+     <span style="color:#f1fa8c">:commands</span> <span style="color:#8be9fd;font-style:italic">ace-jump-mode</span>
+     <span style="color:#f1fa8c">:init</span>
+     (<span style="color:#8be9fd;font-style:italic">add-hook</span> <span style="color:#f1fa8c">&#39;prog-mode-hook</span> <span style="color:#50fa7b">#&#39;</span><span style="color:#8be9fd;font-style:italic">ace-jump-mode</span>))
+</code></pre></div><h2 id="まとめ">まとめ</h2>
+<p>use-packageの使い方を簡単にまとめてみました。このくらいあればある程度の設定はできるでしょう。余力があれば加筆します。</p>
+
+      </div>
+    </article>
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://if001.github.iopages/about">if_004</a>
+      &nbsp;&copy;
+      2020
+      
+        &nbsp;/&nbsp;
+        <a href="https://if001.github.io">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

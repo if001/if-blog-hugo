@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>機械学習系の数式によく出てくる記号などのTex表記まとめ</title>
+
+  <meta name="description" content="自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。" />
+
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://if001.github.ioindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://if001.github.iocss/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://if001.github.iofontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://if001.github.io/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://if001.github.iojs/bundle.js"></script>
+<script src="https://if001.github.iojs/instantpage.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="すぐ忘れるのでTex表記をまとめて起きます。 Qiitaが使っているというEasy Copy MathJaxを用います。
+   読み 表示 tex     デルタ $\Delta$ \Delta   ナブラ $\nabla$ \nabla   白抜き $\mathbb E[\cdot]$ \math" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+                <h1>
+                  機械学習系の数式によく出てくる記号などのTex表記まとめ
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://if001.github.io/tags/tex/">tex</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div>
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2019-09-24
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>すぐ忘れるのでTex表記をまとめて起きます。
+Qiitaが使っているという<a href="https://www.mathjax.org/">Easy Copy MathJax</a>を用います。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">読み</th>
+<th style="text-align:right">表示</th>
+<th style="text-align:center">tex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">デルタ</td>
+<td style="text-align:right">$\Delta$</td>
+<td style="text-align:center"><code>\Delta</code></td>
+</tr>
+<tr>
+<td style="text-align:left">ナブラ</td>
+<td style="text-align:right">$\nabla$</td>
+<td style="text-align:center"><code>\nabla</code></td>
+</tr>
+<tr>
+<td style="text-align:left">白抜き</td>
+<td style="text-align:right">$\mathbb E[\cdot]$</td>
+<td style="text-align:center"><code>\mathbb E[\cdot]</code></td>
+</tr>
+<tr>
+<td style="text-align:left">属する</td>
+<td style="text-align:right">$\in$</td>
+<td style="text-align:center"><code>\in</code></td>
+</tr>
+<tr>
+<td style="text-align:left">要素</td>
+<td style="text-align:right">$\ni$</td>
+<td style="text-align:center"><code>\ni</code></td>
+</tr>
+<tr>
+<td style="text-align:left">条件付き確率</td>
+<td style="text-align:right">$p(x \mid y)$</td>
+<td style="text-align:center"><code>p(x \mid y)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">ドット</td>
+<td style="text-align:right">$x_1,x_2, \ldots, x_t$</td>
+<td style="text-align:center"><code>x_1,x_2, \ldots, x_t</code></td>
+</tr>
+<tr>
+<td style="text-align:left">カリグラフィーフォント</td>
+<td style="text-align:right">$\mathcal L$</td>
+<td style="text-align:center"><code>\cal L</code></td>
+</tr>
+<tr>
+<td style="text-align:left">太文字ベクトル</td>
+<td style="text-align:right">$\boldsymbol{w}$</td>
+<td style="text-align:center"><code>\boldsymbol{w}</code></td>
+</tr>
+</tbody>
+</table>
+<p>macだと、ギリシャ文字は日本語の読み方で変換するとスペルが出てくるので便利。</p>
+<p>参考：http://easy-copy-mathjax.xxxx7.com/</p>
+<h3 id="追記">追記</h3>
+<p>$\KaTeX$だと、カリグラフィーフォントは、$\mathcal L$:<code>\mathcal L</code>こう。</p>
+
+      </div>
+    </article>
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://if001.github.iopages/about">if_004</a>
+      &nbsp;&copy;
+      2020
+      
+        &nbsp;/&nbsp;
+        <a href="https://if001.github.io">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
