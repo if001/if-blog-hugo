@@ -1,7 +1,7 @@
-baseURL = "https://if001.github.io/book_impressions/"
+baseURL = "https://if001.github.io"
 languageCode = "ja"
-title = "ほんのめも"
-theme = "harbor"
+title = "アンドロイドは推理小説を書くか?"
+theme = "my_harbor"
 
 DefaultContentLanguage = "ja"
 enableInlineShortcodes = true
@@ -9,8 +9,10 @@ footnoteReturnLinkContents = "^"
 publishDir= "docs"
 
 
-[Author]
+[author]
   name = "if_004"
+  discription = "自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。コメントはtwitterにお願いします。"
+  language = ["scala", "golang", "python", "vue.js", "angular", "react", "elisp"]
 
 [outputs]
   section = ["JSON", "HTML"]
@@ -20,9 +22,24 @@ publishDir= "docs"
     endLevel = 3
     ordered = false
     startLevel = 2
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineAnchors = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "dracula"
+    tabWidth = 4
     
 hasCJKLanguage = true
 
+[blackfriday]
+   hrefTargetBlank = true
+   
 [[params.nav]]
   identifier = "home"
   name = "Home"
@@ -34,7 +51,7 @@ hasCJKLanguage = true
   identifier = "about"
   name = "About"
   icon = "fas fa-user fa-lg"
-  url = "/pages/about"
+  url = "pages/about"
   weight = 3
   
 [[params.nav]]
@@ -48,7 +65,7 @@ hasCJKLanguage = true
   identifier = "search"
   name = "Search"
   icon = "fas fa-search fa-lg"
-  url = "search"
+  url = "pages/search"
   weight = 3
   
 [[params.social]]
