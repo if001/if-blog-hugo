@@ -14,6 +14,9 @@ publishDir= "docs"
   discription = "自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。コメントはtwitterにお願いします。"
   language = ["scala", "golang", "python", "vue.js", "angular", "react", "elisp"]
 
+[params]
+  description="自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。"
+
 [outputs]
   section = ["JSON", "HTML"]
  

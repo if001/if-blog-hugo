@@ -32,8 +32,12 @@ https://github.com/matsuyoshi30/harbor
 
 ## submodule
 git submodule add {URL}
+submoduleの外側では、submodule内のcommitを指すことになる
 
 ### submodule内の変更
 submodule内に入って、commit
-submoduleの外で、add、commit
+submoduleの外で、add、commit、push
+
+
+
 
