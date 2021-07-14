@@ -38,6 +38,7 @@ submoduleの外側では、submodule内のcommitを指すことになる
 submodule内に入って、commit
 submoduleの外で、add、commit、push
 
+submoduleの外側で、submoduleをadd、commitで、submoduleの指すcommitがupdateされる
 
 
 
