@@ -10,6 +10,8 @@ enableInlineShortcodes = true
 footnoteReturnLinkContents = "^"
 publishDir= "docs"
 googleAnalytics = "UA-127416809-1"
+pluralizeListTitles = false
+ignoreFiles = ["/posts/*/\\.#*"]
 
 [author]
   name = "if_004"

@@ -42,3 +42,8 @@ submoduleの外側で、submoduleをadd、commitで、submoduleの指すcommit�
 
 
 
+### debug
+
+```
+hugo server -v --renderToDisk --gc --cleanDestinationDir -D
+```
