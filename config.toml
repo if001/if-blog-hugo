@@ -6,7 +6,7 @@ theme = "my_harbor"
 DefaultContentLanguage = "ja"
 enableInlineShortcodes = true
 footnoteReturnLinkContents = "^"
-publishdir = "public"
+publishDir= "docs"
 googleAnalytics = "UA-127416809-1"
 
 [author]
