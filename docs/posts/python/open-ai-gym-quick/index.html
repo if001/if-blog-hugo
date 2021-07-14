@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Open AI Gymをとりあえず動かす</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="Open AI Gymのquick startです。とりあえず動かしてみます。
+document
+https://gym.openai.com/docs/
+Install pip install gym Run import gym env = gym.make(&amp;#39;CartPole-v0&amp;#" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Open AI Gymをとりあえず動かす
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2021-07-14
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>Open AI Gymのquick startです。とりあえず動かしてみます。</p>
+<p>document<br>
+<a href="https://gym.openai.com/docs/">https://gym.openai.com/docs/</a></p>
+<h2 id="install">Install</h2>
+<pre><code>pip install gym
+</code></pre><h2 id="run">Run</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> gym
+env <span style="color:#ff79c6">=</span> gym<span style="color:#ff79c6">.</span>make(<span style="color:#f1fa8c">&#39;CartPole-v0&#39;</span>)
+env<span style="color:#ff79c6">.</span>reset()
+<span style="color:#ff79c6">for</span> _ <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">1000</span>):
+    env<span style="color:#ff79c6">.</span>render()
+    env<span style="color:#ff79c6">.</span>step(env<span style="color:#ff79c6">.</span>action_space<span style="color:#ff79c6">.</span>sample()) <span style="color:#6272a4"># take a random action</span>
+env<span style="color:#ff79c6">.</span>close()
+</code></pre></div><ul>
+<li>gym.make()で環境を選択</li>
+<li>env.reset()で環境を初期化</li>
+<li>env.render()で描画</li>
+<li>env.action_space.sample()が行動。今回はランダム</li>
+<li>env.step()で行動を引数にして状態遷移</li>
+</ul>
+<p>今回は環境にCartPoleを選択。Cartの上でPoleを倒さないように動くやつ。<br>
+環境はClassic controlだと特に描画の設定などせずに使えたはず。</p>
+<p>用意されてる環境はここ<br>
+<a href="https://gym.openai.com/envs/#classic_control">https://gym.openai.com/envs/#classic_control</a></p>
+<p>CartPoleで環境に対して取れる行動は、左に動く、動かない、右に動くの三種類。<br>
+CartPoleでの環境から得られる情報は、potisionとvelocity</p>
+<p>それぞれgithubを参照<br>
+<a href="https://github.com/openai/gym/wiki/MountainCar-v0#actions">https://github.com/openai/gym/wiki/MountainCar-v0#actions</a></p>
+<h2 id="custome-env">custome env</h2>
+<p>環境を作成できる<br>
+<a href="https://github.com/openai/gym/blob/master/docs/creating-environments.md">https://github.com/openai/gym/blob/master/docs/creating-environments.md</a></p>
+<p>環境用にディレクトリを作成</p>
+<pre><code>gym-foo/
+  README.md
+  setup.py
+  gym_foo/
+    __init__.py
+    envs/
+      __init__.py
+      foo_env.py
+      foo_extrahard_env.py
+</code></pre><p><code>setup.py</code>と<code>__init__.py</code>を環境に合わせて書いておく。<br>
+githubのドキュメント通り。</p>
+<p>Envを継承して、いろいろと実装する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> gym
+<span style="color:#ff79c6">from</span> gym <span style="color:#ff79c6">import</span> error, spaces, utils
+<span style="color:#ff79c6">from</span> gym.utils <span style="color:#ff79c6">import</span> seeding
+
+<span style="color:#ff79c6">class</span> <span style="color:#50fa7b">FooEnv</span>(gym<span style="color:#ff79c6">.</span>Env):
+  metadata <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#39;render.modes&#39;</span>: [<span style="color:#f1fa8c">&#39;human&#39;</span>]}
+
+  <span style="color:#ff79c6">def</span> __init__(self):
+    <span style="color:#ff79c6">...</span>
+  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">step</span>(self, action):
+    <span style="color:#ff79c6">...</span>
+  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">reset</span>(self):
+    <span style="color:#ff79c6">...</span>
+  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">render</span>(self, mode<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;human&#39;</span>):
+    <span style="color:#ff79c6">...</span>
+  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">close</span>(self):
+    <span style="color:#ff79c6">...</span>
+</code></pre></div><p>インストールすると、</p>
+<pre><code>pip install -e gym-foo
+</code></pre><p>Cartpoleみたいに呼び出せる</p>
+<pre><code>gym.make('gym_foo:foo-v0')
+</code></pre><p><code>gym.envs.classic_control.rendering</code>以下にclassic_controlで使ってる便利なのが入ってるので参考になりそう。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">from</span> gym.envs.classic_control <span style="color:#ff79c6">import</span> rendering
+
+self<span style="color:#ff79c6">.</span>viewer <span style="color:#ff79c6">=</span> rendering<span style="color:#ff79c6">.</span>Viewer(screen_width, screen_height)
+
+circle <span style="color:#ff79c6">=</span> rendering<span style="color:#ff79c6">.</span>make_circle()
+</code></pre></div>
+      </div>
+    </article>
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.sitepages/about">if_004</a>
+      &nbsp;&copy;
+      2021
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

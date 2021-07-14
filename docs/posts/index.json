@@ -2,6 +2,16 @@
     
         
             {
+                "ref": "https://www.if-blog.site/posts/python/open-ai-gym-quick/",
+                "title": "Open AI Gymをとりあえず動かす",
+                "section": "posts",
+                "date" : "2021-07-14",
+                "body": "Open AI Gymのquick startです。とりあえず動かしてみます。\ndocument\nhttps://gym.openai.com/docs/\nInstall pip install gym Run import gym env = gym.make(\u0026#39;CartPole-v0\u0026#39;) env.reset() for _ in range(1000): env.render() env.step(env.action_space.sample()) # take a random action env.close()  gym.make()で環境を選択 env.reset()で環境を初期化 env.render()で描画 env.action_space.sample()が行動。今回はランダム env.step()で行動を引数にして状態遷移  今回は環境にCartPoleを選択。Cartの上でPoleを倒さないように動くやつ。\n環境はClassic controlだと特に描画の設定などせずに使えたはず。\n用意されてる環境はここ\nhttps://gym.openai.com/envs/#classic_control\nCartPoleで環境に対して取れる行動は、左に動く、動かない、右に動くの三種類。\nCartPoleでの環境から得られる情報は、potisionとvelocity\nそれぞれgithubを参照\nhttps://github.com/openai/gym/wiki/MountainCar-v0#actions\ncustome env 環境を作成できる\nhttps://github.com/openai/gym/blob/master/docs/creating-environments.md\n環境用にディレクトリを作成\ngym-foo/ README.md setup.py gym_foo/ __init__.py envs/ __init__.py foo_env.py foo_extrahard_env.py setup.pyと__init__.pyを環境に合わせて書いておく。\ngithubのドキュメント通り。\nEnvを継承して、いろいろと実装する。\nimport gym from gym import error, spaces, utils from gym.utils import seeding class FooEnv(gym.Env): metadata = {\u0026#39;render.modes\u0026#39;: [\u0026#39;human\u0026#39;]} def __init__(self): ... def step(self, action): ... def reset(self): ... def render(self, mode=\u0026#39;human\u0026#39;): ... def close(self): ... インストールすると、\npip install -e gym-foo Cartpoleみたいに呼び出せる\ngym.make('gym_foo:foo-v0') gym.envs.classic_control.rendering以下にclassic_controlで使ってる便利なのが入ってるので参考になりそう。\nfrom gym.envs.classic_control import rendering self.viewer = rendering.Viewer(screen_width, screen_height) circle = rendering.make_circle() "
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/",
                 "title": "End-to-End Text Classification via Image-basedEmbedding using Character-level Networks",
                 "section": "posts",
@@ -42,6 +52,16 @@
     ,
         
             {
+                "ref": "https://www.if-blog.site/posts/android/book-reports-firebase/",
+                "title": "ボタン以外のコンポーネントに波紋エフェクト(ripple effect)つける",
+                "section": "posts",
+                "date" : "2020-02-28",
+                "body": "TextViewなどのbackgroudに以下を指定すればおk\nandroid:background=\u0026quot;?attr/selectableItemBackground\u0026quot;\nbackgroundで色などをすでに指定している場合は、以下のようにする。 foregroundに指定する。\n\u0026lt;Button android:layout_width=\u0026#34;match_parent\u0026#34; android:layout_height=\u0026#34;200dp\u0026#34; android:padding=\u0026#34;0dp\u0026#34; android:background=\u0026#34;#bbffbb\u0026#34; android:foreground=\u0026#34;?android:selectableItemBackground\u0026#34; android:text=\u0026#34;Hello World!\u0026#34;/\u0026gt; "
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/edgwbs/book-storage-vue/",
                 "title": "Vue.js+typescriptでVuetifyを使いマテリアルデザインに入門する",
                 "section": "posts",
@@ -72,6 +92,16 @@
     ,
         
             {
+                "ref": "https://www.if-blog.site/posts/emacs/gopls-introduction/",
+                "title": "emacsのgo lang用のlanguage serverをgoplsに乗り換える",
+                "section": "posts",
+                "date" : "2019-10-08",
+                "body": "emacsでgo langを書くときに使っているlspのlanguage serverがbingoからgoplsに変わったので、emacsの設定も更新しておこうと思います。\nbingoは、golangの公式に取り込まれる形になったようですね。\nインストール ドキュメント通りです。\nhttps://github.com/golang/tools/blob/master/gopls/doc/user.md\n$ go get golang.org/x/tools/gopls@latest GO111MODULEをonにする必要がある人は、適宜onにしてあげてください。\nemacs golang用の設定は、現状以下のようになってます。\n(use-package go-mode :ensure t :commands go-mode :init (bind-key \u0026#34;C-c i\u0026#34; \u0026#39;gofmt-before-save) :config (add-hook \u0026#39;go-mode-hook #\u0026#39;lsp) ;; lsp-mode (add-hook \u0026#39;go-mode-hook (lambda () ;; company-goを使う (set (make-local-variable \u0026#39;company-backends) \u0026#39;(company-go)) (company-mode))) (add-hook \u0026#39;go-mode-hook \u0026#39;go-eldoc-setup) ) gopls for emacs setting\nhttps://github.com/golang/tools/blob/master/gopls/doc/emacs.md\n小さいプロジェクトなら、コードの補完、ドキュメント表示、定義ジャンプなど問題なく使えてます。\nただ、大きいプロジェクトとなると、補完やドキュメントを表示しようとするとタイムアウトしてしまうので、少し調整が必要みたいです。\n"
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-cloud-functions/",
                 "title": "Firebase Cloud Functionsを使ってTwitterのOGPを設定する",
                 "section": "posts",
@@ -97,6 +127,16 @@
                 "section": "posts",
                 "date" : "2019-09-25",
                 "body": "サービス概要 「読書感想文をもっと気軽に」をコンセプトに読んだ本の感想文/レビューを三行だけ書き、SNSでシェアするサービスです。\n三行読書感想文\n使い方 googleアカウントもしくは、Twitterアカウントでログインできます。\nその他のSNSアカウントでのログインは、随時対応していこうと思います。\nログイン後に、感想を書く本を選びます。\nあとは、感想を書き、保存します。\n保存後にシェアします。\nこれだけの単純な作りです。\n作った動機  Firebaseを使いたかった 本に出会える場を増やしたかった  1.Firebaseを使いたかった 単純にFirebaseのみでサービスを稼働させたかっただけです。これまでFirebase Authは使ったことがありました。これがすごく便利で、びっくりしました。今まで、アカウント管理のAPIを頑張って作ってたのを肩代わりしてくれるなんて。そこで、それ以外のサービスを使ってみようと言うのが動機です。\n今回、Webアプリケーションで使えるDBやStorage、HostingなどFirebaseのサービスはほぼ使っています。すごく便利。使ってみた技術は、別の記事にまとめます。\n2.本に出会える場を増やしたかった 個人的な意見として、本とのファーストコンタクトは、タイトルや表紙、帯に書いてあるコメントなどパッと目に入ってくるものが多いです。本の感想やレビューを三行に絞ることで、書く側も読む側も気軽に使え、新たな本に出会える場となるのではないかと考えました。普段、本を読むことが少ない人は、こういった気軽な出会いから本を読んでみるのも良いのではないかと思います。\nまた、本を多く読む人も、多く読むからこそ、この本読んだけどどんな話だっけ？となることが多いかと思います。\nそういった場面で、短く感想を残しておくことで、自分自身の読んだ本の記録にもなるかと思います。\nまとめ Firebaseを使うことで、実質コーディングしたのは、フロントのVue.jsだけでした。DBやストレージへのアクセス、アカウント管理周りなどをFirebaseに任せられることで、APIを書く必要がないのは、コーディングする上で大きな負荷の軽減となりました。無料でここまで使わせてくれるのは、なにかサービスを簡単に始めたい時はとても便利だと思います。\n"
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/python/python-matplotlib-base/",
+                "title": "matplotlibのよく使う記法まとめ",
+                "section": "posts",
+                "date" : "2019-09-24",
+                "body": "すぐ忘れるので、matplotlibのよく使う記法をまとめておく\n公式：https://matplotlib.org/gallery.html\n普段は散布図とかplotとかしか使わないけど、こうして見るといろんなグラフがかけるみたい\nmatplotlib,pyplot,pylabの違い matplotlibがパッケージ全体\npyplotはそのモジュール、スクリプトで作図するときに使う\npylabのimportは推奨されてない模様、インタラクティブな作図にはこっちを使うらしい\n基本的には、import matplotlib.pyplot as pltのように使う\n参考：\nhttps://matplotlib.org/faq/usage_faq.html#matplotlib-pyplot-and-pylab-how-are-they-related\nhttps://stackoverflow.com/questions/11469336/what-is-the-difference-between-pylab-and-pyplot\nグラフを描く シンプルな例は以下\nimport matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) plt.plot(x,y) plt.show() macでmatplotlibを呼ぶとValueError: unknown locale: UTF-8で怒られることがある。\nlocale周りの設定がおかしいため。以下を参考に直す。\nMac で ValueError: unknown locale: UTF-8 のエラーを解決したい\nhttps://www.lifewithpython.com/2016/09/python-ValueError-unknown-locale-UTF-8.html\nインスタンス化する plt.figure()でインスタンス化し、axesに対してプロットしていく\n多分この使い方が多いと思う\nimport matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) fig = plt.figure() ax = fig.add_subplot(111) ax.plot(x,y) plt.show() 以下のように描いても同じ\nfig, ax = plt.subplots(1, 1) ax.plot(x,y) plt.show() 複数のグラフを描く 複数のウィンドウに分けて描画 fig = plt.figure()の引数に適当にユニークな数字を入れておく。\nfigureに引数を与えることで、新たな図が生成される。\n参考： https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html\nimport matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) fig = plt.figure(1) ax = fig.add_subplot(111) ax.plot(x,y) fig = plt.figure(2) ax = fig.add_subplot(111) ax.plot(x,y) plt.show() 1つのウィンドウに複数のグラフを描画 1つのウィンドウに複数のグラフを描く場合は以下のようにする。\nfig = plt.figure() ax1 = fig.add_subplot(211) ax1.plot(x,y) ax2 = fig.add_subplot(212) ax2.plot(x,y) plt.show() 以下のように2つのグラフが描画される。\n以下のように描いても同じ、axesをタプルで受け取るのがちょっと気持ち悪い\nfig, (ax1, ax2) = plt.subplots(1, 2) ax1.plot(x,y) ax2.plot(x,y) plt.show() グラフの保存 savefigでグラフの保存が可能\nimport matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) fig = plt.figure() ax = fig.add_subplot(111) ax.plot(x,y) plt.savefig(\u0026#34;./test2\u0026#34;) 複数のグラフを描画した場合には、figureインスタンスに対してもsavefigが使える。\nimport matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) fig = plt.figure(1) ax = fig.add_subplot(111) ax.plot(x,y) fig.savefig(\u0026#34;./test1\u0026#34;) fig = plt.figure(2) ax = fig.add_subplot(111) ax.plot(x,y) fig.savefig(\u0026#34;./test2\u0026#34;) グラフを整形する グラフの線の色、太さ、線の種類などはよく使う。\nそれぞれ、color,linewidth,linestyleの引数を与えることで設定できる。\nimport matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) fig = plt.figure() ax = fig.add_subplot(111) ax.plot(x,y,color=\u0026#34;red\u0026#34;,linewidth=2,linestyle=\u0026#34;dashed\u0026#34;) plt.show() 引数の詳細は公式の以下のページから確認できる。\nhttps://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html\nタイトルや軸名をつける シンプルな例は以下\nimport matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) plt.plot(x,y) plt.title(\u0026#34;test\u0026#34;) plt.xlabel(\u0026#34;x\u0026#34;) plt.ylabel(\u0026#34;y\u0026#34;) plt.show() インスタンス化した場合は次のようにする。\nimport matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) fig = plt.figure() ax = fig.add_subplot(111) ax.plot(x,y) ax.set_title(\u0026#34;test\u0026#34;) ax.set_xlabel(\u0026#34;x\u0026#34;) ax.set_ylabel(\u0026#34;y\u0026#34;) plt.show() グラフの余白、幅を調整する plt.subplots_adjustで調整可能\nimport matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) plt.plot(x,y) plt.subplots_adjust(left=0.1, right=0.95, bottom=0.1, top=0.95) plt.show() わかりづらいが調整できてる。\n調整前 調整後 デフォルト値は以下\nleft = 0.125 # the left side of the subplots of the figure right = 0.9 # the right side of the subplots of the figure bottom = 0.1 # the bottom of the subplots of the figure top = 0.9 # the top of the subplots of the figure wspace = 0.2 # the amount of width reserved for space between subplots, # expressed as a fraction of the average axis width hspace = 0.2 # the amount of height reserved for space between subplots, # expressed as a fraction of the average axis height 1つのウィンドウに複数のグラフを描画し軸名など入れた場合、グラフが重なることがある。\nその場合は、plt.subplots_adjust(hspace=0.4)のように調整できる。\n横幅は、wspaceで調整可能。\nfig = plt.figure() plt.subplots_adjust(hspace=0.6) ax1 = fig.add_subplot(211) ax1.plot(x,y) ax2 = fig.add_subplot(212) ax2.plot(x,y) plt.show() 調整前\n調整後\n参考：https://www.haya-programming.com/entry/2018/10/11/030103\n軸を設定し直す ちょっとめんどくさい\nimport matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) fig = plt.figure() ax = fig.add_subplot(111) ax.plot(x,y) ticks = \u0026#34;abcdefghijklmnopqrstuvwxyz\u0026#34; plt.xticks(x,list(ticks)) plt.show() 設定し直したい次元と、元の軸の次元が合ってなくても設定できる模様。\nx軸に時刻を設定、フォーマット datetimeをそのままx軸に利用できる。\nimport matplotlib.pyplot as plt import pandas as pd x = [ \u0026#39;2018/08/08T12:15:45.000\u0026#39;, \u0026#39;2018/08/08T12:15:45.200\u0026#39;, \u0026#39;2018/08/08T12:17:45.600\u0026#39; ] x = pd.to_datetime(x,format=\u0026#39;%Y/%m/%dT%H:%M:%S.%f\u0026#39;) y = [1,2,3] fig = plt.figure() ax = fig.add_subplot(111) ax.plot(x,y) plt.show() フォーマットは、ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d\\n%H:%M'))を使って行う。\nimport matplotlib.pyplot as plt import pandas as pd import matplotlib.dates as mdates x = [ \u0026#39;2018/08/08T12:15:45.000\u0026#39;, \u0026#39;2018/08/08T12:15:45.200\u0026#39;, \u0026#39;2018/08/08T12:17:45.600\u0026#39; ] x = pd.to_datetime(x,format=\u0026#39;%Y/%m/%dT%H:%M:%S.%f\u0026#39;) y = [1,2,3] fig = plt.figure() ax = fig.add_subplot(111) ax.plot(x,y) ax.xaxis.set_major_formatter(mdates.DateFormatter(\u0026#39;%m/%d\\n%H:%M\u0026#39;)) plt.show() 参考：https://hack-le.com/matplotlib-x-date-format/\n"
             }
         
     ,
@@ -212,11 +252,31 @@
     ,
         
             {
+                "ref": "https://www.if-blog.site/posts/python/colaboratory-google-drive-mount/",
+                "title": "Google ColaboratoryでGoogle driveをマウントする",
+                "section": "posts",
+                "date" : "2019-09-23",
+                "body": "久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。\nbefore 認証\n!apt-get install -y -qq software-properties-common python-software-properties module-init-tools !add-apt-repository -y ppa:alessandro-strada/ppa 2\u0026gt;\u0026amp;1 \u0026gt; /dev/null !apt-get update -qq 2\u0026gt;\u0026amp;1 \u0026gt; /dev/null !apt-get -y install -qq google-drive-ocamlfuse fuse from google.colab import auth auth.authenticate_user() from oauth2client.client import GoogleCredentials creds = GoogleCredentials.get_application_default() import getpass !google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret} \u0026lt; /dev/null 2\u0026gt;\u0026amp;1 | grep URL vcode = getpass.getpass() !echo {vcode} | google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret} マウント\n!mkdir -p drive !google-drive-ocamlfuse drive after from google.colab import drive drive.mount(\u0026#39;/gdrive\u0026#39;) "
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/",
                 "title": "emacsひな祭りいってきたのでためになったpackageなどをまとめておく",
                 "section": "posts",
                 "date" : "2019-03-08",
                 "body": "2019年3月3日に開催された東京Emacsひなまつりにいってきました。\nhttps://tokyo-emacs.connpass.com/event/121603/\n随時コメント追加していきます。\n ox-hugo\nhttps://ox-hugo.scripter.co/\nOx-hugo\nhttps://sfus.net/blog/2018/12/org-mode-with-ox-hugo/\nAtomic-chrome\nhttps://qiita.com/alpha22jp/items/f67bda3ed0c4ac84c29f\nLSP\nhttps://qiita.com/blue0513/items/acc962738c7f4da26656\neglot\nhttps://howm.osdn.jp/index-j.html\nIvy\nhttps://qiita.com/tadsan/items/33ebb8db2271897a462b#ivycounsel\nOrg-chapture\nhttps://www.5ing-myway.com/org-capture/\nchild-frame\nhttps://www.gnu.org/software/emacs/manual/html_node/elisp/Child-Frames.html\nhighlight-indent-guides.el\nhttps://qiita.com/blue0513/items/acc962738c7f4da26656\ndoom-theme\nhttps://github.com/hlissner/emacs-doom-themes\ndoom-modeline\nhttps://github.com/seagle0128/doom-modeline\ngit-gutter\nhttps://emacs-jp.github.io/packages/vcs/git-gutter\nhttps://qiita.com/syohex/items/a669b35fbbfcdda0cbf2\nWhite-space mode\nhttps://qiita.com/itiut@github/items/4d74da2412a29ef59c3a\nProjectile\nhttps://github.com/bbatsov/projectile\nDdss\nhttp://emacs.rubikitch.com/sd1408-ddskk/\nripgrep\nhttps://github.com/dajva/rg.el\nhttp://emacs.rubikitch.com/ripgrep/\n感想 もっとゴリゴリな変態emacs使い(褒め言葉)ばかりかと思ってたけど、実用性の高い話が聞けてよかったです。emacs歴は7,8年ほどですが普段はpythonやmarkdownなどちょっとした開発にemacsを使う程度で、scalaやhtml、jsや規模の大きいプロジェクトなどではIDEを使っています。今回ので良い知見が得られたのでこれからはしっかりemacs使っていこうと思います。 ORGモード人気。\n"
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/python/python-get-extn/",
+                "title": "pythonで拡張子を取得する",
+                "section": "posts",
+                "date" : "2019-03-01",
+                "body": "ファイルの拡張子を取得する方法をいつも忘れるのでメモ\nimport os file_path = \u0026#34;hoge/test.md\u0026#34; root, ext = os.path.splitext(file_path) print(root, ext) 出力\nhoge/test .md "
             }
         
     ,
@@ -266,7 +326,7 @@
                 "title": "Hugoでブログを作る",
                 "section": "posts",
                 "date" : "2018-10-16",
-                "body": "はじめに Hugoとは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。 Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。\nサイトの作成 インストール brew install hugo テンプレートの作成 hugo new site hugo-test これで、次のようにテンプレートが作成されます。\n$ ls hugo-test/ archetypes/ config.toml content/ data/ layouts/ static/ themes/ テーマの適応 https://themes.gohugo.io/ ここからテーマを探す。\n例として、https://themes.gohugo.io/hugo-theme-learn/ を使います。\n$ cd hugo-test/themes $ git clone https://github.com/matcornic/hugo-theme-learn.git テーマを適応させるために、config.tomlにthemeを記述します。\ntheme = \u0026quot;hugo-theme-learn\u0026quot; サーバーの起動 $ hugo server -D -t hugo-theme-learn オプションDでDraftフラグのついた記事の確認、オプションtでテーマの適応です。 cloneしてきたtheme内の、layoutとstaticなどを、作成したテンプレート内のlayout、staticに移動しておくと、templateのマイナーチェンジが行えます。\nデフォルトでhttp://localhost:1313/で起動するのでアクセスしてみる。\n記事の追加 記事の作成\n$ hugo new post/test.md hugo_test/content/post/test.md created 以下のようなmarkdownファイルが作成される\ncat content/post/test.md --- title: \u0026quot;Test\u0026quot; date: 2018-10-15T18:51:47+09:00 draft: true --- ここで、draftは記事を後悔するかのフラグ この出力フォーマットも、独自に設定が可能\n$ hugo server --watch watchフラグをつけると、mdファイルが更新されるたびに、web側に更新が反映される。 markdownの記事を書きながら、フォーマットを確認するのに使えそう。\nデプロイ 以下のコマンドで実際にpublic以下にstaticファイルが吐き出される\n$ hugo -t hugo-theme-learn $ ls public/ 404.html categories css fonts images index.html index.xml js mermaid sitemap.xml tags webfonts このpublicディレクトリをwebサーバーに与えるだけでおk。\nまとめ Hugoのインストールからデプロイまでをまとめました。 html内で使える変数や、数式、画像の表示はまた別でまとめます。\n"
+                "body": "はじめに Hugoとは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。 Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。\nサイトの作成 インストール brew install hugo テンプレートの作成 hugo new site hugo-test これで、次のようにテンプレートが作成されます。\n$ ls hugo-test/ archetypes/ config.toml content/ data/ layouts/ static/ themes/ テーマの適応 https://themes.gohugo.io/ ここからテーマを探す。\n例として、https://themes.gohugo.io/hugo-theme-learn/ を使います。\n$ cd hugo-test/themes $ git clone https://github.com/matcornic/hugo-theme-learn.git テーマを適応させるために、config.tomlにthemeを記述します。\ntheme = \u0026quot;hugo-theme-learn\u0026quot; サーバーの起動 $ hugo server -D -t hugo-theme-learn オプションDでDraftフラグのついた記事の確認、オプションtでテーマの適応です。 cloneしてきたtheme内の、layoutとstaticなどを、作成したテンプレート内のlayout、staticに移動しておくと、templateのマイナーチェンジが行えます。\nデフォルトでhttp://localhost:1313/で起動するのでアクセスしてみる。\n記事の追加 記事の作成\n$ hugo new post/test.md hugo_test/content/post/test.md created 以下のようなmarkdownファイルが作成される\ncat content/post/test.md --- title: \u0026quot;Test\u0026quot; date: 2018-10-15T18:51:47+09:00 draft: false --- ここで、draftは記事を後悔するかのフラグ この出力フォーマットも、独自に設定が可能\n$ hugo server --watch watchフラグをつけると、mdファイルが更新されるたびに、web側に更新が反映される。 markdownの記事を書きながら、フォーマットを確認するのに使えそう。\nデプロイ 以下のコマンドで実際にpublic以下にstaticファイルが吐き出される\n$ hugo -t hugo-theme-learn $ ls public/ 404.html categories css fonts images index.html index.xml js mermaid sitemap.xml tags webfonts このpublicディレクトリをwebサーバーに与えるだけでおk。\nまとめ Hugoのインストールからデプロイまでをまとめました。 html内で使える変数や、数式、画像の表示はまた別でまとめます。\n"
             }
         
     ,

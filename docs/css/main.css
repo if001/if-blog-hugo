@@ -428,7 +428,7 @@ pre code {
 
 code {
     padding: 2px 4px;
-    font-size: 90%;
+    font-size: inherit !important;
     background-color: #c5c5c5;
     color: #333;
     border-radius: 4px;

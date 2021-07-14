@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>matplotlibのよく使う記法まとめ</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="すぐ忘れるので、matplotlibのよく使う記法をまとめておく
+公式：https://matplotlib.org/gallery.html
+普段は散布図とかplotとかしか使わないけど、こうして見るといろんなグラフがかけるみたい
+matplotlib,pyplot,pylabの違い matplo" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		matplotlibのよく使う記法まとめ
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2019-09-24
+        </div>
+      
+
+      
+
+  <p>すぐ忘れるので、matplotlibのよく使う記法をまとめておく<br>
+公式：https://matplotlib.org/gallery.html</p>
+<p>普段は散布図とかplotとかしか使わないけど、こうして見るといろんなグラフがかけるみたい</p>
+<section style="margin-top: 40px;">
+  <h1 class="header">目次</h1>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#matplotlibpyplotpylabの違い">matplotlib,pyplot,pylabの違い</a></li>
+    <li><a href="#グラフを描く">グラフを描く</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#複数のグラフを描く">複数のグラフを描く</a>
+      <ul>
+        <li><a href="#複数のウィンドウに分けて描画">複数のウィンドウに分けて描画</a></li>
+        <li><a href="#1つのウィンドウに複数のグラフを描画">1つのウィンドウに複数のグラフを描画</a></li>
+      </ul>
+    </li>
+    <li><a href="#グラフの保存">グラフの保存</a></li>
+    <li><a href="#グラフを整形する">グラフを整形する</a></li>
+    <li><a href="#タイトルや軸名をつける">タイトルや軸名をつける</a></li>
+    <li><a href="#グラフの余白幅を調整する">グラフの余白、幅を調整する</a></li>
+    <li><a href="#軸を設定し直す">軸を設定し直す</a></li>
+    <li><a href="#x軸に時刻を設定フォーマット">x軸に時刻を設定、フォーマット</a></li>
+  </ul>
+</nav>
+</section>
+<h2 id="matplotlibpyplotpylabの違い">matplotlib,pyplot,pylabの違い</h2>
+<p>matplotlibがパッケージ全体<br>
+pyplotはそのモジュール、スクリプトで作図するときに使う<br>
+pylabのimportは推奨されてない模様、インタラクティブな作図にはこっちを使うらしい</p>
+<p>基本的には、<code>import matplotlib.pyplot as plt</code>のように使う</p>
+<p>参考：<br>
+<a href="https://matplotlib.org/faq/usage_faq.html#matplotlib-pyplot-and-pylab-how-are-they-related">https://matplotlib.org/faq/usage_faq.html#matplotlib-pyplot-and-pylab-how-are-they-related</a><br>
+<a href="https://stackoverflow.com/questions/11469336/what-is-the-difference-between-pylab-and-pyplot">https://stackoverflow.com/questions/11469336/what-is-the-difference-between-pylab-and-pyplot</a></p>
+<h2 id="グラフを描く">グラフを描く</h2>
+<p>シンプルな例は以下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+plt<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/69d2c0d5-e5bc-fd73-b2f7-a5bd61c363fe.png" alt="simple-glaph"></p>
+<p>macでmatplotlibを呼ぶと<code>ValueError: unknown locale: UTF-8</code>で怒られることがある。<br>
+locale周りの設定がおかしいため。以下を参考に直す。<br>
+Mac で ValueError: unknown locale: UTF-8 のエラーを解決したい<br>
+<a href="https://www.lifewithpython.com/2016/09/python-ValueError-unknown-locale-UTF-8.html">https://www.lifewithpython.com/2016/09/python-ValueError-unknown-locale-UTF-8.html</a></p>
+<h4 id="インスタンス化する">インスタンス化する</h4>
+<p><code>plt.figure()</code>でインスタンス化し、axesに対してプロットしていく<br>
+多分この使い方が多いと思う</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p>以下のように描いても同じ</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><h2 id="複数のグラフを描く">複数のグラフを描く</h2>
+<h3 id="複数のウィンドウに分けて描画">複数のウィンドウに分けて描画</h3>
+<p><code>fig = plt.figure()</code>の引数に適当にユニークな数字を入れておく。<br>
+figureに引数を与えることで、新たな図が生成される。<br>
+参考： <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html">https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure(<span style="color:#bd93f9">1</span>)
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure(<span style="color:#bd93f9">2</span>)
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><h3 id="1つのウィンドウに複数のグラフを描画">1つのウィンドウに複数のグラフを描画</h3>
+<p>1つのウィンドウに複数のグラフを描く場合は以下のようにする。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax1 <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">211</span>)
+ax1<span style="color:#ff79c6">.</span>plot(x,y)
+ax2 <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">212</span>)
+ax2<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p>以下のように2つのグラフが描画される。</p>
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/0df0947f-bda0-d47d-cac6-2d4a35f91425.png" alt="simple-glaph-two"></p>
+<p>以下のように描いても同じ、axesをタプルで受け取るのがちょっと気持ち悪い</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, (ax1, ax2) <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>)
+ax1<span style="color:#ff79c6">.</span>plot(x,y)
+ax2<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><h2 id="グラフの保存">グラフの保存</h2>
+<p>savefigでグラフの保存が可能</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>savefig(<span style="color:#f1fa8c">&#34;./test2&#34;</span>)
+</code></pre></div><p>複数のグラフを描画した場合には、figureインスタンスに対してもsavefigが使える。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure(<span style="color:#bd93f9">1</span>)
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+fig<span style="color:#ff79c6">.</span>savefig(<span style="color:#f1fa8c">&#34;./test1&#34;</span>)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure(<span style="color:#bd93f9">2</span>)
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+fig<span style="color:#ff79c6">.</span>savefig(<span style="color:#f1fa8c">&#34;./test2&#34;</span>)
+</code></pre></div><h2 id="グラフを整形する">グラフを整形する</h2>
+<p>グラフの線の色、太さ、線の種類などはよく使う。<br>
+それぞれ、color,linewidth,linestyleの引数を与えることで設定できる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y,color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;red&#34;</span>,linewidth<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>,linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;dashed&#34;</span>)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/534808eb-6257-9ee2-a62d-c956961f3c0e.png" alt="simple-glaph-format"></p>
+<p>引数の詳細は公式の以下のページから確認できる。<br>
+<a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html">https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html</a></p>
+<h2 id="タイトルや軸名をつける">タイトルや軸名をつける</h2>
+<p>シンプルな例は以下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+plt<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>title(<span style="color:#f1fa8c">&#34;test&#34;</span>)
+plt<span style="color:#ff79c6">.</span>xlabel(<span style="color:#f1fa8c">&#34;x&#34;</span>)
+plt<span style="color:#ff79c6">.</span>ylabel(<span style="color:#f1fa8c">&#34;y&#34;</span>)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/91d3b0ae-527f-a608-75a8-777931888b8d.png" alt="simple-glaph-label"></p>
+<p>インスタンス化した場合は次のようにする。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+ax<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#34;test&#34;</span>)
+ax<span style="color:#ff79c6">.</span>set_xlabel(<span style="color:#f1fa8c">&#34;x&#34;</span>)
+ax<span style="color:#ff79c6">.</span>set_ylabel(<span style="color:#f1fa8c">&#34;y&#34;</span>)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><h2 id="グラフの余白幅を調整する">グラフの余白、幅を調整する</h2>
+<p><code>plt.subplots_adjust</code>で調整可能</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+plt<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>subplots_adjust(left<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.1</span>, right<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.95</span>, bottom<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.1</span>, top<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.95</span>)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p>わかりづらいが調整できてる。</p>
+<p>調整前
+<img src="https://qiita-image-store.s3.amazonaws.com/0/204896/40c41033-d9f2-3403-6fab-8c5b34ee73ce.png" alt="simple-glaph-adjest-before"></p>
+<p>調整後
+<img src="https://qiita-image-store.s3.amazonaws.com/0/204896/45e25765-eb83-52c7-a42f-173379a51edc.png" alt="simple-glaph-adjest-after"></p>
+<p>デフォルト値は以下</p>
+<pre><code>left  = 0.125  # the left side of the subplots of the figure
+right = 0.9    # the right side of the subplots of the figure
+bottom = 0.1   # the bottom of the subplots of the figure
+top = 0.9      # the top of the subplots of the figure
+wspace = 0.2   # the amount of width reserved for space between subplots,
+               # expressed as a fraction of the average axis width
+hspace = 0.2   # the amount of height reserved for space between subplots,
+               # expressed as a fraction of the average axis height
+</code></pre><p>1つのウィンドウに複数のグラフを描画し軸名など入れた場合、グラフが重なることがある。<br>
+その場合は、<code>plt.subplots_adjust(hspace=0.4)</code>のように調整できる。<br>
+横幅は、wspaceで調整可能。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+plt<span style="color:#ff79c6">.</span>subplots_adjust(hspace<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.6</span>)
+ax1 <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">211</span>)
+ax1<span style="color:#ff79c6">.</span>plot(x,y)
+ax2 <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">212</span>)
+ax2<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p>調整前<br>
+<img src="https://qiita-image-store.s3.amazonaws.com/0/204896/f5978344-7f45-5543-5b48-bff62b7de6a1.png" alt="simple-glaph-adjest-width-before"></p>
+<p>調整後<br>
+<img src="https://qiita-image-store.s3.amazonaws.com/0/204896/a9dac675-aaf4-90b5-bcbd-1160960d9605.png" alt="simple-glaph-adjest-width-after"></p>
+<p>参考：https://www.haya-programming.com/entry/2018/10/11/030103</p>
+<h2 id="軸を設定し直す">軸を設定し直す</h2>
+<p>ちょっとめんどくさい</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+ticks <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;abcdefghijklmnopqrstuvwxyz&#34;</span>
+plt<span style="color:#ff79c6">.</span>xticks(x,<span style="color:#8be9fd;font-style:italic">list</span>(ticks))
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><!-- raw HTML omitted -->
+<p>設定し直したい次元と、元の軸の次元が合ってなくても設定できる模様。</p>
+<h2 id="x軸に時刻を設定フォーマット">x軸に時刻を設定、フォーマット</h2>
+<p>datetimeをそのままx軸に利用できる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> pandas <span style="color:#ff79c6">as</span> pd
+x <span style="color:#ff79c6">=</span> [
+    <span style="color:#f1fa8c">&#39;2018/08/08T12:15:45.000&#39;</span>,
+    <span style="color:#f1fa8c">&#39;2018/08/08T12:15:45.200&#39;</span>,
+    <span style="color:#f1fa8c">&#39;2018/08/08T12:17:45.600&#39;</span>
+]
+x <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>to_datetime(x,format<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;%Y/%m/</span><span style="color:#f1fa8c">%d</span><span style="color:#f1fa8c">T%H:%M:%S.</span><span style="color:#f1fa8c">%f</span><span style="color:#f1fa8c">&#39;</span>)
+y <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">2</span>,<span style="color:#bd93f9">3</span>]
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><!-- raw HTML omitted -->
+<p>フォーマットは、<code>ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d\n%H:%M'))</code>を使って行う。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> pandas <span style="color:#ff79c6">as</span> pd
+<span style="color:#ff79c6">import</span> matplotlib.dates <span style="color:#ff79c6">as</span> mdates
+
+x <span style="color:#ff79c6">=</span> [
+    <span style="color:#f1fa8c">&#39;2018/08/08T12:15:45.000&#39;</span>,
+    <span style="color:#f1fa8c">&#39;2018/08/08T12:15:45.200&#39;</span>,
+    <span style="color:#f1fa8c">&#39;2018/08/08T12:17:45.600&#39;</span>
+]
+x <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>to_datetime(x,format<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;%Y/%m/</span><span style="color:#f1fa8c">%d</span><span style="color:#f1fa8c">T%H:%M:%S.</span><span style="color:#f1fa8c">%f</span><span style="color:#f1fa8c">&#39;</span>)
+
+y <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">2</span>,<span style="color:#bd93f9">3</span>]
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+ax<span style="color:#ff79c6">.</span>xaxis<span style="color:#ff79c6">.</span>set_major_formatter(mdates<span style="color:#ff79c6">.</span>DateFormatter(<span style="color:#f1fa8c">&#39;%m/</span><span style="color:#f1fa8c">%d</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">%H:%M&#39;</span>))
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/01b8a12d-d6af-2093-e2e1-55df4f68411a.png" alt="simple-glaph-format-time"></p>
+<p>参考：https://hack-le.com/matplotlib-x-date-format/</p>
+
+    
+  
+
+      <div class="article-main">
+        <p>すぐ忘れるので、matplotlibのよく使う記法をまとめておく<br>
+公式：https://matplotlib.org/gallery.html</p>
+<p>普段は散布図とかplotとかしか使わないけど、こうして見るといろんなグラフがかけるみたい</p>
+<h2 id="matplotlibpyplotpylabの違い">matplotlib,pyplot,pylabの違い</h2>
+<p>matplotlibがパッケージ全体<br>
+pyplotはそのモジュール、スクリプトで作図するときに使う<br>
+pylabのimportは推奨されてない模様、インタラクティブな作図にはこっちを使うらしい</p>
+<p>基本的には、<code>import matplotlib.pyplot as plt</code>のように使う</p>
+<p>参考：<br>
+<a href="https://matplotlib.org/faq/usage_faq.html#matplotlib-pyplot-and-pylab-how-are-they-related">https://matplotlib.org/faq/usage_faq.html#matplotlib-pyplot-and-pylab-how-are-they-related</a><br>
+<a href="https://stackoverflow.com/questions/11469336/what-is-the-difference-between-pylab-and-pyplot">https://stackoverflow.com/questions/11469336/what-is-the-difference-between-pylab-and-pyplot</a></p>
+<h2 id="グラフを描く">グラフを描く</h2>
+<p>シンプルな例は以下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+plt<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/69d2c0d5-e5bc-fd73-b2f7-a5bd61c363fe.png" alt="simple-glaph"></p>
+<p>macでmatplotlibを呼ぶと<code>ValueError: unknown locale: UTF-8</code>で怒られることがある。<br>
+locale周りの設定がおかしいため。以下を参考に直す。<br>
+Mac で ValueError: unknown locale: UTF-8 のエラーを解決したい<br>
+<a href="https://www.lifewithpython.com/2016/09/python-ValueError-unknown-locale-UTF-8.html">https://www.lifewithpython.com/2016/09/python-ValueError-unknown-locale-UTF-8.html</a></p>
+<h4 id="インスタンス化する">インスタンス化する</h4>
+<p><code>plt.figure()</code>でインスタンス化し、axesに対してプロットしていく<br>
+多分この使い方が多いと思う</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p>以下のように描いても同じ</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><h2 id="複数のグラフを描く">複数のグラフを描く</h2>
+<h3 id="複数のウィンドウに分けて描画">複数のウィンドウに分けて描画</h3>
+<p><code>fig = plt.figure()</code>の引数に適当にユニークな数字を入れておく。<br>
+figureに引数を与えることで、新たな図が生成される。<br>
+参考： <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html">https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure(<span style="color:#bd93f9">1</span>)
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure(<span style="color:#bd93f9">2</span>)
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><h3 id="1つのウィンドウに複数のグラフを描画">1つのウィンドウに複数のグラフを描画</h3>
+<p>1つのウィンドウに複数のグラフを描く場合は以下のようにする。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax1 <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">211</span>)
+ax1<span style="color:#ff79c6">.</span>plot(x,y)
+ax2 <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">212</span>)
+ax2<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p>以下のように2つのグラフが描画される。</p>
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/0df0947f-bda0-d47d-cac6-2d4a35f91425.png" alt="simple-glaph-two"></p>
+<p>以下のように描いても同じ、axesをタプルで受け取るのがちょっと気持ち悪い</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, (ax1, ax2) <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>subplots(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>)
+ax1<span style="color:#ff79c6">.</span>plot(x,y)
+ax2<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><h2 id="グラフの保存">グラフの保存</h2>
+<p>savefigでグラフの保存が可能</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>savefig(<span style="color:#f1fa8c">&#34;./test2&#34;</span>)
+</code></pre></div><p>複数のグラフを描画した場合には、figureインスタンスに対してもsavefigが使える。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure(<span style="color:#bd93f9">1</span>)
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+fig<span style="color:#ff79c6">.</span>savefig(<span style="color:#f1fa8c">&#34;./test1&#34;</span>)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure(<span style="color:#bd93f9">2</span>)
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+fig<span style="color:#ff79c6">.</span>savefig(<span style="color:#f1fa8c">&#34;./test2&#34;</span>)
+</code></pre></div><h2 id="グラフを整形する">グラフを整形する</h2>
+<p>グラフの線の色、太さ、線の種類などはよく使う。<br>
+それぞれ、color,linewidth,linestyleの引数を与えることで設定できる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y,color<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;red&#34;</span>,linewidth<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>,linestyle<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;dashed&#34;</span>)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/534808eb-6257-9ee2-a62d-c956961f3c0e.png" alt="simple-glaph-format"></p>
+<p>引数の詳細は公式の以下のページから確認できる。<br>
+<a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html">https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html</a></p>
+<h2 id="タイトルや軸名をつける">タイトルや軸名をつける</h2>
+<p>シンプルな例は以下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+plt<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>title(<span style="color:#f1fa8c">&#34;test&#34;</span>)
+plt<span style="color:#ff79c6">.</span>xlabel(<span style="color:#f1fa8c">&#34;x&#34;</span>)
+plt<span style="color:#ff79c6">.</span>ylabel(<span style="color:#f1fa8c">&#34;y&#34;</span>)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/91d3b0ae-527f-a608-75a8-777931888b8d.png" alt="simple-glaph-label"></p>
+<p>インスタンス化した場合は次のようにする。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+ax<span style="color:#ff79c6">.</span>set_title(<span style="color:#f1fa8c">&#34;test&#34;</span>)
+ax<span style="color:#ff79c6">.</span>set_xlabel(<span style="color:#f1fa8c">&#34;x&#34;</span>)
+ax<span style="color:#ff79c6">.</span>set_ylabel(<span style="color:#f1fa8c">&#34;y&#34;</span>)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><h2 id="グラフの余白幅を調整する">グラフの余白、幅を調整する</h2>
+<p><code>plt.subplots_adjust</code>で調整可能</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+plt<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>subplots_adjust(left<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.1</span>, right<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.95</span>, bottom<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.1</span>, top<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.95</span>)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p>わかりづらいが調整できてる。</p>
+<p>調整前
+<img src="https://qiita-image-store.s3.amazonaws.com/0/204896/40c41033-d9f2-3403-6fab-8c5b34ee73ce.png" alt="simple-glaph-adjest-before"></p>
+<p>調整後
+<img src="https://qiita-image-store.s3.amazonaws.com/0/204896/45e25765-eb83-52c7-a42f-173379a51edc.png" alt="simple-glaph-adjest-after"></p>
+<p>デフォルト値は以下</p>
+<pre><code>left  = 0.125  # the left side of the subplots of the figure
+right = 0.9    # the right side of the subplots of the figure
+bottom = 0.1   # the bottom of the subplots of the figure
+top = 0.9      # the top of the subplots of the figure
+wspace = 0.2   # the amount of width reserved for space between subplots,
+               # expressed as a fraction of the average axis width
+hspace = 0.2   # the amount of height reserved for space between subplots,
+               # expressed as a fraction of the average axis height
+</code></pre><p>1つのウィンドウに複数のグラフを描画し軸名など入れた場合、グラフが重なることがある。<br>
+その場合は、<code>plt.subplots_adjust(hspace=0.4)</code>のように調整できる。<br>
+横幅は、wspaceで調整可能。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+plt<span style="color:#ff79c6">.</span>subplots_adjust(hspace<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.6</span>)
+ax1 <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">211</span>)
+ax1<span style="color:#ff79c6">.</span>plot(x,y)
+ax2 <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">212</span>)
+ax2<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p>調整前<br>
+<img src="https://qiita-image-store.s3.amazonaws.com/0/204896/f5978344-7f45-5543-5b48-bff62b7de6a1.png" alt="simple-glaph-adjest-width-before"></p>
+<p>調整後<br>
+<img src="https://qiita-image-store.s3.amazonaws.com/0/204896/a9dac675-aaf4-90b5-bcbd-1160960d9605.png" alt="simple-glaph-adjest-width-after"></p>
+<p>参考：https://www.haya-programming.com/entry/2018/10/11/030103</p>
+<h2 id="軸を設定し直す">軸を設定し直す</h2>
+<p>ちょっとめんどくさい</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> numpy <span style="color:#ff79c6">as</span> np
+
+x <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>arange(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">0.2</span>)
+y <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>sin(x)
+
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+ticks <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;abcdefghijklmnopqrstuvwxyz&#34;</span>
+plt<span style="color:#ff79c6">.</span>xticks(x,<span style="color:#8be9fd;font-style:italic">list</span>(ticks))
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><!-- raw HTML omitted -->
+<p>設定し直したい次元と、元の軸の次元が合ってなくても設定できる模様。</p>
+<h2 id="x軸に時刻を設定フォーマット">x軸に時刻を設定、フォーマット</h2>
+<p>datetimeをそのままx軸に利用できる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> pandas <span style="color:#ff79c6">as</span> pd
+x <span style="color:#ff79c6">=</span> [
+    <span style="color:#f1fa8c">&#39;2018/08/08T12:15:45.000&#39;</span>,
+    <span style="color:#f1fa8c">&#39;2018/08/08T12:15:45.200&#39;</span>,
+    <span style="color:#f1fa8c">&#39;2018/08/08T12:17:45.600&#39;</span>
+]
+x <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>to_datetime(x,format<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;%Y/%m/</span><span style="color:#f1fa8c">%d</span><span style="color:#f1fa8c">T%H:%M:%S.</span><span style="color:#f1fa8c">%f</span><span style="color:#f1fa8c">&#39;</span>)
+y <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">2</span>,<span style="color:#bd93f9">3</span>]
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><!-- raw HTML omitted -->
+<p>フォーマットは、<code>ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d\n%H:%M'))</code>を使って行う。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> matplotlib.pyplot <span style="color:#ff79c6">as</span> plt
+<span style="color:#ff79c6">import</span> pandas <span style="color:#ff79c6">as</span> pd
+<span style="color:#ff79c6">import</span> matplotlib.dates <span style="color:#ff79c6">as</span> mdates
+
+x <span style="color:#ff79c6">=</span> [
+    <span style="color:#f1fa8c">&#39;2018/08/08T12:15:45.000&#39;</span>,
+    <span style="color:#f1fa8c">&#39;2018/08/08T12:15:45.200&#39;</span>,
+    <span style="color:#f1fa8c">&#39;2018/08/08T12:17:45.600&#39;</span>
+]
+x <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>to_datetime(x,format<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;%Y/%m/</span><span style="color:#f1fa8c">%d</span><span style="color:#f1fa8c">T%H:%M:%S.</span><span style="color:#f1fa8c">%f</span><span style="color:#f1fa8c">&#39;</span>)
+
+y <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">2</span>,<span style="color:#bd93f9">3</span>]
+fig <span style="color:#ff79c6">=</span> plt<span style="color:#ff79c6">.</span>figure()
+ax <span style="color:#ff79c6">=</span> fig<span style="color:#ff79c6">.</span>add_subplot(<span style="color:#bd93f9">111</span>)
+ax<span style="color:#ff79c6">.</span>plot(x,y)
+ax<span style="color:#ff79c6">.</span>xaxis<span style="color:#ff79c6">.</span>set_major_formatter(mdates<span style="color:#ff79c6">.</span>DateFormatter(<span style="color:#f1fa8c">&#39;%m/</span><span style="color:#f1fa8c">%d</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">%H:%M&#39;</span>))
+plt<span style="color:#ff79c6">.</span>show()
+</code></pre></div><p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/01b8a12d-d6af-2093-e2e1-55df4f68411a.png" alt="simple-glaph-format-time"></p>
+<p>参考：https://hack-le.com/matplotlib-x-date-format/</p>
+
+      </div>
+    </article>
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.sitepages/about">if_004</a>
+      &nbsp;&copy;
+      2021
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
