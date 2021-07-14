@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>seq2seq on アンドロイドは推理小説を書くか?</title>
-		<link>https://if001.github.io/if-blog-hugo/tags/seq2seq/</link>
+		<link>https://www.if-blog.site/tags/seq2seq/</link>
 		<description>Recent content in seq2seq </description>
 		<generator>Hugo -- gohugo.io</generator>
 		
@@ -11,7 +11,7 @@
     	
   		<lastBuildDate>Tue, 24 Sep 2019 00:00:00 +0900</lastBuildDate>
 		
-		<atom:link href="/if-blog-hugo/tags/seq2seq/" rel="self" type="application/rss+xml" />
+		<atom:link href="/tags/seq2seq/" rel="self" type="application/rss+xml" />
 		
 	</channel>
 </rss>
