@@ -3,7 +3,7 @@ title: "use-packagesを使ってみる"
 slug: "emacs-use-package"
 tags: ["emacs"]
 date: "2018-11-20T20:48:42+09:00"
-published: true
+draft: false
 ---
 
 これまで長い間放置しててきたemacsの設定たちを見直すついでに、use-pacakgeを使ってみようと思う。  

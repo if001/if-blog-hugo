@@ -2,8 +2,8 @@
 title: "Google ColaboratoryでGoogle driveをマウントする"
 slug: "colaboratory-google-drive-mount"
 tags: ["python"]
-published: true
-date: "2019-09-24T00:00:00+09:00"
+date: "2019-09-23T00:00:00+09:00"
+draft: false
 ---
 
 久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。  

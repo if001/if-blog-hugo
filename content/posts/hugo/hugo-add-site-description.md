@@ -3,8 +3,9 @@ title: "Hugoの記事にdescriptionを追加する"
 slug: "hugo-add-site-description"
 tags: ["hugo"]
 date: "2018-10-16T00:00:00+09:00"
-published: true
+draft: false
 ---
+
 Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。
 これでは検索に引っかからないのでdescriptionタグをつけましょう!
 
@@ -80,3 +81,5 @@ configで任意の変数を指定するのは、paramsの中じゃないとだ�
 参考：https://gohugo.io/getting-started/configuration/
 
 他のもっとスマートな方法があれば教えてください。
+
+

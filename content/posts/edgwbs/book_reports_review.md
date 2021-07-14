@@ -3,7 +3,7 @@ title: "三行で読書感想文を書いて、SNSでシェアできるサービ
 slug: "book-reports-review"
 tags: ["WebApp", "poem", "firebase"]
 date: "2019-09-25T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 ## サービス概要

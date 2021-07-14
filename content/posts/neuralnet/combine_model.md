@@ -3,7 +3,7 @@ title: "kerasでモデルを結合する"
 slug: "combine-model"
 tags: ["keras","deeplearning"]
 date: "2019-09-24T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。
@@ -122,3 +122,4 @@ if __name__ == '__main__':
 ```
 
 モデルインスタンスの再利用性が上がってて使いやすくなってる。  
+

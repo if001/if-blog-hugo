@@ -3,7 +3,7 @@ title: "Vue.js + Golang + Firebase Authenticationでログイン処理"
 slug: "book-reports-firebase-auth"
 tags: ["WebApp", "firebase", "golang"]
 date: "2019-09-28T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 Vue.jsとGolangでWebアプリケーションでFirebase Authenticationを使い、ログイン処理を行います。  

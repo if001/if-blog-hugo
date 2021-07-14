@@ -3,7 +3,7 @@ title: "技術ブログ用にGatsbyを整える"
 slug: "gatsby-intro"
 tags: ["react", "gatsby"]
 date: "2019-10-14T12:00:00+09:00"
-published: true
+draft: false
 ---
 
 これまでHugoを使っていたが、gatsbyを使ってみようと思います。

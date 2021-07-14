@@ -3,7 +3,7 @@ title: "falconでアップロードサーバーを作る"
 slug: "falcon-img-upload"
 tags: ["hugo","python", "falcon"]
 date: "2018-10-16T20:48:42+09:00"
-published: true
+draft: false
 ---
 ## はじめに
 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。
@@ -80,5 +80,6 @@ if __name__ == "__main__":
     httpd = simple_server.make_server("0.0.0.0", 8000, app)
     httpd.serve_forever()
 ```
+
 
 

@@ -3,10 +3,8 @@ title: "ボタン以外のコンポーネントに波紋エフェクト(ripple e
 slug: "book-reports-firebase"
 tags: ["android"]
 date: "2020-02-28T00:00:00+09:00"
-published: false
+draft: false
 ---
-
-図
 
 TextViewなどのbackgroudに以下を指定すればおk   
 

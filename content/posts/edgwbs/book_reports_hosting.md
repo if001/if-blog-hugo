@@ -3,7 +3,7 @@ title: "Firebase Hostingを使ってみた"
 slug: "book-reports-firebase-hosting"
 tags: ["firebase", "WebApp"]
 date: "2019-10-10T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 Firebase Authenticationに続いて、Firebase Hostingも使ってみました。備忘録を残しておきます。  

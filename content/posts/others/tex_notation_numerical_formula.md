@@ -3,7 +3,7 @@ title: "機械学習系の数式によく出てくる記号などのTex表記ま
 slug: "tex-notation-numerical-formula"
 tags: ["tex"]
 date: "2019-09-24T00:00:00+09:00"
-published: true
+draft: false
 ---
 すぐ忘れるのでTex表記をまとめて起きます。
 Qiitaが使っているという[Easy Copy MathJax](https://www.mathjax.org/)を用います。
@@ -29,3 +29,5 @@ macだと、ギリシャ文字は日本語の読み方で変換するとスペ�
 
 ### 追記
 $\KaTeX$だと、カリグラフィーフォントは、$\mathcal L$:`\mathcal L`こう。
+
+

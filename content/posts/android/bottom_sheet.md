@@ -3,7 +3,7 @@ title: "Bottom Sheetをつける"
 slug: "bottom-sheet"
 tags: ["android"]
 date: "2020-03-01T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 Google Mapで下から引っ張ると出てくるやつ。

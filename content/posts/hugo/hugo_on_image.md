@@ -3,7 +3,7 @@ title: "Hugoの記事に画像を載せる"
 slug: "hugo-on-image"
 tags: ["hugo"]
 date: "2018-10-16T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 Hugoに画像を載せるときは、[shortcodes](https://gohugo.io/content-management/shortcodes/)を使うと良いらしい。
@@ -44,3 +44,5 @@ or
 
 記事と同じディレクトリに画像を配置しておくと、シンプルなパスで記述できるので、その辺は好みで。  
 画像が多くなりすぎるとgitで管理したくないので、クラウドストレージとかに移行するとかしないとな...  
+
+

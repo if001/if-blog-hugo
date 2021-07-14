@@ -3,7 +3,7 @@ title: "Hugoの記事でコードハイライトする"
 slug: "hugo-code-highlight"
 tags: ["hugo"]
 date: "2018-10-16T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 Hugoでコードのシンタックスハイライトする場合のメモ  
@@ -46,3 +46,4 @@ $hugo gen chromastyles --style=monokai > syntax.css
 ```html
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/zenburn.min.css">
 ```
+

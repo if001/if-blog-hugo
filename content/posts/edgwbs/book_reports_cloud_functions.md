@@ -3,7 +3,7 @@ title: "Firebase Cloud Functionsを使ってTwitterのOGPを設定する"
 slug: "book-reports-firebase-cloud-functions"
 tags: ["firebase", "WebApp"]
 date: "2019-09-30T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 Vue.jsで作ったWebAppをFirebase Hostingで公開し、そこでTwitter用のOGPを設定しようとしましたが、Twitterのクローラーがjavascriptを解釈できないということで、別途方法を考える必要がありました。そこで、Firebase Cloud Functionsを使ってtwitter：OGPを設定してみようと思います。

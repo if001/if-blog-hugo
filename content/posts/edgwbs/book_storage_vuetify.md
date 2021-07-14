@@ -3,7 +3,7 @@ title: "Vue.js+typescriptでVuetifyを使いマテリアルデザインに入門
 slug: "book-storage-vue"
 tags: ["vue.js", "WebApp", "vuetify"]
 date: "2019-11-09T00:01:00+09:00"
-published: true
+draft: false
 ---
 
 ## はじめに

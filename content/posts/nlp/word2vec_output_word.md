@@ -3,7 +3,7 @@ title: "word2vecでベクトルから単語を出力する"
 slug: "word2vec-output-word"
 tags: ["python", "word2vec"]
 date: "2019-09-24T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。
@@ -83,3 +83,5 @@ word = model.most_similar( [ vector ], [], 5)
 ## まとめ
 `most_similar`使えばいける。ちなみに公式には、`model.wv.most_similar`って書いてあったけど、wvなくてもできた。公式には、ベクトルは、`model.wv`のKeyedVectorsインスタンスに保存されてるって書いてあったけどよくわかってない。
 今回は総単語数19002だったのだが、実行時間は1分ほど。word2vec高速すごい。
+
+

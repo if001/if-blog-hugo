@@ -3,7 +3,7 @@ title: "Hugoにgoogle analyticsを導入する"
 slug: "hugo-ga"
 tags: ["google-analytics","hugo"]
 date: "2018-10-16T00:00:00+09:00"
-published: true
+draft: false
 ---
 Hugoにgoogle analytics(ga)を導入しようと思ったら意外と簡単だった。
 
@@ -16,3 +16,5 @@ googleAnalytics = "{ga tracking ID}"
 ```
 
 を設定するだけ。
+
+

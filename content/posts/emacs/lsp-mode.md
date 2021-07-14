@@ -3,7 +3,7 @@ title: "lsp-modeを導入する"
 slug: "lsp-mode"
 tags: ["emacs"]
 date: "2018-11-20T20:48:42+09:00"
-published: true
+draft: false
 ---
 
 大学時代から使っていたemacsの設定たちを綺麗にするという目的で、ついでにlsp-modeを導入してみようと思う。  

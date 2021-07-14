@@ -3,7 +3,7 @@ title: "ニューラルネットワークを用いた対話モデルのための
 slug: "diversity-neural-conversation-model"
 tags: ["deeplearning", "seq2seq","nlp","論文"]
 date: "2019-09-24T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 Qiitaに投稿した記事、[kerasでHREDを構築してみる](https://qiita.com/iss-f/items/0b5a2766e789213b42c1)の記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
@@ -144,4 +144,5 @@ statistical machine translation (SMT)とseq2seqとの比較を行った。　MMI
 
 ## まとめ
 seq2seqを使った対話モデルでは、メッセージに対する応答が、一般的でありふれたものになる傾向があるという問題点があった。我々の分析では、これは、入力（メッセージ）を与えられた出力（応答）の単方向尤度の使用に起因することを示唆している。そこで目的関数に最大相互情報量(MMI)を使用することを提案した。実験の結果、提案されたMMIモデルでは、より多様で興味深い応答を生成することができた。
+
 

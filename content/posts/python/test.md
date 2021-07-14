@@ -1,7 +1,8 @@
 ---
 title: 'test'
+slug: 'test'
 tags: ["python","Hugo", "aaa","読書","読了", "長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ"]
-published: false
+draft: true
 date: '2019-10-09'
 ---
 
@@ -74,3 +75,4 @@ function hoge() {
 huga()
 }
 ```
+

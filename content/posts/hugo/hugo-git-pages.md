@@ -3,7 +3,7 @@ title: "HugoをGitHub Pagesで公開する"
 slug: "hugo-git-pages"
 tags: ["hugo"]
 date: "2018-10-16T00:00:00+09:00"
-published: true
+draft: false
 ---
 GitHub Pagesを使ってHugoを公開する手順をメモ  
 やりたいこととしては、
@@ -64,3 +64,5 @@ GitHub Pagesのドメインは
 なので、取得したドメインでGitHub PagesのドメインがひけるようにCNAMEの設定を行います。  
 
 GitHub側では、リポジトリの設定からCustom domainを取得したドメインで設定します。Custom domainを設定すると、Enforce HTTPSにチェックを入れることができるので、設定するとhttpsで通信が行えるようになります。  
+
+

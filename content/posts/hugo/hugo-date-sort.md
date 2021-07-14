@@ -3,7 +3,7 @@ title: "Hugoの記事を更新順にソートする"
 slug: "hugo-date-sort"
 tags: ["hugo"]
 date: "2018-10-16T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 Hugoの記事を更新順にソートするメモです。  
@@ -39,3 +39,5 @@ lastmod以外にも並び替えが行えます。
 {{ $paginator := .Paginate (where .Data.Pages "Type" "post").ByLastmod.Reverse 10 }}
 {{ range $paginator.Pages }}
 ```
+
+

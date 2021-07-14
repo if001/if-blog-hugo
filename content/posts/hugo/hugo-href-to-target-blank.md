@@ -3,7 +3,7 @@ title: "Hugoでリンクを新しいウィンドウで開く"
 slug: "hugo-href-to-target-blank"
 tags: ["hugo"]
 date: "2018-10-16T00:00:00+09:00"
-published: true
+draft: false
 ---
 リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。
 
@@ -21,4 +21,5 @@ Hugoでは次のようにconfig.tomlするといける。
 
 - https://gohugo.io/getting-started/configuration/
 - https://www.meganii.com/blog/2017/02/25/hugo-markdown-href-target-blank/
+
 

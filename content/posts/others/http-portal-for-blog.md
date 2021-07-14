@@ -3,7 +3,7 @@ title: "Hugoで作ったwebサイトを公開する"
 slug: "http-portal-for-blog"
 tags: ["hugo", "docker"]
 date: "2019-09-24T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 ## はじめに
@@ -102,4 +102,5 @@ STAGEは、次の3つが指定できます。
 その他、環境変数も指定できます。この辺りを参考しながら、設定を行います。
 
 https://github.com/SteveLTN/https-portal/tree/master/fs_overlay/var/lib/nginx-conf
+
 

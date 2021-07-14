@@ -3,7 +3,7 @@ title: "emacsひな祭りいってきたのでためになったpackageなどを
 slug: "emacs-hinamatsuri"
 tags: ["emacs"]
 date: "2019-03-08T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 2019年3月3日に開催された東京Emacsひなまつりにいってきました。   
@@ -64,4 +64,5 @@ http://emacs.rubikitch.com/ripgrep/
 ## 感想
 もっとゴリゴリな変態emacs使い(褒め言葉)ばかりかと思ってたけど、実用性の高い話が聞けてよかったです。emacs歴は7,8年ほどですが普段はpythonやmarkdownなどちょっとした開発にemacsを使う程度で、scalaやhtml、jsや規模の大きいプロジェクトなどではIDEを使っています。今回ので良い知見が得られたのでこれからはしっかりemacs使っていこうと思います。
 ORGモード人気。  
+
 

@@ -3,7 +3,7 @@ title: "SeqGANの論文を読む"
 slug: "seqgan-paper"
 tags: ["nlp","SeqGAN","論文"]
 date: "2019-09-24T00:00:00+09:00"
-published: true
+draft: false
 ---
 SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
 
@@ -114,3 +114,5 @@ $$c_ i = \rho ( \boldsymbol{w} \otimes \varepsilon_ {i:i+l-1}+b )$$
 ## 参考
 http://hirotaka-hachiya.hatenablog.com/entry/2017/02/27/222611
 https://mil-tokyo.github.io/paper-summary/papers/20170320-SeqGAN
+
+

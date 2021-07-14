@@ -3,7 +3,7 @@ title: "Kubernetes完全ガイド 第２版"
 slug: "kubernetes-complete-guide"
 tags: ["book"]
 date: "2020-09-08T17:00:00+09:00"
-published: false
+draft: true
 ---
 
 ## 3.2.3 ローカル kubernetes kind

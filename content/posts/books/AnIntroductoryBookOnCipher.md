@@ -3,7 +3,7 @@ title: "暗号技術入門"
 slug: "an-introductory-book-on-cipher"
 tags: ["book"]
 date: "2020-09-04T17:00:00+09:00"
-published: false
+draft: true
 toc: true
 ---
 

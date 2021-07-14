@@ -3,7 +3,7 @@ title: "pyenv環境でaws cli入れたらコマンドが見つからない"
 slug: "aws-cli-at-pyenv"
 tags: ["python","aws"]
 date: "2019-09-24T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 pyenv環境でaws cli入れたらコマンドが見つからないって言われたので調べたメモ
@@ -35,3 +35,5 @@ aws-cli/1.16.29 Python/2.7.13 Darwin/16.7.0 botocore/1.12.19
 できた！
 
 pyenvが問題なのかはわからん....
+
+

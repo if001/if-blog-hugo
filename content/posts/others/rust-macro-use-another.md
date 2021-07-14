@@ -3,7 +3,7 @@ title: "Rustでmodule間にまたがるmacro呼び出し"
 slug: "rust-macro-use-another"
 tags: ["rust"]
 date: "2019-09-24T00:00:00+09:00"
-published: true
+draft: false
 ---
 Rustのmacroをモジュール化して、別のモジュールから呼ぼうと思ったらうまくいかなかった。
 
@@ -117,4 +117,5 @@ pub mod mod1;
 - コードの一部はネットの情報としてあったが、コードの全体がわからずハマったので全体をgithubにあげておく
 
 https://github.com/if001/rust_macro_test
+
 

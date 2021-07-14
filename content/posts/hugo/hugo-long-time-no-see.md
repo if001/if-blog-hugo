@@ -3,7 +3,7 @@ title: "Hugoのディレクトリ構造やデプロイ方法の備忘録"
 slug: "hugo-long-time-no-see"
 tags: ["hugo"]
 date: "2018-10-16T00:00:00+09:00"
-published: true
+draft: false
 ---
 久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。  
 
@@ -36,6 +36,7 @@ $ hugo server -t ./
 ```
 
 localにサーバーが立ち上がり、markdownを書きながら生成される記事を確認できる。
+
 
 
 

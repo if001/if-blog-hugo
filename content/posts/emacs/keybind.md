@@ -3,7 +3,7 @@ title: "keybind"
 slug: "emacs-keybind"
 tags: ["emacs"]
 date: "2019-03-23T17:00:00+09:00"
-published: false
+draft: true
 ---
 
 ```lisp

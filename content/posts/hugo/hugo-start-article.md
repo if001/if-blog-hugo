@@ -3,7 +3,7 @@ title: "Hugoでブログを作る"
 slug: "hugo-start-article"
 tags: ["hugo"]
 date: "2018-10-16T00:00:00+09:00"
-published: true
+draft: false
 ---
 ## はじめに
 [Hugo](https://gohugo.io/)とは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。
@@ -70,7 +70,7 @@ cat content/post/test.md
 ---
 title: "Test"
 date: 2018-10-15T18:51:47+09:00
-draft: true
+draft: false
 ---
 ```
 
@@ -102,3 +102,5 @@ $ ls public/
 ## まとめ
 Hugoのインストールからデプロイまでをまとめました。
 html内で使える変数や、数式、画像の表示はまた別でまとめます。
+
+

@@ -3,7 +3,7 @@ title: "Enhanced character embedding for Chinese named entity recognition"
 slug: "enhanced-character-embedding-for-chinese-named-entity-recognition"
 tags: ["deeplearning", "nlp","論文"]
 date: "2020-12-30T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 
@@ -45,4 +45,5 @@ f(X,y)=
 ```
 
 ただし、PはBiLSTMの出力した行列である。
+
 

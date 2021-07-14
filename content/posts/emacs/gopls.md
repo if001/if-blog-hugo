@@ -3,7 +3,7 @@ title: "emacsのgo lang用のlanguage serverをgoplsに乗り換える"
 slug: "gopls-introduction"
 tags: ["emacs"]
 date: "2019-10-08T00:00:00+09:00"
-published: false
+draft: false
 ---
 
 emacsでgo langを書くときに使っているlspのlanguage serverがbingoからgoplsに変わったので、emacsの設定も更新しておこうと思います。  
@@ -43,6 +43,5 @@ https://github.com/golang/tools/blob/master/gopls/doc/emacs.md
 
 小さいプロジェクトなら、コードの補完、ドキュメント表示、定義ジャンプなど問題なく使えてます。
 
-図
-
 ただ、大きいプロジェクトとなると、補完やドキュメントを表示しようとするとタイムアウトしてしまうので、少し調整が必要みたいです。
+

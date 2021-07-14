@@ -3,7 +3,7 @@ title: "Firebaseを使ってwebアプリを公開した"
 slug: "book-reports-firebase"
 tags: ["firebase", "WebApp"]
 date: "2019-09-22T00:00:00+09:00"
-published: false
+draft: true
 ---
 
 firebaseのみで三行で読書感想文をSNSにシェアできるwebアプリケーションを作ってみました。  

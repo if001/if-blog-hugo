@@ -3,7 +3,7 @@ title: "KaTeXを使ってみる"
 slug: "katex-introduction"
 tags: ["hugo"]
 date: "2018-10-16T00:00:00+09:00"
-published: false
+draft: true
 ---
 
 これまでMathJaxを使っていたが、描画が遅いということもあり、KaTeXを使ってみることにしました。
@@ -25,3 +25,5 @@ MathJaxで表示していた数式も無事表示されてとりあえず問題�
 KaTeXによる数式の表示:https://sekika.github.io/2017/05/01/katex-equation/ \\
 KaTeXを導入しました:http://nshi.jp/contents/other/katex/ \\
 KaTeXのデモ:http://sixthform.info/katex/examples/demo.html
+
+

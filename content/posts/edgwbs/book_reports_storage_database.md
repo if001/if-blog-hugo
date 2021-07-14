@@ -3,7 +3,7 @@ title: "Vue.jsからFirebase StorageとDatabaseを使う"
 slug: "book-reports-storage-firestore"
 tags: ["WebApp", "firebase"]
 date: "2019-09-22T00:00:00+09:00"
-published: false
+draft: true
 ---
 
 ## はじめに

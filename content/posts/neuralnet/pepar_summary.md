@@ -3,7 +3,7 @@ title: "Deeplearningまわりの最新論文を浅く広くみてまわる"
 slug: "pepar-summary"
 tags: ["deeplearning"]
 date: "2019-09-24T00:00:00+09:00"
-published: true
+draft: false
 ---
 
 最新論文の情報を広く浅く集めたい場合の巡回するサイトたちをまとめておきます。  
@@ -42,3 +42,5 @@ http://research.google.com/pubs/ArtificialIntelligenceandMachineLearning.html
 
 #### Yahoo! Labs
 http://labs.yahoo.com/publication/?area=machine-learning
+
+
