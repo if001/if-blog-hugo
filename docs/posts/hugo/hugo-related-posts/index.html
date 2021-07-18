@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-<title>アンドロイドは推理小説を書くか?</title>
+<title>Hugoの記事に関連記事を表示させる</title>
 
   
     
@@ -82,18 +82,20 @@
 
 
   
-    <meta name="description" content="自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。" />
+    <meta name="description" content="記事の最後に関連記事を表示する方法が簡単になってた。
+https://gohugo.io/content-management/related/
+これで関連記事を取れる
+.Site.RegularPages.Related 以下のような感じで記事の最後につけるとおｋ
+{{ $related := ." />
   
-  
+
 
 <meta name="generator" content="Hugo 0.83.1" />
   </head>
   <body>
     
   
-    
-  
-  
+
 
 
 
@@ -146,11 +148,25 @@
 
     <div class="intro-header">
       <div class="container">
-        <div class="page-heading">
+        <div class="posts-heading">
           
             
-              <h1 class="top-title">アンドロイドは推理小説を書くか?</h1>
+
               
+              <h1>
+		
+		Hugoの記事に関連記事を表示させる
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
           
           
         </div>
@@ -161,96 +177,97 @@
 
     
   <div class="container" role="main">
-    <div class="posts-list">
+    <article class="article" class="blog-post">
       
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/hugo/">hugo</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2021-07-18
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>記事の最後に関連記事を表示する方法が簡単になってた。</p>
+<p><a href="https://gohugo.io/content-management/related/">https://gohugo.io/content-management/related/</a></p>
+<p>これで関連記事を取れる</p>
+<pre><code>.Site.RegularPages.Related
+</code></pre><p>以下のような感じで記事の最後につけるとおｋ</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{ $related := .Site.RegularPages.Related . | first 5 }}
+{{ with $related }}
+&lt;<span style="color:#ff79c6">h3</span>&gt;See Also&lt;/<span style="color:#ff79c6">h3</span>&gt;
+&lt;<span style="color:#ff79c6">ul</span>&gt;
+	{{ range . }}
+	&lt;<span style="color:#ff79c6">li</span>&gt;&lt;<span style="color:#ff79c6">a</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{{ .RelPermalink }}&#34;</span>&gt;{{ .Title }}&lt;/<span style="color:#ff79c6">a</span>&gt;&lt;/<span style="color:#ff79c6">li</span>&gt;
+	{{ end }}
+&lt;/<span style="color:#ff79c6">ul</span>&gt;
+{{ end }}
+</code></pre></div><p>関連記事の設定も少しできるみたい。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[related]
+  includeNewer = <span style="color:#ff79c6">false</span>
+  threshold = <span style="color:#bd93f9">80</span>
+  toLower = <span style="color:#ff79c6">false</span>
+
+  [[related.indices]]
+    name = <span style="color:#f1fa8c">&#34;keywords&#34;</span>
+    weight = <span style="color:#bd93f9">100</span>
+
+  [[related.indices]]
+    name = <span style="color:#f1fa8c">&#34;date&#34;</span>
+    weight = <span style="color:#bd93f9">10</span>
+</code></pre></div><p>設定はそれぞれ、</p>
+<ul>
+<li>
+<p>threshold<br>
+しきい値。0-100の値。低くするとよりマッチするけど、あんまり関連性無くなる</p>
+</li>
+<li>
+<p>includeNewer<br>
+現在の記事より新しい記事を含めるかどうか。新しい記事を追加すると関連記事一覧も変わる。</p>
+</li>
+<li>
+<p>toLower<br>
+indexesとクエリに小文字を含めるかどうか。より正確な関連記事が出る場合もある。</p>
+</li>
+</ul>
+
+      </div>
+      <div class="related-article">
         
-        
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/">
-    <h2 class="post-title">
-      Hugoの記事を更新順にソートする
-      
-    </h2>   
-  </a>
 
-  <div class="post-entry">
-    <p>Hugoの記事を更新順にソートするメモです。
-まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、Lastmodで更新時刻が取得できるのでそれを使います。
-そのほかにもgitから情報が取得できます。https:</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
+  <h2>See Also</h2>
+  <ul>
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <li><a href="/posts/others/http-portal-for-blog/">Hugoで作ったwebサイトを公開する</a></li>
     
-  
-</div>
+      <li><a href="/posts/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
+    
+      <li><a href="/posts/hugo/hugo-start-article/">Hugoでブログを作る</a></li>
+    
+      <li><a href="/posts/hugo/hugo-href-to-target-blank/">Hugoでリンクを新しいウィンドウで開く</a></li>
+    
+      <li><a href="/posts/hugo/hugo-ga/">Hugoにgoogle analyticsを導入する</a></li>
+    
+  </ul>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
 
-  </div>
-</article>
-
+      </div>
+    </article>
+    
+    
       
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-git-pages/">
-    <h2 class="post-title">
-      HugoをGitHub Pagesで公開する
-      
-    </h2>   
-  </a>
 
-  <div class="post-entry">
-    <p>GitHub Pagesを使ってHugoを公開する手順をメモ
-やりたいこととしては、
- Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定  の3つです。
-GitHub Pagesで公開 まずは、Hugoのプロジェク</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-git-pages/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-    </div>
-
-    
-      <ul class="pager">
-        
-          <li class="previous">
-            
-            <a href="https://www.if-blog.site/page/2/"
-              ><i class="fas fa-chevron-left"></i> Prev</a
-            >
-          </li>
-        
-        
-      </ul>
     
   </div>
 

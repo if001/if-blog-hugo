@@ -2,6 +2,16 @@
     
         
             {
+                "ref": "https://www.if-blog.site/posts/hugo/hugo-related-posts/",
+                "title": "Hugoの記事に関連記事を表示させる",
+                "section": "posts",
+                "date" : "2021-07-18",
+                "body": "記事の最後に関連記事を表示する方法が簡単になってた。\nhttps://gohugo.io/content-management/related/\nこれで関連記事を取れる\n.Site.RegularPages.Related 以下のような感じで記事の最後につけるとおｋ\n{{ $related := .Site.RegularPages.Related . | first 5 }} {{ with $related }} \u0026lt;h3\u0026gt;See Also\u0026lt;/h3\u0026gt; \u0026lt;ul\u0026gt; {{ range . }} \u0026lt;li\u0026gt;\u0026lt;a href=\u0026#34;{{ .RelPermalink }}\u0026#34;\u0026gt;{{ .Title }}\u0026lt;/a\u0026gt;\u0026lt;/li\u0026gt; {{ end }} \u0026lt;/ul\u0026gt; {{ end }} 関連記事の設定も少しできるみたい。\n[related] includeNewer = false threshold = 80 toLower = false [[related.indices]] name = \u0026#34;keywords\u0026#34; weight = 100 [[related.indices]] name = \u0026#34;date\u0026#34; weight = 10 設定はそれぞれ、\n  threshold\nしきい値。0-100の値。低くするとよりマッチするけど、あんまり関連性無くなる\n  includeNewer\n現在の記事より新しい記事を含めるかどうか。新しい記事を追加すると関連記事一覧も変わる。\n  toLower\nindexesとクエリに小文字を含めるかどうか。より正確な関連記事が出る場合もある。\n  "
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/python/open-ai-gym-quick/",
                 "title": "Open AI Gymをとりあえず動かす",
                 "section": "posts",
