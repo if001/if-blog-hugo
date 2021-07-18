@@ -79,3 +79,16 @@ hasCJKLanguage = true
   name= "twitter"
   url="https://twitter.com/if_004"
   icon="fab fa-twitter"
+
+[related]
+  includeNewer = true
+  threshold = 20
+  toLower = true
+
+[[related.indices]]
+  name = "tags"
+  weight = 100
+
+[[related.indices]]
+  name = "date"
+  weight = 10
