@@ -167,6 +167,85 @@
         
       
         <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/python/arxiv-translate/">
+    <h2 class="post-title">
+      Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>朝の空いた時間などにarxivの新着論文を読みたくて、 アブストラクトを翻訳したものをslackに送るようにしました。
+流れは以下のような感じ。
+arxivはAPIを公開しているのでそこから、アブストや論文のタイトル、リンクなどを取得します。
+Google Apps Script（GAS）を使うと、</p>
+    <a href="https://www.if-blog.site/posts/python/arxiv-translate/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/arxiv/">arxiv</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/github/">github</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2021-07-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/python/arxiv-py-lib/">
+    <h2 class="post-title">
+      pythonでarxivのAPIを使う
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>arxivで公開されているAPIを使っていきます
+https://arxiv.org/
+APIを直接呼び出しても良いですが、responseがxmlで使いづらかったので pythonのライブラリを使わせてもらいます。
+https://github.com/lukasschwab/arxiv.py
+p</p>
+    <a href="https://www.if-blog.site/posts/python/arxiv-py-lib/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/arxiv/">arxiv</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2021-07-23
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
   <a href="https://www.if-blog.site/posts/others/gas-translate/">
     <h2 class="post-title">
       Google Apps ScriptでGoogle Translateを使う
@@ -817,80 +896,6 @@ Google Scholar: https://scholar.google.com/schhp?hl=ja
     <div class="meta-post blog-tags" style="display:inline-block">
   <i class="fas fa-tag" style="color:#111111"></i>
   
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/others/http-portal-for-blog/">
-    <h2 class="post-title">
-      Hugoで作ったwebサイトを公開する
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>はじめに GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。
-いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。
-インフラ GCEを使います。ほんとは、image化してインスタンスグループで公開したかったので</p>
-    <a href="https://www.if-blog.site/posts/others/http-portal-for-blog/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/docker/">docker</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/neuralnet/combine-model/">
-    <h2 class="post-title">
-      kerasでモデルを結合する
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。
-autoencoderの学習の際には、作成したencoderのModelとdecoderのModelを結合する。
-Modelの結合は前はできなかった</p>
-    <a href="https://www.if-blog.site/posts/neuralnet/combine-model/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/keras/">keras</a>&nbsp;
     
       <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     

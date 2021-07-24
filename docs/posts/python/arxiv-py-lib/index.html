@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-<title>GitHub Actionsを手動実行する</title>
+<title>pythonでarxivのAPIを使う</title>
 
   
     
@@ -82,9 +82,11 @@
 
 
   
-    <meta name="description" content="GitHub Actionsをcronとして定期実行していたが、動作の確認のために手動実行もしたかったのでメモ
-結論 onワークフロー構文に、workflow_dispatchを指定する
-name: Manually triggered workflow on: workflow_dispatch:" />
+    <meta name="description" content="arxivで公開されているAPIを使っていきます
+https://arxiv.org/
+APIを直接呼び出しても良いですが、responseがxmlで使いづらかったので pythonのライブラリを使わせてもらいます。
+https://github.com/lukasschwab/arxiv.py
+p" />
   
 
 
@@ -153,7 +155,7 @@ name: Manually triggered workflow on: workflow_dispatch:" />
               
               <h1>
 		
-		GitHub Actionsを手動実行する
+		pythonでarxivのAPIを使う
 		
 		
                 </h1>
@@ -180,7 +182,10 @@ name: Manually triggered workflow on: workflow_dispatch:" />
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/github/">github</a
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/arxiv/">arxiv</a
             >&nbsp;
           
         </div>
@@ -189,7 +194,7 @@ name: Manually triggered workflow on: workflow_dispatch:" />
       
         <div style="margin-bottom: 10px;">
           <i class="fa fa-calendar-alt"></i
-          >&nbsp;2020-07-19
+          >&nbsp;2021-07-23
         </div>
       
 
@@ -197,14 +202,90 @@ name: Manually triggered workflow on: workflow_dispatch:" />
 
 
       <div class="article-main">
-        <p>GitHub Actionsをcronとして定期実行していたが、動作の確認のために手動実行もしたかったのでメモ</p>
-<h2 id="結論">結論</h2>
-<p><code>on</code>ワークフロー構文に、<code>workflow_dispatch</code>を指定する</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">name: Manually triggered workflow
-on:
-  workflow_dispatch:
-</code></pre></div><p><code>workflow_dispatch</code>のdoc<br>
-<a href="https://docs.github.com/ja/actions/reference/events-that-trigger-workflows#workflow_dispatch">https://docs.github.com/ja/actions/reference/events-that-trigger-workflows#workflow_dispatch</a></p>
+        <p>arxivで公開されているAPIを使っていきます</p>
+<p><a href="https://arxiv.org/">https://arxiv.org/</a></p>
+<p>APIを直接呼び出しても良いですが、responseがxmlで使いづらかったので
+pythonのライブラリを使わせてもらいます。</p>
+<p><a href="https://github.com/lukasschwab/arxiv.py">https://github.com/lukasschwab/arxiv.py</a></p>
+<p>pipでインストール</p>
+<pre><code>$ pip install arxiv
+</code></pre><h2 id="使い方">使い方</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> arxiv
+
+search <span style="color:#ff79c6">=</span> arxiv<span style="color:#ff79c6">.</span>Search(
+  query <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;quantum&#34;</span>,
+  max_results <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span>,
+  sort_by <span style="color:#ff79c6">=</span> arxiv<span style="color:#ff79c6">.</span>SortCriterion<span style="color:#ff79c6">.</span>SubmittedDate
+)
+
+<span style="color:#ff79c6">for</span> result <span style="color:#ff79c6">in</span> search<span style="color:#ff79c6">.</span>results():
+  <span style="color:#ff79c6">print</span>(result<span style="color:#ff79c6">.</span>title)
+</code></pre></div><p>arxiv.Searchでリクエストを送ります。<br>
+results()で結果の一覧を取得</p>
+<p>結果用にResult Classが用意されており、<br>
+中身はそれぞれ以下のような形です。</p>
+<table>
+<thead>
+<tr>
+<th>field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>entry_id</td>
+<td>A url <a href="http://arxiv.org/abs/%7Bid%7D">http://arxiv.org/abs/{id}</a>.</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>When the result was last updated.</td>
+</tr>
+<tr>
+<td>published</td>
+<td>When the result was originally published.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>The title of the result.</td>
+</tr>
+<tr>
+<td>authors</td>
+<td>The result&rsquo;s authors, as arxiv.Authors.</td>
+</tr>
+<tr>
+<td>summary</td>
+<td>The result abstract.</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>The authors' comment if present.</td>
+</tr>
+<tr>
+<td>journal_ref</td>
+<td>A journal reference if present.</td>
+</tr>
+<tr>
+<td>doi</td>
+<td>A URL for the resolved DOI to an external resource if present.</td>
+</tr>
+<tr>
+<td>primary_category</td>
+<td>The result&rsquo;s primary arXiv category. See arXiv: Category Taxonomy.</td>
+</tr>
+<tr>
+<td>categories</td>
+<td>All of the result&rsquo;s categories. See arXiv: Category Taxonomy.</td>
+</tr>
+<tr>
+<td>links</td>
+<td>Up to three URLs associated with this result, as arxiv.Links.</td>
+</tr>
+<tr>
+<td>pdf_url</td>
+<td>A URL for the result&rsquo;s PDF if present. Note: this URL also appears among result.links.</td>
+</tr>
+</tbody>
+</table>
 
       </div>
       <div class="related-article">
@@ -214,6 +295,14 @@ on:
   <ul>
     
       <li><a href="/posts/python/arxiv-translate/">Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る</a></li>
+    
+      <li><a href="/posts/others/gas-translate/">Google Apps ScriptでGoogle Translateを使う</a></li>
+    
+      <li><a href="/posts/python/open-ai-gym-quick/">Open AI Gymをとりあえず動かす</a></li>
+    
+      <li><a href="/posts/python/python-matplotlib-base/">matplotlibのよく使う記法まとめ</a></li>
+    
+      <li><a href="/posts/others/aws-cli-at-pyenv/">pyenv環境でaws cli入れたらコマンドが見つからない</a></li>
     
   </ul>
 

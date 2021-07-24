@@ -2,6 +2,26 @@
     
         
             {
+                "ref": "https://www.if-blog.site/posts/python/arxiv-translate/",
+                "title": "Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る",
+                "section": "posts",
+                "date" : "2021-07-24",
+                "body": "朝の空いた時間などにarxivの新着論文を読みたくて、 アブストラクトを翻訳したものをslackに送るようにしました。\n流れは以下のような感じ。\narxivはAPIを公開しているのでそこから、アブストや論文のタイトル、リンクなどを取得します。\nGoogle Apps Script（GAS）を使うと、google translateが簡単に使え、翻訳ができます。\nタイトルや翻訳したものをslackに送り、これをgithub actionsで定期実行させます。\n arxivからsubmittedDate順に上から10件を取得 GASへリクエストを送り、アブストを翻訳 slackに送る 以上の処理をgithub actionsを使って毎朝実行されるようにします  全体はこれ\nhttps://github.com/if001/arXiv_translate\narxivから記事を取得 pythonのライブラリを使います。\nhttps://github.com/lukasschwab/arxiv.py\n詳細は以下\npythonでarxivのAPIを使う\nGoogle Apps Scriptでアブストを翻訳 Google TranslateはAPIを公開してますが、GASを使うと比較的簡単に翻訳が行えます。\nGASを使って翻訳用のエンドポイントを作ります。\nその後、arxivのAPIの結果から、タイトルとアブストを翻訳します。\n詳細は以下\nGoogle Apps ScriptでGoogle Translateを使う\nSlackに送信 Incoming Webhooksを使うと簡単にslackにメッセージを送れます。\nhttps://api.slack.com/messaging/webhooks\n諸々登録を済ませると、メッセージsend用のURLが吐き出されるので、\nそのURLに対してメッセージをPOSTします。\n翻訳/原文タイトル、翻訳/原文アブスト、arxivのリンクを送ります。\nGithub Actionsで定期実行 Github Actionsでcron実行するにはこんな感じ。\nname: cron sample on: schedule: - cron: \u0026#39;0 6 * * *\u0026#39; jobs: build: runs-on: ubuntu-latest steps: - name: hello run: | echo \u0026#34;hello world\u0026#34; https://docs.github.com/ja/actions/reference/events-that-trigger-workflows#schedule\n確認用に手動実行したい場合は、workflow_dispatchを指定する。\non: workflow_dispatch: 作成したscriptを実行させる。\njobs: notify: runs-on: ubuntu-latest strategy: matrix: python-version: [3.7] steps: - uses: actions/checkout@v2 - name: Set up Python ${{ matrix.python-version }} uses: actions/setup-python@v2 with: python-version: ${{ matrix.python-version }} - name: Install dependencies run: |python -m pip install --upgrade pip if [ -f requirements.txt ]; then pip install -r requirements.txt; fi  - name: Run Main env: APP_GAS_URL: ${{ secrets.APP_GAS_URL }} APP_SLACK_URL: ${{ secrets.APP_SLACK_URL }} run: | python main.py 前日にslackにPOSTした論文と同じものがPOSTされないように、\narxivの各論文の持つid(entry_id)をsave.logというファイル名で書き出して、\n同じリポジトリにpushしておきます。\nファイルの中身と、arxivから取得した論文の差分を取り、slackに送ります。\nGithub Actionsで、自信の変更を自信のリポジトリにpushするのは、以下のようにできる。\n- name: Run Change push run: |s=`git status -s` if [ -z \u0026#34;$s\u0026#34; ]; then exit 0 fi git config --global user.email \u0026#34;workflow@example.com\u0026#34; git config --global user.name \u0026#34;workflow user\u0026#34; git add save.log git commit -m \u0026#34;update save.log\u0026#34; git status git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git "
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/python/arxiv-py-lib/",
+                "title": "pythonでarxivのAPIを使う",
+                "section": "posts",
+                "date" : "2021-07-23",
+                "body": "arxivで公開されているAPIを使っていきます\nhttps://arxiv.org/\nAPIを直接呼び出しても良いですが、responseがxmlで使いづらかったので pythonのライブラリを使わせてもらいます。\nhttps://github.com/lukasschwab/arxiv.py\npipでインストール\n$ pip install arxiv 使い方 import arxiv search = arxiv.Search( query = \u0026#34;quantum\u0026#34;, max_results = 10, sort_by = arxiv.SortCriterion.SubmittedDate ) for result in search.results(): print(result.title) arxiv.Searchでリクエストを送ります。\nresults()で結果の一覧を取得\n結果用にResult Classが用意されており、\n中身はそれぞれ以下のような形です。\n   field Description     entry_id A url http://arxiv.org/abs/{id}.   updated When the result was last updated.   published When the result was originally published.   title The title of the result.   authors The result\u0026rsquo;s authors, as arxiv.Authors.   summary The result abstract.   comment The authors' comment if present.   journal_ref A journal reference if present.   doi A URL for the resolved DOI to an external resource if present.   primary_category The result\u0026rsquo;s primary arXiv category. See arXiv: Category Taxonomy.   categories All of the result\u0026rsquo;s categories. See arXiv: Category Taxonomy.   links Up to three URLs associated with this result, as arxiv.Links.   pdf_url A URL for the result\u0026rsquo;s PDF if present. Note: this URL also appears among result.links.    "
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/others/gas-translate/",
                 "title": "Google Apps ScriptでGoogle Translateを使う",
                 "section": "posts",

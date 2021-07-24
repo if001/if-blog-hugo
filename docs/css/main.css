@@ -40,15 +40,15 @@ body {
 }
 
 a {
-    color: #535353;
+  color: #9a9a9a;
   outline: none;
   text-decoration: none;
 }
 a:visited {
-    color: #535353;
+  color: #9a9a9a;
 }
 a:hover {
-    color: #9a9a9a;
+  color: #535353;
 }
 
 
