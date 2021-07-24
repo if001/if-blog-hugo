@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-<title>Posts</title>
+<title>github</title>
 
   
     
@@ -144,25 +144,21 @@
 
     <div class="intro-header">
       <div class="container">
-        <div class="posts-heading">
+        <div class="tags-heading">
           
             
 
               
-              <h1>
-		
-		Posts
-		
-		
+
+              
+                <h1 style="font-size:2em;">
+                  <i class="fas fa-tag" style="margin-right:10px"></i
+                  >github
                 </h1>
               
 
               
-
-              
             
-          
-          
           
           
         </div>
@@ -179,18 +175,18 @@
       
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-add-site-description/">
+  <a href="https://www.if-blog.site/posts/github/workflow-dispatch/">
     <h2 class="post-title">
-      Hugoの記事にdescriptionを追加する
+      GitHub Actionsを手動実行する
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
-html側で次のように書くと、markdownに書いたdescriptionが参照できます。
-{{ .Des</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-add-site-description/" class="post-read-more"></a>
+    <p>GitHub Actionsをcronとして定期実行していたが、動作の確認のために手動実行もしたかったのでメモ
+結論 onワークフロー構文に、workflow_dispatchを指定する
+name: Manually triggered workflow on: workflow_dispatch:</p>
+    <a href="https://www.if-blog.site/posts/github/workflow-dispatch/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -198,121 +194,14 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/github/">github</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/">
-    <h2 class="post-title">
-      Hugoの記事に画像を載せる
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
-画像を配置するディクトリを以下のように作っておく。
-{root}/content/post/images/ 以下のように記述すると表示できる。
-{{&amp;lt; figure src=&amp;quot;../../images/test.</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/">
-    <h2 class="post-title">
-      Hugoの記事を更新順にソートする
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Hugoの記事を更新順にソートするメモです。
-まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、Lastmodで更新時刻が取得できるのでそれを使います。
-そのほかにもgitから情報が取得できます。https:</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-git-pages/">
-    <h2 class="post-title">
-      HugoをGitHub Pagesで公開する
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>GitHub Pagesを使ってHugoを公開する手順をメモ
-やりたいこととしては、
- Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定  の3つです。
-GitHub Pagesで公開 まずは、Hugoのプロジェク</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-git-pages/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
+  >&nbsp;2020-07-19
   
 </div>
 
@@ -322,18 +211,6 @@ GitHub Pagesで公開 まずは、Hugoのプロジェク</p>
       
     </div>
 
-    
-      <ul class="pager">
-        
-          <li class="previous">
-            
-            <a href="https://www.if-blog.site/posts/page/4/"
-              ><i class="fas fa-chevron-left"></i> Prev</a
-            >
-          </li>
-        
-        
-      </ul>
     
   </div>
 

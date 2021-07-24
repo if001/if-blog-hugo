@@ -2,6 +2,16 @@
     
         
             {
+                "ref": "https://www.if-blog.site/posts/others/gas-translate/",
+                "title": "Google Apps ScriptでGoogle Translateを使う",
+                "section": "posts",
+                "date" : "2021-07-22",
+                "body": "翻訳用のAPIを簡単に利用したいことあると思います。\nGoogle TranslateはAPIを公開してますが、気軽に使う場合には少し不便です。\nそういう場合は、Google Apps ScriptからGoogle Translateの機能を使うと便利です。\n結論 LanguageApp.translate(value, \u0026quot;en\u0026quot;, \u0026quot;ja\u0026quot;); プロジェクトの作成 以下のURLにアクセスするか、Google Driveから新規＞その他＞Google Apps Scriptを選択することで作成できます。\nhttps://script.google.com/\n最初のコード https://developers.google.com/apps-script/guides/web\ndoGetという関数を作ります。 これでGET requestが来たときにこの関数が走ります。\nfunction doGet(e) { Logger.log(\u0026#34;hello!\u0026#34;) } 実行ボタンから、実行します。\n実際にrequestが来たときに、jsonを返せるように関数を追加します。\nfunction doGet(e) { Logger.log(\u0026#34;hello!\u0026#34;) return responseJson(\u0026#39;ping\u0026#39;) } function responseJson(data) { const d = {\u0026#39;data\u0026#39;: data} payload = JSON.stringify(d) var output = ContentService.createTextOutput(); output.setMimeType(ContentService.MimeType.JSON); output.setContent(payload); return output; } 左上の新しいデプロイから、デプロイします。\nデプロイが完了すると、URLが生成されるので、リクエストを送ります。\ncurlの場合、リダイレクトを許可するようにオプション-Lが必要です。\n$ curl -L -X GET https://script.google.com/macros/s/aaaaaaaaaaaaaaaaaa/exec {\u0026quot;data\u0026quot;:\u0026quot;ping\u0026quot;} 指定したbodyが返ってきているのが確認できます。\nGoogle Translateを使う 使い方はシンプルで、以下の関数を呼び出すだけです。\nLanguageApp.translate(value, \u0026quot;en\u0026quot;, \u0026quot;ja\u0026quot;); Parameters\n   Name Type Description     text String the text to translate   sourceLanguage String the language code in which text is written. If it is set to the empty string, the source language code will be auto-detected   targetLanguage String the language code to which the text should be translated    Return\nString — the translated text\nhttps://developers.google.com/apps-script/reference/language/language-app?hl=ja\nGASからGoogle Translateを使う Post requestがあったときに、動作するようにdoPostを追加します。 JSON.parseでrequest bodyをパースします。\nfunction doPost(e) { if (!e || !e.postData) { return responseJson(\u0026#39;not set request body\u0026#39;) } } 翻訳部分を追加します。\n今回のbodyは、{\u0026quot;title\u0026quot;: \u0026quot;title\u0026quot;, \u0026quot;summary\u0026quot;:\u0026quot;I am running\u0026quot; }のような想定です。\nfunction doPost(e) { if (!e || !e.postData) { return responseJson(\u0026#39;not set request body\u0026#39;) } const params = JSON.parse(e.postData.getDataAsString()); if (params.title \u0026amp;\u0026amp; params.summary) { const title = t(params.title) const summary = t(params.summary) return responseJson({title_en: title, summary_en: summary}); } else { return responseJson(\u0026#39;not set title or summary\u0026#39;) } } function t(value){ return LanguageApp.translate(value, \u0026#34;en\u0026#34;, \u0026#34;ja\u0026#34;); } リクエストを投げる\ncurl -L -X POST -H \u0026quot;Content-Type: application/json\u0026quot; -d '{\u0026quot;title\u0026quot;:\u0026quot;title\u0026quot;, \u0026quot;summary\u0026quot;:\u0026quot;I am running\u0026quot;}' https://script.google.com/macros/s/aaaaaaaaaa/exec "
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/hugo/hugo-related-posts/",
                 "title": "Hugoの記事に関連記事を表示させる",
                 "section": "posts",
@@ -37,6 +47,16 @@
                 "section": "posts",
                 "date" : "2020-12-30",
                 "body": "Enhanced character embedding for Chinese named entity recognition https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456\n 従来の名前付き実体認識方法では、主に手作業による特徴の応用を模索しています。現在では、ディープラーニングの普及に伴い、名前付き実体認識のための深い特徴を捕捉するためにニューラルネットワークが導入されている。しかし、既存の手法の多くは、現代のコーパスを対象としたものに限られている。古文献の名前付き実体認識は、名前が時間の経過とともに進化してきたために困難である。本論文では、文字や筆跡の特徴を探ることで実体認識を試みる。トランスフォーマーとストロークからの双方向エンコーダ表現に基づいて、ECEMと名付けられた拡張文字埋め込みモデルを提案する。第一に、ECEMは単語の文脈に応じて動的に意味ベクトルを生成することができる。第二に、提案するアルゴリズムは、中国語の単語の形態素レベルの情報を導入する。最後に、強化された文字埋め込みは、学習のために双方向性の長期短期記憶条件付きランダムフィールドモデルに供給される。提案したアルゴリズムの効果を調べるために，実験 を古文と現代文の両方のコーパスで実施した．その結果，我々のアルゴリズムが非常に有効であることがわかった．従来のものと比較して、強力である。\n The proposed recognition algorithm 提案アルゴリズムであるECEMでは、前処理、embedding、BiLSTM Layer、CRF Layerの４つのコンポーネントからなる。\nembeddingでは、cw2vecとBERTを用いる。 NERには、BIO schemeを用いる。\nData pre-processing 固有表現抽出/the named entity recognition (NER)\nEnhanced character embedding BERT BiLSTM layer CRF layer input sequence: X = (x_1, x_2, ... x_n)\npredictin sequence: y = (y_1, y_2, ... y_n)\nthe equence yの確率は、softmaxを使って計算される。\np(y | X) softmax(e^f(X, y)) ここで、f(X,y)は、以下の用に計算される。\nf(X,y)= ただし、PはBiLSTMの出力した行列である。\n"
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/github/workflow-dispatch/",
+                "title": "GitHub Actionsを手動実行する",
+                "section": "posts",
+                "date" : "2020-07-19",
+                "body": "GitHub Actionsをcronとして定期実行していたが、動作の確認のために手動実行もしたかったのでメモ\n結論 onワークフロー構文に、workflow_dispatchを指定する\nname: Manually triggered workflow on: workflow_dispatch: workflow_dispatchのdoc\nhttps://docs.github.com/ja/actions/reference/events-that-trigger-workflows#workflow_dispatch\n"
             }
         
     ,

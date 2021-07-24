@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Google Apps ScriptでGoogle Translateを使う</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="翻訳用のAPIを簡単に利用したいことあると思います。
+Google TranslateはAPIを公開してますが、気軽に使う場合には少し不便です。
+そういう場合は、Google Apps ScriptからGoogle Translateの機能を使うと便利です。
+結論 LanguageApp.trans" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Google Apps ScriptでGoogle Translateを使う
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/gas/">gas</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/arxiv/">arxiv</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2021-07-22
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>翻訳用のAPIを簡単に利用したいことあると思います。<br>
+Google TranslateはAPIを公開してますが、気軽に使う場合には少し不便です。<br>
+そういう場合は、Google Apps ScriptからGoogle Translateの機能を使うと便利です。</p>
+<h2 id="結論">結論</h2>
+<pre><code>LanguageApp.translate(value, &quot;en&quot;, &quot;ja&quot;);
+</code></pre><h2 id="プロジェクトの作成">プロジェクトの作成</h2>
+<p>以下のURLにアクセスするか、Google Driveから新規＞その他＞Google Apps Scriptを選択することで作成できます。</p>
+<p><a href="https://script.google.com/">https://script.google.com/</a></p>
+<h2 id="最初のコード">最初のコード</h2>
+<p><a href="https://developers.google.com/apps-script/guides/web">https://developers.google.com/apps-script/guides/web</a></p>
+<p>doGetという関数を作ります。
+これでGET requestが来たときにこの関数が走ります。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#8be9fd;font-style:italic">function</span> doGet(e) {
+  Logger.log(<span style="color:#f1fa8c">&#34;hello!&#34;</span>)
+}
+</code></pre></div><p>実行ボタンから、実行します。</p>
+<p><img src="../../../images/arxiv/gas-run.png" alt="activity"></p>
+<p>実際にrequestが来たときに、jsonを返せるように関数を追加します。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#8be9fd;font-style:italic">function</span> doGet(e) {
+  Logger.log(<span style="color:#f1fa8c">&#34;hello!&#34;</span>)
+  <span style="color:#ff79c6">return</span> responseJson(<span style="color:#f1fa8c">&#39;ping&#39;</span>)
+}
+
+
+<span style="color:#8be9fd;font-style:italic">function</span> responseJson(data) {
+  <span style="color:#ff79c6">const</span> d <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#39;data&#39;</span><span style="color:#ff79c6">:</span> data}
+  payload <span style="color:#ff79c6">=</span> JSON.stringify(d)
+
+  <span style="color:#8be9fd;font-style:italic">var</span> output <span style="color:#ff79c6">=</span> ContentService.createTextOutput();
+  output.setMimeType(ContentService.MimeType.JSON);
+  output.setContent(payload);
+  <span style="color:#ff79c6">return</span> output;
+}
+</code></pre></div><p>左上の新しいデプロイから、デプロイします。</p>
+<p><img src="../../../images/arxiv/gas-deploy.png" alt="activity"></p>
+<p>デプロイが完了すると、URLが生成されるので、リクエストを送ります。<br>
+curlの場合、リダイレクトを許可するようにオプション<code>-L</code>が必要です。</p>
+<pre><code>$ curl -L -X GET https://script.google.com/macros/s/aaaaaaaaaaaaaaaaaa/exec
+{&quot;data&quot;:&quot;ping&quot;}
+</code></pre><p>指定したbodyが返ってきているのが確認できます。</p>
+<h2 id="google-translateを使う">Google Translateを使う</h2>
+<p>使い方はシンプルで、以下の関数を呼び出すだけです。</p>
+<pre><code>LanguageApp.translate(value, &quot;en&quot;, &quot;ja&quot;);
+</code></pre><p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>String</td>
+<td>the text to translate</td>
+</tr>
+<tr>
+<td>sourceLanguage</td>
+<td>String</td>
+<td>the language code in which text is written. If it is set to the empty string, the source language code will be auto-detected</td>
+</tr>
+<tr>
+<td>targetLanguage</td>
+<td>String</td>
+<td>the language code to which the text should be translated</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return</strong></p>
+<p>String — the translated text</p>
+<p><a href="https://developers.google.com/apps-script/reference/language/language-app?hl=ja">https://developers.google.com/apps-script/reference/language/language-app?hl=ja</a></p>
+<h2 id="gasからgoogle-translateを使う">GASからGoogle Translateを使う</h2>
+<p>Post requestがあったときに、動作するようにdoPostを追加します。
+<code>JSON.parse</code>でrequest bodyをパースします。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#8be9fd;font-style:italic">function</span> doPost(e) {
+  <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>e <span style="color:#ff79c6">||</span> <span style="color:#ff79c6">!</span>e.postData) {
+    <span style="color:#ff79c6">return</span> responseJson(<span style="color:#f1fa8c">&#39;not set request body&#39;</span>)
+  }
+}
+</code></pre></div><p>翻訳部分を追加します。</p>
+<p>今回のbodyは、<code>{&quot;title&quot;: &quot;title&quot;, &quot;summary&quot;:&quot;I am running&quot; }</code>のような想定です。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#8be9fd;font-style:italic">function</span> doPost(e) {
+  <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>e <span style="color:#ff79c6">||</span> <span style="color:#ff79c6">!</span>e.postData) {
+    <span style="color:#ff79c6">return</span> responseJson(<span style="color:#f1fa8c">&#39;not set request body&#39;</span>)
+  }
+  <span style="color:#ff79c6">const</span> params <span style="color:#ff79c6">=</span> JSON.parse(e.postData.getDataAsString());
+  <span style="color:#ff79c6">if</span> (params.title <span style="color:#ff79c6">&amp;&amp;</span> params.summary) {
+      <span style="color:#ff79c6">const</span> title <span style="color:#ff79c6">=</span> t(params.title)
+      <span style="color:#ff79c6">const</span> summary <span style="color:#ff79c6">=</span> t(params.summary)
+      <span style="color:#ff79c6">return</span> responseJson({title_en<span style="color:#ff79c6">:</span> title, summary_en<span style="color:#ff79c6">:</span> summary});
+  } <span style="color:#ff79c6">else</span> {
+      <span style="color:#ff79c6">return</span> responseJson(<span style="color:#f1fa8c">&#39;not set title or summary&#39;</span>)
+  }
+}
+
+<span style="color:#8be9fd;font-style:italic">function</span> t(value){
+  <span style="color:#ff79c6">return</span> LanguageApp.translate(value, <span style="color:#f1fa8c">&#34;en&#34;</span>, <span style="color:#f1fa8c">&#34;ja&#34;</span>);
+}
+</code></pre></div><p>リクエストを投げる</p>
+<pre><code>curl -L -X POST -H &quot;Content-Type: application/json&quot; -d '{&quot;title&quot;:&quot;title&quot;, &quot;summary&quot;:&quot;I am running&quot;}' https://script.google.com/macros/s/aaaaaaaaaa/exec
+</code></pre>
+      </div>
+      <div class="related-article">
+        
+
+
+      </div>
+    </article>
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2021
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
