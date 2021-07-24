@@ -3,25 +3,25 @@ title: "pythonでarxivのAPIを使う"
 date: "2021-07-23T02:00:00+09:00"
 slug: "arxiv-py-lib"
 tags: ["python", "arxiv"]
-draft: true
+draft: false
 ---
 
-arxivでAPIが公開されているので、それを使っていきます
+arxivで公開されているAPIを使っていきます
 
 https://arxiv.org/
 
-
-## インストール
 APIを直接呼び出しても良いですが、responseがxmlで使いづらかったので
 pythonのライブラリを使わせてもらいます。
 
 https://github.com/lukasschwab/arxiv.py
 
+pipでインストール
+
 ```
 $ pip install arxiv
 ```
 
-## 使う
+## 使い方
 
 ```python
 import arxiv
@@ -39,9 +39,10 @@ for result in search.results():
 
 
 arxiv.Searchでリクエストを送ります。  
-results()で結果を取得できます。  
-中身はそれぞれ以下のような形です。
+results()で結果の一覧を取得  
 
+結果用にResult Classが用意されており、  
+中身はそれぞれ以下のような形です。
 
 | field  | Description |
 | - | - |
