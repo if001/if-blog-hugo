@@ -56,6 +56,8 @@ img {
     max-width: 90vw;
 }
 
+br {}
+
 .error-text {
   font-family: 'Roboto', Helvetica, sans-serif;
   text-align: center;
@@ -150,6 +152,10 @@ h2 {
     border-bottom: 1px solid #ddd;
     margin-top: 40px;
     margin-bottom: 1em;
+}
+
+h3 {
+    margin-top: 20px;
 }
 
 .container[role=main] {
@@ -428,7 +434,7 @@ pre code {
 
 code {
     padding: 2px 4px;
-    font-size: inherit !important;
+    font-size: 1.9rem;
     background-color: #c5c5c5;
     color: #333;
     border-radius: 4px;

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Flaxに入門してみる</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="Googleが最近力を入れているニューラルネットワークのフレームワークらしい。
+一般的に、flaxは亜麻、linenは麻と訳される。flaxは植物で、その植物を加工し繊維状にしたものまでをflax、それを紡いで糸にしたもの及びその製品をlinenと呼ぶらしい。 (参照：日本麻紡績協会)
+例えばこのラ" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Flaxに入門してみる
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2021-07-25
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>Googleが最近力を入れているニューラルネットワークのフレームワークらしい。</p>
+<p>一般的に、flaxは亜麻、linenは麻と訳される。flaxは植物で、その植物を加工し繊維状にしたものまでをflax、それを紡いで糸にしたもの及びその製品をlinenと呼ぶらしい。
+(参照：日本麻紡績協会)</p>
+<p>例えばこのライブラリでのDenseの呼び方は<code>flax.linen.Dense</code>となる。</p>
+<p>ライブラリの名前の付け方めっちゃおしゃれでかっこいい。</p>
+<p>Flax is a high-performance neural network library for JAX that is designed for flexibility</p>
+<blockquote>
+<p>Flaxは、柔軟性を考慮して設計されたJAX用の高性能ニューラルネットワークライブラリです。</p>
+</blockquote>
+<p><a href="https://flax.readthedocs.io/en/latest/overview.html#flax">https://flax.readthedocs.io/en/latest/overview.html#flax</a></p>
+<h2 id="jax">JAX</h2>
+<p>JAXはAutogradとXLAを用いて、機械学習におけるパフォーマンスを向上させる。AutogradはPythonとNumpyでの自動微分を可能にするライブラリで、XLAはそのコンパイルを行う。</p>
+<p>FLAXはJAXの開発チームと近い位置で協力関係にあるらしい。</p>
+<p><a href="https://github.com/google/jax#compilation-with-jit">https://github.com/google/jax#compilation-with-jit</a></p>
+<p><a href="https://github.com/hips/autograd">https://github.com/hips/autograd</a></p>
+<p><a href="https://www.tensorflow.org/xla">https://www.tensorflow.org/xla</a></p>
+<p>JAXの使い方については別記事を参照</p>
+<h3 id="自動微分">自動微分</h3>
+<p>Autogradは、自動微分を行うライブラリで、自動微分とは偏微分の値計算するプログラム手法。
+自動微分には、前進方と後進方があり、それぞれ、ボトムアップ型自動微分（フォーワードモード、狭義の自動微分）とトップダウン型自動微分（リバースモード、高速自動微分）などと呼ばれる。
+特に、トップダウン型自動微分はバックプロパゲーションの計算手法として用いられる。</p>
+<p>詳しい話は別記事を参照</p>
+<h2 id="install">install</h2>
+<pre><code>pip install --upgrade jax jaxlib # CPU-only
+pip install flax
+</code></pre><p><code>pip 19.0.3</code>だと、flaxのインストールがうまくできなかったので、
+<code>pip install --upgrade pip</code>で<code>21.1.3</code>に上げた。</p>
+<p><a href="https://flax.readthedocs.io/en/latest/installation.html">https://flax.readthedocs.io/en/latest/installation.html</a></p>
+<h2 id="flax-model-example">Flax model example</h2>
+<h3 id="シンプルな例">シンプルな例</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Module</span>(nn<span style="color:#ff79c6">.</span>Module):
+  features: Tuple[<span style="color:#8be9fd;font-style:italic">int</span>] <span style="color:#ff79c6">=</span> (<span style="color:#bd93f9">16</span>, <span style="color:#bd93f9">4</span>)
+
+  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">setup</span>(self):
+    self<span style="color:#ff79c6">.</span>dense1 <span style="color:#ff79c6">=</span> Dense(self<span style="color:#ff79c6">.</span>features[<span style="color:#bd93f9">0</span>])
+    self<span style="color:#ff79c6">.</span>dense2 <span style="color:#ff79c6">=</span> Dense(self<span style="color:#ff79c6">.</span>features[<span style="color:#bd93f9">1</span>])
+
+  <span style="color:#ff79c6">def</span> __call__(self, x):
+    <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>dense2(nn<span style="color:#ff79c6">.</span>relu(self<span style="color:#ff79c6">.</span>dense1(x)))
+</code></pre></div><p>nn.Moduleは、すべてのneural network modulesのベースクラス。
+これを継承して、独自のLayerやmodelを作る。
+setupは<code>__init__</code>のオーバーライド、<code>__call__</code>で任意のforward passを定義する。</p>
+<p><a href="https://flax.readthedocs.io/en/latest/flax.linen.html#module">https://flax.readthedocs.io/en/latest/flax.linen.html#module</a></p>
+<h3 id="3層1284のパーセプトロン">3層(12,8,4)のパーセプトロン</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">from</span> typing <span style="color:#ff79c6">import</span> Sequence
+
+<span style="color:#ff79c6">import</span> jax
+<span style="color:#ff79c6">import</span> jax.numpy <span style="color:#ff79c6">as</span> jnp
+<span style="color:#ff79c6">import</span> flax.linen <span style="color:#ff79c6">as</span> nn
+
+<span style="color:#ff79c6">class</span> <span style="color:#50fa7b">MLP</span>(nn<span style="color:#ff79c6">.</span>Module):
+  features: Sequence[<span style="color:#8be9fd;font-style:italic">int</span>]
+
+  @nn.compact
+  <span style="color:#ff79c6">def</span> __call__(self, x):
+    <span style="color:#ff79c6">for</span> feat <span style="color:#ff79c6">in</span> self<span style="color:#ff79c6">.</span>features[:<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>]:
+      x <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>relu(nn<span style="color:#ff79c6">.</span>Dense(feat)(x))
+    x <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Dense(self<span style="color:#ff79c6">.</span>features[<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>])(x)
+    <span style="color:#ff79c6">return</span> x
+
+model <span style="color:#ff79c6">=</span> MLP([<span style="color:#bd93f9">12</span>, <span style="color:#bd93f9">8</span>, <span style="color:#bd93f9">4</span>])
+batch <span style="color:#ff79c6">=</span> jnp<span style="color:#ff79c6">.</span>ones((<span style="color:#bd93f9">32</span>, <span style="color:#bd93f9">10</span>))
+variables <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>init(jax<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>PRNGKey(<span style="color:#bd93f9">0</span>), batch)
+output <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>apply(variables, batch)
+</code></pre></div><p>modelを作る部分は、上記のシンプルな例と同様。</p>
+<p><strong>init</strong></p>
+<p><code>variables = model.init(jax.random.PRNGKey(0), batch)</code></p>
+<p>値を使ってmodelを初期化。返り値のvariablesは、pythonのdictで、例えば以下のような要素を持つ。</p>
+<pre><code>{
+  &quot;params&quot;: {
+    &quot;Conv1&quot;: { &quot;weight&quot;: ..., &quot;bias&quot;: ... },
+    &quot;BatchNorm1&quot;: { &quot;scale&quot;: ..., &quot;mean&quot;: ... },
+    &quot;Conv2&quot;: {...}
+  },
+  &quot;batch_stats&quot;: {
+    &quot;BatchNorm1&quot;: { &quot;moving_mean&quot;: ..., &quot;moving_average&quot;: ...}
+  }
+}
+</code></pre><p><strong>apply</strong></p>
+<p><code>output = model.apply(variables, batch)</code></p>
+<p>variablesをモデルに適応し、入力値に対する出力値を得る。</p>
+<p>上記の例のように、<code>__call__</code>内で<code>nn.Dense(self.features[-1])(x)</code>のようなflax.linenで定義されたlayerを呼び出す場合は<code>@nn.compact</code>デコレータをつける必要がある。
+デコレーターを付けない場合は、<code>setup()</code>内でlayerを定義する必要がある。</p>
+<p><a href="https://flax.readthedocs.io/en/latest/flax.linen.html#flax.linen.Module.apply">https://flax.readthedocs.io/en/latest/flax.linen.html#flax.linen.Module.apply</a></p>
+<h3 id="autoencoder">autoencoder</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">AutoEncoder</span>(nn<span style="color:#ff79c6">.</span>Module):
+  encoder_widths: Sequence[<span style="color:#8be9fd;font-style:italic">int</span>]
+  decoder_widths: Sequence[<span style="color:#8be9fd;font-style:italic">int</span>]
+  input_shape: Sequence[<span style="color:#8be9fd;font-style:italic">int</span>]
+
+  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">setup</span>(self):
+    input_dim <span style="color:#ff79c6">=</span> jnp<span style="color:#ff79c6">.</span>prod(jnp<span style="color:#ff79c6">.</span>asarray(self<span style="color:#ff79c6">.</span>input_shape))
+    self<span style="color:#ff79c6">.</span>encoder <span style="color:#ff79c6">=</span> MLP(self<span style="color:#ff79c6">.</span>encoder_widths)
+    self<span style="color:#ff79c6">.</span>decoder <span style="color:#ff79c6">=</span> MLP(self<span style="color:#ff79c6">.</span>decoder_widths <span style="color:#ff79c6">+</span> (input_dim,))
+
+  <span style="color:#ff79c6">def</span> __call__(self, x):
+    <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>decode(self<span style="color:#ff79c6">.</span>encode(x))
+
+  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">encode</span>(self, x):
+    <span style="color:#ff79c6">assert</span> x<span style="color:#ff79c6">.</span>shape[<span style="color:#bd93f9">1</span>:] <span style="color:#ff79c6">==</span> self<span style="color:#ff79c6">.</span>input_shape
+    <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>encoder(jnp<span style="color:#ff79c6">.</span>reshape(x, (x<span style="color:#ff79c6">.</span>shape[<span style="color:#bd93f9">0</span>], <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>)))
+
+  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">decode</span>(self, z):
+    z <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>decoder(z)
+    x <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>sigmoid(z)
+    x <span style="color:#ff79c6">=</span> jnp<span style="color:#ff79c6">.</span>reshape(x, (x<span style="color:#ff79c6">.</span>shape[<span style="color:#bd93f9">0</span>],) <span style="color:#ff79c6">+</span> self<span style="color:#ff79c6">.</span>input_shape)
+    <span style="color:#ff79c6">return</span> x
+
+model <span style="color:#ff79c6">=</span> AutoEncoder(encoder_widths<span style="color:#ff79c6">=</span>[<span style="color:#bd93f9">20</span>, <span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">5</span>],
+                    decoder_widths<span style="color:#ff79c6">=</span>[<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">20</span>],
+                    input_shape<span style="color:#ff79c6">=</span>(<span style="color:#bd93f9">12</span>,))
+batch <span style="color:#ff79c6">=</span> jnp<span style="color:#ff79c6">.</span>ones((<span style="color:#bd93f9">16</span>, <span style="color:#bd93f9">12</span>))
+variables <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>init(jax<span style="color:#ff79c6">.</span>random<span style="color:#ff79c6">.</span>PRNGKey(<span style="color:#bd93f9">0</span>), batch)
+encoded <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>apply(variables, batch, method<span style="color:#ff79c6">=</span>model<span style="color:#ff79c6">.</span>encode)
+decoded <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>apply(variables, encoded, method<span style="color:#ff79c6">=</span>model<span style="color:#ff79c6">.</span>decode)
+</code></pre></div><p>setupを使い上記で定義したMLPを呼び出している。この場合は、<code>__call__</code>にデコレーターは不要。</p>
+<p>applyの引数にmethodを与えると、特定のモデルに対してのみ、variablesと入力値を適応できる。</p>
+<p><code>encoded = model.apply(variables, batch, method=model.encode)</code></p>
+<h2 id="trainingを含めた例">trainingを含めた例</h2>
+<p>以下はMNISの例</p>
+<p><a href="https://github.com/google/flax/blob/main/examples/mnist/train.py">https://github.com/google/flax/blob/main/examples/mnist/train.py</a></p>
+<h2 id="まとめ">まとめ</h2>
+<p>Flaxのreadmeなどを眺めてみました。<br>
+柔軟なモデルの作り方や、作成したモデルの汎用性のある使い方ができるような設計になってるような印象を受けました。</p>
+<p>実際に学習させる部分などは少し面倒な部分がありそうです&hellip;環境ごとや実行ごとの結果が変わらないようにするという思想のようなので、このあたりはトレードオフですかね。</p>
+<p>実際にモデルを作って、データを学習させるにはJAXの部分の理解も必要になってきそうなので、そのあたりを含め調べて見ようと思います。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/char-vec/">文字をベクトル化する</a></li>
+    
+      <li><a href="/posts/python/arxiv-translate/">Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る</a></li>
+    
+      <li><a href="/posts/python/arxiv-py-lib/">pythonでarxivのAPIを使う</a></li>
+    
+      <li><a href="/posts/python/open-ai-gym-quick/">Open AI Gymをとりあえず動かす</a></li>
+    
+      <li><a href="/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/">End-to-End Text Classification via Image-basedEmbedding using Character-level Networks</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2021
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
