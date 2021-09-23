@@ -16,15 +16,31 @@ cd .emacs.d/site-lisp
 npm install -D textlint
 ```
 
-textlintのルールには、以下の２つを使う。
+textlintのルールには、以下を使う。
+
+日本語用のpreset(ルールの詳細はページの最後)
 
 https://github.com/textlint-ja/textlint-rule-preset-japanese
 
+技術記事用preset。日本語用のpresetより少しルールが厳しい
+
 https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing
 
+い抜き言葉を検知
+
+https://github.com/textlint-ja/textlint-rule-no-dropping-i
+
+表記ゆれを検知
+
+https://github.com/textlint-ja/textlint-rule-ja-no-orthographic-variants
+
+それぞれインストール
+
 ```
-npm install -D textlint-rule-preset-japanese
-npm install -D textlint-rule-preset-ja-technical-writing
+npm install textlint-rule-preset-japanese
+npm install textlint-rule-preset-ja-technical-writing
+npm install @textlint-ja/textlint-rule-no-dropping-i
+npm install textlint-rule-ja-no-orthographic-variants
 ```
 
 
@@ -40,11 +56,11 @@ npm install -D textlint-rule-preset-ja-technical-writing
 ```
 
 ## elisp
-flycheckを使う。
+flycheckを使う。ポイントは２つ。
 
-emacsからtextlintを実行できるように、`.emacs.d/site-lisp/node_modules/bin`にpathを通す。
+- emacsからtextlintを実行できるように、`.emacs.d/site-lisp/node_modules/bin`にpathを通す。
 
-`.emacs.d/site-lisp`に.textlintrcを作成したので、textlintに--configでtextlintrcを渡す。
+- `.emacs.d/site-lisp`に.textlintrcを作成したので、textlintに--configでtextlintrcを渡す。
 
 `"--config" (eval (expand-file-name (concat user-emacs-directory "site-lisp/.textlintrc")))`
 
@@ -79,3 +95,51 @@ emacsからtextlintを実行できるように、`.emacs.d/site-lisp/node_module
 		)))
   )
 ```
+
+
+## presetのルール一覧(詳細は公式のgithubを参照)
+
+### textlint-rule-preset-japanese
+
+https://github.com/textlint-ja/textlint-rule-preset-japanese
+
+> 一文で使える"、"の数  
+> 逆接の接続助詞「が」が、同一文中に複数回出現していないかどうか  
+> 同じ接続詞で開始されていることを検出  
+> 二重否定の検出  
+> 二重助詞の検出  
+> 一文の最大の長さ  
+> ら抜き言葉を使用しない  
+> 文の敬体(ですます調)、常体(である調)の混合をチェック  
+> ホ゜ケット エンシ゛ン のような、Mac OS XでPDFやFinderからのコピペで発生する濁点のチェック  
+> 制御文字の検出  
+> ゼロ幅スペースの検出  
+> 康煕部首の検出  
+
+### textlint-rule-preset-ja-technical-writing
+
+>1文の長さは100文字以下とする  
+>カンマは1文中に3つまで  
+>読点は1文中に3つまで  
+>連続できる最大の漢字長は6文字まで  
+>漢数字と算用数字を使い分けます  
+>「ですます調」、「である調」を統一します  
+>文末の句点記号として「。」を使います  
+>二重否定は使用しない  
+>ら抜き言葉を使用しない  
+>逆接の接続助詞「が」を連続して使用しない  
+>同じ接続詞を連続して使用しない  
+>同じ助詞を連続して使用しない  
+>UTF8-MAC 濁点を使用しない  
+>不必要な制御文字を使用しない  
+>不必要なゼロ幅スペースを使用しない  
+>感嘆符!！、感嘆符?？を使用しない  
+>半角カナを使用しない  
+>弱い日本語表現の利用を使用しない  
+>同一の単語を間違えて連続しているのをチェックする  
+>よくある日本語の誤用をチェックする  
+>冗長な表現をチェックする  
+>入力ミスで発生する不自然なアルファベットをチェックする  
+>対になっていない括弧をチェックする  
+
+
