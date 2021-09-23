@@ -190,11 +190,20 @@ cd .emacs.d/site-lisp npm install -D textlint textlintのルールには" />
 <p>今回は.emacs.d以下にsite-lispというディレクトリを作り、そこにtextlintをinstallする。</p>
 <pre><code>cd .emacs.d/site-lisp
 npm install -D textlint
-</code></pre><p>textlintのルールには、以下の２つを使う。</p>
+</code></pre><p>textlintのルールには、以下を使う。</p>
+<p>日本語用のpreset(ルールの詳細はページの最後)</p>
 <p><a href="https://github.com/textlint-ja/textlint-rule-preset-japanese">https://github.com/textlint-ja/textlint-rule-preset-japanese</a></p>
+<p>技術記事用preset。日本語用のpresetより少しルールが厳しい</p>
 <p><a href="https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing">https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing</a></p>
-<pre><code>npm install -D textlint-rule-preset-japanese
-npm install -D textlint-rule-preset-ja-technical-writing
+<p>い抜き言葉を検知</p>
+<p><a href="https://github.com/textlint-ja/textlint-rule-no-dropping-i">https://github.com/textlint-ja/textlint-rule-no-dropping-i</a></p>
+<p>表記ゆれを検知</p>
+<p><a href="https://github.com/textlint-ja/textlint-rule-ja-no-orthographic-variants">https://github.com/textlint-ja/textlint-rule-ja-no-orthographic-variants</a></p>
+<p>それぞれインストール</p>
+<pre><code>npm install textlint-rule-preset-japanese
+npm install textlint-rule-preset-ja-technical-writing
+npm install @textlint-ja/textlint-rule-no-dropping-i
+npm install textlint-rule-ja-no-orthographic-variants
 </code></pre><p>.textlintrcを作成。rulesはとりあえずシンプルに以下のみ。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#ff79c6">&#34;rules&#34;</span>: {
@@ -203,9 +212,15 @@ npm install -D textlint-rule-preset-ja-technical-writing
   }
 }
 </code></pre></div><h2 id="elisp">elisp</h2>
-<p>flycheckを使う。</p>
+<p>flycheckを使う。ポイントは２つ。</p>
+<ul>
+<li>
 <p>emacsからtextlintを実行できるように、<code>.emacs.d/site-lisp/node_modules/bin</code>にpathを通す。</p>
+</li>
+<li>
 <p><code>.emacs.d/site-lisp</code>に.textlintrcを作成したので、textlintに&ndash;configでtextlintrcを渡す。</p>
+</li>
+</ul>
 <p><code>&quot;--config&quot; (eval (expand-file-name (concat user-emacs-directory &quot;site-lisp/.textlintrc&quot;)))</code></p>
 <p>全体</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">flycheck</span>
@@ -234,7 +249,50 @@ npm install -D textlint-rule-preset-ja-technical-writing
 		(<span style="color:#ff79c6">setq</span> <span style="color:#8be9fd;font-style:italic">exec-path</span> (<span style="color:#8be9fd;font-style:italic">add-to-list</span> <span style="color:#f1fa8c">&#39;exec-path</span> (<span style="color:#8be9fd;font-style:italic">concat</span> <span style="color:#8be9fd;font-style:italic">user-emacs-directory</span> <span style="color:#f1fa8c">&#34;site-lisp/node_modules/.bin&#34;</span>)))
 		)))
   )
-</code></pre></div>
+</code></pre></div><h2 id="presetのルール一覧詳細は公式のgithubを参照">presetのルール一覧(詳細は公式のgithubを参照)</h2>
+<h3 id="textlint-rule-preset-japanese">textlint-rule-preset-japanese</h3>
+<p><a href="https://github.com/textlint-ja/textlint-rule-preset-japanese">https://github.com/textlint-ja/textlint-rule-preset-japanese</a></p>
+<blockquote>
+<p>一文で使える&quot;、&ldquo;の数<br>
+逆接の接続助詞「が」が、同一文中に複数回出現していないかどうか<br>
+同じ接続詞で開始されていることを検出<br>
+二重否定の検出<br>
+二重助詞の検出<br>
+一文の最大の長さ<br>
+ら抜き言葉を使用しない<br>
+文の敬体(ですます調)、常体(である調)の混合をチェック<br>
+ホ゜ケット エンシ゛ン のような、Mac OS XでPDFやFinderからのコピペで発生する濁点のチェック<br>
+制御文字の検出<br>
+ゼロ幅スペースの検出<br>
+康煕部首の検出</p>
+</blockquote>
+<h3 id="textlint-rule-preset-ja-technical-writing">textlint-rule-preset-ja-technical-writing</h3>
+<blockquote>
+<p>1文の長さは100文字以下とする<br>
+カンマは1文中に3つまで<br>
+読点は1文中に3つまで<br>
+連続できる最大の漢字長は6文字まで<br>
+漢数字と算用数字を使い分けます<br>
+「ですます調」、「である調」を統一します<br>
+文末の句点記号として「。」を使います<br>
+二重否定は使用しない<br>
+ら抜き言葉を使用しない<br>
+逆接の接続助詞「が」を連続して使用しない<br>
+同じ接続詞を連続して使用しない<br>
+同じ助詞を連続して使用しない<br>
+UTF8-MAC 濁点を使用しない<br>
+不必要な制御文字を使用しない<br>
+不必要なゼロ幅スペースを使用しない<br>
+感嘆符!！、感嘆符?？を使用しない<br>
+半角カナを使用しない<br>
+弱い日本語表現の利用を使用しない<br>
+同一の単語を間違えて連続しているのをチェックする<br>
+よくある日本語の誤用をチェックする<br>
+冗長な表現をチェックする<br>
+入力ミスで発生する不自然なアルファベットをチェックする<br>
+対になっていない括弧をチェックする</p>
+</blockquote>
+
       </div>
       <div class="related-article">
         
