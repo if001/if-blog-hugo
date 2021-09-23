@@ -2,6 +2,16 @@
     
         
             {
+                "ref": "https://www.if-blog.site/posts/emacs/text-lint/",
+                "title": "emacsにtext-lintを導入する",
+                "section": "posts",
+                "date" : "2021-09-23",
+                "body": "日本語文章用に、textlintを導入する。\ninstall 今回は.emacs.d以下にsite-lispというディレクトリを作り、そこにtextlintをinstallする。\ncd .emacs.d/site-lisp npm install -D textlint textlintのルールには、以下の２つを使う。\nhttps://github.com/textlint-ja/textlint-rule-preset-japanese\nhttps://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing\nnpm install -D textlint-rule-preset-japanese npm install -D textlint-rule-preset-ja-technical-writing .textlintrcを作成。rulesはとりあえずシンプルに以下のみ。\n{ \u0026#34;rules\u0026#34;: { \u0026#34;preset-japanese\u0026#34;: true, \u0026#34;preset-ja-technical-writing\u0026#34;: true } } elisp flycheckを使う。\nemacsからtextlintを実行できるように、.emacs.d/site-lisp/node_modules/binにpathを通す。\n.emacs.d/site-lispに.textlintrcを作成したので、textlintに\u0026ndash;configでtextlintrcを渡す。\n\u0026quot;--config\u0026quot; (eval (expand-file-name (concat user-emacs-directory \u0026quot;site-lisp/.textlintrc\u0026quot;)))\n全体\n(use-package flycheck :ensure t :init (global-flycheck-mode t) :config (flycheck-define-checker textlint \u0026#34;A linter for prose.\u0026#34; :command (\u0026#34;textlint\u0026#34; \u0026#34;--format\u0026#34; \u0026#34;unix\u0026#34; \u0026#34;--config\u0026#34; (eval (expand-file-name (concat user-emacs-directory \u0026#34;site-lisp/.textlintrc\u0026#34;))) source-inplace) :error-patterns ((warning line-start (file-name) \u0026#34;:\u0026#34; line \u0026#34;:\u0026#34; column \u0026#34;: \u0026#34; (id (one-or-more (not (any \u0026#34; \u0026#34;)))) (message (one-or-more not-newline) (zero-or-more \u0026#34;\\n\u0026#34; (any \u0026#34; \u0026#34;) (one-or-more not-newline))) line-end)) :modes (text-mode markdown-mode gfm-mode)) (add-to-list \u0026#39;flycheck-checkers \u0026#39;textlint) ;; node_module-sのpathを通す (with-eval-after-load \u0026#39;markdown-mode (add-hook \u0026#39;markdown-mode-hook (lambda () (flycheck-mode) (setq exec-path (add-to-list \u0026#39;exec-path (concat user-emacs-directory \u0026#34;site-lisp/node_modules/.bin\u0026#34;))) ))) ) "
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/neuralnet/flax-jax/",
                 "title": "Flaxに入門してみる",
                 "section": "posts",

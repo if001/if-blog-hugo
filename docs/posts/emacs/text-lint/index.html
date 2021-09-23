@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>emacsにtext-lintを導入する</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="日本語文章用に、textlintを導入する。
+install 今回は.emacs.d以下にsite-lispというディレクトリを作り、そこにtextlintをinstallする。
+cd .emacs.d/site-lisp npm install -D textlint textlintのルールには" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		emacsにtext-lintを導入する
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/emacs/">emacs</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2021-09-23
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>日本語文章用に、textlintを導入する。</p>
+<h2 id="install">install</h2>
+<p>今回は.emacs.d以下にsite-lispというディレクトリを作り、そこにtextlintをinstallする。</p>
+<pre><code>cd .emacs.d/site-lisp
+npm install -D textlint
+</code></pre><p>textlintのルールには、以下の２つを使う。</p>
+<p><a href="https://github.com/textlint-ja/textlint-rule-preset-japanese">https://github.com/textlint-ja/textlint-rule-preset-japanese</a></p>
+<p><a href="https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing">https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing</a></p>
+<pre><code>npm install -D textlint-rule-preset-japanese
+npm install -D textlint-rule-preset-ja-technical-writing
+</code></pre><p>.textlintrcを作成。rulesはとりあえずシンプルに以下のみ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#ff79c6">&#34;rules&#34;</span>: {
+      <span style="color:#ff79c6">&#34;preset-japanese&#34;</span>: <span style="color:#ff79c6">true</span>,
+      <span style="color:#ff79c6">&#34;preset-ja-technical-writing&#34;</span>: <span style="color:#ff79c6">true</span>
+  }
+}
+</code></pre></div><h2 id="elisp">elisp</h2>
+<p>flycheckを使う。</p>
+<p>emacsからtextlintを実行できるように、<code>.emacs.d/site-lisp/node_modules/bin</code>にpathを通す。</p>
+<p><code>.emacs.d/site-lisp</code>に.textlintrcを作成したので、textlintに&ndash;configでtextlintrcを渡す。</p>
+<p><code>&quot;--config&quot; (eval (expand-file-name (concat user-emacs-directory &quot;site-lisp/.textlintrc&quot;)))</code></p>
+<p>全体</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">flycheck</span>
+  <span style="color:#f1fa8c">:ensure</span> t
+  <span style="color:#f1fa8c">:init</span>
+  (<span style="color:#8be9fd;font-style:italic">global-flycheck-mode</span> t)
+  <span style="color:#f1fa8c">:config</span>
+  (<span style="color:#8be9fd;font-style:italic">flycheck-define-checker</span> <span style="color:#8be9fd;font-style:italic">textlint</span>
+    <span style="color:#f1fa8c">&#34;A linter for prose.&#34;</span>
+    <span style="color:#f1fa8c">:command</span> (<span style="color:#f1fa8c">&#34;textlint&#34;</span> <span style="color:#f1fa8c">&#34;--format&#34;</span> <span style="color:#f1fa8c">&#34;unix&#34;</span> <span style="color:#f1fa8c">&#34;--config&#34;</span> (<span style="color:#50fa7b">eval</span> (<span style="color:#8be9fd;font-style:italic">expand-file-name</span> (<span style="color:#8be9fd;font-style:italic">concat</span> <span style="color:#8be9fd;font-style:italic">user-emacs-directory</span> <span style="color:#f1fa8c">&#34;site-lisp/.textlintrc&#34;</span>)))
+              <span style="color:#8be9fd;font-style:italic">source-inplace</span>)
+    <span style="color:#f1fa8c">:error-patterns</span>
+    ((<span style="color:#8be9fd">warning</span> <span style="color:#8be9fd;font-style:italic">line-start</span> (<span style="color:#8be9fd;font-style:italic">file-name</span>) <span style="color:#f1fa8c">&#34;:&#34;</span> <span style="color:#8be9fd;font-style:italic">line</span> <span style="color:#f1fa8c">&#34;:&#34;</span> <span style="color:#8be9fd;font-style:italic">column</span> <span style="color:#f1fa8c">&#34;: &#34;</span>
+	      (<span style="color:#8be9fd;font-style:italic">id</span> (<span style="color:#8be9fd;font-style:italic">one-or-more</span> (<span style="color:#50fa7b">not</span> (<span style="color:#8be9fd;font-style:italic">any</span> <span style="color:#f1fa8c">&#34; &#34;</span>))))
+	      (<span style="color:#8be9fd;font-style:italic">message</span> (<span style="color:#8be9fd;font-style:italic">one-or-more</span> <span style="color:#8be9fd;font-style:italic">not-newline</span>)
+		       (<span style="color:#8be9fd;font-style:italic">zero-or-more</span> <span style="color:#f1fa8c">&#34;\n&#34;</span> (<span style="color:#8be9fd;font-style:italic">any</span> <span style="color:#f1fa8c">&#34; &#34;</span>) (<span style="color:#8be9fd;font-style:italic">one-or-more</span> <span style="color:#8be9fd;font-style:italic">not-newline</span>)))
+	      <span style="color:#8be9fd;font-style:italic">line-end</span>))
+    <span style="color:#f1fa8c">:modes</span> (<span style="color:#8be9fd;font-style:italic">text-mode</span> <span style="color:#8be9fd;font-style:italic">markdown-mode</span> <span style="color:#8be9fd;font-style:italic">gfm-mode</span>))
+  (<span style="color:#8be9fd;font-style:italic">add-to-list</span> <span style="color:#f1fa8c">&#39;flycheck-checkers</span> <span style="color:#f1fa8c">&#39;textlint</span>)
+    
+  <span style="color:#6272a4">;; node_module-sのpathを通す</span>
+  (<span style="color:#8be9fd;font-style:italic">with-eval-after-load</span> <span style="color:#f1fa8c">&#39;markdown-mode</span>
+    (<span style="color:#8be9fd;font-style:italic">add-hook</span> <span style="color:#f1fa8c">&#39;markdown-mode-hook</span>
+              (<span style="color:#8be9fd;font-style:italic">lambda</span> ()
+		(<span style="color:#8be9fd;font-style:italic">flycheck-mode</span>)
+		(<span style="color:#ff79c6">setq</span> <span style="color:#8be9fd;font-style:italic">exec-path</span> (<span style="color:#8be9fd;font-style:italic">add-to-list</span> <span style="color:#f1fa8c">&#39;exec-path</span> (<span style="color:#8be9fd;font-style:italic">concat</span> <span style="color:#8be9fd;font-style:italic">user-emacs-directory</span> <span style="color:#f1fa8c">&#34;site-lisp/node_modules/.bin&#34;</span>)))
+		)))
+  )
+</code></pre></div>
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/emacs/gopls-introduction/">emacsのgo lang用のlanguage serverをgoplsに乗り換える</a></li>
+    
+      <li><a href="/posts/emacs/emacs-hinamatsuri/">emacsひな祭りいってきたのでためになったpackageなどをまとめておく</a></li>
+    
+      <li><a href="/posts/emacs/lsp-mode/">lsp-modeを導入する</a></li>
+    
+      <li><a href="/posts/emacs/emacs-use-package/">use-packagesを使ってみる</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2021
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
