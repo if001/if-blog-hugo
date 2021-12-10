@@ -2,7 +2,7 @@
 title: "Flaxに入門してみる"
 slug: "flax-jax"
 tags: ["deeplearning", "python"]
-date: "2021-07-25T00:00:00+09:00"
+date: "2021-07-25T09:00:00+09:00"
 draft: false
 ---
 
