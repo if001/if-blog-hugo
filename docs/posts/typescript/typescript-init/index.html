@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>とりあえずtypescriptを書きたいときのinit</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="typescript
+https://basarat.gitbook.io/typescript/nodejs
+package.json npm init package.jsonのscriptに追加
+&amp;#34;start&amp;#34;:&amp;#34;./node_modules/.bin/ts-node " />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		とりあえずtypescriptを書きたいときのinit
+		
+		<span class="draft-tag">(Draft)</span>
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/typescript/">typescript</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2021-07-29
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>typescript</p>
+<p><a href="https://basarat.gitbook.io/typescript/nodejs">https://basarat.gitbook.io/typescript/nodejs</a></p>
+<h2 id="packagejson">package.json</h2>
+<pre><code>npm init
+</code></pre><p>package.jsonのscriptに追加</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"> <span style="color:#f1fa8c">&#34;start&#34;</span>:<span style="color:#f1fa8c">&#34;./node_modules/.bin/ts-node ./src/index.ts&#34;</span>
+</code></pre></div><h2 id="typescript">typescript</h2>
+<pre><code>npm install -D typescript
+npm install -D ts-node
+</code></pre><h2 id="run">run</h2>
+<p><code>src/index.ts</code>を追加、<code>npm run start</code>で起動</p>
+<p>index.ts</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">const</span> main <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
+      console.log(<span style="color:#f1fa8c">&#34;hello&#34;</span>)
+}
+main()
+</code></pre></div><h2 id="jest">jest</h2>
+<pre><code>npm i jest @types/jest ts-jest -D
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#6272a4">// jest.config.ts
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> type {Config} from <span style="color:#f1fa8c">&#39;@jest/types&#39;</span>;
+
+<span style="color:#6272a4">// Sync object
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> config<span style="color:#ff79c6">:</span> Config.InitialOptions <span style="color:#ff79c6">=</span> {
+  verbose<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+};
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> config;
+
+<span style="color:#6272a4">// Or async function
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> <span style="color:#ff79c6">async</span> ()<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">Promise</span><span style="color:#ff79c6">&lt;</span>Config.InitialOptions<span style="color:#ff79c6">&gt;</span> =&gt; {
+  <span style="color:#ff79c6">return</span> {
+    verbose<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+  };
+};
+</code></pre></div><p><a href="https://jestjs.io/ja/docs/configuration">https://jestjs.io/ja/docs/configuration</a></p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/typescript/typescript-oreilly/">プログラミングTypeScript――スケールするJavaScriptアプリケーション開発</a></li>
+    
+      <li><a href="/posts/typescript/react-render-prop-typescript/">reactのrender propsをtypescriptでやる</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2022
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

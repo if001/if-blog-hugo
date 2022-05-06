@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Hugging Faceのpipelineで会話モデルを動かす</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="Hugging Faceのpipelineを’使って会話モデルを動かしたのでメモ。
+あまり日本語記事がなかったので残しておく。
+huggingfaceについてはこっちの記事を参照
+https://www.if-blog.site/posts/nlp/huggingface-doc/
+pipeline" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Hugging Faceのpipelineで会話モデルを動かす
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2022-05-05
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>Hugging Faceのpipelineを’使って会話モデルを動かしたのでメモ。<br>
+あまり日本語記事がなかったので残しておく。</p>
+<p>huggingfaceについてはこっちの記事を参照<br>
+<a href="https://www.if-blog.site/posts/nlp/huggingface-doc/">https://www.if-blog.site/posts/nlp/huggingface-doc/</a></p>
+<h2 id="pipelineを作る">pipelineを作る</h2>
+<p>transformersはインストールしておく</p>
+<p>pipelineインスタンスを作る。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">tokenizer <span style="color:#ff79c6">=</span> AutoTokenizer<span style="color:#ff79c6">.</span>from_pretrained(<span style="color:#f1fa8c">&#34;microsoft/DialoGPT-small&#34;</span>)
+model <span style="color:#ff79c6">=</span> AutoModelForCausalLM<span style="color:#ff79c6">.</span>from_pretrained(<span style="color:#f1fa8c">&#34;microsoft/DialoGPT-small&#34;</span>)
+gen_pipeline <span style="color:#ff79c6">=</span> pipeline(task, model<span style="color:#ff79c6">=</span>model, tokenizer<span style="color:#ff79c6">=</span>tokenizer)
+</code></pre></div><p>今回はDialogGPT-smallというモデルを使う</p>
+<p><a href="https://huggingface.co/microsoft/DialoGPT-small">https://huggingface.co/microsoft/DialoGPT-small</a></p>
+<p>modelによってはtokenizerを自動で選択してくれるが、一応tokenizerも引数で指定しておく。</p>
+<h2 id="conversational">conversational</h2>
+<p>pipeline用のconversationalがあるのでそれを使う。</p>
+<p><a href="https://huggingface.co/transformers/v4.8.2/_modules/transformers/pipelines/conversational.html">https://huggingface.co/transformers/v4.8.2/_modules/transformers/pipelines/conversational.html</a></p>
+<p>会話のコンテキストを渡す方法が２つ</p>
+<p>１つ目。</p>
+<p>conversationクラスのコンストラクタ引数の</p>
+<ul>
+<li>text: 現在のユーザーの入力</li>
+<li><code>past_user_inputs</code>: 過去のユーザーの入力</li>
+<li><code>generated_residence</code>: 過去の返答</li>
+</ul>
+<p>をセットする。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p <span style="color:#ff79c6">=</span> pipeline(task, model<span style="color:#ff79c6">=</span>model, tokenizer<span style="color:#ff79c6">=</span>tokenizer)
+
+ui <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;Does money buy happiness?&#34;</span>, <span style="color:#f1fa8c">&#34;What is the best way to buy happiness ?&#34;</span>]
+gr <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;Depends how much money you spend on it .&#34;</span>, <span style="color:#f1fa8c">&#34;You just have to be a millionaire by your early 20s, then you can be happy .&#34;</span>]
+current_input <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;This is so difficult !&#34;</span>
+conversation <span style="color:#ff79c6">=</span> Conversation(text<span style="color:#ff79c6">=</span>current_input, past_user_inputs<span style="color:#ff79c6">=</span>ui, generated_responses<span style="color:#ff79c6">=</span>gr)
+r <span style="color:#ff79c6">=</span> p(conversation)
+
+<span style="color:#ff79c6">print</span>(<span style="color:#f1fa8c">&#39;result&#39;</span>, r)
+</code></pre></div><p>結果</p>
+<pre><code>result Conversation id: 9be5d5e0-33c7-477a-940b-8c4bb73f6152 
+user &gt;&gt; Does money buy happiness? 
+bot &gt;&gt; Depends how much money you spend on it . 
+user &gt;&gt; What is the best way to buy happiness ? 
+bot &gt;&gt; You just have to be a millionaire by your early 20s, then you can be happy . 
+user &gt;&gt; This is so difficult ! 
+bot &gt;&gt; I'm not sure if I can afford to buy a house.
+</code></pre><hr>
+<p>2つ目。</p>
+<p>conversationクラスのメソッドからも会話のコンテキストをセットできる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p <span style="color:#ff79c6">=</span> pipeline(task, model<span style="color:#ff79c6">=</span>model, tokenizer<span style="color:#ff79c6">=</span>tokenizer)
+
+conversation <span style="color:#ff79c6">=</span> Conversation()
+
+<span style="color:#6272a4"># ユーザー入力/返答を追加</span>
+conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;Does money buy happiness?&#34;</span>)
+conversation<span style="color:#ff79c6">.</span>mark_processed()
+conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;Depends how much money you spend on it .&#34;</span>)
+
+<span style="color:#6272a4"># ユーザー入力/返答を追加</span>
+conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;What is the best way to buy happiness ?&#34;</span>)
+conversation<span style="color:#ff79c6">.</span>mark_processed()
+conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;You just have to be a millionaire by your early 20s, then you can be happy .&#34;</span>)
+
+<span style="color:#6272a4"># 現在のユーザーの入力をセット</span>
+conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;This is so difficult !&#34;</span>)
+r <span style="color:#ff79c6">=</span> p(conversation)
+</code></pre></div><p><code>add_user_input</code>でユーザーの入力をセット、<code>mark_processed</code>でセットしたユーザーの入力をコンテキスト(履歴)にセットする。
+<code>append_response</code>で返答を追加。</p>
+<p><code>add_user_input</code>と<code>append_response</code>は以下の用に、どの順番でも大丈夫。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">conversation <span style="color:#ff79c6">=</span> Conversation()
+
+<span style="color:#6272a4"># ユーザー入力の履歴を追加 </span>
+conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;Does money buy happiness?&#34;</span>)
+conversation<span style="color:#ff79c6">.</span>mark_processed()
+conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;What is the best way to buy happiness ?&#34;</span>)
+conversation<span style="color:#ff79c6">.</span>mark_processed()
+
+<span style="color:#6272a4"># 返答の履歴を追加</span>
+conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;Depends how much money you spend on it .&#34;</span>)
+conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;You just have to be a millionaire by your early 20s, then you can be happy .&#34;</span>)
+    
+conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;This is so difficult !&#34;</span>)
+</code></pre></div><p>結果は１つ目の方法と同じ。</p>
+<pre><code>result Conversation id: 9be5d5e0-33c7-477a-940b-8c4bb73f6152 
+user &gt;&gt; Does money buy happiness? 
+bot &gt;&gt; Depends how much money you spend on it . 
+user &gt;&gt; What is the best way to buy happiness ? 
+bot &gt;&gt; You just have to be a millionaire by your early 20s, then you can be happy . 
+user &gt;&gt; This is so difficult ! 
+bot &gt;&gt; I'm not sure if I can afford to buy a house.
+</code></pre><h2 id="まとめ">まとめ</h2>
+<p><code>Conversation</code>クラスを使うと簡単にpipelineで会話モデルを試せて良い感じ。</p>
+<p>日本語モデルでいくつか試したけど、この方法だとうまくいかなかった。
+別のモデルを探すか、会話タスクを学習させるか&hellip;</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/huggingface-doc/">Hugging Face Transformersのドキュメント読んだ</a></li>
+    
+      <li><a href="/posts/nlp/char-vec/">文字をベクトル化する</a></li>
+    
+      <li><a href="/posts/neuralnet/flax-jax/">Flaxに入門してみる</a></li>
+    
+      <li><a href="/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/">End-to-End Text Classification via Image-basedEmbedding using Character-level Networks</a></li>
+    
+      <li><a href="/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/">Enhanced character embedding for Chinese named entity recognition</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2022
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

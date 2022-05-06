@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>プログラミングTypeScript――スケールするJavaScriptアプリケーション開発</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="オライリーのtypescriptの本を読んだ。 typescriptのジェネリクスなど基本的な動作は知ってたがいくつか知らないことが合ったので それだけメモしておく。
+4章 関数 4.1.4 thisの型付け  javascriptではすべての関数に対してthisが定義される。 これによりコードが脆" />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		プログラミングTypeScript――スケールするJavaScriptアプリケーション開発
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/typescript/">typescript</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2021-12-26
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>オライリーのtypescriptの本を読んだ。
+typescriptのジェネリクスなど基本的な動作は知ってたがいくつか知らないことが合ったので
+それだけメモしておく。</p>
+<h2 id="4章-関数">4章 関数</h2>
+<h3 id="414-thisの型付け">4.1.4 thisの型付け</h3>
+<blockquote>
+<p>javascriptではすべての関数に対してthisが定義される。
+これによりコードが脆弱になり、理解しづらくなる。</p>
+</blockquote>
+<p>これを無効にするにはTSLintで、以下のようにしておく。</p>
+<pre><code>{
+  // note you must disable the base rule as it can report incorrect errors
+  &quot;no-invalid-this&quot;: &quot;off&quot;,
+  &quot;@typescript-eslint/no-invalid-this&quot;: [&quot;error&quot;]
+}
+</code></pre><p>基本的にthisは(.)ドットの左側を指す。
+以下のようなコードがあるとき、thisはxになる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#8be9fd;font-style:italic">let</span> x <span style="color:#ff79c6">=</span> {
+  a() {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>;
+  }
+}
+x.a()
+</code></pre></div><p>しかし、どこかの時点でaが再割り当てし、呼び出すとundefinedになる</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#8be9fd;font-style:italic">let</span> a <span style="color:#ff79c6">=</span> x.a
+a()
+</code></pre></div><h3 id="426-ジェネリック型のデフォルトの型">4.2.6 ジェネリック型のデフォルトの型</h3>
+<p>デフォルトの型使えるの知らなかった</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> MyEvent&lt;<span style="color:#ff79c6">T</span> = <span style="color:#50fa7b">HTMLElement</span>&gt; <span style="color:#ff79c6">=</span> {
+  target: <span style="color:#8be9fd">T</span>
+  <span style="color:#ff79c6">type</span><span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span>
+}
+</code></pre></div><h2 id="5章-クラスとインターフェース">5章 クラスとインターフェース</h2>
+<h3 id="54-インターフェース">5.4 インターフェース</h3>
+<p>型(type)とインターフェースの違い</p>
+<ul>
+<li>型エイリアスは右辺に任意の型を指定できるという点で汎用的</li>
+</ul>
+<p>（型エイリアスだと、合併型(Union Types)と交差型(Intersection Types)が使える）<br>
+以下のような、型エイリアスはインターフェースとして書き直すことができない。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> A <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">number</span>
+<span style="color:#ff79c6">type</span> B <span style="color:#ff79c6">=</span> A <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">string</span>
+</code></pre></div><ul>
+<li>インターフェースを拡張する際に割り当て可能かをチェックする</li>
+</ul>
+<p>インターフェースの場合、interface AとBのもつメソッドbadの引数の型が異なるのでエラーとなる。</p>
+<p>型エイリアスの場合、extendsを＆に変えると、拡張元と拡張先の型を結合したbadメソッドのオーバーロードされたシグネチャを生み出し、
+コンパイルエラーが回避される。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">interface</span> A {
+  good(x: <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span>
+  bad(s: <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span>
+}
+
+<span style="color:#ff79c6">interface</span> B <span style="color:#ff79c6">extends</span> A {
+  good(x: <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span>
+  bad(s: <span style="color:#8be9fd">string</span>)<span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span>
+}
+</code></pre></div><ul>
+<li>同じスコープ内に同じ名前のインターフェースがあるとマージ</li>
+</ul>
+<p>interfaceの場合、自動でマージされる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">interface</span> User {
+  name: <span style="color:#8be9fd">string</span>
+}
+
+<span style="color:#6272a4">// この時点でUserは、nameとageを持つ
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">interface</span> User {
+  age: <span style="color:#8be9fd">number</span>
+}
+</code></pre></div><p>型エイリアスだと、同じ名前の定義があるとコンパイルエラーになる</p>
+<h3 id="58-ミックスイン">5.8 ミックスイン</h3>
+<p>いくつか知らない書き方合った</p>
+<p>debugしづらいUserクラスがあるとき、debug機能をmixinすることでdebug機能を追加する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> Constructor&lt;<span style="color:#ff79c6">T</span>&gt; <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> (...arg: <span style="color:#8be9fd">any</span>[]) <span style="color:#ff79c6">=&gt;</span> T
+
+<span style="color:#ff79c6">const</span> WithEZDebug <span style="color:#ff79c6">=</span> &lt;<span style="color:#ff79c6">C</span> <span style="color:#50fa7b">extends</span> <span style="color:#50fa7b">Constructor</span>&lt;{
+    <span style="color:#50fa7b">getClass</span>(): <span style="color:#50fa7b">string</span>
+}&gt;<span style="color:#ff79c6">&gt;</span> (Class: <span style="color:#8be9fd">C</span>) <span style="color:#ff79c6">=&gt;</span> {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">class</span> <span style="color:#ff79c6">extends</span> Class {
+        debug() {
+            <span style="color:#ff79c6">const</span> name <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>.<span style="color:#ff79c6">constructor</span>.name;
+            <span style="color:#ff79c6">const</span> c <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>.getClass();
+            <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">`debug:  </span><span style="color:#f1fa8c">${</span>c<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, </span><span style="color:#f1fa8c">${</span>name<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>;
+        }
+    }
+}
+
+<span style="color:#ff79c6">class</span> User {
+    name: <span style="color:#8be9fd">string</span>
+    <span style="color:#ff79c6">constructor</span>(name: <span style="color:#8be9fd">string</span>) {
+        <span style="color:#ff79c6">this</span>.name <span style="color:#ff79c6">=</span> name
+    }
+
+    getClass()<span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span> {
+        <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;User&#34;</span>;
+    }
+}
+
+<span style="color:#ff79c6">const</span> main <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
+    <span style="color:#ff79c6">const</span> u <span style="color:#ff79c6">=</span> WithEZDebug(User)
+    <span style="color:#ff79c6">const</span> user <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> u(<span style="color:#f1fa8c">&#34;name&#34;</span>)
+    user.debug()
+}
+</code></pre></div><p>この書き方初めて知った</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">class</span> <span style="color:#ff79c6">extends</span> Class
+</code></pre></div><p>型引数にそのままobject書けるのも初めて知った。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"> &lt;<span style="color:#ff79c6">C</span> <span style="color:#50fa7b">extends</span> <span style="color:#50fa7b">Constructor</span>&lt;{
+    <span style="color:#50fa7b">getClass</span>(): <span style="color:#50fa7b">string</span>
+}&gt;<span style="color:#ff79c6">&gt;</span>
+</code></pre></div><p>TypeScript Deep Dive:
+<a href="https://typescript-jp.gitbook.io/deep-dive/type-system/mixins">https://typescript-jp.gitbook.io/deep-dive/type-system/mixins</a></p>
+<h2 id="6章-高度な型">6章 高度な型</h2>
+<h3 id="6151-タグ付き合併型">6.1.5.1 タグ付き合併型</h3>
+<p>ユーザーのイベントを定義している場合を例にする。
+handleのif文の分岐で、event.valueはそれぞれstring/[number, number]になる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> UserTextEvent <span style="color:#ff79c6">=</span> { value: <span style="color:#8be9fd">string</span> }
+<span style="color:#ff79c6">type</span> UserMouseEvent <span style="color:#ff79c6">=</span> { value<span style="color:#ff79c6">:</span> [<span style="color:#8be9fd">number</span>, <span style="color:#8be9fd">number</span>] }
+
+<span style="color:#ff79c6">type</span> UserEvent <span style="color:#ff79c6">=</span> UserTextEvent <span style="color:#ff79c6">|</span> UserMouseEvent
+
+<span style="color:#ff79c6">const</span> handle <span style="color:#ff79c6">=</span> (event: <span style="color:#8be9fd">UserEvent</span>) <span style="color:#ff79c6">=&gt;</span> {
+    <span style="color:#ff79c6">if</span>(<span style="color:#ff79c6">typeof</span> event.value <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;string&#39;</span>) {
+        <span style="color:#6272a4">//event.valueはstring
+</span><span style="color:#6272a4"></span>    }
+    <span style="color:#6272a4">// event.valueは[number, number]
+</span><span style="color:#6272a4"></span>}
+
+</code></pre></div><p>UserTextEventとUserMouseEventにtargetを追加する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> UserTextEvent <span style="color:#ff79c6">=</span> { value: <span style="color:#8be9fd">string</span>, target: <span style="color:#8be9fd">HTMLInputElement</span> }
+<span style="color:#ff79c6">type</span> UserMouseEvent <span style="color:#ff79c6">=</span> { value<span style="color:#ff79c6">:</span> [<span style="color:#8be9fd">number</span>, <span style="color:#8be9fd">number</span>], target: <span style="color:#8be9fd">HTMLElement</span> }
+
+<span style="color:#ff79c6">type</span> UserEvent <span style="color:#ff79c6">=</span> UserTextEvent <span style="color:#ff79c6">|</span> UserMouseEvent
+
+<span style="color:#ff79c6">const</span> handle <span style="color:#ff79c6">=</span> (event: <span style="color:#8be9fd">UserEvent</span>) <span style="color:#ff79c6">=&gt;</span> {
+    <span style="color:#ff79c6">if</span>(<span style="color:#ff79c6">typeof</span> event.value <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;string&#39;</span>) {
+        <span style="color:#6272a4">// event.valueはstring
+</span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// event.targetは HTMLInputElement or HTMLElement
+</span><span style="color:#6272a4"></span>    }
+    <span style="color:#6272a4">// event.valueは[number, number]
+</span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// event.targetは HTMLInputElement or HTMLElement
+</span><span style="color:#6272a4"></span>}
+</code></pre></div><p>この場合、if文の分岐の中でtargetの型が絞られない。</p>
+<p>これを解決するには、タグ付けを行う。</p>
+<p>タグ付けは、以下のようになっているのが良い</p>
+<ul>
+<li>同じフィールド名</li>
+<li>リテラル型</li>
+<li>ジェネリックではない</li>
+<li>合併型で一意</li>
+</ul>
+<p>stringとか使うと無難。</p>
+<p>書き直すとこんな感じ</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> UserTextEvent <span style="color:#ff79c6">=</span> { <span style="color:#ff79c6">type</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;TextEvent&#39;</span>,value: <span style="color:#8be9fd">string</span>, target: <span style="color:#8be9fd">HTMLInputElement</span> }
+<span style="color:#ff79c6">type</span> UserMouseEvent <span style="color:#ff79c6">=</span> { <span style="color:#ff79c6">type</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;MouseEvent&#39;</span>, value<span style="color:#ff79c6">:</span> [<span style="color:#8be9fd">number</span>, <span style="color:#8be9fd">number</span>], target: <span style="color:#8be9fd">HTMLElement</span> }
+
+<span style="color:#ff79c6">type</span> UserEvent <span style="color:#ff79c6">=</span> UserTextEvent <span style="color:#ff79c6">|</span> UserMouseEvent
+
+<span style="color:#ff79c6">const</span> handle <span style="color:#ff79c6">=</span> (event: <span style="color:#8be9fd">UserEvent</span>) <span style="color:#ff79c6">=&gt;</span> {
+    <span style="color:#ff79c6">if</span>(event.<span style="color:#ff79c6">type</span> <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;TextEvent&#39;</span>) {
+        <span style="color:#6272a4">// event.valueはstring
+</span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// event.targetは HTMLInputElement
+</span><span style="color:#6272a4"></span>    }
+    <span style="color:#6272a4">// event.valueは[number, number]
+</span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// event.targetは HTMLElement
+</span><span style="color:#6272a4"></span>}
+</code></pre></div><h3 id="634-コンパニオンオブジェクトパターン">6.3.4 コンパニオンオブジェクトパターン</h3>
+<p>typescriptでは、型と値が別々の名前空間が異なる。
+これを使ったして、コンパニオンオブジェクトパターンができる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> Currency <span style="color:#ff79c6">=</span> {
+    price: <span style="color:#8be9fd">number</span>
+}
+
+<span style="color:#ff79c6">const</span> Currency <span style="color:#ff79c6">=</span> {
+    <span style="color:#ff79c6">from</span>(value: <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> Currency {
+        <span style="color:#ff79c6">return</span> {
+            price: <span style="color:#8be9fd">value</span>
+        }
+    }
+}
+
+<span style="color:#ff79c6">const</span> main <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
+    Currency.<span style="color:#ff79c6">from</span>(<span style="color:#bd93f9">1</span>)
+}
+</code></pre></div><p>言われると確かにって感じだけど、やろうと思わなかった。
+いまいちメリットがわからん。</p>
+<h3 id="642-ユーザー定義型ガード">6.4.2 ユーザー定義型ガード</h3>
+<p>typescriptだと、isStringがbooleanを返すことしかわからない。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">const</span> isString <span style="color:#ff79c6">=</span> (s: <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">boolean</span> <span style="color:#ff79c6">=&gt;</span> {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">typeof</span> s <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;string&#39;</span>
+}
+
+<span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">parseInt</span> <span style="color:#ff79c6">=</span> (s: <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">number</span>) <span style="color:#ff79c6">=&gt;</span> {
+    <span style="color:#ff79c6">if</span>(isString(s)) {
+        <span style="color:#6272a4">// sはstring | numberと推論される
+</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">return</span> s.toLocaleUpperCase()
+    }
+    <span style="color:#6272a4">// なんかの処理
+</span><span style="color:#6272a4"></span>}
+</code></pre></div><p>その場合、ユーザー定義型ガードを使う</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">const</span> isString <span style="color:#ff79c6">=</span> (s: <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> s <span style="color:#ff79c6">is</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">=&gt;</span> {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">typeof</span> s <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;string&#39;</span>
+}
+
+<span style="color:#ff79c6">const</span> <span style="color:#8be9fd;font-style:italic">parseInt</span> <span style="color:#ff79c6">=</span> (s: <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">number</span>) <span style="color:#ff79c6">=&gt;</span> {
+    <span style="color:#ff79c6">if</span>(isString(s)) {
+        <span style="color:#6272a4">// sはstring | numberと推論される
+</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">return</span> s.toLocaleUpperCase()
+    }
+    <span style="color:#6272a4">// なんかの処理
+</span><span style="color:#6272a4"></span>}
+</code></pre></div><h3 id="65-条件型">6.5 条件型</h3>
+<p><code>U :&lt; V</code>であれば、TをAに、そうでなければTをBに割り当てるようなこと。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> IsString&lt;<span style="color:#ff79c6">T</span>&gt; <span style="color:#ff79c6">=</span> T <span style="color:#ff79c6">extends</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">?</span> <span style="color:#ff79c6">true</span> <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>;
+<span style="color:#ff79c6">type</span> A <span style="color:#ff79c6">=</span> IsString&lt;<span style="color:#ff79c6">string</span>&gt;
+<span style="color:#ff79c6">type</span> B <span style="color:#ff79c6">=</span> IsString&lt;<span style="color:#ff79c6">number</span>&gt;
+</code></pre></div><h3 id="67-名前的型をシミュレートする">6.7 名前的型をシミュレートする</h3>
+<p>UserIDとCustomerIDのような型エイリアスしている場合</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> UserID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span>
+<span style="color:#ff79c6">type</span> CustomerID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span>
+
+<span style="color:#ff79c6">const</span> userID <span style="color:#ff79c6">=</span> (id: <span style="color:#8be9fd">string</span>)<span style="color:#ff79c6">:</span> UserID <span style="color:#ff79c6">=&gt;</span> id <span style="color:#ff79c6">as</span> UserID
+<span style="color:#ff79c6">const</span> customerID <span style="color:#ff79c6">=</span> (id: <span style="color:#8be9fd">string</span>)<span style="color:#ff79c6">:</span> CustomerID <span style="color:#ff79c6">=&gt;</span> id <span style="color:#ff79c6">as</span> CustomerID
+</code></pre></div><p>UserIDを引数に取る、checkIDを使ってもエラーにならない。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">const</span> checkID <span style="color:#ff79c6">=</span> (id: <span style="color:#8be9fd">UserID</span>) <span style="color:#ff79c6">=&gt;</span> {
+    console.log(id)
+}
+
+<span style="color:#ff79c6">const</span> main <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
+    <span style="color:#ff79c6">const</span> uID <span style="color:#ff79c6">=</span> userID(<span style="color:#f1fa8c">&#39;001&#39;</span>)
+    checkID(uID)
+
+    <span style="color:#ff79c6">const</span> cID <span style="color:#ff79c6">=</span> customerID(<span style="color:#f1fa8c">&#39;002&#39;</span>)
+    checkID(cID) <span style="color:#6272a4">// エラーにならない
+</span><span style="color:#6272a4"></span>}
+</code></pre></div><p>これはUserIDはstringのエイリアスにすぎないから。</p>
+<p>型のブランド化で解決できる。</p>
+<p>型エイリアスを次のように書き直す。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> UserID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">&amp;</span> { <span style="color:#ff79c6">readonly</span> brand: <span style="color:#8be9fd">unique</span> <span style="color:#8be9fd">symbol</span> }
+<span style="color:#ff79c6">type</span> CustomerID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">&amp;</span> { <span style="color:#ff79c6">readonly</span> brand: <span style="color:#8be9fd">unique</span> <span style="color:#8be9fd">symbol</span> }
+</code></pre></div><p>すると、checkIDでエラーになる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">const</span> main <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
+    <span style="color:#ff79c6">const</span> uID <span style="color:#ff79c6">=</span> userID(<span style="color:#f1fa8c">&#39;001&#39;</span>)
+    checkID(uID)
+
+    <span style="color:#ff79c6">const</span> cID <span style="color:#ff79c6">=</span> customerID(<span style="color:#f1fa8c">&#39;002&#39;</span>)
+    checkID(cID) <span style="color:#6272a4">// エラーになる
+</span><span style="color:#6272a4"></span>}
+</code></pre></div><h2 id="付録">付録</h2>
+<p>tsconfig</p>
+<ul>
+<li>alwaysStrict</li>
+<li>noEmitOnError: コードにエラーがある場合、JavaScriptを出力しない</li>
+<li>noFallthroughCasesInSwitch: すべてのswitchのcaseが値を返しているか、またはbreakしているか</li>
+<li>noImplicitAny: 変数の型がanyと推論される場合、エラー</li>
+<li>noImplicitReturn: すべての関数内のコードパスが明示的にreturnしているか</li>
+<li>noImplicitThis: this型を明示的にアノテートせずに関数内でthisを使用する場合エラー</li>
+<li>noUnusedLocals: 使われてないローカル変数について警告</li>
+<li>noUnusedParameter: 使われてない関数パラメタについて警告。エラーを無視するにはアンダースコアをつける</li>
+<li>strictBindCallApply: bind、call、applyについて型安全を強制する</li>
+<li>strictFunctionTypes: 関数がそのパラメタ及び、this型に関して普遍であることを強制する</li>
+<li>strictNullChecks: nullを型に昇格させる</li>
+<li>strictPropertyInitialization: クラスのプロパティがnull許容であるか、または初期化されていることを強制する</li>
+</ul>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/typescript/react-render-prop-typescript/">reactのrender propsをtypescriptでやる</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2022
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
