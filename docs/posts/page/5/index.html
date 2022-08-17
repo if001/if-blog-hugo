@@ -167,16 +167,16 @@
       
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/falcon/falcon-img-upload/">
+  <a href="https://www.if-blog.site/posts/nlp/char-vec/">
     <h2 class="post-title">
-      falconでアップロードサーバーを作る
+      文字をベクトル化する
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことな</p>
-    <a href="https://www.if-blog.site/posts/falcon/falcon-img-upload/" class="post-read-more"></a>
+    <p>文章生成にchar-level lstmを使ってみる。英語ではうまくいっている例があるが日本語では難しい。これは、日本語は英語に比べ文字数が多く、ニューラルネットワークの次元数(パラメータ数)が増やす必要があるのが原因の1つだと思う。また、次元削減のため、日本語では文章を単語に区切り単語をベクトル化</p>
+    <a href="https://www.if-blog.site/posts/nlp/char-vec/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -184,18 +184,18 @@
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
       <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/falcon/">falcon</a>&nbsp;
-    
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
+  >&nbsp;2019-09-24
   
 </div>
 
@@ -204,18 +204,89 @@
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/falcon/falcon-tips/">
+  <a href="https://www.if-blog.site/posts/others/tex-notation-numerical-formula/">
     <h2 class="post-title">
-      falconを使ってみた
+      機械学習系の数式によく出てくる記号などのTex表記まとめ
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
-簡単なtipsをメモしておく。
-シンプルな例 fa</p>
-    <a href="https://www.if-blog.site/posts/falcon/falcon-tips/" class="post-read-more"></a>
+    <p>すぐ忘れるのでTex表記をまとめて起きます。 Qiitaが使っているというEasy Copy MathJaxを用います。
+   読み 表示 tex     デルタ $\Delta$ \Delta   ナブラ $\nabla$ \nabla   白抜き $\mathbb E[\cdot]$ \math</p>
+    <a href="https://www.if-blog.site/posts/others/tex-notation-numerical-formula/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/tex/">tex</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/">
+    <h2 class="post-title">
+      自然言語処理シリーズの構文解析を読む（概要）
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>はじめに 自然言語処理シリーズの構文解析を読んでいきます。
+全体の概要把握:1時間 中身の細かいとこ：3時間 という感じで読み進めて行こうと思います。
+概要 構文解析を用いることで、単語の並びの背後にある文法的な構造を明らかにすることができる。構文解析を学ぶことで、自然言語処理で用いられる様々な先人</p>
+    <a href="https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/">構文解析</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/python/colaboratory-google-drive-mount/">
+    <h2 class="post-title">
+      Google ColaboratoryでGoogle driveをマウントする
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
+before 認証
+!apt-get install -y -qq software-properties-common python-software-properties module-init-to</p>
+    <a href="https://www.if-blog.site/posts/python/colaboratory-google-drive-mount/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -225,14 +296,12 @@
     
       <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/falcon/">falcon</a>&nbsp;
-    
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
+  >&nbsp;2019-09-23
   
 </div>
 
@@ -241,17 +310,22 @@
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-start-article/">
+  <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase/">
     <h2 class="post-title">
-      Hugoでブログを作る
+      Firebaseを使ってwebアプリを公開した
+      
+      <span class="draft-tag">(Draft)</span>
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>はじめに Hugoとは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。 Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。
-サイトの作成 インストール brew install hugo テンプレートの作成 hugo new site</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-start-article/" class="post-read-more"></a>
+    <p>firebaseのみで三行で読書感想文をSNSにシェアできるwebアプリケーションを作ってみました。
+画像
+構築の備忘録を残しておきます。
+今回使ったのは、以下のサービス
+ hosting authentication storage database function  authenticateは</p>
+    <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -259,14 +333,16 @@
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/firebase/">firebase</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/webapp/">WebApp</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
+  >&nbsp;2019-09-22
   
 </div>
 
@@ -275,18 +351,20 @@
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-href-to-target-blank/">
+  <a href="https://www.if-blog.site/posts/edgwbs/book-reports-storage-firestore/">
     <h2 class="post-title">
-      Hugoでリンクを新しいウィンドウで開く
+      Vue.jsからFirebase StorageとDatabaseを使う
+      
+      <span class="draft-tag">(Draft)</span>
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。
-hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownでどうすれば良いのか調べた。 Hugoでは次のようにconfig.tomlするといける。
-[blackf</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-href-to-target-blank/" class="post-read-more"></a>
+    <p>はじめに Authentication、Hostingに続いて、Vue.jsからFirebaseのCloud Storage、FireStoreをつかってみました。
+それぞれの、簡単な使い方をまとめておきます。すべて同じプロジェクト上のものを利用するので、連携はとても楽でした。
+ざっくりとした流れは</p>
+    <a href="https://www.if-blog.site/posts/edgwbs/book-reports-storage-firestore/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -294,14 +372,16 @@ hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownで
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/webapp/">WebApp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/firebase/">firebase</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
+  >&nbsp;2019-09-22
   
 </div>
 
@@ -310,19 +390,19 @@ hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownで
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-ga/">
+  <a href="https://www.if-blog.site/posts/emacs/emacs-keybind/">
     <h2 class="post-title">
-      Hugoにgoogle analyticsを導入する
+      keybind
+      
+      <span class="draft-tag">(Draft)</span>
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>Hugoにgoogle analytics(ga)を導入しようと思ったら意外と簡単だった。
-まず、gaアカウントを作成。
-config.tomlに
-googleAnalytics = &amp;quot;{ga tracking ID}&amp;quot; を設定するだけ。</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-ga/" class="post-read-more"></a>
+    <p>(define-key KEYMAP KEY &amp;#39;COMMAND) KEYMAPにglobal-mapを指定したものは、以下と同義となる。
+(global-set-key KEY COMMAND) </p>
+    <a href="https://www.if-blog.site/posts/emacs/emacs-keybind/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -330,16 +410,14 @@ googleAnalytics = &amp;quot;{ga tracking ID}&amp;quot; を設定するだけ。<
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/google-analytics/">google-analytics</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/emacs/">emacs</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
+  >&nbsp;2019-03-23
   
 </div>
 
@@ -348,19 +426,22 @@ googleAnalytics = &amp;quot;{ga tracking ID}&amp;quot; を設定するだけ。<
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/">
+  <a href="https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/">
     <h2 class="post-title">
-      Hugoのディレクトリ構造やデプロイ方法の備忘録
+      emacsひな祭りいってきたのでためになったpackageなどをまとめておく
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。
-ディレクトリ 基本的なディレクトリは以下
-markdownを書いたりと普段触るのはcontentディレクトリになる。
-デプロイ後生成されるpublicディレクトリはサー</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/" class="post-read-more"></a>
+    <p>2019年3月3日に開催された東京Emacsひなまつりにいってきました。
+https://tokyo-emacs.connpass.com/event/121603/
+随時コメント追加していきます。
+ ox-hugo
+https://ox-hugo.scripter.co/
+Ox-hugo
+http</p>
+    <a href="https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -368,14 +449,14 @@ markdownを書いたりと普段触るのはcontentディレクトリになる�
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/emacs/">emacs</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
+  >&nbsp;2019-03-08
   
 </div>
 
@@ -384,20 +465,18 @@ markdownを書いたりと普段触るのはcontentディレクトリになる�
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-code-highlight/">
+  <a href="https://www.if-blog.site/posts/python/python-get-extn/">
     <h2 class="post-title">
-      Hugoの記事でコードハイライトする
+      pythonで拡張子を取得する
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>Hugoでコードのシンタックスハイライトする場合のメモ
-Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。
-Hugo自体の機能使う Hugo 0.28からGo機能でシンタックスハイライトが可能になった。
-Syntax Highlighting
-c</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-code-highlight/" class="post-read-more"></a>
+    <p>ファイルの拡張子を取得する方法をいつも忘れるのでメモ
+import os file_path = &amp;#34;hoge/test.md&amp;#34; root, ext = os.path.splitext(file_path) print(root, ext) 出力
+hoge/test .md </p>
+    <a href="https://www.if-blog.site/posts/python/python-get-extn/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -405,14 +484,14 @@ c</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
+  >&nbsp;2019-03-01
   
 </div>
 
@@ -421,18 +500,19 @@ c</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-add-site-description/">
+  <a href="https://www.if-blog.site/posts/emacs/lsp-mode/">
     <h2 class="post-title">
-      Hugoの記事にdescriptionを追加する
+      lsp-modeを導入する
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
-html側で次のように書くと、markdownに書いたdescriptionが参照できます。
-{{ .Des</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-add-site-description/" class="post-read-more"></a>
+    <p>大学時代から使っていたemacsの設定たちを綺麗にするという目的で、ついでにlsp-modeを導入してみようと思う。
+lsp-mode
+https://github.com/emacs-lsp/lsp-mode
+language server protocolとは language server p</p>
+    <a href="https://www.if-blog.site/posts/emacs/lsp-mode/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -440,85 +520,14 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/emacs/">emacs</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/">
-    <h2 class="post-title">
-      Hugoの記事に画像を載せる
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
-画像を配置するディクトリを以下のように作っておく。
-{root}/content/post/images/ 以下のように記述すると表示できる。
-{{&amp;lt; figure src=&amp;quot;../../images/test.</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/">
-    <h2 class="post-title">
-      Hugoの記事を更新順にソートする
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Hugoの記事を更新順にソートするメモです。
-まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、Lastmodで更新時刻が取得できるのでそれを使います。
-そのほかにもgitから情報が取得できます。https:</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
+  >&nbsp;2018-11-20
   
 </div>
 

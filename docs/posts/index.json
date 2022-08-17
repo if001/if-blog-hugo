@@ -2,11 +2,21 @@
     
         
             {
+                "ref": "https://www.if-blog.site/posts/nlp/huggingface-tokenizer/",
+                "title": "Hugging Faceのtokenizerで迷ったのでまとめておく",
+                "section": "posts",
+                "date" : "2022-08-16",
+                "body": "tokeninzerとかencodeとか色々合って毎回調べることになるのでメモ。\n以下の日本語tokenizerを使わせてもらう。\ntokenizer = T5Tokenizer.from_pretrained(\u0026#34;sonoisa/t5-base-japanese\u0026#34;) よく見る書き方 sentence = \u0026#34;私は走ります。\u0026#34; tokenizer(sentence) \u0026gt;\u0026gt; {\u0026#39;input_ids\u0026#39;: [5, 4378, 6368, 998, 4, 1], \u0026#39;attention_mask\u0026#39;: [1, 1, 1, 1, 1, 1]} input_idsとmaskどっちも簡単にとれる\nencode sentence = \u0026#34;私は走ります。\u0026#34; tokenizer.encode(sentence) \u0026gt;\u0026gt; [5, 4378, 6368, 998, 4, 1] input_idsだけがとれる\nconvert_tokens_to_ids sentence = \u0026#34;私は走ります。\u0026#34; splited = tokenizer.tokenize(sentence) \u0026gt;\u0026gt; [\u0026#39;▁\u0026#39;, \u0026#39;私は\u0026#39;, \u0026#39;走り\u0026#39;, \u0026#39;ます\u0026#39;, \u0026#39;。\u0026#39;] tokenizer.convert_tokens_to_ids(splited) \u0026gt;\u0026gt; [5, 4378, 6368, 998, 4] 分かち書きしてからidにする\nencode_plus tokeninzerの__call__と同じ\nsentence = \u0026#34;私は走ります。\u0026#34; tokenizer.encode_plus(sentence) \u0026gt;\u0026gt; {\u0026#39;input_ids\u0026#39;: [5, 4378, 6368, 998, 4, 1], \u0026#39;attention_mask\u0026#39;: [1, 1, 1, 1, 1, 1]} batch_encode_plus そのまま、batchに対応\nsentence = \u0026#34;私は走ります。\u0026#34; tokenizer.batch_encode_plus([sentence, sentence]) \u0026gt;\u0026gt; {\u0026#39;input_ids\u0026#39;: [[5, 4378, 6368, 998, 4, 1], [5, 4378, 6368, 998, 4, 1]], \u0026#39;attention_mask\u0026#39;: [[1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1]]} max_length, paddingとか max_lenghtとpaddingが指定できる\nsentence = \u0026#34;私は走ります。\u0026#34; tokenizer(sentence, max_length=20, truncation=True, padding=\u0026#34;max_length\u0026#34;) \u0026gt;\u0026gt; {\u0026#39;input_ids\u0026#39;: [5, 4378, 6368, 998, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \u0026#39;attention_mask\u0026#39;: [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]} paddingのデフォルトはpaddingしないっぽい(padding=\u0026ldquo;do_not_pad\u0026rdquo;)\nhttps://github.com/huggingface/transformers/blob/v4.21.1/src/transformers/utils/generic.py#L255-L263\n// 最大長にあわせてpadding tokenizer.batch_encode_plus([\u0026#34;私は今日も走ります。\u0026#34;, \u0026#34;私は走る。\u0026#34;], padding=\u0026#34;longest\u0026#34;) \u0026gt;\u0026gt; {\u0026#39;input_ids\u0026#39;: [[5, 4378, 4634, 28, 6368, 998, 4, 1], [5, 4378, 9050, 4, 1, 0, 0, 0]], \u0026#39;attention_mask\u0026#39;: [[1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 0, 0, 0]]} // max_lengthにあわせてpadding tokenizer.batch_encode_plus([\u0026#34;私は今日も走ります。\u0026#34;, \u0026#34;私は走る。\u0026#34;], padding=\u0026#34;max_length\u0026#34;, max_length=15) \u0026gt;\u0026gt; {\u0026#39;input_ids\u0026#39;: [[5, 4378, 4634, 28, 6368, 998, 4, 1, 0, 0, 0, 0, 0, 0, 0], [5, 4378, 9050, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], \u0026#39;attention_mask\u0026#39;: [[1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]} // default paddingしない tokenizer.batch_encode_plus([\u0026#34;私は今日も走ります。\u0026#34;, \u0026#34;私は走る。\u0026#34;]) \u0026gt;\u0026gt; {\u0026#39;input_ids\u0026#39;: [[5, 4378, 4634, 28, 6368, 998, 4, 1], [5, 4378, 9050, 4, 1]], \u0026#39;attention_mask\u0026#39;: [[1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]} メモ コード見てて気付いたけど、pythonでabstract classのmethodの実装を強制させるパターンってこんな感じで書くんだという発見が合ったのでメモ。（）普段python書かないからあぁーとなった。）\nclass PreTrainedTokenizerBase(): def encode_plus(self, ...): return self._encode_plus() def _encode_plus(self, ...): raise NotImplementedError class PreTrainedTokenizer(PreTrainedTokenizerBase): def _encode_plus(self,...): ... "
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/nlp/huggingface-conv/",
                 "title": "Hugging Faceのpipelineで会話モデルを動かす",
                 "section": "posts",
                 "date" : "2022-05-05",
-                "body": "Hugging Faceのpipelineを’使って会話モデルを動かしたのでメモ。\nあまり日本語記事がなかったので残しておく。\nhuggingfaceについてはこっちの記事を参照\nhttps://www.if-blog.site/posts/nlp/huggingface-doc/\npipelineを作る transformersはインストールしておく\npipelineインスタンスを作る。\ntokenizer = AutoTokenizer.from_pretrained(\u0026#34;microsoft/DialoGPT-small\u0026#34;) model = AutoModelForCausalLM.from_pretrained(\u0026#34;microsoft/DialoGPT-small\u0026#34;) gen_pipeline = pipeline(task, model=model, tokenizer=tokenizer) 今回はDialogGPT-smallというモデルを使う\nhttps://huggingface.co/microsoft/DialoGPT-small\nmodelによってはtokenizerを自動で選択してくれるが、一応tokenizerも引数で指定しておく。\nconversational pipeline用のconversationalがあるのでそれを使う。\nhttps://huggingface.co/transformers/v4.8.2/_modules/transformers/pipelines/conversational.html\n会話のコンテキストを渡す方法が２つ\n１つ目。\nconversationクラスのコンストラクタ引数の\n text: 現在のユーザーの入力 past_user_inputs: 過去のユーザーの入力 generated_residence: 過去の返答  をセットする。\np = pipeline(task, model=model, tokenizer=tokenizer) ui = [\u0026#34;Does money buy happiness?\u0026#34;, \u0026#34;What is the best way to buy happiness ?\u0026#34;] gr = [\u0026#34;Depends how much money you spend on it .\u0026#34;, \u0026#34;You just have to be a millionaire by your early 20s, then you can be happy .\u0026#34;] current_input = \u0026#34;This is so difficult !\u0026#34; conversation = Conversation(text=current_input, past_user_inputs=ui, generated_responses=gr) r = p(conversation) print(\u0026#39;result\u0026#39;, r) 結果\nresult Conversation id: 9be5d5e0-33c7-477a-940b-8c4bb73f6152 user \u0026gt;\u0026gt; Does money buy happiness? bot \u0026gt;\u0026gt; Depends how much money you spend on it . user \u0026gt;\u0026gt; What is the best way to buy happiness ? bot \u0026gt;\u0026gt; You just have to be a millionaire by your early 20s, then you can be happy . user \u0026gt;\u0026gt; This is so difficult ! bot \u0026gt;\u0026gt; I'm not sure if I can afford to buy a house.  2つ目。\nconversationクラスのメソッドからも会話のコンテキストをセットできる。\np = pipeline(task, model=model, tokenizer=tokenizer) conversation = Conversation() # ユーザー入力/返答を追加 conversation.add_user_input(\u0026#34;Does money buy happiness?\u0026#34;) conversation.mark_processed() conversation.append_response(\u0026#34;Depends how much money you spend on it .\u0026#34;) # ユーザー入力/返答を追加 conversation.add_user_input(\u0026#34;What is the best way to buy happiness ?\u0026#34;) conversation.mark_processed() conversation.append_response(\u0026#34;You just have to be a millionaire by your early 20s, then you can be happy .\u0026#34;) # 現在のユーザーの入力をセット conversation.add_user_input(\u0026#34;This is so difficult !\u0026#34;) r = p(conversation) add_user_inputでユーザーの入力をセット、mark_processedでセットしたユーザーの入力をコンテキスト(履歴)にセットする。 append_responseで返答を追加。\nadd_user_inputとappend_responseは以下の用に、どの順番でも大丈夫。\nconversation = Conversation() # ユーザー入力の履歴を追加  conversation.add_user_input(\u0026#34;Does money buy happiness?\u0026#34;) conversation.mark_processed() conversation.add_user_input(\u0026#34;What is the best way to buy happiness ?\u0026#34;) conversation.mark_processed() # 返答の履歴を追加 conversation.append_response(\u0026#34;Depends how much money you spend on it .\u0026#34;) conversation.append_response(\u0026#34;You just have to be a millionaire by your early 20s, then you can be happy .\u0026#34;) conversation.add_user_input(\u0026#34;This is so difficult !\u0026#34;) 結果は１つ目の方法と同じ。\nresult Conversation id: 9be5d5e0-33c7-477a-940b-8c4bb73f6152 user \u0026gt;\u0026gt; Does money buy happiness? bot \u0026gt;\u0026gt; Depends how much money you spend on it . user \u0026gt;\u0026gt; What is the best way to buy happiness ? bot \u0026gt;\u0026gt; You just have to be a millionaire by your early 20s, then you can be happy . user \u0026gt;\u0026gt; This is so difficult ! bot \u0026gt;\u0026gt; I'm not sure if I can afford to buy a house. まとめ Conversationクラスを使うと簡単にpipelineで会話モデルを試せて良い感じ。\n日本語モデルでいくつか試したけど、この方法だとうまくいかなかった。 別のモデルを探すか、会話タスクを学習させるか\u0026hellip;\n"
+                "body": "Hugging Faceのpipelineを’使って会話モデルを動かしたのでメモ。\nあまり日本語記事がなかったので残しておく。\nhuggingfaceについてはこっちの記事を参照\nhttps://www.if-blog.site/posts/nlp/huggingface-doc/\npipelineを作る transformersはインストールしておく\npipelineインスタンスを作る。\ntokenizer = AutoTokenizer.from_pretrained(\u0026#34;microsoft/DialoGPT-small\u0026#34;) model = AutoModelForCausalLM.from_pretrained(\u0026#34;microsoft/DialoGPT-small\u0026#34;) gen_pipeline = pipeline(task, model=model, tokenizer=tokenizer) 今回はDialogGPT-smallというモデルを使う\nhttps://huggingface.co/microsoft/DialoGPT-small\nmodelによってはtokenizerを自動で選択してくれるが、一応tokenizerも引数で指定しておく。\nconversational pipeline用のconversationalがあるのでそれを使う。\nhttps://huggingface.co/transformers/v4.8.2/_modules/transformers/pipelines/conversational.html\n会話のコンテキストを渡す方法が２つ\n１つ目。\nconversationクラスのコンストラクタ引数の\n text: 現在のユーザーの入力 past_user_inputs: 過去のユーザーの入力 generated_residence: 過去の返答  をセットする。\np = pipeline(task, model=model, tokenizer=tokenizer) ui = [\u0026#34;Does money buy happiness?\u0026#34;, \u0026#34;What is the best way to buy happiness ?\u0026#34;] gr = [\u0026#34;Depends how much money you spend on it .\u0026#34;, \u0026#34;You just have to be a millionaire by your early 20s, then you can be happy .\u0026#34;] current_input = \u0026#34;This is so difficult !\u0026#34; conversation = Conversation(text=current_input, past_user_inputs=ui, generated_responses=gr) r = p(conversation) print(\u0026#39;result\u0026#39;, r) 結果\nresult Conversation id: 9be5d5e0-33c7-477a-940b-8c4bb73f6152 user \u0026gt;\u0026gt; Does money buy happiness? bot \u0026gt;\u0026gt; Depends how much money you spend on it . user \u0026gt;\u0026gt; What is the best way to buy happiness ? bot \u0026gt;\u0026gt; You just have to be a millionaire by your early 20s, then you can be happy . user \u0026gt;\u0026gt; This is so difficult ! bot \u0026gt;\u0026gt; I'm not sure if I can afford to buy a house.  2つ目。\nconversationクラスのメソッドからも会話のコンテキストをセットできる。\np = pipeline(task, model=model, tokenizer=tokenizer) conversation = Conversation() # ユーザー入力/返答を追加 conversation.add_user_input(\u0026#34;Does money buy happiness?\u0026#34;) conversation.mark_processed() conversation.append_response(\u0026#34;Depends how much money you spend on it .\u0026#34;) # ユーザー入力/返答を追加 conversation.add_user_input(\u0026#34;What is the best way to buy happiness ?\u0026#34;) conversation.mark_processed() conversation.append_response(\u0026#34;You just have to be a millionaire by your early 20s, then you can be happy .\u0026#34;) # 現在のユーザーの入力をセット conversation.add_user_input(\u0026#34;This is so difficult !\u0026#34;) r = p(conversation) add_user_inputでユーザーの入力をセット、mark_processedでセットしたユーザーの入力をコンテキスト(履歴)にセットする。 append_responseで返答を追加。\nadd_user_inputとappend_responseは以下の用に、どの順番でも大丈夫。\nconversation = Conversation() # ユーザー入力の履歴を追加  conversation.add_user_input(\u0026#34;Does money buy happiness?\u0026#34;) conversation.mark_processed() conversation.add_user_input(\u0026#34;What is the best way to buy happiness ?\u0026#34;) conversation.mark_processed() # 返答の履歴を追加 conversation.append_response(\u0026#34;Depends how much money you spend on it .\u0026#34;) conversation.append_response(\u0026#34;You just have to be a millionaire by your early 20s, then you can be happy .\u0026#34;) conversation.add_user_input(\u0026#34;This is so difficult !\u0026#34;) 結果は１つ目の方法と同じ。\nresult Conversation id: 9be5d5e0-33c7-477a-940b-8c4bb73f6152 user \u0026gt;\u0026gt; Does money buy happiness? bot \u0026gt;\u0026gt; Depends how much money you spend on it . user \u0026gt;\u0026gt; What is the best way to buy happiness ? bot \u0026gt;\u0026gt; You just have to be a millionaire by your early 20s, then you can be happy . user \u0026gt;\u0026gt; This is so difficult ! bot \u0026gt;\u0026gt; I'm not sure if I can afford to buy a house. まとめ Conversationクラスを使うと簡単にpipelineで会話モデルを試せて良い感じ。\n日本語モデルだと会話タスクは用意されていないようだったので、fine tuningするしかないみたい\n"
             }
         
     ,
@@ -42,6 +52,16 @@
     ,
         
             {
+                "ref": "https://www.if-blog.site/posts/typescript/typescript-init/",
+                "title": "とりあえずtypescriptを書きたいときのinit",
+                "section": "posts",
+                "date" : "2021-07-29",
+                "body": "typescript\nhttps://basarat.gitbook.io/typescript/nodejs\npackage.json npm init package.jsonのscriptに追加\n\u0026#34;start\u0026#34;:\u0026#34;./node_modules/.bin/ts-node ./src/index.ts\u0026#34; typescript npm install -D typescript npm install -D ts-node run src/index.tsを追加、npm run startで起動\nindex.ts\nconst main = () =\u0026gt; { console.log(\u0026#34;hello\u0026#34;) } main() jest npm i jest @types/jest ts-jest -D // jest.config.ts import type {Config} from \u0026#39;@jest/types\u0026#39;; // Sync object const config: Config.InitialOptions = { verbose: true, }; export default config; // Or async function export default async (): Promise\u0026lt;Config.InitialOptions\u0026gt; =\u0026gt; { return { verbose: true, }; }; https://jestjs.io/ja/docs/configuration\n"
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/neuralnet/flax-jax/",
                 "title": "Flaxに入門してみる",
                 "section": "posts",
@@ -57,6 +77,16 @@
                 "section": "posts",
                 "date" : "2021-07-24",
                 "body": "朝の空いた時間などにarxivの新着論文を読みたくて、 アブストラクトを翻訳したものをslackに送るようにしました。\n流れは以下のような感じ。\narxivはAPIを公開しているのでそこから、アブストや論文のタイトル、リンクなどを取得します。\nGoogle Apps Script（GAS）を使うと、google translateが簡単に使え、翻訳ができます。\nタイトルや翻訳したものをslackに送り、これをgithub actionsで定期実行させます。\n arxivからsubmittedDate順に上から10件を取得 GASへリクエストを送り、アブストを翻訳 slackに送る 以上の処理をgithub actionsを使って毎朝実行されるようにします  全体はこれ\nhttps://github.com/if001/arXiv_translate\narxivから記事を取得 pythonのライブラリを使います。\nhttps://github.com/lukasschwab/arxiv.py\n詳細は以下\npythonでarxivのAPIを使う\nGoogle Apps Scriptでアブストを翻訳 Google TranslateはAPIを公開してますが、GASを使うと比較的簡単に翻訳が行えます。\nGASを使って翻訳用のエンドポイントを作ります。\nその後、arxivのAPIの結果から、タイトルとアブストを翻訳します。\n詳細は以下\nGoogle Apps ScriptでGoogle Translateを使う\nSlackに送信 Incoming Webhooksを使うと簡単にslackにメッセージを送れます。\nhttps://api.slack.com/messaging/webhooks\n諸々登録を済ませると、メッセージsend用のURLが吐き出されるので、\nそのURLに対してメッセージをPOSTします。\n翻訳/原文タイトル、翻訳/原文アブスト、arxivのリンクを送ります。\nGithub Actionsで定期実行 Github Actionsでcron実行するにはこんな感じ。\nname: cron sample on: schedule: - cron: \u0026#39;0 6 * * *\u0026#39; jobs: build: runs-on: ubuntu-latest steps: - name: hello run: | echo \u0026#34;hello world\u0026#34; https://docs.github.com/ja/actions/reference/events-that-trigger-workflows#schedule\n確認用に手動実行したい場合は、workflow_dispatchを指定する。\non: workflow_dispatch: 作成したscriptを実行させる。\njobs: notify: runs-on: ubuntu-latest strategy: matrix: python-version: [3.7] steps: - uses: actions/checkout@v2 - name: Set up Python ${{ matrix.python-version }} uses: actions/setup-python@v2 with: python-version: ${{ matrix.python-version }} - name: Install dependencies run: |python -m pip install --upgrade pip if [ -f requirements.txt ]; then pip install -r requirements.txt; fi  - name: Run Main env: APP_GAS_URL: ${{ secrets.APP_GAS_URL }} APP_SLACK_URL: ${{ secrets.APP_SLACK_URL }} run: | python main.py 前日にslackにPOSTした論文と同じものがPOSTされないように、\narxivの各論文の持つid(entry_id)をsave.logというファイル名で書き出して、\n同じリポジトリにpushしておきます。\nファイルの中身と、arxivから取得した論文の差分を取り、slackに送ります。\nGithub Actionsで、自信の変更を自信のリポジトリにpushするのは、以下のようにできる。\n- name: Run Change push run: |s=`git status -s` if [ -z \u0026#34;$s\u0026#34; ]; then exit 0 fi git config --global user.email \u0026#34;workflow@example.com\u0026#34; git config --global user.name \u0026#34;workflow user\u0026#34; git add save.log git commit -m \u0026#34;update save.log\u0026#34; git status git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git "
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/cloud/arxiv-py-lib/",
+                "title": "Cloud Design Pattern",
+                "section": "posts",
+                "date" : "2021-07-23",
+                "body": "この辺読みたい\nhttp://aws.clouddesignpattern.org/index.php/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8\nhttps://docs.microsoft.com/ja-jp/azure/architecture/patterns/\n"
             }
         
     ,
@@ -122,6 +152,26 @@
     ,
         
             {
+                "ref": "https://www.if-blog.site/posts/kubernetes/kubernetes-complete-guide/",
+                "title": "Kubernetes完全ガイド 第２版",
+                "section": "posts",
+                "date" : "2020-09-08",
+                "body": "3.2.3 ローカル kubernetes kind 4.5.8 リソースの状態のチェックと待機 目的の状態になるまで、待機する\nkubectl wait --for=condition=Readey pod/label 5.2.1 PODのデザインパターン "
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/books/an-introductory-book-on-cipher/",
+                "title": "暗号技術入門",
+                "section": "posts",
+                "date" : "2020-09-04",
+                "body": "1.歴史上の暗号 シーザー暗号 一文字ずらすやつ\n単一換字暗号 文字を1対1で対応させて変換する\nエニグマ 対象暗号 パッド暗号 バーナム暗号\n文字列をASCIIでbit化、同じ長さのbit(これが鍵)とのXORを取ることで、暗号化 XORの性質として、A XOR B という処理を行いその結果にさらにXOR Bを行うことでAが得られる、というものがある。 これを利用し、復号化する。 この暗号はブルートフォースアタックで複合可能だが、複合したものが正しいかわからないので解読できない暗号である。\n5.公開鍵暗号 暗号化/復号化\n暗号文 = 平文 ^ E mod N 平文= 暗号文 ^ D mod N  Nを求める(2つの素数 N = p * q) Lを求める (L = lcm(p-1, q-1)) Eを求める (1 \u0026lt; E \u0026lt; L, mod(E, L) = 1) Dを求める (1 \u0026lt; D \u0026lt; L, E*D mod L = 1)  6.ハイブリッド暗号システム 対象暗号と公開鍵暗号で暗号化\n平文を一時的なセッション鍵を用いて対象暗号で暗号化したものとセッション鍵を公開鍵で暗号化したものを結合し暗号文を作成。\n暗号文を分解し、秘密鍵でセッション鍵を複合、セッション鍵を用いて暗号文を複合\nセッション鍵と公開鍵/秘密鍵のバランスが大事。一方が長いなど偏りがあると、攻撃者に推測されやすい。\n7.一方ハッシュ関数 正真性のチェック/改ざんの検出\n弱衝突性: メッセージのハッシュ値から、同じハッシュ値をもつメッセージを見つけ出すこと 強衝突性: 同じハッシュ値をもつ異なるメッセージを見つけ出すこと\n         MD4 128bitのハッシュ値 (強衝突性は突破されている)   MD5 128bitのハッシュ値 (強衝突性は突破されている)   SHA-1 160bitのハッシュ値 (互換性維持以外の目的では非推奨)   SHA-256 256bit   SHA-384 384bit   SHA-512 512bit    8.メッセージの認証 メッセージ認証コード(MAC)を使う\n一方ハッシュ関数を使った方法 メッセージと共有鍵を使ってハッシュ値を計算。このハッシュ値がMAC値となる。 メッセージ認証コードでは共有鍵を持っていない第三者に対する証明が行えない。\n9.デジタル署名 メッセージを秘密鍵で暗号化したものを署名として使う。 メッセージを受け取った人は公開鍵で復号化。 うまく複合化できたら、秘密鍵の持ち主による暗号化がなさせれたと言える。\nメッセージをそのまま暗号化すると、メッセージが長いと不便なので、 メッセージをハッシュ化した後に、暗号化する手法がある。\n別の手法  ElGamal方式 DSA ECDSA Rabin方式  署名に対する攻撃 10.証明書 公開鍵が正しいものか検証\n"
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/github/workflow-dispatch/",
                 "title": "GitHub Actionsを手動実行する",
                 "section": "posts",
@@ -172,6 +222,16 @@
     ,
         
             {
+                "ref": "https://www.if-blog.site/posts/edgwbs/book-storage-start/",
+                "title": "読んだ本をシンプルに管理できるアプリを作った",
+                "section": "posts",
+                "date" : "2019-10-20",
+                "body": ""
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/gatsby/gatsby-intro/",
                 "title": "技術ブログ用にGatsbyを整える",
                 "section": "posts",
@@ -187,6 +247,16 @@
                 "section": "posts",
                 "date" : "2019-10-10",
                 "body": "Firebase Authenticationに続いて、Firebase Hostingも使ってみました。備忘録を残しておきます。\n今回は、Vue.jsをデプロイします。\nFirebase Hostingとは  Firebase Hosting は、ウェブアプリ、静的コンテンツと動的コンテンツ、マイクロサービス向けの高速で安全性の高いホスティングを提供します。\n  Firebase Hosting はデベロッパー向けの、本番環境レベルのウェブ コンテンツ ホスティングです。1 つのコマンドですばやくウェブアプリをデプロイすることができ、静的コンテンツと動的コンテンツの両方をグローバル CDN（コンテンツ配信ネットワーク）に配信できます。Firebase Hosting と Cloud Functions または Cloud Run を併用してマイクロサービスを構築し、Firebase にホスティングすることもできます。\n 引用： https://firebase.google.com/docs/hosting?hl=ja\n無料で手軽にアプリケーションを公開するにはすごく便利という印象。\nFirebaseでは、転送量を超えない限り、複数アプリケーションをデプロイできるので、本番環境だけでなく、テスト環境もほしいという場合には有効かと思います。Herokuの無料枠では起動している時間の制限などで実質１アプリケーションしか動かせませんでした。\nまた、Hostingで利用できる無料のストレージが１GBですが、ブログなどのようにどんどんコンテンツが増えていくサイトでなければ十分な量だと思います。画像などがある場合は、Firebase Storageなどを利用する手もあるかと思います。\n参考\nFirebaseの料金体系\n静的サイトホスティングの為のGCS/GAE/Firebase Hosting比較\nFirebase Hostingを使って公開したアプリはこちら\n三行で読書感想文を書いて、SNSでシェアできるサービスを作った\n準備 デプロイ用のコマンドラインツールをインストールします。\n$ npm install -g firebase-tools 以下のコマンドで、firebaseにログインします。\n$ firebase login プロジェクトで、初めてfirebaseを使う場合には、以下のコマンドでfirebaseを初期化します。\n$ firebase init 初期化すると、firebase.jsonが作成されます。Hostingやstorage、functionsなどのその他のfirebaseの設定を記述します。基本的にはここで生成されたfirebase.jsonを書き換えることなく利用できます。\nデプロイ 生成されたfirebase.jsonにデプロイ用のディレクトリは、publicと設定されているので、publicにアプリをビルドします。 Vue.jsのプロジェクトの場合は、以下のようにビルド。\n$ npm run build public以下に生成された成果物は、以下のコマンドでfirebaseにデプロイすることができます。\n$ firebase deploy 複数サイトをデプロイする 本番環境とテスト環境がほしい場合などには、複数サイトをデプロイしたです。\n(別のアプリをデプロイする場合は、プロジェクト変えるよね？普通？本番/テスト以外にどう使うんだろう??)\nfirebase.jsonのhostingの項目を以下のように書き換えます。\n{ \u0026#34;hosting\u0026#34;: [ { \u0026#34;target\u0026#34;: \u0026#34;env\u0026#34;, // 自分で定義した、一意なアプリの識別子 \u0026#34;public\u0026#34;: \u0026#34;app/public\u0026#34;, // ... }, { \u0026#34;target\u0026#34;: \u0026#34;prod\u0026#34;, // 自分で定義した、一意なアプリの識別子 \u0026#34;public\u0026#34;: \u0026#34;app/public\u0026#34;, // ... } ] } 次に以下のコマンドで、target名とプロジェクトのサイト名を対応付けます。\n# $ firebase target:apply hosting target-name resource-name $ firebase target:apply hosting env myapp-blog $ firebase target:apply hosting prod myapp-blog あとは、以下のコマンドでデプロイします。\n# $ firebase deploy --only hosting:target-name $ firebase deploy --only hosting:env $ firebase deploy --only hosting:prod ドメインを設定 Hostingのサイトの管理、「ドメインを接続」からドメインが設定できます。\n手順どおりで簡単に行なえます。\n証明書が入るまでに少し時間がかかったので気長に待ちましょう。\nちなみに、CNAMEでいけるかと思ったけど無理でした。\nまとめ Firebase Hostingを使って、アプリケーションのデプロイを行いました。\nデプロイは驚くほど簡単でした。ローカルで動いているアプリケーションをそのまま、デプロイできるのが良かったです。\n"
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/python/test/",
+                "title": "test",
+                "section": "posts",
+                "date" : "2019-10-09",
+                "body": "test0 aaaaa\ntest1 $\\alpha$\n$\\beta$\n$a^2 + b^2 = c^2$\n$$ a^2 + b^2 = c^2 $$\ntest3 $ hoge -t hoge subsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsub\ntest4 subsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsub\ntest2 texttexttexttexttexttext\ntexttexttexttexttexttextinlinetexttext\n// In your gatsby-config.js plugins: [ { resolve: `gatsby-transformer-remark`, options: { plugins: [ `gatsby-remark-prismjs`, ] } } ] var hoge = 1; function () { var huga = 2; } def main(): pass if __name__ == \u0026#34;__main__\u0026#34;: main() \u0026lt;div\u0026gt;hoge\u0026lt;/div\u0026gt; not function hoge() { huga() } "
             }
         
     ,
@@ -322,6 +392,16 @@
     ,
         
             {
+                "ref": "https://www.if-blog.site/posts/nlp/char-to-sentences-fractal/",
+                "title": "文字から文章へのフラクタル性",
+                "section": "posts",
+                "date" : "2019-09-24",
+                "body": "文を生成させたいし、文の集合である文章を書かせたいのだが、そのポエム\n文字の集まりが単語になり、単語の集まりが文になり、文の集まりが文章になる。\n文字→単語→文→文章\nようは文字から文章間にはフラクタル性のようなものがあると僕は思っている。\nなぜこのようなことを考える必要があるかというと、\n文字、単語、文、文章はそれぞれベクトル化される必要がある。\nベクトル化については、ニューラルネットワークで扱えるのが固定次元のベクトルだからである。\nおそらく、人間の脳もそうなっているだろう。\nただ、反映されるのがnステップまでというような束縛条件はあるだろう。\nすなわち、t番目のある1文が得られているとして、t番目からt-n番目の文章によって感情が生成される\nというようなものである。例えば、人間の場合も現在読んでる文章\n"
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/nlp/char-vec/",
                 "title": "文字をベクトル化する",
                 "section": "posts",
@@ -357,6 +437,36 @@
                 "section": "posts",
                 "date" : "2019-09-23",
                 "body": "久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。\nbefore 認証\n!apt-get install -y -qq software-properties-common python-software-properties module-init-tools !add-apt-repository -y ppa:alessandro-strada/ppa 2\u0026gt;\u0026amp;1 \u0026gt; /dev/null !apt-get update -qq 2\u0026gt;\u0026amp;1 \u0026gt; /dev/null !apt-get -y install -qq google-drive-ocamlfuse fuse from google.colab import auth auth.authenticate_user() from oauth2client.client import GoogleCredentials creds = GoogleCredentials.get_application_default() import getpass !google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret} \u0026lt; /dev/null 2\u0026gt;\u0026amp;1 | grep URL vcode = getpass.getpass() !echo {vcode} | google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret} マウント\n!mkdir -p drive !google-drive-ocamlfuse drive after from google.colab import drive drive.mount(\u0026#39;/gdrive\u0026#39;) "
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase/",
+                "title": "Firebaseを使ってwebアプリを公開した",
+                "section": "posts",
+                "date" : "2019-09-22",
+                "body": "firebaseのみで三行で読書感想文をSNSにシェアできるwebアプリケーションを作ってみました。\n画像\n構築の備忘録を残しておきます。\n今回使ったのは、以下のサービス\n hosting authentication storage database function  authenticateは以前使ったことがあり、大変便利だったので他のサービスを使ってみようと言うのが動機です。\nロジックの概要  vuejsで本の感想を入力するフォームを作り、プレビュー画面を表示 表示されたhtmlを画像に変換 画像をストレージに保存 ストレージのURLとその他諸々をDBに保存 Hostingだけでは、TwitterのOGPに対応できなかったので、Twitterのクローラーの時は、 OGP用のヘッダーをつけたHTML、そうでない時はHostingのページを表示する  Authentication Google、Twitterを用いてのログインができる様にします。\nfirebase\nHosting Vuejs(typescript)をHostingで配信します。\nまず、それっぽくコードを書きます。\nCSSのフレームワークはマテリアルデザインのVuetifyを使いました。\n"
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/edgwbs/book-reports-storage-firestore/",
+                "title": "Vue.jsからFirebase StorageとDatabaseを使う",
+                "section": "posts",
+                "date" : "2019-09-22",
+                "body": "はじめに Authentication、Hostingに続いて、Vue.jsからFirebaseのCloud Storage、FireStoreをつかってみました。\nそれぞれの、簡単な使い方をまとめておきます。すべて同じプロジェクト上のものを利用するので、連携はとても楽でした。\nざっくりとした流れは以下になります。\n画像\nVue.jsで画像を生成、Cloud Storageに保存、保存したURLを取得し、URLやその他の情報をFireStoreに保存という流れです。\nCloud Storage FireStore "
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/emacs/emacs-keybind/",
+                "title": "keybind",
+                "section": "posts",
+                "date" : "2019-03-23",
+                "body": "(define-key KEYMAP KEY \u0026#39;COMMAND) KEYMAPにglobal-mapを指定したものは、以下と同義となる。\n(global-set-key KEY COMMAND) "
             }
         
     ,
@@ -507,6 +617,26 @@
                 "section": "posts",
                 "date" : "2018-10-16",
                 "body": "GitHub Pagesを使ってHugoを公開する手順をメモ\nやりたいこととしては、\n Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定  の3つです。\nGitHub Pagesで公開 まずは、Hugoのプロジェクトルートをgitで管理します。\nGitHub Pagesで公開するために、GitHubのリポジトリの設定からPagesで公開するための設定を行います。このとき、そのまま公開すると、Hugoをビルドして生成されるファイルはプロジェクトルート直下のpublic以下に生成されるので、\nhttps://{ユーザー名}.github.io/{リポジトリ名}/{public} というように、URLにpublicが付いてしまいます。これは嫌なので、git subtreeを使います。\ngh-pagesという新しいブランチを作成し、public以下のファイルのみをpushしています。github pagesではgh-pagesを公開するよう設定します。\n$ git subtree push --prefix public/ . gh-pages $ git push origin gh-pages:gh-pages GitHubから独自ドメインの設定をすると、ブランチgh-pagesにCNAMEファイルが追加、commitされるのですが、この変更をローカルのmasterに取り込めないという問題が発生しました。このため、ローカルで記事を追加したときなど、non-fast-forwardでpush、pullもできなくなりました。そこで、しょうがなくmaster側にローカルからCNAMEファイルを追加しました。\nそれでもうまくいかないときは、エラー文のcommitのハッシュを使って無理やりpushしてとりあえず回避してます。\n例\n$ git subtree push --prefix public/ . gh-pages git push using: . gh-pages To . 59 (58) ! [rejected] 95625bda7b4247ff0d05b2e76c8db1cbb7e87dad -\u0026gt; gh-pages (non-fast-forward) error: failed to push some refs to \u0026#39;.\u0026#39; hint: Updates were rejected because a pushed branch tip is behind its remote hint: counterpart. Check out this branch and integrate the remote changes hint: (e.g. \u0026#39;git pull ...\u0026#39;) before pushing again. hint: See the \u0026#39;Note about fast-forwards\u0026#39; in \u0026#39;git push --help\u0026#39; for details. $ git push origin 95625bda7b4247ff0d05b2e76c8db1cbb7e87dad:gh-pages 独自ドメインの設定 今回は、お名前.comでドメインを取得しました。お名前.comでDNSの設定をします。\nGitHub Pagesのドメインは\nhttps://{ユーザー名}.github.io/{リポジトリ名} なので、取得したドメインでGitHub PagesのドメインがひけるようにCNAMEの設定を行います。\nGitHub側では、リポジトリの設定からCustom domainを取得したドメインで設定します。Custom domainを設定すると、Enforce HTTPSにチェックを入れることができるので、設定するとhttpsで通信が行えるようになります。\n"
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/hugo/katex-introduction/",
+                "title": "KaTeXを使ってみる",
+                "section": "posts",
+                "date" : "2018-10-16",
+                "body": "これまでMathJaxを使っていたが、描画が遅いということもあり、KaTeXを使ってみることにしました。 KaTeX:https://katex.org/\n以下を加えるだけでおk\n\u0026lt;link rel=\u0026#34;stylesheet\u0026#34; href=\u0026#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css\u0026#34; /\u0026gt; \u0026lt;script src=\u0026#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js\u0026#34;\u0026gt;\u0026lt;/script\u0026gt; \u0026lt;script src=\u0026#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js\u0026#34;\u0026gt;\u0026lt;/script\u0026gt; \u0026lt;script\u0026gt;$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: \u0026#34;[[\u0026#34;, right: \u0026#34;]]\u0026#34;, display: true},{left: \u0026#34;$\u0026#34;, right: \u0026#34;$\u0026#34;, display: false}]})});\u0026lt;/script\u0026gt; MathJaxで表示していた数式も無事表示されてとりあえず問題なしです。 実際に入れてみた感じやっぱり早い。\n参考 KaTeXによる数式の表示:https://sekika.github.io/2017/05/01/katex-equation/ \\\nKaTeXを導入しました:http://nshi.jp/contents/other/katex/ \\\nKaTeXのデモ:http://sixthform.info/katex/examples/demo.html\n"
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/others/ga-define/",
+                "title": "GoogleAnalyticsのPV、セッション、ユーザーの定義",
+                "section": "posts",
+                "date" : "0001-01-01",
+                "body": "ユーザー PV:ページ毎に閲覧された回数 セッション：30分以上の間隔をあけた操作、日付またぎ、別の参照元 ユーザー：cookieで保持\nGDPRにより以下のものから保持期間を選択できる\n 14 か月 26 か月(デフォルト) 38 か月 50 か月 自動的に期限切れにならない  集客 行動 コンバージョン "
             }
         
     ,

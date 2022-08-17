@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Hugging Faceのtokenizerで迷ったのでまとめておく</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="tokeninzerとかencodeとか色々合って毎回調べることになるのでメモ。
+以下の日本語tokenizerを使わせてもらう。
+tokenizer = T5Tokenizer.from_pretrained(&amp;#34;sonoisa/t5-base-japanese&amp;#34;) よく見る書き方 " />
+  
+
+
+<meta name="generator" content="Hugo 0.83.1" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Hugging Faceのtokenizerで迷ったのでまとめておく
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2022-08-16
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>tokeninzerとかencodeとか色々合って毎回調べることになるのでメモ。</p>
+<p>以下の日本語tokenizerを使わせてもらう。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">tokenizer <span style="color:#ff79c6">=</span> T5Tokenizer<span style="color:#ff79c6">.</span>from_pretrained(<span style="color:#f1fa8c">&#34;sonoisa/t5-base-japanese&#34;</span>)
+</code></pre></div><h2 id="よく見る書き方">よく見る書き方</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
+tokenizer(sentence)
+
+<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]}
+</code></pre></div><p>input_idsとmaskどっちも簡単にとれる</p>
+<h2 id="encode">encode</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
+tokenizer<span style="color:#ff79c6">.</span>encode(sentence)
+
+<span style="color:#ff79c6">&gt;&gt;</span> [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>]
+</code></pre></div><p>input_idsだけがとれる</p>
+<h2 id="convert_tokens_to_ids">convert_tokens_to_ids</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
+splited <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>tokenize(sentence)
+ 
+ <span style="color:#ff79c6">&gt;&gt;</span> [<span style="color:#f1fa8c">&#39;▁&#39;</span>, <span style="color:#f1fa8c">&#39;私は&#39;</span>, <span style="color:#f1fa8c">&#39;走り&#39;</span>, <span style="color:#f1fa8c">&#39;ます&#39;</span>, <span style="color:#f1fa8c">&#39;。&#39;</span>]
+
+ 
+tokenizer<span style="color:#ff79c6">.</span>convert_tokens_to_ids(splited)
+ 
+<span style="color:#ff79c6">&gt;&gt;</span>  [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>]
+</code></pre></div><p>分かち書きしてからidにする</p>
+<h2 id="encode_plus">encode_plus</h2>
+<p>tokeninzerの<code>__call__</code>と同じ</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
+tokenizer<span style="color:#ff79c6">.</span>encode_plus(sentence)
+
+<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]}
+</code></pre></div><h2 id="batch_encode_plus">batch_encode_plus</h2>
+<p>そのまま、batchに対応</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
+tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([sentence, sentence])
+
+<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [[<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>]], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]]}
+</code></pre></div><h2 id="max_length-paddingとか">max_length, paddingとか</h2>
+<p><code>max_lenght</code>と<code>padding</code>が指定できる</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
+tokenizer(sentence, max_length<span style="color:#ff79c6">=</span><span style="color:#bd93f9">20</span>, truncation<span style="color:#ff79c6">=</span>True, padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;max_length&#34;</span>)
+
+<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]}
+</code></pre></div><p>paddingのデフォルトはpaddingしないっぽい(padding=&ldquo;do_not_pad&rdquo;)</p>
+<p><a href="https://github.com/huggingface/transformers/blob/v4.21.1/src/transformers/utils/generic.py#L255-L263">https://github.com/huggingface/transformers/blob/v4.21.1/src/transformers/utils/generic.py#L255-L263</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">//</span> 最大長にあわせてpadding
+tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([<span style="color:#f1fa8c">&#34;私は今日も走ります。&#34;</span>, <span style="color:#f1fa8c">&#34;私は走る。&#34;</span>], padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;longest&#34;</span>)
+
+<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [[<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">4634</span>, <span style="color:#bd93f9">28</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">9050</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]]}
+
+
+<span style="color:#ff79c6">//</span> max_lengthにあわせてpadding
+tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([<span style="color:#f1fa8c">&#34;私は今日も走ります。&#34;</span>, <span style="color:#f1fa8c">&#34;私は走る。&#34;</span>], padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;max_length&#34;</span>, max_length<span style="color:#ff79c6">=</span><span style="color:#bd93f9">15</span>)
+
+<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [[<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">4634</span>, <span style="color:#bd93f9">28</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>], [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">9050</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>], [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]]}
+
+
+<span style="color:#ff79c6">//</span> default paddingしない
+tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([<span style="color:#f1fa8c">&#34;私は今日も走ります。&#34;</span>, <span style="color:#f1fa8c">&#34;私は走る。&#34;</span>])
+
+<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [[<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">4634</span>, <span style="color:#bd93f9">28</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">9050</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>]], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]]}
+</code></pre></div><h2 id="メモ">メモ</h2>
+<p>コード見てて気付いたけど、pythonでabstract classのmethodの実装を強制させるパターンってこんな感じで書くんだという発見が合ったのでメモ。（）普段python書かないからあぁーとなった。）</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">PreTrainedTokenizerBase</span>():
+	<span style="color:#ff79c6">def</span> <span style="color:#50fa7b">encode_plus</span>(self, <span style="color:#ff79c6">...</span>):
+		<span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>_encode_plus()
+		
+		
+	<span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_encode_plus</span>(self, <span style="color:#ff79c6">...</span>):
+        <span style="color:#ff79c6">raise</span> NotImplementedError
+		
+		
+<span style="color:#ff79c6">class</span> <span style="color:#50fa7b">PreTrainedTokenizer</span>(PreTrainedTokenizerBase):
+	<span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_encode_plus</span>(self,<span style="color:#ff79c6">...</span>):
+		<span style="color:#ff79c6">...</span>
+</code></pre></div>
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/huggingface-conv/">Hugging Faceのpipelineで会話モデルを動かす</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-doc/">Hugging Face Transformersのドキュメント読んだ</a></li>
+    
+      <li><a href="/posts/nlp/char-vec/">文字をベクトル化する</a></li>
+    
+      <li><a href="/posts/neuralnet/flax-jax/">Flaxに入門してみる</a></li>
+    
+      <li><a href="/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/">End-to-End Text Classification via Image-basedEmbedding using Character-level Networks</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2022
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

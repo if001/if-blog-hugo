@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-<title>hugo</title>
+<title>huggingface</title>
 
   
     
@@ -141,7 +141,7 @@
               
                 <h1 style="font-size:2em;">
                   <i class="fas fa-tag" style="margin-right:10px"></i
-                  >hugo
+                  >huggingface
                 </h1>
               
 
@@ -163,19 +163,18 @@
       
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/">
+  <a href="https://www.if-blog.site/posts/nlp/huggingface-tokenizer/">
     <h2 class="post-title">
-      Hugoの記事に画像を載せる
+      Hugging Faceのtokenizerで迷ったのでまとめておく
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
-画像を配置するディクトリを以下のように作っておく。
-{root}/content/post/images/ 以下のように記述すると表示できる。
-{{&amp;lt; figure src=&amp;quot;../../images/test.</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/" class="post-read-more"></a>
+    <p>tokeninzerとかencodeとか色々合って毎回調べることになるのでメモ。
+以下の日本語tokenizerを使わせてもらう。
+tokenizer = T5Tokenizer.from_pretrained(&amp;#34;sonoisa/t5-base-japanese&amp;#34;) よく見る書き方 </p>
+    <a href="https://www.if-blog.site/posts/nlp/huggingface-tokenizer/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -183,14 +182,20 @@
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
+  >&nbsp;2022-08-16
   
 </div>
 
@@ -199,18 +204,20 @@
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/">
+  <a href="https://www.if-blog.site/posts/nlp/huggingface-conv/">
     <h2 class="post-title">
-      Hugoの記事を更新順にソートする
+      Hugging Faceのpipelineで会話モデルを動かす
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>Hugoの記事を更新順にソートするメモです。
-まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、Lastmodで更新時刻が取得できるのでそれを使います。
-そのほかにもgitから情報が取得できます。https:</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/" class="post-read-more"></a>
+    <p>Hugging Faceのpipelineを’使って会話モデルを動かしたのでメモ。
+あまり日本語記事がなかったので残しておく。
+huggingfaceについてはこっちの記事を参照
+https://www.if-blog.site/posts/nlp/huggingface-doc/
+pipeline</p>
+    <a href="https://www.if-blog.site/posts/nlp/huggingface-conv/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -218,14 +225,20 @@
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
+  >&nbsp;2022-05-05
   
 </div>
 
@@ -234,19 +247,19 @@
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-git-pages/">
+  <a href="https://www.if-blog.site/posts/nlp/huggingface-doc/">
     <h2 class="post-title">
-      HugoをGitHub Pagesで公開する
+      Hugging Face Transformersのドキュメント読んだ
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>GitHub Pagesを使ってHugoを公開する手順をメモ
-やりたいこととしては、
- Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定  の3つです。
-GitHub Pagesで公開 まずは、Hugoのプロジェク</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-git-pages/" class="post-read-more"></a>
+    <p>Hugging FaceなのかTransformersなのか呼び方がわからん。
+BERTやGPT-2などの様々なモデルが扱えるライブラリ
+事前学習済のモデルとタスクが用意されており、そのままモデルを使ったりFine-Tuningが簡単にできる。
+https://huggingface.co/docs</p>
+    <a href="https://www.if-blog.site/posts/nlp/huggingface-doc/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -254,51 +267,20 @@ GitHub Pagesで公開 まずは、Hugoのプロジェク</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/katex-introduction/">
-    <h2 class="post-title">
-      KaTeXを使ってみる
-      
-      <span class="draft-tag">(Draft)</span>
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>これまでMathJaxを使っていたが、描画が遅いということもあり、KaTeXを使ってみることにしました。 KaTeX:https://katex.org/
-以下を加えるだけでおk
-&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdnjs.cl</p>
-    <a href="https://www.if-blog.site/posts/hugo/katex-introduction/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
+  >&nbsp;2021-12-09
   
 </div>
 
@@ -309,17 +291,6 @@ GitHub Pagesで公開 まずは、Hugoのプロジェク</p>
     </div>
 
     
-    
-      <ul class="pager">
-        
-          <li class="previous">
-            <a href="https://www.if-blog.site/tags/hugo/page/1/"
-              ><i class="fas fa-chevron-left"></i> Prev</a
-            >
-          </li>
-        
-        
-      </ul>
     
   </div>
 
