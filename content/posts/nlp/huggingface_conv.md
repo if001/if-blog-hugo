@@ -1,7 +1,7 @@
 ---
 title: "Hugging Faceのpipelineで会話モデルを動かす"
 slug: "huggingface-conv"
-tags: ["nlp","deeplearning", "python"]
+tags: ["nlp","deeplearning", "python", "huggingface"]
 date: "2022-05-05T09:00:00+09:00"
 draft: false
 ---
@@ -137,5 +137,6 @@ bot >> I'm not sure if I can afford to buy a house.
 ## まとめ
 `Conversation`クラスを使うと簡単にpipelineで会話モデルを試せて良い感じ。
 
-日本語モデルでいくつか試したけど、この方法だとうまくいかなかった。
-別のモデルを探すか、会話タスクを学習させるか...
+日本語モデルだと会話タスクは用意されていないようだったので、fine tuningするしかないみたい
+
+

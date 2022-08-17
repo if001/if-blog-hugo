@@ -1,7 +1,7 @@
 ---
 title: "Hugging Face Transformersのドキュメント読んだ"
 slug: "huggingface-doc"
-tags: ["nlp","deeplearning", "python"]
+tags: ["nlp","deeplearning", "python", "huggingface"]
 date: "2021-12-09T09:00:00+09:00"
 draft: false
 ---
