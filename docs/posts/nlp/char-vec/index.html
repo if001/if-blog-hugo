@@ -74,7 +74,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.68.3" />
   </head>
   <body>
     
@@ -288,7 +288,7 @@ val_loss:0.073542
 <p><img src="../../../images/char_vec/decoded_char.png" alt="decoded_char"></p>
 <p>左が教師データ、右がdecodeされた文字となる。auto-encoderなのでぼやけているのはしょうがないが割と綺麗にデコードできている。ただし、画数の多い文字となるとやはりぼやけて元の文字がわからない。この辺は、モデルや学習のパラメタを調整することでも少し改善されると思う。</p>
 <p>生成された特徴量も確認しておく。<br>
-以下に、&lsquo;寂&rsquo;, &lsquo;,&rsquo;, &lsquo;ッ&rsquo;, &lsquo;鏡&rsquo;, &lsquo;奸&rsquo;, &lsquo;Ｐ&rsquo;, &lsquo;跳&rsquo;, &lsquo;・&rsquo;, &lsquo;“&rsquo;, &lsquo;ょ&rsquo;の記号を含む10文字を与えた際の特徴量を図示する。
+以下に、&lsquo;寂&rsquo;, &lsquo;,', &lsquo;ッ&rsquo;, &lsquo;鏡&rsquo;, &lsquo;奸&rsquo;, &lsquo;Ｐ&rsquo;, &lsquo;跳&rsquo;, &lsquo;・', &lsquo;“', &lsquo;ょ'の記号を含む10文字を与えた際の特徴量を図示する。
 特徴量は、1文字あたり(4,4,8)次元となるので、4×4の画像を8枚横に並べたものを表示している。</p>
 <p><img src="../../../images/char_vec/hidden_dim.png" alt="hidden_dim"></p>
 <p>図をみると、文字ごとの偏りはなく学習できているように見える。</p>
@@ -301,15 +301,15 @@ val_loss:0.073542
   <h2>See Also</h2>
   <ul>
     
+      <li><a href="/posts/nlp/start-xglm-t5/">xglmをquick start</a></li>
+    
+      <li><a href="/posts/nlp/start-flan-t5/">flan_t5をquick start</a></li>
+    
       <li><a href="/posts/nlp/huggingface-tokenizer/">Hugging Faceのtokenizerで迷ったのでまとめておく</a></li>
     
       <li><a href="/posts/nlp/huggingface-conv/">Hugging Faceのpipelineで会話モデルを動かす</a></li>
     
       <li><a href="/posts/nlp/huggingface-doc/">Hugging Face Transformersのドキュメント読んだ</a></li>
-    
-      <li><a href="/posts/nlp/diversity-neural-conversation-model/">ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数</a></li>
-    
-      <li><a href="/posts/neuralnet/flax-jax/">Flaxに入門してみる</a></li>
     
   </ul>
 
@@ -339,7 +339,7 @@ val_loss:0.073542
     <div class="credits copyright">
       <a href="https://www.if-blog.site/pages/about">if_004</a>
       &nbsp;&copy;
-      2022
+      2023
       
         &nbsp;/&nbsp;
         <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>

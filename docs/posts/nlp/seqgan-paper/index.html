@@ -76,7 +76,7 @@ SeqGANの論文を読んだのでまとめておきます。実装を行おう�
   
 
 
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.68.3" />
   </head>
   <body>
     
@@ -171,7 +171,7 @@ SeqGANの論文を読んだのでまとめておきます。実装を行おう�
             <a href="https://www.if-blog.site/tags/nlp/">nlp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/seqgan/">SeqGAN</a
+            <a href="https://www.if-blog.site/tags/seqgan/">seqgan</a
             >&nbsp;
           
             <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a
@@ -209,7 +209,7 @@ SeqGANの論文を読んだのでまとめておきます。実装を行おう�
 <p>そこで、生成モデルに強化学習を用いたGANであるSeqGANを提案する。</p>
 <h2 id="sequence-generative-adversarial-nets">Sequence Generative Adversarial Nets</h2>
 <p>生成モデル$G_ \theta $はパラメータを$\theta$として、$Y_ {1:T} = (y_ 1, y_ 2 , y_ T)$,$y_ t \in \mathcal Y$ を生成するために学習する。ここで、$\mathcal Y$はvocabularyを表す。</p>
-<p>学習には、強化学習を用いる。時刻$t$において、状態$s$は現在の単語列$(y_ {1},y_ {2}, \ldots ,y_ {t-1})$を表し、行動$a$により次の単語$y_ t$を選択する。このため、方策モデル$G_ {\theta} (y_ {t}|Y_ {1:t-1})$ は確率的である。一方、行動を選択したあとでは、状態遷移は決定的である。つまり、もし現在の状態が$s=Y_ {1:t-1}$で行動が$a=y_ {t}$ならば、次の状態$s'=Y_ {1:t}$に対して、$\delta^a_ {s,s'}=1$である。そうでないなら、次の状態$s''$に対して$\delta^a_ {s,s''}=0$である。</p>
+<p>学習には、強化学習を用いる。時刻$t$において、状態$s$は現在の単語列$(y_ {1},y_ {2}, \ldots ,y_ {t-1})$を表し、行動$a$により次の単語$y_ t$を選択する。このため、方策モデル$G_ {\theta} (y_ {t}|Y_ {1:t-1})$ は確率的である。一方、行動を選択したあとでは、状態遷移は決定的である。つまり、もし現在の状態が$s=Y_ {1:t-1}$で行動が$a=y_ {t}$ならば、次の状態$s'=Y_ {1:t}$に対して、$\delta^a_ {s,s&rsquo;}=1$である。そうでないなら、次の状態$s'&lsquo;$に対して$\delta^a_ {s,s&rsquo;'}=0$である。</p>
 <p>加えて、パラメーター$\phi$を持つ識別モデル$D_ \phi$は、生成モデル$G_ \theta$を学習しながら正解を識別する。識別モデル$D_ \phi$は、本物の文章かどうかを確率的に識別する。</p>
 <p>識別モデル$D_ \phi$は、正解文章と生成モデル$G_ \theta$から生成される不正解の文章を用いて学習する。同時に、生成モデル$G_ \theta$は、期待値と$D_ \phi$から得られる報酬に基づくMC searchにより学習する。</p>
 <h2 id="seqgan-via-policy-gradient">SeqGAN via Policy Gradient</h2>
@@ -302,7 +302,7 @@ $$ \varepsilon_ {1:T} = x_ 1 \otimes	 x_ 2 \otimes \dots \otimes x_ t$$</p>
     <div class="credits copyright">
       <a href="https://www.if-blog.site/pages/about">if_004</a>
       &nbsp;&copy;
-      2022
+      2023
       
         &nbsp;/&nbsp;
         <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>

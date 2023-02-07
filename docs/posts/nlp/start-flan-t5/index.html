@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>flan_t5をquick start</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="T5を強化したモデルであるFlan-t5を動かしてみます。
+FlanはFinetunedLAnguage Netの略。
+ちなみに、Flanはカスタードプリンとかプリンの意味らしい。だからプリンのイラストあったのか
+https://huggingface.co/docs/transformers/mo" />
+  
+
+
+<meta name="generator" content="Hugo 0.68.3" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		flan_t5をquick start
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-02-04
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>T5を強化したモデルであるFlan-t5を動かしてみます。</p>
+<p>FlanはFinetunedLAnguage Netの略。</p>
+<p>ちなみに、Flanはカスタードプリンとかプリンの意味らしい。だからプリンのイラストあったのか</p>
+<p><a href="https://huggingface.co/docs/transformers/model_doc/flan-t5">https://huggingface.co/docs/transformers/model_doc/flan-t5</a></p>
+<p>ライブラリはこの辺を入れておく</p>
+<pre><code>!pip install torch transformers sentencepiece
+</code></pre><h2 id="modelのロード">modelのロード</h2>
+<p>google colaboratoryでは、xlは無理だったので、largeを試す。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> T5Tokenizer, AutoModelForSeq2SeqLM
+
+<span style="color:#6272a4"># model_name = &#34;google/flan-t5-small&#34;</span>
+model_name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;google/flan-t5-large&#34;</span>
+<span style="color:#6272a4"># model_name = &#34;google/flan-t5-xl&#34;</span>
+
+tokenizer <span style="color:#ff79c6">=</span> T5Tokenizer<span style="color:#ff79c6">.</span>from_pretrained(model_name)
+model <span style="color:#ff79c6">=</span> AutoModelForSeq2SeqLM<span style="color:#ff79c6">.</span>from_pretrained(model_name)
+</code></pre></div><h2 id="生成タスク">生成タスク</h2>
+<p>色々と生成してみる</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">gen</span>(prompt):
+    <span style="color:#8be9fd;font-style:italic">input</span> <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>encode(prompt, return_tensors<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;pt&#34;</span>)
+    generate_kwargs  <span style="color:#ff79c6">=</span> {
+            <span style="color:#f1fa8c">&#39;top_p&#39;</span>: <span style="color:#bd93f9">0.95</span>,
+            <span style="color:#f1fa8c">&#39;top_k&#39;</span>: <span style="color:#bd93f9">50</span>,
+            <span style="color:#f1fa8c">&#39;do_sample&#39;</span>:True
+    }
+    output <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>generate(<span style="color:#8be9fd;font-style:italic">input</span>, <span style="color:#ff79c6">**</span>generate_kwargs)
+    result <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>batch_decode(output, skip_special_tokens<span style="color:#ff79c6">=</span>True)
+    <span style="color:#ff79c6">print</span>(result)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;&#34;A step by step recipe to make a sandwich.&#34;&#34;&#34;</span>
+gen(prompt)
+</code></pre></div><pre><code>&gt;&gt; ['Cut a hamburger in half. Lay a tortilla open on the serving dish. Fill it']
+</code></pre><p>なんとなくあってそう。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;What is the highest mountain in the world?&#34;</span>
+gen(prompt)
+</code></pre></div><pre><code>&gt;&gt; ['mount everest']
+</code></pre><p>これは大丈夫</p>
+<h2 id="翻訳タスク">翻訳タスク</h2>
+<p>multi languageらしいので試してみる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;&#34;Translate to German: Good morning&#34;&#34;&#34;</span>
+get(prompt)
+</code></pre></div><pre><code>&gt;&gt; ['Der frankreichischer Sonntag']
+</code></pre><p>googleの翻訳によると、<code>The French Sunday</code> らしい。なんかおしい。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Translate to English: Guten Morgen&#34;</span>
+get(prompt)
+</code></pre></div><pre><code>&gt;&gt; ['Good morning!']
+</code></pre><p>逆はいける、と</p>
+<h2 id="翻訳タスク2">翻訳タスク2</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Translate to Japanese: Good morning&#34;</span>
+gen(prompt)
+</code></pre></div><pre><code>&gt;&gt; ['']
+</code></pre><p>日本語はしゃべれないっぽい</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Translate to English: おはようございます&#34;</span>
+gen(prompt)
+</code></pre></div><pre><code>&gt;&gt; ['No']
+</code></pre><p>逆はなんか拒否されるｗ</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/start-xglm-t5/">xglmをquick start</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-tokenizer/">Hugging Faceのtokenizerで迷ったのでまとめておく</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-conv/">Hugging Faceのpipelineで会話モデルを動かす</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-doc/">Hugging Face Transformersのドキュメント読んだ</a></li>
+    
+      <li><a href="/posts/nlp/char-vec/">文字をベクトル化する</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2023
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

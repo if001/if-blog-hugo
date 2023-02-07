@@ -76,7 +76,7 @@ Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がた�
   
 
 
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.68.3" />
   </head>
   <body>
     
@@ -168,7 +168,7 @@ Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がた�
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/webapp/">WebApp</a
+            <a href="https://www.if-blog.site/tags/webapp/">webapp</a
             >&nbsp;
           
             <a href="https://www.if-blog.site/tags/firebase/">firebase</a
@@ -203,7 +203,7 @@ Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がた�
 </code></pre></div><p>firebaseの認証情報は、以下のドキュメントを参考に取得しておきます。<br>
 <a href="https://firebase.google.com/docs/auth/web/password-auth?authuser=1">https://firebase.google.com/docs/auth/web/password-auth?authuser=1</a></p>
 <p><code>src/main.ts</code>にfirebaseをimportし、上記で取得した認証情報を貼り付けます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">import</span> firebase <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;firebase/app&#39;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">import</span> firebase from <span style="color:#f1fa8c">&#39;firebase/app&#39;</span>;
 
 <span style="color:#ff79c6">const</span> fireBaseConfig <span style="color:#ff79c6">=</span> {
   apiKey<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;*****&#39;</span>,
@@ -220,8 +220,8 @@ firebase.initializeApp(fireBaseConfig);
 <p>Googleなどのアカウントでログインしたい場合は、あらかじめfirebaseから認証を許可するよう設定しておく必要があります。</p>
 <h4 id="signin-with-emailpassword">signIn with email+password</h4>
 <p>コンポーネントにfirebaseのログイン画面を作ります。以下はその例です。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">import</span> {Component, Vue} <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;vue-property-decorator&#39;</span>;
-<span style="color:#ff79c6">import</span> firebase <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;firebase/app&#39;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">import</span> {Component, Vue} from <span style="color:#f1fa8c">&#39;vue-property-decorator&#39;</span>;
+<span style="color:#ff79c6">import</span> firebase from <span style="color:#f1fa8c">&#39;firebase/app&#39;</span>;
 
 <span style="color:#8be9fd;font-style:italic">@Component</span>
 <span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> <span style="color:#ff79c6">class</span> Home <span style="color:#ff79c6">extends</span> Vue {
@@ -233,7 +233,7 @@ firebase.initializeApp(fireBaseConfig);
     firebase.auth().signInWithEmailAndPassword(<span style="color:#ff79c6">this</span>.email, <span style="color:#ff79c6">this</span>.password)
             .then((res: <span style="color:#8be9fd">firebase.auth.UserCredential</span>) <span style="color:#ff79c6">=&gt;</span> {
               <span style="color:#ff79c6">if</span> (res.user <span style="color:#ff79c6">===</span> <span style="color:#ff79c6">null</span>) {
-                <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> Promise&lt;<span style="color:#ff79c6">string</span>&gt;((_, reject) <span style="color:#ff79c6">=&gt;</span> reject(<span style="color:#f1fa8c">&#39;user not found&#39;</span>));
+                <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> Promise<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">string</span><span style="color:#ff79c6">&gt;</span>((_, reject) <span style="color:#ff79c6">=&gt;</span> reject(<span style="color:#f1fa8c">&#39;user not found&#39;</span>));
               }
               <span style="color:#ff79c6">return</span> res.user.getIdToken();
             })
@@ -251,8 +251,8 @@ firebase.initializeApp(fireBaseConfig);
 <p><a href="https://firebase.google.com/docs/reference/js/firebase.User.html#getidtoken">https://firebase.google.com/docs/reference/js/firebase.User.html#getidtoken</a></p>
 <h4 id="signin-with-googlepopup">signIn with Google(popup)</h4>
 <p>ログイン方法には、Popupで別ウィンドウが開きログインを行う方法とリダイレクトを用いた方法があります。 Googleアカウントを使いpopupでログインしたい場合は、以下のようにします。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">  <span style="color:#ff79c6">import</span> {Component, Vue} <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;vue-property-decorator&#39;</span>;
-  <span style="color:#ff79c6">import</span> firebase <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;firebase/app&#39;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">  <span style="color:#ff79c6">import</span> {Component, Vue} from <span style="color:#f1fa8c">&#39;vue-property-decorator&#39;</span>;
+  <span style="color:#ff79c6">import</span> firebase from <span style="color:#f1fa8c">&#39;firebase/app&#39;</span>;
   
   <span style="color:#ff79c6">private</span> provider <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> firebase.auth.GoogleAuthProvider();
   
@@ -402,7 +402,7 @@ log.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;V
     <div class="credits copyright">
       <a href="https://www.if-blog.site/pages/about">if_004</a>
       &nbsp;&copy;
-      2022
+      2023
       
         &nbsp;/&nbsp;
         <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>

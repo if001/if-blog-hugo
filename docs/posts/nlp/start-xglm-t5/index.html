@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>xglmをquick start</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="多言語モデルであるxglmを動かしてみます。
+最も大きいもので7.5Bのparameterを持つ。
+同等のサイズのGPT3のモデルを上回るらしい。
+ Our largest model with 7.5 billion parameters sets new state of the art in " />
+  
+
+
+<meta name="generator" content="Hugo 0.68.3" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		xglmをquick start
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-02-05
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>多言語モデルであるxglmを動かしてみます。</p>
+<p>最も大きいもので7.5Bのparameterを持つ。</p>
+<p>同等のサイズのGPT3のモデルを上回るらしい。</p>
+<blockquote>
+<p>Our largest model with 7.5 billion parameters sets new state of the art in few-shot learning in more than 20 representative languages, outperforming GPT-3 of comparable size in multilingual commonsense reasoning (with +7.4% absolute accuracy improvement in 0-shot settings and +9.4% in 4-shot settings) and natural language inference (+5.4% in each of 0-shot and 4-shot settings).</p>
+</blockquote>
+<p><a href="https://huggingface.co/docs/transformers/model_doc/xglm#overview">https://huggingface.co/docs/transformers/model_doc/xglm#overview</a></p>
+<p>ライブラリはこの辺を入れておく</p>
+<pre><code>!pip install torch transformers sentencepiece
+</code></pre><h2 id="modelのロード">modelのロード</h2>
+<p>multi languegeのxglmも試してみる。1.7Bは展開できなかったので、小さいやつを動かす。</p>
+<p><a href="https://huggingface.co/facebook/xglm-564M">https://huggingface.co/facebook/xglm-564M</a></p>
+<pre><code class="language-python=" data-lang="python=">from transformers import XGLMTokenizer, XGLMForCausalLM
+
+# model_name = &quot;facebook/xglm-1.7B&quot;
+model_name = &quot;facebook/xglm-564M&quot;
+
+tokenizer = XGLMTokenizer.from_pretrained(model_name)
+model = XGLMForCausalLM.from_pretrained(model_name)
+</code></pre><h2 id="生成">生成</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">gen</span>(prompt):
+    <span style="color:#8be9fd;font-style:italic">input</span> <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>encode(prompt, return_tensors<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;pt&#34;</span>)
+    generate_kwargs  <span style="color:#ff79c6">=</span> {
+            <span style="color:#f1fa8c">&#39;top_p&#39;</span>: <span style="color:#bd93f9">0.95</span>,
+            <span style="color:#f1fa8c">&#39;top_k&#39;</span>: <span style="color:#bd93f9">50</span>,
+            <span style="color:#f1fa8c">&#39;do_sample&#39;</span>:True,
+            <span style="color:#f1fa8c">&#39;max_length&#39;</span>: <span style="color:#bd93f9">1024</span>,
+            <span style="color:#f1fa8c">&#39;min_length:200&#39;</span>
+    }
+    output <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>generate(<span style="color:#8be9fd;font-style:italic">input</span>, <span style="color:#ff79c6">**</span>generate_kwargs)
+    result <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>batch_decode(output, skip_special_tokens<span style="color:#ff79c6">=</span>True)
+    <span style="color:#ff79c6">print</span>(result)
+</code></pre></div><p>T5より日本語を話せそうだったので、長文を生成させてみる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;それは九月初旬のある蒸し暑い晩のことであった。私は、Ｄ坂の大通りの中程にある、&#34;</span>
+gen(prompt)
+</code></pre></div><pre><code>['それは九月初旬のある蒸し暑いのことであった。私は、D坂の大通りの中程にある、美術館の中からD坂町へ行ってみることにした。それまで、日本橋方面に行ったら、桜並木を眺めていると、気が引けるような景色だ。こんな景色を、見ることができたら、私もれるはずだ。そう思うと、いつも思う「桜は咲かないのだろうか」という気持ちが、どこかに蘇ってきていたのだ。花を咲かせよう!と、いつまでも思っていた桜を見るのが、今になって一気に楽しい。桜並木は、歩いていると、その姿に、一目れしてしまう。それが、私の周りに、桜を眺めている人を、きっとたくさんいるんじゃないか?と思うほど。そしてその姿を見ると、自分自身も、桜の世界に入り、自分が咲かせよう。桜の美しさに、今から一生懸命追いつめられて、桜の中をいてみようと、思っています。']
+</code></pre><p>思ったより日本語生成できててすごい。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;If you really want to hear about it,  &#34;</span>
+gen(prompt)
+</code></pre></div><pre><code>['If you really want to hear about it, I’m currently working on a book titled, When the Time Comes, (which is now on sale in paperback, at Amazon) which tells the story of one of the people I have not talked to in weeks, but who, in her own words, “gave me back the joy of being a part of the culture of my own home and country”. I had been told by my doctor about the book, but she had only mentioned it as “a collection of essays and thoughts by people who I’ve met in my life” (with a few exceptions: my husband and the person who got me to know this woman, the guy I was with when I met the guy he was with, which I’ll get to in a later chapter). So I asked her if she’d like to write about it for me. She said yes, so I took her through the process. When I talked to her, she explained how much she’d enjoyed the process of writing about it, and asked me if I could write her a bio on that process.']
+</code></pre><p>意味はよくわかんないことになっているが、崩壊せず生成できてそう。</p>
+<p>ライ麦畑でつかまえての日本語も与えてみる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;もしも君が、ほんとにこの話を聞きたいんならだな、&#34;</span>
+gen(prompt)
+</code></pre></div><p>なんか様子がおかしいｗ</p>
+<pre><code>&gt;&gt; ['もしも君が、ほんとにこの話を聞きたいんならだな、きっと。でも、あのときのは、ほんとに、本当の自分を語りたいんでしょ。まぁ、そっちの方が、説得力のある話じゃないけどね。でも、この話を聞いて、の力が分かってきたよ、きっと。でも、の力が解けるまでは、この話は、やむを得ない話。とにかく、の力が解けたときの出来事や、が、と共に語れるようにして、本当に楽しく読ませてあげれば。それなら。ま、を、もうちょっと詳しく読んでくれたら...。と、願って。 最後まで読んでね。『の力が解けた世界』...。 の力が、解けても、僕の愛するあの人には、もう終わらない、そんな話だから。 『の力が解けた世界』...。']
+
+&gt;&gt; ['もしも君が、ほんとにこの話を聞きたいんならだな、って思うのは俺だけかもしれんしな。でもなんか。でも、もしも君が知りたい事あるなら、俺はこのスレの住人だということに感謝しようぜ。ありがとう、俺。俺。 次スレは、こっちに置いとこう。#俺も。 #こっちは。 #いい #いいこと言いたい #いいところ聞きたい #いいこと言ってみたい #いい話したい #いい時 #いい時間 #いい話 #いい話聞いてみたい #いい話たくさんいる #いい話だけ #好きな人 #友達 #アダルト #アダルト作家 #アダルト作家ブログ #アダルト作家好きな人と繋がりたい #アダルト作家さんと繋がりたい #アダルト作家さんと繋がろう #アダルト系#アダルト漫画 #アダルト漫画好きな人と繋がりたい #アダルト系アダルト作家 #アダルト女 #アダルト漫画好きな人と繋がりたい']
+
+&gt;&gt; ['もしも君が、ほんとにこの話を聞きたいんならだな、なんて思ってもらえるまでねぇよ」とか言った後が怖くて、もたもたして最後だけは無理して聞くことを決めた。あれ? って思う事はないんじゃないかな? まぁそんな事でも、それは、この話を始めて「お前の話を聞いてくれた!」って事だよね? なにかいい話があれば、また聞いてもらえるね!と、に落ちた。だって、この話を聞いてくれたなら、本当にこの話を「誰か」が話してくれているんだもん! なんて信じたら、さっぱり分からないんだよ! だって「あの話は俺が話さなくても」が「この話で、きっと俺の話になるんだ」だって! なんて信じてこそ、いい話の続くんだよ! そうやって、この話を続けている。さあ、次はお前が、私をしてやって来いよ! 君ももういいんだ!']
+</code></pre><h2 id="まとめ">まとめ</h2>
+<p>xglmを試した。colaboratoryでは564Mだと動く。</p>
+<p>思ったより日本語生成できて驚いた。</p>
+<p>gpt2の日本語モデルが1024までで困ってたけど、</p>
+<p><code>&quot;max_position_embeddings&quot;: 2048</code> ってことは割りと長文いけるってことかな。</p>
+<p><a href="https://huggingface.co/facebook/xglm-564M/blob/main/config.json#L17">https://huggingface.co/facebook/xglm-564M/blob/main/config.json#L17</a></p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/start-flan-t5/">flan_t5をquick start</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-tokenizer/">Hugging Faceのtokenizerで迷ったのでまとめておく</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-conv/">Hugging Faceのpipelineで会話モデルを動かす</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-doc/">Hugging Face Transformersのドキュメント読んだ</a></li>
+    
+      <li><a href="/posts/nlp/char-vec/">文字をベクトル化する</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2023
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -75,7 +75,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.68.3" />
   </head>
   <body>
     
@@ -212,9 +212,9 @@ x.a()
 a()
 </code></pre></div><h3 id="426-ジェネリック型のデフォルトの型">4.2.6 ジェネリック型のデフォルトの型</h3>
 <p>デフォルトの型使えるの知らなかった</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> MyEvent&lt;<span style="color:#ff79c6">T</span> = <span style="color:#50fa7b">HTMLElement</span>&gt; <span style="color:#ff79c6">=</span> {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">type MyEvent<span style="color:#ff79c6">&lt;</span>T <span style="color:#ff79c6">=</span> HTMLElement<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">=</span> {
   target: <span style="color:#8be9fd">T</span>
-  <span style="color:#ff79c6">type</span><span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span>
+  type: <span style="color:#8be9fd">string</span>
 }
 </code></pre></div><h2 id="5章-クラスとインターフェース">5章 クラスとインターフェース</h2>
 <h3 id="54-インターフェース">5.4 インターフェース</h3>
@@ -224,8 +224,8 @@ a()
 </ul>
 <p>（型エイリアスだと、合併型(Union Types)と交差型(Intersection Types)が使える）<br>
 以下のような、型エイリアスはインターフェースとして書き直すことができない。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> A <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">number</span>
-<span style="color:#ff79c6">type</span> B <span style="color:#ff79c6">=</span> A <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">string</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">type A <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">number</span>
+type B <span style="color:#ff79c6">=</span> A <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">string</span>
 </code></pre></div><ul>
 <li>インターフェースを拡張する際に割り当て可能かをチェックする</li>
 </ul>
@@ -257,11 +257,11 @@ a()
 <h3 id="58-ミックスイン">5.8 ミックスイン</h3>
 <p>いくつか知らない書き方合った</p>
 <p>debugしづらいUserクラスがあるとき、debug機能をmixinすることでdebug機能を追加する。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> Constructor&lt;<span style="color:#ff79c6">T</span>&gt; <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> (...arg: <span style="color:#8be9fd">any</span>[]) <span style="color:#ff79c6">=&gt;</span> T
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">type Constructor<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> (...arg: <span style="color:#8be9fd">any</span>[]) <span style="color:#ff79c6">=&gt;</span> T
 
-<span style="color:#ff79c6">const</span> WithEZDebug <span style="color:#ff79c6">=</span> &lt;<span style="color:#ff79c6">C</span> <span style="color:#50fa7b">extends</span> <span style="color:#50fa7b">Constructor</span>&lt;{
-    <span style="color:#50fa7b">getClass</span>(): <span style="color:#50fa7b">string</span>
-}&gt;<span style="color:#ff79c6">&gt;</span> (Class: <span style="color:#8be9fd">C</span>) <span style="color:#ff79c6">=&gt;</span> {
+<span style="color:#ff79c6">const</span> WithEZDebug <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">&lt;</span>C <span style="color:#ff79c6">extends</span> Constructor<span style="color:#ff79c6">&lt;</span>{
+    getClass()<span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span>
+}<span style="color:#ff79c6">&gt;&gt;</span> (Class: <span style="color:#8be9fd">C</span>) <span style="color:#ff79c6">=&gt;</span> {
     <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">class</span> <span style="color:#ff79c6">extends</span> Class {
         debug() {
             <span style="color:#ff79c6">const</span> name <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>.<span style="color:#ff79c6">constructor</span>.name;
@@ -290,19 +290,19 @@ a()
 </code></pre></div><p>この書き方初めて知った</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">class</span> <span style="color:#ff79c6">extends</span> Class
 </code></pre></div><p>型引数にそのままobject書けるのも初めて知った。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"> &lt;<span style="color:#ff79c6">C</span> <span style="color:#50fa7b">extends</span> <span style="color:#50fa7b">Constructor</span>&lt;{
-    <span style="color:#50fa7b">getClass</span>(): <span style="color:#50fa7b">string</span>
-}&gt;<span style="color:#ff79c6">&gt;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"> <span style="color:#ff79c6">&lt;</span>C <span style="color:#ff79c6">extends</span> Constructor<span style="color:#ff79c6">&lt;</span>{
+    getClass()<span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span>
+}<span style="color:#ff79c6">&gt;&gt;</span>
 </code></pre></div><p>TypeScript Deep Dive:
 <a href="https://typescript-jp.gitbook.io/deep-dive/type-system/mixins">https://typescript-jp.gitbook.io/deep-dive/type-system/mixins</a></p>
 <h2 id="6章-高度な型">6章 高度な型</h2>
 <h3 id="6151-タグ付き合併型">6.1.5.1 タグ付き合併型</h3>
 <p>ユーザーのイベントを定義している場合を例にする。
 handleのif文の分岐で、event.valueはそれぞれstring/[number, number]になる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> UserTextEvent <span style="color:#ff79c6">=</span> { value: <span style="color:#8be9fd">string</span> }
-<span style="color:#ff79c6">type</span> UserMouseEvent <span style="color:#ff79c6">=</span> { value<span style="color:#ff79c6">:</span> [<span style="color:#8be9fd">number</span>, <span style="color:#8be9fd">number</span>] }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">type UserTextEvent <span style="color:#ff79c6">=</span> { value: <span style="color:#8be9fd">string</span> }
+type UserMouseEvent <span style="color:#ff79c6">=</span> { value<span style="color:#ff79c6">:</span> [<span style="color:#8be9fd">number</span>, <span style="color:#8be9fd">number</span>] }
 
-<span style="color:#ff79c6">type</span> UserEvent <span style="color:#ff79c6">=</span> UserTextEvent <span style="color:#ff79c6">|</span> UserMouseEvent
+type UserEvent <span style="color:#ff79c6">=</span> UserTextEvent <span style="color:#ff79c6">|</span> UserMouseEvent
 
 <span style="color:#ff79c6">const</span> handle <span style="color:#ff79c6">=</span> (event: <span style="color:#8be9fd">UserEvent</span>) <span style="color:#ff79c6">=&gt;</span> {
     <span style="color:#ff79c6">if</span>(<span style="color:#ff79c6">typeof</span> event.value <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;string&#39;</span>) {
@@ -312,10 +312,10 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 </span><span style="color:#6272a4"></span>}
 
 </code></pre></div><p>UserTextEventとUserMouseEventにtargetを追加する。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> UserTextEvent <span style="color:#ff79c6">=</span> { value: <span style="color:#8be9fd">string</span>, target: <span style="color:#8be9fd">HTMLInputElement</span> }
-<span style="color:#ff79c6">type</span> UserMouseEvent <span style="color:#ff79c6">=</span> { value<span style="color:#ff79c6">:</span> [<span style="color:#8be9fd">number</span>, <span style="color:#8be9fd">number</span>], target: <span style="color:#8be9fd">HTMLElement</span> }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">type UserTextEvent <span style="color:#ff79c6">=</span> { value: <span style="color:#8be9fd">string</span>, target: <span style="color:#8be9fd">HTMLInputElement</span> }
+type UserMouseEvent <span style="color:#ff79c6">=</span> { value<span style="color:#ff79c6">:</span> [<span style="color:#8be9fd">number</span>, <span style="color:#8be9fd">number</span>], target: <span style="color:#8be9fd">HTMLElement</span> }
 
-<span style="color:#ff79c6">type</span> UserEvent <span style="color:#ff79c6">=</span> UserTextEvent <span style="color:#ff79c6">|</span> UserMouseEvent
+type UserEvent <span style="color:#ff79c6">=</span> UserTextEvent <span style="color:#ff79c6">|</span> UserMouseEvent
 
 <span style="color:#ff79c6">const</span> handle <span style="color:#ff79c6">=</span> (event: <span style="color:#8be9fd">UserEvent</span>) <span style="color:#ff79c6">=&gt;</span> {
     <span style="color:#ff79c6">if</span>(<span style="color:#ff79c6">typeof</span> event.value <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;string&#39;</span>) {
@@ -336,13 +336,13 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 </ul>
 <p>stringとか使うと無難。</p>
 <p>書き直すとこんな感じ</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> UserTextEvent <span style="color:#ff79c6">=</span> { <span style="color:#ff79c6">type</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;TextEvent&#39;</span>,value: <span style="color:#8be9fd">string</span>, target: <span style="color:#8be9fd">HTMLInputElement</span> }
-<span style="color:#ff79c6">type</span> UserMouseEvent <span style="color:#ff79c6">=</span> { <span style="color:#ff79c6">type</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;MouseEvent&#39;</span>, value<span style="color:#ff79c6">:</span> [<span style="color:#8be9fd">number</span>, <span style="color:#8be9fd">number</span>], target: <span style="color:#8be9fd">HTMLElement</span> }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">type UserTextEvent <span style="color:#ff79c6">=</span> { type<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;TextEvent&#39;</span>,value: <span style="color:#8be9fd">string</span>, target: <span style="color:#8be9fd">HTMLInputElement</span> }
+type UserMouseEvent <span style="color:#ff79c6">=</span> { type<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;MouseEvent&#39;</span>, value<span style="color:#ff79c6">:</span> [<span style="color:#8be9fd">number</span>, <span style="color:#8be9fd">number</span>], target: <span style="color:#8be9fd">HTMLElement</span> }
 
-<span style="color:#ff79c6">type</span> UserEvent <span style="color:#ff79c6">=</span> UserTextEvent <span style="color:#ff79c6">|</span> UserMouseEvent
+type UserEvent <span style="color:#ff79c6">=</span> UserTextEvent <span style="color:#ff79c6">|</span> UserMouseEvent
 
 <span style="color:#ff79c6">const</span> handle <span style="color:#ff79c6">=</span> (event: <span style="color:#8be9fd">UserEvent</span>) <span style="color:#ff79c6">=&gt;</span> {
-    <span style="color:#ff79c6">if</span>(event.<span style="color:#ff79c6">type</span> <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;TextEvent&#39;</span>) {
+    <span style="color:#ff79c6">if</span>(event.type <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;TextEvent&#39;</span>) {
         <span style="color:#6272a4">// event.valueはstring
 </span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// event.targetは HTMLInputElement
 </span><span style="color:#6272a4"></span>    }
@@ -352,12 +352,12 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 </code></pre></div><h3 id="634-コンパニオンオブジェクトパターン">6.3.4 コンパニオンオブジェクトパターン</h3>
 <p>typescriptでは、型と値が別々の名前空間が異なる。
 これを使ったして、コンパニオンオブジェクトパターンができる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> Currency <span style="color:#ff79c6">=</span> {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">type Currency <span style="color:#ff79c6">=</span> {
     price: <span style="color:#8be9fd">number</span>
 }
 
 <span style="color:#ff79c6">const</span> Currency <span style="color:#ff79c6">=</span> {
-    <span style="color:#ff79c6">from</span>(value: <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> Currency {
+    from(value: <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> Currency {
         <span style="color:#ff79c6">return</span> {
             price: <span style="color:#8be9fd">value</span>
         }
@@ -365,7 +365,7 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 }
 
 <span style="color:#ff79c6">const</span> main <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
-    Currency.<span style="color:#ff79c6">from</span>(<span style="color:#bd93f9">1</span>)
+    Currency.from(<span style="color:#bd93f9">1</span>)
 }
 </code></pre></div><p>言われると確かにって感じだけど、やろうと思わなかった。
 いまいちメリットがわからん。</p>
@@ -383,7 +383,7 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
     <span style="color:#6272a4">// なんかの処理
 </span><span style="color:#6272a4"></span>}
 </code></pre></div><p>その場合、ユーザー定義型ガードを使う</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">const</span> isString <span style="color:#ff79c6">=</span> (s: <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> s <span style="color:#ff79c6">is</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">=&gt;</span> {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">const</span> isString <span style="color:#ff79c6">=</span> (s: <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> s is <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">=&gt;</span> {
     <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">typeof</span> s <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;string&#39;</span>
 }
 
@@ -396,13 +396,13 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 </span><span style="color:#6272a4"></span>}
 </code></pre></div><h3 id="65-条件型">6.5 条件型</h3>
 <p><code>U :&lt; V</code>であれば、TをAに、そうでなければTをBに割り当てるようなこと。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> IsString&lt;<span style="color:#ff79c6">T</span>&gt; <span style="color:#ff79c6">=</span> T <span style="color:#ff79c6">extends</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">?</span> <span style="color:#ff79c6">true</span> <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>;
-<span style="color:#ff79c6">type</span> A <span style="color:#ff79c6">=</span> IsString&lt;<span style="color:#ff79c6">string</span>&gt;
-<span style="color:#ff79c6">type</span> B <span style="color:#ff79c6">=</span> IsString&lt;<span style="color:#ff79c6">number</span>&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">type IsString<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">=</span> T <span style="color:#ff79c6">extends</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">?</span> <span style="color:#ff79c6">true</span> <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>;
+type A <span style="color:#ff79c6">=</span> IsString<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">string</span><span style="color:#ff79c6">&gt;</span>
+type B <span style="color:#ff79c6">=</span> IsString<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">number</span><span style="color:#ff79c6">&gt;</span>
 </code></pre></div><h3 id="67-名前的型をシミュレートする">6.7 名前的型をシミュレートする</h3>
 <p>UserIDとCustomerIDのような型エイリアスしている場合</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> UserID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span>
-<span style="color:#ff79c6">type</span> CustomerID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">type UserID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span>
+type CustomerID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span>
 
 <span style="color:#ff79c6">const</span> userID <span style="color:#ff79c6">=</span> (id: <span style="color:#8be9fd">string</span>)<span style="color:#ff79c6">:</span> UserID <span style="color:#ff79c6">=&gt;</span> id <span style="color:#ff79c6">as</span> UserID
 <span style="color:#ff79c6">const</span> customerID <span style="color:#ff79c6">=</span> (id: <span style="color:#8be9fd">string</span>)<span style="color:#ff79c6">:</span> CustomerID <span style="color:#ff79c6">=&gt;</span> id <span style="color:#ff79c6">as</span> CustomerID
@@ -421,8 +421,8 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 </code></pre></div><p>これはUserIDはstringのエイリアスにすぎないから。</p>
 <p>型のブランド化で解決できる。</p>
 <p>型エイリアスを次のように書き直す。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">type</span> UserID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">&amp;</span> { <span style="color:#ff79c6">readonly</span> brand: <span style="color:#8be9fd">unique</span> <span style="color:#8be9fd">symbol</span> }
-<span style="color:#ff79c6">type</span> CustomerID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">&amp;</span> { <span style="color:#ff79c6">readonly</span> brand: <span style="color:#8be9fd">unique</span> <span style="color:#8be9fd">symbol</span> }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">type UserID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">&amp;</span> { readonly brand: <span style="color:#8be9fd">unique</span> symbol }
+type CustomerID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">&amp;</span> { readonly brand: <span style="color:#8be9fd">unique</span> symbol }
 </code></pre></div><p>すると、checkIDでエラーになる。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">const</span> main <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
     <span style="color:#ff79c6">const</span> uID <span style="color:#ff79c6">=</span> userID(<span style="color:#f1fa8c">&#39;001&#39;</span>)
@@ -485,7 +485,7 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
     <div class="credits copyright">
       <a href="https://www.if-blog.site/pages/about">if_004</a>
       &nbsp;&copy;
-      2022
+      2023
       
         &nbsp;/&nbsp;
         <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>

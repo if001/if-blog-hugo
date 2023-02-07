@@ -76,7 +76,7 @@ tokenizer = T5Tokenizer.from_pretrained(&amp;#34;sonoisa/t5-base-japanese&amp;#3
   
 
 
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.68.3" />
   </head>
   <body>
     
@@ -238,7 +238,7 @@ tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([sentence, senten
 tokenizer(sentence, max_length<span style="color:#ff79c6">=</span><span style="color:#bd93f9">20</span>, truncation<span style="color:#ff79c6">=</span>True, padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;max_length&#34;</span>)
 
 <span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]}
-</code></pre></div><p>paddingのデフォルトはpaddingしないっぽい(padding=&ldquo;do_not_pad&rdquo;)</p>
+</code></pre></div><p>paddingのデフォルトはpaddingしないっぽい(padding=&quot;do_not_pad&rdquo;)</p>
 <p><a href="https://github.com/huggingface/transformers/blob/v4.21.1/src/transformers/utils/generic.py#L255-L263">https://github.com/huggingface/transformers/blob/v4.21.1/src/transformers/utils/generic.py#L255-L263</a></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6272a4"># 最大長にあわせてpadding</span>
 tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([<span style="color:#f1fa8c">&#34;私は今日も走ります。&#34;</span>, <span style="color:#f1fa8c">&#34;私は走る。&#34;</span>], padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;longest&#34;</span>)
@@ -280,13 +280,13 @@ tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([<span style="col
     
       <li><a href="/posts/nlp/huggingface-conv/">Hugging Faceのpipelineで会話モデルを動かす</a></li>
     
+      <li><a href="/posts/nlp/start-xglm-t5/">xglmをquick start</a></li>
+    
+      <li><a href="/posts/nlp/start-flan-t5/">flan_t5をquick start</a></li>
+    
       <li><a href="/posts/nlp/huggingface-doc/">Hugging Face Transformersのドキュメント読んだ</a></li>
     
       <li><a href="/posts/nlp/char-vec/">文字をベクトル化する</a></li>
-    
-      <li><a href="/posts/neuralnet/flax-jax/">Flaxに入門してみる</a></li>
-    
-      <li><a href="/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/">End-to-End Text Classification via Image-basedEmbedding using Character-level Networks</a></li>
     
   </ul>
 
@@ -316,7 +316,7 @@ tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([<span style="col
     <div class="credits copyright">
       <a href="https://www.if-blog.site/pages/about">if_004</a>
       &nbsp;&copy;
-      2022
+      2023
       
         &nbsp;/&nbsp;
         <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>

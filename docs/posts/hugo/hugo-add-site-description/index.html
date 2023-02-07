@@ -76,7 +76,7 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
   
 
 
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.68.3" />
   </head>
   <body>
     
@@ -195,7 +195,7 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
 <p>次のようにサイトサマリーを参照することも可能です</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{ .Summary }}
 </code></pre></div><p>ただし、デフォルトでサマリーが大きくなりすぎるので、config.tomlに次のような記述を追加します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">hasCJKLanguage = true
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">hasCJKLanguage = <span style="color:#ff79c6">true</span>
 </code></pre></div><p>こうすることでサマリーがいい感じのサイズになります。</p>
 <p>参考：https://blog.awm.jp/2016/01/02/hugo/</p>
 <p>最終的に、header.htmlなどに次のように記述しておけば、descriptionを書いておくとそちらが使われるようになります。</p>
@@ -220,7 +220,7 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
 {{ end }}
 </code></pre></div><p>configに次のように記述する。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">[params]
-description=&#34;hogehoge&#34;
+description=<span style="color:#f1fa8c">&#34;hogehoge&#34;</span>
 </code></pre></div><p>configで任意の変数を指定するのは、paramsの中じゃないとだめなので注意。
 参考：https://gohugo.io/getting-started/configuration/</p>
 <p>他のもっとスマートな方法があれば教えてください。</p>
@@ -270,7 +270,7 @@ description=&#34;hogehoge&#34;
     <div class="credits copyright">
       <a href="https://www.if-blog.site/pages/about">if_004</a>
       &nbsp;&copy;
-      2022
+      2023
       
         &nbsp;/&nbsp;
         <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
