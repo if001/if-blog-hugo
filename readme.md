@@ -34,6 +34,9 @@ https://github.com/matsuyoshi30/harbor
 git submodule add {URL}
 submoduleの外側では、submodule内のcommitを指すことになる
 
+## clone
+git submodule update --init --recursive
+
 ### submodule内の変更
 submodule内に入って、commit
 submoduleの外で、add、commit、push
