@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-<title>Deeplearningまわりの最新論文を浅く広くみてまわる</title>
+<title>Huggingfaceのtext generation pipelineとtext2text generation pipeline</title>
 
   
     
@@ -70,11 +70,8 @@
 
 
   
-    <meta name="description" content="最新論文の情報を広く浅く集めたい場合の巡回するサイトたちをまとめておきます。
-おすすめがあれば教えてください。
-Google Scholar: https://scholar.google.com/schhp?hl=ja
-研究者やキーワードが決まっていると探しやすい。ただ、ザッピングには向かない。
-" />
+    <meta name="description" content="HuggingfaceのpipelineでTextGenerationPipelineとText2TextGenerationPipelineがあるが、 何が違うのかよくわからなかったので軽く調査。
+https://huggingface.co/docs/transformers/main_clas" />
   
 
 
@@ -143,7 +140,7 @@ Google Scholar: https://scholar.google.com/schhp?hl=ja
               
               <h1>
 		
-		Deeplearningまわりの最新論文を浅く広くみてまわる
+		Huggingfaceのtext generation pipelineとtext2text generation pipeline
 		
 		
                 </h1>
@@ -170,7 +167,16 @@ Google Scholar: https://scholar.google.com/schhp?hl=ja
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
             <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a
             >&nbsp;
           
         </div>
@@ -179,7 +185,7 @@ Google Scholar: https://scholar.google.com/schhp?hl=ja
       
         <div style="margin-bottom: 10px;">
           <i class="fa fa-calendar-alt"></i
-          >&nbsp;2019-09-24
+          >&nbsp;2023-02-06
         </div>
       
 
@@ -187,30 +193,48 @@ Google Scholar: https://scholar.google.com/schhp?hl=ja
 
 
       <div class="article-main">
-        <p>最新論文の情報を広く浅く集めたい場合の巡回するサイトたちをまとめておきます。<br>
-おすすめがあれば教えてください。</p>
-<p>Google Scholar: <a href="https://scholar.google.com/schhp?hl=ja">https://scholar.google.com/schhp?hl=ja</a></p>
-<p>研究者やキーワードが決まっていると探しやすい。ただ、ザッピングには向かない。<br>
-いろいろ論文の検索エンジン使ってたけど、結局これが残った。texの引用が楽</p>
-<h2 id="arxiv">arXiv</h2>
-<h4 id="arxiv-1">arXiv</h4>
-<p><a href="https://arxiv.org/">https://arxiv.org/</a></p>
-<p>トップページは慣れないとちょっと見づらい。有名な研究者で検索したものや分野で絞り込んだものをチェックするのが使いやすそう。</p>
-<h4 id="arxivtimes">arXivTimes</h4>
-<p><a href="https://medium.com/@arxivtimes">https://medium.com/@arxivtimes</a></p>
-<p>日本語、arXivのまとめ系、ツイッター</p>
-<h4 id="論文まとめてくれてるgithub">論文まとめてくれてるGitHub</h4>
-<p><a href="https://github.com/dennybritz/deeplearning-papernotes">https://github.com/dennybritz/deeplearning-papernotes</a></p>
-<p>arXivのまとめ。古いものは2011年から、新しいものは2018まで更新がある。</p>
-<h2 id="企業の論文">企業の論文</h2>
-<h4 id="deepmind">DeepMind</h4>
-<p><a href="https://deepmind.com/research/publications/">https://deepmind.com/research/publications/</a></p>
-<h4 id="microsoft-research-publications">Microsoft Research Publications</h4>
-<p><a href="http://research.microsoft.com/apps/catalog/default.aspx?t=publications&amp;ra=47200">http://research.microsoft.com/apps/catalog/default.aspx?t=publications&amp;ra=47200</a></p>
-<h4 id="google-research-publications">Google Research Publications</h4>
-<p><a href="http://research.google.com/pubs/ArtificialIntelligenceandMachineLearning.html">http://research.google.com/pubs/ArtificialIntelligenceandMachineLearning.html</a></p>
-<h4 id="yahoo-labs">Yahoo! Labs</h4>
-<p><a href="http://labs.yahoo.com/publication/?area=machine-learning">http://labs.yahoo.com/publication/?area=machine-learning</a></p>
+        <p>HuggingfaceのpipelineでTextGenerationPipelineとText2TextGenerationPipelineがあるが、
+何が違うのかよくわからなかったので軽く調査。</p>
+<p><a href="https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.TextGenerationPipeline">https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.TextGenerationPipeline</a></p>
+<p><a href="https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.Text2TextGenerationPipeline">https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.Text2TextGenerationPipeline</a></p>
+<p>exampleを見ると、text-generationは与えた文章に続く文章を生成、
+text2text-generationは質問や文脈を与えて、それに対する回答を生成することを期待している。</p>
+<pre><code>## text-generation
+&gt;&gt; generator(&quot;I can't believe you did such a &quot;, do_sample=False)
+</code></pre><pre><code>## text2text-generation
+&gt;&gt; generator(
+    &quot;answer: Manuel context: Manuel has created RuPERTa-base with the support of HF-Transformers and &gt;&gt; Google&quot;
+)
+</code></pre><h2 id="比較">比較</h2>
+<p>genereate時、<code>preprocess -&gt; _forward -&gt; postprocess</code>の順で動く</p>
+<p>それぞれ<code>__call__</code>の引数の被ってないものをみると以下のような感じ</p>
+<p>text_generation</p>
+<ul>
+<li>prefix</li>
+<li>handle_long_generation</li>
+<li>return_full_text</li>
+</ul>
+<p>text2text_generation</p>
+<ul>
+<li>truncation</li>
+</ul>
+<p><a href="https://github.com/huggingface/transformers/blob/v4.26.0/src/transformers/pipelines/text_generation.py#L169">https://github.com/huggingface/transformers/blob/v4.26.0/src/transformers/pipelines/text_generation.py#L169</a></p>
+<p><a href="https://github.com/huggingface/transformers/blob/v4.26.0/src/transformers/pipelines/text2text_generation.py#L136">https://github.com/huggingface/transformers/blob/v4.26.0/src/transformers/pipelines/text2text_generation.py#L136</a></p>
+<p>preprocessを見ると、入力文章が長すぎる場合</p>
+<ul>
+<li>text2text_generation: 引数によってtokenize時にtruncate</li>
+<li>text_generation: errorをthrow</li>
+</ul>
+<p>postprocessを見ると、返す文章は</p>
+<ul>
+<li>text2text_generation: 質疑応答のようなタスクに対する回答のみを返す。</li>
+<li>text_generation: return_full_textで指定できるように、与えた文章を除き生成した文章のみを返すようなことができる。</li>
+</ul>
+<h2 id="まとめ">まとめ</h2>
+<p>exampleの通り、text_generationは不完全な文章からそれに続くある程度長い文章を文章を生成することを期待している。
+text2text_generationは、truncateできることから長い文章の生成というより、タスクに対する回答を重視しているように見える。</p>
+<p>kwargsでgenerateに対して引数を渡せるので、ここからも調整できる。</p>
+<p><a href="https://huggingface.co/docs/transformers/v4.26.0/en/main_classes/text_generation#transformers.GenerationMixin.generate">https://huggingface.co/docs/transformers/v4.26.0/en/main_classes/text_generation#transformers.GenerationMixin.generate</a></p>
 
       </div>
       <div class="related-article">
@@ -219,15 +243,15 @@ Google Scholar: https://scholar.google.com/schhp?hl=ja
   <h2>See Also</h2>
   <ul>
     
-      <li><a href="/posts/neuralnet/combine-model/">kerasでモデルを結合する</a></li>
-    
-      <li><a href="/posts/nlp/diversity-neural-conversation-model/">ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数</a></li>
-    
-      <li><a href="/posts/nlp/char-vec/">文字をベクトル化する</a></li>
-    
-      <li><a href="/posts/nlp/huggingface-text-gen/">Huggingfaceのtext generation pipelineとtext2text generation pipeline</a></li>
-    
       <li><a href="/posts/nlp/start-xglm-t5/">xglmをquick start</a></li>
+    
+      <li><a href="/posts/nlp/start-flan-t5/">flan_t5をquick start</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-tokenizer/">Hugging Faceのtokenizerで迷ったのでまとめておく</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-conv/">Hugging Faceのpipelineで会話モデルを動かす</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-doc/">Hugging Face Transformersのドキュメント読んだ</a></li>
     
   </ul>
 

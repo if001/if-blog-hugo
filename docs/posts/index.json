@@ -2,6 +2,16 @@
     
         
             {
+                "ref": "https://www.if-blog.site/posts/nlp/huggingface-text-gen/",
+                "title": "Huggingfaceのtext generation pipelineとtext2text generation pipeline",
+                "section": "posts",
+                "date" : "2023-02-06",
+                "body": "HuggingfaceのpipelineでTextGenerationPipelineとText2TextGenerationPipelineがあるが、 何が違うのかよくわからなかったので軽く調査。\nhttps://huggingface.co/docs/transformers/main_classes/pipelines#transformers.TextGenerationPipeline\nhttps://huggingface.co/docs/transformers/main_classes/pipelines#transformers.Text2TextGenerationPipeline\nexampleを見ると、text-generationは与えた文章に続く文章を生成、 text2text-generationは質問や文脈を与えて、それに対する回答を生成することを期待している。\n## text-generation \u0026gt;\u0026gt; generator(\u0026quot;I can't believe you did such a \u0026quot;, do_sample=False) ## text2text-generation \u0026gt;\u0026gt; generator( \u0026quot;answer: Manuel context: Manuel has created RuPERTa-base with the support of HF-Transformers and \u0026gt;\u0026gt; Google\u0026quot; ) 比較 genereate時、preprocess -\u0026gt; _forward -\u0026gt; postprocessの順で動く\nそれぞれ__call__の引数の被ってないものをみると以下のような感じ\ntext_generation\n prefix handle_long_generation return_full_text  text2text_generation\n truncation  https://github.com/huggingface/transformers/blob/v4.26.0/src/transformers/pipelines/text_generation.py#L169\nhttps://github.com/huggingface/transformers/blob/v4.26.0/src/transformers/pipelines/text2text_generation.py#L136\npreprocessを見ると、入力文章が長すぎる場合\n text2text_generation: 引数によってtokenize時にtruncate text_generation: errorをthrow  postprocessを見ると、返す文章は\n text2text_generation: 質疑応答のようなタスクに対する回答のみを返す。 text_generation: return_full_textで指定できるように、与えた文章を除き生成した文章のみを返すようなことができる。  まとめ exampleの通り、text_generationは不完全な文章からそれに続くある程度長い文章を文章を生成することを期待している。 text2text_generationは、truncateできることから長い文章の生成というより、タスクに対する回答を重視しているように見える。\nkwargsでgenerateに対して引数を渡せるので、ここからも調整できる。\nhttps://huggingface.co/docs/transformers/v4.26.0/en/main_classes/text_generation#transformers.GenerationMixin.generate\n"
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/nlp/start-xglm-t5/",
                 "title": "xglmをquick start",
                 "section": "posts",
