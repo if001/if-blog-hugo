@@ -76,7 +76,7 @@ tokenizer = T5Tokenizer.from_pretrained(&amp;#34;sonoisa/t5-base-japanese&amp;#3
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -196,81 +196,117 @@ tokenizer = T5Tokenizer.from_pretrained(&amp;#34;sonoisa/t5-base-japanese&amp;#3
       <div class="article-main">
         <p>tokeninzerとかencodeとか色々あって毎回調べることになるのでメモ。</p>
 <p>以下の日本語tokenizerを使わせてもらう。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">tokenizer <span style="color:#ff79c6">=</span> T5Tokenizer<span style="color:#ff79c6">.</span>from_pretrained(<span style="color:#f1fa8c">&#34;sonoisa/t5-base-japanese&#34;</span>)
-</code></pre></div><h2 id="よく見る書き方">よく見る書き方</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
-tokenizer(sentence)
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>tokenizer <span style="color:#ff79c6">=</span> T5Tokenizer<span style="color:#ff79c6">.</span>from_pretrained(<span style="color:#f1fa8c">&#34;sonoisa/t5-base-japanese&#34;</span>)</span></span></code></pre></div>
+  </div>
 
-<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]}
-</code></pre></div><p>input_idsとmaskどっちも簡単にとれる</p>
+</div>
+<h2 id="よく見る書き方">よく見る書き方</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
+</span></span><span style="display:flex;"><span>tokenizer(sentence)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]}</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>input_idsとmaskどっちも簡単にとれる</p>
 <h2 id="encode">encode</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
-tokenizer<span style="color:#ff79c6">.</span>encode(sentence)
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
+</span></span><span style="display:flex;"><span>tokenizer<span style="color:#ff79c6">.</span>encode(sentence)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;</span> [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>]</span></span></code></pre></div>
+  </div>
 
-<span style="color:#ff79c6">&gt;&gt;</span> [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>]
-</code></pre></div><p>input_idsだけがとれる</p>
+</div>
+<p>input_idsだけがとれる</p>
 <h2 id="convert_tokens_to_ids">convert_tokens_to_ids</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
-splited <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>tokenize(sentence)
- 
- <span style="color:#ff79c6">&gt;&gt;</span> [<span style="color:#f1fa8c">&#39;▁&#39;</span>, <span style="color:#f1fa8c">&#39;私は&#39;</span>, <span style="color:#f1fa8c">&#39;走り&#39;</span>, <span style="color:#f1fa8c">&#39;ます&#39;</span>, <span style="color:#f1fa8c">&#39;。&#39;</span>]
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
+</span></span><span style="display:flex;"><span>splited <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>tokenize(sentence)
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> <span style="color:#ff79c6">&gt;&gt;</span> [<span style="color:#f1fa8c">&#39;▁&#39;</span>, <span style="color:#f1fa8c">&#39;私は&#39;</span>, <span style="color:#f1fa8c">&#39;走り&#39;</span>, <span style="color:#f1fa8c">&#39;ます&#39;</span>, <span style="color:#f1fa8c">&#39;。&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>tokenizer<span style="color:#ff79c6">.</span>convert_tokens_to_ids(splited)
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;</span>  [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>]</span></span></code></pre></div>
+  </div>
 
- 
-tokenizer<span style="color:#ff79c6">.</span>convert_tokens_to_ids(splited)
- 
-<span style="color:#ff79c6">&gt;&gt;</span>  [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>]
-</code></pre></div><p>分かち書きしてからidにする</p>
+</div>
+<p>分かち書きしてからidにする</p>
 <h2 id="encode_plus">encode_plus</h2>
 <p>tokeninzerの<code>__call__</code>と同じ</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
-tokenizer<span style="color:#ff79c6">.</span>encode_plus(sentence)
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
+</span></span><span style="display:flex;"><span>tokenizer<span style="color:#ff79c6">.</span>encode_plus(sentence)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]}</span></span></code></pre></div>
+  </div>
 
-<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]}
-</code></pre></div><h2 id="batch_encode_plus">batch_encode_plus</h2>
+</div>
+<h2 id="batch_encode_plus">batch_encode_plus</h2>
 <p>batchに対応</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
-tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([sentence, sentence])
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
+</span></span><span style="display:flex;"><span>tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([sentence, sentence])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [[<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>]], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]]}</span></span></code></pre></div>
+  </div>
 
-<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [[<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>]], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]]}
-</code></pre></div><h2 id="max_length-paddingとか">max_length, paddingとか</h2>
+</div>
+<h2 id="max_length-paddingとか">max_length, paddingとか</h2>
 <p><code>max_lenght</code>と<code>padding</code>が指定できる</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
-tokenizer(sentence, max_length<span style="color:#ff79c6">=</span><span style="color:#bd93f9">20</span>, truncation<span style="color:#ff79c6">=</span>True, padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;max_length&#34;</span>)
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sentence <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;私は走ります。&#34;</span>
+</span></span><span style="display:flex;"><span>tokenizer(sentence, max_length<span style="color:#ff79c6">=</span><span style="color:#bd93f9">20</span>, truncation<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>, padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;max_length&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]}</span></span></code></pre></div>
+  </div>
 
-<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]}
-</code></pre></div><p>paddingのデフォルトはpaddingしないっぽい(padding=&quot;do_not_pad&rdquo;)</p>
+</div>
+<p>paddingのデフォルトはpaddingしないっぽい(padding=&ldquo;do_not_pad&rdquo;)</p>
 <p><a href="https://github.com/huggingface/transformers/blob/v4.21.1/src/transformers/utils/generic.py#L255-L263">https://github.com/huggingface/transformers/blob/v4.21.1/src/transformers/utils/generic.py#L255-L263</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6272a4"># 最大長にあわせてpadding</span>
-tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([<span style="color:#f1fa8c">&#34;私は今日も走ります。&#34;</span>, <span style="color:#f1fa8c">&#34;私は走る。&#34;</span>], padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;longest&#34;</span>)
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># 最大長にあわせてpadding</span>
+</span></span><span style="display:flex;"><span>tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([<span style="color:#f1fa8c">&#34;私は今日も走ります。&#34;</span>, <span style="color:#f1fa8c">&#34;私は走る。&#34;</span>], padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;longest&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [[<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">4634</span>, <span style="color:#bd93f9">28</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">9050</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]]}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># max_lengthにあわせてpadding</span>
+</span></span><span style="display:flex;"><span>tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([<span style="color:#f1fa8c">&#34;私は今日も走ります。&#34;</span>, <span style="color:#f1fa8c">&#34;私は走る。&#34;</span>], padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;max_length&#34;</span>, max_length<span style="color:#ff79c6">=</span><span style="color:#bd93f9">15</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [[<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">4634</span>, <span style="color:#bd93f9">28</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>], [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">9050</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>], [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]]}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># defaultではpaddingしない</span>
+</span></span><span style="display:flex;"><span>tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([<span style="color:#f1fa8c">&#34;私は今日も走ります。&#34;</span>, <span style="color:#f1fa8c">&#34;私は走る。&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [[<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">4634</span>, <span style="color:#bd93f9">28</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">9050</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>]], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]]}</span></span></code></pre></div>
+  </div>
 
-<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [[<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">4634</span>, <span style="color:#bd93f9">28</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">9050</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]]}
-
-
-<span style="color:#6272a4"># max_lengthにあわせてpadding</span>
-tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([<span style="color:#f1fa8c">&#34;私は今日も走ります。&#34;</span>, <span style="color:#f1fa8c">&#34;私は走る。&#34;</span>], padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;max_length&#34;</span>, max_length<span style="color:#ff79c6">=</span><span style="color:#bd93f9">15</span>)
-
-<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [[<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">4634</span>, <span style="color:#bd93f9">28</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>], [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">9050</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>], [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>]]}
-
-
-<span style="color:#6272a4"># defaultではpaddingしない</span>
-tokenizer<span style="color:#ff79c6">.</span>batch_encode_plus([<span style="color:#f1fa8c">&#34;私は今日も走ります。&#34;</span>, <span style="color:#f1fa8c">&#34;私は走る。&#34;</span>])
-
-<span style="color:#ff79c6">&gt;&gt;</span> {<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [[<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">4634</span>, <span style="color:#bd93f9">28</span>, <span style="color:#bd93f9">6368</span>, <span style="color:#bd93f9">998</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">4378</span>, <span style="color:#bd93f9">9050</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">1</span>]], <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [[<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>], [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]]}
-</code></pre></div><h2 id="メモ">メモ</h2>
+</div>
+<h2 id="メモ">メモ</h2>
 <p>コード見てて気付いたけど、pythonでabstract classのmethodの実装を強制させるパターンが以下のように書ける。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">PreTrainedTokenizerBase</span>():
-	<span style="color:#ff79c6">def</span> <span style="color:#50fa7b">encode_plus</span>(self, <span style="color:#ff79c6">...</span>):
-		<span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>_encode_plus()
-		
-		
-	<span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_encode_plus</span>(self, <span style="color:#ff79c6">...</span>):
-        <span style="color:#ff79c6">raise</span> NotImplementedError
-		
-		
-<span style="color:#ff79c6">class</span> <span style="color:#50fa7b">PreTrainedTokenizer</span>(PreTrainedTokenizerBase):
-	<span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_encode_plus</span>(self,<span style="color:#ff79c6">...</span>):
-		<span style="color:#ff79c6">...</span>
-</code></pre></div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">PreTrainedTokenizerBase</span>():
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">def</span> <span style="color:#50fa7b">encode_plus</span>(self, <span style="color:#ff79c6">...</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>_encode_plus()
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_encode_plus</span>(self, <span style="color:#ff79c6">...</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">raise</span> NotImplementedError
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">PreTrainedTokenizer</span>(PreTrainedTokenizerBase):
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_encode_plus</span>(self,<span style="color:#ff79c6">...</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">...</span></span></span></code></pre></div>
+  </div>
+
+</div>
+
       </div>
       <div class="related-article">
         

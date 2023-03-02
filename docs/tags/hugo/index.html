@@ -74,7 +74,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -161,6 +161,40 @@
       
         
       
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-render-block/">
+    <h2 class="post-title">
+      code blockにrefarenceをつける
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Hugoでコードブロックを使うときは、GitHubからの引用が多くその下に参照元のURLを貼り付けることが多い。 コードブロックの下にそのままURLが表示されるの若干見づらかったので、コードブロックとセットでいい感じに表示したい。
+HugoにMarkdown Render Hooksにcodeblo</p>
+    <a href="https://www.if-blog.site/posts/hugo/hugo-render-block/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-02-28
+  
+</div>
+
+  </div>
+</article>
+
       
         <article class="post-preview">
   <a href="https://www.if-blog.site/posts/hugo/hugo-related-posts/">
@@ -354,7 +388,7 @@ hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownで
     <p>Hugoにgoogle analytics(ga)を導入しようと思ったら意外と簡単だった。
 まず、gaアカウントを作成。
 config.tomlに
-googleAnalytics = &amp;quot;{ga tracking ID}&amp;quot; を設定するだけ。</p>
+googleAnalytics = &amp;#34;{ga tracking ID}&amp;#34; を設定するだけ。</p>
     <a href="https://www.if-blog.site/posts/hugo/hugo-ga/" class="post-read-more"></a>
   </div>
 
@@ -466,42 +500,6 @@ c</p>
 html側で次のように書くと、markdownに書いたdescriptionが参照できます。
 {{ .Des</p>
     <a href="https://www.if-blog.site/posts/hugo/hugo-add-site-description/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/">
-    <h2 class="post-title">
-      Hugoの記事に画像を載せる
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
-画像を配置するディクトリを以下のように作っておく。
-{root}/content/post/images/ 以下のように記述すると表示できる。
-{{&amp;lt; figure src=&amp;quot;../../images/test.</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">

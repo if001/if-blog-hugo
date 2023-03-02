@@ -74,7 +74,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -201,94 +201,130 @@
 <h2 id="フォントファイルからフォント画像を生成">フォントファイルからフォント画像を生成</h2>
 <p>フォントファイルは、PILのImageFontの<a href="https://pillow.readthedocs.io/en/3.0.x/reference/ImageFont.html#PIL.ImageFont.truetype">turetype</a>を使い読み込むことができる。<br>
 フォントファイルとフォントのサイズを引数に与えることで、fontオブジェクトが生成できる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">from</span> PIL <span style="color:#ff79c6">import</span> ImageFont
-font_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">28</span>
-font <span style="color:#ff79c6">=</span> ImageFont<span style="color:#ff79c6">.</span>truetype(font_file, font_size, encoding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;unic&#39;</span>)
-</code></pre></div><p>読み込んだフォントは下記のように保存する。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">from</span> PIL <span style="color:#ff79c6">import</span> Image
-pict_height<span style="color:#ff79c6">=</span><span style="color:#bd93f9">28</span>
-pict_width<span style="color:#ff79c6">=</span><span style="color:#bd93f9">28</span>
-image <span style="color:#ff79c6">=</span> Image<span style="color:#ff79c6">.</span>new(<span style="color:#f1fa8c">&#39;RGB&#39;</span>, (pict_height, pict_width), (<span style="color:#bd93f9">255</span>, <span style="color:#bd93f9">255</span>, <span style="color:#bd93f9">255</span>))
-draw <span style="color:#ff79c6">=</span> ImageDraw<span style="color:#ff79c6">.</span>Draw(image)
-draw<span style="color:#ff79c6">.</span>text(pos, yomi, font<span style="color:#ff79c6">=</span>font, fill<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;#000000&#39;</span>)
-image<span style="color:#ff79c6">.</span>save(<span style="color:#f1fa8c">&#34;./font&#34;</span>, <span style="color:#f1fa8c">&#39;PNG&#39;</span>)
-</code></pre></div><pre><code>Image.new()
-</code></pre><p>で空のイメージを生成し、</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> PIL <span style="color:#ff79c6">import</span> ImageFont
+</span></span><span style="display:flex;"><span>font_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">28</span>
+</span></span><span style="display:flex;"><span>font <span style="color:#ff79c6">=</span> ImageFont<span style="color:#ff79c6">.</span>truetype(font_file, font_size, encoding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;unic&#39;</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>読み込んだフォントは下記のように保存する。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> PIL <span style="color:#ff79c6">import</span> Image
+</span></span><span style="display:flex;"><span>pict_height<span style="color:#ff79c6">=</span><span style="color:#bd93f9">28</span>
+</span></span><span style="display:flex;"><span>pict_width<span style="color:#ff79c6">=</span><span style="color:#bd93f9">28</span>
+</span></span><span style="display:flex;"><span>image <span style="color:#ff79c6">=</span> Image<span style="color:#ff79c6">.</span>new(<span style="color:#f1fa8c">&#39;RGB&#39;</span>, (pict_height, pict_width), (<span style="color:#bd93f9">255</span>, <span style="color:#bd93f9">255</span>, <span style="color:#bd93f9">255</span>))
+</span></span><span style="display:flex;"><span>draw <span style="color:#ff79c6">=</span> ImageDraw<span style="color:#ff79c6">.</span>Draw(image)
+</span></span><span style="display:flex;"><span>draw<span style="color:#ff79c6">.</span>text(pos, yomi, font<span style="color:#ff79c6">=</span>font, fill<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;#000000&#39;</span>)
+</span></span><span style="display:flex;"><span>image<span style="color:#ff79c6">.</span>save(<span style="color:#f1fa8c">&#34;./font&#34;</span>, <span style="color:#f1fa8c">&#39;PNG&#39;</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>Image.new()</code></pre>
+  </div>
+
+</div>
+<p>で空のイメージを生成し、</p>
 <p>Drawオブジェクトに対しの<a href="https://pillow.readthedocs.io/en/3.0.x/reference/ImageDraw.html#PIL.ImageDraw.PIL.ImageDraw.Draw.text">text関数</a>を用いてフォントファイルを書き込む。</p>
-<pre><code>draw.text(pos, yomi, font=font, fill='#000000')
-</code></pre><p>引数は、上記のtext関数のリンクを参照。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>draw.text(pos, yomi, font=font, fill=&#39;#000000&#39;)</code></pre>
+  </div>
+
+</div>
+<p>引数は、上記のtext関数のリンクを参照。</p>
 <p>保存するファイル名は、以下のように文字を16進数変換したものを使う。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">yomi<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;歩&#34;</span>
-bytes_yomi <span style="color:#ff79c6">=</span> yomi<span style="color:#ff79c6">.</span>encode(<span style="color:#f1fa8c">&#34;UTF-8&#34;</span>)<span style="color:#ff79c6">.</span>hex()
-<span style="color:#ff79c6">&gt;&gt;</span> <span style="color:#f1fa8c">&#39;e6ada9&#39;</span>
-</code></pre></div><h2 id="文字列とフォント画像をマッピング">文字列とフォント画像をマッピング</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>yomi<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;歩&#34;</span>
+</span></span><span style="display:flex;"><span>bytes_yomi <span style="color:#ff79c6">=</span> yomi<span style="color:#ff79c6">.</span>encode(<span style="color:#f1fa8c">&#34;UTF-8&#34;</span>)<span style="color:#ff79c6">.</span>hex()
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;</span> <span style="color:#f1fa8c">&#39;e6ada9&#39;</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="文字列とフォント画像をマッピング">文字列とフォント画像をマッピング</h2>
 <p>ファイル名を読み仮名を16進数変換し保存しているので、文字から毎回画像ファイルを読み込んでも良いが、高速に呼び出せるように、1文字と画像をファイルとkvsを使ってマッピングしておく。<br>
 kvsにはplyvelを使う。以下のようにインスタンス化する。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> plyvel
-db <span style="color:#ff79c6">=</span> plyvel<span style="color:#ff79c6">.</span>DB(db_path, create_if_missing<span style="color:#ff79c6">=</span>True)
-</code></pre></div><p>以下のように、保存と取り出しを行う。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">db<span style="color:#ff79c6">.</span>put(key, value) <span style="color:#6272a4"># 保存</span>
-db<span style="color:#ff79c6">.</span>get(key) <span style="color:#6272a4"># 取り出す</span>
-</code></pre></div><h2 id="フォント画像から特徴量を生成">フォント画像から特徴量を生成</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> plyvel
+</span></span><span style="display:flex;"><span>db <span style="color:#ff79c6">=</span> plyvel<span style="color:#ff79c6">.</span>DB(db_path, create_if_missing<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>以下のように、保存と取り出しを行う。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>db<span style="color:#ff79c6">.</span>put(key, value) <span style="color:#6272a4"># 保存</span>
+</span></span><span style="display:flex;"><span>db<span style="color:#ff79c6">.</span>get(key) <span style="color:#6272a4"># 取り出す</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="フォント画像から特徴量を生成">フォント画像から特徴量を生成</h2>
 <p>auto-encoderを使って、保存した画像から特徴量を抽出する。<br>
 モデルの構造はkerasの公式ブログを参考にし、以下の構造とした。</p>
 <p><img src="../../../images/char_vec/auto-encoder-img.png" alt="auto-encoder-img"></p>
 <p>各層の次元は以下のようにした。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">font_size <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">32</span>
-input_img <span style="color:#ff79c6">=</span> Input(shape<span style="color:#ff79c6">=</span>(font_size, font_size, <span style="color:#bd93f9">1</span>))
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>font_size <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">32</span>
+</span></span><span style="display:flex;"><span>input_img <span style="color:#ff79c6">=</span> Input(shape<span style="color:#ff79c6">=</span>(font_size, font_size, <span style="color:#bd93f9">1</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">16</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(input_img)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> BatchNormalization()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> MaxPooling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">8</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> BatchNormalization()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> MaxPooling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(self<span style="color:#ff79c6">.</span>hidden_dim, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>),
+</span></span><span style="display:flex;"><span>           padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
+</span></span><span style="display:flex;"><span>encoded <span style="color:#ff79c6">=</span> MaxPooling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>, name<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;encoder&#34;</span>)(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">8</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>, name<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;decoder&#34;</span>)(encoded)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> UpSampling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>))(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">8</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> BatchNormalization()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> UpSampling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>))(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">16</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> BatchNormalization()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> UpSampling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>))(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>decoded <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">1</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), activation<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;sigmoid&#39;</span>, padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>autoencoder <span style="color:#ff79c6">=</span> Model(input_img, decoded)
+</span></span><span style="display:flex;"><span>autoencoder<span style="color:#ff79c6">.</span>summary()</span></span></code></pre></div>
+  </div>
 
-x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">16</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(input_img)
-x <span style="color:#ff79c6">=</span> BatchNormalization()(x)
-x <span style="color:#ff79c6">=</span> ReLU()(x)
-x <span style="color:#ff79c6">=</span> MaxPooling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
-
-x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">8</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
-x <span style="color:#ff79c6">=</span> BatchNormalization()(x)
-x <span style="color:#ff79c6">=</span> ReLU()(x)
-x <span style="color:#ff79c6">=</span> MaxPooling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
-
-x <span style="color:#ff79c6">=</span> Conv2D(self<span style="color:#ff79c6">.</span>hidden_dim, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>),
-           padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
-x <span style="color:#ff79c6">=</span> ReLU()(x)
-encoded <span style="color:#ff79c6">=</span> MaxPooling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>, name<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;encoder&#34;</span>)(x)
-
-x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">8</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>, name<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;decoder&#34;</span>)(encoded)
-x <span style="color:#ff79c6">=</span> ReLU()(x)
-x <span style="color:#ff79c6">=</span> UpSampling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>))(x)
-
-x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">8</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
-x <span style="color:#ff79c6">=</span> BatchNormalization()(x)
-x <span style="color:#ff79c6">=</span> ReLU()(x)
-x <span style="color:#ff79c6">=</span> UpSampling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>))(x)
-
-x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">16</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
-x <span style="color:#ff79c6">=</span> BatchNormalization()(x)
-x <span style="color:#ff79c6">=</span> ReLU()(x)
-x <span style="color:#ff79c6">=</span> UpSampling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>))(x)
-
-decoded <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">1</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), activation<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;sigmoid&#39;</span>, padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
-
-autoencoder <span style="color:#ff79c6">=</span> Model(input_img, decoded)
-autoencoder<span style="color:#ff79c6">.</span>summary()
-</code></pre></div><h3 id="学習">学習</h3>
+</div>
+<h3 id="学習">学習</h3>
 <p>損失関数と最適化関数はそれぞれ、mean_squared_errorとadamを用いた。</p>
 <p>教師データとバリデーションデータはそれぞれ、66918個、16730個とした。また、バッチサイズは128とした。<br>
 学習は、kerasのearlystoppingを使いval_lossが減少がなくなるまで行った。</p>
 <h3 id="結果">結果</h3>
 <p><img src="../../../images/char_vec/training_log.png" alt="training_log"></p>
 <p>最中的なスコア</p>
-<pre><code>epoch :4  
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>epoch :4  
 acc :0.591411  
 loss :0.046486  
 val_acc :0.529843  
-val_loss:0.073542  
-</code></pre><p>だいぶ早めに学習が打ち切られているのがわかる。<br>
+val_loss:0.073542  </code></pre>
+  </div>
+
+</div>
+<p>だいぶ早めに学習が打ち切られているのがわかる。<br>
 2epoch目くらいからほとんどlossもaccも変化しなくなっている。次元数や層の数が少なくパラメタが足りないのか???</p>
 <p>一応デコードされた文字を確認しておく。</p>
 <p><img src="../../../images/char_vec/decoded_char.png" alt="decoded_char"></p>
 <p>左が教師データ、右がdecodeされた文字となる。auto-encoderなのでぼやけているのはしょうがないが割と綺麗にデコードできている。ただし、画数の多い文字となるとやはりぼやけて元の文字がわからない。この辺は、モデルや学習のパラメタを調整することでも少し改善されると思う。</p>
 <p>生成された特徴量も確認しておく。<br>
-以下に、&lsquo;寂&rsquo;, &lsquo;,', &lsquo;ッ&rsquo;, &lsquo;鏡&rsquo;, &lsquo;奸&rsquo;, &lsquo;Ｐ&rsquo;, &lsquo;跳&rsquo;, &lsquo;・', &lsquo;“', &lsquo;ょ'の記号を含む10文字を与えた際の特徴量を図示する。
+以下に、&lsquo;寂&rsquo;, &lsquo;,&rsquo;, &lsquo;ッ&rsquo;, &lsquo;鏡&rsquo;, &lsquo;奸&rsquo;, &lsquo;Ｐ&rsquo;, &lsquo;跳&rsquo;, &lsquo;・&rsquo;, &lsquo;“&rsquo;, &lsquo;ょ&rsquo;の記号を含む10文字を与えた際の特徴量を図示する。
 特徴量は、1文字あたり(4,4,8)次元となるので、4×4の画像を8枚横に並べたものを表示している。</p>
 <p><img src="../../../images/char_vec/hidden_dim.png" alt="hidden_dim"></p>
 <p>図をみると、文字ごとの偏りはなく学習できているように見える。</p>

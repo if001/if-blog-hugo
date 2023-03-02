@@ -74,7 +74,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -192,30 +192,38 @@
         <blockquote>
 <p>日本語、中国語、タイ語など、形態素解析に基づく単語境界を持たない言語の分析や理解のためには、単語の埋め込みの前に適切な単語分割を行うことが望まれるが、これらの言語では本質的に困難である。しかし、これらの言語では、それは本質的に困難である。近年、ディープラーニングに基づく様々な言語モデルの進歩は目覚ましく、文字レベルの特徴量を利用した手法の中には、このような困難な問題を回避することに成功しているものもある。しかし，上記の言語の文字レベル特徴量をモデルに与えると，文字種の数が多いためにオーバーフィッティングが発生することが多い．本論文では，これらの問題を解決するために，文字エンコーダを用いた文字レベル畳み込みニューラルネットワークであるCE-CLCNNを提案する．提案するCE-CLCNNは、エンドツーエンド学習モデルであり、画像ベースの文字エンコーダー、すなわち、対象文書中の各文字を画像として扱う。様々な実験を行った結果，提案するCE-CLCNNは，視覚的にも意味的にも類似した文字に対しても密接に埋め込まれた特徴を捉えることができ，いくつかのオープン文書の分類タスクにおいて最先端の結果を達成することを確認した．本論文では、Wikipediaのタイトル推定タスクを用いたCE-CLCNNの性能を報告し、内部挙動を分析した。</p>
 </blockquote>
-<p><a href="http://www.DeepL.com/Translator">www.DeepL.com/Translator</a>（無料版）で翻訳しました。</p>
+<p><a href="https://www.DeepL.com/Translator">www.DeepL.com/Translator</a>（無料版）で翻訳しました。</p>
 <h2 id="ii-ce-clcnn">II. CE-CLCNN</h2>
 <p>CE-CLNCCは、2つの異なるCNNからなる。</p>
 <p>１つ目のCNNは、文字画像を入力としcharacter encoderとして振る舞う。
 ２つ目のCNNは、document classificationに用いられる。</p>
 <h3 id="a-character-encoder-by-cnn">A. Character encoder by CNN</h3>
 <p>入力文字列を36×36 pixelの画像に変換する。</p>
-<pre><code>Layer # CE configuration
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>Layer # CE configuration
 1 Conv(k=(3, 3), o=32) → ReLU
 2 Maxpool(k=(2, 2))
 3 Conv(k=(3, 3), o=32) → ReLU
 4 Maxpool(k=(2, 2))
 5 Conv(k=(3, 3), o=32) → ReLU
 6 Linear(800, 128) → ReLU
-7 Linear(128, 128) → ReLU
-</code></pre><h3 id="b-document-classifier-by-clcnn">B. Document classifier by CLCNN</h3>
-<pre><code>Layer # CLCNN configuration
+7 Linear(128, 128) → ReLU</code></pre>
+  </div>
+
+</div>
+<h3 id="b-document-classifier-by-clcnn">B. Document classifier by CLCNN</h3>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>Layer # CLCNN configuration
 1 Conv(k=(1, 3), o=512, s=3) → ReLU
 2 Conv(k=(1, 3), o=512, s=3) → ReLU
 3 Conv(k=(1, 3), o=512) → ReLU
 4 Conv(k=(1, 3), o=512)
 5 Linear(5120, 1024)
-6 Linear(1024, # classes)
-</code></pre><h3 id="データセット">データセット</h3>
+6 Linear(1024, # classes)</code></pre>
+  </div>
+
+</div>
+<h3 id="データセット">データセット</h3>
 <p>Wikipediaタイトルデータセットを使う。
 これには、以下の12個のラベルが含まれており、これを文章分類のラベルに使う。</p>
 <p>Geography, Sports, Arts, Military, Economics, Transportation, Health Science, Education, Food Culture, Religion and Belief, Agriculture and Electronics.</p>

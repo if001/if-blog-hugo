@@ -78,7 +78,7 @@ Book Storage
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -173,7 +173,7 @@ Book Storage
             <a href="https://www.if-blog.site/tags/vue.js/">vue.js</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/webapp/">webapp</a
+            <a href="https://www.if-blog.site/tags/webapp/">WebApp</a
             >&nbsp;
           
             <a href="https://www.if-blog.site/tags/vuetify/">vuetify</a
@@ -212,90 +212,141 @@ Book Storage
 <p>2019年7月にv2.0.0がリリースされ、旧バージョン(v1.5.0)から記法が大きく変わったので、その際に注意する点も含め紹介していきます。</p>
 <h2 id="インストール">インストール</h2>
 <p><code>vue cli 3</code>を使うと楽ということなのでvue cliを使ってインストールします。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
-$ vue --version
-3.9.1
-</code></pre></div><p>typescriptのプロジェクトを作成します.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
-$ vue create my-app
-</code></pre></div><p>vuetifyを追加する.</p>
-<pre><code class="language-bash=" data-lang="bash=">$ cd my-app
-$ vue add vuetify
-</code></pre><p>すると以下のような選択肢が表示される. Defaultを選択すると、ツリーシェイキングなどの機能が追加された形で追加される.</p>
-<pre><code class="language-bash=" data-lang="bash=">$ ? Choose a preset: (Use arrow keys)
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ vue --version
+</span></span><span style="display:flex;"><span>3.9.1</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>typescriptのプロジェクトを作成します.</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ vue create my-app</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>vuetifyを追加する.</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code class="language-bash=" data-lang="bash=">$ cd my-app
+$ vue add vuetify</code></pre>
+  </div>
+
+</div>
+<p>すると以下のような選択肢が表示される. Defaultを選択すると、ツリーシェイキングなどの機能が追加された形で追加される.</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code class="language-bash=" data-lang="bash=">$ ? Choose a preset: (Use arrow keys)
 $ &gt; Default (recommended)
 $   Prototype (rapid development)
-$   Configure (advanced)
-</code></pre><p>ツリーシェイキングについては、こちらの記事がわかりやすかったです。<br>
+$   Configure (advanced)</code></pre>
+  </div>
+
+</div>
+<p>ツリーシェイキングについては、こちらの記事がわかりやすかったです。<br>
 <a href="https://qiita.com/genshun9/items/4a00aa6c709b9f024821">https://qiita.com/genshun9/items/4a00aa6c709b9f024821</a></p>
 <p>ツリーシェイキングはwebpack4から利用でき、<code>vue cli3</code>はwebpack4上に構築されるため、<code>vue cli3</code>を利用していると自動で利用できるようになります。vuetifyのバージョンは<code>2.0.0</code>。</p>
 <p>package.json</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">
-  <span style="color:#f1fa8c">&#34;dependencies&#34;</span>: {
-    <span style="color:#ff79c6">&#34;vuetify&#34;</span>: <span style="color:#f1fa8c">&#34;^2.0.0&#34;</span>,
-    ..
-    },
-</code></pre></div><p>フォントの追加も行います。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
-$ npm install @mdi/font -D
-</code></pre></div><p>vuetifyを追加すると、新たに<code>src/plugins/vuetify.ts</code>が追加されます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">
-<span style="color:#ff79c6">import</span> Vue from <span style="color:#f1fa8c">&#39;vue&#39;</span>;
-<span style="color:#ff79c6">import</span> Vuetify from <span style="color:#f1fa8c">&#39;vuetify/lib&#39;</span>;
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;dependencies&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;vuetify&#34;</span>: <span style="color:#f1fa8c">&#34;^2.0.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    ..
+</span></span><span style="display:flex;"><span>    },</span></span></code></pre></div>
+  </div>
 
-Vue.use(Vuetify);
+</div>
+<p>フォントの追加も行います。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ npm install @mdi/font -D</span></span></code></pre></div>
+  </div>
 
-<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> <span style="color:#ff79c6">new</span> Vuetify({
-  icons<span style="color:#ff79c6">:</span> {
-    iconfont<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;mdi&#39;</span>,
-  },
-});
-</code></pre></div><p>ここで起動すると、コンパイルエラーが出ていたので、tsconfigに以下を追加すると、うまく動くようになりました。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#f1fa8c">&#34;compilerOptions&#34;</span>: {
-    <span style="color:#ff79c6">&#34;types&#34;</span>: [<span style="color:#f1fa8c">&#34;vuetify&#34;</span>],
-</code></pre></div><h3 id="既存のプロジェクトへの追加">既存のプロジェクトへの追加</h3>
+</div>
+<p>vuetifyを追加すると、新たに<code>src/plugins/vuetify.ts</code>が追加されます。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> Vue <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;vue&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> Vuetify <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;vuetify/lib&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Vue.use(Vuetify);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> <span style="color:#ff79c6">new</span> Vuetify({
+</span></span><span style="display:flex;"><span>  icons<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>    iconfont<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;mdi&#39;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>});</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>ここで起動すると、コンパイルエラーが出ていたので、tsconfigに以下を追加すると、うまく動くようになりました。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#f1fa8c">&#34;compilerOptions&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;types&#34;</span>: [<span style="color:#f1fa8c">&#34;vuetify&#34;</span>],</span></span></code></pre></div>
+  </div>
+
+</div>
+<h3 id="既存のプロジェクトへの追加">既存のプロジェクトへの追加</h3>
 <p>yarnもしくはnpmを使いインストールします。</p>
-<pre><code class="language-bash=" data-lang="bash=">$ yarn add vuetify
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code class="language-bash=" data-lang="bash=">$ yarn add vuetify
 // OR
-$ npm install vuetify --save
-</code></pre><p>上記の<code>src/plugins/vuetify.ts</code>を新たに作成。</p>
+$ npm install vuetify --save</code></pre>
+  </div>
+
+</div>
+<p>上記の<code>src/plugins/vuetify.ts</code>を新たに作成。</p>
 <p>詳しくはドキュメントを参考<br>
 <a href="https://vuetifyjs.com/ja/getting-started/quick-start">https://vuetifyjs.com/ja/getting-started/quick-start</a></p>
 <h2 id="grid-system">Grid System</h2>
 <p>vuetifyを使うには、全体を<code>&lt;v-app&gt;</code>で囲みます。</p>
 <p>はじめに読み込まれるコンポーネントに以下のように書けば良いかと思います。</p>
-<pre><code class="language-haml" data-lang="haml">
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code class="language-haml" data-lang="haml">
 &lt;template&gt;
     &lt;v-app&gt;
         &lt;v-header&gt;&lt;/v-header&gt;
         &lt;router-view/&gt;
         &lt;v-footer&gt;&lt;/v-footer&gt;
     &lt;/v-app&gt;
-&lt;/template&gt;
-</code></pre><p>基本的には、以下の例のように<code>v-container</code>、<code>v-row</code>、<code>v-col</code>の順番で囲む形になります。旧バージョンで利用していた<code>v-flex</code>や<code>v-layout</code>などの記法の代わりに、<code>v-row</code>、<code>v-col</code>を使うので注意です。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
-&lt;<span style="color:#ff79c6">template</span>&gt;
-    &lt;<span style="color:#ff79c6">v-container</span>&gt;
-      &lt;<span style="color:#ff79c6">v-row</span>&gt;
-        &lt;<span style="color:#ff79c6">v-col</span> <span style="color:#50fa7b">cols</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">12</span>&gt;
-          コンテンツ
-        &lt;/<span style="color:#ff79c6">v-col</span>&gt;
-      &lt;/<span style="color:#ff79c6">v-row</span>&gt;
-    &lt;/<span style="color:#ff79c6">v-container</span>&gt;
-&lt;/<span style="color:#ff79c6">template</span>&gt;
+&lt;/template&gt;</code></pre>
+  </div>
 
-</code></pre></div><p><code>v-container</code>はコンテンツを中央揃えおよび水平方向にパディングにします。</p>
+</div>
+<p>基本的には、以下の例のように<code>v-container</code>、<code>v-row</code>、<code>v-col</code>の順番で囲む形になります。旧バージョンで利用していた<code>v-flex</code>や<code>v-layout</code>などの記法の代わりに、<code>v-row</code>、<code>v-col</code>を使うので注意です。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">template</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">v-container</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#ff79c6">v-row</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#ff79c6">v-col</span> <span style="color:#50fa7b">cols</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">12</span>&gt;
+</span></span><span style="display:flex;"><span>          コンテンツ
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#ff79c6">v-col</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#ff79c6">v-row</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#ff79c6">v-container</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">template</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p><code>v-container</code>はコンテンツを中央揃えおよび水平方向にパディングにします。</p>
 <p>gridは、Bootstrapと同様、12個のgridがあります。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
-&lt;<span style="color:#ff79c6">v-col</span> <span style="color:#50fa7b">cols</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">12</span>&gt;
-    ...
-&lt;/<span style="color:#ff79c6">v-col</span>&gt;
-</code></pre></div><p>colsプロパティを使い、gridを指定します。また、スマホ、PC用など、5つのブレークポイントが用意されており、colsに加え、ブレークポイントごとにgridが設定可能です。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
-&lt;<span style="color:#ff79c6">v-col</span> <span style="color:#50fa7b">cols</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;12&#34;</span> <span style="color:#50fa7b">lg</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;6&#34;</span> <span style="color:#50fa7b">md</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;6&#34;</span> <span style="color:#50fa7b">sm</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;6&#34;</span>&gt;
-    ...
-&lt;/<span style="color:#ff79c6">v-col</span>&gt;
-</code></pre></div><p>各ブレイクポイントは以下</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">v-col</span> <span style="color:#50fa7b">cols</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">12</span>&gt;
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">v-col</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>colsプロパティを使い、gridを指定します。また、スマホ、PC用など、5つのブレークポイントが用意されており、colsに加え、ブレークポイントごとにgridが設定可能です。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">v-col</span> <span style="color:#50fa7b">cols</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;12&#34;</span> <span style="color:#50fa7b">lg</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;6&#34;</span> <span style="color:#50fa7b">md</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;6&#34;</span> <span style="color:#50fa7b">sm</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;6&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">v-col</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>各ブレイクポイントは以下</p>
 <!-- raw HTML omitted -->
 <p>gridの指定でハマったポイントは、こちらの記事を参考<br>
 <a href="https://qiita.com/iss-f/items/a86586de095368cdd9a3">https://qiita.com/iss-f/items/a86586de095368cdd9a3</a></p>
@@ -307,25 +358,33 @@ $ npm install vuetify --save
 <h3 id="card">card</h3>
 <!-- raw HTML omitted -->
 <p>マテリアルデザインでよく見るカードは以下のように作ることができます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
- &lt;<span style="color:#ff79c6">v-card</span>
-    <span style="color:#50fa7b">max-width</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;344&#34;</span>
-    <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;mx-auto&#34;</span>
-  &gt;
-    &lt;<span style="color:#ff79c6">v-card-title</span>&gt;I&#39;m a title&lt;/<span style="color:#ff79c6">v-card-title</span>&gt;
-    &lt;<span style="color:#ff79c6">v-card-text</span>&gt;I&#39;m card text&lt;/<span style="color:#ff79c6">v-card-text</span>&gt;
-    &lt;<span style="color:#ff79c6">v-card-actions</span>&gt;
-      &lt;<span style="color:#ff79c6">v-btn</span> <span style="color:#50fa7b">text</span>&gt;Click&lt;/<span style="color:#ff79c6">v-btn</span>&gt;
-    &lt;/<span style="color:#ff79c6">v-card-actions</span>&gt;
-  &lt;/<span style="color:#ff79c6">v-card</span>&gt;
-</code></pre></div><p><code>v-card-title</code>、<code>v-card-text</code>には、それぞれタイトル用本文用に、フォントサイズやpaddingが設定してあります。 <code>v-card-action</code>には、クリックイベントなどのアクションを設定します。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> &lt;<span style="color:#ff79c6">v-card</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">max-width</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;344&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;mx-auto&#34;</span>
+</span></span><span style="display:flex;"><span>  &gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">v-card-title</span>&gt;I&#39;m a title&lt;/<span style="color:#ff79c6">v-card-title</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">v-card-text</span>&gt;I&#39;m card text&lt;/<span style="color:#ff79c6">v-card-text</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">v-card-actions</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#ff79c6">v-btn</span> <span style="color:#50fa7b">text</span>&gt;Click&lt;/<span style="color:#ff79c6">v-btn</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#ff79c6">v-card-actions</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#ff79c6">v-card</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p><code>v-card-title</code>、<code>v-card-text</code>には、それぞれタイトル用本文用に、フォントサイズやpaddingが設定してあります。 <code>v-card-action</code>には、クリックイベントなどのアクションを設定します。</p>
 <h3 id="button">Button</h3>
 <p><code>v-btn</code>タグを使い、波紋の広がるアニメーションがついたボタンが作成できます。</p>
 <!-- raw HTML omitted -->
 <p>シンプルな例は以下の通り。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
-&lt;<span style="color:#ff79c6">v-btn</span> <span style="color:#50fa7b">medium</span> <span style="color:#50fa7b">color</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;warning&#34;</span> <span style="color:#50fa7b">dark</span>&gt;Normal Button&lt;/<span style="color:#ff79c6">v-btn</span>&gt;
-</code></pre></div><p><code>small</code>, <code>medium</code> などのプロパティでボタンサイズが指定可能です。bootstrap同様、<code>info</code>、<code>primary</code>などで色の指定も可能。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">v-btn</span> <span style="color:#50fa7b">medium</span> <span style="color:#50fa7b">color</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;warning&#34;</span> <span style="color:#50fa7b">dark</span>&gt;Normal Button&lt;/<span style="color:#ff79c6">v-btn</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p><code>small</code>, <code>medium</code> などのプロパティでボタンサイズが指定可能です。bootstrap同様、<code>info</code>、<code>primary</code>などで色の指定も可能。</p>
 <!-- raw HTML omitted -->
 <p>また、その他タグを使い細かい色の指定も可能です。これらのタグは、ボタン以外のコンポーネントでも使用可能です。</p>
 <!-- raw HTML omitted -->
@@ -333,41 +392,56 @@ $ npm install vuetify --save
 <a href="https://vuetifyjs.com/ja/styles/colors">https://vuetifyjs.com/ja/styles/colors</a></p>
 <h4 id="outlined-button">outlined button</h4>
 <p>色抜きのボタンにする場合には、outlinedプロパティを使います。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
-&lt;<span style="color:#ff79c6">v-btn</span> <span style="color:#50fa7b">medium</span> <span style="color:#50fa7b">color</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;warning&#34;</span> <span style="color:#50fa7b">dark</span> <span style="color:#50fa7b">outlined</span>&gt;Normal Button&lt;/<span style="color:#ff79c6">v-btn</span>&gt;
-</code></pre></div><p>v2.0.0からoutlinedとなり、outlineプロパティは廃止されたので注意です。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">v-btn</span> <span style="color:#50fa7b">medium</span> <span style="color:#50fa7b">color</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;warning&#34;</span> <span style="color:#50fa7b">dark</span> <span style="color:#50fa7b">outlined</span>&gt;Normal Button&lt;/<span style="color:#ff79c6">v-btn</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>v2.0.0からoutlinedとなり、outlineプロパティは廃止されたので注意です。</p>
 <h4 id="floating-button">floating button</h4>
 <p><code>fab</code>プロパティを追加することで、フローティングボタンを作成することができます。</p>
 <!-- raw HTML omitted -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
-&lt;<span style="color:#ff79c6">v-btn</span> <span style="color:#50fa7b">fab</span> <span style="color:#50fa7b">dark</span> <span style="color:#50fa7b">color</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;indigo&#34;</span>&gt;
-      &lt;<span style="color:#ff79c6">v-icon</span> <span style="color:#50fa7b">dark</span>&gt;mdi-plus&lt;/<span style="color:#ff79c6">v-icon</span>&gt;
-&lt;/<span style="color:#ff79c6">v-btn</span>&gt;
-</code></pre></div><h4 id="loading-button">loading button</h4>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">v-btn</span> <span style="color:#50fa7b">fab</span> <span style="color:#50fa7b">dark</span> <span style="color:#50fa7b">color</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;indigo&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#ff79c6">v-icon</span> <span style="color:#50fa7b">dark</span>&gt;mdi-plus&lt;/<span style="color:#ff79c6">v-icon</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">v-btn</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+<h4 id="loading-button">loading button</h4>
 <p>loadingプロパティにboolean値を設定することで、trueの場合にローディングアニメーションが現れるようにすることもできます。</p>
 <!-- raw HTML omitted -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
-&lt;<span style="color:#ff79c6">v-btn</span> 
-    <span style="color:#50fa7b">:loading</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;loading&#34;</span>
-    <span style="color:#50fa7b">medium</span> 
-    <span style="color:#50fa7b">color</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;warning&#34;</span> 
-    <span style="color:#50fa7b">dark</span>
-    &gt;
-        Loading Button
-&lt;/<span style="color:#ff79c6">v-btn</span>&gt;
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">v-btn</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">:loading</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;loading&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">medium</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">color</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;warning&#34;</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">dark</span>
+</span></span><span style="display:flex;"><span>    &gt;
+</span></span><span style="display:flex;"><span>        Loading Button
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">v-btn</span>&gt;</span></span></code></pre></div>
+  </div>
 
-</code></pre></div><p>その他の設定は、ドキュメントを参照<br>
+</div>
+<p>その他の設定は、ドキュメントを参照<br>
 <a href="https://vuetifyjs.com/ja/components/buttons">https://vuetifyjs.com/ja/components/buttons</a></p>
 <h2 id="pagination">Pagination</h2>
 <!-- raw HTML omitted -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
-&lt;<span style="color:#ff79c6">v-pagination</span>
-    <span style="color:#50fa7b">v-model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;page&#34;</span>
-    <span style="color:#50fa7b">:length</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;15&#34;</span>
-    <span style="color:#50fa7b">:total-visible</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;7&#34;</span>
-    @<span style="color:#50fa7b">input</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;paginate()&#34;</span>
-&gt;&lt;/<span style="color:#ff79c6">v-pagination</span>&gt;
-</code></pre></div><p>v-modelに現在のページ番号を設定します。lengthプロパティは全ページ数、total-visibleで表示するページングボタンの数を指定。クリックイベントで、ページングボタン押下時の挙動を設定して使うことが多いかと思います。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">v-pagination</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">v-model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;page&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">:length</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;15&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">:total-visible</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;7&#34;</span>
+</span></span><span style="display:flex;"><span>    @<span style="color:#50fa7b">input</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;paginate()&#34;</span>
+</span></span><span style="display:flex;"><span>&gt;&lt;/<span style="color:#ff79c6">v-pagination</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>v-modelに現在のページ番号を設定します。lengthプロパティは全ページ数、total-visibleで表示するページングボタンの数を指定。クリックイベントで、ページングボタン押下時の挙動を設定して使うことが多いかと思います。</p>
 <h2 id="まとめ">まとめ</h2>
 <p>Vue.jsのマテリアルデザインのフレームワークである、Vuetifyを使ってサービスを作って見ました。簡単にマテリアルデザインに入門できて、おすすめです。</p>
 <p>ここで紹介した以外にも便利なコンポーネントが多数用意してあるのでドキュメント読んでみてください。</p>

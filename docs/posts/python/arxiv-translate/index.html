@@ -77,7 +77,7 @@ Google Apps Script（GAS）を使うと、" />
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -225,65 +225,81 @@ Google Apps Script（GAS）を使うと、google translateが簡単に使え、�
 <p>翻訳/原文タイトル、翻訳/原文アブスト、arxivのリンクを送ります。</p>
 <h2 id="github-actionsで定期実行">Github Actionsで定期実行</h2>
 <p>Github Actionsでcron実行するにはこんな感じ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ff79c6">name</span>: cron sample
-<span style="color:#ff79c6">on</span>:
-  <span style="color:#ff79c6">schedule</span>:
-    - <span style="color:#ff79c6">cron</span>: <span style="color:#f1fa8c">&#39;0 6 * * *&#39;</span>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">name</span>: cron sample
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">schedule</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">cron</span>: <span style="color:#f1fa8c">&#39;0 6 * * *&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">build</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">runs-on</span>: ubuntu-latest
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">steps</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">name</span>: hello
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">run</span>: |<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        </span>        echo &#34;hello world&#34;</span></span></code></pre></div>
+  </div>
 
-<span style="color:#ff79c6">jobs</span>:
-  <span style="color:#ff79c6">build</span>:
-    <span style="color:#ff79c6">runs-on</span>: ubuntu-latest
-    <span style="color:#ff79c6">steps</span>:
-    - <span style="color:#ff79c6">name</span>: hello
-      <span style="color:#ff79c6">run</span>: <span style="color:#f1fa8c">|
-</span><span style="color:#f1fa8c">        echo &#34;hello world&#34;</span>
-</code></pre></div><p><a href="https://docs.github.com/ja/actions/reference/events-that-trigger-workflows#schedule">https://docs.github.com/ja/actions/reference/events-that-trigger-workflows#schedule</a></p>
+</div>
+<p><a href="https://docs.github.com/ja/actions/reference/events-that-trigger-workflows#schedule">https://docs.github.com/ja/actions/reference/events-that-trigger-workflows#schedule</a></p>
 <p>確認用に手動実行したい場合は、<code>workflow_dispatch</code>を指定する。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ff79c6">on</span>:
-  <span style="color:#ff79c6">workflow_dispatch</span>:
-</code></pre></div><p>作成したscriptを実行させる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">
-<span style="color:#ff79c6">jobs</span>:
-  <span style="color:#ff79c6">notify</span>:
-    <span style="color:#ff79c6">runs-on</span>: ubuntu-latest
-    <span style="color:#ff79c6">strategy</span>:
-      <span style="color:#ff79c6">matrix</span>:
-        <span style="color:#ff79c6">python-version</span>: [<span style="color:#bd93f9">3.7</span>]
-    <span style="color:#ff79c6">steps</span>:
-    - <span style="color:#ff79c6">uses</span>: actions/checkout@v2
-    - <span style="color:#ff79c6">name</span>: Set up Python ${{ matrix.python-version }}
-      <span style="color:#ff79c6">uses</span>: actions/setup-python@v2
-      <span style="color:#ff79c6">with</span>:
-        <span style="color:#ff79c6">python-version</span>: ${{ matrix.python-version }}
-        
-    - <span style="color:#ff79c6">name</span>: Install dependencies
-      <span style="color:#ff79c6">run</span>: <span style="color:#f1fa8c">|
-</span><span style="color:#f1fa8c">        python -m pip install --upgrade pip    </span>
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi      
-    - <span style="color:#ff79c6">name</span>: Run Main
-      <span style="color:#ff79c6">env</span>:
-        <span style="color:#ff79c6">APP_GAS_URL</span>: ${{ secrets.APP_GAS_URL }}
-        <span style="color:#ff79c6">APP_SLACK_URL</span>: ${{ secrets.APP_SLACK_URL }}
-      <span style="color:#ff79c6">run</span>: <span style="color:#f1fa8c">|
-</span><span style="color:#f1fa8c">        python main.py</span>
-</code></pre></div><p>前日にslackにPOSTした論文と同じものがPOSTされないように、<br>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">on</span>:
+</span></span><span style="display:flex;"><span>  workflow_dispatch:</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>作成したscriptを実行させる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">notify</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">runs-on</span>: ubuntu-latest
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">strategy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">matrix</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">python-version</span>: [<span style="color:#bd93f9">3.7</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">steps</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">uses</span>: actions/checkout@v2
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">name</span>: Set up Python ${{ matrix.python-version }}
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">uses</span>: actions/setup-python@v2
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">with</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">python-version</span>: ${{ matrix.python-version }}
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">name</span>: Install dependencies
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">run</span>: |<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        python -m pip install --upgrade pip    
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi      </span>        
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">name</span>: Run Main
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">env</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">APP_GAS_URL</span>: ${{ secrets.APP_GAS_URL }}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">APP_SLACK_URL</span>: ${{ secrets.APP_SLACK_URL }}
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">run</span>: |<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        </span>        python main.py</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>前日にslackにPOSTした論文と同じものがPOSTされないように、<br>
 arxivの各論文の持つid(entry_id)をsave.logというファイル名で書き出して、<br>
 同じリポジトリにpushしておきます。</p>
 <p>ファイルの中身と、arxivから取得した論文の差分を取り、slackに送ります。</p>
 <p>Github Actionsで、自信の変更を自信のリポジトリにpushするのは、以下のようにできる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"> - <span style="color:#ff79c6">name</span>: Run Change push
-      <span style="color:#ff79c6">run</span>: <span style="color:#f1fa8c">|
-</span><span style="color:#f1fa8c">        s=`git status -s`</span>
-        if [ -z <span style="color:#f1fa8c">&#34;$s&#34;</span> ]; then
-          exit <span style="color:#bd93f9">0</span>
-        fi
-        git config --global user.email <span style="color:#f1fa8c">&#34;workflow@example.com&#34;</span>
-        git config --global user.name <span style="color:#f1fa8c">&#34;workflow user&#34;</span>
-        git add save.log
-        git commit -m <span style="color:#f1fa8c">&#34;update save.log&#34;</span>
-        git status
-        git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git
-</code></pre></div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span> - <span style="color:#ff79c6">name</span>: Run Change push
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">run</span>: |<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        s=`git status -s`
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        if [ -z &#34;$s&#34; ]; then
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">          exit 0
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        fi
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git config --global user.email &#34;workflow@example.com&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git config --global user.name &#34;workflow user&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git add save.log
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git commit -m &#34;update save.log&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git status
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git</span>        </span></span></code></pre></div>
+  </div>
+
+</div>
+
       </div>
       <div class="related-article">
         

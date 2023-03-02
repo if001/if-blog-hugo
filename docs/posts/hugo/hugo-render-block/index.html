@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-<title>Hugoのディレクトリ構造やデプロイ方法の備忘録</title>
+<title>code blockにrefarenceをつける</title>
 
   
     
@@ -70,10 +70,8 @@
 
 
   
-    <meta name="description" content="久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。
-ディレクトリ 基本的なディレクトリは以下
-markdownを書いたりと普段触るのはcontentディレクトリになる。
-デプロイ後生成されるpublicディレクトリはサー" />
+    <meta name="description" content="Hugoでコードブロックを使うときは、GitHubからの引用が多くその下に参照元のURLを貼り付けることが多い。 コードブロックの下にそのままURLが表示されるの若干見づらかったので、コードブロックとセットでいい感じに表示したい。
+HugoにMarkdown Render Hooksにcodeblo" />
   
 
 
@@ -142,7 +140,7 @@ markdownを書いたりと普段触るのはcontentディレクトリになる�
               
               <h1>
 		
-		Hugoのディレクトリ構造やデプロイ方法の備忘録
+		code blockにrefarenceをつける
 		
 		
                 </h1>
@@ -178,7 +176,7 @@ markdownを書いたりと普段触るのはcontentディレクトリになる�
       
         <div style="margin-bottom: 10px;">
           <i class="fa fa-calendar-alt"></i
-          >&nbsp;2018-10-16
+          >&nbsp;2023-02-28
         </div>
       
 
@@ -186,36 +184,46 @@ markdownを書いたりと普段触るのはcontentディレクトリになる�
 
 
       <div class="article-main">
-        <p>久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。</p>
-<h2 id="ディレクトリ">ディレクトリ</h2>
-<p>基本的なディレクトリは以下<br>
-markdownを書いたりと普段触るのはcontentディレクトリになる。<br>
-デプロイ後生成されるpublicディレクトリはサーバーなどで公開する。</p>
+        <p>Hugoでコードブロックを使うときは、GitHubからの引用が多くその下に参照元のURLを貼り付けることが多い。
+コードブロックの下にそのままURLが表示されるの若干見づらかったので、コードブロックとセットでいい感じに表示したい。</p>
+<p>HugoにMarkdown Render Hooksにcodeblockが追加されてたのでこれが使えそう。</p>
+<p><a href="https://gohugo.io/templates/render-hooks/#render-hooks-for-code-blocks">https://gohugo.io/templates/render-hooks/#render-hooks-for-code-blocks</a></p>
+<p>v0.93.0からなので注意</p>
+<p>やり方は簡単で、<code>layouts/_default/_markup/render-codeblock.html</code>を追加するだけ。</p>
+<p>特定の言語に対応させるために<code>rendor-codeblock-bash.html</code>のようなこともできるらしい。</p>
+<p>コードブロックにrefを渡すと</p>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>archetypes/ ・・・ markdown記事を生成する際のテンプレートなど
-config.toml ・・・ 設定ファイル
-content/ ・・・　markdownの記事を配置
-layouts/　・・・ Htmlの共通部分
-public/ ・・・ デプロイ後に生成される静的ファイル群
-static/ ・・・ cssなどの静的ファイルを配置
-themes/ ・・・ テーマを配置</code></pre>
+  <div class="body"><pre tabindex="0"><code>```python{ref=&#34;this is ref&#34;}
+def hello():
+    print(&#34;hello world&#34;)
+```</code></pre>
   </div>
 
 </div>
-<h2 id="デプロイ">デプロイ</h2>
-<p>hugoのプロジェクトルートで以下のコマンドを打つ</p>
+<p>このように参照元をつけることができる</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo -t ./</span></span></code></pre></div>
+  <div class="body"><div class="name">test.js</div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">hello</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;hello world&#34;</span>)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="this%20is%20ref" target="_black">this is ref</a>
+    </div>
+
+</div>
+<p>render-codeblock.htmlの例はこのような感じ</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;code-block&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>      {{- highlight (.Inner | safeHTML) .Type .Options }}  
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>    {{- $ref := .Attributes.ref -}}
+</span></span><span style="display:flex;"><span>    {{ with $ref }}&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;ref&#34;</span>&gt;参照: &lt;<span style="color:#ff79c6">a</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">{{</span> . }} <span style="color:#50fa7b">target</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;_black&#34;</span>&gt;{{ . }}&lt;/<span style="color:#ff79c6">a</span>&gt;&lt;/<span style="color:#ff79c6">div</span>&gt;{{ end }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">div</span>&gt;</span></span></code></pre></div>
   </div>
 
 </div>
-<p>記事を書くときには以下のコマンドを使う。</p>
-<div class="code-block">
-  <div class="body"><pre tabindex="0"><code>$ hugo server -t ./</code></pre>
-  </div>
-
-</div>
-<p>localにサーバーが立ち上がり、markdownを書きながら生成される記事を確認できる。</p>
+<p><code>.Attributes</code>で設定した値が取り出せる。</p>
 
       </div>
       <div class="related-article">
@@ -224,15 +232,15 @@ themes/ ・・・ テーマを配置</code></pre>
   <h2>See Also</h2>
   <ul>
     
+      <li><a href="/posts/hugo/hugo-related-posts/">Hugoの記事に関連記事を表示させる</a></li>
+    
+      <li><a href="/posts/others/http-portal-for-blog/">Hugoで作ったwebサイトを公開する</a></li>
+    
       <li><a href="/posts/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
     
       <li><a href="/posts/hugo/hugo-start-article/">Hugoでブログを作る</a></li>
     
       <li><a href="/posts/hugo/hugo-href-to-target-blank/">Hugoでリンクを新しいウィンドウで開く</a></li>
-    
-      <li><a href="/posts/hugo/hugo-ga/">Hugoにgoogle analyticsを導入する</a></li>
-    
-      <li><a href="/posts/hugo/hugo-code-highlight/">Hugoの記事でコードハイライトする</a></li>
     
   </ul>
 

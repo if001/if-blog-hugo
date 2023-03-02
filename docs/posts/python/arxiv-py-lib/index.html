@@ -78,7 +78,7 @@ p" />
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -196,19 +196,27 @@ p" />
 pythonのライブラリを使わせてもらいます。</p>
 <p><a href="https://github.com/lukasschwab/arxiv.py">https://github.com/lukasschwab/arxiv.py</a></p>
 <p>pipでインストール</p>
-<pre><code>$ pip install arxiv
-</code></pre><h2 id="使い方">使い方</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> arxiv
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>$ pip install arxiv</code></pre>
+  </div>
 
-search <span style="color:#ff79c6">=</span> arxiv<span style="color:#ff79c6">.</span>Search(
-  query <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;quantum&#34;</span>,
-  max_results <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span>,
-  sort_by <span style="color:#ff79c6">=</span> arxiv<span style="color:#ff79c6">.</span>SortCriterion<span style="color:#ff79c6">.</span>SubmittedDate
-)
+</div>
+<h2 id="使い方">使い方</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> arxiv
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>search <span style="color:#ff79c6">=</span> arxiv<span style="color:#ff79c6">.</span>Search(
+</span></span><span style="display:flex;"><span>  query <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;quantum&#34;</span>,
+</span></span><span style="display:flex;"><span>  max_results <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span>,
+</span></span><span style="display:flex;"><span>  sort_by <span style="color:#ff79c6">=</span> arxiv<span style="color:#ff79c6">.</span>SortCriterion<span style="color:#ff79c6">.</span>SubmittedDate
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> result <span style="color:#ff79c6">in</span> search<span style="color:#ff79c6">.</span>results():
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">print</span>(result<span style="color:#ff79c6">.</span>title)</span></span></code></pre></div>
+  </div>
 
-<span style="color:#ff79c6">for</span> result <span style="color:#ff79c6">in</span> search<span style="color:#ff79c6">.</span>results():
-  <span style="color:#ff79c6">print</span>(result<span style="color:#ff79c6">.</span>title)
-</code></pre></div><p>arxiv.Searchでリクエストを送ります。<br>
+</div>
+<p>arxiv.Searchでリクエストを送ります。<br>
 results()で結果の一覧を取得</p>
 <p>結果用にResult Classが用意されており、<br>
 中身はそれぞれ以下のような形です。</p>

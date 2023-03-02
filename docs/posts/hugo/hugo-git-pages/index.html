@@ -72,12 +72,12 @@
   
     <meta name="description" content="GitHub Pagesを使ってHugoを公開する手順をメモ
 やりたいこととしては、
- Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定  の3つです。
-GitHub Pagesで公開 まずは、Hugoのプロジェク" />
+Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定 の3つです。
+GitHub Pagesで公開 まずは、Hugoのプロジェクトル" />
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -197,29 +197,49 @@ GitHub Pagesで公開 まずは、Hugoのプロジェク" />
 <h2 id="github-pagesで公開">GitHub Pagesで公開</h2>
 <p>まずは、Hugoのプロジェクトルートをgitで管理します。<br>
 GitHub Pagesで公開するために、GitHubのリポジトリの設定からPagesで公開するための設定を行います。このとき、そのまま公開すると、Hugoをビルドして生成されるファイルはプロジェクトルート直下のpublic以下に生成されるので、</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> https://<span style="color:#ff79c6">{</span>ユーザー名<span style="color:#ff79c6">}</span>.github.io/<span style="color:#ff79c6">{</span>リポジトリ名<span style="color:#ff79c6">}</span>/<span style="color:#ff79c6">{</span>public<span style="color:#ff79c6">}</span>
-</code></pre></div><p>というように、URLにpublicが付いてしまいます。これは嫌なので、git subtreeを使います。<br>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> https://<span style="color:#ff79c6">{</span>ユーザー名<span style="color:#ff79c6">}</span>.github.io/<span style="color:#ff79c6">{</span>リポジトリ名<span style="color:#ff79c6">}</span>/<span style="color:#ff79c6">{</span>public<span style="color:#ff79c6">}</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>というように、URLにpublicが付いてしまいます。これは嫌なので、git subtreeを使います。<br>
 gh-pagesという新しいブランチを作成し、public以下のファイルのみをpushしています。github pagesではgh-pagesを公開するよう設定します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git subtree push --prefix public/ . gh-pages
-$ git push origin gh-pages:gh-pages
-</code></pre></div><p>GitHubから独自ドメインの設定をすると、ブランチgh-pagesにCNAMEファイルが追加、commitされるのですが、この変更をローカルのmasterに取り込めないという問題が発生しました。このため、ローカルで記事を追加したときなど、non-fast-forwardでpush、pullもできなくなりました。そこで、しょうがなくmaster側にローカルからCNAMEファイルを追加しました。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git subtree push --prefix public/ . gh-pages
+</span></span><span style="display:flex;"><span>$ git push origin gh-pages:gh-pages</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>GitHubから独自ドメインの設定をすると、ブランチgh-pagesにCNAMEファイルが追加、commitされるのですが、この変更をローカルのmasterに取り込めないという問題が発生しました。このため、ローカルで記事を追加したときなど、non-fast-forwardでpush、pullもできなくなりました。そこで、しょうがなくmaster側にローカルからCNAMEファイルを追加しました。</p>
 <p>それでもうまくいかないときは、エラー文のcommitのハッシュを使って無理やりpushしてとりあえず回避してます。</p>
 <p>例</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> $ git subtree push --prefix public/ . gh-pages
- git push using:  . gh-pages
- To .     <span style="color:#bd93f9">59</span> <span style="color:#ff79c6">(</span>58<span style="color:#ff79c6">)</span>
-  ! <span style="color:#ff79c6">[</span>rejected<span style="color:#ff79c6">]</span>        95625bda7b4247ff0d05b2e76c8db1cbb7e87dad -&gt; gh-pages <span style="color:#ff79c6">(</span>non-fast-forward<span style="color:#ff79c6">)</span>
- error: failed to push some refs to <span style="color:#f1fa8c">&#39;.&#39;</span>
- hint: Updates were rejected because a pushed branch tip is behind its remote
- hint: counterpart. Check out this branch and integrate the remote changes
- hint: <span style="color:#ff79c6">(</span>e.g. <span style="color:#f1fa8c">&#39;git pull ...&#39;</span><span style="color:#ff79c6">)</span> before pushing again.
- hint: See the <span style="color:#f1fa8c">&#39;Note about fast-forwards&#39;</span> in <span style="color:#f1fa8c">&#39;git push --help&#39;</span> <span style="color:#ff79c6">for</span> details.
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> $ git push origin 95625bda7b4247ff0d05b2e76c8db1cbb7e87dad:gh-pages
-</code></pre></div><h2 id="独自ドメインの設定">独自ドメインの設定</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> $ git subtree push --prefix public/ . gh-pages
+</span></span><span style="display:flex;"><span> git push using:  . gh-pages
+</span></span><span style="display:flex;"><span> To .     <span style="color:#bd93f9">59</span> <span style="color:#ff79c6">(</span>58<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>  ! <span style="color:#ff79c6">[</span>rejected<span style="color:#ff79c6">]</span>        95625bda7b4247ff0d05b2e76c8db1cbb7e87dad -&gt; gh-pages <span style="color:#ff79c6">(</span>non-fast-forward<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span> error: failed to push some refs to <span style="color:#f1fa8c">&#39;.&#39;</span>
+</span></span><span style="display:flex;"><span> hint: Updates were rejected because a pushed branch tip is behind its remote
+</span></span><span style="display:flex;"><span> hint: counterpart. Check out this branch and integrate the remote changes
+</span></span><span style="display:flex;"><span> hint: <span style="color:#ff79c6">(</span>e.g. <span style="color:#f1fa8c">&#39;git pull ...&#39;</span><span style="color:#ff79c6">)</span> before pushing again.
+</span></span><span style="display:flex;"><span> hint: See the <span style="color:#f1fa8c">&#39;Note about fast-forwards&#39;</span> in <span style="color:#f1fa8c">&#39;git push --help&#39;</span> <span style="color:#ff79c6">for</span> details.</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> $ git push origin 95625bda7b4247ff0d05b2e76c8db1cbb7e87dad:gh-pages</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="独自ドメインの設定">独自ドメインの設定</h2>
 <p>今回は、お名前.comでドメインを取得しました。お名前.comでDNSの設定をします。<br>
 GitHub Pagesのドメインは</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> https://<span style="color:#ff79c6">{</span>ユーザー名<span style="color:#ff79c6">}</span>.github.io/<span style="color:#ff79c6">{</span>リポジトリ名<span style="color:#ff79c6">}</span>
-</code></pre></div><p>なので、取得したドメインでGitHub PagesのドメインがひけるようにCNAMEの設定を行います。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> https://<span style="color:#ff79c6">{</span>ユーザー名<span style="color:#ff79c6">}</span>.github.io/<span style="color:#ff79c6">{</span>リポジトリ名<span style="color:#ff79c6">}</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>なので、取得したドメインでGitHub PagesのドメインがひけるようにCNAMEの設定を行います。</p>
 <p>GitHub側では、リポジトリの設定からCustom domainを取得したドメインで設定します。Custom domainを設定すると、Enforce HTTPSにチェックを入れることができるので、設定するとhttpsで通信が行えるようになります。</p>
 
       </div>

@@ -76,7 +76,7 @@ SeqGANの論文を読んだのでまとめておきます。実装を行おう�
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -171,7 +171,7 @@ SeqGANの論文を読んだのでまとめておきます。実装を行おう�
             <a href="https://www.if-blog.site/tags/nlp/">nlp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/seqgan/">seqgan</a
+            <a href="https://www.if-blog.site/tags/seqgan/">SeqGAN</a
             >&nbsp;
           
             <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a
@@ -209,7 +209,7 @@ SeqGANの論文を読んだのでまとめておきます。実装を行おう�
 <p>そこで、生成モデルに強化学習を用いたGANであるSeqGANを提案する。</p>
 <h2 id="sequence-generative-adversarial-nets">Sequence Generative Adversarial Nets</h2>
 <p>生成モデル$G_ \theta $はパラメータを$\theta$として、$Y_ {1:T} = (y_ 1, y_ 2 , y_ T)$,$y_ t \in \mathcal Y$ を生成するために学習する。ここで、$\mathcal Y$はvocabularyを表す。</p>
-<p>学習には、強化学習を用いる。時刻$t$において、状態$s$は現在の単語列$(y_ {1},y_ {2}, \ldots ,y_ {t-1})$を表し、行動$a$により次の単語$y_ t$を選択する。このため、方策モデル$G_ {\theta} (y_ {t}|Y_ {1:t-1})$ は確率的である。一方、行動を選択したあとでは、状態遷移は決定的である。つまり、もし現在の状態が$s=Y_ {1:t-1}$で行動が$a=y_ {t}$ならば、次の状態$s'=Y_ {1:t}$に対して、$\delta^a_ {s,s&rsquo;}=1$である。そうでないなら、次の状態$s'&lsquo;$に対して$\delta^a_ {s,s&rsquo;'}=0$である。</p>
+<p>学習には、強化学習を用いる。時刻$t$において、状態$s$は現在の単語列$(y_ {1},y_ {2}, \ldots ,y_ {t-1})$を表し、行動$a$により次の単語$y_ t$を選択する。このため、方策モデル$G_ {\theta} (y_ {t}|Y_ {1:t-1})$ は確率的である。一方、行動を選択したあとでは、状態遷移は決定的である。つまり、もし現在の状態が$s=Y_ {1:t-1}$で行動が$a=y_ {t}$ならば、次の状態$s&rsquo;=Y_ {1:t}$に対して、$\delta^a_ {s,s&rsquo;}=1$である。そうでないなら、次の状態$s&rsquo;&rsquo;$に対して$\delta^a_ {s,s&rsquo;&rsquo;}=0$である。</p>
 <p>加えて、パラメーター$\phi$を持つ識別モデル$D_ \phi$は、生成モデル$G_ \theta$を学習しながら正解を識別する。識別モデル$D_ \phi$は、本物の文章かどうかを確率的に識別する。</p>
 <p>識別モデル$D_ \phi$は、正解文章と生成モデル$G_ \theta$から生成される不正解の文章を用いて学習する。同時に、生成モデル$G_ \theta$は、期待値と$D_ \phi$から得られる報酬に基づくMC searchにより学習する。</p>
 <h2 id="seqgan-via-policy-gradient">SeqGAN via Policy Gradient</h2>
@@ -228,7 +228,7 @@ $$ Q^{G_ \theta}_ {D_ \phi}(s=Y_ {1:T-1},a=y_ T) = D_ \phi(Y_ {1:T})$$</p>
 以上から、以下の定式化が行える。</p>
 <p>$$ Q^{G_ \theta}_ {D_ \phi}(s=Y_ {1:T-1},a=y_ T) = \frac{1}{N} \sum_ {n=1}^N D_ \phi(T^n_ {1:T}, Y^n_ {1:T} \in MC^{G_ \beta}(Y_ {1:t};N)) , {\rm for} , t &lt; T$$</p>
 <p>$$ Q^{G_ \theta}_ {D_ \phi}(s=Y_ {1:T-1},a=y_ T) = D_ \phi(T^n_ {1:T}, Y^n_ {1:T}) , {\rm for} , t=T$$</p>
-<p>中間の報酬がないとき、関数は、状態$s'=Y_ {1:t}$から始まりrole-outの終わりまでのnext-state valueとして繰り返し定義される。</p>
+<p>中間の報酬がないとき、関数は、状態$s&rsquo;=Y_ {1:t}$から始まりrole-outの終わりまでのnext-state valueとして繰り返し定義される。</p>
 <p>識別モデル$D_ {\phi}$を使った報酬は、生成モデルを繰り返し学習するために、動的に更新される。より現実的な文章のセットが生成されると、次のように識別モデルを更新する。</p>
 <p>$$
 min_ \phi - \mathbb E_ {Y〜p_ {data}}[log D_ {\phi}(Y)] - \mathbb  E_ {Y〜G_ {\theta}}[log (1 - D_ {\phi}(Y))]

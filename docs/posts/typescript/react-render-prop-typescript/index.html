@@ -76,7 +76,7 @@ https://reactjs.org/docs/render-props.html
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -192,33 +192,37 @@ https://reactjs.org/docs/render-props.html
 functional componentでのやり方がわからなくていろいろハマったのでメモ</p>
 <p><a href="https://reactjs.org/docs/render-props.html">https://reactjs.org/docs/render-props.html</a></p>
 <h2 id="結論">結論</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">
-<span style="color:#6272a4">// children
-</span><span style="color:#6272a4"></span><span style="color:#ff79c6">interface</span> ChildrenSampleProps {
-    userName: <span style="color:#8be9fd">string</span>
-}
-<span style="color:#ff79c6">const</span> ChildrenSample: <span style="color:#8be9fd">React.FC</span><span style="color:#ff79c6">&lt;</span>ChildrenSampleProps<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">=</span> ({ userName }) <span style="color:#ff79c6">=&gt;</span> {
-    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">&lt;&gt;</span>user<span style="color:#ff79c6">:</span> {userName}<span style="color:#ff79c6">&lt;</span>/&gt;
-}
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// children
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">interface</span> ChildrenSampleProps {
+</span></span><span style="display:flex;"><span>    userName: <span style="color:#8be9fd">string</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> ChildrenSample: <span style="color:#8be9fd">React.FC</span>&lt;<span style="color:#ff79c6">ChildrenSampleProps</span>&gt; <span style="color:#ff79c6">=</span> ({ userName }) <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> &lt;&gt;user<span style="color:#ff79c6">:</span> {userName}&lt;/&gt;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// parent
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">interface</span> ParentProps {
+</span></span><span style="display:flex;"><span>    children<span style="color:#ff79c6">:</span> (props: <span style="color:#8be9fd">ChildrenSampleProps</span>) <span style="color:#ff79c6">=&gt;</span> JSX.Element
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> Parent: <span style="color:#8be9fd">React.FC</span>&lt;<span style="color:#ff79c6">ParentProps</span>&gt; <span style="color:#ff79c6">=</span> ({ children }) <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> userName <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;user!!!&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> &lt;&gt;{children({ userName })}&lt;/&gt;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// sample to use
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> Sample: <span style="color:#8be9fd">React.FC</span> <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> (
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#ff79c6">Parent</span>&gt;
+</span></span><span style="display:flex;"><span>            {(props) <span style="color:#ff79c6">=&gt;</span> &lt;<span style="color:#ff79c6">ChildrenSample</span> {<span style="color:#50fa7b">...props</span>} /&gt;}
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#ff79c6">Parent</span>&gt;
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 
-<span style="color:#6272a4">// parent
-</span><span style="color:#6272a4"></span><span style="color:#ff79c6">interface</span> ParentProps {
-    children<span style="color:#ff79c6">:</span> (props: <span style="color:#8be9fd">ChildrenSampleProps</span>) <span style="color:#ff79c6">=&gt;</span> JSX.Element
-}
-<span style="color:#ff79c6">const</span> Parent: <span style="color:#8be9fd">React.FC</span><span style="color:#ff79c6">&lt;</span>ParentProps<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">=</span> ({ children }) <span style="color:#ff79c6">=&gt;</span> {
-    <span style="color:#ff79c6">const</span> userName <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;user!!!&#39;</span>
-    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">&lt;&gt;</span>{children({ userName })}<span style="color:#ff79c6">&lt;</span>/&gt;
-}
-
-<span style="color:#6272a4">// sample to use
-</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> Sample: <span style="color:#8be9fd">React.FC</span> <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
-    <span style="color:#ff79c6">return</span> (
-        <span style="color:#ff79c6">&lt;</span>Parent<span style="color:#ff79c6">&gt;</span>
-            {(props) <span style="color:#ff79c6">=&gt;</span> <span style="color:#ff79c6">&lt;</span>ChildrenSample {...props} <span style="color:#ff79c6">/&gt;</span>}
-        <span style="color:#ff79c6">&lt;</span>/Parent&gt;
-    );
-}
-</code></pre></div><p>childrenの型を<code>children: (props: ChildrenSampleProps) =&gt; JSX.Element</code>のようにするといける</p>
+</div>
+<p>childrenの型を<code>children: (props: ChildrenSampleProps) =&gt; JSX.Element</code>のようにするといける</p>
 
       </div>
       <div class="related-article">

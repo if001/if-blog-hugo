@@ -239,6 +239,7 @@ p + p {
 
 .post-title {
     margin-top: 0px;
+    font-weight: 300;
 }
 
 .post-preview {
@@ -405,43 +406,80 @@ table tr td :last-child {
   padding: 0 0.4em 0 0.4em;
 }
 
-pre {
-    display: block;
-    padding: 9.5px;
-    margin: 0 0 10px;
-    font-size: 1.5rem;
-    line-height: 1.42857143;
-    /* color: #333; */
-    word-break: break-all;
-    word-wrap: break-word;
-    /* background-color: #f5f5f5; */
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-
-    color: #f8f8f2;
-    background-color: #282a36;
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4;
+.code-block {
+  margin: 0;
+  margin-bottom: 2em;
 }
 
+.code-block .body {
+  display: block;
+  margin: 0;
+  padding: 1em;    
+  font-size: 1.5rem;
+  line-height: 1.42857143;  
+  word-break: break-all;
+  word-wrap: break-word;
+  border-radius: 4px;
+
+  color: #f8f8f2;
+  background-color: #282a36;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+}
+
+pre {
+  margin: 0;
+}
 pre code {
-    padding: 0;
-    font-family: Menlo, Monaco, Consolas, monospace;
-    font-size: inherit;
-    color: inherit;
-    white-space: pre-wrap;
-    background-color: transparent;
-    border-radius: 0;
+  padding: 0;
+  font-family: Menlo, Monaco, Consolas, monospace;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border-radius: 0;
 }
 
 code {
-    padding: 2px 4px;
-    font-size: 1.6rem !important;
-    background-color: #c5c5c5;
-    color: #333;
-    border-radius: 4px;
-    font-family: 'Roboto';
+  padding: 2px 4px;
+  font-size: 1.6rem !important;
+  background-color: #c5c5c5;
+  color: #333;
+  border-radius: 4px;
+  font-family: 'Roboto';
+}
+.code-block .name {
+  position: relative;
+  margin-top: -1.2em;
+  margin-bottom: 1em;
+  padding: 0.5em 1em;
+  width: fit-content;
+  font-size: 0.8em;
+  font-family: inherit;
+  color: white;
+  background: #5e6060;
+}
+/* code hilightの参照表示 */
+.code-block .ref {
+  margin-top: 0.5em;  
+  font-family: inherit;
+  background-color: #c5c5c5;
+  color: #333;
+  border-radius: 4px;  
+  padding: 0.2em;
+  font-size: 0.8em;
+  border-left: 4px solid #282a36;
+}
+.code-block .ref a {
+  color: inherit; 
+ }
+ .code-block .ref a:hover {
+  color: #9a9a9a; 
+ }
+
+.code-block .ref .label {
+  padding: 0 0.5em;  
 }
 
 #backtotopButton {

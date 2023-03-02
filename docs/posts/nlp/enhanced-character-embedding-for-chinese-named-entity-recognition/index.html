@@ -71,11 +71,11 @@
 
   
     <meta name="description" content="Enhanced character embedding for Chinese named entity recognition https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456
- 従来の名前付き実体認識方法では、主に手作業" />
+従来の名前付き実体認識方法では、主に手作業に" />
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -208,10 +208,18 @@ NERには、BIO schemeを用いる。</p>
 <p>input sequence: <code>X = (x_1, x_2, ... x_n)</code></p>
 <p>predictin sequence: <code>y = (y_1, y_2, ... y_n)</code></p>
 <p>the equence yの確率は、softmaxを使って計算される。</p>
-<pre><code>p(y | X) softmax(e^f(X, y))
-</code></pre><p>ここで、f(X,y)は、以下の用に計算される。</p>
-<pre><code>f(X,y)=
-</code></pre><p>ただし、PはBiLSTMの出力した行列である。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>p(y | X) softmax(e^f(X, y))</code></pre>
+  </div>
+
+</div>
+<p>ここで、f(X,y)は、以下の用に計算される。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>f(X,y)=</code></pre>
+  </div>
+
+</div>
+<p>ただし、PはBiLSTMの出力した行列である。</p>
 
       </div>
       <div class="related-article">

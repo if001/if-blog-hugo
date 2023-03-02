@@ -76,7 +76,7 @@ name: Manually triggered workflow on: workflow_dispatch:" />
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -188,10 +188,14 @@ name: Manually triggered workflow on: workflow_dispatch:" />
         <p>GitHub Actionsをcronとして定期実行していたが、動作の確認のために手動実行もしたかったのでメモ</p>
 <h2 id="結論">結論</h2>
 <p><code>on</code>ワークフロー構文に、<code>workflow_dispatch</code>を指定する</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">name: Manually triggered workflow
-on:
-  workflow_dispatch:
-</code></pre></div><p><code>workflow_dispatch</code>のdoc<br>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>name: Manually triggered workflow
+</span></span><span style="display:flex;"><span>on:
+</span></span><span style="display:flex;"><span>  workflow_dispatch:</span></span></code></pre></div>
+  </div>
+
+</div>
+<p><code>workflow_dispatch</code>のdoc<br>
 <a href="https://docs.github.com/ja/actions/reference/events-that-trigger-workflows#workflow_dispatch">https://docs.github.com/ja/actions/reference/events-that-trigger-workflows#workflow_dispatch</a></p>
 
       </div>

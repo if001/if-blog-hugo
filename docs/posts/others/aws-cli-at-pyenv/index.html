@@ -78,7 +78,7 @@ $ aws -bash: aws: command no" />
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -193,15 +193,27 @@ $ aws -bash: aws: command no" />
         <p>pyenv環境でaws cli入れたらコマンドが見つからないって言われたので調べたメモ</p>
 <p>バージョン：<code>pyenv:1.0.10</code></p>
 <p>公式通りにインストールする。</p>
-<pre><code>$ pip3 install awscli --upgrade --user
-</code></pre><p>すると、</p>
-<pre><code>$ aws
--bash: aws: command not found
-</code></pre><p>コマンドが見つからない&hellip;.</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>$ pip3 install awscli --upgrade --user</code></pre>
+  </div>
+
+</div>
+<p>すると、</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>$ aws
+-bash: aws: command not found</code></pre>
+  </div>
+
+</div>
+<p>コマンドが見つからない&hellip;.</p>
 <p>調べると、<code>$HOME/.local</code>にインストールされるらしいので、パスを通す。</p>
-<pre><code>aws --version
-aws-cli/1.16.29 Python/2.7.13 Darwin/16.7.0 botocore/1.12.19
-</code></pre><p>できた！</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>aws --version
+aws-cli/1.16.29 Python/2.7.13 Darwin/16.7.0 botocore/1.12.19</code></pre>
+  </div>
+
+</div>
+<p>できた！</p>
 <p>pyenvが問題なのかはわからん&hellip;.</p>
 
       </div>

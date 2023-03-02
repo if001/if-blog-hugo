@@ -76,7 +76,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -189,20 +189,36 @@
 まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、<a href="https://gohugo.io/functions/format/">Lastmod</a>で更新時刻が取得できるのでそれを使います。<br>
 そのほかにもgitから情報が取得できます。https://gohugo.io/variables/git/</p>
 <p>config.tomlに以下のように記述します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">enableGitInfo=<span style="color:#ff79c6">true</span>
-</code></pre></div><p>以下のように使う。</p>
-<pre><code>{{ .Lastmod.Format &quot;2006/01/02&quot; }}
-</code></pre><p>この更新事項を使って、記事を並び替えます。<br>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>enableGitInfo=<span style="color:#ff79c6">true</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>以下のように使う。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>{{ .Lastmod.Format &#34;2006/01/02&#34; }}</code></pre>
+  </div>
+
+</div>
+<p>この更新事項を使って、記事を並び替えます。<br>
 記事のリストを表示するhtmlはもともと以下のように記述してありました。</p>
-<pre><code>{{ $paginator := .Paginate (where .Data.Pages &quot;Type&quot; &quot;post&quot;) 10 }}
-{{ range $paginator.Pages }}
-</code></pre><p>以下のリンクを参考にします。<br>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>{{ $paginator := .Paginate (where .Data.Pages &#34;Type&#34; &#34;post&#34;) 10 }}
+{{ range $paginator.Pages }}</code></pre>
+  </div>
+
+</div>
+<p>以下のリンクを参考にします。<br>
 <a href="https://gohugo.io/templates/lists/">https://gohugo.io/templates/lists/</a><br>
 lastmod以外にも並び替えが行えます。</p>
 <p>結局、以下のように記述しました。</p>
-<pre><code>{{ $paginator := .Paginate (where .Data.Pages &quot;Type&quot; &quot;post&quot;).ByLastmod.Reverse 10 }}
-{{ range $paginator.Pages }}
-</code></pre>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>{{ $paginator := .Paginate (where .Data.Pages &#34;Type&#34; &#34;post&#34;).ByLastmod.Reverse 10 }}
+{{ range $paginator.Pages }}</code></pre>
+  </div>
+
+</div>
+
       </div>
       <div class="related-article">
         

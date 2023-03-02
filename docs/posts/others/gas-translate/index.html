@@ -77,7 +77,7 @@ Google TranslateはAPIを公開してますが、気軽に使う場合には少�
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -193,46 +193,66 @@ Google TranslateはAPIを公開してますが、気軽に使う場合には少�
 Google TranslateはAPIを公開してますが、気軽に使う場合には少し不便です。<br>
 そういう場合は、Google Apps ScriptからGoogle Translateの機能を使うと便利です。</p>
 <h2 id="結論">結論</h2>
-<pre><code>LanguageApp.translate(value, &quot;en&quot;, &quot;ja&quot;);
-</code></pre><h2 id="プロジェクトの作成">プロジェクトの作成</h2>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>LanguageApp.translate(value, &#34;en&#34;, &#34;ja&#34;);</code></pre>
+  </div>
+
+</div>
+<h2 id="プロジェクトの作成">プロジェクトの作成</h2>
 <p>以下のURLにアクセスするか、Google Driveから新規＞その他＞Google Apps Scriptを選択することで作成できます。</p>
 <p><a href="https://script.google.com/">https://script.google.com/</a></p>
 <h2 id="最初のコード">最初のコード</h2>
 <p><a href="https://developers.google.com/apps-script/guides/web">https://developers.google.com/apps-script/guides/web</a></p>
 <p>doGetという関数を作ります。
 これでGET requestが来たときにこの関数が走ります。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#8be9fd;font-style:italic">function</span> doGet(e) {
-  Logger.log(<span style="color:#f1fa8c">&#34;hello!&#34;</span>)
-}
-</code></pre></div><p>実行ボタンから、実行します。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> doGet(e) {
+</span></span><span style="display:flex;"><span>  Logger.log(<span style="color:#f1fa8c">&#34;hello!&#34;</span>)
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>実行ボタンから、実行します。</p>
 <p><img src="../../../images/arxiv/gas-run.png" alt="activity"></p>
 <p>実際にrequestが来たときに、jsonを返せるように関数を追加します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#8be9fd;font-style:italic">function</span> doGet(e) {
-  Logger.log(<span style="color:#f1fa8c">&#34;hello!&#34;</span>)
-  <span style="color:#ff79c6">return</span> responseJson(<span style="color:#f1fa8c">&#39;ping&#39;</span>)
-}
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> doGet(e) {
+</span></span><span style="display:flex;"><span>  Logger.log(<span style="color:#f1fa8c">&#34;hello!&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> responseJson(<span style="color:#f1fa8c">&#39;ping&#39;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> responseJson(data) {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> d <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#39;data&#39;</span><span style="color:#ff79c6">:</span> data}
+</span></span><span style="display:flex;"><span>  payload <span style="color:#ff79c6">=</span> JSON.stringify(d)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">var</span> output <span style="color:#ff79c6">=</span> ContentService.createTextOutput();
+</span></span><span style="display:flex;"><span>  output.setMimeType(ContentService.MimeType.JSON);
+</span></span><span style="display:flex;"><span>  output.setContent(payload);
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> output;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 
-
-<span style="color:#8be9fd;font-style:italic">function</span> responseJson(data) {
-  <span style="color:#ff79c6">const</span> d <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#39;data&#39;</span><span style="color:#ff79c6">:</span> data}
-  payload <span style="color:#ff79c6">=</span> JSON.stringify(d)
-
-  <span style="color:#8be9fd;font-style:italic">var</span> output <span style="color:#ff79c6">=</span> ContentService.createTextOutput();
-  output.setMimeType(ContentService.MimeType.JSON);
-  output.setContent(payload);
-  <span style="color:#ff79c6">return</span> output;
-}
-</code></pre></div><p>左上の新しいデプロイから、デプロイします。</p>
+</div>
+<p>左上の新しいデプロイから、デプロイします。</p>
 <p><img src="../../../images/arxiv/gas-deploy.png" alt="activity"></p>
 <p>デプロイが完了すると、URLが生成されるので、リクエストを送ります。<br>
 curlの場合、リダイレクトを許可するようにオプション<code>-L</code>が必要です。</p>
-<pre><code>$ curl -L -X GET https://script.google.com/macros/s/aaaaaaaaaaaaaaaaaa/exec
-{&quot;data&quot;:&quot;ping&quot;}
-</code></pre><p>指定したbodyが返ってきているのが確認できます。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>$ curl -L -X GET https://script.google.com/macros/s/aaaaaaaaaaaaaaaaaa/exec
+{&#34;data&#34;:&#34;ping&#34;}</code></pre>
+  </div>
+
+</div>
+<p>指定したbodyが返ってきているのが確認できます。</p>
 <h2 id="google-translateを使う">Google Translateを使う</h2>
 <p>使い方はシンプルで、以下の関数を呼び出すだけです。</p>
-<pre><code>LanguageApp.translate(value, &quot;en&quot;, &quot;ja&quot;);
-</code></pre><p><strong>Parameters</strong></p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>LanguageApp.translate(value, &#34;en&#34;, &#34;ja&#34;);</code></pre>
+  </div>
+
+</div>
+<p><strong>Parameters</strong></p>
 <table>
 <thead>
 <tr>
@@ -265,33 +285,45 @@ curlの場合、リダイレクトを許可するようにオプション<code>-
 <h2 id="gasからgoogle-translateを使う">GASからGoogle Translateを使う</h2>
 <p>Post requestがあったときに、動作するようにdoPostを追加します。
 <code>JSON.parse</code>でrequest bodyをパースします。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#8be9fd;font-style:italic">function</span> doPost(e) {
-  <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>e <span style="color:#ff79c6">||</span> <span style="color:#ff79c6">!</span>e.postData) {
-    <span style="color:#ff79c6">return</span> responseJson(<span style="color:#f1fa8c">&#39;not set request body&#39;</span>)
-  }
-}
-</code></pre></div><p>翻訳部分を追加します。</p>
-<p>今回のbodyは、<code>{&quot;title&quot;: &quot;title&quot;, &quot;summary&quot;:&quot;I am running&quot; }</code>のような想定です。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#8be9fd;font-style:italic">function</span> doPost(e) {
-  <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>e <span style="color:#ff79c6">||</span> <span style="color:#ff79c6">!</span>e.postData) {
-    <span style="color:#ff79c6">return</span> responseJson(<span style="color:#f1fa8c">&#39;not set request body&#39;</span>)
-  }
-  <span style="color:#ff79c6">const</span> params <span style="color:#ff79c6">=</span> JSON.parse(e.postData.getDataAsString());
-  <span style="color:#ff79c6">if</span> (params.title <span style="color:#ff79c6">&amp;&amp;</span> params.summary) {
-      <span style="color:#ff79c6">const</span> title <span style="color:#ff79c6">=</span> t(params.title)
-      <span style="color:#ff79c6">const</span> summary <span style="color:#ff79c6">=</span> t(params.summary)
-      <span style="color:#ff79c6">return</span> responseJson({title_en<span style="color:#ff79c6">:</span> title, summary_en<span style="color:#ff79c6">:</span> summary});
-  } <span style="color:#ff79c6">else</span> {
-      <span style="color:#ff79c6">return</span> responseJson(<span style="color:#f1fa8c">&#39;not set title or summary&#39;</span>)
-  }
-}
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> doPost(e) {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>e <span style="color:#ff79c6">||</span> <span style="color:#ff79c6">!</span>e.postData) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> responseJson(<span style="color:#f1fa8c">&#39;not set request body&#39;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 
-<span style="color:#8be9fd;font-style:italic">function</span> t(value){
-  <span style="color:#ff79c6">return</span> LanguageApp.translate(value, <span style="color:#f1fa8c">&#34;en&#34;</span>, <span style="color:#f1fa8c">&#34;ja&#34;</span>);
-}
-</code></pre></div><p>リクエストを投げる</p>
-<pre><code>curl -L -X POST -H &quot;Content-Type: application/json&quot; -d '{&quot;title&quot;:&quot;title&quot;, &quot;summary&quot;:&quot;I am running&quot;}' https://script.google.com/macros/s/aaaaaaaaaa/exec
-</code></pre>
+</div>
+<p>翻訳部分を追加します。</p>
+<p>今回のbodyは、<code>{&quot;title&quot;: &quot;title&quot;, &quot;summary&quot;:&quot;I am running&quot; }</code>のような想定です。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> doPost(e) {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>e <span style="color:#ff79c6">||</span> <span style="color:#ff79c6">!</span>e.postData) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> responseJson(<span style="color:#f1fa8c">&#39;not set request body&#39;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> params <span style="color:#ff79c6">=</span> JSON.parse(e.postData.getDataAsString());
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">if</span> (params.title <span style="color:#ff79c6">&amp;&amp;</span> params.summary) {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">const</span> title <span style="color:#ff79c6">=</span> t(params.title)
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">const</span> summary <span style="color:#ff79c6">=</span> t(params.summary)
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> responseJson({title_en<span style="color:#ff79c6">:</span> title, summary_en<span style="color:#ff79c6">:</span> summary});
+</span></span><span style="display:flex;"><span>  } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> responseJson(<span style="color:#f1fa8c">&#39;not set title or summary&#39;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> t(value){
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> LanguageApp.translate(value, <span style="color:#f1fa8c">&#34;en&#34;</span>, <span style="color:#f1fa8c">&#34;ja&#34;</span>);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>リクエストを投げる</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>curl -L -X POST -H &#34;Content-Type: application/json&#34; -d &#39;{&#34;title&#34;:&#34;title&#34;, &#34;summary&#34;:&#34;I am running&#34;}&#39; https://script.google.com/macros/s/aaaaaaaaaa/exec</code></pre>
+  </div>
+
+</div>
+
       </div>
       <div class="related-article">
         

@@ -78,7 +78,7 @@ pipeline" />
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -203,10 +203,14 @@ pipeline" />
 <h2 id="pipelineを作る">pipelineを作る</h2>
 <p>transformersはインストールしておく</p>
 <p>pipelineインスタンスを作る。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">tokenizer <span style="color:#ff79c6">=</span> AutoTokenizer<span style="color:#ff79c6">.</span>from_pretrained(<span style="color:#f1fa8c">&#34;microsoft/DialoGPT-small&#34;</span>)
-model <span style="color:#ff79c6">=</span> AutoModelForCausalLM<span style="color:#ff79c6">.</span>from_pretrained(<span style="color:#f1fa8c">&#34;microsoft/DialoGPT-small&#34;</span>)
-gen_pipeline <span style="color:#ff79c6">=</span> pipeline(task, model<span style="color:#ff79c6">=</span>model, tokenizer<span style="color:#ff79c6">=</span>tokenizer)
-</code></pre></div><p>今回はDialogGPT-smallというモデルを使う</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>tokenizer <span style="color:#ff79c6">=</span> AutoTokenizer<span style="color:#ff79c6">.</span>from_pretrained(<span style="color:#f1fa8c">&#34;microsoft/DialoGPT-small&#34;</span>)
+</span></span><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> AutoModelForCausalLM<span style="color:#ff79c6">.</span>from_pretrained(<span style="color:#f1fa8c">&#34;microsoft/DialoGPT-small&#34;</span>)
+</span></span><span style="display:flex;"><span>gen_pipeline <span style="color:#ff79c6">=</span> pipeline(task, model<span style="color:#ff79c6">=</span>model, tokenizer<span style="color:#ff79c6">=</span>tokenizer)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>今回はDialogGPT-smallというモデルを使う</p>
 <p><a href="https://huggingface.co/microsoft/DialoGPT-small">https://huggingface.co/microsoft/DialoGPT-small</a></p>
 <p>modelによってはtokenizerを自動で選択してくれるが、一応tokenizerも引数で指定しておく。</p>
 <h2 id="conversational">conversational</h2>
@@ -221,68 +225,88 @@ gen_pipeline <span style="color:#ff79c6">=</span> pipeline(task, model<span styl
 <li><code>generated_residence</code>: 過去の返答</li>
 </ul>
 <p>をセットする。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p <span style="color:#ff79c6">=</span> pipeline(task, model<span style="color:#ff79c6">=</span>model, tokenizer<span style="color:#ff79c6">=</span>tokenizer)
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>p <span style="color:#ff79c6">=</span> pipeline(task, model<span style="color:#ff79c6">=</span>model, tokenizer<span style="color:#ff79c6">=</span>tokenizer)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ui <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;Does money buy happiness?&#34;</span>, <span style="color:#f1fa8c">&#34;What is the best way to buy happiness ?&#34;</span>]
+</span></span><span style="display:flex;"><span>gr <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;Depends how much money you spend on it .&#34;</span>, <span style="color:#f1fa8c">&#34;You just have to be a millionaire by your early 20s, then you can be happy .&#34;</span>]
+</span></span><span style="display:flex;"><span>current_input <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;This is so difficult !&#34;</span>
+</span></span><span style="display:flex;"><span>conversation <span style="color:#ff79c6">=</span> Conversation(text<span style="color:#ff79c6">=</span>current_input, past_user_inputs<span style="color:#ff79c6">=</span>ui, generated_responses<span style="color:#ff79c6">=</span>gr)
+</span></span><span style="display:flex;"><span>r <span style="color:#ff79c6">=</span> p(conversation)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;result&#39;</span>, r)</span></span></code></pre></div>
+  </div>
 
-ui <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;Does money buy happiness?&#34;</span>, <span style="color:#f1fa8c">&#34;What is the best way to buy happiness ?&#34;</span>]
-gr <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;Depends how much money you spend on it .&#34;</span>, <span style="color:#f1fa8c">&#34;You just have to be a millionaire by your early 20s, then you can be happy .&#34;</span>]
-current_input <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;This is so difficult !&#34;</span>
-conversation <span style="color:#ff79c6">=</span> Conversation(text<span style="color:#ff79c6">=</span>current_input, past_user_inputs<span style="color:#ff79c6">=</span>ui, generated_responses<span style="color:#ff79c6">=</span>gr)
-r <span style="color:#ff79c6">=</span> p(conversation)
-
-<span style="color:#ff79c6">print</span>(<span style="color:#f1fa8c">&#39;result&#39;</span>, r)
-</code></pre></div><p>結果</p>
-<pre><code>result Conversation id: 9be5d5e0-33c7-477a-940b-8c4bb73f6152 
+</div>
+<p>結果</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>result Conversation id: 9be5d5e0-33c7-477a-940b-8c4bb73f6152 
 user &gt;&gt; Does money buy happiness? 
 bot &gt;&gt; Depends how much money you spend on it . 
 user &gt;&gt; What is the best way to buy happiness ? 
 bot &gt;&gt; You just have to be a millionaire by your early 20s, then you can be happy . 
 user &gt;&gt; This is so difficult ! 
-bot &gt;&gt; I'm not sure if I can afford to buy a house.
-</code></pre><hr>
+bot &gt;&gt; I&#39;m not sure if I can afford to buy a house.</code></pre>
+  </div>
+
+</div>
+<hr>
 <p>2つ目。</p>
 <p>conversationクラスのメソッドからも会話のコンテキストをセットできる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p <span style="color:#ff79c6">=</span> pipeline(task, model<span style="color:#ff79c6">=</span>model, tokenizer<span style="color:#ff79c6">=</span>tokenizer)
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>p <span style="color:#ff79c6">=</span> pipeline(task, model<span style="color:#ff79c6">=</span>model, tokenizer<span style="color:#ff79c6">=</span>tokenizer)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>conversation <span style="color:#ff79c6">=</span> Conversation()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># ユーザー入力/返答を追加</span>
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;Does money buy happiness?&#34;</span>)
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>mark_processed()
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;Depends how much money you spend on it .&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># ユーザー入力/返答を追加</span>
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;What is the best way to buy happiness ?&#34;</span>)
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>mark_processed()
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;You just have to be a millionaire by your early 20s, then you can be happy .&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 現在のユーザーの入力をセット</span>
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;This is so difficult !&#34;</span>)
+</span></span><span style="display:flex;"><span>r <span style="color:#ff79c6">=</span> p(conversation)</span></span></code></pre></div>
+  </div>
 
-conversation <span style="color:#ff79c6">=</span> Conversation()
-
-<span style="color:#6272a4"># ユーザー入力/返答を追加</span>
-conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;Does money buy happiness?&#34;</span>)
-conversation<span style="color:#ff79c6">.</span>mark_processed()
-conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;Depends how much money you spend on it .&#34;</span>)
-
-<span style="color:#6272a4"># ユーザー入力/返答を追加</span>
-conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;What is the best way to buy happiness ?&#34;</span>)
-conversation<span style="color:#ff79c6">.</span>mark_processed()
-conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;You just have to be a millionaire by your early 20s, then you can be happy .&#34;</span>)
-
-<span style="color:#6272a4"># 現在のユーザーの入力をセット</span>
-conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;This is so difficult !&#34;</span>)
-r <span style="color:#ff79c6">=</span> p(conversation)
-</code></pre></div><p><code>add_user_input</code>でユーザーの入力をセット、<code>mark_processed</code>でセットしたユーザーの入力をコンテキスト(履歴)にセットする。
+</div>
+<p><code>add_user_input</code>でユーザーの入力をセット、<code>mark_processed</code>でセットしたユーザーの入力をコンテキスト(履歴)にセットする。
 <code>append_response</code>で返答を追加。</p>
 <p><code>add_user_input</code>と<code>append_response</code>は以下の用に、どの順番でも大丈夫。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">conversation <span style="color:#ff79c6">=</span> Conversation()
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>conversation <span style="color:#ff79c6">=</span> Conversation()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># ユーザー入力の履歴を追加 </span>
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;Does money buy happiness?&#34;</span>)
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>mark_processed()
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;What is the best way to buy happiness ?&#34;</span>)
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>mark_processed()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 返答の履歴を追加</span>
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;Depends how much money you spend on it .&#34;</span>)
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;You just have to be a millionaire by your early 20s, then you can be happy .&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;This is so difficult !&#34;</span>)</span></span></code></pre></div>
+  </div>
 
-<span style="color:#6272a4"># ユーザー入力の履歴を追加 </span>
-conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;Does money buy happiness?&#34;</span>)
-conversation<span style="color:#ff79c6">.</span>mark_processed()
-conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;What is the best way to buy happiness ?&#34;</span>)
-conversation<span style="color:#ff79c6">.</span>mark_processed()
-
-<span style="color:#6272a4"># 返答の履歴を追加</span>
-conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;Depends how much money you spend on it .&#34;</span>)
-conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;You just have to be a millionaire by your early 20s, then you can be happy .&#34;</span>)
-    
-conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;This is so difficult !&#34;</span>)
-</code></pre></div><p>結果は１つ目の方法と同じ。</p>
-<pre><code>result Conversation id: 9be5d5e0-33c7-477a-940b-8c4bb73f6152 
+</div>
+<p>結果は１つ目の方法と同じ。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>result Conversation id: 9be5d5e0-33c7-477a-940b-8c4bb73f6152 
 user &gt;&gt; Does money buy happiness? 
 bot &gt;&gt; Depends how much money you spend on it . 
 user &gt;&gt; What is the best way to buy happiness ? 
 bot &gt;&gt; You just have to be a millionaire by your early 20s, then you can be happy . 
 user &gt;&gt; This is so difficult ! 
-bot &gt;&gt; I'm not sure if I can afford to buy a house.
-</code></pre><h2 id="まとめ">まとめ</h2>
+bot &gt;&gt; I&#39;m not sure if I can afford to buy a house.</code></pre>
+  </div>
+
+</div>
+<h2 id="まとめ">まとめ</h2>
 <p><code>Conversation</code>クラスを使うと簡単にpipelineで会話モデルを試せて良い感じ。</p>
 <p>日本語モデルだと会話タスクは用意されていないようだったので、fine tuningするしかないみたい</p>
 

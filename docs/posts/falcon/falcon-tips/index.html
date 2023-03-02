@@ -76,7 +76,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -193,86 +193,109 @@
 <p>簡単なtipsをメモしておく。</p>
 <h2 id="シンプルな例">シンプルな例</h2>
 <p>falconの公式に乗っているように、シンプルな例は次のようになる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6272a4"># sample.py</span>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># sample.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> falcon
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">QuoteResource</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_get</span>(self, req, resp):
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;&#34;&#34;Handles GET requests&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        quote <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;quote&#39;</span>: (
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#34;I&#39;ve always been more interested in &#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#34;the future than in the past.&#34;</span>
+</span></span><span style="display:flex;"><span>            ),
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;author&#39;</span>: <span style="color:#f1fa8c">&#39;Grace Hopper&#39;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        resp<span style="color:#ff79c6">.</span>media <span style="color:#ff79c6">=</span> quote
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>api <span style="color:#ff79c6">=</span> falcon<span style="color:#ff79c6">.</span>API()
+</span></span><span style="display:flex;"><span>api<span style="color:#ff79c6">.</span>add_route(<span style="color:#f1fa8c">&#39;/quote&#39;</span>, QuoteResource())</span></span></code></pre></div>
+  </div>
 
-<span style="color:#ff79c6">import</span> falcon
-
-<span style="color:#ff79c6">class</span> <span style="color:#50fa7b">QuoteResource</span>:
-    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_get</span>(self, req, resp):
-        <span style="color:#f1fa8c">&#34;&#34;&#34;Handles GET requests&#34;&#34;&#34;</span>
-        quote <span style="color:#ff79c6">=</span> {
-            <span style="color:#f1fa8c">&#39;quote&#39;</span>: (
-                <span style="color:#f1fa8c">&#34;I&#39;ve always been more interested in &#34;</span>
-                <span style="color:#f1fa8c">&#34;the future than in the past.&#34;</span>
-            ),
-            <span style="color:#f1fa8c">&#39;author&#39;</span>: <span style="color:#f1fa8c">&#39;Grace Hopper&#39;</span>
-        }
-
-        resp<span style="color:#ff79c6">.</span>media <span style="color:#ff79c6">=</span> quote
-
-api <span style="color:#ff79c6">=</span> falcon<span style="color:#ff79c6">.</span>API()
-api<span style="color:#ff79c6">.</span>add_route(<span style="color:#f1fa8c">&#39;/quote&#39;</span>, QuoteResource())
-</code></pre></div><h2 id="処理シーケンス">処理シーケンス</h2>
+</div>
+<h2 id="処理シーケンス">処理シーケンス</h2>
 <p>falconにはmiddlewareの他に、hooksというものが使える。
 hooksを含めた処理シーケンスは次のようになる。</p>
-<pre><code>Middleware's process_request
-Middleware's process_resource
-Hook's before
-Resource's on_****
-Hook's after
-Middleware's process_response
-</code></pre><p>引用：https://qiita.com/yohjizzz/items/f46bb3bc7b7c40768836</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>Middleware&#39;s process_request
+Middleware&#39;s process_resource
+Hook&#39;s before
+Resource&#39;s on_****
+Hook&#39;s after
+Middleware&#39;s process_response</code></pre>
+  </div>
+
+</div>
+<p>引用：https://qiita.com/yohjizzz/items/f46bb3bc7b7c40768836</p>
 <p>middlewareを使った、認証系の共通処理はよく見るが、hookが使えるのは良いですね。</p>
 <h2 id="hooks">hooks</h2>
 <p>hooksは以下のように使う。(<a href="https://falcon.readthedocs.io/en/stable/api/hooks.html">公式</a>)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">validate_image_type</span>(req, resp, resource, params):
-	<span style="color:#ff79c6">....</span>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">validate_image_type</span>(req, resp, resource, params):
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">....</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@falcon.before(validate_image_type)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_post</span>(self, req, resp):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pass</span></span></span></code></pre></div>
+  </div>
 
-@falcon.before(validate_image_type)
-<span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_post</span>(self, req, resp):
-    <span style="color:#ff79c6">pass</span>
-</code></pre></div><p>処理を差し込みたいメソッドにでコレーターでつけるだけ。</p>
+</div>
+<p>処理を差し込みたいメソッドにでコレーターでつけるだけ。</p>
 <h2 id="middleware">middleware</h2>
 <p>corsくらいしか使わなかったが、dbのconnection poolとかに使うようのものとかあるんだろう。(<a href="https://falcon.readthedocs.io/en/stable/api/middleware.html">公式</a>)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">CORSMiddleware</span>:
-    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">process_request</span>(self, req, resp):
-        resp<span style="color:#ff79c6">.</span>set_header(<span style="color:#f1fa8c">&#39;Access-Control-Allow-Origin&#39;</span>, <span style="color:#f1fa8c">&#39;*&#39;</span>)
-</code></pre></div><h2 id="エラーハンドリング">エラーハンドリング</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">CORSMiddleware</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">process_request</span>(self, req, resp):
+</span></span><span style="display:flex;"><span>        resp<span style="color:#ff79c6">.</span>set_header(<span style="color:#f1fa8c">&#39;Access-Control-Allow-Origin&#39;</span>, <span style="color:#f1fa8c">&#39;*&#39;</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="エラーハンドリング">エラーハンドリング</h2>
 <p>routeが見つからなかった時に、エラーリスポンスを返したいときは以下のようにする。(<a href="https://falcon.readthedocs.io/en/stable/api/errors.html">公式</a>)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Index</span>(<span style="color:#8be9fd;font-style:italic">object</span>):
-    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_get</span>(self, req, resp):
-        resp<span style="color:#ff79c6">.</span>body <span style="color:#ff79c6">=</span> json<span style="color:#ff79c6">.</span>dumps({<span style="color:#f1fa8c">&#34;message&#34;</span>:<span style="color:#f1fa8c">&#34;ok&#34;</span>})
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Index</span>(<span style="color:#8be9fd;font-style:italic">object</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_get</span>(self, req, resp):
+</span></span><span style="display:flex;"><span>        resp<span style="color:#ff79c6">.</span>body <span style="color:#ff79c6">=</span> json<span style="color:#ff79c6">.</span>dumps({<span style="color:#f1fa8c">&#34;message&#34;</span>:<span style="color:#f1fa8c">&#34;ok&#34;</span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#ff79c6">=</span> falcon<span style="color:#ff79c6">.</span>API()
+</span></span><span style="display:flex;"><span>app<span style="color:#ff79c6">.</span>add_route(<span style="color:#f1fa8c">&#34;/&#34;</span>, Index())
+</span></span><span style="display:flex;"><span>app<span style="color:#ff79c6">.</span>add_sink(handle_404, <span style="color:#f1fa8c">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> __name__ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">from</span> wsgiref <span style="color:#ff79c6">import</span> simple_server
+</span></span><span style="display:flex;"><span>    httpd <span style="color:#ff79c6">=</span> simple_server<span style="color:#ff79c6">.</span>make_server(<span style="color:#f1fa8c">&#34;127.0.0.7&#34;</span>, <span style="color:#bd93f9">8000</span>, app)
+</span></span><span style="display:flex;"><span>    httpd<span style="color:#ff79c6">.</span>serve_forever()</span></span></code></pre></div>
+  </div>
 
-app <span style="color:#ff79c6">=</span> falcon<span style="color:#ff79c6">.</span>API()
-app<span style="color:#ff79c6">.</span>add_route(<span style="color:#f1fa8c">&#34;/&#34;</span>, Index())
-app<span style="color:#ff79c6">.</span>add_sink(handle_404, <span style="color:#f1fa8c">&#39;&#39;</span>)
-
-<span style="color:#ff79c6">if</span> __name__ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
-    <span style="color:#ff79c6">from</span> wsgiref <span style="color:#ff79c6">import</span> simple_server
-    httpd <span style="color:#ff79c6">=</span> simple_server<span style="color:#ff79c6">.</span>make_server(<span style="color:#f1fa8c">&#34;127.0.0.7&#34;</span>, <span style="color:#bd93f9">8000</span>, app)
-    httpd<span style="color:#ff79c6">.</span>serve_forever()
-
-</code></pre></div><p>exceptionなどが起きた場合でも、200のリスポンスを返し、レスポンスボディの中でエラーコードとメッセージを返したかったが、うまく行かなかったので、これは次の機会にやる。</p>
+</div>
+<p>exceptionなどが起きた場合でも、200のリスポンスを返し、レスポンスボディの中でエラーコードとメッセージを返したかったが、うまく行かなかったので、これは次の機会にやる。</p>
 <h2 id="requestの取得">requestの取得</h2>
 <p>requsetの取得は以下のようになる。(<a href="https://falcon.readthedocs.io/en/stable/api/request_and_response.html">公式</a>)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">HealthCheck</span>(<span style="color:#8be9fd;font-style:italic">object</span>):
-<span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_get</span>(self, req, resp):
-	<span style="color:#ff79c6">print</span>(req<span style="color:#ff79c6">.</span>headers) <span style="color:#6272a4"># headerの取得</span>
-	<span style="color:#ff79c6">print</span>(req<span style="color:#ff79c6">.</span>params[<span style="color:#f1fa8c">&#39;name&#39;</span>]) <span style="color:#6272a4"># request paramの取得</span>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">HealthCheck</span>(<span style="color:#8be9fd;font-style:italic">object</span>):
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_get</span>(self, req, resp):
+</span></span><span style="display:flex;"><span>	<span style="color:#8be9fd;font-style:italic">print</span>(req<span style="color:#ff79c6">.</span>headers) <span style="color:#6272a4"># headerの取得</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#8be9fd;font-style:italic">print</span>(req<span style="color:#ff79c6">.</span>params[<span style="color:#f1fa8c">&#39;name&#39;</span>]) <span style="color:#6272a4"># request paramの取得</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#6272a4"># request bodyの取得</span>
+</span></span><span style="display:flex;"><span>    body <span style="color:#ff79c6">=</span> req<span style="color:#ff79c6">.</span>stream<span style="color:#ff79c6">.</span>read()<span style="color:#ff79c6">.</span>decode(<span style="color:#f1fa8c">&#34;utf-8&#34;</span>)
+</span></span><span style="display:flex;"><span>    data <span style="color:#ff79c6">=</span> json<span style="color:#ff79c6">.</span>loads(body)
+</span></span><span style="display:flex;"><span>    name <span style="color:#ff79c6">=</span> data[<span style="color:#f1fa8c">&#39;name&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#ff79c6">=</span> falcon<span style="color:#ff79c6">.</span>API()
+</span></span><span style="display:flex;"><span>app<span style="color:#ff79c6">.</span>add_route(<span style="color:#f1fa8c">&#34;/&#34;</span>, index())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> __name__ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">from</span> wsgiref <span style="color:#ff79c6">import</span> simple_server
+</span></span><span style="display:flex;"><span>    httpd <span style="color:#ff79c6">=</span> simple_server<span style="color:#ff79c6">.</span>make_server(<span style="color:#f1fa8c">&#34;127.0.0.7&#34;</span>, <span style="color:#bd93f9">8000</span>, app)
+</span></span><span style="display:flex;"><span>    httpd<span style="color:#ff79c6">.</span>serve_forever()</span></span></code></pre></div>
+  </div>
 
-   <span style="color:#6272a4"># request bodyの取得</span>
-    body <span style="color:#ff79c6">=</span> req<span style="color:#ff79c6">.</span>stream<span style="color:#ff79c6">.</span>read()<span style="color:#ff79c6">.</span>decode(<span style="color:#f1fa8c">&#34;utf-8&#34;</span>)
-    data <span style="color:#ff79c6">=</span> json<span style="color:#ff79c6">.</span>loads(body)
-    name <span style="color:#ff79c6">=</span> data[<span style="color:#f1fa8c">&#39;name&#39;</span>]
+</div>
 
-app <span style="color:#ff79c6">=</span> falcon<span style="color:#ff79c6">.</span>API()
-app<span style="color:#ff79c6">.</span>add_route(<span style="color:#f1fa8c">&#34;/&#34;</span>, index())
-
-<span style="color:#ff79c6">if</span> __name__ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
-    <span style="color:#ff79c6">from</span> wsgiref <span style="color:#ff79c6">import</span> simple_server
-    httpd <span style="color:#ff79c6">=</span> simple_server<span style="color:#ff79c6">.</span>make_server(<span style="color:#f1fa8c">&#34;127.0.0.7&#34;</span>, <span style="color:#bd93f9">8000</span>, app)
-    httpd<span style="color:#ff79c6">.</span>serve_forever()
-</code></pre></div>
       </div>
       <div class="related-article">
         

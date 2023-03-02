@@ -76,7 +76,7 @@ cd .emacs.d/site-lisp npm install -D textlint textlintのルールには" />
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -188,9 +188,13 @@ cd .emacs.d/site-lisp npm install -D textlint textlintのルールには" />
         <p>日本語文章用に、textlintを導入する。</p>
 <h2 id="install">install</h2>
 <p>今回は.emacs.d以下にsite-lispというディレクトリを作り、そこにtextlintをinstallする。</p>
-<pre><code>cd .emacs.d/site-lisp
-npm install -D textlint
-</code></pre><p>textlintのルールには、以下を使う。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>cd .emacs.d/site-lisp
+npm install -D textlint</code></pre>
+  </div>
+
+</div>
+<p>textlintのルールには、以下を使う。</p>
 <p>日本語用のpreset(ルールの詳細はページの最後)</p>
 <p><a href="https://github.com/textlint-ja/textlint-rule-preset-japanese">https://github.com/textlint-ja/textlint-rule-preset-japanese</a></p>
 <p>技術記事用preset。日本語用のpresetより少しルールが厳しい</p>
@@ -200,18 +204,26 @@ npm install -D textlint
 <p>表記ゆれを検知</p>
 <p><a href="https://github.com/textlint-ja/textlint-rule-ja-no-orthographic-variants">https://github.com/textlint-ja/textlint-rule-ja-no-orthographic-variants</a></p>
 <p>それぞれインストール</p>
-<pre><code>npm install textlint-rule-preset-japanese
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>npm install textlint-rule-preset-japanese
 npm install textlint-rule-preset-ja-technical-writing
 npm install @textlint-ja/textlint-rule-no-dropping-i
-npm install textlint-rule-ja-no-orthographic-variants
-</code></pre><p>.textlintrcを作成。rulesはとりあえずシンプルに以下のみ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#ff79c6">&#34;rules&#34;</span>: {
-      <span style="color:#ff79c6">&#34;preset-japanese&#34;</span>: <span style="color:#ff79c6">true</span>,
-      <span style="color:#ff79c6">&#34;preset-ja-technical-writing&#34;</span>: <span style="color:#ff79c6">true</span>
-  }
-}
-</code></pre></div><h2 id="elisp">elisp</h2>
+npm install textlint-rule-ja-no-orthographic-variants</code></pre>
+  </div>
+
+</div>
+<p>.textlintrcを作成。rulesはとりあえずシンプルに以下のみ。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;rules&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&#34;preset-japanese&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&#34;preset-ja-technical-writing&#34;</span>: <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="elisp">elisp</h2>
 <p>flycheckを使う。ポイントは２つ。</p>
 <ul>
 <li>
@@ -223,37 +235,41 @@ npm install textlint-rule-ja-no-orthographic-variants
 </ul>
 <p><code>&quot;--config&quot; (eval (expand-file-name (concat user-emacs-directory &quot;site-lisp/.textlintrc&quot;)))</code></p>
 <p>全体</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">flycheck</span>
-  <span style="color:#f1fa8c">:ensure</span> t
-  <span style="color:#f1fa8c">:init</span>
-  (<span style="color:#8be9fd;font-style:italic">global-flycheck-mode</span> t)
-  <span style="color:#f1fa8c">:config</span>
-  (<span style="color:#8be9fd;font-style:italic">flycheck-define-checker</span> <span style="color:#8be9fd;font-style:italic">textlint</span>
-    <span style="color:#f1fa8c">&#34;A linter for prose.&#34;</span>
-    <span style="color:#f1fa8c">:command</span> (<span style="color:#f1fa8c">&#34;textlint&#34;</span> <span style="color:#f1fa8c">&#34;--format&#34;</span> <span style="color:#f1fa8c">&#34;unix&#34;</span> <span style="color:#f1fa8c">&#34;--config&#34;</span> (<span style="color:#50fa7b">eval</span> (<span style="color:#8be9fd;font-style:italic">expand-file-name</span> (<span style="color:#8be9fd;font-style:italic">concat</span> <span style="color:#8be9fd;font-style:italic">user-emacs-directory</span> <span style="color:#f1fa8c">&#34;site-lisp/.textlintrc&#34;</span>)))
-              <span style="color:#8be9fd;font-style:italic">source-inplace</span>)
-    <span style="color:#f1fa8c">:error-patterns</span>
-    ((<span style="color:#8be9fd">warning</span> <span style="color:#8be9fd;font-style:italic">line-start</span> (<span style="color:#8be9fd;font-style:italic">file-name</span>) <span style="color:#f1fa8c">&#34;:&#34;</span> <span style="color:#8be9fd;font-style:italic">line</span> <span style="color:#f1fa8c">&#34;:&#34;</span> <span style="color:#8be9fd;font-style:italic">column</span> <span style="color:#f1fa8c">&#34;: &#34;</span>
-	      (<span style="color:#8be9fd;font-style:italic">id</span> (<span style="color:#8be9fd;font-style:italic">one-or-more</span> (<span style="color:#50fa7b">not</span> (<span style="color:#8be9fd;font-style:italic">any</span> <span style="color:#f1fa8c">&#34; &#34;</span>))))
-	      (<span style="color:#8be9fd;font-style:italic">message</span> (<span style="color:#8be9fd;font-style:italic">one-or-more</span> <span style="color:#8be9fd;font-style:italic">not-newline</span>)
-		       (<span style="color:#8be9fd;font-style:italic">zero-or-more</span> <span style="color:#f1fa8c">&#34;\n&#34;</span> (<span style="color:#8be9fd;font-style:italic">any</span> <span style="color:#f1fa8c">&#34; &#34;</span>) (<span style="color:#8be9fd;font-style:italic">one-or-more</span> <span style="color:#8be9fd;font-style:italic">not-newline</span>)))
-	      <span style="color:#8be9fd;font-style:italic">line-end</span>))
-    <span style="color:#f1fa8c">:modes</span> (<span style="color:#8be9fd;font-style:italic">text-mode</span> <span style="color:#8be9fd;font-style:italic">markdown-mode</span> <span style="color:#8be9fd;font-style:italic">gfm-mode</span>))
-  (<span style="color:#8be9fd;font-style:italic">add-to-list</span> <span style="color:#f1fa8c">&#39;flycheck-checkers</span> <span style="color:#f1fa8c">&#39;textlint</span>)
-    
-  <span style="color:#6272a4">;; node_module-sのpathを通す</span>
-  (<span style="color:#8be9fd;font-style:italic">with-eval-after-load</span> <span style="color:#f1fa8c">&#39;markdown-mode</span>
-    (<span style="color:#8be9fd;font-style:italic">add-hook</span> <span style="color:#f1fa8c">&#39;markdown-mode-hook</span>
-              (<span style="color:#8be9fd;font-style:italic">lambda</span> ()
-		(<span style="color:#8be9fd;font-style:italic">flycheck-mode</span>)
-		(<span style="color:#ff79c6">setq</span> <span style="color:#8be9fd;font-style:italic">exec-path</span> (<span style="color:#8be9fd;font-style:italic">add-to-list</span> <span style="color:#f1fa8c">&#39;exec-path</span> (<span style="color:#8be9fd;font-style:italic">concat</span> <span style="color:#8be9fd;font-style:italic">user-emacs-directory</span> <span style="color:#f1fa8c">&#34;site-lisp/node_modules/.bin&#34;</span>)))
-		)))
-  )
-</code></pre></div><h2 id="presetのルール一覧詳細は公式のgithubを参照">presetのルール一覧(詳細は公式のgithubを参照)</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">flycheck</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:ensure</span> t
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:init</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#8be9fd;font-style:italic">global-flycheck-mode</span> t)
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:config</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#8be9fd;font-style:italic">flycheck-define-checker</span> <span style="color:#8be9fd;font-style:italic">textlint</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;A linter for prose.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">:command</span> (<span style="color:#f1fa8c">&#34;textlint&#34;</span> <span style="color:#f1fa8c">&#34;--format&#34;</span> <span style="color:#f1fa8c">&#34;unix&#34;</span> <span style="color:#f1fa8c">&#34;--config&#34;</span> (<span style="color:#50fa7b">eval</span> (<span style="color:#8be9fd;font-style:italic">expand-file-name</span> (<span style="color:#8be9fd;font-style:italic">concat</span> <span style="color:#8be9fd;font-style:italic">user-emacs-directory</span> <span style="color:#f1fa8c">&#34;site-lisp/.textlintrc&#34;</span>)))
+</span></span><span style="display:flex;"><span>              <span style="color:#8be9fd;font-style:italic">source-inplace</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">:error-patterns</span>
+</span></span><span style="display:flex;"><span>    ((<span style="color:#8be9fd">warning</span> <span style="color:#8be9fd;font-style:italic">line-start</span> (<span style="color:#8be9fd;font-style:italic">file-name</span>) <span style="color:#f1fa8c">&#34;:&#34;</span> <span style="color:#8be9fd;font-style:italic">line</span> <span style="color:#f1fa8c">&#34;:&#34;</span> <span style="color:#8be9fd;font-style:italic">column</span> <span style="color:#f1fa8c">&#34;: &#34;</span>
+</span></span><span style="display:flex;"><span>	      (<span style="color:#8be9fd;font-style:italic">id</span> (<span style="color:#8be9fd;font-style:italic">one-or-more</span> (<span style="color:#50fa7b">not</span> (<span style="color:#8be9fd;font-style:italic">any</span> <span style="color:#f1fa8c">&#34; &#34;</span>))))
+</span></span><span style="display:flex;"><span>	      (<span style="color:#8be9fd;font-style:italic">message</span> (<span style="color:#8be9fd;font-style:italic">one-or-more</span> <span style="color:#8be9fd;font-style:italic">not-newline</span>)
+</span></span><span style="display:flex;"><span>		       (<span style="color:#8be9fd;font-style:italic">zero-or-more</span> <span style="color:#f1fa8c">&#34;\n&#34;</span> (<span style="color:#8be9fd;font-style:italic">any</span> <span style="color:#f1fa8c">&#34; &#34;</span>) (<span style="color:#8be9fd;font-style:italic">one-or-more</span> <span style="color:#8be9fd;font-style:italic">not-newline</span>)))
+</span></span><span style="display:flex;"><span>	      <span style="color:#8be9fd;font-style:italic">line-end</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">:modes</span> (<span style="color:#8be9fd;font-style:italic">text-mode</span> <span style="color:#8be9fd;font-style:italic">markdown-mode</span> <span style="color:#8be9fd;font-style:italic">gfm-mode</span>))
+</span></span><span style="display:flex;"><span>  (<span style="color:#8be9fd;font-style:italic">add-to-list</span> <span style="color:#f1fa8c">&#39;flycheck-checkers</span> <span style="color:#f1fa8c">&#39;textlint</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;; node_module-sのpathを通す</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#8be9fd;font-style:italic">with-eval-after-load</span> <span style="color:#f1fa8c">&#39;markdown-mode</span>
+</span></span><span style="display:flex;"><span>    (<span style="color:#8be9fd;font-style:italic">add-hook</span> <span style="color:#f1fa8c">&#39;markdown-mode-hook</span>
+</span></span><span style="display:flex;"><span>              (<span style="color:#8be9fd;font-style:italic">lambda</span> ()
+</span></span><span style="display:flex;"><span>		(<span style="color:#8be9fd;font-style:italic">flycheck-mode</span>)
+</span></span><span style="display:flex;"><span>		(<span style="color:#ff79c6">setq</span> <span style="color:#8be9fd;font-style:italic">exec-path</span> (<span style="color:#8be9fd;font-style:italic">add-to-list</span> <span style="color:#f1fa8c">&#39;exec-path</span> (<span style="color:#8be9fd;font-style:italic">concat</span> <span style="color:#8be9fd;font-style:italic">user-emacs-directory</span> <span style="color:#f1fa8c">&#34;site-lisp/node_modules/.bin&#34;</span>)))
+</span></span><span style="display:flex;"><span>		)))
+</span></span><span style="display:flex;"><span>  )</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="presetのルール一覧詳細は公式のgithubを参照">presetのルール一覧(詳細は公式のgithubを参照)</h2>
 <h3 id="textlint-rule-preset-japanese">textlint-rule-preset-japanese</h3>
 <p><a href="https://github.com/textlint-ja/textlint-rule-preset-japanese">https://github.com/textlint-ja/textlint-rule-preset-japanese</a></p>
 <blockquote>
-<p>一文で使える&rdquo;、&ldquo;の数<br>
+<p>一文で使える&quot;、&ldquo;の数<br>
 逆接の接続助詞「が」が、同一文中に複数回出現していないかどうか<br>
 同じ接続詞で開始されていることを検出<br>
 二重否定の検出<br>

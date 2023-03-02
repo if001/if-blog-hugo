@@ -77,7 +77,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -255,10 +255,14 @@ Android JetpackにRoomというライブラリがあるので、それを使い�
 <p>Android Studioの(通常)右下にあるDevice File Explorerを選択。<br>
 エミュレーター内のファイルを見ることができるので、<code>data/ data/“package_name”/databases </code>にある<br>
 以下のファイル群を保存。</p>
-<pre><code>database_name
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>database_name
 database_name-shm
-database_name-wal
-</code></pre><p>SQLite用のクライアントを使って中身を確認することができる。</p>
+database_name-wal</code></pre>
+  </div>
+
+</div>
+<p>SQLite用のクライアントを使って中身を確認することができる。</p>
 <p>クライアント<br>
 <a href="https://sqlitebrowser.org/dl/">https://sqlitebrowser.org/dl/</a></p>
 <h2 id="ui">UI</h2>
@@ -278,8 +282,12 @@ Acitivtyでは画面の構成、Fragmentでは各画面のロジックのみを�
 <p>コンポーネントを単純に縦横に並べるだけなら、LinearLayoutで良い。<br>
 細かく指定したい場合は、ConstraintLayoutが便利。</p>
 <p>位置の指定の仕方に始めは、戸惑うが以下がわかれば簡単。</p>
-<pre><code>app:layout_constraint[自分の辺]_to[相手の辺]Of=&quot;@+id/相手のid&quot;
-</code></pre><p>さらに詳しくは、以下の記事が参考になった。<br>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>app:layout_constraint[自分の辺]_to[相手の辺]Of=&#34;@+id/相手のid&#34;</code></pre>
+  </div>
+
+</div>
+<p>さらに詳しくは、以下の記事が参考になった。<br>
 [Android] ConstraintLayout レイアウト逆引きまとめ<br>
 <a href="https://qiita.com/tktktks10/items/62d85dabac4bdb8c1f94">https://qiita.com/tktktks10/items/62d85dabac4bdb8c1f94</a></p>
 <h3 id="データバインディング">データバインディング</h3>
@@ -289,8 +297,12 @@ Webアプリケーションでは、HTMLとロジック間でデータをバイ�
 <p>データバインディング<br>
 <a href="https://developer.android.com/topic/libraries/data-binding/?hl=ja">https://developer.android.com/topic/libraries/data-binding/?hl=ja</a></p>
 <h3 id="アイコン">アイコン</h3>
-<pre><code>res &gt; vector &gt; ....
-</code></pre><p>でアイコンの追加が行える。<br>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>res &gt; vector &gt; ....</code></pre>
+  </div>
+
+</div>
+<p>でアイコンの追加が行える。<br>
 意外と出てこなくてハマった。</p>
 <h4 id="font-awesome使う場合">font-awesome使う場合</h4>
 <p>以下の記事が参考になった<br>

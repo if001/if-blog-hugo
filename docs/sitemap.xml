@@ -1,475 +1,288 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
+    <loc>https://www.if-blog.site/posts/hugo/hugo-render-block/</loc>
+    <lastmod>2023-02-28T00:00:00+09:00</lastmod>
+  </url><url>
     <loc>https://www.if-blog.site/tags/deeplearning/</loc>
     <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/flexgen_start/</loc>
     <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/hugo/</loc>
+    <lastmod>2023-02-28T00:00:00+09:00</lastmod>
+  </url><url>
     <loc>https://www.if-blog.site/tags/nlp/</loc>
     <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/</loc>
     <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/python/</loc>
     <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/</loc>
     <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/</loc>
     <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/huggingface/</loc>
     <lastmod>2023-02-06T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/huggingface-text-gen/</loc>
     <lastmod>2023-02-06T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/start-xglm-t5/</loc>
     <lastmod>2023-02-05T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/start-flan-t5/</loc>
     <lastmod>2023-02-04T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/huggingface-tokenizer/</loc>
     <lastmod>2022-08-16T09:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/huggingface-conv/</loc>
     <lastmod>2022-05-05T09:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/typescript/</loc>
     <lastmod>2021-12-26T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/typescript/typescript-oreilly/</loc>
     <lastmod>2021-12-26T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/huggingface-doc/</loc>
     <lastmod>2021-12-09T09:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/emacs/</loc>
     <lastmod>2021-09-23T20:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/emacs/text-lint/</loc>
     <lastmod>2021-09-23T20:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/neuralnet/flax-jax/</loc>
     <lastmod>2021-07-25T09:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/arxiv/</loc>
     <lastmod>2021-07-24T02:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/github/</loc>
     <lastmod>2021-07-24T02:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/python/arxiv-translate/</loc>
     <lastmod>2021-07-24T02:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/python/arxiv-py-lib/</loc>
     <lastmod>2021-07-23T02:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/gas/</loc>
     <lastmod>2021-07-22T02:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/others/gas-translate/</loc>
     <lastmod>2021-07-22T02:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.if-blog.site/tags/hugo/</loc>
-    <lastmod>2021-07-18T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/hugo/hugo-related-posts/</loc>
     <lastmod>2021-07-18T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/python/open-ai-gym-quick/</loc>
     <lastmod>2021-07-14T02:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/</loc>
     <lastmod>2020-12-30T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/</loc>
     <lastmod>2020-12-30T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/</loc>
     <lastmod>2020-12-30T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/github/workflow-dispatch/</loc>
     <lastmod>2020-07-19T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/android/</loc>
     <lastmod>2020-03-01T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/android/bottom-sheet/</loc>
     <lastmod>2020-03-01T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/android/android-introduction/</loc>
     <lastmod>2020-02-28T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/android/book-reports-firebase/</loc>
     <lastmod>2020-02-28T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/vue.js/</loc>
     <lastmod>2019-11-09T00:01:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/edgwbs/book-storage-vue/</loc>
     <lastmod>2019-11-09T00:01:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/vuetify/</loc>
     <lastmod>2019-11-09T00:01:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/webapp/</loc>
     <lastmod>2019-11-09T00:01:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/gatsby/</loc>
     <lastmod>2019-10-14T12:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/react/</loc>
     <lastmod>2019-10-14T12:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/gatsby/gatsby-intro/</loc>
     <lastmod>2019-10-14T12:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/firebase/</loc>
     <lastmod>2019-10-10T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/edgwbs/book-reports-firebase-hosting/</loc>
     <lastmod>2019-10-10T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/emacs/gopls-introduction/</loc>
     <lastmod>2019-10-08T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/edgwbs/book-reports-firebase-cloud-functions/</loc>
     <lastmod>2019-09-30T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/golang/</loc>
     <lastmod>2019-09-28T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/edgwbs/book-reports-firebase-auth/</loc>
     <lastmod>2019-09-28T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/poem/</loc>
     <lastmod>2019-09-25T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/edgwbs/book-reports-review/</loc>
     <lastmod>2019-09-25T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/python/python-matplotlib-base/</loc>
     <lastmod>2019-09-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/aws/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/neuralnet/pepar-summary/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/docker/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/others/http-portal-for-blog/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/keras/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/neuralnet/combine-model/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/others/aws-cli-at-pyenv/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/rust/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/others/rust-macro-use-another/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/seq2seq/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/seqgan/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/seqgan-paper/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/tex/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/word2vec/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/word2vec-output-word/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.if-blog.site/posts/nlp/char-vec/</loc>
-    <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.if-blog.site/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/</loc>
-    <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/others/tex-notation-numerical-formula/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/</loc>
+    <lastmod>2019-09-24T00:00:00+09:00</lastmod>
+  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://www.if-blog.site/posts/nlp/char-vec/</loc>
+    <lastmod>2019-09-24T00:00:00+09:00</lastmod>
+  </url><url>
     <loc>https://www.if-blog.site/posts/python/colaboratory-google-drive-mount/</loc>
     <lastmod>2019-09-23T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/</loc>
     <lastmod>2019-03-08T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/python/python-get-extn/</loc>
     <lastmod>2019-03-01T20:48:42+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/emacs/lsp-mode/</loc>
     <lastmod>2018-11-20T20:48:42+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/emacs/emacs-use-package/</loc>
     <lastmod>2018-11-20T20:48:42+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/falcon/</loc>
     <lastmod>2018-10-16T20:48:42+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/falcon/falcon-img-upload/</loc>
     <lastmod>2018-10-16T20:48:42+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/falcon/falcon-tips/</loc>
     <lastmod>2018-10-16T20:48:42+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/tags/google-analytics/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/hugo/hugo-start-article/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/hugo/hugo-href-to-target-blank/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/hugo/hugo-ga/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/hugo/hugo-code-highlight/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/hugo/hugo-add-site-description/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/hugo/hugo-on-image/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/hugo/hugo-date-sort/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/hugo/hugo-git-pages/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/pages/about/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/pages/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/posts/typescript/react-render-prop-typescript/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.if-blog.site/pages/search/</loc>
   </url>
-  
 </urlset>

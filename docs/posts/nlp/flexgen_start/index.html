@@ -76,7 +76,7 @@ https://github.com/FMInference/FlexGen
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -195,13 +195,22 @@ https://github.com/FMInference/FlexGen
 FlexGenでは、そんなLLMを限られたリソースで実行できるようにしてくれる。</p>
 <p><a href="https://github.com/FMInference/FlexGen">https://github.com/FMInference/FlexGen</a></p>
 <p>日本語が喋れるモデルでも動かせるように色々と試してみた。</p>
-<h2 id="start">start</h2>
+<h2 id="まずは動かす">まずは動かす</h2>
 <p>installはreadme通り</p>
-<pre><code>pip install flexgen
-</code></pre><p>start</p>
-<pre><code>python3 -m flexgen.flex_opt --model facebook/opt-1.3b
-</code></pre><p>ベンチマークが表示され、モデルを動かせたことがわかる</p>
-<pre><code>TorchDevice: cuda:0
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>pip install flexgen</code></pre>
+  </div>
+
+</div>
+<p>start</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>python3 -m flexgen.flex_opt --model facebook/opt-1.3b</code></pre>
+  </div>
+
+</div>
+<p>ベンチマークが表示され、モデルを動かせたことがわかる</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>TorchDevice: cuda:0
   cur_mem: 2.6426 GB,  peak_mem: 3.2399 GB
 TorchDevice: cpu
   cur_mem: 0.0000 GB,  peak_mem: 0.0000 GB
@@ -209,10 +218,17 @@ model size: 2.443 GB    cache size: 0.398 GB    hidden size (p): 0.008 GB
 peak gpu mem: 3.240 GB  projected: False
 prefill latency: 1.301 s        prefill throughput: 1573.627 token/s
 decode latency: 1.797 s decode throughput: 68.991 token/s
-total latency: 3.099 s  total throughput: 41.306 token/s
-</code></pre><p>OPT-30Bのような大きなモデルを動かす場合は、<code>--percent</code>のパラメタを付けてGPUとCPUの割当の設定を行う</p>
-<pre><code>python3 -m flexgen.flex_opt --model facebook/opt-30b --percent 0 100 100 0 100 0
-</code></pre><p>percenteには６つの数字を入力できる。それぞれ、</p>
+total latency: 3.099 s  total throughput: 41.306 token/s</code></pre>
+  </div>
+
+</div>
+<p>OPT-30Bのような大きなモデルを動かす場合は、<code>--percent</code>のパラメタを付けてGPUとCPUの割当の設定を行う</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>python3 -m flexgen.flex_opt --model facebook/opt-30b --percent 0 100 100 0 100 0</code></pre>
+  </div>
+
+</div>
+<p>percenteには６つの数字を入力できる。それぞれ、</p>
 <p>&ldquo;the percentage of weight on GPU, &quot;</p>
 <p>&ldquo;the percentage of weight on CPU, &quot;</p>
 <p>&ldquo;the percentage of attention cache on GPU, &quot;</p>
@@ -240,26 +256,39 @@ OptLMは、<code>InputEmbed -&gt; TransformerLayer(SelfAttention -&gt; MLP) -&gt
 <p>Opt用のconfigは以下のように作成しているので、xglmに合わせて修正する</p>
 <p><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L112-L116">https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L112-L116</a></p>
 <p>とりあえず、以下のような感じで良さそう</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">elif</span> arch_name <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;xglm-1.7b&#34;</span>:
-    config <span style="color:#ff79c6">=</span> OptConfig(name<span style="color:#ff79c6">=</span>name,
-            max_seq_len<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2048</span>, num_hidden_layers<span style="color:#ff79c6">=</span><span style="color:#bd93f9">24</span>, n_head<span style="color:#ff79c6">=</span><span style="color:#bd93f9">16</span>,            
-            hidden_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2048</span>, input_dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2048</span>, ffn_embed_dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2048</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">4</span>,
-            vocab_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">256008</span>, activation_fn<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;gelu&#39;</span>
-        )
-</code></pre></div><h3 id="2-指定したmodelのweightをhuggingfaceからダウンロード">2. 指定したmodelのweightをHuggingfaceからダウンロード</h3>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">elif</span> arch_name <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;xglm-1.7b&#34;</span>:
+</span></span><span style="display:flex;"><span>    config <span style="color:#ff79c6">=</span> OptConfig(name<span style="color:#ff79c6">=</span>name,
+</span></span><span style="display:flex;"><span>            max_seq_len<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2048</span>, num_hidden_layers<span style="color:#ff79c6">=</span><span style="color:#bd93f9">24</span>, n_head<span style="color:#ff79c6">=</span><span style="color:#bd93f9">16</span>,            
+</span></span><span style="display:flex;"><span>            hidden_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2048</span>, input_dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2048</span>, ffn_embed_dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2048</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">4</span>,
+</span></span><span style="display:flex;"><span>            vocab_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">256008</span>, activation_fn<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;gelu&#39;</span>
+</span></span><span style="display:flex;"><span>        )</span></span></code></pre></div>
+  </div>
+
+</div>
+<h3 id="2-指定したmodelのweightをhuggingfaceからダウンロード">2. 指定したmodelのweightをHuggingfaceからダウンロード</h3>
 <p>snapshot_downloadでhuggingfaceからモデルのbinファイルを取得できる<br>
 (この機能知らなかったので一応)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">from</span> huggingface_hub <span style="color:#ff79c6">import</span> snapshot_download
-folder <span style="color:#ff79c6">=</span> snapshot_download(hf_model_name, allow_patterns<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;*.bin&#34;</span>)
-</code></pre></div><h3 id="3-weightをレイヤーごとに分割保存">3. weightをレイヤーごとに分割/保存</h3>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> huggingface_hub <span style="color:#ff79c6">import</span> snapshot_download
+</span></span><span style="display:flex;"><span>folder <span style="color:#ff79c6">=</span> snapshot_download(hf_model_name, allow_patterns<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;*.bin&#34;</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<h3 id="3-weightをレイヤーごとに分割保存">3. weightをレイヤーごとに分割/保存</h3>
 <p>bin形式のファイルは、<code>torch.load</code>すると、iterでレイヤーごとに取得できる</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bin_files <span style="color:#ff79c6">=</span> glob<span style="color:#ff79c6">.</span>glob(os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>join(folder, <span style="color:#f1fa8c">&#34;*.bin&#34;</span>))
-<span style="color:#ff79c6">for</span> bin_file <span style="color:#ff79c6">in</span> tqdm(bin_files, desc<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Convert format&#34;</span>):
-    state <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>load(bin_file)
-    <span style="color:#ff79c6">for</span> name, param <span style="color:#ff79c6">in</span> tqdm(state<span style="color:#ff79c6">.</span>items(), leave<span style="color:#ff79c6">=</span>False):
-        <span style="color:#ff79c6">print</span>(name)
-</code></pre></div><p>xglmで試すとこんな感じ</p>
-<pre><code>model.embed_tokens.weight
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>bin_files <span style="color:#ff79c6">=</span> glob<span style="color:#ff79c6">.</span>glob(os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>join(folder, <span style="color:#f1fa8c">&#34;*.bin&#34;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> bin_file <span style="color:#ff79c6">in</span> tqdm(bin_files, desc<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Convert format&#34;</span>):
+</span></span><span style="display:flex;"><span>    state <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>load(bin_file)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> name, param <span style="color:#ff79c6">in</span> tqdm(state<span style="color:#ff79c6">.</span>items(), leave<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(name)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>xglmで試すとこんな感じ</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>model.embed_tokens.weight
 model.layers.0.self_attn.k_proj.weight
 model.layers.0.self_attn.k_proj.bias
 model.layers.0.self_attn.v_proj.weight
@@ -271,78 +300,133 @@ model.layers.0.self_attn.q_proj.weight
 model.layers.23.final_layer_norm.weight
 model.layers.23.final_layer_norm.bias
 model.layer_norm.weight
-model.layer_norm.bias
-</code></pre><p>OPTのweightは、名前にprefixとして<code>decoder</code>がついている。
+model.layer_norm.bias</code></pre>
+  </div>
+
+</div>
+<p>OPTのweightは、名前にprefixとして<code>decoder</code>がついている。
 xglmではついていないのでdecoderは外しておく。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">name <span style="color:#ff79c6">=</span> name<span style="color:#ff79c6">.</span>replace(<span style="color:#f1fa8c">&#34;decoder.final_layer_norm&#34;</span>, <span style="color:#f1fa8c">&#34;decoder.layer_norm&#34;</span>)
-</code></pre></div><p><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L231">https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L231</a></p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>name <span style="color:#ff79c6">=</span> name<span style="color:#ff79c6">.</span>replace(<span style="color:#f1fa8c">&#34;decoder.final_layer_norm&#34;</span>, <span style="color:#f1fa8c">&#34;decoder.layer_norm&#34;</span>)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L231" target="_black">https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L231</a>
+    </div>
+
+</div>
 <p>分割したweightはnp形式で保存される</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   <span style="color:#ff79c6">with</span> <span style="color:#8be9fd;font-style:italic">open</span>(param_path, <span style="color:#f1fa8c">&#34;wb&#34;</span>) <span style="color:#ff79c6">as</span> f:
-                np<span style="color:#ff79c6">.</span>save(f, param<span style="color:#ff79c6">.</span>cpu()<span style="color:#ff79c6">.</span>detach()<span style="color:#ff79c6">.</span>numpy())
-</code></pre></div><p><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L234">https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L234</a></p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>   <span style="color:#ff79c6">with</span> <span style="color:#8be9fd;font-style:italic">open</span>(param_path, <span style="color:#f1fa8c">&#34;wb&#34;</span>) <span style="color:#ff79c6">as</span> f:
+</span></span><span style="display:flex;"><span>                np<span style="color:#ff79c6">.</span>save(f, param<span style="color:#ff79c6">.</span>cpu()<span style="color:#ff79c6">.</span>detach()<span style="color:#ff79c6">.</span>numpy())</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L234" target="_black">https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L234</a>
+    </div>
+
+</div>
 <p>xglmを使う場合、取得してきたweightに<code>embed_positions.weight</code>が含まれずエラーとなる。
 エラーを回避するために、一旦以下を参考にweightを無理やり作り出す。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">XGLMSinusoidalPositionalEmbedding</span>(nn<span style="color:#ff79c6">.</span>Module):
-<span style="color:#ff79c6">.</span>
-<span style="color:#ff79c6">.</span>
- <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">make_weights</span>(self, num_embeddings: <span style="color:#8be9fd;font-style:italic">int</span>, embedding_dim: <span style="color:#8be9fd;font-style:italic">int</span>, padding_idx: Optional[<span style="color:#8be9fd;font-style:italic">int</span>] <span style="color:#ff79c6">=</span> None):
-        emb_weights <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>get_embedding(num_embeddings, embedding_dim, padding_idx)
-</code></pre></div><p><a href="https://github.com/huggingface/transformers/blob/main/src/transformers/models/xglm/modeling_xglm.py#L169">https://github.com/huggingface/transformers/blob/main/src/transformers/models/xglm/modeling_xglm.py#L169</a></p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">XGLMSinusoidalPositionalEmbedding</span>(nn<span style="color:#ff79c6">.</span>Module):
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">.</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">make_weights</span>(self, num_embeddings: <span style="color:#8be9fd;font-style:italic">int</span>, embedding_dim: <span style="color:#8be9fd;font-style:italic">int</span>, padding_idx: Optional[<span style="color:#8be9fd;font-style:italic">int</span>] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>):
+</span></span><span style="display:flex;"><span>        emb_weights <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>get_embedding(num_embeddings, embedding_dim, padding_idx)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/main/src/transformers/models/xglm/modeling_xglm.py#L169" target="_black">https://github.com/huggingface/transformers/blob/main/src/transformers/models/xglm/modeling_xglm.py#L169</a>
+    </div>
+
+</div>
 <p>(※ ここミスってそうなので要調査)</p>
 <h3 id="4-optlmの各レイヤーにweightを割り当て">4. OptLMの各レイヤーにweightを割り当て</h3>
 <p>保存したweightは、レイヤークラスの持つload_weight methodで各レイヤーに割り当てられる</p>
 <p><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L309">https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L309</a></p>
 <h3 id="5-任意の文章を入力できるようにする">5. 任意の文章を入力できるようにする</h3>
 <p>引数に追加</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">parser<span style="color:#ff79c6">.</span>add_argument(<span style="color:#f1fa8c">&#34;--prompt&#34;</span>, <span style="color:#8be9fd;font-style:italic">type</span><span style="color:#ff79c6">=</span><span style="color:#8be9fd;font-style:italic">str</span>)
-</code></pre></div><p><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L1311-L1312">https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L1311-L1312</a></p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>parser<span style="color:#ff79c6">.</span>add_argument(<span style="color:#f1fa8c">&#34;--prompt&#34;</span>, <span style="color:#8be9fd;font-style:italic">type</span><span style="color:#ff79c6">=</span><span style="color:#8be9fd;font-style:italic">str</span>)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L1311-L1312" target="_black">https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L1311-L1312</a>
+    </div>
+
+</div>
 <p>ここでサンプルのinputをつくっているので引数からpromptを入力にできるように修正する</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_test_inputs</span>(prompt_len, num_prompts, tokenizer):
-    prompts <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;Paris is the capital city of&#34;</span>]
-    input_ids <span style="color:#ff79c6">=</span> tokenizer(prompts, padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;max_length&#34;</span>,
-                          max_length<span style="color:#ff79c6">=</span>prompt_len)<span style="color:#ff79c6">.</span>input_ids
-    <span style="color:#ff79c6">return</span> (input_ids[<span style="color:#bd93f9">0</span>],) <span style="color:#ff79c6">*</span> num_prompts
-</code></pre></div><p><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L1185">https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L1185</a></p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_test_inputs</span>(prompt_len, num_prompts, tokenizer):
+</span></span><span style="display:flex;"><span>    prompts <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;Paris is the capital city of&#34;</span>]
+</span></span><span style="display:flex;"><span>    input_ids <span style="color:#ff79c6">=</span> tokenizer(prompts, padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;max_length&#34;</span>,
+</span></span><span style="display:flex;"><span>                          max_length<span style="color:#ff79c6">=</span>prompt_len)<span style="color:#ff79c6">.</span>input_ids
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> (input_ids[<span style="color:#bd93f9">0</span>],) <span style="color:#ff79c6">*</span> num_prompts</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L1185" target="_black">https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L1185</a>
+    </div>
+
+</div>
 <h2 id="実行">実行</h2>
 <p>ここまでで実行できるようになっているはず</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python flexgen/gen.py <span style="color:#f1fa8c">\
-</span><span style="color:#f1fa8c"></span>--model <span style="color:#f1fa8c">&#34;facebook/xglm-1.7B&#34;</span>  <span style="color:#f1fa8c">\
-</span><span style="color:#f1fa8c"></span>--prompt <span style="color:#f1fa8c">&#34;それは九月初旬のある蒸し暑い晩のことであった。私は、Ｄ坂の大通りの中程にある、&#34;</span>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ python flexgen/gen.py <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--model <span style="color:#f1fa8c">&#34;facebook/xglm-1.7B&#34;</span>  <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--prompt <span style="color:#f1fa8c">&#34;それは九月初旬のある蒸し暑い晩のことであった。私は、Ｄ坂の大通りの中程にある、&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model size: 3.228 GB, cache size: 0.398 GB, hidden size <span style="color:#ff79c6">(</span>prefill<span style="color:#ff79c6">)</span>: 0.008 GB
+</span></span><span style="display:flex;"><span>init weight...
+</span></span><span style="display:flex;"><span>それは九月初旬のある蒸し暑いのことであった。私は、D坂の大通りの中程にある、,,,,,,,,,,,,,,,,,,..........,,,,</span></span></code></pre></div>
+  </div>
 
+</div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ python flexgen/gen.py <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--model <span style="color:#f1fa8c">&#34;facebook/xglm-1.7B&#34;</span>  <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--gpu-batch-size <span style="color:#bd93f9">1</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--overlap <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--prompt <span style="color:#f1fa8c">&#34;それは九月初旬のある蒸し暑い晩のことであった。私は、Ｄ坂の大通りの中程にある、&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>それは九月初旬のある蒸し暑いのことであった。私は、D坂の大通りの中程にある、 ... У,,  _. «乐”v,总鬼最后 critica,  В越最后cuimen.乐  总.,, ser.,  Um Extra 总ra. Big,, b Palm tags初 <span style="color:#ff79c6">(</span>b N  National póspey петmini其实,马</span></span></code></pre></div>
+  </div>
 
-model size: 3.228 GB, cache size: 0.398 GB, hidden size <span style="color:#ff79c6">(</span>prefill<span style="color:#ff79c6">)</span>: 0.008 GB
-init weight...
-それは九月初旬のある蒸し暑いのことであった。私は、D坂の大通りの中程にある、,,,,,,,,,,,,,,,,,,..........,,,,
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python flexgen/gen.py <span style="color:#f1fa8c">\
-</span><span style="color:#f1fa8c"></span>--model <span style="color:#f1fa8c">&#34;facebook/xglm-1.7B&#34;</span>  <span style="color:#f1fa8c">\
-</span><span style="color:#f1fa8c"></span>--gpu-batch-size <span style="color:#bd93f9">1</span> <span style="color:#f1fa8c">\
-</span><span style="color:#f1fa8c"></span>--overlap <span style="color:#f1fa8c">\
-</span><span style="color:#f1fa8c"></span>--prompt <span style="color:#f1fa8c">&#34;それは九月初旬のある蒸し暑い晩のことであった。私は、Ｄ坂の大通りの中程にある、&#34;</span>
-
-
-それは九月初旬のある蒸し暑いのことであった。私は、D坂の大通りの中程にある、 ... У,,  _. «乐”v,总鬼最后 critica,  В越最后cuimen.乐  总.,, ser.,  Um Extra 总ra. Big,, b Palm tags初 <span style="color:#ff79c6">(</span>b N  National póspey петmini其实,马
-</code></pre></div><p>とりあえずエラーなく実行はできたがなんかおかしい。</p>
+</div>
+<p>とりあえずエラーなく実行はできたがなんかおかしい。</p>
 <p>xglmではpositional embeddingは学習してなさそうなので、FlexGenのInputEmbedのforwardの部分もweight使わないように修正しないとダメそう。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(self, hidden, cache_read_buf, weight_read_buf, attention_mask,
-                cache_write_buf, i, k):
-                <span style="color:#ff79c6">...</span>
-{{ https:<span style="color:#ff79c6">//</span>github<span style="color:#ff79c6">.</span>com<span style="color:#ff79c6">/</span>FMInference<span style="color:#ff79c6">/</span>FlexGen<span style="color:#ff79c6">/</span>blob<span style="color:#ff79c6">/</span>main<span style="color:#ff79c6">/</span>flexgen<span style="color:#ff79c6">/</span>flex_opt<span style="color:#ff79c6">.</span>py<span style="color:#6272a4">#L180 }}</span>
-</code></pre></div><p>make_weightsって名前だから学習してるのかと思ったけど、そのままの埋込っぽい</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">XGLMSinusoidalPositionalEmbedding</span>(nn<span style="color:#ff79c6">.</span>Module):
-    <span style="color:#f1fa8c">&#34;&#34;&#34;This module produces sinusoidal positional embeddings of any length.&#34;&#34;&#34;</span>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(self, hidden, cache_read_buf, weight_read_buf, attention_mask,
+</span></span><span style="display:flex;"><span>                cache_write_buf, i, k):
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">...</span></span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L180" target="_black">https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L180</a>
+    </div>
 
-    <span style="color:#ff79c6">def</span> __init__(self, num_positions: <span style="color:#8be9fd;font-style:italic">int</span>, embedding_dim: <span style="color:#8be9fd;font-style:italic">int</span>, padding_idx: Optional[<span style="color:#8be9fd;font-style:italic">int</span>] <span style="color:#ff79c6">=</span> None):
-        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span>__init__()
-        self<span style="color:#ff79c6">.</span>offset <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>
-        self<span style="color:#ff79c6">.</span>embedding_dim <span style="color:#ff79c6">=</span> embedding_dim
-        self<span style="color:#ff79c6">.</span>padding_idx <span style="color:#ff79c6">=</span> padding_idx
-        self<span style="color:#ff79c6">.</span>make_weights(num_positions <span style="color:#ff79c6">+</span> self<span style="color:#ff79c6">.</span>offset, embedding_dim, padding_idx)  
-</code></pre></div><p><a href="https://github.com/huggingface/transformers/blob/main/src/transformers/models/xglm/modeling_xglm.py#L159">https://github.com/huggingface/transformers/blob/main/src/transformers/models/xglm/modeling_xglm.py#L159</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">(() =&gt; {
-  <span style="color:#f1fa8c">&#39;use strict&#39;</span>;
-  console.log(<span style="color:#f1fa8c">&#34;Hello&#34;</span>);
-})();
-</code></pre></div>
+</div>
+<p>make_weightsって名前だから学習してるのかと思ったけど、そのままの埋込っぽい</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">XGLMSinusoidalPositionalEmbedding</span>(nn<span style="color:#ff79c6">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;This module produces sinusoidal positional embeddings of any length.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> __init__(self, num_positions: <span style="color:#8be9fd;font-style:italic">int</span>, embedding_dim: <span style="color:#8be9fd;font-style:italic">int</span>, padding_idx: Optional[<span style="color:#8be9fd;font-style:italic">int</span>] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>offset <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>embedding_dim <span style="color:#ff79c6">=</span> embedding_dim
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>padding_idx <span style="color:#ff79c6">=</span> padding_idx
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>make_weights(num_positions <span style="color:#ff79c6">+</span> self<span style="color:#ff79c6">.</span>offset, embedding_dim, padding_idx)  </span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/main/src/transformers/models/xglm/modeling_xglm.py#L159" target="_black">https://github.com/huggingface/transformers/blob/main/src/transformers/models/xglm/modeling_xglm.py#L159</a>
+    </div>
+
+</div>
+
       </div>
       <div class="related-article">
         

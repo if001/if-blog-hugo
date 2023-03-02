@@ -75,7 +75,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -189,46 +189,90 @@
 Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。</p>
 <h2 id="サイトの作成">サイトの作成</h2>
 <h3 id="インストール">インストール</h3>
-<pre><code>brew install hugo
-</code></pre><h3 id="テンプレートの作成">テンプレートの作成</h3>
-<pre><code>hugo new site hugo-test
-</code></pre><p>これで、次のようにテンプレートが作成されます。</p>
-<pre><code>$ ls hugo-test/
-archetypes/  config.toml  content/     data/        layouts/     static/      themes/
-</code></pre><h3 id="テーマの適応">テーマの適応</h3>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>brew install hugo</code></pre>
+  </div>
+
+</div>
+<h3 id="テンプレートの作成">テンプレートの作成</h3>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>hugo new site hugo-test</code></pre>
+  </div>
+
+</div>
+<p>これで、次のようにテンプレートが作成されます。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>$ ls hugo-test/
+archetypes/  config.toml  content/     data/        layouts/     static/      themes/</code></pre>
+  </div>
+
+</div>
+<h3 id="テーマの適応">テーマの適応</h3>
 <p><a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a> ここからテーマを探す。</p>
 <p>例として、https://themes.gohugo.io/hugo-theme-learn/ を使います。</p>
-<pre><code>$ cd hugo-test/themes
-$ git clone https://github.com/matcornic/hugo-theme-learn.git
-</code></pre><p>テーマを適応させるために、config.tomlにthemeを記述します。</p>
-<pre><code>theme = &quot;hugo-theme-learn&quot;
-</code></pre><h3 id="サーバーの起動">サーバーの起動</h3>
-<pre><code>$ hugo server -D -t hugo-theme-learn
-</code></pre><p>オプションDでDraftフラグのついた記事の確認、オプションtでテーマの適応です。
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>$ cd hugo-test/themes
+$ git clone https://github.com/matcornic/hugo-theme-learn.git</code></pre>
+  </div>
+
+</div>
+<p>テーマを適応させるために、config.tomlにthemeを記述します。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>theme = &#34;hugo-theme-learn&#34;</code></pre>
+  </div>
+
+</div>
+<h3 id="サーバーの起動">サーバーの起動</h3>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>$ hugo server -D -t hugo-theme-learn</code></pre>
+  </div>
+
+</div>
+<p>オプションDでDraftフラグのついた記事の確認、オプションtでテーマの適応です。
 cloneしてきたtheme内の、layoutとstaticなどを、作成したテンプレート内のlayout、staticに移動しておくと、templateのマイナーチェンジが行えます。</p>
 <p>デフォルトで<code>http://localhost:1313/</code>で起動するのでアクセスしてみる。</p>
 <h2 id="記事の追加">記事の追加</h2>
 <p>記事の作成</p>
-<pre><code>$ hugo new post/test.md
-hugo_test/content/post/test.md created
-</code></pre><p>以下のようなmarkdownファイルが作成される</p>
-<pre><code>cat content/post/test.md
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>$ hugo new post/test.md
+hugo_test/content/post/test.md created</code></pre>
+  </div>
+
+</div>
+<p>以下のようなmarkdownファイルが作成される</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>cat content/post/test.md
 ---
-title: &quot;Test&quot;
+title: &#34;Test&#34;
 date: 2018-10-15T18:51:47+09:00
 draft: false
----
-</code></pre><p>ここで、draftは記事を後悔するかのフラグ
+---</code></pre>
+  </div>
+
+</div>
+<p>ここで、draftは記事を後悔するかのフラグ
 この出力フォーマットも、独自に設定が可能</p>
-<pre><code>$ hugo server --watch
-</code></pre><p>watchフラグをつけると、mdファイルが更新されるたびに、web側に更新が反映される。
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>$ hugo server --watch</code></pre>
+  </div>
+
+</div>
+<p>watchフラグをつけると、mdファイルが更新されるたびに、web側に更新が反映される。
 markdownの記事を書きながら、フォーマットを確認するのに使えそう。</p>
 <h2 id="デプロイ">デプロイ</h2>
 <p>以下のコマンドで実際にpublic以下にstaticファイルが吐き出される</p>
-<pre><code>$ hugo -t hugo-theme-learn
-</code></pre><pre><code>$ ls public/
-404.html    categories  css         fonts       images      index.html  index.xml   js          mermaid     sitemap.xml tags        webfonts
-</code></pre><p>このpublicディレクトリをwebサーバーに与えるだけでおk。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>$ hugo -t hugo-theme-learn</code></pre>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>$ ls public/
+404.html    categories  css         fonts       images      index.html  index.xml   js          mermaid     sitemap.xml tags        webfonts</code></pre>
+  </div>
+
+</div>
+<p>このpublicディレクトリをwebサーバーに与えるだけでおk。</p>
 <h2 id="まとめ">まとめ</h2>
 <p>Hugoのインストールからデプロイまでをまとめました。
 html内で使える変数や、数式、画像の表示はまた別でまとめます。</p>

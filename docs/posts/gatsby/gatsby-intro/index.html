@@ -75,7 +75,7 @@ gatsbyは、react製の静的サイトジェネレーターです。PWAやOGPな
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -209,7 +209,8 @@ gatsbyは、react製の静的サイトジェネレーターです。PWAやOGPな
 <p><a href="https://www.gatsbyjs.org/docs/adding-markdown-pages/">https://www.gatsbyjs.org/docs/adding-markdown-pages/</a><br>
 ある程度試して使い方がわかれば、markdownに対応したthemeがあるので、そちらを使った方が楽かと思います。</p>
 <p>以下のようなqueryで一覧が取得できます。</p>
-<pre><code>{
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>{
   allMarkdownRemark {
     edges {
       node {
@@ -219,22 +220,29 @@ gatsbyは、react製の静的サイトジェネレーターです。PWAやOGPな
           value
         }
         frontmatter {
-          # Assumes you're using title in your frontmatter.
+          # Assumes you&#39;re using title in your frontmatter.
           title
         }
       }
     }
   }
-}
-</code></pre><p>日付順にソート、limit、skipを与えることで、ページング処理もできます。</p>
-<pre><code>   allMarkdownRemark(
+}</code></pre>
+  </div>
+
+</div>
+<p>日付順にソート、limit、skipを与えることで、ページング処理もできます。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>   allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
     ) {
     .
-    .
-</code></pre><h2 id="icons">icons</h2>
+    .</code></pre>
+  </div>
+
+</div>
+<h2 id="icons">icons</h2>
 <p>以下のものがすぐに使えてよかったです。</p>
 <p><a href="https://react-icons.netlify.com/#/">https://react-icons.netlify.com/#/</a><br>
 (emacsがないのが解せぬ…)</p>
@@ -251,10 +259,14 @@ gatsbyは、react製の静的サイトジェネレーターです。PWAやOGPな
 <p>コードハイライトにファイル名やタイトルを表示させたかったので、以下を使いました。<br>
 <a href="https://www.gatsbyjs.org/packages/gatsby-remark-code-titles/?=gatsby-remark-code-titles">https://www.gatsbyjs.org/packages/gatsby-remark-code-titles/?=gatsby-remark-code-titles</a></p>
 <p>例</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json:title=test.json" data-lang="json:title=test.json">{
-    <span style="color:#ff79c6">&#34;test&#34;</span>: <span style="color:#f1fa8c">&#34;test&#34;</span>
-}
-</code></pre></div><h2 id="katex">katex</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json:title=test.json" data-lang="json:title=test.json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;test&#34;</span>: <span style="color:#f1fa8c">&#34;test&#34;</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="katex">katex</h2>
 <p>記事中に数式を書くことがあるので、必要でした。以下のプラグインを使うと簡単にできます。</p>
 <p><a href="https://www.gatsbyjs.org/packages/gatsby-remark-katex/">https://www.gatsbyjs.org/packages/gatsby-remark-katex/</a></p>
 <p><code>\tags</code> 使うとparse errorで怒られる。(v3.1.13)</p>
@@ -269,27 +281,36 @@ gatsbyは、react製の静的サイトジェネレーターです。PWAやOGPな
 <p>プラグインgatsby-remark-tocを使うことで目次をつけることができます。ただ、記事のトップにしかつけることができず、Qiitaのようなサイドバーに目次をつけたかったので、以下のようにしました。</p>
 <p>queryに<code>tableOfContents</code>を加えると、目次が取得できます。</p>
 <p>例</p>
-<pre><code>markdownRemark(fields: { slug: { eq: $slug } }) {
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
         title
-        date(formatString: &quot;YYYY-MM-DD&quot;)
+        date(formatString: &#34;YYYY-MM-DD&#34;)
         tags
       }
       tableOfContents
     }
-  }
-</code></pre><p>取得したものを表示します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">const</span> tableOfContens <span style="color:#ff79c6">=</span> props.data.markdownRemarks.tableOfContents;
-<span style="color:#ff79c6">&lt;</span>div dangerouslySetInnerHTML<span style="color:#ff79c6">=</span>{{__html<span style="color:#ff79c6">:</span> tableOfContens}}<span style="color:#ff79c6">/&gt;</span>
-</code></pre></div><p>参考<br>
+  }</code></pre>
+  </div>
+
+</div>
+<p>取得したものを表示します。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> tableOfContens <span style="color:#ff79c6">=</span> props.data.markdownRemarks.tableOfContents;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;</span>div dangerouslySetInnerHTML<span style="color:#ff79c6">=</span>{{__html<span style="color:#ff79c6">:</span> tableOfContens}}<span style="color:#ff79c6">/&gt;</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>参考<br>
 <a href="https://nakawork.net/posts/gatsby-toc">https://nakawork.net/posts/gatsby-toc</a></p>
 <p>スクロールで目次のハイライトもスクロールも試したかったけど、それはまた今度</p>
 <h2 id="google-analytics">google analytics</h2>
 <p><a href="https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/">https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/</a></p>
 <h2 id="google-adsense">google adsense</h2>
-<p><code>$ npm install --save gatsby-plugin-google-adsense</code></p>
-<pre><code class="language-jsonld=" data-lang="jsonld=">// In your gatsby-config.js file
+<p><code>$ npm install --save gatsby-plugin-google-adsense </code></p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code class="language-jsonld=" data-lang="jsonld=">// In your gatsby-config.js file
 plugins: [
     {
       resolve: `gatsby-plugin-google-adsense`,
@@ -297,8 +318,11 @@ plugins: [
         publisherId: `ca-pub-xxxxxxxxxx`
       },
     },
-]
-</code></pre><p>プロジェクトのrootディレクトリにstaticディレクトリを作成。<br>
+]</code></pre>
+  </div>
+
+</div>
+<p>プロジェクトのrootディレクトリにstaticディレクトリを作成。<br>
 staticディレクトリ以下に、CNAMEファイル、ads.txtを追加。</p>
 <h2 id="サイトマップ">サイトマップ</h2>
 <p>以下のプラグインを使うことで、build時にsitemap.xmlが生成されます。</p>
@@ -314,12 +338,16 @@ staticディレクトリ以下に、CNAMEファイル、ads.txtを追加。</p>
 <p>gh-pagesをインストール</p>
 <p><code>$ npm install gh-pages --save-dev</code></p>
 <p>以下を追加</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json:title=package.json" data-lang="json:title=package.json">{
-  <span style="color:#ff79c6">&#34;scripts&#34;</span>: {
-    <span style="color:#ff79c6">&#34;deploy&#34;</span>: <span style="color:#f1fa8c">&#34;gatsby build &amp;&amp; gh-pages -d public&#34;</span>
-  }
-}
-</code></pre></div><p>デプロイ</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json:title=package.json" data-lang="json:title=package.json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;scripts&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;deploy&#34;</span>: <span style="color:#f1fa8c">&#34;gatsby build &amp;&amp; gh-pages -d public&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>デプロイ</p>
 <p><code>$ npm run deploy</code></p>
 <h2 id="まとめ">まとめ</h2>
 <p>プラグインが豊富で基本的なことは全てプラグインを使えば実現できるので便利。ただ、プラグインに依存しすぎて、バージョン依存の問題とかで盛大に死にそうな未来がうっすら見える。</p>

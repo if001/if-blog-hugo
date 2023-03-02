@@ -74,7 +74,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -169,7 +169,7 @@
             <a href="https://www.if-blog.site/tags/firebase/">firebase</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/webapp/">webapp</a
+            <a href="https://www.if-blog.site/tags/webapp/">WebApp</a
             >&nbsp;
           
         </div>
@@ -213,47 +213,72 @@ Firebase Cloud Functions用に、javascriptのライブラリが提供されて�
 <p><img src="../../../images/bookreports_edgwbs/vuejs_golang_firebase_functions.png" alt="vuejs_golang_firebase_functions"></p>
 <h2 id="シンプルなリスポンス例">シンプルなリスポンス例</h2>
 <p>200を返すシンプルなfunctionsの例は以下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">import</span> <span style="color:#ff79c6">*</span> as functions from <span style="color:#f1fa8c">&#39;firebase-functions&#39;</span>;
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> <span style="color:#ff79c6">*</span> as functions from <span style="color:#f1fa8c">&#39;firebase-functions&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> share <span style="color:#ff79c6">=</span> functions.https.onRequest((req, res) =&gt; {
+</span></span><span style="display:flex;"><span>          res.status(<span style="color:#bd93f9">200</span>).send(<span style="color:#f1fa8c">&#34;hello world&#34;</span>);
+</span></span><span style="display:flex;"><span>})</span></span></code></pre></div>
+  </div>
 
-<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">const</span> share <span style="color:#ff79c6">=</span> functions.https.onRequest((req, res) =&gt; {
-          res.status(<span style="color:#bd93f9">200</span>).send(<span style="color:#f1fa8c">&#34;hello world&#34;</span>);
-})
-</code></pre></div><h2 id="リクエストの振り分け">リクエストの振り分け</h2>
+</div>
+<h2 id="リクエストの振り分け">リクエストの振り分け</h2>
 <p>Twitterのクローラーは、User-Agentが<code>User-agent: Twitterbot</code>なので、これを使います。<br>
 UAがTwitterbotの場合はOGPを設定し返却、それ以外の場合は通常のページへリダイレクトさせるようにします。</p>
 <p>UAは以下の用に取得できます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">const</span> ua <span style="color:#ff79c6">=</span> req.header(<span style="color:#f1fa8c">&#39;user-agent&#39;</span>);
-console.log(<span style="color:#f1fa8c">&#39;ua:&#39;</span>,ua);
-</code></pre></div><p>リクエストを振り分けるために、エンドポイントを<code>firebase.json</code>を修正します。<br>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> ua <span style="color:#ff79c6">=</span> req.header(<span style="color:#f1fa8c">&#39;user-agent&#39;</span>);
+</span></span><span style="display:flex;"><span>console.log(<span style="color:#f1fa8c">&#39;ua:&#39;</span>,ua);</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>リクエストを振り分けるために、エンドポイントを<code>firebase.json</code>を修正します。<br>
 <code>/for_twitter</code>にアクセスが来るとFunctionsが呼ばれ、それ以外は通常のページを返します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">  <span style="color:#f1fa8c">&#34;rewrites&#34;</span>: [
-		{
-		    <span style="color:#ff79c6">&#34;source&#34;</span>: <span style="color:#f1fa8c">&#34;/for_twitter/*&#34;</span>,
-		    <span style="color:#ff79c6">&#34;function&#34;</span>: <span style="color:#f1fa8c">&#34;for_twitter&#34;</span>
-		},
-		{
-		    <span style="color:#ff79c6">&#34;source&#34;</span>: <span style="color:#f1fa8c">&#34;**&#34;</span>,
-		    <span style="color:#ff79c6">&#34;destination&#34;</span>: <span style="color:#f1fa8c">&#34;/index.html&#34;</span>
-		}
-	]
-</code></pre></div><h2 id="cloud-storeからデータを取得">Cloud Storeからデータを取得</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;rewrites&#34;</span>: [
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>		    <span style="color:#ff79c6">&#34;source&#34;</span>: <span style="color:#f1fa8c">&#34;/for_twitter/*&#34;</span>,
+</span></span><span style="display:flex;"><span>		    <span style="color:#ff79c6">&#34;function&#34;</span>: <span style="color:#f1fa8c">&#34;for_twitter&#34;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>		    <span style="color:#ff79c6">&#34;source&#34;</span>: <span style="color:#f1fa8c">&#34;**&#34;</span>,
+</span></span><span style="display:flex;"><span>		    <span style="color:#ff79c6">&#34;destination&#34;</span>: <span style="color:#f1fa8c">&#34;/index.html&#34;</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	]</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="cloud-storeからデータを取得">Cloud Storeからデータを取得</h2>
 <p>Firebase Admin SDKを使うと、FunctionsからDB/Storageに対し管理者としてアクセスが可能になります。もちろんですが、サーバー側空だけでフロント側から使わないように注意です。</p>
 <p>サーバーに Firebase Admin SDK を追加する:<br>
 <a href="https://firebase.google.com/docs/admin/setup?hl=ja">https://firebase.google.com/docs/admin/setup?hl=ja</a></p>
 <p>環境変数にsevice accountを追加します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8be9fd;font-style:italic">export</span> <span style="color:#8be9fd;font-style:italic">GOOGLE_APPLICATION_CREDENTIALS</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/home/user/Downloads/service-account-file.json&#34;</span>
-</code></pre></div><p>以下のようにSKDの初期化を行います。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">import</span> <span style="color:#ff79c6">*</span> as admin from <span style="color:#f1fa8c">&#39;firebase-admin&#39;</span>;
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">export</span> <span style="color:#8be9fd;font-style:italic">GOOGLE_APPLICATION_CREDENTIALS</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/home/user/Downloads/service-account-file.json&#34;</span></span></span></code></pre></div>
+  </div>
 
-admin.initializeApp({
-  credential<span style="color:#ff79c6">:</span> admin.credential.applicationDefault(),
-  databaseURL<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;https://&lt;DATABASE_NAME&gt;.firebaseio.com&#39;</span>
-});
-</code></pre></div><p>あとは、adminを使って、firestoreへアクセス可能です。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">const</span> ref <span style="color:#ff79c6">=</span> admin.firestore().collection(<span style="color:#f1fa8c">&#39;test&#39;</span>);
-ref.get().then((snapshot) =&gt; {
-	<span style="color:#6272a4">// ...
-</span></code></pre></div><p>データの取得などはドキュメント参考<br>
+</div>
+<p>以下のようにSKDの初期化を行います。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> <span style="color:#ff79c6">*</span> as admin from <span style="color:#f1fa8c">&#39;firebase-admin&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>admin.initializeApp({
+</span></span><span style="display:flex;"><span>  credential<span style="color:#ff79c6">:</span> admin.credential.applicationDefault(),
+</span></span><span style="display:flex;"><span>  databaseURL<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;https://&lt;DATABASE_NAME&gt;.firebaseio.com&#39;</span>
+</span></span><span style="display:flex;"><span>});</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>あとは、adminを使って、firestoreへアクセス可能です。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> ref <span style="color:#ff79c6">=</span> admin.firestore().collection(<span style="color:#f1fa8c">&#39;test&#39;</span>);
+</span></span><span style="display:flex;"><span>ref.get().then((snapshot) =&gt; {
+</span></span><span style="display:flex;"><span>	<span style="color:#6272a4">// ...
+</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>データの取得などはドキュメント参考<br>
 <a href="https://firebase.google.com/docs/firestore?hl=ja">https://firebase.google.com/docs/firestore?hl=ja</a></p>
 <h2 id="twiter-ogpの設定">Twiter OGPの設定</h2>
 <p>以下の４つが設定できるようです。</p>
@@ -268,22 +293,30 @@ ref.get().then((snapshot) =&gt; {
 <p><img src="../../../images/bookreports_edgwbs/twitter_card.png" alt="twitter_card"></p>
 <p><img src="../../../images/bookreports_edgwbs/twitter_card_large.png" alt="twitter_card_large"></p>
 <p>今回はSummary Card with Large Imageを使います。ヘッダーに以下を追加します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;twitter:card&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;summary_large_image&#34;</span>&gt;&lt;/<span style="color:#ff79c6">meta</span>&gt;
-&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">property</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;og:image&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;imageURL&#34;</span>&gt;
-</code></pre></div><p>UAがTwitterbotの場合は、以下の関数を利用し、headerを設定します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#8be9fd;font-style:italic">function</span> buildHtmlWithPost (id<span style="color:#ff79c6">:</span> string, siteUrl<span style="color:#ff79c6">:</span>string, imageURL) <span style="color:#ff79c6">:</span> string {
-    <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">`&lt;!DOCTYPE html&gt;&lt;head&gt;
-</span><span style="color:#f1fa8c">  &lt;title&gt;&lt;/title&gt;
-</span><span style="color:#f1fa8c">  &lt;meta name=&#34;twitter:card&#34; content=&#34;summary_large_image&#34;/&gt;
-</span><span style="color:#f1fa8c">  &lt;meta name=&#34;twitter:title&#34; property=&#34;og:title&#34; content=&#34;タイトル&#34;/&gt;
-</span><span style="color:#f1fa8c">  &lt;meta property=&#34;og:url&#34; content=&#34;</span><span style="color:#f1fa8c">${</span>siteURL<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;&gt;
-</span><span style="color:#f1fa8c">  &lt;meta property=&#34;og:image&#34; content=&#34;</span><span style="color:#f1fa8c">${</span>imageURL<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;&gt;
-</span><span style="color:#f1fa8c">  &lt;meta property=&#34;og:image:width&#34; content=&#34;600&#34;&gt; 
-</span><span style="color:#f1fa8c">  &lt;/head&gt;
-</span><span style="color:#f1fa8c">  &lt;body&gt;&lt;/body&gt;
-</span><span style="color:#f1fa8c">  &lt;/html&gt;`</span>
-}
-</code></pre></div><p>正しく設定できているかは以下から確認できます。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;twitter:card&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;summary_large_image&#34;</span>&gt;&lt;/<span style="color:#ff79c6">meta</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">property</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;og:image&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;imageURL&#34;</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>UAがTwitterbotの場合は、以下の関数を利用し、headerを設定します。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> buildHtmlWithPost (id<span style="color:#ff79c6">:</span> string, siteUrl<span style="color:#ff79c6">:</span>string, imageURL) <span style="color:#ff79c6">:</span> string {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">`&lt;!DOCTYPE html&gt;&lt;head&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">  &lt;title&gt;&lt;/title&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">  &lt;meta name=&#34;twitter:card&#34; content=&#34;summary_large_image&#34;/&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">  &lt;meta name=&#34;twitter:title&#34; property=&#34;og:title&#34; content=&#34;タイトル&#34;/&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">  &lt;meta property=&#34;og:url&#34; content=&#34;</span><span style="color:#f1fa8c">${</span>siteURL<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">  &lt;meta property=&#34;og:image&#34; content=&#34;</span><span style="color:#f1fa8c">${</span>imageURL<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">  &lt;meta property=&#34;og:image:width&#34; content=&#34;600&#34;&gt; 
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">  &lt;/head&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">  &lt;body&gt;&lt;/body&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">  &lt;/html&gt;`</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>正しく設定できているかは以下から確認できます。</p>
 <p><a href="https://cards-dev.twitter.com/validator">https://cards-dev.twitter.com/validator</a></p>
 <h2 id="まとめ">まとめ</h2>
 <p>Firebase Cloud Functionsを使って、Twitter用のOGPを設定しました。<br>

@@ -75,7 +75,7 @@ https://huggingface.co/docs/transformers/main_clas" />
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -199,13 +199,21 @@ https://huggingface.co/docs/transformers/main_clas" />
 <p><a href="https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.Text2TextGenerationPipeline">https://huggingface.co/docs/transformers/main_classes/pipelines#transformers.Text2TextGenerationPipeline</a></p>
 <p>exampleを見ると、text-generationは与えた文章に続く文章を生成、
 text2text-generationは質問や文脈を与えて、それに対する回答を生成することを期待している。</p>
-<pre><code>## text-generation
-&gt;&gt; generator(&quot;I can't believe you did such a &quot;, do_sample=False)
-</code></pre><pre><code>## text2text-generation
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>## text-generation
+&gt;&gt; generator(&#34;I can&#39;t believe you did such a &#34;, do_sample=False)</code></pre>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>## text2text-generation
 &gt;&gt; generator(
-    &quot;answer: Manuel context: Manuel has created RuPERTa-base with the support of HF-Transformers and &gt;&gt; Google&quot;
-)
-</code></pre><h2 id="比較">比較</h2>
+    &#34;answer: Manuel context: Manuel has created RuPERTa-base with the support of HF-Transformers and &gt;&gt; Google&#34;
+)</code></pre>
+  </div>
+
+</div>
+<h2 id="比較">比較</h2>
 <p>genereate時、<code>preprocess -&gt; _forward -&gt; postprocess</code>の順で動く</p>
 <p>それぞれ<code>__call__</code>の引数の被ってないものをみると以下のような感じ</p>
 <p>text_generation</p>

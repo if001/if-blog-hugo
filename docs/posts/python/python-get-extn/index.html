@@ -76,7 +76,7 @@ hoge/test .md " />
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -186,13 +186,21 @@ hoge/test .md " />
 
       <div class="article-main">
         <p>ファイルの拡張子を取得する方法をいつも忘れるのでメモ</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> os
-file_path <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;hoge/test.md&#34;</span>
-root, ext <span style="color:#ff79c6">=</span> os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>splitext(file_path)
-<span style="color:#ff79c6">print</span>(root, ext)
-</code></pre></div><p>出力</p>
-<pre><code>hoge/test .md
-</code></pre>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> os
+</span></span><span style="display:flex;"><span>file_path <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;hoge/test.md&#34;</span>
+</span></span><span style="display:flex;"><span>root, ext <span style="color:#ff79c6">=</span> os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>splitext(file_path)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(root, ext)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>出力</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>hoge/test .md</code></pre>
+  </div>
+
+</div>
+
       </div>
       <div class="related-article">
         

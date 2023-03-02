@@ -78,7 +78,7 @@ rustのバージョンは1.27.0
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -196,7 +196,8 @@ rustのバージョンは1.27.0
 <h2 id="ファイル構成">ファイル構成</h2>
 <p>lib.rsでmodをまとめて、main.rsで呼ぶようなファイル構成にする。
 このようにしておくと、main.rsのなかでmodを宣言しなくてよくなるし、また誰が誰を公開しているかわかりやすくなる（たぶん）。</p>
-<pre><code>crate/
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>crate/
   src/
     main.rs
     lib.rs
@@ -205,57 +206,84 @@ rustのバージョンは1.27.0
       macro.rs
     mod2/
       mod.rs
-      macro_run.rs
-</code></pre><p>この時、main.rsを実行すると、macro_run.rsの中の関数が呼ばれ、この関数内でmacro.rsに定義してあるマクロが呼び出されるとする。</p>
+      macro_run.rs</code></pre>
+  </div>
+
+</div>
+<p>この時、main.rsを実行すると、macro_run.rsの中の関数が呼ばれ、この関数内でmacro.rsに定義してあるマクロが呼び出されるとする。</p>
 <p>簡単に言うと、モジュール間に跨ったマクロ呼び出しが行いたい。</p>
 <h2 id="書き方">書き方</h2>
 <p>main.rsでは、macro_run内にあるrun関数を呼ぶ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#6272a4">// main.rs
-</span><span style="color:#6272a4"></span>
-<span style="color:#ff79c6">extern</span> <span style="color:#ff79c6">crate</span> rust_test2;
-<span style="color:#ff79c6">use</span> rust_test2::mod2::macro_run;
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6272a4">// main.rs
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">extern</span> <span style="color:#ff79c6">crate</span> rust_test2;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">use</span> rust_test2::mod2::macro_run;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
+</span></span><span style="display:flex;"><span>    macro_run::run();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 
-<span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">main</span>() {
-    macro_run::run();
-}
-</code></pre></div><p>run関数内では、foo!というマクロを使う。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#6272a4">// macro_run.rs
-</span><span style="color:#6272a4"></span>
-<span style="color:#ff79c6">#[macro_use]</span>
-<span style="color:#ff79c6">use</span> mod1::macro_test::<span style="color:#ff79c6">*</span>;
+</div>
+<p>run関数内では、foo!というマクロを使う。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6272a4">// macro_run.rs
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#[macro_use]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">use</span> mod1::macro_test::<span style="color:#ff79c6">*</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> foo <span style="color:#ff79c6">=</span> foo<span style="color:#ff79c6">!</span>(<span style="color:#bd93f9">1</span>);
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#f1fa8c">&#34;{}&#34;</span>,foo);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 
-<span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">run</span>() {
-    <span style="color:#8be9fd;font-style:italic">let</span> foo <span style="color:#ff79c6">=</span> foo<span style="color:#ff79c6">!</span>(<span style="color:#bd93f9">1</span>);
-    println<span style="color:#ff79c6">!</span>(<span style="color:#f1fa8c">&#34;{}&#34;</span>,foo);
-}
-</code></pre></div><p>fooマクロは、引数をそのまま返す単純なマクロ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#6272a4">// macro.rs
-</span><span style="color:#6272a4"></span>
-<span style="color:#ff79c6">#[macro_use]</span>
-macro_rules<span style="color:#ff79c6">!</span> foo {
-      (<span style="color:#ff79c6">$e</span>: <span style="color:#50fa7b">expr</span>) <span style="color:#ff79c6">=&gt;</span> {
-             <span style="color:#ff79c6">$e</span>
-         }
-     }
-</code></pre></div><p>macro_useをつける。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#6272a4">// mod1/lib.rs
-</span><span style="color:#6272a4"></span>
-<span style="color:#ff79c6">#[macro_use]</span>
-<span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> macro_test;
-</code></pre></div><p>ここのlibにもmacro_useが必要。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#6272a4">// lib.rs
-</span><span style="color:#6272a4"></span>
-<span style="color:#ff79c6">#[macro_use]</span>
-<span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> mod1;
-<span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> mod2;
-</code></pre></div><p>次のように#[macro use]の順番が入れ変わるとだめ
+</div>
+<p>fooマクロは、引数をそのまま返す単純なマクロ。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6272a4">// macro.rs
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#[macro_use]</span>
+</span></span><span style="display:flex;"><span>macro_rules! foo {
+</span></span><span style="display:flex;"><span>      (<span style="color:#ff79c6">$e</span>: <span style="color:#50fa7b">expr</span>) <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>             <span style="color:#ff79c6">$e</span>
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>     }</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>macro_useをつける。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6272a4">// mod1/lib.rs
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#[macro_use]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> macro_test;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>ここのlibにもmacro_useが必要。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6272a4">// lib.rs
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#[macro_use]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> mod1;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> mod2;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>次のように#[macro use]の順番が入れ変わるとだめ
 (参考：https://www.ncameron.org/blog/macros-in-rust-pt4/)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#6272a4">// lib.rs
-</span><span style="color:#6272a4"></span>
-<span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> mod2;
-<span style="color:#ff79c6">#[macro_use]</span>
-<span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> mod1;
-</code></pre></div><h2 id="まとめ">まとめ</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#6272a4">// lib.rs
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> mod2;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#[macro_use]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">mod</span> mod1;</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="まとめ">まとめ</h2>
 <ul>
 <li>#[macro_use]をいっぱいかく</li>
 <li>lib.rsに書く順番が大切</li>

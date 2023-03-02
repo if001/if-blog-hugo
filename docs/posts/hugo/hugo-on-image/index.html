@@ -73,11 +73,11 @@
     <meta name="description" content="Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
 画像を配置するディクトリを以下のように作っておく。
 {root}/content/post/images/ 以下のように記述すると表示できる。
-{{&amp;lt; figure src=&amp;quot;../../images/test." />
+{{&amp;lt; figure src=&amp;#34;../../images/test.p" />
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -188,22 +188,37 @@
       <div class="article-main">
         <p>Hugoに画像を載せるときは、<a href="https://gohugo.io/content-management/shortcodes/">shortcodes</a>を使うと良いらしい。</p>
 <p>画像を配置するディクトリを以下のように作っておく。</p>
-<pre><code>{root}/content/post/images/
-</code></pre><p>以下のように記述すると表示できる。</p>
-<pre><code>{{&lt; figure src=&quot;../../images/test.png&quot; title=&quot;test&quot; width=&quot;320&quot; height=&quot;640&quot; &gt;}}
-</code></pre><p>or</p>
-<pre><code>[!tag](path)
-</code></pre><p>相対パスで記述でき、width、heightも設定可能。<br>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>{root}/content/post/images/</code></pre>
+  </div>
+
+</div>
+<p>以下のように記述すると表示できる。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>{{&lt; figure src=&#34;../../images/test.png&#34; title=&#34;test&#34; width=&#34;320&#34; height=&#34;640&#34; &gt;}}</code></pre>
+  </div>
+
+</div>
+<p>or</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>[!tag](path)</code></pre>
+  </div>
+
+</div>
+<p>相対パスで記述でき、width、heightも設定可能。<br>
 生成されるHTMLは以下のようになる。</p>
-<pre><code>&lt;figure&gt;
-  &lt;img src=&quot;../../images/test.png&quot;  /&gt;
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&lt;figure&gt;
+  &lt;img src=&#34;../../images/test.png&#34;  /&gt;
   &lt;figcaption&gt;
       &lt;h4&gt;test&lt;/h4&gt;
   &lt;/figcaption&gt;
-&lt;/figure&gt;
-</code></pre><p>画像を実際に表示<br>
-<figure>
-    <img src="../../../images/pa14039476984952.jpg" width="100" height="100"/> 
+&lt;/figure&gt;</code></pre>
+  </div>
+
+</div>
+<p>画像を実際に表示<br>
+<figure><img src="../../../images/pa14039476984952.jpg" width="100" height="100"/>
 </figure>
 </p>
 <p>記事と同じディレクトリに画像を配置しておくと、シンプルなパスで記述できるので、その辺は好みで。<br>

@@ -76,7 +76,7 @@ before 認証
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -188,25 +188,37 @@ before 認証
         <p>久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。</p>
 <h2 id="before">before</h2>
 <p>認証</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">!apt<span style="color:#ff79c6">-</span>get install <span style="color:#ff79c6">-</span>y <span style="color:#ff79c6">-</span>qq software<span style="color:#ff79c6">-</span>properties<span style="color:#ff79c6">-</span>common python<span style="color:#ff79c6">-</span>software<span style="color:#ff79c6">-</span>properties module<span style="color:#ff79c6">-</span>init<span style="color:#ff79c6">-</span>tools
-!add<span style="color:#ff79c6">-</span>apt<span style="color:#ff79c6">-</span>repository <span style="color:#ff79c6">-</span>y ppa:alessandro<span style="color:#ff79c6">-</span>strada<span style="color:#ff79c6">/</span>ppa <span style="color:#bd93f9">2</span><span style="color:#ff79c6">&gt;&amp;</span><span style="color:#bd93f9">1</span> <span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">/</span>dev<span style="color:#ff79c6">/</span>null
-!apt<span style="color:#ff79c6">-</span>get update <span style="color:#ff79c6">-</span>qq <span style="color:#bd93f9">2</span><span style="color:#ff79c6">&gt;&amp;</span><span style="color:#bd93f9">1</span> <span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">/</span>dev<span style="color:#ff79c6">/</span>null
-!apt<span style="color:#ff79c6">-</span>get <span style="color:#ff79c6">-</span>y install <span style="color:#ff79c6">-</span>qq google<span style="color:#ff79c6">-</span>drive<span style="color:#ff79c6">-</span>ocamlfuse fuse
-<span style="color:#ff79c6">from</span> google.colab <span style="color:#ff79c6">import</span> auth
-auth<span style="color:#ff79c6">.</span>authenticate_user()
-<span style="color:#ff79c6">from</span> oauth2client.client <span style="color:#ff79c6">import</span> GoogleCredentials
-creds <span style="color:#ff79c6">=</span> GoogleCredentials<span style="color:#ff79c6">.</span>get_application_default()
-<span style="color:#ff79c6">import</span> getpass
-!google<span style="color:#ff79c6">-</span>drive<span style="color:#ff79c6">-</span>ocamlfuse <span style="color:#ff79c6">-</span>headless <span style="color:#ff79c6">-</span><span style="color:#8be9fd;font-style:italic">id</span><span style="color:#ff79c6">=</span>{creds<span style="color:#ff79c6">.</span>client_id} <span style="color:#ff79c6">-</span>secret<span style="color:#ff79c6">=</span>{creds<span style="color:#ff79c6">.</span>client_secret} <span style="color:#ff79c6">&lt;</span> <span style="color:#ff79c6">/</span>dev<span style="color:#ff79c6">/</span>null <span style="color:#bd93f9">2</span><span style="color:#ff79c6">&gt;&amp;</span><span style="color:#bd93f9">1</span> <span style="color:#ff79c6">|</span> grep URL
-vcode <span style="color:#ff79c6">=</span> getpass<span style="color:#ff79c6">.</span>getpass()
-!echo {vcode} <span style="color:#ff79c6">|</span> google<span style="color:#ff79c6">-</span>drive<span style="color:#ff79c6">-</span>ocamlfuse <span style="color:#ff79c6">-</span>headless <span style="color:#ff79c6">-</span><span style="color:#8be9fd;font-style:italic">id</span><span style="color:#ff79c6">=</span>{creds<span style="color:#ff79c6">.</span>client_id} <span style="color:#ff79c6">-</span>secret<span style="color:#ff79c6">=</span>{creds<span style="color:#ff79c6">.</span>client_secret}
-</code></pre></div><p>マウント</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">!mkdir <span style="color:#ff79c6">-</span>p drive
-!google<span style="color:#ff79c6">-</span>drive<span style="color:#ff79c6">-</span>ocamlfuse drive
-</code></pre></div><h2 id="after">after</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">from</span> google.colab <span style="color:#ff79c6">import</span> drive
-drive<span style="color:#ff79c6">.</span>mount(<span style="color:#f1fa8c">&#39;/gdrive&#39;</span>)
-</code></pre></div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>!apt<span style="color:#ff79c6">-</span>get install <span style="color:#ff79c6">-</span>y <span style="color:#ff79c6">-</span>qq software<span style="color:#ff79c6">-</span>properties<span style="color:#ff79c6">-</span>common python<span style="color:#ff79c6">-</span>software<span style="color:#ff79c6">-</span>properties module<span style="color:#ff79c6">-</span>init<span style="color:#ff79c6">-</span>tools
+</span></span><span style="display:flex;"><span>!add<span style="color:#ff79c6">-</span>apt<span style="color:#ff79c6">-</span>repository <span style="color:#ff79c6">-</span>y ppa:alessandro<span style="color:#ff79c6">-</span>strada<span style="color:#ff79c6">/</span>ppa <span style="color:#bd93f9">2</span><span style="color:#ff79c6">&gt;&amp;</span><span style="color:#bd93f9">1</span> <span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">/</span>dev<span style="color:#ff79c6">/</span>null
+</span></span><span style="display:flex;"><span>!apt<span style="color:#ff79c6">-</span>get update <span style="color:#ff79c6">-</span>qq <span style="color:#bd93f9">2</span><span style="color:#ff79c6">&gt;&amp;</span><span style="color:#bd93f9">1</span> <span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">/</span>dev<span style="color:#ff79c6">/</span>null
+</span></span><span style="display:flex;"><span>!apt<span style="color:#ff79c6">-</span>get <span style="color:#ff79c6">-</span>y install <span style="color:#ff79c6">-</span>qq google<span style="color:#ff79c6">-</span>drive<span style="color:#ff79c6">-</span>ocamlfuse fuse
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> google.colab <span style="color:#ff79c6">import</span> auth
+</span></span><span style="display:flex;"><span>auth<span style="color:#ff79c6">.</span>authenticate_user()
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> oauth2client.client <span style="color:#ff79c6">import</span> GoogleCredentials
+</span></span><span style="display:flex;"><span>creds <span style="color:#ff79c6">=</span> GoogleCredentials<span style="color:#ff79c6">.</span>get_application_default()
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> getpass
+</span></span><span style="display:flex;"><span>!google<span style="color:#ff79c6">-</span>drive<span style="color:#ff79c6">-</span>ocamlfuse <span style="color:#ff79c6">-</span>headless <span style="color:#ff79c6">-</span><span style="color:#8be9fd;font-style:italic">id</span><span style="color:#ff79c6">=</span>{creds<span style="color:#ff79c6">.</span>client_id} <span style="color:#ff79c6">-</span>secret<span style="color:#ff79c6">=</span>{creds<span style="color:#ff79c6">.</span>client_secret} <span style="color:#ff79c6">&lt;</span> <span style="color:#ff79c6">/</span>dev<span style="color:#ff79c6">/</span>null <span style="color:#bd93f9">2</span><span style="color:#ff79c6">&gt;&amp;</span><span style="color:#bd93f9">1</span> <span style="color:#ff79c6">|</span> grep URL
+</span></span><span style="display:flex;"><span>vcode <span style="color:#ff79c6">=</span> getpass<span style="color:#ff79c6">.</span>getpass()
+</span></span><span style="display:flex;"><span>!echo {vcode} <span style="color:#ff79c6">|</span> google<span style="color:#ff79c6">-</span>drive<span style="color:#ff79c6">-</span>ocamlfuse <span style="color:#ff79c6">-</span>headless <span style="color:#ff79c6">-</span><span style="color:#8be9fd;font-style:italic">id</span><span style="color:#ff79c6">=</span>{creds<span style="color:#ff79c6">.</span>client_id} <span style="color:#ff79c6">-</span>secret<span style="color:#ff79c6">=</span>{creds<span style="color:#ff79c6">.</span>client_secret}</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>マウント</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>!mkdir <span style="color:#ff79c6">-</span>p drive
+</span></span><span style="display:flex;"><span>!google<span style="color:#ff79c6">-</span>drive<span style="color:#ff79c6">-</span>ocamlfuse drive</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="after">after</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> google.colab <span style="color:#ff79c6">import</span> drive
+</span></span><span style="display:flex;"><span>drive<span style="color:#ff79c6">.</span>mount(<span style="color:#f1fa8c">&#39;/gdrive&#39;</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+
       </div>
       <div class="related-article">
         

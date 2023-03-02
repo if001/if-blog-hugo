@@ -78,7 +78,7 @@ c" />
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -193,23 +193,39 @@ Hugo自体の機能を使う方法と、ハイライトする機能を持つjava
 <p>Hugo 0.28からGo機能でシンタックスハイライトが可能になった。<br>
 <a href="https://gohugo.io/content-management/syntax-highlighting/">Syntax Highlighting</a><br>
 config.tomlに以下のように記述</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">pygmentsCodefences = <span style="color:#ff79c6">true</span>
-pygmentsUseClasses = <span style="color:#ff79c6">true</span>
-</code></pre></div><p>以下のコマンドでcssを生成する。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8be9fd;font-style:italic">$hugo</span> gen chromastyles --style<span style="color:#ff79c6">=</span>monokai &gt; syntax.css
-</code></pre></div><p>生成したcssをindex.htmlなどから読み込むと反映される。<br>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>pygmentsCodefences = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>pygmentsUseClasses = <span style="color:#ff79c6">true</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>以下のコマンドでcssを生成する。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$hugo</span> gen chromastyles --style<span style="color:#ff79c6">=</span>monokai &gt; syntax.css</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>生成したcssをindex.htmlなどから読み込むと反映される。<br>
 <code>--style</code>オプションの指定は、<a href="https://help.farbox.com/pygments.html">pygments</a>から探す。</p>
 <h2 id="highlightjsを使う">highlightjsを使う</h2>
 <p><a href="https://highlightjs.org/">highlightjs</a><br>
 対応言語が多いのがメリット。</p>
 <p>以下のようにcdnからとってくるようにしておくと良い。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">link</span> <span style="color:#50fa7b">rel</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;stylesheet&#34;</span>
-      <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css&#34;</span>&gt;
-&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
-&lt;<span style="color:#ff79c6">script</span>&gt;hljs.initHighlightingOnLoad();&lt;/<span style="color:#ff79c6">script</span>&gt;
-</code></pre></div><p>一行目の記述を以下のように書き換えることでテーマを選択できる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">link</span> <span style="color:#50fa7b">rel</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;stylesheet&#34;</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/zenburn.min.css&#34;</span>&gt;
-</code></pre></div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">link</span> <span style="color:#50fa7b">rel</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;stylesheet&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span>&gt;hljs.initHighlightingOnLoad();&lt;/<span style="color:#ff79c6">script</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>一行目の記述を以下のように書き換えることでテーマを選択できる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">link</span> <span style="color:#50fa7b">rel</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;stylesheet&#34;</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/zenburn.min.css&#34;</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+
       </div>
       <div class="related-article">
         

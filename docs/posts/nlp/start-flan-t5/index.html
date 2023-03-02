@@ -77,7 +77,7 @@ https://huggingface.co/docs/transformers/mo" />
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -200,56 +200,116 @@ https://huggingface.co/docs/transformers/mo" />
 <p>ちなみに、Flanはカスタードプリンとかプリンの意味らしい。だからプリンのイラストあったのか</p>
 <p><a href="https://huggingface.co/docs/transformers/model_doc/flan-t5">https://huggingface.co/docs/transformers/model_doc/flan-t5</a></p>
 <p>ライブラリはこの辺を入れておく</p>
-<pre><code>!pip install torch transformers sentencepiece
-</code></pre><h2 id="modelのロード">modelのロード</h2>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>!pip install torch transformers sentencepiece</code></pre>
+  </div>
+
+</div>
+<h2 id="modelのロード">modelのロード</h2>
 <p>google colaboratoryでは、xlは無理だったので、largeを試す。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> T5Tokenizer, AutoModelForSeq2SeqLM
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> T5Tokenizer, AutoModelForSeq2SeqLM
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># model_name = &#34;google/flan-t5-small&#34;</span>
+</span></span><span style="display:flex;"><span>model_name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;google/flan-t5-large&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># model_name = &#34;google/flan-t5-xl&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tokenizer <span style="color:#ff79c6">=</span> T5Tokenizer<span style="color:#ff79c6">.</span>from_pretrained(model_name)
+</span></span><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> AutoModelForSeq2SeqLM<span style="color:#ff79c6">.</span>from_pretrained(model_name)</span></span></code></pre></div>
+  </div>
 
-<span style="color:#6272a4"># model_name = &#34;google/flan-t5-small&#34;</span>
-model_name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;google/flan-t5-large&#34;</span>
-<span style="color:#6272a4"># model_name = &#34;google/flan-t5-xl&#34;</span>
-
-tokenizer <span style="color:#ff79c6">=</span> T5Tokenizer<span style="color:#ff79c6">.</span>from_pretrained(model_name)
-model <span style="color:#ff79c6">=</span> AutoModelForSeq2SeqLM<span style="color:#ff79c6">.</span>from_pretrained(model_name)
-</code></pre></div><h2 id="生成タスク">生成タスク</h2>
+</div>
+<h2 id="生成タスク">生成タスク</h2>
 <p>色々と生成してみる</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">gen</span>(prompt):
-    <span style="color:#8be9fd;font-style:italic">input</span> <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>encode(prompt, return_tensors<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;pt&#34;</span>)
-    generate_kwargs  <span style="color:#ff79c6">=</span> {
-            <span style="color:#f1fa8c">&#39;top_p&#39;</span>: <span style="color:#bd93f9">0.95</span>,
-            <span style="color:#f1fa8c">&#39;top_k&#39;</span>: <span style="color:#bd93f9">50</span>,
-            <span style="color:#f1fa8c">&#39;do_sample&#39;</span>:True
-    }
-    output <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>generate(<span style="color:#8be9fd;font-style:italic">input</span>, <span style="color:#ff79c6">**</span>generate_kwargs)
-    result <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>batch_decode(output, skip_special_tokens<span style="color:#ff79c6">=</span>True)
-    <span style="color:#ff79c6">print</span>(result)
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;&#34;A step by step recipe to make a sandwich.&#34;&#34;&#34;</span>
-gen(prompt)
-</code></pre></div><pre><code>&gt;&gt; ['Cut a hamburger in half. Lay a tortilla open on the serving dish. Fill it']
-</code></pre><p>なんとなくあってそう。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;What is the highest mountain in the world?&#34;</span>
-gen(prompt)
-</code></pre></div><pre><code>&gt;&gt; ['mount everest']
-</code></pre><p>これは大丈夫</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">gen</span>(prompt):
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">input</span> <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>encode(prompt, return_tensors<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;pt&#34;</span>)
+</span></span><span style="display:flex;"><span>    generate_kwargs  <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;top_p&#39;</span>: <span style="color:#bd93f9">0.95</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;top_k&#39;</span>: <span style="color:#bd93f9">50</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;do_sample&#39;</span>:<span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    output <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>generate(<span style="color:#8be9fd;font-style:italic">input</span>, <span style="color:#ff79c6">**</span>generate_kwargs)
+</span></span><span style="display:flex;"><span>    result <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>batch_decode(output, skip_special_tokens<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(result)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;&#34;A step by step recipe to make a sandwich.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>gen(prompt)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&gt;&gt; [&#39;Cut a hamburger in half. Lay a tortilla open on the serving dish. Fill it&#39;]</code></pre>
+  </div>
+
+</div>
+<p>なんとなくあってそう。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;What is the highest mountain in the world?&#34;</span>
+</span></span><span style="display:flex;"><span>gen(prompt)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&gt;&gt; [&#39;mount everest&#39;]</code></pre>
+  </div>
+
+</div>
+<p>これは大丈夫</p>
 <h2 id="翻訳タスク">翻訳タスク</h2>
 <p>multi languageらしいので試してみる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;&#34;Translate to German: Good morning&#34;&#34;&#34;</span>
-get(prompt)
-</code></pre></div><pre><code>&gt;&gt; ['Der frankreichischer Sonntag']
-</code></pre><p>googleの翻訳によると、<code>The French Sunday</code> らしい。なんかおしい。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Translate to English: Guten Morgen&#34;</span>
-get(prompt)
-</code></pre></div><pre><code>&gt;&gt; ['Good morning!']
-</code></pre><p>逆はいける、と</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;&#34;Translate to German: Good morning&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>get(prompt)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&gt;&gt; [&#39;Der frankreichischer Sonntag&#39;]</code></pre>
+  </div>
+
+</div>
+<p>googleの翻訳によると、<code>The French Sunday</code> らしい。なんかおしい。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Translate to English: Guten Morgen&#34;</span>
+</span></span><span style="display:flex;"><span>get(prompt)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&gt;&gt; [&#39;Good morning!&#39;]</code></pre>
+  </div>
+
+</div>
+<p>逆はいける、と</p>
 <h2 id="翻訳タスク2">翻訳タスク2</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Translate to Japanese: Good morning&#34;</span>
-gen(prompt)
-</code></pre></div><pre><code>&gt;&gt; ['']
-</code></pre><p>日本語はしゃべれないっぽい</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Translate to English: おはようございます&#34;</span>
-gen(prompt)
-</code></pre></div><pre><code>&gt;&gt; ['No']
-</code></pre><p>逆はなんか拒否されるｗ</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Translate to Japanese: Good morning&#34;</span>
+</span></span><span style="display:flex;"><span>gen(prompt)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&gt;&gt; [&#39;&#39;]</code></pre>
+  </div>
+
+</div>
+<p>日本語はしゃべれないっぽい</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Translate to English: おはようございます&#34;</span>
+</span></span><span style="display:flex;"><span>gen(prompt)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&gt;&gt; [&#39;No&#39;]</code></pre>
+  </div>
+
+</div>
+<p>逆はなんか拒否されるｗ</p>
 
       </div>
       <div class="related-article">

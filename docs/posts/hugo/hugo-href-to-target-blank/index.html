@@ -76,7 +76,7 @@ hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownで
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -188,9 +188,13 @@ hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownで
         <p>リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。</p>
 <p>hrefでは<code>target='_blank'</code>を指定すれば良いのだが、markdownでどうすれば良いのか調べた。
 Hugoでは次のようにconfig.tomlするといける。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[blackfriday]
-   hrefTargetBlank = <span style="color:#ff79c6">true</span>
-</code></pre></div><p>簡単！</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[blackfriday]
+</span></span><span style="display:flex;"><span>   hrefTargetBlank = <span style="color:#ff79c6">true</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>簡単！</p>
 <p>参考：</p>
 <ul>
 <li><a href="https://gohugo.io/getting-started/configuration/">https://gohugo.io/getting-started/configuration/</a></li>

@@ -78,7 +78,7 @@ https://gohugo.io/content-management/related/
   
 
 
-<meta name="generator" content="Hugo 0.68.3" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -190,31 +190,43 @@ https://gohugo.io/content-management/related/
         <p>記事の最後に関連記事を表示する方法が簡単になってた。</p>
 <p><a href="https://gohugo.io/content-management/related/">https://gohugo.io/content-management/related/</a></p>
 <p>これで関連記事を取れる</p>
-<pre><code>.Site.RegularPages.Related
-</code></pre><p>以下のような感じで記事の最後につけるとおｋ</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{ $related := .Site.RegularPages.Related . | first 5 }}
-{{ with $related }}
-&lt;<span style="color:#ff79c6">h3</span>&gt;See Also&lt;/<span style="color:#ff79c6">h3</span>&gt;
-&lt;<span style="color:#ff79c6">ul</span>&gt;
-	{{ range . }}
-	&lt;<span style="color:#ff79c6">li</span>&gt;&lt;<span style="color:#ff79c6">a</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{{ .RelPermalink }}&#34;</span>&gt;{{ .Title }}&lt;/<span style="color:#ff79c6">a</span>&gt;&lt;/<span style="color:#ff79c6">li</span>&gt;
-	{{ end }}
-&lt;/<span style="color:#ff79c6">ul</span>&gt;
-{{ end }}
-</code></pre></div><p>関連記事の設定も少しできるみたい。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[related]
-  includeNewer = <span style="color:#ff79c6">false</span>
-  threshold = <span style="color:#bd93f9">80</span>
-  toLower = <span style="color:#ff79c6">false</span>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>.Site.RegularPages.Related</code></pre>
+  </div>
 
-  [[related.indices]]
-    name = <span style="color:#f1fa8c">&#34;keywords&#34;</span>
-    weight = <span style="color:#bd93f9">100</span>
+</div>
+<p>以下のような感じで記事の最後につけるとおｋ</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ $related := .Site.RegularPages.Related . | first 5 }}
+</span></span><span style="display:flex;"><span>{{ with $related }}
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">h3</span>&gt;See Also&lt;/<span style="color:#ff79c6">h3</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">ul</span>&gt;
+</span></span><span style="display:flex;"><span>	{{ range . }}
+</span></span><span style="display:flex;"><span>	&lt;<span style="color:#ff79c6">li</span>&gt;&lt;<span style="color:#ff79c6">a</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{{ .RelPermalink }}&#34;</span>&gt;{{ .Title }}&lt;/<span style="color:#ff79c6">a</span>&gt;&lt;/<span style="color:#ff79c6">li</span>&gt;
+</span></span><span style="display:flex;"><span>	{{ end }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">ul</span>&gt;
+</span></span><span style="display:flex;"><span>{{ end }}</span></span></code></pre></div>
+  </div>
 
-  [[related.indices]]
-    name = <span style="color:#f1fa8c">&#34;date&#34;</span>
-    weight = <span style="color:#bd93f9">10</span>
-</code></pre></div><p>設定はそれぞれ、</p>
+</div>
+<p>関連記事の設定も少しできるみたい。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[related]
+</span></span><span style="display:flex;"><span>  includeNewer = <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>  threshold = <span style="color:#bd93f9">80</span>
+</span></span><span style="display:flex;"><span>  toLower = <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  [[related.indices]]
+</span></span><span style="display:flex;"><span>    name = <span style="color:#f1fa8c">&#34;keywords&#34;</span>
+</span></span><span style="display:flex;"><span>    weight = <span style="color:#bd93f9">100</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  [[related.indices]]
+</span></span><span style="display:flex;"><span>    name = <span style="color:#f1fa8c">&#34;date&#34;</span>
+</span></span><span style="display:flex;"><span>    weight = <span style="color:#bd93f9">10</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>設定はそれぞれ、</p>
 <ul>
 <li>
 <p>threshold<br>
@@ -237,6 +249,8 @@ indexesとクエリに小文字を含めるかどうか。より正確な関連�
   <h2>See Also</h2>
   <ul>
     
+      <li><a href="/posts/hugo/hugo-render-block/">code blockにrefarenceをつける</a></li>
+    
       <li><a href="/posts/others/http-portal-for-blog/">Hugoで作ったwebサイトを公開する</a></li>
     
       <li><a href="/posts/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
@@ -244,8 +258,6 @@ indexesとクエリに小文字を含めるかどうか。より正確な関連�
       <li><a href="/posts/hugo/hugo-start-article/">Hugoでブログを作る</a></li>
     
       <li><a href="/posts/hugo/hugo-href-to-target-blank/">Hugoでリンクを新しいウィンドウで開く</a></li>
-    
-      <li><a href="/posts/hugo/hugo-ga/">Hugoにgoogle analyticsを導入する</a></li>
     
   </ul>
 
