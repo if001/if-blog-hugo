@@ -43,7 +43,8 @@ submoduleの外で、add、commit、push
 
 submoduleの外側で、submoduleをadd、commitで、submoduleの指すcommitがupdateされる
 
-
+### submoduleの指すcommit hash確認
+$ git submodule
 
 ### debug
 
