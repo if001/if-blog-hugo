@@ -150,12 +150,15 @@ h1,h2,h3,h4,h5,h6 {
 
 h2 {
     border-bottom: 1px solid #ddd;
-    margin-top: 40px;
+    margin-top: 2.5em;
+    font-weight: 600;
     margin-bottom: 1em;
+    font-size: 1.5em;
 }
 
 h3 {
-    margin-top: 20px;
+    margin-top: 2em;
+    font-size: 1.4em;
 }
 
 .container[role=main] {

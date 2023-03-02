@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>FlexGenで遊ぶ</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="くそでかlarge language modelsは一般人の持ってるPCだと動かすこともできない。 FlexGenでは、そんなLLMを限られたリソースで実行できるようにしてくれる。
+https://github.com/FMInference/FlexGen
+日本語が喋れるモデルでも動かせるように色" />
+  
+
+
+<meta name="generator" content="Hugo 0.68.3" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		FlexGenで遊ぶ
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-02-28
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>くそでかlarge language modelsは一般人の持ってるPCだと動かすこともできない。
+FlexGenでは、そんなLLMを限られたリソースで実行できるようにしてくれる。</p>
+<p><a href="https://github.com/FMInference/FlexGen">https://github.com/FMInference/FlexGen</a></p>
+<p>日本語が喋れるモデルでも動かせるように色々と試してみた。</p>
+<h2 id="start">start</h2>
+<p>installはreadme通り</p>
+<pre><code>pip install flexgen
+</code></pre><p>start</p>
+<pre><code>python3 -m flexgen.flex_opt --model facebook/opt-1.3b
+</code></pre><p>ベンチマークが表示され、モデルを動かせたことがわかる</p>
+<pre><code>TorchDevice: cuda:0
+  cur_mem: 2.6426 GB,  peak_mem: 3.2399 GB
+TorchDevice: cpu
+  cur_mem: 0.0000 GB,  peak_mem: 0.0000 GB
+model size: 2.443 GB    cache size: 0.398 GB    hidden size (p): 0.008 GB
+peak gpu mem: 3.240 GB  projected: False
+prefill latency: 1.301 s        prefill throughput: 1573.627 token/s
+decode latency: 1.797 s decode throughput: 68.991 token/s
+total latency: 3.099 s  total throughput: 41.306 token/s
+</code></pre><p>OPT-30Bのような大きなモデルを動かす場合は、<code>--percent</code>のパラメタを付けてGPUとCPUの割当の設定を行う</p>
+<pre><code>python3 -m flexgen.flex_opt --model facebook/opt-30b --percent 0 100 100 0 100 0
+</code></pre><p>percenteには６つの数字を入力できる。それぞれ、</p>
+<p>&ldquo;the percentage of weight on GPU, &quot;</p>
+<p>&ldquo;the percentage of weight on CPU, &quot;</p>
+<p>&ldquo;the percentage of attention cache on GPU, &quot;</p>
+<p>&ldquo;the percentage of attention cache on CPU, &quot;</p>
+<p>&ldquo;the percentage of activations on GPU, &quot;</p>
+<p>&ldquo;the percentage of activations on CPU&rdquo;</p>
+<p><a href="https://github.com/FMInference/FlexGen/blob/9d092d848f106cd9eaf305c12ef3590f7bcb0277/flexgen/flex_opt.py#L1271-L1279">https://github.com/FMInference/FlexGen/blob/9d092d848f106cd9eaf305c12ef3590f7bcb0277/flexgen/flex_opt.py#L1271-L1279</a></p>
+<h2 id="日本語モデルを動かしたい">日本語モデルを動かしたい</h2>
+<p>日本語を喋らせたいので、以前少し触ったxglmで動くか試してみる。<br>
+現状では、FlexGenはOPTのみをサポートしているが、モデルのアーキテクチャが同じであればいけそう。</p>
+<p><code>flexgen.flex_opt</code>の処理の流れを見つつ、修正していく。<br>
+クラスOptLMはtransformerをラップしたもので、OptLMが効率的な計算部分を担ってくれている。<br>
+OptLMは、<code>InputEmbed -&gt; TransformerLayer(SelfAttention -&gt; MLP) -&gt; OutputEmbed</code>のレイヤーを持つ。<br>
+(sep_layer = trueの場合は異なるがここではスキップ)<br>
+<code>flexgen.flex_opt</code>の処理は、既存のOPTのweightをレイヤーごとに分割し、OptLMの持つレイヤーに割り当て、計算といった感じ。</p>
+<p>処理の流れのうちモデル変更に関わってきそうな部分はこのあたり</p>
+<ul>
+<li>model用のconfigを作成</li>
+<li>指定したmodelのweightをHuggingfaceからダウンロード</li>
+<li>weightをレイヤーごとに分割/保存</li>
+<li>OptLMの各レイヤーにweightを割り当て</li>
+<li>model.generateでbenchmarkを生成</li>
+</ul>
+<h3 id="1-model用のconfigを作成">1. model用のconfigを作成</h3>
+<p>Opt用のconfigは以下のように作成しているので、xglmに合わせて修正する</p>
+<p><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L112-L116">https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L112-L116</a></p>
+<p>とりあえず、以下のような感じで良さそう</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">elif</span> arch_name <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;xglm-1.7b&#34;</span>:
+    config <span style="color:#ff79c6">=</span> OptConfig(name<span style="color:#ff79c6">=</span>name,
+            max_seq_len<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2048</span>, num_hidden_layers<span style="color:#ff79c6">=</span><span style="color:#bd93f9">24</span>, n_head<span style="color:#ff79c6">=</span><span style="color:#bd93f9">16</span>,            
+            hidden_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2048</span>, input_dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2048</span>, ffn_embed_dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2048</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">4</span>,
+            vocab_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">256008</span>, activation_fn<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;gelu&#39;</span>
+        )
+</code></pre></div><h3 id="2-指定したmodelのweightをhuggingfaceからダウンロード">2. 指定したmodelのweightをHuggingfaceからダウンロード</h3>
+<p>snapshot_downloadでhuggingfaceからモデルのbinファイルを取得できる<br>
+(この機能知らなかったので一応)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">from</span> huggingface_hub <span style="color:#ff79c6">import</span> snapshot_download
+folder <span style="color:#ff79c6">=</span> snapshot_download(hf_model_name, allow_patterns<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;*.bin&#34;</span>)
+</code></pre></div><h3 id="3-weightをレイヤーごとに分割保存">3. weightをレイヤーごとに分割/保存</h3>
+<p>bin形式のファイルは、<code>torch.load</code>すると、iterでレイヤーごとに取得できる</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bin_files <span style="color:#ff79c6">=</span> glob<span style="color:#ff79c6">.</span>glob(os<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>join(folder, <span style="color:#f1fa8c">&#34;*.bin&#34;</span>))
+<span style="color:#ff79c6">for</span> bin_file <span style="color:#ff79c6">in</span> tqdm(bin_files, desc<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Convert format&#34;</span>):
+    state <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>load(bin_file)
+    <span style="color:#ff79c6">for</span> name, param <span style="color:#ff79c6">in</span> tqdm(state<span style="color:#ff79c6">.</span>items(), leave<span style="color:#ff79c6">=</span>False):
+        <span style="color:#ff79c6">print</span>(name)
+</code></pre></div><p>xglmで試すとこんな感じ</p>
+<pre><code>model.embed_tokens.weight
+model.layers.0.self_attn.k_proj.weight
+model.layers.0.self_attn.k_proj.bias
+model.layers.0.self_attn.v_proj.weight
+model.layers.0.self_attn.v_proj.bias
+model.layers.0.self_attn.q_proj.weight
+.
+.
+.
+model.layers.23.final_layer_norm.weight
+model.layers.23.final_layer_norm.bias
+model.layer_norm.weight
+model.layer_norm.bias
+</code></pre><p>OPTのweightは、名前にprefixとして<code>decoder</code>がついている。
+xglmではついていないのでdecoderは外しておく。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">name <span style="color:#ff79c6">=</span> name<span style="color:#ff79c6">.</span>replace(<span style="color:#f1fa8c">&#34;decoder.final_layer_norm&#34;</span>, <span style="color:#f1fa8c">&#34;decoder.layer_norm&#34;</span>)
+</code></pre></div><p><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L231">https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L231</a></p>
+<p>分割したweightはnp形式で保存される</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   <span style="color:#ff79c6">with</span> <span style="color:#8be9fd;font-style:italic">open</span>(param_path, <span style="color:#f1fa8c">&#34;wb&#34;</span>) <span style="color:#ff79c6">as</span> f:
+                np<span style="color:#ff79c6">.</span>save(f, param<span style="color:#ff79c6">.</span>cpu()<span style="color:#ff79c6">.</span>detach()<span style="color:#ff79c6">.</span>numpy())
+</code></pre></div><p><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L234">https://github.com/FMInference/FlexGen/blob/main/flexgen/opt_config.py#L234</a></p>
+<p>xglmを使う場合、取得してきたweightに<code>embed_positions.weight</code>が含まれずエラーとなる。
+エラーを回避するために、一旦以下を参考にweightを無理やり作り出す。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">XGLMSinusoidalPositionalEmbedding</span>(nn<span style="color:#ff79c6">.</span>Module):
+<span style="color:#ff79c6">.</span>
+<span style="color:#ff79c6">.</span>
+ <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">make_weights</span>(self, num_embeddings: <span style="color:#8be9fd;font-style:italic">int</span>, embedding_dim: <span style="color:#8be9fd;font-style:italic">int</span>, padding_idx: Optional[<span style="color:#8be9fd;font-style:italic">int</span>] <span style="color:#ff79c6">=</span> None):
+        emb_weights <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>get_embedding(num_embeddings, embedding_dim, padding_idx)
+</code></pre></div><p><a href="https://github.com/huggingface/transformers/blob/main/src/transformers/models/xglm/modeling_xglm.py#L169">https://github.com/huggingface/transformers/blob/main/src/transformers/models/xglm/modeling_xglm.py#L169</a></p>
+<p>(※ ここミスってそうなので要調査)</p>
+<h3 id="4-optlmの各レイヤーにweightを割り当て">4. OptLMの各レイヤーにweightを割り当て</h3>
+<p>保存したweightは、レイヤークラスの持つload_weight methodで各レイヤーに割り当てられる</p>
+<p><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L309">https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L309</a></p>
+<h3 id="5-任意の文章を入力できるようにする">5. 任意の文章を入力できるようにする</h3>
+<p>引数に追加</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">parser<span style="color:#ff79c6">.</span>add_argument(<span style="color:#f1fa8c">&#34;--prompt&#34;</span>, <span style="color:#8be9fd;font-style:italic">type</span><span style="color:#ff79c6">=</span><span style="color:#8be9fd;font-style:italic">str</span>)
+</code></pre></div><p><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L1311-L1312">https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L1311-L1312</a></p>
+<p>ここでサンプルのinputをつくっているので引数からpromptを入力にできるように修正する</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_test_inputs</span>(prompt_len, num_prompts, tokenizer):
+    prompts <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;Paris is the capital city of&#34;</span>]
+    input_ids <span style="color:#ff79c6">=</span> tokenizer(prompts, padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;max_length&#34;</span>,
+                          max_length<span style="color:#ff79c6">=</span>prompt_len)<span style="color:#ff79c6">.</span>input_ids
+    <span style="color:#ff79c6">return</span> (input_ids[<span style="color:#bd93f9">0</span>],) <span style="color:#ff79c6">*</span> num_prompts
+</code></pre></div><p><a href="https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L1185">https://github.com/FMInference/FlexGen/blob/main/flexgen/flex_opt.py#L1185</a></p>
+<h2 id="実行">実行</h2>
+<p>ここまでで実行できるようになっているはず</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python flexgen/gen.py <span style="color:#f1fa8c">\
+</span><span style="color:#f1fa8c"></span>--model <span style="color:#f1fa8c">&#34;facebook/xglm-1.7B&#34;</span>  <span style="color:#f1fa8c">\
+</span><span style="color:#f1fa8c"></span>--prompt <span style="color:#f1fa8c">&#34;それは九月初旬のある蒸し暑い晩のことであった。私は、Ｄ坂の大通りの中程にある、&#34;</span>
+
+
+model size: 3.228 GB, cache size: 0.398 GB, hidden size <span style="color:#ff79c6">(</span>prefill<span style="color:#ff79c6">)</span>: 0.008 GB
+init weight...
+それは九月初旬のある蒸し暑いのことであった。私は、D坂の大通りの中程にある、,,,,,,,,,,,,,,,,,,..........,,,,
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python flexgen/gen.py <span style="color:#f1fa8c">\
+</span><span style="color:#f1fa8c"></span>--model <span style="color:#f1fa8c">&#34;facebook/xglm-1.7B&#34;</span>  <span style="color:#f1fa8c">\
+</span><span style="color:#f1fa8c"></span>--gpu-batch-size <span style="color:#bd93f9">1</span> <span style="color:#f1fa8c">\
+</span><span style="color:#f1fa8c"></span>--overlap <span style="color:#f1fa8c">\
+</span><span style="color:#f1fa8c"></span>--prompt <span style="color:#f1fa8c">&#34;それは九月初旬のある蒸し暑い晩のことであった。私は、Ｄ坂の大通りの中程にある、&#34;</span>
+
+
+それは九月初旬のある蒸し暑いのことであった。私は、D坂の大通りの中程にある、 ... У,,  _. «乐”v,总鬼最后 critica,  В越最后cuimen.乐  总.,, ser.,  Um Extra 总ra. Big,, b Palm tags初 <span style="color:#ff79c6">(</span>b N  National póspey петmini其实,马
+</code></pre></div><p>とりあえずエラーなく実行はできたがなんかおかしい。</p>
+<p>xglmではpositional embeddingは学習してなさそうなので、FlexGenのInputEmbedのforwardの部分もweight使わないように修正しないとダメそう。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(self, hidden, cache_read_buf, weight_read_buf, attention_mask,
+                cache_write_buf, i, k):
+                <span style="color:#ff79c6">...</span>
+{{ https:<span style="color:#ff79c6">//</span>github<span style="color:#ff79c6">.</span>com<span style="color:#ff79c6">/</span>FMInference<span style="color:#ff79c6">/</span>FlexGen<span style="color:#ff79c6">/</span>blob<span style="color:#ff79c6">/</span>main<span style="color:#ff79c6">/</span>flexgen<span style="color:#ff79c6">/</span>flex_opt<span style="color:#ff79c6">.</span>py<span style="color:#6272a4">#L180 }}</span>
+</code></pre></div><p>make_weightsって名前だから学習してるのかと思ったけど、そのままの埋込っぽい</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">XGLMSinusoidalPositionalEmbedding</span>(nn<span style="color:#ff79c6">.</span>Module):
+    <span style="color:#f1fa8c">&#34;&#34;&#34;This module produces sinusoidal positional embeddings of any length.&#34;&#34;&#34;</span>
+
+    <span style="color:#ff79c6">def</span> __init__(self, num_positions: <span style="color:#8be9fd;font-style:italic">int</span>, embedding_dim: <span style="color:#8be9fd;font-style:italic">int</span>, padding_idx: Optional[<span style="color:#8be9fd;font-style:italic">int</span>] <span style="color:#ff79c6">=</span> None):
+        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span>__init__()
+        self<span style="color:#ff79c6">.</span>offset <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>
+        self<span style="color:#ff79c6">.</span>embedding_dim <span style="color:#ff79c6">=</span> embedding_dim
+        self<span style="color:#ff79c6">.</span>padding_idx <span style="color:#ff79c6">=</span> padding_idx
+        self<span style="color:#ff79c6">.</span>make_weights(num_positions <span style="color:#ff79c6">+</span> self<span style="color:#ff79c6">.</span>offset, embedding_dim, padding_idx)  
+</code></pre></div><p><a href="https://github.com/huggingface/transformers/blob/main/src/transformers/models/xglm/modeling_xglm.py#L159">https://github.com/huggingface/transformers/blob/main/src/transformers/models/xglm/modeling_xglm.py#L159</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">(() =&gt; {
+  <span style="color:#f1fa8c">&#39;use strict&#39;</span>;
+  console.log(<span style="color:#f1fa8c">&#34;Hello&#34;</span>);
+})();
+</code></pre></div>
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/huggingface-text-gen/">Huggingfaceのtext generation pipelineとtext2text generation pipeline</a></li>
+    
+      <li><a href="/posts/nlp/start-xglm-t5/">xglmをquick start</a></li>
+    
+      <li><a href="/posts/nlp/start-flan-t5/">flan_t5をquick start</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-tokenizer/">Hugging Faceのtokenizerで迷ったのでまとめておく</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-conv/">Hugging Faceのpipelineで会話モデルを動かす</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2023
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
