@@ -1,7 +1,7 @@
 ---
 title: "FlexGenで遊ぶ"
 slug: "flexgen_start"
-tags: ["nlp","deeplearning","python"]
+tags: ["nlp","deeplearning","python", "huggingface"]
 date: "2023-02-28T00:00:00+09:00"
 draft: false
 ---
