@@ -2,10 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.if-blog.site/posts/hugo/hugo-render-block/</loc>
-    <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url><url>
     <loc>https://www.if-blog.site/tags/deeplearning/</loc>
+    <lastmod>2023-03-04T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/huggingface/</loc>
+    <lastmod>2023-03-04T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/</loc>
+    <lastmod>2023-03-04T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/nlp/</loc>
+    <lastmod>2023-03-04T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.if-blog.site/posts/</loc>
+    <lastmod>2023-03-04T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/python/</loc>
+    <lastmod>2023-03-04T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/</loc>
+    <lastmod>2023-03-04T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.if-blog.site/</loc>
+    <lastmod>2023-03-04T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://www.if-blog.site/posts/hugo/hugo-render-block/</loc>
     <lastmod>2023-02-28T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://www.if-blog.site/posts/nlp/flexgen_start/</loc>
@@ -13,24 +34,6 @@
   </url><url>
     <loc>https://www.if-blog.site/tags/hugo/</loc>
     <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.if-blog.site/tags/nlp/</loc>
-    <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.if-blog.site/posts/</loc>
-    <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.if-blog.site/tags/python/</loc>
-    <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.if-blog.site/tags/</loc>
-    <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.if-blog.site/</loc>
-    <lastmod>2023-02-28T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://www.if-blog.site/tags/huggingface/</loc>
-    <lastmod>2023-02-06T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://www.if-blog.site/posts/nlp/huggingface-text-gen/</loc>
     <lastmod>2023-02-06T00:00:00+09:00</lastmod>
