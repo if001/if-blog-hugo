@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>LangChainのAgentを調べる</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="LangChainにAgentsという機能がある。 AgentとはLLMを利用して、実行するactionとその順序を決定できる。
+https://python.langchain.com/en/latest/modules/agents/getting_started.html
+いまいちピンとこなか" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		LangChainのAgentを調べる
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-04-20
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>LangChainにAgentsという機能がある。
+AgentとはLLMを利用して、実行するactionとその順序を決定できる。</p>
+<p><a href="https://python.langchain.com/en/latest/modules/agents/getting_started.html">https://python.langchain.com/en/latest/modules/agents/getting_started.html</a></p>
+<p>いまいちピンとこなかったので、コードを読んでみる</p>
+<h2 id="tools">Tools</h2>
+<p>toolには、Google Search APIやその他いくつかのAPIが指定できる</p>
+<p><a href="https://python.langchain.com/en/latest/modules/agents/tools.html">https://python.langchain.com/en/latest/modules/agents/tools.html</a></p>
+<h2 id="サンプル">サンプル</h2>
+<p>AgentとToolsを定義し、AgentExecutorに渡し、実行するという流れ</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4">## Agent</span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#ff79c6">=</span> CustomAgent(llm_chain<span style="color:#ff79c6">=</span>llm_chain,
+</span></span><span style="display:flex;"><span>                        tools<span style="color:#ff79c6">=</span>tools,
+</span></span><span style="display:flex;"><span>                        verbose<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">## Tools</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> langchain <span style="color:#ff79c6">import</span> Wikipedia
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> langchain.agents.react.base <span style="color:#ff79c6">import</span> DocstoreExplorer
+</span></span><span style="display:flex;"><span>docstore<span style="color:#ff79c6">=</span>DocstoreExplorer(Wikipedia())
+</span></span><span style="display:flex;"><span>tools <span style="color:#ff79c6">=</span> [
+</span></span><span style="display:flex;"><span>    Tool(
+</span></span><span style="display:flex;"><span>        name<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Search&#34;</span>,
+</span></span><span style="display:flex;"><span>        func<span style="color:#ff79c6">=</span>docstore<span style="color:#ff79c6">.</span>search,
+</span></span><span style="display:flex;"><span>        description<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;searchに利用する&#34;</span>
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>    Tool(
+</span></span><span style="display:flex;"><span>        name<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Lookup&#34;</span>,
+</span></span><span style="display:flex;"><span>        func<span style="color:#ff79c6">=</span>docstore<span style="color:#ff79c6">.</span>lookup,
+</span></span><span style="display:flex;"><span>        description<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;lookupに利用する&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">## AgentExecutor</span>
+</span></span><span style="display:flex;"><span>agent_chain <span style="color:#ff79c6">=</span> AgentExecutor<span style="color:#ff79c6">.</span>from_agent_and_tools(
+</span></span><span style="display:flex;"><span>    agent<span style="color:#ff79c6">=</span>agent,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#ff79c6">=</span>tools,
+</span></span><span style="display:flex;"><span>    verbose<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>    
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>r <span style="color:#ff79c6">=</span> agent_chain<span style="color:#ff79c6">.</span>run(<span style="color:#8be9fd;font-style:italic">input</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;日本の人口を教えて下さい&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;result&#39;</span>, r)</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="コードをよむ">コードをよむ</h2>
+<p>AgentはReAct形式のpromptを扱う。
+ReActは、Thought、Action、Observationをループさせ、LLMの出力の精度上げる手法</p>
+<p>今回は例として、ZeroShotAgentを見る。
+Agentを継承したClassは他にもあるが、promptの作り方の実装が異なる感じっぽい。</p>
+<p>継承関係は以下</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>BaseModel <span style="color:#ff79c6">&lt;-</span> BaseSingleActionAgent <span style="color:#ff79c6">&lt;-</span> Agent <span style="color:#ff79c6">&lt;-</span> ZeroShotAgent</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>promptはこんな感じ
+{input}にはユーザからの入力、{agent_scratchpad}にはagentからの入力が入る</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>Answer the following questions as best you can, but speaking as a pirate might speak. You have access to the following tools:
+
+Search: useful for when you need to answer questions about current events
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [Search]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin! Remember to speak as a pirate when giving your final answer. Use lots of &#34;Args&#34;
+
+Question: {input}
+{agent_scratchpad}</code></pre>
+  </div>
+
+</div>
+<p><code>langchain/agents/mrkl/prompt.py</code></p>
+<p>大まかな流れは、AgentExecutor._callを見るとわかる</p>
+<p><a href="https://github.com/hwchase17/langchain/blob/master/langchain/agents/agent.py#L777">https://github.com/hwchase17/langchain/blob/master/langchain/agents/agent.py#L777</a></p>
+<ul>
+<li>
+<p>should_continueがTrueの間ループ</p>
+<ul>
+<li>ループ数がmax_iterations(default=15)に到達するまでループ</li>
+<li>take_next_step</li>
+<li>ループを抜ける判定</li>
+</ul>
+</li>
+<li>
+<p>take_next_step</p>
+<ul>
+<li>agent.plan
+次のアクションを取り出す</li>
+</ul>
+</li>
+<li>
+<h2 id="agentplan">agent.plan</h2>
+</li>
+</ul>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/bloom_lora_start/">BloomをLoRaで日本語finetuning</a></li>
+    
+      <li><a href="/posts/nlp/gpt_index_llama_index_start/">LlamaIndex(GPTIndex)を触る</a></li>
+    
+      <li><a href="/posts/nlp/flexgen_start/">FlexGenで遊ぶ</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-text-gen/">Huggingfaceのtext generation pipelineとtext2text generation pipeline</a></li>
+    
+      <li><a href="/posts/nlp/start-xglm-t5/">xglmをquick start</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2023
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

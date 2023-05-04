@@ -77,7 +77,7 @@ package.json npm init package.jsonのscriptに追加
   
 
 
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -191,37 +191,61 @@ package.json npm init package.jsonのscriptに追加
         <p>typescript</p>
 <p><a href="https://basarat.gitbook.io/typescript/nodejs">https://basarat.gitbook.io/typescript/nodejs</a></p>
 <h2 id="packagejson">package.json</h2>
-<pre><code>npm init
-</code></pre><p>package.jsonのscriptに追加</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"> <span style="color:#f1fa8c">&#34;start&#34;</span>:<span style="color:#f1fa8c">&#34;./node_modules/.bin/ts-node ./src/index.ts&#34;</span>
-</code></pre></div><h2 id="typescript">typescript</h2>
-<pre><code>npm install -D typescript
-npm install -D ts-node
-</code></pre><h2 id="run">run</h2>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>npm init</code></pre>
+  </div>
+
+</div>
+<p>package.jsonのscriptに追加</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span> <span style="color:#f1fa8c">&#34;start&#34;</span>:<span style="color:#f1fa8c">&#34;./node_modules/.bin/ts-node ./src/index.ts&#34;</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="typescript">typescript</h2>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>npm install -D typescript
+npm install -D ts-node</code></pre>
+  </div>
+
+</div>
+<h2 id="run">run</h2>
 <p><code>src/index.ts</code>を追加、<code>npm run start</code>で起動</p>
 <p>index.ts</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#ff79c6">const</span> main <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
-      console.log(<span style="color:#f1fa8c">&#34;hello&#34;</span>)
-}
-main()
-</code></pre></div><h2 id="jest">jest</h2>
-<pre><code>npm i jest @types/jest ts-jest -D
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#6272a4">// jest.config.ts
-</span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> type {Config} from <span style="color:#f1fa8c">&#39;@jest/types&#39;</span>;
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> main <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>      console.log(<span style="color:#f1fa8c">&#34;hello&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>main()</span></span></code></pre></div>
+  </div>
 
-<span style="color:#6272a4">// Sync object
-</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> config<span style="color:#ff79c6">:</span> Config.InitialOptions <span style="color:#ff79c6">=</span> {
-  verbose<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
-};
-<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> config;
+</div>
+<h2 id="jest">jest</h2>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>npm i jest @types/jest ts-jest -D</code></pre>
+  </div>
 
-<span style="color:#6272a4">// Or async function
-</span><span style="color:#6272a4"></span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> <span style="color:#ff79c6">async</span> ()<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">Promise</span><span style="color:#ff79c6">&lt;</span>Config.InitialOptions<span style="color:#ff79c6">&gt;</span> =&gt; {
-  <span style="color:#ff79c6">return</span> {
-    verbose<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
-  };
-};
-</code></pre></div><p><a href="https://jestjs.io/ja/docs/configuration">https://jestjs.io/ja/docs/configuration</a></p>
+</div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#6272a4">// jest.config.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> type {Config} from <span style="color:#f1fa8c">&#39;@jest/types&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Sync object
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> config<span style="color:#ff79c6">:</span> Config.InitialOptions <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>  verbose<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> config;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Or async function
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> <span style="color:#ff79c6">async</span> ()<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">Promise</span><span style="color:#ff79c6">&lt;</span>Config.InitialOptions<span style="color:#ff79c6">&gt;</span> =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> {
+</span></span><span style="display:flex;"><span>    verbose<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>};</span></span></code></pre></div>
+  </div>
+
+</div>
+<p><a href="https://jestjs.io/ja/docs/configuration">https://jestjs.io/ja/docs/configuration</a></p>
 
       </div>
       <div class="related-article">
@@ -262,7 +286,7 @@ main()
     <div class="credits copyright">
       <a href="https://www.if-blog.site/pages/about">if_004</a>
       &nbsp;&copy;
-      2022
+      2023
       
         &nbsp;/&nbsp;
         <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>

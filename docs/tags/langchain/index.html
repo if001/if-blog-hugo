@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-<title>Firebaseを使ってwebアプリを公開した</title>
+<title>langchain</title>
 
   
     
@@ -70,11 +70,7 @@
 
 
   
-    <meta name="description" content="firebaseのみで三行で読書感想文をSNSにシェアできるwebアプリケーションを作ってみました。
-画像
-構築の備忘録を残しておきます。
-今回使ったのは、以下のサービス
-hosting authentication storage database function authenticateは以前" />
+    <meta name="description" content="" />
   
 
 
@@ -136,27 +132,21 @@ hosting authentication storage database function authenticateは以前" />
 
     <div class="intro-header">
       <div class="container">
-        <div class="posts-heading">
+        <div class="tags-heading">
           
             
 
               
-              <h1>
-		
-		Firebaseを使ってwebアプリを公開した
-		
-		<span class="draft-tag">(Draft)</span>
-		
-		
+
+              
+                <h1 style="font-size:2em;">
+                  <i class="fas fa-tag" style="margin-right:10px"></i
+                  >langchain
                 </h1>
               
 
               
-
-              
             
-          
-          
           
           
         </div>
@@ -167,87 +157,54 @@ hosting authentication storage database function authenticateは以前" />
 
     
   <div class="container" role="main">
-    <article class="article" class="blog-post">
+    <div class="posts-list">
       
-        <div class="blog-tags">
-          <i class="fas fa-tag" style="color:#111111"></i>
-          
-            <a href="https://www.if-blog.site/tags/firebase/">firebase</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site/tags/webapp/">WebApp</a
-            >&nbsp;
-          
-        </div>
-      
-
-      
-        <div style="margin-bottom: 10px;">
-          <i class="fa fa-calendar-alt"></i
-          >&nbsp;2019-09-22
-        </div>
-      
-
-      
-
-
-      <div class="article-main">
-        <p>firebaseのみで三行で読書感想文をSNSにシェアできるwebアプリケーションを作ってみました。</p>
-<p>画像</p>
-<p>構築の備忘録を残しておきます。</p>
-<p>今回使ったのは、以下のサービス</p>
-<ul>
-<li>hosting</li>
-<li>authentication</li>
-<li>storage</li>
-<li>database</li>
-<li>function</li>
-</ul>
-<p>authenticateは以前使ったことがあり、大変便利だったので他のサービスを使ってみようと言うのが動機です。</p>
-<h2 id="ロジックの概要">ロジックの概要</h2>
-<ol>
-<li>vuejsで本の感想を入力するフォームを作り、プレビュー画面を表示</li>
-<li>表示されたhtmlを画像に変換</li>
-<li>画像をストレージに保存</li>
-<li>ストレージのURLとその他諸々をDBに保存</li>
-<li>Hostingだけでは、TwitterのOGPに対応できなかったので、Twitterのクローラーの時は、</li>
-<li>OGP用のヘッダーをつけたHTML、そうでない時はHostingのページを表示する</li>
-</ol>
-<h2 id="authentication">Authentication</h2>
-<p>Google、Twitterを用いてのログインができる様にします。</p>
-<p>firebase</p>
-<h2 id="hosting">Hosting</h2>
-<p>Vuejs(typescript)をHostingで配信します。<br>
-まず、それっぽくコードを書きます。</p>
-<p>CSSのフレームワークはマテリアルデザインのVuetifyを使いました。</p>
-
-      </div>
-      <div class="related-article">
         
-
-  <h2>See Also</h2>
-  <ul>
-    
-      <li><a href="/posts/edgwbs/book-reports-firebase-hosting/">Firebase Hostingを使ってみた</a></li>
-    
-      <li><a href="/posts/edgwbs/book-reports-firebase-cloud-functions/">Firebase Cloud Functionsを使ってTwitterのOGPを設定する</a></li>
-    
-      <li><a href="/posts/edgwbs/book-reports-firebase-auth/">Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理</a></li>
-    
-      <li><a href="/posts/edgwbs/book-reports-review/">三行で読書感想文を書いて、SNSでシェアできるサービスを作った</a></li>
-    
-      <li><a href="/posts/edgwbs/book-reports-storage-firestore/">Vue.jsからFirebase StorageとDatabaseを使う</a></li>
-    
-  </ul>
-
-
-      </div>
-    </article>
-    
-    
-    
       
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/react_start/">
+    <h2 class="post-title">
+      VicunaでReActっぽいことを試してみる
+      
+    </h2>   
+  </a>
 
+  <div class="post-entry">
+    <p>vicunaでReActっぽいことを試してみる。正確には違うので注意
+ReActは、Thought、Action、Observationをループさせ、LLMの出力の精度上げる手法
+ReActの処理の流れは以下のような形。LangChainの実装を参考にする。
+与えられた質問(Question)に対し</p>
+    <a href="https://www.if-blog.site/posts/nlp/react_start/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/langchain/">langchain</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-04-01
+  
+</div>
+
+  </div>
+</article>
+
+      
+    </div>
+
+    
     
   </div>
 

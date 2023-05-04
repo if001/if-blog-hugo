@@ -76,7 +76,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.83.1" />
+<meta name="generator" content="Hugo 0.110.0">
   </head>
   <body>
     
@@ -190,15 +190,19 @@
         <p>これまでMathJaxを使っていたが、描画が遅いということもあり、KaTeXを使ってみることにしました。
 KaTeX:https://katex.org/</p>
 <p>以下を加えるだけでおk</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">link</span> <span style="color:#50fa7b">rel</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;stylesheet&#34;</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&#34;</span> /&gt;
-&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
-&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
-&lt;<span style="color:#ff79c6">script</span>&gt;$(<span style="color:#8be9fd;font-style:italic">document</span>).ready(<span style="color:#8be9fd;font-style:italic">function</span>(){renderMathInElement(<span style="color:#8be9fd;font-style:italic">document</span>.body,{delimiters<span style="color:#ff79c6">:</span> [{left<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;[[&#34;</span>, right<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;]]&#34;</span>, display<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>},{left<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;$&#34;</span>, right<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;$&#34;</span>, display<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>}]})});&lt;/<span style="color:#ff79c6">script</span>&gt;
-</code></pre></div><p>MathJaxで表示していた数式も無事表示されてとりあえず問題なしです。
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">link</span> <span style="color:#50fa7b">rel</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;stylesheet&#34;</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span>&gt;$(<span style="color:#8be9fd;font-style:italic">document</span>).ready(<span style="color:#8be9fd;font-style:italic">function</span>(){renderMathInElement(<span style="color:#8be9fd;font-style:italic">document</span>.body,{delimiters<span style="color:#ff79c6">:</span> [{left<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;[[&#34;</span>, right<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;]]&#34;</span>, display<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>},{left<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;$&#34;</span>, right<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;$&#34;</span>, display<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>}]})});&lt;/<span style="color:#ff79c6">script</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>MathJaxで表示していた数式も無事表示されてとりあえず問題なしです。
 実際に入れてみた感じやっぱり早い。</p>
 <h2 id="参考">参考</h2>
-<p>KaTeXによる数式の表示:https://sekika.github.io/2017/05/01/katex-equation/ \<br>
-KaTeXを導入しました:http://nshi.jp/contents/other/katex/ \<br>
+<p>KaTeXによる数式の表示:https://sekika.github.io/2017/05/01/katex-equation/ \
+KaTeXを導入しました:http://nshi.jp/contents/other/katex/ \
 KaTeXのデモ:http://sixthform.info/katex/examples/demo.html</p>
 
       </div>
@@ -246,7 +250,7 @@ KaTeXのデモ:http://sixthform.info/katex/examples/demo.html</p>
     <div class="credits copyright">
       <a href="https://www.if-blog.site/pages/about">if_004</a>
       &nbsp;&copy;
-      2022
+      2023
       
         &nbsp;/&nbsp;
         <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Rust TokenizerをC&#43;&#43;から呼び出す</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="Bloomz.cppのtokenizerが日本語でうまく動かなかったので、 Rust製のHuggingface TokenizerをC&#43;&#43;から呼び出せるようにしました。
+初めに 「応答」の応の文字には２つのIDが振られている。
+model_name = &amp;#34;bigscience/bloomz-" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Rust TokenizerをC&#43;&#43;から呼び出す
+		
+		<span class="draft-tag">(Draft)</span>
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-03-31
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>Bloomz.cppのtokenizerが日本語でうまく動かなかったので、
+Rust製のHuggingface TokenizerをC++から呼び出せるようにしました。</p>
+<h2 id="初めに">初めに</h2>
+<p>「応答」の応の文字には２つのIDが振られている。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model_name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;bigscience/bloomz-1b1&#34;</span>
+</span></span><span style="display:flex;"><span>tokenizer <span style="color:#ff79c6">=</span> AutoTokenizer<span style="color:#ff79c6">.</span>from_pretrained(model_name)
+</span></span><span style="display:flex;"><span>r <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>encode(<span style="color:#f1fa8c">&#34;応&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;</span> [<span style="color:#bd93f9">1148</span>, <span style="color:#bd93f9">240</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>r <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>decode(r)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;</span> 応</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>C++の実装では、tokenとidのmapを保持しておいて、tokenをidに変換するので、文字とIDが１対１対応になっていることが前提となる。</p>
+<p><a href="https://github.com/NouamaneTazi/bloomz.cpp/blob/main/utils.h#L43-L49">https://github.com/NouamaneTazi/bloomz.cpp/blob/main/utils.h#L43-L49</a></p>
+<p>C++でうまくやればこの辺も実装できそうだけど、書きなれてなさすぎて無理だったので、HuggingfaceのRust実装のtokenizerを呼び出すようにした。</p>
+<h2 id="rust実装">Rust実装</h2>
+<p>Rust側でTokenizerを呼び出し</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rs" data-lang="rs"><span style="display:flex;"><span><span style="color:#ff79c6">use</span> tokenizers::tokenizer::{Tokenizer};
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> MODEL: <span style="color:#ff79c6">&amp;</span><span style="color:#8be9fd">str</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;bigscience/bloomz-560m&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">_encode</span>(text: <span style="color:#ff79c6">&amp;</span><span style="color:#8be9fd">str</span>) -&gt; <span style="color:#8be9fd;font-style:italic">Vec</span><span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">u32</span><span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> t <span style="color:#ff79c6">=</span> Tokenizer::from_pretrained(MODEL, <span style="color:#8be9fd;font-style:italic">None</span>).unwrap();
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">match</span> t.encode(text, <span style="color:#ff79c6">false</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Ok</span>(en) <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> en.get_ids().to_owned();
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Err</span>(_e) <span style="color:#ff79c6">=&gt;</span> {            
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">Vec</span>::new()
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>structとかで良い感じにするのがめんどくさかったので、
+<code>from_pretrained</code>のcacheを頼って毎回呼び出す。
+エラーも死んで問題ないので無理やり取り出す。</p>
+<p>decodeも同じように</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">_decode</span>(ids: <span style="color:#8be9fd;font-style:italic">Vec</span><span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">u32</span><span style="color:#ff79c6">&gt;</span>) -&gt; <span style="color:#8be9fd;font-style:italic">String</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> t <span style="color:#ff79c6">=</span> Tokenizer::from_pretrained(MODEL, <span style="color:#8be9fd;font-style:italic">None</span>).unwrap();
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">match</span> t.decode(ids, <span style="color:#ff79c6">true</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Ok</span>(st) <span style="color:#ff79c6">=&gt;</span> {            
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> st            
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">Err</span>(_e) <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// error
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">String</span>::from(<span style="color:#f1fa8c">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>C++から呼び出せるようにするには、<code>#[no_mangle]</code>や型をC++ように合わせておく。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::os::raw::c_char;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">use</span> std::ffi::{CString, CStr};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#[no_mangle]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">extern</span> <span style="color:#f1fa8c">&#34;C&#34;</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">decode</span>(ids: <span style="color:#ff79c6">*</span><span style="color:#ff79c6">const</span> <span style="color:#8be9fd">u32</span>, len: <span style="color:#8be9fd">usize</span>) -&gt; <span style="color:#ff79c6">*</span><span style="color:#ff79c6">const</span> c_char {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> ids <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">unsafe</span> { slice::from_raw_parts(ids, len) };    
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> text <span style="color:#ff79c6">=</span> _decode(ids.to_vec());
+</span></span><span style="display:flex;"><span>    CString::new(text).unwrap().into_raw()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#[no_mangle]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">pub</span> <span style="color:#ff79c6">extern</span> <span style="color:#f1fa8c">&#34;C&#34;</span> <span style="color:#ff79c6">fn</span> <span style="color:#50fa7b">encode</span>(text: <span style="color:#ff79c6">*</span><span style="color:#ff79c6">const</span> c_char) -&gt;  <span style="color:#ff79c6">*</span><span style="color:#ff79c6">const</span> <span style="color:#8be9fd">u32</span> {    
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> text <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">unsafe</span> { CStr::from_ptr(text).to_string_lossy().into_owned() };    
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> ids <span style="color:#ff79c6">=</span> _encode(text.as_str());    
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> arr <span style="color:#ff79c6">=</span> ids.as_ptr();
+</span></span><span style="display:flex;"><span>    std::mem::forget(ids);
+</span></span><span style="display:flex;"><span>    arr    
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>cargo.tomlを以下の様にしておくと、<code>libtokenizer.so</code>が生成される</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[lib]
+</span></span><span style="display:flex;"><span>name = <span style="color:#f1fa8c">&#34;tokenizer&#34;</span>
+</span></span><span style="display:flex;"><span>crate-type = [<span style="color:#f1fa8c">&#34;cdylib&#34;</span>]</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="c実装">C++実装</h2>
+<p>C++の実装はまじでわからないので、見様見真似</p>
+<p><code>dlopen</code>でrust側で生成した<code>libtokenizer.so</code>を呼び出す。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> std<span style="color:#ff79c6">::</span>vector<span style="color:#ff79c6">&lt;</span><span style="color:#8be9fd">int32_t</span><span style="color:#ff79c6">&gt;</span> encode(std<span style="color:#ff79c6">::</span>string input) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>LIB <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;./tokenizer_rs/target/debug/libtokenizer.so&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>text <span style="color:#ff79c6">=</span> input.c_str();
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span><span style="color:#ff79c6">*</span> handle <span style="color:#ff79c6">=</span> dlopen(LIB, RTLD_LAZY);
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>handle) {
+</span></span><span style="display:flex;"><span>        std<span style="color:#ff79c6">::</span>cerr <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34;Error loading library: &#34;</span> <span style="color:#ff79c6">&lt;&lt;</span> dlerror() <span style="color:#ff79c6">&lt;&lt;</span> std<span style="color:#ff79c6">::</span>endl;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> {};
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">using</span> EncodeFn <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">int32_t</span><span style="color:#ff79c6">*</span> (<span style="color:#ff79c6">*</span>)(<span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span><span style="color:#ff79c6">*</span>);
+</span></span><span style="display:flex;"><span>    EncodeFn encode <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">reinterpret_cast</span><span style="color:#ff79c6">&lt;</span>EncodeFn<span style="color:#ff79c6">&gt;</span>(dlsym(handle, <span style="color:#f1fa8c">&#34;encode&#34;</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>encode) {
+</span></span><span style="display:flex;"><span>        std<span style="color:#ff79c6">::</span>cerr <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34;Error loading symbol: &#34;</span> <span style="color:#ff79c6">&lt;&lt;</span> dlerror() <span style="color:#ff79c6">&lt;&lt;</span> std<span style="color:#ff79c6">::</span>endl;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> {};
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">int32_t</span> <span style="color:#ff79c6">*</span>ids <span style="color:#ff79c6">=</span> encode(text);    
+</span></span><span style="display:flex;"><span>    dlclose(handle);
+</span></span><span style="display:flex;"><span>    size_t l <span style="color:#ff79c6">=</span> size_of_array(ids);
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#50fa7b">to_vector</span>(ids, l);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/react_start/">vicunaでReActを試してみる</a></li>
+    
+      <li><a href="/posts/nlp/bloom_lora_start/">BloomをLoRaで日本語finetuning</a></li>
+    
+      <li><a href="/posts/nlp/gpt_index_llama_index_start/">LlamaIndex(GPTIndex)を触る</a></li>
+    
+      <li><a href="/posts/nlp/gpt_index_llama_index_start/">Parameter-Efficient Fine-Tuning (PEFT)</a></li>
+    
+      <li><a href="/posts/nlp/flexgen_start/">FlexGenで遊ぶ</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2023
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
