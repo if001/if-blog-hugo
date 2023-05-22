@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="loraを用いて学習する場合の、promptのtemplateは日本語にしたほうが良いんだっけ？
+ユーザー入力のフォーマットとかLLM側の出力のフォーマットとかどうすれば良いんだっけ？
+ってなったので学習させて結果を比較してみる。
+せっかくなのでrinna/japanese-gpt-neox-3.6" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-05-21
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>loraを用いて学習する場合の、promptのtemplateは日本語にしたほうが良いんだっけ？<br>
+ユーザー入力のフォーマットとかLLM側の出力のフォーマットとかどうすれば良いんだっけ？<br>
+ってなったので学習させて結果を比較してみる。</p>
+<p>せっかくなので<code>rinna/japanese-gpt-neox-3.6b-instruction-sft</code>をloraで学習する。</p>
+<p><a href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft">https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft</a></p>
+<h2 id="templateを確認">templateを確認</h2>
+<p>alpacaのtemplateは、<code>#</code>を付けて、ユーザー入力は<code>Instruction</code>、LLM側の出力は<code>Response</code>のようになっている。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&#34;Below is an instruction that describes a task. Write a response that appropriately completes the request.
+### Instruction:
+{instruction}
+
+### Response:</code></pre>
+  </div>
+
+</div>
+<p>一方、rinna instructionは、
+<code>#</code>を付けずに、ユーザー入力は<code>ユーザー</code>、LLM側の出力は<code>アシスタント</code>となっており、改行は<code>&lt;NL&gt;</code>となっている。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code># &#34;ユーザー: 日本のおすすめの観光地を教えてください。&lt;NL&gt;システム: どの地域の観光地が知りたいですか？&lt;NL&gt;ユーザー: 渋谷の観光地を教えてください。&lt;NL&gt;システム: &#34;</code></pre>
+  </div>
+
+</div>
+<h2 id="templateの用意">templateの用意</h2>
+<p>templateは２つ用意して、それぞれ学習させて比較する。</p>
+<p>データセットは日本語dollyを使わせてもらいました。<br>
+<a href="https://huggingface.co/datasets/kunishou/databricks-dolly-15k-ja">https://huggingface.co/datasets/kunishou/databricks-dolly-15k-ja</a></p>
+<p>1つ目、alpaca templateを日本語にしたもの</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>{
+    &#34;description&#34;: &#34;Template used by Alpaca-LoRA.&#34;,
+    &#34;prompt_input&#34;: &#34;以下は、タスクを記述する命令と、さらなるコンテキストを提供する入力の組み合わせです。依頼を適切に完了させる応答を書きなさい。\n\n### 指示:\n{instruction}\n\n### 入力:\n{input}\n\n### 応答:\n&#34;,
+    &#34;prompt_no_input&#34;: &#34;以下は、ある作業を記述した指示です。依頼を適切に完了させる応答を書きなさい\n\n### 指示:\n{instruction}\n\n### 応答:\n&#34;,
+    &#34;response_split&#34;: &#34;### 応答:&#34;
+}</code></pre>
+  </div>
+
+</div>
+<p>2つ目、rinnaっぽいフォーマット</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>{
+    &#34;description&#34;: &#34;Template used by Alpaca-LoRA.&#34;,
+    &#34;prompt_input&#34;: &#34;以下は、タスクのコンテキストとユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;コンテキスト: {input}&lt;NL&gt;&lt;NL&gt;ユーザー: {instruction}&lt;NL&gt;&lt;NL&gt;システム: &#34;,
+    &#34;prompt_no_input&#34;: &#34;以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: {instruction}&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;&#34;,
+    &#34;response_split&#34;: &#34;システム: &#34;
+}</code></pre>
+  </div>
+
+</div>
+<h2 id="loraで学習">loraで学習</h2>
+<p>rinnnaはgpt-neoxベースなので、redpajama用のコードがそのまま使える。</p>
+<p><a href="https://github.com/leehanchung/lora-instruct">https://github.com/leehanchung/lora-instruct</a></p>
+<p>学習環境は、colab 4T ハイメモリ</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>base_model=&#34;rinna/japanese-gpt-neox-3.6b-instruction-sft&#34;
+data_path=&#34;kunishou/databricks-dolly-15k-ja&#34;
+template=&#34;dolly_ja&#34;
+
+
+!python3 finetune.py \
+--base_model=$base_model \
+--batch_size=128 \
+--micro_batch_size=2 \
+--prompt_template_name=$template \
+--cutoff_len=1024 \
+--output_dir=$output_path \
+--num_epochs=2 \
+--data_path=$data_path \
+--gradient_checkpointing=False \
+--resume_from_checkpoint=$output_path</code></pre>
+  </div>
+
+</div>
+<h2 id="結果">結果</h2>
+<p>generateのパラメタは以下</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>generation_output <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>generate(
+</span></span><span style="display:flex;"><span>        input_ids<span style="color:#ff79c6">=</span>input_ids,
+</span></span><span style="display:flex;"><span>        do_sample<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,
+</span></span><span style="display:flex;"><span>        temperature<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.9</span>,
+</span></span><span style="display:flex;"><span>        pad_token_id<span style="color:#ff79c6">=</span>tokenizer<span style="color:#ff79c6">.</span>pad_token_id,
+</span></span><span style="display:flex;"><span>        return_dict_in_generate<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,
+</span></span><span style="display:flex;"><span>        output_scores<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,
+</span></span><span style="display:flex;"><span>        max_new_tokens<span style="color:#ff79c6">=</span>max_new_tokens,
+</span></span><span style="display:flex;"><span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<h3 id="alpaca-templateを日本語にしたもの">alpaca templateを日本語にしたもの</h3>
+<p>時々変な回答もあるが、「赤、青、黄」や「富士山」など、ちゃんと正解を出力できている。<br>
+回答は、単語で短めなことが多い。</p>
+<p>同じ回答をしたものは除いたが、感覚的には山に対する回答がおかしくなる気がする<br>
+ちなみに富士山の標高は3,776 mらしい。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 色の三原色を教えてください ### 応答: 赤、青、黄です。&lt;/s&gt;
+
+以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 色の三原色を教えてください ### 応答: RGB。&lt;/s&gt;
+
+以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 色の三原色を教えてください ### 応答: コンピュータに接続しないで色を生成する方法を尋ねています。 このタイプの質問には、コンピュータに接続しないで色を生成する方法を尋ねている回答を含めることを強くお勧めします。 したがって、回答は「はい」です。&lt;/s&gt;
+
+以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 色の三原色を教えてください ### 応答: 画像を参照してください&lt;/s&gt;
+
+以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 色の三原色を教えてください ### 応答: はい、以下に図を示します: 青色: 光が青色であるように、赤色: 光が赤いように、そして緑色: 光が緑色であるように、すべての色は互いに反対の色です。答え: はい。&lt;/s&gt;</code></pre>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 日本で最も高い山を教えてください ### 応答: 高さ4,810フィートの山の頂上にあるレーダーです。&lt;/s&gt;
+
+以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 日本で最も高い山を教えてください ### 応答: 日本で最も高い山は槍ヶ岳です。&lt;/s&gt;
+
+以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 日本で最も高い山を教えてください ### 応答: 富士山&lt;/s&gt;
+
+以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 日本で最も高い山を教えてください ### 応答: 活火山の雌岳(2,409メートル)は、日本の山で最も高い山です。&lt;/s&gt;
+
+以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 日本で最も高い山を教えてください ### 応答: 東京スカイツリー&lt;/s&gt;</code></pre>
+  </div>
+
+</div>
+<h3 id="rinnaっぽいフォーマット">rinnaっぽいフォーマット</h3>
+<p>こちらも時々変な回答もあるが、正解を出力できている。<br>
+alpacaのtemplateに比べ少し、出力が長い。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;&lt;NL&gt;2C2(コンピュータディスプレイではRGBとして知られています)&lt;/s&gt;
+
+以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;&lt;NL&gt;赤色、緑色、黄色です。&lt;/s&gt;
+
+以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;&lt;NL&gt;「色の三要素」とは、赤、緑、青です。&lt;NL&gt;&lt;NL&gt;これは、光を三つの色に分解する方法で赤は「赤 + 緑 + 青」、つまり「赤+黄+青」です。&lt;NL&gt;&lt;NL&gt;色を混ぜると、白とオレンジ色になります。&lt;NL&gt;&lt;NL&gt;これは、色の三要素に「青」を加えたものです。&lt;NL&gt;&lt;NL&gt;ただし、緑、青、赤の基本的な組み合わせでも、他の色も混ぜることができます。&lt;N
+
+以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;&lt;NL&gt;色の三原色とは、赤、青、紫の光を混ぜ合わせた色です。例えば、りんごやバナナ、白いシャツや黒いジーンズ、そして赤い車の色などが含まれます。これらの色は互いに混ざり合って、明るい色になり、暗い色になります。この色は、光が光子(光の粒子)または波の形に変換されたことを意味します。&lt;/s&gt;
+
+以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;&lt;NL&gt;「色の三原色」というのは、赤・青・黄色のことです。この3つの色は、通常、赤と青と黄色を混ぜると緑色になります。しかし、3色を混ぜると、黒色になります。これは、光合成が光が吸収される過程と、光が電子を励起する過程の両方を記述しているためです。実際には、赤と青と黄色は異なる色なのですが、光合成においては重なり合うため、これらの3つの色を「光の三原色」と呼ぶようになりました。つまり、赤と青と黄色は、光の3つの色と考えることができます</code></pre>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で最も高い山を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;日本の最高峰は、標高8,850メートル(25,700フィート)の富士山です。&lt;/s&gt;
+
+以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で最も高い山を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;東京の高尾山は標高1,300メートルです。&lt;/s&gt;
+
+以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で最も高い山を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;&lt;NL&gt;日本の最も高い山は、標高28,049フィート(8,760メートル)で、南アルプスにある北岳です。&lt;/s&gt;
+
+以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で最も高い山を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;日本で最も高い山は、標高22,302メートルのマウント・ホイットニーです。&lt;/s&gt;
+
+以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で最も高い山を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;日本の最高峰は、北アルプスの槍ヶ岳であり、東京から7時間の距離に位置しています。&lt;/s&gt;</code></pre>
+  </div>
+
+</div>
+<h2 id="まとめ">まとめ</h2>
+<p>alpacaのtemplateをそのまま日本語にしたものとrinnaっぽいフォーマットの２つのpromptを用いて、loraでそれぞれ学習させた。<br>
+結果は、どちらのpromptでもそれなりに回答できている。<br>
+loraで学習する場合、finetuningのフォーマットについては気にする必要はなさそう。</p>
+<h2 id="オチ">オチ</h2>
+<p>そういえば、loraで学習してないrinnaはどうだっけ？と思って、２つのtemplateを試してみる。</p>
+<p><code>prompt='以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: {instruction}&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;'</code></p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
+&lt;NL&gt;「色の三原色」とは、赤、緑、青の組み合わせです。&lt;/s&gt;
+
+以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
+&lt;NL&gt;人間: はい、以下が色の三原色です:&lt;NL&gt;&lt;NL&gt;赤、青、黄です。&lt;/s&gt;
+
+以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
+&lt;NL&gt;赤、緑、青の光の混合物です。&lt;/s&gt;</code></pre>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で一番高い山を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
+これはかなり高価であり、あなたは単に「日本で最も高い山」と検索して、あなたが見つけたものを得ることができます!&lt;NL&gt;&lt;NL&gt;この記事は、どの国でも最も高い山が何であるかについて情報提供をしています。&lt;NL&gt;&lt;NL&gt;この記事には「高い山」という言葉が頻繁に出てきますが、それが何を意味するのかを説明しています。&lt;NL&gt;&lt;NL&gt;この記事で引用されている記事は、日本の最も高い山のいくつかと、それらの山が世界で一番高い場所である証拠に関する非常に詳細かつ厳密な科学的研究
+
+以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で一番高い山を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
+日本の富士山は、標高2,850メートルです。&lt;/s&gt;
+
+以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で一番高い山を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
+&lt;NL&gt;日本で最も高い山は、高さ1,067メートルの北岳で、富士山、エベレスト山、槍ヶ岳に次ぐ標高です。&lt;/s&gt;</code></pre>
+  </div>
+
+</div>
+<hr>
+<p><code>prompt='以下は、ある作業を記述した指示です。依頼を適切に完了させる応答を書きなさい\n\n### 指示:\n{instruction}\n\n### 応答:\n'</code></p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>### 指示:
+色の三原色を教えてください。
+
+### 応答:
+
+この文脈では、色の三原色は赤と青と黄です。&lt;/s&gt;
+
+---
+
+以下は、ある作業を記述した指示です。依頼を適切に完了させる応答を書きなさい
+
+### 指示:
+色の三原色を教えてください。
+
+### 応答:
+
+色を混ぜるには、青と黄色を混ぜると緑になります。&lt;/s&gt;
+
+---
+
+以下は、ある作業を記述した指示です。依頼を適切に完了させる応答を書きなさい
+
+### 指示:
+色の三原色を教えてください。
+
+### 応答:
+
+はい、こちらが指示です。  ???? ?????? ???1949&lt;/s&gt;</code></pre>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>以下は、ある作業を記述した指示です。依頼を適切に完了させる応答を書きなさい
+
+### 指示:
+日本で一番高い山を教えてください。
+
+### 応答:
+
+ああ、それは難しい質問ですね。日本で最も高い山は、標高3,850メートル(8,790フィート)で、北アルプスの槍ヶ岳です。  ### 質問: 槍ヶ岳にはどのくらいの標高がありますか?&lt;/s&gt;
+
+---
+
+以下は、ある作業を記述した指示です。依頼を適切に完了させる応答を書きなさい
+
+### 指示:
+日本で一番高い山を教えてください。
+
+### 応答:
+
+富士山&lt;/s&gt;
+
+---
+
+以下は、ある作業を記述した指示です。依頼を適切に完了させる応答を書きなさい
+
+### 指示:
+日本で一番高い山を教えてください。
+
+### 応答:
+
+北から順番に並べると、次のようになります: 9,8と称された峰から、最高峰の槍ヶ岳と次に高い山は御嶽山です。 この峰は、海抜21,003フィートの日本で2番目に高い山です。 したがって、答えは御嶽山です。&lt;/s&gt;</code></pre>
+  </div>
+
+</div>
+<p>時々おかしな出力になるものの、lora必要だったか？くらいちゃんと出力できている。</p>
+<p>rinnaがそもそもinstructionされているので、そこそこ出力できるだろうとは思っていたが、<br>
+alpacaのフォーマットでもそこそこ出力できるのは驚いた。</p>
+<p><strong>3Bなのに、思ったよりrinnaが賢かった</strong></p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/rinna_3b_cpp/">rinna 3Bをcppで動かす</a></li>
+    
+      <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
+    
+      <li><a href="/posts/nlp/bloom_lora_start/">BloomをLoRaで日本語finetuning</a></li>
+    
+      <li><a href="/posts/nlp/gpt_index_llama_index_start/">LlamaIndex(GPTIndex)を触る</a></li>
+    
+      <li><a href="/posts/nlp/flexgen_start/">FlexGenで遊ぶ</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2023
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
