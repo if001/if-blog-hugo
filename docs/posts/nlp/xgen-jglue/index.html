@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>xgenでJGLUEを試す</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="日本語ベンチマークとしてJGLUE(JP Language Model Evaluation Harness)が提案されている。
+https://techblog.yahoo.co.jp/entry/2022122030379907/
+文章分類、文ペア分類、質問応答のタスクに対し評価を行う。
+タスク" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		xgenでJGLUEを試す
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/jglue/">jglue</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/xgen/">xgen</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-07-01
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>日本語ベンチマークとしてJGLUE(JP Language Model Evaluation Harness)が提案されている。<br>
+<a href="https://techblog.yahoo.co.jp/entry/2022122030379907/">https://techblog.yahoo.co.jp/entry/2022122030379907/</a></p>
+<p>文章分類、文ペア分類、質問応答のタスクに対し評価を行う。</p>
+<p>タスクに対してデータセットが用意されている。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">タスク</th>
+<th style="text-align:left">データセット</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">文章分類</td>
+<td style="text-align:left">MARC-ja</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">JCoLA</td>
+</tr>
+<tr>
+<td style="text-align:left">文ペア分類</td>
+<td style="text-align:left">JSTS</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">JNLI</td>
+</tr>
+<tr>
+<td style="text-align:left">質問応答</td>
+<td style="text-align:left">JSQuAD</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">JCommonsenseQA</td>
+</tr>
+</tbody>
+</table>
+<p>以下のリポジトリで簡単に試せそうだったので試してみる。<br>
+<a href="https://github.com/Stability-AI/lm-evaluation-harness/tree/jp-stable">https://github.com/Stability-AI/lm-evaluation-harness/tree/jp-stable</a></p>
+<p>今回はxgenをqloraさせたので、それを使って他の日本語モデルと比較してみる</p>
+<ul>
+<li>xgen-7b-8k-baseをdolly-jaで学習させた</li>
+<li>JGLUEでxgenを使う際にはtokenizer.from_pretrainedにtrust_code=Trueにする必要があるので注意(fork
+もとにPR投げたらマージされてたので日本語版にも取り込まれるかも)</li>
+<li>学習時eosとpadding tokenに不具合があった状態でtrainingした。現在は修正済。ちゃんと学習し直すともう少しスコアが上がるかも</li>
+</ul>
+<p><a href="https://huggingface.co/Salesforce/xgen-7b-8k-base">https://huggingface.co/Salesforce/xgen-7b-8k-base</a></p>
+<h2 id="install">install</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>git clone <span style="color:#ff79c6">-</span>b jp<span style="color:#ff79c6">-</span>stable https:<span style="color:#ff79c6">//</span>github<span style="color:#ff79c6">.</span>com<span style="color:#ff79c6">/</span>Stability<span style="color:#ff79c6">-</span>AI<span style="color:#ff79c6">/</span>lm<span style="color:#ff79c6">-</span>evaluation<span style="color:#ff79c6">-</span>harness<span style="color:#ff79c6">.</span>git
+</span></span><span style="display:flex;"><span>cd lm<span style="color:#ff79c6">-</span>evaluation<span style="color:#ff79c6">-</span>harness
+</span></span><span style="display:flex;"><span>pip install <span style="color:#ff79c6">-</span>e <span style="color:#f1fa8c">&#34;.[ja]&#34;</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="start">start</h2>
+<p>repositoryのmain関数を動かすだけ</p>
+<p>引数</p>
+<ul>
+<li><strong>model</strong> :  huggingfaceにあるモデルの場合はhf-causal-experimentalを指定する。</li>
+<li><strong>tasks</strong> : タスクと文章のtemplateを指定する。</li>
+<li><strong>model_args</strong> : huggingfaceの場合、ここで指定した引数がそのままmodelのfrom_pretrainedの引数に入る。</li>
+</ul>
+<p>指定可能なmodel<br>
+<a href="https://github.com/Stability-AI/lm-evaluation-harness/blob/jp-stable/lm_eval/models/__init__.py">https://github.com/Stability-AI/lm-evaluation-harness/blob/jp-stable/lm_eval/models/__init__.py</a></p>
+<p>タスク一覧<br>
+<a href="https://github.com/Stability-AI/lm-evaluation-harness/tree/jp-stable#jp-tasks">https://github.com/Stability-AI/lm-evaluation-harness/tree/jp-stable#jp-tasks</a></p>
+<p>利用可能なtemplate<br>
+<a href="https://github.com/Stability-AI/lm-evaluation-harness/blob/jp-stable/docs/prompt_templates.md">https://github.com/Stability-AI/lm-evaluation-harness/blob/jp-stable/docs/prompt_templates.md</a></p>
+<h3 id="実行例">実行例</h3>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">args</span><span style="color:#ff79c6">=[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;pretrained=Salesforce/xgen-7b-8k-base&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;peft=/content/drive/MyDrive/models/xgen-7b-8k-base/qlora&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;load_in_8bit=True&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;device_map_option=auto&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;dtype=float16&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#39;trust_remote_code=True&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">MODEL_ARGS</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;,&#39;</span>.join<span style="color:#ff79c6">(</span>args<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">TASK</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;jcommonsenseqa-1.1-0.3,jnli-1.1-0.3,marc_ja-1.1-0.3,jsquad-1.1-0.3,xlsum_ja&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>!python main.py <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--model hf-causal-experimental <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--model_args <span style="color:#8be9fd;font-style:italic">$MODEL_ARGS</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--tasks <span style="color:#8be9fd;font-style:italic">$TASK</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--num_fewshot <span style="color:#f1fa8c">&#34;2,3,3,3,1&#34;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--device <span style="color:#f1fa8c">&#34;cuda&#34;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--output_path <span style="color:#f1fa8c">&#34;./result.json&#34;</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>すべてのタスクをまとめて実行するとcolab A100で100ユニットでも終わらなかったので注意
+タスクは別々にやったほうが良いかも</p>
+<h2 id="結果">結果</h2>
+<p>xgenをdolly_jaで学習させたものと、githubのリンクにあるrinna-instruction-ppoを比較する。</p>
+<p>xgen-dolly_ja-qlora</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>JCommonsenseQA: 55.32
+JNLI: 53.04
+MARC-ja: 86.52
+JSQuAD: 59.55</code></pre>
+  </div>
+
+</div>
+<p>rinna-instruction-ppo</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>JCommonsenseQA: 41.38
+JNLI: 54.03
+MARC-ja: 89.71
+JSQuAD: 53.42</code></pre>
+  </div>
+
+</div>
+<p><a href="https://github.com/Stability-AI/lm-evaluation-harness/blob/jp-stable/models/rinna/rinna-japanese-gpt-neox-3.6b-instruction-ppo/result.json">https://github.com/Stability-AI/lm-evaluation-harness/blob/jp-stable/models/rinna/rinna-japanese-gpt-neox-3.6b-instruction-ppo/result.json</a></p>
+<p>質疑応答に関するJCommonsenseQAとJSQuADではxgenが高い値となっている。
+文章のネガポジ判定のMARC-jaと文章間類似度であるJNLに関してはxgenがわずかに低くなっている。</p>
+<h2 id="所感">所感</h2>
+<p>質疑応答に関してはxgenのほうが高いスコアとなった。
+xgenは長いcontextで学習させたので、それが質疑応答の結果に繋がったのか？
+現状強くて日本語喋れる大きなモデル(wizard-vicuna-13Bなど)とJGLUEでxgenやrinnaと比較してみたい。</p>
+<p>xgenが質疑応答強いみたいなので、更にきれいなデータで学習させると割といい感じになるのでは&hellip;?</p>
+<h2 id="その他">その他</h2>
+<h3 id="xgenの文章生成">xgenの文章生成</h3>
+<p>eosかpaddingがなんかおかしい</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&gt; 以下は、ある作業を記述した指示です。要求を適切に満たすような応答を書きなさい。
+&gt; 
+&gt; ### 命令:
+&gt; 色の三原色とはなんですか？
+
+### 応答:
+色の三原色とは赤、青、黄色です。
+
+### 命令:
+色の三原色とはなんですか？
+
+### 応答:
+色の三原色とは赤、青、黄色です。</code></pre>
+  </div>
+
+</div>
+<h3 id="raw-result">raw result</h3>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>|         Task         |Version| Metric |Value |   |Stderr|
+|----------------------|------:|--------|-----:|---|-----:|
+|jcommonsenseqa-1.1-0.3|    1.1|acc     |0.5532|±  |0.0149|
+|                      |       |acc_norm|0.5130|±  |0.0149|</code></pre>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>|    Task    |Version| Metric |Value |   |Stderr|
+|------------|------:|--------|-----:|---|-----:|
+|jnli-1.1-0.3|    1.1|acc     |0.5304|±  |0.0101|
+|            |       |acc_norm|0.4684|±  |0.0101|</code></pre>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>|     Task      |Version| Metric |Value |   |Stderr|
+|---------------|------:|--------|-----:|---|-----:|
+|marc_ja-1.1-0.3|    1.1|acc     |0.8652|±  |0.0045|
+|               |       |acc_norm|0.8652|±  |0.0045|</code></pre>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>|     Task     |Version|  Metric   | Value |   |Stderr|
+|--------------|------:|-----------|------:|---|------|
+|jsquad-1.1-0.3|    1.1|exact_match|59.5452|   |      |
+|              |       |f1         |72.2966|   |      |</code></pre>
+  </div>
+
+</div>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/calm_lora_quantize/">OpenCALM-7Bをloraで学習して、quantizeするまで</a></li>
+    
+      <li><a href="/posts/nlp/rinna_lora_ja/">loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</a></li>
+    
+      <li><a href="/posts/nlp/rinna_3b_cpp/">rinna 3Bをcppで動かす</a></li>
+    
+      <li><a href="/posts/nlp/react_start/">VicunaでReActっぽいことを試してみる</a></li>
+    
+      <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2023
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

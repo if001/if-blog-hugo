@@ -2,6 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.if-blog.site/tags/jglue/</loc>
+    <lastmod>2023-07-01T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/nlp/</loc>
+    <lastmod>2023-07-01T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/posts/</loc>
+    <lastmod>2023-07-01T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/python/</loc>
+    <lastmod>2023-07-01T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/</loc>
+    <lastmod>2023-07-01T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/xgen/</loc>
+    <lastmod>2023-07-01T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/posts/nlp/xgen-jglue/</loc>
+    <lastmod>2023-07-01T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/</loc>
+    <lastmod>2023-07-01T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://www.if-blog.site/tags/deeplearning/</loc>
     <lastmod>2023-05-22T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -12,32 +52,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/nlp/</loc>
-    <lastmod>2023-05-22T00:00:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.if-blog.site/posts/nlp/calm_lora_quantize/</loc>
-    <lastmod>2023-05-22T00:00:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.if-blog.site/posts/</loc>
-    <lastmod>2023-05-22T00:00:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.if-blog.site/tags/python/</loc>
-    <lastmod>2023-05-22T00:00:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.if-blog.site/tags/</loc>
-    <lastmod>2023-05-22T00:00:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.if-blog.site/</loc>
     <lastmod>2023-05-22T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
