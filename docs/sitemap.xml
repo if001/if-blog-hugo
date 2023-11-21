@@ -2,27 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.if-blog.site/tags/jglue/</loc>
-    <lastmod>2023-07-01T00:00:00+09:00</lastmod>
+    <loc>https://www.if-blog.site/tags/huggingface/</loc>
+    <lastmod>2023-11-21T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.if-blog.site/tags/nlp/</loc>
-    <lastmod>2023-07-01T00:00:00+09:00</lastmod>
+    <lastmod>2023-11-21T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.if-blog.site/posts/</loc>
-    <lastmod>2023-07-01T00:00:00+09:00</lastmod>
+    <lastmod>2023-11-21T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.if-blog.site/tags/python/</loc>
-    <lastmod>2023-07-01T00:00:00+09:00</lastmod>
+    <lastmod>2023-11-21T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.if-blog.site/tags/</loc>
+    <lastmod>2023-11-21T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/</loc>
+    <lastmod>2023-11-21T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/posts/nlp/hf_ds_upload/</loc>
+    <lastmod>2023-11-21T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/</loc>
+    <lastmod>2023-09-21T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/jglue/</loc>
     <lastmod>2023-07-01T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -37,17 +57,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/</loc>
-    <lastmod>2023-07-01T00:00:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://www.if-blog.site/tags/deeplearning/</loc>
-    <lastmod>2023-05-22T00:00:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.if-blog.site/tags/huggingface/</loc>
     <lastmod>2023-05-22T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

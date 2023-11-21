@@ -163,6 +163,85 @@
       
       
         <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/hf_ds_upload/">
+    <h2 class="post-title">
+      複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>データセットなどサイズの大きいデータをHuggingface Hubにアップロードして使う場合のメモ。
+公式ドキュメントにはアップロードする方法が様々あるが、いまいちどれを使えば良いか分かりづらかったのでメモ。
+今回作成したデータセットは以下。
+https://huggingface.co/data</p>
+    <a href="https://www.if-blog.site/posts/nlp/hf_ds_upload/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-11-21
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/">
+    <h2 class="post-title">
+      HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>エラーでハマったので、hugging faceのdatasetからbatche_sizeごとのinput_idsやlabelsにするあたりの実装、特にDataLoaderとDataCollatorあたりをちゃんと確認しておく
+train loopは以下から始まる
+def train( self, r</p>
+    <a href="https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-09-21
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
   <a href="https://www.if-blog.site/posts/nlp/calm_lora_quantize/">
     <h2 class="post-title">
       OpenCALM-7Bをloraで学習して、quantizeするまで
@@ -484,90 +563,6 @@ https://huggingface.co/docs/transformers/main_clas</p>
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
   >&nbsp;2023-02-06
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/start-xglm-t5/">
-    <h2 class="post-title">
-      xglmをquick start
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>多言語モデルであるxglmを動かしてみます。
-最も大きいもので7.5Bのparameterを持つ。
-同等のサイズのGPT3のモデルを上回るらしい。
-Our largest model with 7.5 billion parameters sets new state of the art in f</p>
-    <a href="https://www.if-blog.site/posts/nlp/start-xglm-t5/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-02-05
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/start-flan-t5/">
-    <h2 class="post-title">
-      flan_t5をquick start
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>T5を強化したモデルであるFlan-t5を動かしてみます。
-FlanはFinetunedLAnguage Netの略。
-ちなみに、Flanはカスタードプリンとかプリンの意味らしい。だからプリンのイラストあったのか
-https://huggingface.co/docs/transformers/mo</p>
-    <a href="https://www.if-blog.site/posts/nlp/start-flan-t5/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-02-04
   
 </div>
 
