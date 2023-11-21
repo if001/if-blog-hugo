@@ -6,23 +6,31 @@ date: "2023-09-21T00:00:00+09:00"
 draft: false
 ---
 
+エラーでハマったので、hugging faceのdatasetからbatche_sizeごとのinput_idsやlabelsにするあたりの実装、特にDataLoaderとDataCollatorあたりをちゃんと確認しておく  
 
+train loopは以下から始まる
 
-ちょっとエラーでハマったので、datasetからbatche_sizeごとのinput_idsやlabelsにするあたりの実装、特にDataLoaderとDataCollatorあたりをちゃんと確認しておく  
-https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L1566
+```python{ref="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L1566"}
+def train(
+    self,
+    resume_from_checkpoint: Optional[Union[str, bool]] = None,
+    trial: Union["optuna.Trial", Dict[str, Any]] = None,
+    ignore_keys_for_eval: Optional[List[str]] = None,
+    **kwargs,
+):
+```
 
-train loopの主な部分は_inner_training_loop関数となる  
-
+train loopの中で主な部分は`_inner_training_loop`関数となる  
 
 ```python{ref="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L1652"}
-    def _inner_training_loop(
-        self, batch_size=None, args=None, resume_from_checkpoint=None, trial=None, ignore_keys_for_eval=None
-    ):
-        self.accelerator.free_memory()
-        self._train_batch_size = batch_size
-        logger.debug(f"Currently training with a batch size of: {self._train_batch_size}")
-        # Data loader and number of training steps
-        train_dataloader = self.get_train_dataloader()
+def _inner_training_loop(
+    self, batch_size=None, args=None, resume_from_checkpoint=None, trial=None, ignore_keys_for_eval=None
+):
+    self.accelerator.free_memory()
+    self._train_batch_size = batch_size
+    logger.debug(f"Currently training with a batch size of: {self._train_batch_size}")
+    # Data loader and number of training steps
+    train_dataloader = self.get_train_dataloader()
 ```
 
 train_dataloaderがdatasetをbatch sizeに揃えたり、paddingを行う  
@@ -30,7 +38,7 @@ https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/traine
 
 
 ## DataLoader
-transformersでは以下のようにインスタンスを作っている  
+dataloaderは、以下のようにインスタンス化される  
 
 ```python{ref="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L921-L930"}
 return DataLoader(
@@ -62,12 +70,12 @@ return DataLoader(
 ]
 ```
 
-**※ 配列のまま使うのではなく、DataSet Classとして扱う方が都合良いです。**
+**※ 配列のまま使うのではなく、DataSet Classとして扱う方が都合良いです。**   
 `train_data = Dataset.from_list(配列データ)`のような感じ
 
 
 
-DataLoaderはイテレーターとして、train.pyでは以下の様に使われる。
+DataLoaderはイテレーターとして、train.pyでは以下のように使われる。  
 epoch_iteratorはdataloaderから作られるDataLoader型
 
 ```python{ref="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L1916"}
