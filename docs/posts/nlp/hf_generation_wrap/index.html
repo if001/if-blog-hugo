@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>huggingfaceのgenerationの関数をtorch modelから使えるようにしたい</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="torchなどのライブラリを使いpre_trainingを行い文章生成させる際、文章生成の計算は基本的に自分で実装する必要がある。 huggingface用のmodelに変換しても良いが、おれおれアーキテクチャにした場合、変換も面倒&amp;hellip;
+そこで、huggingfaceにあるtop_kやt" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		huggingfaceのgenerationの関数をtorch modelから使えるようにしたい
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/torch/">torch</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/pre_training/">pre_training</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-12-05
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>torchなどのライブラリを使いpre_trainingを行い文章生成させる際、文章生成の計算は基本的に自分で実装する必要がある。
+huggingface用のmodelに変換しても良いが、おれおれアーキテクチャにした場合、変換も面倒&hellip;</p>
+<p>そこで、huggingfaceにあるtop_kやtop_pなどの便利な実装を使えるようにするメモ。</p>
+<p>文章生成についての手法は以下がわかりやすくておすすめ<br>
+<a href="https://huggingface.co/blog/how-to-generate">https://huggingface.co/blog/how-to-generate</a></p>
+<h2 id="logits_processの実装">logits_processの実装</h2>
+<p>logits_processの処理は、以下にまとまっている。<br>
+<a href="https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/logits_process.py">https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/logits_process.py</a></p>
+<p>例えば、top_kは以下のような実装となっている。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> __call__(self, input_ids: torch<span style="color:#ff79c6">.</span>LongTensor, scores: torch<span style="color:#ff79c6">.</span>FloatTensor) <span style="color:#ff79c6">-&gt;</span> torch<span style="color:#ff79c6">.</span>FloatTensor:
+</span></span><span style="display:flex;"><span>    top_k <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">min</span>(self<span style="color:#ff79c6">.</span>top_k, scores<span style="color:#ff79c6">.</span>size(<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>))  <span style="color:#6272a4"># Safety check</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Remove all tokens with a probability less than the last token of the top-k</span>
+</span></span><span style="display:flex;"><span>    indices_to_remove <span style="color:#ff79c6">=</span> scores <span style="color:#ff79c6">&lt;</span> torch<span style="color:#ff79c6">.</span>topk(scores, top_k)[<span style="color:#bd93f9">0</span>][<span style="color:#ff79c6">...</span>, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>, <span style="color:#ff79c6">None</span>]
+</span></span><span style="display:flex;"><span>    scores <span style="color:#ff79c6">=</span> scores<span style="color:#ff79c6">.</span>masked_fill(indices_to_remove, self<span style="color:#ff79c6">.</span>filter_value)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> scores</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/logits_process.py#L448-L453C22" target="_black">https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/logits_process.py#L448-L453C22</a>
+    </div>
+
+</div>
+<p>よく使うのは、top_pやtop_k、NoRepeatNGramLogitsProcessor、RepetitionPenaltyLogitsProcessorあたり</p>
+<p>NoRepeatNGramLogitsProcessor<br>
+<a href="https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/logits_process.py#L718">https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/logits_process.py#L718</a></p>
+<p>RepetitionPenaltyLogitsProcessor<br>
+<a href="https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/logits_process.py#L270">https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/logits_process.py#L270</a></p>
+<h2 id="huggingfaceでの実装">huggingfaceでの実装</h2>
+<p>よく使うのは、<code>model.generate</code> だが、generateからsampleが選択される部分はここ<br>
+<a href="https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/utils.py#L1706">https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/utils.py#L1706</a></p>
+<p>sample関数の実装<br>
+<a href="https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/utils.py#L2612">https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/utils.py#L2612</a></p>
+<p>huggingfaceのsampleでは、logits_processorは次のように使われている</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>next_token_scores <span style="color:#ff79c6">=</span> logits_processor(input_ids, next_token_logits)
+</span></span><span style="display:flex;"><span>next_token_scores <span style="color:#ff79c6">=</span> logits_warper(input_ids, next_token_scores)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>probs <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>functional<span style="color:#ff79c6">.</span>softmax(next_token_scores, dim<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>next_tokens <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>multinomial(probs, num_samples<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>)<span style="color:#ff79c6">.</span>squeeze(<span style="color:#bd93f9">1</span>)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/utils.py#L2813-L2816" target="_black">https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/utils.py#L2813-L2816</a>
+    </div>
+
+</div>
+<p>greedy searchの実装はここ<br>
+<a href="https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/utils.py#L2353">https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/utils.py#L2353</a></p>
+<p>argmaxを使っているのがわかる</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>next_tokens <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>argmax(next_tokens_scores, dim<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">1</span>)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/utils.py#L2555" target="_black">https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/utils.py#L2555</a>
+    </div>
+
+</div>
+<h2 id="torchのmodelの出力に対して使う">torchのmodelの出力に対して使う</h2>
+<p>modelの作り方にも依るが、基本的にはlogitが出力されるように作るはず。</p>
+<p>使い方は、<code>LogitsProcessorList</code>を定義して、ここまでの入力xとlogitを渡すだけ。
+xはtokenizerされた単語のlist、例えば<code>[20, 15, 1, 1120, ....]</code>のようなtensorとなる。</p>
+<p>用途によってtensorの次元を合わせてください。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> transformers.generation.utils <span style="color:#ff79c6">import</span> (
+</span></span><span style="display:flex;"><span>    LogitsProcessorList, 
+</span></span><span style="display:flex;"><span>    TopKLogitsWarper,
+</span></span><span style="display:flex;"><span>    TopPLogitsWarper,
+</span></span><span style="display:flex;"><span>    TemperatureLogitsWarper,
+</span></span><span style="display:flex;"><span>    RepetitionPenaltyLogitsProcessor
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>logits_processor <span style="color:#ff79c6">=</span> LogitsProcessorList([
+</span></span><span style="display:flex;"><span>    RepetitionPenaltyLogitsProcessor(repetition_penalty),
+</span></span><span style="display:flex;"><span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>logits_wraper <span style="color:#ff79c6">=</span> LogitsProcessorList([
+</span></span><span style="display:flex;"><span>        TemperatureLogitsWarper(temperature),
+</span></span><span style="display:flex;"><span>        TopPLogitsWarper(top_p),
+</span></span><span style="display:flex;"><span>        TopKLogitsWarper(top_k),
+</span></span><span style="display:flex;"><span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">## modelからlogitsを得る</span>
+</span></span><span style="display:flex;"><span>logits <span style="color:#ff79c6">=</span> model(x, input_pos)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>logits <span style="color:#ff79c6">=</span> logits[:, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>, :] <span style="color:#6272a4">## sequenceの最後のlogit</span>
+</span></span><span style="display:flex;"><span>next_token_scores <span style="color:#ff79c6">=</span> logits_processor(x, logits)
+</span></span><span style="display:flex;"><span>next_token_scores <span style="color:#ff79c6">=</span> logits_wraper(x, next_token_scores)
+</span></span><span style="display:flex;"><span>next_token_scores <span style="color:#ff79c6">=</span> next_token_scores<span style="color:#ff79c6">.</span>squeeze(<span style="color:#bd93f9">0</span>) <span style="color:#6272a4">## 次元の調整</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">## next_token_scoresに対してsoftmaxで確率にして、次のtokenのindexを出力する</span>
+</span></span><span style="display:flex;"><span>probs <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>nn<span style="color:#ff79c6">.</span>functional<span style="color:#ff79c6">.</span>softmax(next_token_scores, dim<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>next_idx <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>multinomial(probs, num_samples<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="所感">所感</h2>
+<p>top_k, temperatureくらいだと自分で実装しても良いが、RepetitionPenaltyはここまでのindexも見る必要がありめんどうだったので、huggingfaceの実装を使った。<br>
+他にも便利な処理もあるので、一度使えるようにしておくと便利。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/transformer_any_architecture/">llama2のアーキテクチャを変更してpre trainingしてみる</a></li>
+    
+      <li><a href="/posts/nlp/hf_ds_upload/">複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ</a></li>
+    
+      <li><a href="/posts/nlp/hf_dataloader_datacollator/">HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める</a></li>
+    
+      <li><a href="/posts/nlp/calm_lora_quantize/">OpenCALM-7Bをloraで学習して、quantizeするまで</a></li>
+    
+      <li><a href="/posts/nlp/rinna_lora_ja/">loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2023
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

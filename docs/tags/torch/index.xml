@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>torch on アンドロイドは推理小説を書くか?</title>
+		<link>https://www.if-blog.site/tags/torch/</link>
+		<description>Recent content in torch </description>
+		<generator>Hugo -- gohugo.io</generator>
+		
+  		<language>ja</language>
+		
+		<managingEditor>Page(/tags/torch) (if_004)</managingEditor>
+    	
+  		<lastBuildDate>Tue, 05 Dec 2023 00:00:00 +0900</lastBuildDate>
+		
+		<atom:link href="/tags/torch/" rel="self" type="application/rss+xml" />
+		
+	</channel>
+</rss>

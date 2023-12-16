@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>llama2のアーキテクチャを変更してpre trainingしてみる</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。
+比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する
+transformerのatt" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		llama2のアーキテクチャを変更してpre trainingしてみる
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/python/">python</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/transformer/">transformer</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/pre_training/">pre_training</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-12-05
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。<br>
+比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する</p>
+<p>transformerのattention部分に対して修正や変更を加えたものはEfficient Transformerと呼ばれる。attentionの計算では、keyとvalueの行列積の計算のコストが高く、この部分を近似や次元削減を行い、計算効率やメモリ効率の向上を目指したものがいくつか提案されてる。Linformerでは近似により、ReformerではLSHというアルゴリズムによりattentionの計算を行っている。</p>
+<p>Linformer<br>
+<a href="https://arxiv.org/abs/2006.04768">https://arxiv.org/abs/2006.04768</a></p>
+<p>Reformer<br>
+<a href="https://arxiv.org/abs/2001.04451">https://arxiv.org/abs/2001.04451</a></p>
+<h2 id="モデル">モデル</h2>
+<p>ベースのモデルに対し少しづつ複雑さを増したモデルを作成する</p>
+<h4 id="ベースのモデル">ベースのモデル</h4>
+<p>head数1、layer数10のモデルをベースモデルとする。
+attentionの部分を簡単に表すと以下のようになる。attentionへの入力は全結合層を通り、queryとkey, valueに分割される。queryとkeyの積を取りscaleした後softmaxを取ったものとvalueの積を取る。(実際にはhead数の次元やgrouped queryが含まれるが省略)</p>
+<p><img src="../../../images/transformer_any_architecture/basic_model.png" alt="basic"></p>
+<p>ベースのモデルに対していくつかの修正を行う<br>
+いずれのモデルもhead数やlayer数はベースモデルと同じ</p>
+<h4 id="モデル1非線形活性化関数bias">モデル1(非線形活性化関数+bias)</h4>
+<p>query, key, valueを出力するFCNに対して、biasと活性化関数geluを追加する。</p>
+<p><img src="../../../images/transformer_any_architecture/non_linear_model.png" alt="non_linear"></p>
+<h4 id="モデル2query-key-valueを別々の全結合層で生成">モデル2(query, key, valueを別々の全結合層で生成)</h4>
+<p>query, key, valueは一つの全結合層の出力を分割して作られていたが、これを別々の層で計算させる。<br>
+queryとkeyで異なる特徴を捉えてほしい期待</p>
+<p><img src="../../../images/transformer_any_architecture/separate_model.png" alt="separate"></p>
+<h4 id="モデル3querykeyにscaleを追加">モデル3(query*keyにscaleを追加)</h4>
+<p>通常のattention weightでは、queryとkeyの積をsoftmaxを取り、valueとの積を取る。<br>
+queryとkeyの積に対して、別のFCNを追加しその出力を足し合わせて、softmax、valueとの積を取るようにする。<br>
+これは、queryに対応するkeyを取り出す処理に対し、attentionへの入力を使いquery,key以外の別の視点でscaleを行ってほしいという期待</p>
+<p><img src="../../../images/transformer_any_architecture/scaled_model.png" alt="scaled"></p>
+<h2 id="実装">実装</h2>
+<p>参考にするコード
+<a href="https://github.com/Lightning-AI/lit-gpt">https://github.com/Lightning-AI/lit-gpt</a></p>
+<p>attention部分はここ</p>
+<p><a href="https://github.com/Lightning-AI/lit-gpt/blob/main/lit_gpt/model.py#L169">https://github.com/Lightning-AI/lit-gpt/blob/main/lit_gpt/model.py#L169</a></p>
+<p>attentionへの入力は線形結合を通った後、query, key, valueに分割される。</p>
+<p>query, key, valueに対し、head数に対する次元操作や、grouped queryの操作を行った後、attentionを計算している。<br>
+attentionの実装はtorchのものを使用している。</p>
+<p><a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html">https://pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html</a></p>
+<p>queryとkeyの積を計算し、maskを適応、softmaxを取り、attention_weightを算出している。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>attn_weight = query @ key.transpose(-2, -1) * scale_factor
+attn_weight += attn_bias
+attn_weight = torch.softmax(attn_weight, dim=-1)
+...
+return attn_weight @ value</code></pre>
+  </div>
+
+</div>
+<p>このあたりを修正する</p>
+<h2 id="学習">学習</h2>
+<p>100Mのモデルに対し、1Bの日本語と英語のデータセットで2epoch学習行う</p>
+<p>モデル1とモデル2は100Mのサイズ、モデル3のみ追加の層があるので120M</p>
+<p>学習はPaperspace Gradientを使う<br>
+<a href="https://www.paperspace.com/">https://www.paperspace.com/</a></p>
+<h2 id="lossと学習時間の結果">lossと学習時間の結果</h2>
+<h3 id="lossとval-lossの比較">lossとval lossの比較</h3>
+<p>2epoch学習させた最終的なlossとval lossを表にまとめる</p>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>loss</th>
+<th>val loss</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ベースモデル</td>
+<td>4.0861</td>
+<td>4.8150</td>
+</tr>
+<tr>
+<td>非線形活性化関数+bias</td>
+<td>4.2262</td>
+<td>4.6753</td>
+</tr>
+<tr>
+<td>query, key, valueの生成を分ける</td>
+<td>4.8802</td>
+<td>4.7191</td>
+</tr>
+<tr>
+<td>query*keyにscaleを追加</td>
+<td>4.9979</td>
+<td>4.7278</td>
+</tr>
+</tbody>
+</table>
+<p>ベースモデルについて、他のモデルと比べlossは一番低いが、val lossは高くなっており、過学習の可能性がある。<br>
+val lossについては、<code>非線形活性化関数+bias</code>が一番低く、<code>query, key, valueの生成を分ける</code>と<code>query*keyにscaleを追加 </code>は近い値となった。</p>
+<p>今回のモデルサイズとデータセット的にベースモデルより少し<strong>複雑なモデルのほうが適していそう</strong><br>
+ただし、<code>query, key, valueの生成を分ける</code>や<code>query*keyにscaleを追加</code>ほどの複雑さは不要かもしれない</p>
+<h3 id="学習にかかった時間">学習にかかった時間</h3>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>学習にかかった時間 (h)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ベースモデル</td>
+<td>13.6</td>
+</tr>
+<tr>
+<td>非線形活性化関数+bias</td>
+<td>13.3</td>
+</tr>
+<tr>
+<td>query, key, valueの生成を分ける</td>
+<td>12.2</td>
+</tr>
+<tr>
+<td>query*keyにscaleを追加</td>
+<td>14.6</td>
+</tr>
+</tbody>
+</table>
+<p>ベースモデルと<code>非線形活性化関数+bias</code>は同じくらいの学習時間であり、非線形の計算やbiasは大きなコストではないことがわかる。<br>
+<code>query, key, valueの生成を分ける</code>はベースモデルより学習時間は短くなっている。これは、<strong>query, key, valueの計算が効率的に行われた可能性</strong>がある。<br>
+<code>query*keyにscaleを追加</code>ではparameterが増えている分、より多くの時間が必要となったと考えられる。</p>
+<p>まとめると、複雑過ぎるモデルでは学習時間が長くなりlossやval lossにおいても良い結果とはならなかった。
+一方で、<code>非線形活性化関数+bias</code>や<code>query, key, valueの生成を分ける</code>ではlossや学習時間の面でベースモデルよりよい結果となった。
+<strong>ある程度の複雑性は必要</strong>だが、そのバランスは注意する必要がある。</p>
+<h2 id="生成された文章での比較">生成された文章での比較</h2>
+<p>「彼女が子供の頃に住んでいた、海の見える小さな町は、」を与えて続く文章を生成する。</p>
+<h4 id="ベースモデル">ベースモデル</h4>
+<p>彼女が子供の頃に住んでいた、海の見える小さな町は、その町と隣接し、町は、町が広がる場所にある。</p>
+<h4 id="非線形活性化bias">非線形活性化+bias</h4>
+<p>彼女が子供の頃に住んでいた、海の見える小さな町は、その街の風景を描いた。そしてこの村には「おとな」という名前が残っている</p>
+<h4 id="query-key-valueの生成を分ける">query, key, valueの生成を分ける</h4>
+<p>彼女が子供の頃に住んでいた、海の見える小さな町は、この村には「山」と呼ばれている。また北部に位置する島として知られる</p>
+<h4 id="querykeyにscaleを追加">query*keyにscaleを追加</h4>
+<p>彼女が子供の頃に住んでいた、海の見える小さな町は、その地形が広がる。この山には「水」の由来がある。</p>
+<h3 id="所感">所感</h3>
+<p>ベースモデルでは、「町」の繰り返しが発生している。<code>非線形活性化+bias</code>では「おとな」などの追加情報が含まれるようになっている。
+<code>query, key, valueの生成を分ける</code>や<code>query*keyにscaleを追加</code>では「山」や「水」に加え、地形の要素など文脈を考慮や具体的な追加情報が含まれている。</p>
+<p>ベースモデルではシンプルな文章が生成されたのに対し、<code>query, key, valueの生成を分ける</code>や<code>query*keyにscaleを追加</code>では<strong>創造的なものや文脈を考慮するような文章</strong>が生成されている。</p>
+<h2 id="短い文章の場合">短い文章の場合</h2>
+<p>「彼女が」を与えて続く文章を生成する。</p>
+<h4 id="非線形活性化bias-1">非線形活性化+bias</h4>
+<p>彼女が、1990年代後半から2000年に</p>
+<h4 id="query-key-valueの生成を分ける-1">query, key, valueの生成を分ける</h4>
+<p>彼女が、「」と言われた。 &hellip;</p>
+<h4 id="querykeyにscaleを追加-1">query*keyにscaleを追加</h4>
+<p>彼女が</p>
+<h3 id="所感-1">所感</h3>
+<p>短い文章からの予測はいずれのモデルもうまく生成できていない。</p>
+<h2 id="形容詞に続く予想">形容詞に続く予想</h2>
+<p>「彼女が子供の頃に住んでいた、海の見える小さな」に続く文章を生成させる<br>
+ここでは形容詞「小さな」に続く名詞を期待。</p>
+<h4 id="非線形活性化bias-2">非線形活性化+bias</h4>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>p:0.33, 町
+p:0.23, 街
+p:0.19, お
+p:0.16, 村
+p:0.10, 温泉</code></pre>
+  </div>
+
+</div>
+<h4 id="query-key-valueの生成を分ける-2">query, key, valueの生成を分ける</h4>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>p:0.24, 場所
+p:0.21, 花
+p:0.19, 地
+p:0.18, 山
+p:0.17, 緑</code></pre>
+  </div>
+
+</div>
+<h4 id="querykeyにscaleを追加-2">query*keyにscaleを追加</h4>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>p:0.21, 島
+p:0.20, 場所
+p:0.16, 山
+p:0.14, 町
+p:0.14, 地</code></pre>
+  </div>
+
+</div>
+<h3 id="所感-2">所感</h3>
+<p>いずれのモデルも形容詞に対して、名詞を予想できている。</p>
+<h2 id="動詞が期待される文章">動詞が期待される文章</h2>
+<p>「海の見える小さな町で彼女は、静かに」に続く文章を生成<br>
+「過ごす」や「暮らす」などの動詞を期待。</p>
+<h4 id="非線形活性化bias-3">非線形活性化+bias</h4>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>p:0.26, 過ご
+p:0.23, 暮ら
+p:0.20, 眠
+p:0.18, 寝
+p:0.12, お</code></pre>
+  </div>
+
+</div>
+<h4 id="query-key-valueの生成を分ける-3">query, key, valueの生成を分ける</h4>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>p:0.35, な
+p:0.27, して
+p:0.15, なって
+p:0.12, 感じ
+p:0.11, 「</code></pre>
+  </div>
+
+</div>
+<h4 id="querykeyにscaleを追加-3">query*keyにscaleを追加</h4>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>p:0.24, した
+p:0.23, 過ご
+p:0.21, 歩いて
+p:0.16, 歩き
+p:0.16, 立ち</code></pre>
+  </div>
+
+</div>
+<h3 id="所感-3">所感</h3>
+<p>どのモデルも特定の1つの単語の確率が高いわけではなく、次の単語に迷っている感じ<br>
+<code>query, key, valueの生成を分ける</code>モデルでは、「して」、「なって」などの機能動詞が選択肢として現れている。</p>
+<h2 id="主語に続く文章">主語に続く文章</h2>
+<p>「海の見える小さな町で、彼女は」に続く文章を予測</p>
+<h4 id="非線形活性化bias-4">非線形活性化+bias</h4>
+<p>海の見える小さな町で、彼女は「アクション」と題した。</p>
+<h4 id="query-key-valueの生成を分ける-4">query, key, valueの生成を分ける</h4>
+<p>海の見える小さな町で、彼女は「お悩みやご相談をさせていただきます</p>
+<h4 id="querykeyにscaleを追加-4">query*keyにscaleを追加</h4>
+<p>海の見える小さな町で、彼女は「お友達に会いしていいのかな</p>
+<h3 id="所感-4">所感</h3>
+<p>いずれのモデルもあまり意味のある文章は生成されていない。どのモデルでも事前の文脈があまり考慮されず、直前の「彼女は」の影響で会話文の「が生成されている。</p>
+<h2 id="主語に続く文章2">主語に続く文章2</h2>
+<p>「海の見える小さな町で彼女は、」に続く文章を予測</p>
+<h4 id="非線形活性化bias-5">非線形活性化+bias</h4>
+<p>海の見える小さな町で彼女は、「アクション」と題した写真を</p>
+<h4 id="query-key-valueの生成を分ける-5">query, key, valueの生成を分ける</h4>
+<p>海の見える小さな町で彼女は、「おしゃれの」と言われることから</p>
+<h4 id="querykeyにscaleを追加-5">query*keyにscaleを追加</h4>
+<p>海の見える小さな町で彼女は、その場所に乗る。そしてこの建物の</p>
+<h3 id="所感-5">所感</h3>
+<p><code>非線形活性化+bias</code>と<code>query, key, valueの生成を分ける</code>では「主語に続く文章」と同様に会話文が生成されている。
+一方で<code>query*keyにscaleを追加</code>では、文脈を考慮したような「その場所」が生成されている。</p>
+<p>「、」句点に対する注意がそれぞれのモデルで異なり、<code>query*keyにscaleを追加</code>ではより文脈を考慮できている可能性がある。</p>
+<h2 id="ヒートマップ">ヒートマップ</h2>
+<h3 id="ベースモデル-1">ベースモデル</h3>
+<p>縦軸がquery、横軸がkeyを表す。値が大きいほど青色が強く表される。</p>
+<p>右上の三角形の値が0となっており、これはcausal modelとして先の単語を使って予測しないようなmaskが適応されていることを表す。query「彼女が」に対して、key「彼女が」では高い値となっており、これは自己注意が行われていることを表す。自己注意の高さは文章中でその単語が重要であることを表している。</p>
+<p>ベースモデルのヒートマップをみると、文章の前半(queryの前半)部分で自己注意が高くなっている。ただし、中盤では値は小さくなっており文全体は捉えきれてない可能性がある。</p>
+<p><img src="../../../images/transformer_any_architecture/basic_last.png" alt="basic_last"></p>
+<h3 id="非線形活性化bias-6">非線形活性化+bias</h3>
+<p>文章の前半部分で自己注意が高くなっており、後半は値は小さくなっている。また、いずれのqueryに対してもkey「、」が高い値となっており、<br>
+前半部分が重要な部分であると捉えている可能性がある。</p>
+<p><img src="../../../images/transformer_any_architecture/non_linear_last.png" alt="linear_last"></p>
+<h3 id="query-key-valueの生成を分ける-6">query, key, valueの生成を分ける</h3>
+<p>自己注意は全体的に少ないが「彼女が」「子供の」、「海の」などいくつかの単語は捉えている。<br>
+多くのqueryで、key「子供の」やkey「海の」が値が高くなっており、この文章において重要な単語として捉えている可能性がある。</p>
+<p><img src="../../../images/transformer_any_architecture/separate_last.png" alt="separate_last"></p>
+<h4 id="querykeyにscaleを追加-6">query*keyにscaleを追加</h4>
+<p>全体的に値が高く、自己注意も全体にわたり、文章全体を捉えようとしている可能性がある。<br>
+また「彼女が」や「海の」などのいくつかの単語に対しては自己注意が高くなっており、文脈において重要な単語についても関心を示している。</p>
+<p><img src="../../../images/transformer_any_architecture/scaled_last.png" alt="scaled_last"></p>
+<p>まとめると、<code>非線形活性化+bias</code>では文章の前半部分に強く注意を行い、<code>query, key, valueの生成を分ける</code>では特定の単語に高い注意を行っている。<br>
+<code>query*keyにscaleを追加</code>では全体的な文章や特定の単語への注意を行っており、文章の意味理解としては優秀かもしれない</p>
+<h2 id="まとめと所感">まとめと所感</h2>
+<p><code>非線形活性化関数+bias</code>はモデルの複雑性は他のモデルと比べ低いものの、ベースモデルに比べ単純な変更で一般化性能を向上させた。文章中の重要な単語への注意は行えていたものの、文脈を考慮した文章の生成などは難しかった。</p>
+<p><code>query, key, valueの生成を分けるモデル</code>では、<strong>文章に対して広範囲に注意</strong>を向けており、<strong>重要な単語の抽出</strong>も行えていた。</p>
+<p><code>query*keyにscaleを追加するモデル</code>では文脈を捉え、重要な単語へ注意を向けており、その他のモデルに比べ<strong>優秀な文章理解</strong>が行えていた。一方で、学習時間が増え、lossやval lossは低い値とならなかったため、さらなる調整が必要である。</p>
+<p>シンプルなモデルでは、文脈理解が難しかったものの、複雑にしたモデルでは文章全体や単語に対する注意など注意の幅は広がっていた。一方で複雑過ぎるモデルでは、学習時間の増加やlossやval lossは大きくなっており複雑性のバランスは必要である。</p>
+<p>小さいモデルを前提とすると学習時間の増加はあまり大きな問題ではなく、<code>query, key, valueの生成を分けるモデル</code>や<code>query*keyにscaleを追加するモデル</code>のバランスを調整して更に比較を行ってみたい</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/hf_generation_wrap/">huggingfaceのgenerationの関数をtorch modelから使えるようにしたい</a></li>
+    
+      <li><a href="/posts/nlp/hf_ds_upload/">複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ</a></li>
+    
+      <li><a href="/posts/nlp/hf_dataloader_datacollator/">HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める</a></li>
+    
+      <li><a href="/posts/nlp/xgen-jglue/">xgenでJGLUEを試す</a></li>
+    
+      <li><a href="/posts/nlp/calm_lora_quantize/">OpenCALM-7Bをloraで学習して、quantizeするまで</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2023
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

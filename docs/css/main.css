@@ -157,8 +157,21 @@ h2 {
 }
 
 h3 {
-    margin-top: 2em;
-    font-size: 1.4em;
+  margin-top: 2em !important;
+  font-size: 1.4em !important;
+  font-weight: 700 !important;
+}
+
+h4 {
+  margin-top: 2.0em !important;
+  font-size: 1.2em;
+  font-weight: 700 !important;
+}
+
+h5 {
+  margin-top: 1.0em !important;
+  font-size: 1.0em;
+  font-weight: 700 !important;
 }
 
 .container[role=main] {

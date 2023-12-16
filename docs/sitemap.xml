@@ -3,32 +3,57 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.if-blog.site/tags/huggingface/</loc>
-    <lastmod>2023-11-21T00:00:00+09:00</lastmod>
+    <lastmod>2023-12-05T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/posts/nlp/hf_generation_wrap/</loc>
+    <lastmod>2023-12-05T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/posts/nlp/transformer_any_architecture/</loc>
+    <lastmod>2023-12-05T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.if-blog.site/tags/nlp/</loc>
-    <lastmod>2023-11-21T00:00:00+09:00</lastmod>
+    <lastmod>2023-12-05T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.if-blog.site/posts/</loc>
-    <lastmod>2023-11-21T00:00:00+09:00</lastmod>
+    <lastmod>2023-12-05T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/pre_training/</loc>
+    <lastmod>2023-12-05T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.if-blog.site/tags/python/</loc>
-    <lastmod>2023-11-21T00:00:00+09:00</lastmod>
+    <lastmod>2023-12-05T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.if-blog.site/tags/</loc>
-    <lastmod>2023-11-21T00:00:00+09:00</lastmod>
+    <lastmod>2023-12-05T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/torch/</loc>
+    <lastmod>2023-12-05T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/transformer/</loc>
+    <lastmod>2023-12-05T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.if-blog.site/</loc>
-    <lastmod>2023-11-21T00:00:00+09:00</lastmod>
+    <lastmod>2023-12-05T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
