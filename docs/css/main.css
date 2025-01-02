@@ -22,7 +22,7 @@
 
 html {
     background-color: #FFFFFF;
-    font-size: 55.5%;
+    font-size: 12px;
     height: 100%;
 }
 
@@ -150,9 +150,8 @@ h1,h2,h3,h4,h5,h6 {
 
 h2 {
     border-bottom: 1px solid #ddd;
-    margin-top: 2.5em;
+    margin: 2.5em 0 1em 0;
     font-weight: 600;
-    margin-bottom: 1em;
     font-size: 1.5em;
 }
 
@@ -175,7 +174,7 @@ h5 {
 }
 
 .container[role=main] {
-  max-width: 660px;
+  max-width: 720px;
   padding: 0px 20px 4rem 20px;
   font-size: 1.6rem;
   line-height: 1.7;
@@ -206,6 +205,7 @@ h5 {
 
 .article-main {
     margin: 40px 0 60px;
+    font-size: 2.0rem;
 }
 
 .toc {
@@ -242,7 +242,7 @@ li a:hover {
 }
 
 p {
-  line-height: 1.5;
+  line-height: 2.0em;
   margin: 0.5em 0;
 }
 
@@ -251,8 +251,8 @@ p + p {
 }
 
 .post-title {
-    margin-top: 0px;
-    font-weight: 300;
+  margin-top: 0px;
+  font-weight: 300;
 }
 
 .post-preview {

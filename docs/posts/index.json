@@ -2,6 +2,66 @@
     
         
             {
+                "ref": "https://www.if-blog.site/posts/paper/paper3/",
+                "title": "Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)",
+                "section": "posts",
+                "date" : "2025-01-02",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2404.07143\nどんなもの Transformerベースの大規模言語モデル(LLMs)を、bounded memoryとcomputationで無限長の入力にスケールするための効率的な手法であるInfini-attentionを提案する。Infini-attentionは、従来のAttention機構に圧縮メモリを取り込み、masked local attentionとlong-term linear attention機構を単一のTransformerブロックに統合している。10億パラメータと80億パラメータのLLMを用いて、長文脈言語モデリングベンチマーク、100万トークン長のパスキーコンテキストブロック検索タスク、50万トークン長の書籍要約タスクで有効性を示した。\n先行研究と比べてどこがすごいの？ 先行研究であるTransformer-XLやCompressive Transformer、Memorizing Transformers、RMT、AutoCompressorsと比較して、Infini-attentionは、bounded memoryで無限長の文脈を処理できる点が優れている。具体的には、メモリサイズはMemorizing Transformersと比べて114倍小さく、かつ、より低いperplexityを達成する。また、10億パラメータのLLMにおいて、100万トークン長のパスキー検索タスクを解き、80億パラメータのLLMにおいて、50万トークン長の書籍要約タスクでSOTAを達成した。先行研究では、メモリサイズが 文脈長に比例して増加したり、圧縮に依存して効率が低下したりする問題があったが、本手法ではこれらの問題を解決している。\n技術や手法のきもはどこにある？ Infini-attentionの核心は、従来のAttention機構にcompressive memoryを統合し、masked local attentionとlong-term linear attentionを組み合わせている点 にある。compressive memoryには、AttentionのKeyとValueの状態を再利用し、過去のKV状態を破棄するのではなく保存することで、無限長の文脈履歴を保持する。long-term linear attentionを用いてメモリから値を検索し、masked local attentionによる局所的な文脈情報と統合することで、最終的な文脈出力を計算する。メモリ更新には、associative matrixとdelta ruleを採用し、計算効率と安定性を両立している。さらに、gating scalar βを用いて、長期記憶と局所的情報のバランスを学習する。\nどうやって有効だと検証した？ 長文脈言語モデリングベンチマーク、100万トークン長のパスキーコンテキストブロック検索タスク、50万トークン長の書籍要約タスクの3つのタスクで検証を行った。言語モデリングタスクでは、Infini-TransformerがTransformer-XLやMemorizing Transformersを上回る性能を示した。パスキー検索タスクでは、10億パラメータのLLMにInfini-attentionを適用することで、100万トークン長の入力に対しても高い精度でパスキーを検索できた。書籍要約タスクでは、80億パラメータのLLMにInfini-attentionを適用することで、SOTAを達成した。\n議論はあるか 論文では、Infini-attentionにおけるgating scoreの挙動について、専門化されたヘッドとミキサーヘッドの2種類が存在することを示している。しかし、この挙動がどの ようなメカニズムで生じるのか、さらなる分析が必要である。また、異なる種類のcompressive memoryやmemory update、memory retrieval手法を用いた場合の性能比 較についても、今後の研究課題として挙げられる。さらに、極端に長いシーケンスに対する汎化性能についても、より詳細な検証が必要である。\n"
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/paper/paper3/",
+                "title": "Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)",
+                "section": "posts",
+                "date" : "2025-01-02",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2410.04717\nどんなもの 大規模言語モデル（LLM）の指示遵守能力を向上させるためのデータセット構築戦略に関する研究。特に、instruction diversity（指示の多様性）が汎化性能に与える決定的な影響を明らかにしている。 制御された実験を通して、instruction-following（指示遵守）能力に焦点を当て、推論や知識検索能力とは切り離して評価している。\n先行研究と比べてどこがすごいの？ 先行研究では、データセットの選択やデータ量の増加がLLMの性能に与える影響について、ばらつきのある結果が報告されていた。本研究は、instruction-following能力に焦点を絞り、instruction diversityの重要性を厳密に検証した点が優れている。 特に、Turing-complete Markov algorithmに着想を得た制御された実験により、多様な意味 領域にわたるデータの多様化が、未知の指示への汎化に不可欠であることを示している。単に限定的な領域内で多様化しても、堅牢な汎化は保証されないことを明らかにしている。\n技術や手法のきもはどこにある？ Turing-complete Markov algorithmに着想を得た文字列置換タスクを用いた制御実験が中心。このタスクは、LLMのinstruction-following能力を、推論能力とは独立に評価できるシンプルなモデルを提供する。 実験では、instruction diversityを様々な方法で変化させ（指示の数、No-Opの割合、指示の分布、意味制約など）、未知の指示に対する汎化性能を測定している。さらに、専門家モデルと汎用モデルのファインチューニング実験にも拡張し、現実世界のシナリオでの有効性を検証している。\nどうやって有効だと検証した？ 制御実験（文字列置換タスク）: 異なるレベルのinstruction diversityで訓練したGPT-2モデルを、未知の指示でテスト。指示の多様性が一定の閾値を超えると、汎化 性能が劇的に向上することを示した。\n抽象化を導入した実験: 数学的推論タスクを用いて、抽象的な規則とその具体的な適用（groundings）を扱うより複雑な状況をシミュレート。 規則の多様性の増加が汎化性能を向上させることを確認した。\n現実世界での実験（コード生成）: HumanEval、MBPP、EvalPlusなどのベンチマークを用いて、コード生成モデルのファインチューニング実験を実施。コード特化データと一 般ドメインデータ（Alpacaなど）を混ぜることで、性能向上を確認した。\n現実世界での実験（汎用LLM）: UltraInteract-SFT、OpenOrca、Alpacaのデータ混合による汎用LLMのファインチューニング実験。データの多様化が、データ量の増加よりも 効果的であることを示した。\n議論はあるか 現実世界のデータセットでは、指示が完全に均一に分布することはありえない。本研究では、power law distributionを用いて不均衡な分布の影響を検証し、十分な意味的カバレッジがあれば汎化が可能であることを示唆しているが、現実世界のデータセットにおける不均衡の影響については更なる検討が必要となる可能性がある。また、専門家モデルの訓練において、専門領域外のデータの導入による性能向上は、どの程度の領域の広がりが必要なのか、最適なバランスは何かといった点については、今後の研究でより詳細な検討が必要である。さらに、異なるデータセットを混合する際の最適な比率についても、タスクやモデルによって異なる可能性があり、普遍的な最適解を見つけることは難しいかもしれない。\n"
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/paper/paper2/",
+                "title": "Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (AI論文要約)",
+                "section": "posts",
+                "date" : "2025-01-02",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2410.15999\nどんなもの 本論文は、大規模言語モデル (LLM) の知識選択行動を、事前学習済みスパースオートエンコーダ (SAE) を用いた表現エンジニアリング手法 SPARE を通じて制御する手法を提案し ている。LLM はパラメータ内に多くの事実的知識を保持するが、文脈情報と矛盾する可能性があり、その結果、古いまたは不正確な情報への依存といった望ましくない挙動につながる。SPARE は、LLM の内部活性化を推論時に編集することで、文脈知識とパラメータ知識のどちらを使用するかを制御する。\n先行研究と比べてどこがすごいの？ 既存の表現エンジニアリング手法は、LLM の内部活性化（隠れ状態や MLP 活性化など）を直接変更するが、これらの活性化は多義的な高密度ベクトルであり、正確な調整が難しい 。本研究では、事前学習済み SAE を用いることで、多義的な活性化を多数の単義的な特徴に分解し、より正確な活性化編集を可能にしている。その結果、既存の表現エンジニアリ ング手法やコントラスティブデコーディング手法よりも、知識衝突時の知識選択行動の制御において高い精度を達成している（それぞれ+10%、+15%の向上）。\n技術や手法のきもはどこにある？ SPARE の核心は、事前学習済み SAE を用いた表現エンジニアリングにある。具体的には以下の3つのステップからなる：\n異なる知識選択行動につながる活性化の収集: 知識衝突を引き起こす入力インスタンスを、モデルの予測に基づいて、文脈知識を選択したグループとパラメータ知識を選択 したグループに分割する。それぞれのグループから、回答の最初のトークンを予測するために使用される最後の位置の隠れ状態を収集する。\n機能的 SAE 活性化の特定: 収集した隠れ状態を SAE でエンコードし、各 SAE 活性化と知識選択行動間の相互情報量を計算する。相互情報量が高い上位 k 個の活性化を、 知識選択行動を制御する機能的活性化として選択する。\n活性化の編集による行動の制御: 機能的活性化に基づき、推論時にLLMの隠れ状態を編集する。望ましくない知識選択行動に関連する特徴を除去し、望ましい知識選択行動 に関連する特徴を追加する。この編集は、SAE のデコーダを用いて行われ、元の隠れ状態の情報を可能な限り保持するように設計されている。\nどうやって有効だと検証した？ オープン・ドメイン質問応答 (ODQA) タスクにおいて、NQSwap と Macnoise データセットを用いて実験を行った。SPARE を、既存の表現エンジニアリング手法（TaskVec、ActAdd、SEA）、コントラスティブデコーディング手法（DoLa、CAD）、インコンテキスト学習 (ICL) と比較した。評価指標として、文脈知識とパラメータ知識のそれぞれを使用するように 制御した際の正解率 (EM) を用いた。その結果、SPARE はすべてのベースライン手法を上回り、知識選択行動の制御において高い有効性を示した。さらに、行動変化能力、介入の負の影響、そして ablation study を通じて、SPARE の有効性を多角的に検証している。\n議論はあるか 論文ではいくつかの限界が指摘されている。\nSAE の事前学習への依存: SPARE は事前学習済み SAE に依存するため、事前学習済み SAE が利用できないモデルには適用できない。\nタスクへの汎化性: ODQA タスクに限定された実験結果であり、他のタスクや複雑な推論、マルチホップ質問、長文生成などへの汎化性は不明である。\n知識ソース選択の二値化: 知識ソースの信頼性の判断を二値化しており、実際にはより複雑な判断が必要となる可能性がある。\n全体として、SPARE はLLMの知識選択行動を効果的に制御する有望な手法であるが、さらなる研究が必要であることが示唆されている。特に、SAE の事前学習の必要性の軽減や、よ り広範なタスクへの適用可能性の検証が今後の課題となる。\n"
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/paper/paper1/",
+                "title": "Mechanistic Unlearning: Robust Knowledge Unlearning and Editing via Mechanistic Localization(AI論文要約)",
+                "section": "posts",
+                "date" : "2025-01-02",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2410.12949\nどんなもの 本論文は、大規模言語モデル(LLM)から望ましくない知識を削除または修正する「知識のアンラーニングと編集」手法に関する研究です。特に、モデルの特定の機能に関連する構成 要素（回路）を特定することを目指す「メカニズム的解釈可能性」を用いて、アンラーニングと編集の精度と有効性を向上させる手法を提案しています。\n先行研究と比べてどこがすごいの？ 先行研究では、出力の保存に基づいて構成要素を特定する「出力追跡（OT）」手法が用いられてきましたが、編集の堅牢性に課題がありました。わずかなプロンプトの変更でも元の情報が引き出されたり、編集が不十分で、元の回答がモデル内に残存したりする問題がありました。\n本研究では、予測可能な中間状態を持つ高レベルのメカニズムに基づいて構成要素を特定する手法を提案し、特に「事実の参照メカニズム」に関連する構成要素に編集/アンラーニ ングを局所化することで、以下の点で先行研究を凌駕しています。\n堅牢性の向上: 異なる入力/出力形式においても、より堅牢な編集/アンラーニングを実現します。\n再学習への耐性: 望ましくない情報の再学習を防ぎます。\n副作用の軽減: 意図しない副作用を削減します。\n潜在知識の攪乱: 特定の局所化された編集は、他のベースラインよりもモデル内の潜在知識をより強く攪乱し、様々な攻撃に対してより堅牢なアンラーニングを実現します 。\n技術や手法のきもはどこにある？ 本研究の核心は、「事実の参照メカニズム（FLU）」に焦点を当てた「メカニズム的アンラーニング」です。\nFLUの特定: モデル内部の活性化を分析し、事実の参照と属性抽出に関連するMLP層を特定します（Sports Factsデータセットではプローブを用い、CounterFactデータセットではパスパッチングを用いています）。\n局所化: FLUメカニズムを実装する構成要素にのみ編集/アンラーニングを局所化します。\n重み更新: 局所化された構成要素の重みを勾配降下法を用いて更新します。損失関数は、望ましくない事実の確率を最小化し、残りの事実の確率を最大化する項と、一般言語モデリング能力を維持するための項から構成されます。\nどうやって有効だと検証した？ 様々なデータセット（Sports Facts、CounterFact）、モデル（Gemma-7B、Gemma-2-9B、Llama-3-8b）、評価方法を用いて、提案手法の有効性を検証しました。\nプロンプトベース評価: 編集後のモデルが、元の情報、編集後の情報、関連のない情報をどの程度想起できるかを評価しました。多様なプロンプト形式（通常のプロンプト 、多肢選択式質問、言い換えられたプロンプト、類似事実を含むプロンプト）を用いて、編集の堅牢性を検証しました。\n敵対的再学習評価: 編集されたモデルを、削除された事実の一部を用いて再学習させ、元の情報がどの程度回復するかを評価しました。\n潜在知識分析: プローブを用いて、モデル内部表現における元の情報と編集後の情報の表現の変化を分析しました。\nパラメータ効率性: 重みマスクを用いて、編集のサイズを制御し、パラメータ効率性を検証しました。\n議論はあるか？ 先行研究では、局所化がモデル編集に有用でないという主張がありましたが、本研究は、すべての局所化手法が等しいわけではないことを示しています。出力追跡（OT）手法は、容易に局所化できる出力層に焦点を当てるため、堅牢性に欠ける可能性があります。一方、FLU手法は、知識の源泉に直接作用するため、より堅牢な編集/アンラーニングを実現します。\n"
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/nlp/gemini-api/",
+                "title": "gemini api",
+                "section": "posts",
+                "date" : "2024-05-16",
+                "body": ""
+            }
+        
+    ,
+        
+            {
+                "ref": "https://www.if-blog.site/posts/nlp/mixture_of_experts_sample/",
+                "title": "Mixture of expertsのサンプル実装",
+                "section": "posts",
+                "date" : "2023-12-16",
+                "body": "mixture of expertsを実装してみる。 並列化や計算効率の向上などの部分は複雑なので、それら取り除いた簡単な実装を行ってみる。\nMixture of expertsとは 特定のタスクに特化したexpertを複数用意し、入力に対してexpertを切り替えることで性能を上げる手法。 expertを選択するgate部分とexpert部分からなる。\ndecoder型のtransformer、特にcausal modelの場合、Mixture of expertsはattention層のあとのFFNに対して適応される。 (学習時では、attention層とexpertやgate部分は同時に進行していくが、expertにちゃんとわかれるのかがよくわからん\u0026hellip; 一応loss関数でとあるexpertだけに集中しないようになどの工夫はあるが)\n図\nhttps://arxiv.org/abs/2101.03961\ngate関数やexpert層の違いによりいくつかのMoEの種類が提案されているが、sparse MoEを使ったものが多く見られる\nsparse MoE gate関数が上位n個のexpertを選択するような出力を行う。選択するexpert以外の部分は0になるようなスパース性を持つ。\n0が含まれることで選択されないexpertでは計算する必要がないため、計算コストが削減される\nmixtralの実装はこんな感じ\nhttps://github.com/huggingface/transformers/blob/238d2e3c44366aba9dc5c770c95475765a6725cb/src/transformers/models/mixtral/modeling_mixtral.py#L688\n通常のMoEでは、特定のexpertが多く選択されてしまうことがあり、学習が非効率なものとなってしまう。 これを軽減するため、auxiliary lossを導入する。\n図\n$f_i$は$expert_i$に割り振られたトークンの割合 $P_i$は$expert_i$に割り振られる可能性の確率\n$f_i$と$P_i$が均等であれば、ルーティングも均等になるというlossになる\nmixtralのlossの実装はこんな感じ\nhttps://github.com/huggingface/transformers/blob/238d2e3c44366aba9dc5c770c95475765a6725cb/src/transformers/models/mixtral/modeling_mixtral.py#L76\nST-MoE Stable and Transferable Mixture-of-Expertsの提案 (設計ガイドとして良さそうなのであとでちゃんと読む)\nhttps://arxiv.org/abs/2202.08906\n実装が以下で公開されている\nhttps://github.com/tensorflow/mesh/blob/master/mesh_tensorflow/transformer/moe.py\n実装 今回はsparseでなく、もっと単純なもので動きを確認する。\nimport torch import torch.nn as nn import torch.nn.functional as F class MoE(nn.Module): def __init__(self, embed_size=128, num_experts=4, expert_hidden_size=256, gate_hidden_size=256, device=\u0026#34;auto\u0026#34;, ): super(MoE, self).__init__() self.embed_size = embed_size self.num_experts = num_experts expert = nn.Sequential( nn.Linear(embed_size, expert_hidden_size), nn.ReLU(), nn.Linear(expert_hidden_size, embed_size) ) self.experts = nn.ModuleList([expert for _ in range(num_experts)]) self.gate = nn.Sequential( nn.Linear(embed_size, gate_hidden_size), nn.ELU(), nn.Linear(gate_hidden_size, num_experts), ) def forward(self, x): \u0026#34;\u0026#34;\u0026#34; Forward pass for MoE :param x: Input tensor of shape (batch_size, seq_len, embed_size) :return: Output tensor. shape (batch_size, seq_len, embed_size) \u0026#34;\u0026#34;\u0026#34; # batch_size, seq_len, _ = x.size() gating_scores = self.gate(x) gating_weights = F.softmax(gating_scores, dim=2) # (batch_size, seq_len, num_experts) print(\u0026#39;gating_weights\u0026#39;, gating_weights.shape, gating_weights) expert_outputs = torch.stack([expert(x) for expert in self.experts], dim=2) # (batch_size, seq_len, num_experts, embed_size) ## gating_weights.unsqueeze(-1) # (batch_size, seq_len, num_experts, 1) output = torch.sum(gating_weights.unsqueeze(-1) * expert_outputs, dim=2) # (batch_size, seq_len, embed_size) return output 実装自体はシンプルで、gate関数の出力をsoftmaxを取ったもので、各expertを割合で増減させるイメージ。\n例えば、以下のような例を入力とする (実際には埋め込んだ状態でなく、attention weightを計算したあとのtensorになるので注意)\nsequence_length=3 埋め込みサイズ=4\n[I am running] =\u0026gt; [[0.4081, 0.7244, 0.0221, 0.1677],[0.2508, 0.8103, 0.3783, 0.0399],[0.6584, 0.4243, 0.5941, 0.6102]] expert=2, batch_size=1の例を入力する\n入力shapeは(batch_size,sequence_length, 埋め込みサイズ)\ngating_weightsは、sequence_length毎にどのexpertに割り振られるかの確率となっている\ninput: torch.Size([1, 3, 4]) tensor([[[0.4081, 0.7244, 0.0221, 0.1677], [0.2508, 0.8103, 0.3783, 0.0399], [0.6584, 0.4243, 0.5941, 0.6102]]]) gating_weights torch.Size([1, 3, 2]) tensor([[[0.5903, 0.4097], [0.6000, 0.4000], [0.6028, 0.3972]]], grad_fn=\u0026lt;SoftmaxBackward0\u0026gt;) output: torch.Size([1, 3, 4]) tensor([[[ 0.5622, -0.0714, 0.0197, -0.2871], [ 0.6389, -0.1067, -0.0396, -0.2993], [ 0.4812, -0.0484, 0.0448, -0.4018]]], grad_fn=\u0026lt;SumBackward1\u0026gt;) 参考 MoEについて https://huggingface.co/blog/moe\nhttps://deeplearning.hatenablog.com/entry/moe\nmoe実装例 https://github.com/huggingface/transformers/blob/238d2e3c44366aba9dc5c770c95475765a6725cb/src/transformers/models/mixtral/modeling_mixtral.py#L688\nhttps://hungyuling.com/blog/fast-mixture-of-experts-in-pytorch/\nhttps://github.com/laekov/fastmoe/blob/master/README.md\nhttps://github.com/lucidrains/mixture-of-experts/blob/master/mixture_of_experts/mixture_of_experts.py\n"
+            }
+        
+    ,
+        
+            {
                 "ref": "https://www.if-blog.site/posts/nlp/hf_generation_wrap/",
                 "title": "huggingfaceのgenerationの関数をtorch modelから使えるようにしたい",
                 "section": "posts",

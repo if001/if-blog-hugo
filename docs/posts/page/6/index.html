@@ -167,6 +167,233 @@
       
       
         <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/neuralnet/combine-model/">
+    <h2 class="post-title">
+      kerasでモデルを結合する
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。
+autoencoderの学習の際には、作成したencoderのModelとdecoderのModelを結合する。
+Modelの結合は前はできなかった</p>
+    <a href="https://www.if-blog.site/posts/neuralnet/combine-model/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/keras/">keras</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/others/aws-cli-at-pyenv/">
+    <h2 class="post-title">
+      pyenv環境でaws cli入れたらコマンドが見つからない
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>pyenv環境でaws cli入れたらコマンドが見つからないって言われたので調べたメモ
+バージョン：pyenv:1.0.10
+公式通りにインストールする。
+$ pip3 install awscli --upgrade --user すると、
+$ aws -bash: aws: command no</p>
+    <a href="https://www.if-blog.site/posts/others/aws-cli-at-pyenv/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/aws/">aws</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/others/rust-macro-use-another/">
+    <h2 class="post-title">
+      Rustでmodule間にまたがるmacro呼び出し
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Rustのmacroをモジュール化して、別のモジュールから呼ぼうと思ったらうまくいかなかった。
+日本語の記事があまりなかったのと、自分の備忘録ようにメモを残しておく。
+rustのバージョンは1.27.0
+参考 https://github.com/rust-lang/book/issues/401
+</p>
+    <a href="https://www.if-blog.site/posts/others/rust-macro-use-another/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/rust/">rust</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/seqgan-paper/">
+    <h2 class="post-title">
+      SeqGANの論文を読む
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
+https://arxiv.org/pdf/1609.05473.pdf
+SeqGANの論文を読んだのでまとめておきます。実装を行おうと思って読んだので手法をメインに読</p>
+    <a href="https://www.if-blog.site/posts/nlp/seqgan-paper/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/seqgan/">SeqGAN</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/word2vec-output-word/">
+    <h2 class="post-title">
+      word2vecでベクトルから単語を出力する
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 https://stackoverflow.com/questions/32759712/how-to-fin</p>
+    <a href="https://www.if-blog.site/posts/nlp/word2vec-output-word/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/word2vec/">word2vec</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/">
+    <h2 class="post-title">
+      ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Qiitaに投稿した記事、kerasでHREDを構築してみるの記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
+A Diversity-Promoting Objective Function for Neural Conversation Models htt</p>
+    <a href="https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/seq2seq/">seq2seq</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
   <a href="https://www.if-blog.site/posts/others/tex-notation-numerical-formula/">
     <h2 class="post-title">
       機械学習系の数式によく出てくる記号などのTex表記まとめ
@@ -309,226 +536,6 @@ before 認証
 </article>
 
       
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/">
-    <h2 class="post-title">
-      emacsひな祭りいってきたのでためになったpackageなどをまとめておく
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>2019年3月3日に開催された東京Emacsひなまつりにいってきました。
-https://tokyo-emacs.connpass.com/event/121603/
-随時コメント追加していきます。
-ox-hugo
-https://ox-hugo.scripter.co/
-Ox-hugo
-https</p>
-    <a href="https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/emacs/">emacs</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-03-08
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/python/python-get-extn/">
-    <h2 class="post-title">
-      pythonで拡張子を取得する
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>ファイルの拡張子を取得する方法をいつも忘れるのでメモ
-import os file_path = &amp;#34;hoge/test.md&amp;#34; root, ext = os.path.splitext(file_path) print(root, ext) 出力
-hoge/test .md </p>
-    <a href="https://www.if-blog.site/posts/python/python-get-extn/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-03-01
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/emacs/lsp-mode/">
-    <h2 class="post-title">
-      lsp-modeを導入する
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>大学時代から使っていたemacsの設定たちを綺麗にするという目的で、ついでにlsp-modeを導入してみようと思う。
-lsp-mode
-https://github.com/emacs-lsp/lsp-mode
-language server protocolとは language server p</p>
-    <a href="https://www.if-blog.site/posts/emacs/lsp-mode/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/emacs/">emacs</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-11-20
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/emacs/emacs-use-package/">
-    <h2 class="post-title">
-      use-packagesを使ってみる
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>これまで長い間放置しててきたemacsの設定たちを見直すついでに、use-pacakgeを使ってみようと思う。
-https://github.com/jwiegley/use-package
-use-packageとは、emacsのパッケージ管理を強化するパッケージです。
-use-packageのマ</p>
-    <a href="https://www.if-blog.site/posts/emacs/emacs-use-package/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/emacs/">emacs</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-11-20
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/falcon/falcon-img-upload/">
-    <h2 class="post-title">
-      falconでアップロードサーバーを作る
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことな</p>
-    <a href="https://www.if-blog.site/posts/falcon/falcon-img-upload/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/falcon/">falcon</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/falcon/falcon-tips/">
-    <h2 class="post-title">
-      falconを使ってみた
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
-簡単なtipsをメモしておく。
-シンプルな例 fa</p>
-    <a href="https://www.if-blog.site/posts/falcon/falcon-tips/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/falcon/">falcon</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
     </div>
 
     
@@ -567,7 +574,7 @@ use-packageのマ</p>
     <div class="credits copyright">
       <a href="https://www.if-blog.site/pages/about">if_004</a>
       &nbsp;&copy;
-      2023
+      2025
       
         &nbsp;/&nbsp;
         <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>

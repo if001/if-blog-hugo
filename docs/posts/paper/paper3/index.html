@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link
+  id="dark-mode-theme"
+  rel="stylesheet"
+  href="https://www.if-blog.site/css/dark.css"
+  disabled
+/>
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
+  rel="stylesheet"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<script>
+  $(document).ready(function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '[[', right: ']]', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    })
+  })
+</script>
+
+<script src="https://www.if-blog.site/js/main.bundle.js"></script>
+<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2404.07143
+どんなもの Transformerベースの大規模言語モデル(LLMs)を、bounded memoryとcomputationで無限長の入力にスケールするため" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-01-02
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2404.07143">https://arxiv.org/abs/2404.07143</a></p>
+<h2 id="どんなもの">どんなもの</h2>
+<p>Transformerベースの大規模言語モデル(LLMs)を、<strong>bounded memory</strong>とcomputationで無限長の入力にスケールするための効率的な手法である<strong>Infini-attention</strong>を提案する。<strong>Infini-attention</strong>は、従来のAttention機構に圧縮メモリを取り込み、<strong>masked local attention</strong>と<strong>long-term linear attention</strong>機構を単一のTransformerブロックに統合している。10億パラメータと80億パラメータのLLMを用いて、長文脈言語モデリングベンチマーク、100万トークン長のパスキーコンテキストブロック検索タスク、50万トークン長の書籍要約タスクで有効性を示した。</p>
+<h2 id="先行研究と比べてどこがすごいの">先行研究と比べてどこがすごいの？</h2>
+<p>先行研究であるTransformer-XLやCompressive Transformer、Memorizing Transformers、RMT、AutoCompressorsと比較して、<strong>Infini-attention</strong>は、<strong>bounded memory</strong>で無限長の文脈を処理できる点が優れている。具体的には、メモリサイズはMemorizing Transformersと比べて114倍小さく、かつ、より低いperplexityを達成する。また、10億パラメータのLLMにおいて、100万トークン長のパスキー検索タスクを解き、80億パラメータのLLMにおいて、50万トークン長の書籍要約タスクでSOTAを達成した。先行研究では、メモリサイズが 文脈長に比例して増加したり、圧縮に依存して効率が低下したりする問題があったが、本手法ではこれらの問題を解決している。</p>
+<h2 id="技術や手法のきもはどこにある">技術や手法のきもはどこにある？</h2>
+<p><strong>Infini-attention</strong>の核心は、従来のAttention機構にcompressive memoryを統合し、<strong>masked local attention</strong>と<strong>long-term linear attention</strong>を組み合わせている点 にある。compressive memoryには、AttentionのKeyとValueの状態を再利用し、過去のKV状態を破棄するのではなく保存することで、無限長の文脈履歴を保持する。<strong>long-term linear attention</strong>を用いてメモリから値を検索し、<strong>masked local attention</strong>による局所的な文脈情報と統合することで、最終的な文脈出力を計算する。メモリ更新には、associative matrixとdelta ruleを採用し、計算効率と安定性を両立している。さらに、gating scalar βを用いて、長期記憶と局所的情報のバランスを学習する。</p>
+<h2 id="どうやって有効だと検証した">どうやって有効だと検証した？</h2>
+<p>長文脈言語モデリングベンチマーク、100万トークン長のパスキーコンテキストブロック検索タスク、50万トークン長の書籍要約タスクの3つのタスクで検証を行った。言語モデリングタスクでは、Infini-TransformerがTransformer-XLやMemorizing Transformersを上回る性能を示した。パスキー検索タスクでは、10億パラメータのLLMに<strong>Infini-attention</strong>を適用することで、100万トークン長の入力に対しても高い精度でパスキーを検索できた。書籍要約タスクでは、80億パラメータのLLMに<strong>Infini-attention</strong>を適用することで、SOTAを達成した。</p>
+<h2 id="議論はあるか">議論はあるか</h2>
+<p>論文では、<strong>Infini-attention</strong>におけるgating scoreの挙動について、専門化されたヘッドとミキサーヘッドの2種類が存在することを示している。しかし、この挙動がどの ようなメカニズムで生じるのか、さらなる分析が必要である。また、異なる種類のcompressive memoryやmemory update、memory retrieval手法を用いた場合の性能比 較についても、今後の研究課題として挙げられる。さらに、極端に長いシーケンスに対する汎化性能についても、より詳細な検証が必要である。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper3/">Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper2/">Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper1/">Mechanistic Unlearning: Robust Knowledge Unlearning and Editing via Mechanistic Localization(AI論文要約)</a></li>
+    
+      <li><a href="/posts/nlp/calm_lora_quantize/">OpenCALM-7Bをloraで学習して、quantizeするまで</a></li>
+    
+      <li><a href="/posts/nlp/rinna_lora_ja/">loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
