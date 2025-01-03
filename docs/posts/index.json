@@ -42,16 +42,6 @@
     ,
         
             {
-                "ref": "https://www.if-blog.site/posts/nlp/gemini-api/",
-                "title": "gemini api",
-                "section": "posts",
-                "date" : "2024-05-16",
-                "body": ""
-            }
-        
-    ,
-        
-            {
                 "ref": "https://www.if-blog.site/posts/nlp/mixture_of_experts_sample/",
                 "title": "Mixture of expertsのサンプル実装",
                 "section": "posts",

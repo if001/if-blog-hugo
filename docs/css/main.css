@@ -208,6 +208,10 @@ h5 {
     font-size: 2.0rem;
 }
 
+.article-main p {
+  line-height: 2.2em;
+}
+
 .toc {
     border: 2px dotted #cccccc;
     margin: 1em 0;
@@ -242,7 +246,6 @@ li a:hover {
 }
 
 p {
-  line-height: 2.0em;
   margin: 0.5em 0;
 }
 
