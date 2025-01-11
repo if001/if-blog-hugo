@@ -31,21 +31,49 @@
   title="アンドロイドは推理小説を書くか?"
 />
 
+
+<link rel="stylesheet" href="https://www.if-blog.sitefontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
 <link
   id="dark-mode-theme"
-  rel="stylesheet"
-  href="https://www.if-blog.site/css/dark.css"
-  disabled
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
 />
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
-<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
 <link
   href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
   rel="stylesheet"
 />
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
 
 <link
   rel="stylesheet"
@@ -64,10 +92,11 @@
   })
 </script>
 
-<script src="https://www.if-blog.site/js/main.bundle.js"></script>
-<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
 
 
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
     <meta name="description" content="" />
@@ -165,6 +194,168 @@
       
         
       
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/transformer_any_architecture/">
+    <h2 class="post-title">
+      llama2のアーキテクチャを変更してpre trainingしてみる
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。
+比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する
+transformerのatt</p>
+    <a href="https://www.if-blog.site/posts/nlp/transformer_any_architecture/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/transformer/">transformer</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/pre_training/">pre_training</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-12-05
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/hf_ds_upload/">
+    <h2 class="post-title">
+      複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>データセットなどサイズの大きいデータをHuggingface Hubにアップロードして使う場合のメモ。
+公式ドキュメントにはアップロードする方法が様々あるが、いまいちどれを使えば良いか分かりづらかったのでメモ。
+今回作成したデータセットは以下。
+https://huggingface.co/data</p>
+    <a href="https://www.if-blog.site/posts/nlp/hf_ds_upload/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-11-21
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/">
+    <h2 class="post-title">
+      HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>エラーでハマったので、hugging faceのdatasetからbatche_sizeごとのinput_idsやlabelsにするあたりの実装、特にDataLoaderとDataCollatorあたりをちゃんと確認しておく
+train loopは以下から始まる
+def train( self, r</p>
+    <a href="https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-09-21
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/xgen-jglue/">
+    <h2 class="post-title">
+      xgenでJGLUEを試す
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>日本語ベンチマークとしてJGLUE(JP Language Model Evaluation Harness)が提案されている。
+https://techblog.yahoo.co.jp/entry/2022122030379907/
+文章分類、文ペア分類、質問応答のタスクに対し評価を行う。
+タスク</p>
+    <a href="https://www.if-blog.site/posts/nlp/xgen-jglue/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/jglue/">jglue</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/xgen/">xgen</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-07-01
+  
+</div>
+
+  </div>
+</article>
+
       
         <article class="post-preview">
   <a href="https://www.if-blog.site/posts/nlp/calm_lora_quantize/">
@@ -406,162 +597,6 @@ huggi</p>
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
   >&nbsp;2023-03-20
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/">
-    <h2 class="post-title">
-      LlamaIndex(GPTIndex)を触る
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>LlamaIndexを動かしていきます。最近名前がGPTIndexから変わったみたい。
-LlamaIndexとは、LLMのPromptの作成などを外部のデータソースと連携して行えるようにしたツールキット。
-https://gpt-index.readthedocs.io/en/latest/guid</p>
-    <a href="https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-03-04
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-render-block/">
-    <h2 class="post-title">
-      code blockにrefarenceをつける
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Hugoでコードブロックを使うときは、GitHubからの引用し、その下に参照元のURLを貼り付けることが多い。 コードブロックの下にそのままURLが表示されるの若干見づらかったので、コードブロックとセットでいい感じに表示したい。
-HugoにMarkdown Render Hooksにcodebloc</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-render-block/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-02-28
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/flexgen_start/">
-    <h2 class="post-title">
-      FlexGenで遊ぶ
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>くそでかlarge language modelsは一般人の持ってるPCだと動かすこともできない。 FlexGenでは、そんなLLMを限られたリソースで実行できるようにしてくれる。
-https://github.com/FMInference/FlexGen
-日本語が喋れるモデルでも動かせるように色</p>
-    <a href="https://www.if-blog.site/posts/nlp/flexgen_start/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-02-28
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/huggingface-text-gen/">
-    <h2 class="post-title">
-      Huggingfaceのtext generation pipelineとtext2text generation pipeline
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>HuggingfaceのpipelineでTextGenerationPipelineとText2TextGenerationPipelineがあるが、 何が違うのかよくわからなかったので軽く調査。
-https://huggingface.co/docs/transformers/main_clas</p>
-    <a href="https://www.if-blog.site/posts/nlp/huggingface-text-gen/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-02-06
   
 </div>
 

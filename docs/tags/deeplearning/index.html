@@ -31,21 +31,49 @@
   title="アンドロイドは推理小説を書くか?"
 />
 
+
+<link rel="stylesheet" href="https://www.if-blog.sitefontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
 <link
   id="dark-mode-theme"
-  rel="stylesheet"
-  href="https://www.if-blog.site/css/dark.css"
-  disabled
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
 />
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
-<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
 <link
   href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
   rel="stylesheet"
 />
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
 
 <link
   rel="stylesheet"
@@ -64,10 +92,11 @@
   })
 </script>
 
-<script src="https://www.if-blog.site/js/main.bundle.js"></script>
-<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
 
 
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
     <meta name="description" content="" />
@@ -163,7 +192,155 @@
       
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/paper/paper3/">
+  <a href="https://www.if-blog.site/posts/paper/paper8/">
+    <h2 class="post-title">
+      Phi-4 Technical Report (AI論文要約)
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2412.08905
+どんなもの 140億パラメータの言語モデルphi-4。データの質に重点を置いたトレーニングレシピで開発された。ウェブコンテンツやコードなどのオーガニックデータ</p>
+    <a href="https://www.if-blog.site/posts/paper/paper8/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2025-01-11
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/paper/paper8/">
+    <h2 class="post-title">
+      Can LLMs Design Good Questions Based on Context? (AI論文要約)
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2501.03491
+どんなもの 本論文は、Large Language Models (LLMs)を用いたコンテキストベースの質問生成 (Question Generation:</p>
+    <a href="https://www.if-blog.site/posts/paper/paper8/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2025-01-11
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/paper/paper7/">
+    <h2 class="post-title">
+      rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking (AI論文要約)
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2501.04519
+どんなもの rStar-Mathは、大規模言語モデル(LLM)からの蒸留なしに、小さな言語モデル(SLM)がOpenAI o1と同等以上の数学的推論能力を持つ</p>
+    <a href="https://www.if-blog.site/posts/paper/paper7/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2025-01-11
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/paper/paper5/">
+    <h2 class="post-title">
+      Fact-aware Sentence Split and Rephrase with Permutation Invariant Training (AI論文要約)
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2001.11383
+どんなもの 複雑な文を意味を保ったまま複数の簡単な文に分割・言い換える Sentence Split and Rephrase タスクのための新しいフレームワ</p>
+    <a href="https://www.if-blog.site/posts/paper/paper5/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2025-01-02
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/paper/paper4/">
     <h2 class="post-title">
       Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)
       
@@ -174,7 +351,7 @@
     <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
 https://arxiv.org/abs/2404.07143
 どんなもの Transformerベースの大規模言語モデル(LLMs)を、bounded memoryとcomputationで無限長の入力にスケールするため</p>
-    <a href="https://www.if-blog.site/posts/paper/paper3/" class="post-read-more"></a>
+    <a href="https://www.if-blog.site/posts/paper/paper4/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -387,170 +564,6 @@ gpt-neoxのlora weight mergeの記事が見つからなかったのでメモと�
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
   >&nbsp;2023-05-21
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/rinna_3b_cpp/">
-    <h2 class="post-title">
-      rinna 3Bをcppで動かす
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>rinnaをcppで動かせるように色々試して見ました。 instructionもあり、そのままlangchainなどに突っ込んでも動かせそうということで、 ローカルで遊ぶならcppしてないと遊べないので色々試してみました。
-https://huggingface.co/rinna/japanese-</p>
-    <a href="https://www.if-blog.site/posts/nlp/rinna_3b_cpp/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-05-18
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/rs-tokenizer/">
-    <h2 class="post-title">
-      Rust TokenizerをC&#43;&#43;から呼び出す
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Bloomz.cppのtokenizerが日本語でうまく動かなかったので、 Rust製のHuggingface TokenizerをC&#43;&#43;から呼び出せるようにしました。
-初めに 「応答」の応の文字には２つのIDが振られている。
-model_name = &amp;#34;bigscience/bloomz-</p>
-    <a href="https://www.if-blog.site/posts/nlp/rs-tokenizer/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-03-31
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/bloom_lora_start/">
-    <h2 class="post-title">
-      BloomをLoRaで日本語finetuning
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>LlamaをAlpacaデータセットを使いLoRaでfine tuneしたものが良い感じだったので、Bloomを日本語で学習させてみようと思う。
-https://github.com/tloen/alpaca-lora
-とりあえず動かすまででしっかりfine tuneしきってないので注意
-huggi</p>
-    <a href="https://www.if-blog.site/posts/nlp/bloom_lora_start/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-03-20
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/">
-    <h2 class="post-title">
-      LlamaIndex(GPTIndex)を触る
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>LlamaIndexを動かしていきます。最近名前がGPTIndexから変わったみたい。
-LlamaIndexとは、LLMのPromptの作成などを外部のデータソースと連携して行えるようにしたツールキット。
-https://gpt-index.readthedocs.io/en/latest/guid</p>
-    <a href="https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-03-04
   
 </div>
 

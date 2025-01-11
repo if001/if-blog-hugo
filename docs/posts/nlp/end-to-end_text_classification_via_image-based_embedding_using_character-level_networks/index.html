@@ -31,21 +31,49 @@
   title="アンドロイドは推理小説を書くか?"
 />
 
+
+<link rel="stylesheet" href="https://www.if-blog.sitefontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
 <link
   id="dark-mode-theme"
-  rel="stylesheet"
-  href="https://www.if-blog.site/css/dark.css"
-  disabled
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
 />
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
-<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
 <link
   href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
   rel="stylesheet"
 />
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
 
 <link
   rel="stylesheet"
@@ -64,10 +92,11 @@
   })
 </script>
 
-<script src="https://www.if-blog.site/js/main.bundle.js"></script>
-<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
 
 
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
     <meta name="description" content="日本語、中国語、タイ語など、形態素解析に基づく単語境界を持たない言語の分析や理解のためには、単語の埋め込みの前に適切な単語分割を行うことが望まれるが、これらの言語では本質的に困難である。しかし、これらの言語では、それは本質的に困難である。近年、ディープラーニングに基づく様々な言語モデルの進歩は目覚ま" />
@@ -242,11 +271,11 @@
     
       <li><a href="/posts/nlp/diversity-neural-conversation-model/">ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数</a></li>
     
-      <li><a href="/posts/paper/paper3/">Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)</a></li>
+      <li><a href="/posts/paper/paper8/">Phi-4 Technical Report (AI論文要約)</a></li>
     
-      <li><a href="/posts/paper/paper3/">Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)</a></li>
+      <li><a href="/posts/paper/paper8/">Can LLMs Design Good Questions Based on Context? (AI論文要約)</a></li>
     
-      <li><a href="/posts/paper/paper2/">Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (AI論文要約)</a></li>
+      <li><a href="/posts/paper/paper7/">rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking (AI論文要約)</a></li>
     
   </ul>
 

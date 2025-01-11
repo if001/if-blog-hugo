@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-<title>Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)</title>
+<title>Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)</title>
 
   
     
@@ -31,21 +31,49 @@
   title="アンドロイドは推理小説を書くか?"
 />
 
+
+<link rel="stylesheet" href="https://www.if-blog.sitefontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
 <link
   id="dark-mode-theme"
-  rel="stylesheet"
-  href="https://www.if-blog.site/css/dark.css"
-  disabled
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
 />
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
-<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
 <link
   href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
   rel="stylesheet"
 />
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
 
 <link
   rel="stylesheet"
@@ -64,15 +92,16 @@
   })
 </script>
 
-<script src="https://www.if-blog.site/js/main.bundle.js"></script>
-<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
 
 
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
     <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
-https://arxiv.org/abs/2404.07143
-どんなもの Transformerベースの大規模言語モデル(LLMs)を、bounded memoryとcomputationで無限長の入力にスケールするため" />
+https://arxiv.org/abs/2410.04717
+どんなもの 大規模言語モデル（LLM）の指示遵守能力を向上させるためのデータセット構築戦略に関する研究。特に、instruction diversity（指示" />
   
 
 
@@ -141,7 +170,7 @@ https://arxiv.org/abs/2404.07143
               
               <h1>
 		
-		Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)
+		Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)
 		
 		
                 </h1>
@@ -189,17 +218,30 @@ https://arxiv.org/abs/2404.07143
 
       <div class="article-main">
         <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
-<p><a href="https://arxiv.org/abs/2404.07143">https://arxiv.org/abs/2404.07143</a></p>
+<p><a href="https://arxiv.org/abs/2410.04717">https://arxiv.org/abs/2410.04717</a></p>
 <h2 id="どんなもの">どんなもの</h2>
-<p>Transformerベースの大規模言語モデル(LLMs)を、<strong>bounded memory</strong>とcomputationで無限長の入力にスケールするための効率的な手法である<strong>Infini-attention</strong>を提案する。<strong>Infini-attention</strong>は、従来のAttention機構に圧縮メモリを取り込み、<strong>masked local attention</strong>と<strong>long-term linear attention</strong>機構を単一のTransformerブロックに統合している。10億パラメータと80億パラメータのLLMを用いて、長文脈言語モデリングベンチマーク、100万トークン長のパスキーコンテキストブロック検索タスク、50万トークン長の書籍要約タスクで有効性を示した。</p>
+<p>大規模言語モデル（LLM）の指示遵守能力を向上させるためのデータセット構築戦略に関する研究。特に、<strong>instruction diversity</strong>（指示の多様性）が汎化性能に与える決定的な影響を明らかにしている。 制御された実験を通して、<strong>instruction-following</strong>（指示遵守）能力に焦点を当て、推論や知識検索能力とは切り離して評価している。</p>
 <h2 id="先行研究と比べてどこがすごいの">先行研究と比べてどこがすごいの？</h2>
-<p>先行研究であるTransformer-XLやCompressive Transformer、Memorizing Transformers、RMT、AutoCompressorsと比較して、<strong>Infini-attention</strong>は、<strong>bounded memory</strong>で無限長の文脈を処理できる点が優れている。具体的には、メモリサイズはMemorizing Transformersと比べて114倍小さく、かつ、より低いperplexityを達成する。また、10億パラメータのLLMにおいて、100万トークン長のパスキー検索タスクを解き、80億パラメータのLLMにおいて、50万トークン長の書籍要約タスクでSOTAを達成した。先行研究では、メモリサイズが 文脈長に比例して増加したり、圧縮に依存して効率が低下したりする問題があったが、本手法ではこれらの問題を解決している。</p>
+<p>先行研究では、データセットの選択やデータ量の増加がLLMの性能に与える影響について、ばらつきのある結果が報告されていた。本研究は、<strong>instruction-following</strong>能力に焦点を絞り、<strong>instruction diversity</strong>の重要性を厳密に検証した点が優れている。 特に、Turing-complete Markov algorithmに着想を得た制御された実験により、多様な意味 領域にわたるデータの多様化が、未知の指示への汎化に不可欠であることを示している。単に限定的な領域内で多様化しても、堅牢な汎化は保証されないことを明らかにしている。</p>
 <h2 id="技術や手法のきもはどこにある">技術や手法のきもはどこにある？</h2>
-<p><strong>Infini-attention</strong>の核心は、従来のAttention機構にcompressive memoryを統合し、<strong>masked local attention</strong>と<strong>long-term linear attention</strong>を組み合わせている点 にある。compressive memoryには、AttentionのKeyとValueの状態を再利用し、過去のKV状態を破棄するのではなく保存することで、無限長の文脈履歴を保持する。<strong>long-term linear attention</strong>を用いてメモリから値を検索し、<strong>masked local attention</strong>による局所的な文脈情報と統合することで、最終的な文脈出力を計算する。メモリ更新には、associative matrixとdelta ruleを採用し、計算効率と安定性を両立している。さらに、gating scalar βを用いて、長期記憶と局所的情報のバランスを学習する。</p>
+<p>Turing-complete Markov algorithmに着想を得た文字列置換タスクを用いた制御実験が中心。このタスクは、LLMの<strong>instruction-following</strong>能力を、推論能力とは独立に評価できるシンプルなモデルを提供する。 実験では、<strong>instruction diversity</strong>を様々な方法で変化させ（指示の数、No-Opの割合、指示の分布、意味制約など）、未知の指示に対する汎化性能を測定している。さらに、専門家モデルと汎用モデルのファインチューニング実験にも拡張し、現実世界のシナリオでの有効性を検証している。</p>
 <h2 id="どうやって有効だと検証した">どうやって有効だと検証した？</h2>
-<p>長文脈言語モデリングベンチマーク、100万トークン長のパスキーコンテキストブロック検索タスク、50万トークン長の書籍要約タスクの3つのタスクで検証を行った。言語モデリングタスクでは、Infini-TransformerがTransformer-XLやMemorizing Transformersを上回る性能を示した。パスキー検索タスクでは、10億パラメータのLLMに<strong>Infini-attention</strong>を適用することで、100万トークン長の入力に対しても高い精度でパスキーを検索できた。書籍要約タスクでは、80億パラメータのLLMに<strong>Infini-attention</strong>を適用することで、SOTAを達成した。</p>
+<ul>
+<li>
+<p><strong>制御実験（文字列置換タスク</strong>）: 異なるレベルの<strong>instruction diversity</strong>で訓練したGPT-2モデルを、未知の指示でテスト。指示の多様性が一定の閾値を超えると、汎化 性能が劇的に向上することを示した。</p>
+</li>
+<li>
+<p><strong>抽象化を導入した実験</strong>: 数学的推論タスクを用いて、抽象的な規則とその具体的な適用（groundings）を扱うより複雑な状況をシミュレート。 規則の多様性の増加が汎化性能を向上させることを確認した。</p>
+</li>
+<li>
+<p><strong>現実世界での実験（コード生成）</strong>: HumanEval、MBPP、EvalPlusなどのベンチマークを用いて、コード生成モデルのファインチューニング実験を実施。コード特化データと一 般ドメインデータ（Alpacaなど）を混ぜることで、性能向上を確認した。</p>
+</li>
+<li>
+<p><strong>現実世界での実験（汎用LLM）</strong>: UltraInteract-SFT、OpenOrca、Alpacaのデータ混合による汎用LLMのファインチューニング実験。データの多様化が、データ量の増加よりも 効果的であることを示した。</p>
+</li>
+</ul>
 <h2 id="議論はあるか">議論はあるか</h2>
-<p>論文では、<strong>Infini-attention</strong>におけるgating scoreの挙動について、専門化されたヘッドとミキサーヘッドの2種類が存在することを示している。しかし、この挙動がどの ようなメカニズムで生じるのか、さらなる分析が必要である。また、異なる種類のcompressive memoryやmemory update、memory retrieval手法を用いた場合の性能比 較についても、今後の研究課題として挙げられる。さらに、極端に長いシーケンスに対する汎化性能についても、より詳細な検証が必要である。</p>
+<p>現実世界のデータセットでは、指示が完全に均一に分布することはありえない。本研究では、power law distributionを用いて不均衡な分布の影響を検証し、十分な意味的カバレッジがあれば汎化が可能であることを示唆しているが、現実世界のデータセットにおける不均衡の影響については更なる検討が必要となる可能性がある。また、専門家モデルの訓練において、専門領域外のデータの導入による性能向上は、どの程度の領域の広がりが必要なのか、最適なバランスは何かといった点については、今後の研究でより詳細な検討が必要である。さらに、異なるデータセットを混合する際の最適な比率についても、タスクやモデルによって異なる可能性があり、普遍的な最適解を見つけることは難しいかもしれない。</p>
 
       </div>
       <div class="related-article">
@@ -208,15 +250,15 @@ https://arxiv.org/abs/2404.07143
   <h2>See Also</h2>
   <ul>
     
-      <li><a href="/posts/paper/paper3/">Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)</a></li>
+      <li><a href="/posts/paper/paper8/">Phi-4 Technical Report (AI論文要約)</a></li>
     
-      <li><a href="/posts/paper/paper2/">Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (AI論文要約)</a></li>
+      <li><a href="/posts/paper/paper8/">Can LLMs Design Good Questions Based on Context? (AI論文要約)</a></li>
     
-      <li><a href="/posts/paper/paper1/">Mechanistic Unlearning: Robust Knowledge Unlearning and Editing via Mechanistic Localization(AI論文要約)</a></li>
+      <li><a href="/posts/paper/paper7/">rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking (AI論文要約)</a></li>
     
-      <li><a href="/posts/nlp/calm_lora_quantize/">OpenCALM-7Bをloraで学習して、quantizeするまで</a></li>
+      <li><a href="/posts/paper/paper5/">Fact-aware Sentence Split and Rephrase with Permutation Invariant Training (AI論文要約)</a></li>
     
-      <li><a href="/posts/nlp/rinna_lora_ja/">loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</a></li>
+      <li><a href="/posts/paper/paper4/">Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)</a></li>
     
   </ul>
 

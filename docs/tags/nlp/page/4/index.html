@@ -31,21 +31,49 @@
   title="アンドロイドは推理小説を書くか?"
 />
 
+
+<link rel="stylesheet" href="https://www.if-blog.sitefontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
 <link
   id="dark-mode-theme"
-  rel="stylesheet"
-  href="https://www.if-blog.site/css/dark.css"
-  disabled
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
 />
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
-<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
 <link
   href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
   rel="stylesheet"
 />
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
 
 <link
   rel="stylesheet"
@@ -64,10 +92,11 @@
   })
 </script>
 
-<script src="https://www.if-blog.site/js/main.bundle.js"></script>
-<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
 
 
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
     <meta name="description" content="" />
@@ -161,6 +190,122 @@
       
         
       
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/seqgan-paper/">
+    <h2 class="post-title">
+      SeqGANの論文を読む
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
+https://arxiv.org/pdf/1609.05473.pdf
+SeqGANの論文を読んだのでまとめておきます。実装を行おうと思って読んだので手法をメインに読</p>
+    <a href="https://www.if-blog.site/posts/nlp/seqgan-paper/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/seqgan/">SeqGAN</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/">
+    <h2 class="post-title">
+      ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Qiitaに投稿した記事、kerasでHREDを構築してみるの記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
+A Diversity-Promoting Objective Function for Neural Conversation Models htt</p>
+    <a href="https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/seq2seq/">seq2seq</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/">
+    <h2 class="post-title">
+      自然言語処理シリーズの構文解析を読む（概要）
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>はじめに 自然言語処理シリーズの構文解析を読んでいきます。
+全体の概要把握:1時間 中身の細かいとこ：3時間 という感じで読み進めて行こうと思います。
+概要 構文解析を用いることで、単語の並びの背後にある文法的な構造を明らかにすることができる。構文解析を学ぶことで、自然言語処理で用いられる様々な先人</p>
+    <a href="https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/">構文解析</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
       
         <article class="post-preview">
   <a href="https://www.if-blog.site/posts/nlp/char-vec/">
