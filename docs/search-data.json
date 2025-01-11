@@ -785,16 +785,6 @@
         ,
             {
                 "id": 78,
-                "href": "https://www.if-blog.site/pages/about/",
-                "title": "About",
-                "section": "pages",
-                "date" : "0001.01.01",
-                "body": " Me if_004 Description 自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。コメントはtwitterにお願いします。 Language scala golang python vue.js angular react elisp Twitter if_004 本の管理アプリ Book Storage "
-            }
-    
-        ,
-            {
-                "id": 79,
                 "href": "https://www.if-blog.site/posts/typescript/react-render-prop-typescript/",
                 "title": "reactのrender propsをtypescriptでやる",
                 "section": "posts",
