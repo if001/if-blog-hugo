@@ -1,6 +1,4 @@
 ---
 title: "About"
+layout: "about"
 ---
-
-{{<about>}}
-
