@@ -59,21 +59,21 @@
 
 
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
-/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
 <script>
-  $(document).ready(function () {
+  document.addEventListener("DOMContentLoaded", function() {
     renderMathInElement(document.body, {
       delimiters: [
-        { left: '[[', right: ']]', display: true },
-        { left: '$', right: '$', display: false },
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
       ],
-    })
-  })
+      throwOnError : false
+    });
+  });
 </script>
 
 
@@ -178,6 +178,267 @@
       
         
         
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/neuralnet/combine-model/">
+    <h2 class="post-title">
+      kerasでモデルを結合する
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。
+autoencoderの学習の際には、作成したencoderのModelとdecoderのModelを結合する。
+Modelの結合は前はできなかった</p>
+    <a href="https://www.if-blog.site/posts/neuralnet/combine-model/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/keras/">keras</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/others/aws-cli-at-pyenv/">
+    <h2 class="post-title">
+      pyenv環境でaws cli入れたらコマンドが見つからない
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>pyenv環境でaws cli入れたらコマンドが見つからないって言われたので調べたメモ
+バージョン：pyenv:1.0.10
+公式通りにインストールする。
+$ pip3 install awscli --upgrade --user すると、
+$ aws -bash: aws: command no</p>
+    <a href="https://www.if-blog.site/posts/others/aws-cli-at-pyenv/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/aws/">aws</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/others/rust-macro-use-another/">
+    <h2 class="post-title">
+      Rustでmodule間にまたがるmacro呼び出し
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Rustのmacroをモジュール化して、別のモジュールから呼ぼうと思ったらうまくいかなかった。
+日本語の記事があまりなかったのと、自分の備忘録ようにメモを残しておく。
+rustのバージョンは1.27.0
+参考 https://github.com/rust-lang/book/issues/401
+</p>
+    <a href="https://www.if-blog.site/posts/others/rust-macro-use-another/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/rust/">rust</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/seqgan-paper/">
+    <h2 class="post-title">
+      SeqGANの論文を読む
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
+https://arxiv.org/pdf/1609.05473.pdf
+SeqGANの論文を読んだのでまとめておきます。実装を行おうと思って読んだので手法をメインに読</p>
+    <a href="https://www.if-blog.site/posts/nlp/seqgan-paper/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/seqgan/">SeqGAN</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/word2vec-output-word/">
+    <h2 class="post-title">
+      word2vecでベクトルから単語を出力する
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 https://stackoverflow.com/questions/32759712/how-to-fin</p>
+    <a href="https://www.if-blog.site/posts/nlp/word2vec-output-word/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/word2vec/">word2vec</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/">
+    <h2 class="post-title">
+      ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Qiitaに投稿した記事、kerasでHREDを構築してみるの記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
+A Diversity-Promoting Objective Function for Neural Conversation Models htt</p>
+    <a href="https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/seq2seq/">seq2seq</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/others/tex-notation-numerical-formula/">
+    <h2 class="post-title">
+      機械学習系の数式によく出てくる記号などのTex表記まとめ
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>すぐ忘れるのでTex表記をまとめて起きます。 Qiitaが使っているというEasy Copy MathJaxを用います。
+読み 表示 tex デルタ $\Delta$ \Delta ナブラ $\nabla$ \nabla 白抜き $\mathbb E[\cdot]$ \mathbb E[\cdot]</p>
+    <a href="https://www.if-blog.site/posts/others/tex-notation-numerical-formula/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/tex/">tex</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
       
         <article class="post-preview">
   <a href="https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/">
@@ -651,222 +912,6 @@ markdownを書いたりと普段触るのはcontentディレクトリになる�
 </article>
 
       
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-code-highlight/">
-    <h2 class="post-title">
-      Hugoの記事でコードハイライトする
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Hugoでコードのシンタックスハイライトする場合のメモ
-Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。
-Hugo自体の機能使う Hugo 0.28からGo機能でシンタックスハイライトが可能になった。
-Syntax Highlighting
-c</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-code-highlight/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-add-site-description/">
-    <h2 class="post-title">
-      Hugoの記事にdescriptionを追加する
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
-html側で次のように書くと、markdownに書いたdescriptionが参照できます。
-{{ .Des</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-add-site-description/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/">
-    <h2 class="post-title">
-      Hugoの記事に画像を載せる
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
-画像を配置するディクトリを以下のように作っておく。
-{root}/content/post/images/ 以下のように記述すると表示できる。
-{{&amp;lt; figure src=&amp;#34;../../images/test.p</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/">
-    <h2 class="post-title">
-      Hugoの記事を更新順にソートする
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Hugoの記事を更新順にソートするメモです。
-まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、Lastmodで更新時刻が取得できるのでそれを使います。
-そのほかにもgitから情報が取得できます。https:</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-git-pages/">
-    <h2 class="post-title">
-      HugoをGitHub Pagesで公開する
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>GitHub Pagesを使ってHugoを公開する手順をメモ
-やりたいこととしては、
-Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定 の3つです。
-GitHub Pagesで公開 まずは、Hugoのプロジェクトル</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-git-pages/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/typescript/react-render-prop-typescript/">
-    <h2 class="post-title">
-      reactのrender propsをtypescriptでやる
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>childrenに引数渡したい時、render propを使えばできる。 functional componentでのやり方がわからなくていろいろハマったのでメモ
-https://reactjs.org/docs/render-props.html
-結論 // children interface </p>
-    <a href="https://www.if-blog.site/posts/typescript/react-render-prop-typescript/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/typescript/">typescript</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/react/">react</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;0001-01-01
-  
-</div>
-
-  </div>
-</article>
-
-      
     </div>
 
     
@@ -879,6 +924,12 @@ https://reactjs.org/docs/render-props.html
             >
           </li>
         
+        
+          <li class="next">
+            <a href="https://www.if-blog.site/page/5/"
+              ><i class="fas fa-chevron-right"></i
+            ></a>
+          </li>
         
       </ul>
     

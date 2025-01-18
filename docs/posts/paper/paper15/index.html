@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Small Language Models (SLMs) Can Still Pack a Punch: A survey (AI論文要約)</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2501.05465
+どんなもの 本論文 &amp;ldquo;Small Language Models (SLMs) Can Still Pack a Punch: A survey&amp;" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Small Language Models (SLMs) Can Still Pack a Punch: A survey (AI論文要約)
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-01-18
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2501.05465">https://arxiv.org/abs/2501.05465</a></p>
+<h2 id="どんなもの">どんなもの</h2>
+<p>本論文 &ldquo;Small Language Models (SLMs) Can Still Pack a Punch: A survey&rdquo; は、パラメータ数が10億～80億のSmall Language Models (SLMs) に関するサーベイ論文です。大規 模言語モデル (LLMs) の台頭に対し、巨大な規模だけが唯一の進歩の道ではないという疑問を提起し、SLMsがLLMsと同等、もしくは凌駕する性能を示すことを示す約160本の論文を調査しています。タスク非依存の汎用SLMs、タスク依存のSLMs、そしてSLMsを作成するための技術を網羅的に解説し、性能、効率性、スケーラビリティ、コストのバランスを取り ながらモデル構築を行うための指針を示しています。さらに、LLMsに対するSLMsの有効サイズを定義し、特徴づけています。</p>
+<h2 id="先行研究と比べてどこがすごいの">先行研究と比べてどこがすごいの？</h2>
+<p>先行研究であるLLMsに関するサーベイ論文 ([153, 47, 96, 158]) は、主に100億パラメータを超える大規模モデルを対象としており、SLMsについては軽く触れている程度でした。本論文は、近年発表された、大規模モデルと同等、もしくはそれ以上の性能を示すSLMsに焦点を当てた、世界で初めてのサーベイ論文です。  SLMsの設計、アーキテクチャ、そし て大規模モデルに匹敵する、あるいは場合によっては凌駕する性能を達成可能にする革新的な技術を詳細に分析しています。</p>
+<h2 id="技術や手法のきもはどこにある">技術や手法のきもはどこにある？</h2>
+<p>SLMsの有効性を高めるための主要な技術や手法として、以下のものが挙げられています。</p>
+<ul>
+<li><strong>様々な種類のSLMsの分類</strong>: タスク非依存型SLMs、タスク依存型SLMsに分類し、それぞれの特徴を分析。</li>
+<li><strong>効果的な訓練手法</strong>:  知識蒸留 (KD)、命令微調整 (instruction tuning)、思考連鎖 (Chain-of-Thought, CoT)、説明チューニング (explanation tuning)、漸進的学習 (progressive learning) など、SLMsを効率的に訓練するための様々な手法を紹介。特に、LLMsから得られた説明トレースを活用する手法が有効であると示唆。</li>
+<li><strong>効率的なアーキテクチャ</strong>: Transformerアーキテクチャをベースとしたモデルに加え、状態空間モデル (SSMs) を用いたハイブリッドアーキテクチャ (Hymba, Zamba, Jamba, Mamba) などの効率的なアーキテクチャの検討。</li>
+<li><strong>データ戦略</strong>: 高品質なデータセットの重要性を強調。LLMによって生成された合成データセット (TinyStories, TinyGSM) や、Common Crawlなどのインターネットデータセット (Pile) の活用例を紹介。</li>
+<li><strong>ポストトレーニング最適化</strong>: 量子化 (SmoothQuant, GPTQ, AWQ) やモデルプルーニング (BIP, HIL) などの手法によるモデルの軽量化と性能維持・向上。</li>
+<li><strong>ドラフトモデルの活用</strong>: 推論速度を向上させるためのドラフトモデルの概念と、独立型、依存型のドラフトモデルのアーキテクチャを紹介。</li>
+</ul>
+<h2 id="どうやって有効だと検証した">どうやって有効だと検証した？</h2>
+<p>論文では、様々なSLMsの性能を、MMLU、HellaSwag、Winogrande、PIQA、ARC、BoolQ、GSM8K、HumanEval、MBPP、MATHなどの標準的なベンチマークを用いて評価しています。  多くの場合、SLMsは、パラメータ数がはるかに大きいLLMsと比較して同等以上の性能を示すことが示されています。また、論文では、モデルの性能に基づいて「有効サイズ」を推定し 、パラメータ数よりもはるかに大きなLLMsと同等の性能を持つSLMsが存在することを示しています。</p>
+<h2 id="議論はあるか">議論はあるか</h2>
+<p>論文では、SLMsがLLMsを凌駕する性能を示す理由について、データの質が量よりも重要であるという点以外、明確な結論は示されていません。既存のスケーリング則 (KaplanとChinchillaの法則) がSLMsの驚くべき性能を説明できない可能性を指摘し、データの質を考慮した修正版スケーリング則を提案しています。しかし、データの質を客観的に評価する方法については今後の課題として残されています。  また、タスク特化型SLMsが、特定のタスクにおいては、大規模汎用モデルを上回る性能を示すことも示されていますが、その理 由についても更なる研究が必要とされています。  さらに、SLMsの評価指標についても、言語タスクだけでなく、マルチモーダル理解、安全性、LLMsが苦手とする高度な専門タス クなど、より包括的な評価指標が必要であると議論されています。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper16/">Language Model Can Listen While Speaking (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper13/">MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper10/">SentenceVAE: Enable Next-sentence Prediction for Large Language Models with Faster Speed, Higher Accuracy and Longer Context (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper14/">Tensor Product Attention Is All You Need (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper11/">Titans: Learning to Memorize at Test Time (AI論文要約)</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

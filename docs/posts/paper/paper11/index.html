@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Titans: Learning to Memorize at Test Time (AI論文要約)</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2501.00663
+どんなもの Titansは、テスト時に情報を記憶することを学習する新しいニューラル長期記憶モジュールを備えた、深層学習アーキテクチャのファミリーです。 このモ" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Titans: Learning to Memorize at Test Time (AI論文要約)
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-01-18
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2501.00663">https://arxiv.org/abs/2501.00663</a></p>
+<h2 id="どんなもの">どんなもの</h2>
+<p>Titansは、テスト時に情報を記憶することを学習する新しいニューラル長期記憶モジュールを備えた、深層学習アーキテクチャのファミリーです。  このモジュールは、過去のコンテキストを記憶し、Attentionメカニズムが現在のコンテキストに注意を払いつつ、過去の情報を活用できるようにします。  Titansは、短期記憶として機能するAttentionメカニズムと、長期記憶として機能するニューラルメモリモジュールを組み合わせたアーキテクチャです。3つのバリエーション（Memory as a Context (MAC)、Memory as a Gate (MAG)、Memory as a Layer (MAL)）が提案されています。</p>
+<h2 id="先行研究と比べてどこがすごいの">先行研究と比べてどこがすごいの？</h2>
+<ul>
+<li><strong>長期記憶の効率的な学習と利用:</strong>  既存のアーキテクチャ（Hopfield Networks、LSTMs、Transformers）は、汎化、長さの推定、推論において課題を抱えていましたが、Titansはテスト時に効率的かつ効果的に記憶することを学習するニューラル長期記憶モジュールを導入することで、これらの課題を克服します。</li>
+<li><strong>Transformerや最近の線形再帰モデルを凌駕する性能:</strong> 言語モデリング、常識推論、ゲノミクス、時系列タスクにおいて、Transformersや最近の最新の線形再帰モデルよりも 優れた性能を示します。</li>
+<li><strong>大規模なコンテキストウィンドウへの対応:</strong>  Transformersの二次的な計算コストの問題を克服し、2Mを超えるコンテキストウィンドウサイズに効果的にスケールし、needle-in-haystackタスクにおいて高い精度を達成します。</li>
+<li><strong>並列化可能な高速な学習アルゴリズム:</strong>  ニューラル長期記憶モジュールの学習は、並列化可能な高速なアルゴリズムを用いて行われます。</li>
+</ul>
+<h2 id="技術や手法のきもはどこにある">技術や手法のきもはどこにある？</h2>
+<ul>
+<li><strong>ニューラル長期記憶モジュール:</strong>  テスト時にデータをパラメータに記憶する方法を学習するメタモデルとして設計されています。人間の長期記憶システムに着想を得ており 、「驚き」の度合いを勾配を用いて測定し、驚くべき入力ほど記憶されやすくなります。  減衰メカニズムにより、記憶容量の制限に対処します。この減衰メカニズムは、最新の再帰モデルにおける忘却メカニズムの一般化となっています。</li>
+<li><strong>ミニバッチ勾配降下法のテンソル化:</strong>  高速で並列化可能な学習アルゴリズムを実現するために、ミニバッチ勾配降下法をテンソル化し、より多くのmatmul演算を使用します 。</li>
+<li><strong>持続的メモリ:</strong> タスクに関する知識をエンコードする、学習可能だがデータ非依存のパラメータです。</li>
+<li><strong>3つのTitansアーキテクチャ:</strong>  短期記憶（限定的なウィンドウサイズのAttention）、長期記憶（ニューラル長期記憶モジュール）、持続的メモリを、(1)コンテキストとして、(2)ゲートとして、(3)層として、それぞれ統合した3つのアーキテクチャバリエーションを提供します。</li>
+</ul>
+<h2 id="どうやって有効だと検証した">どうやって有効だと検証した？</h2>
+<p>言語モデリング、常識推論、needle-in-haystackタスク、DNAモデリング、時系列予測タスクにおいて、様々なベースラインモデルと比較実験を行い、Titansの有効性を検証しまし た。  特に、長いコンテキストを扱うタスクにおいて、Titansはベースラインモデルよりも優れた性能を示しました。</p>
+<h2 id="議論はあるか">議論はあるか</h2>
+<ul>
+<li><strong>メモリ深度の影響:</strong> 深いメモリモジュールは性能を向上させるが、トレーニングのスループットを低下させるというトレードオフが存在します。</li>
+<li><strong>アーキテクチャのバリエーション:</strong> 3つのTitansアーキテクチャはそれぞれ長所・短所があり、効率性と有効性のトレードオフを示しています。  MACとMAGは言語モデリング と常識推論タスクで同等の性能を示しますが、MACは長いコンテキストのNIAHタスクでより優れた性能を示します。  MALはトレーニングが高速ですが、MACやMAGほど性能は高くありません。</li>
+<li><strong>計算コスト:</strong>  非常に長いシーケンスを扱う場合の計算コストに関する詳細な分析が不足しています。</li>
+</ul>
+<p>論文では、大規模モデルの結果を今後のバージョンで報告すると述べられており、今後の研究の発展が期待されます。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper16/">Language Model Can Listen While Speaking (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper13/">MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper10/">SentenceVAE: Enable Next-sentence Prediction for Large Language Models with Faster Speed, Higher Accuracy and Longer Context (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper15/">Small Language Models (SLMs) Can Still Pack a Punch: A survey (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper14/">Tensor Product Attention Is All You Need (AI論文要約)</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -5,7 +5,77 @@
         
             {
                 "id": 0,
-                "href": "https://www.if-blog.site/posts/paper/paper8/",
+                "href": "https://www.if-blog.site/posts/paper/paper16/",
+                "title": "Language Model Can Listen While Speaking (AI論文要約)",
+                "section": "posts",
+                "date" : "2025.01.18",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2408.02622\nどんなもの 本論文は、リアルタイムの双方向音声対話を実現する、Listening-while-Speaking Language Model (LSLM) を提案している。LSLMは、音声生成チャネルとリアルタイム音声入力チャネルの両方を備えた、エンドツーエンドのモデルである。音声生成にはトークンベースのdecoder-only TTS、音声入力にはストリーミングSelf-Supervised Learning (SSL) エンコーダを使用し、両チャネルを融合することで、自動回帰的な音声生成とリアルタイムのターンテイク検出を行う。\n先行研究と比べてどこがすごいの？ 先行研究のSpeech Language Model (SLM) はターンベースの会話に限定されており、リアルタイムの音声状況や割り込みに対応できないという限界があった。一方、LSLMは、Full Duplex Modeling (FDM) を実現することで、音声生成中にリアルタイムで音声入力を処理し、割り込みに対応できる。既存のモデルは、テキスト中心のLLMをベースに外部のASRとTTSモジュールを必要としていたため、レイテンシが問題となり、パラリンギスティックな能力も不足していたが、LSLMはSLM自体にFDM能力を持たせることで、これらの問題を 解決している。また、ノイズへの頑健性と未知の話者への感度も実験で示されている。\n技術や手法のきもはどこにある？ LSLMの核となる技術は、音声生成チャネルと音声入力チャネルの同時処理と融合にある。音声生成には、リアルタイム性を重視したトークンベースのdecoder-only TTSを使用。音 声入力には、ストリーミング処理可能なvq-wav2vecを用いたSSLエンコーダを使用する。両チャネルの融合戦略として、Early Fusion、Middle Fusion、Late Fusionの3つの手法を 検討し、Middle Fusionが音声生成とリアルタイム対話のバランスにおいて最適であることを示している。さらに、割り込みを検知するために、IRQ (Interruption Request) トー クンを導入している。\nどうやって有効だと検証した？ LSLMの有効性を検証するために、Command-based FDM と Voice-based FDM の2つの実験設定を用いた評価を行った。Command-based FDMでは、特定のコマンドによる割り込み、Voice-based FDMでは、未知の話者による様々な単語による割り込みをシミュレートした。評価指標としては、音声生成能力の評価にWord Error Rate (WER)、対話能力の評価 にPrecision、Recall、F1スコアを用いた。結果、LSLMはノイズに頑健であり、未知の話者からの割り込みにも感度良く反応し、既存システムへの影響を最小限に抑えながら双方向通信を実現できることを示した。\n議論はあるか 論文では、Middle Fusionが最適な融合戦略であると結論付けているが、データセットやモデルアーキテクチャによっては、他の融合戦略がより良い結果を示す可能性もある。また、Voice-based FDMにおけるWERの上昇は、リアルタイムのターンテイク問題の複雑さを示唆しており、さらなる改善の余地がある。さらに、より現実的なシナリオへの適用や、話 者追跡機能の追加、音声・視覚情報の同時利用など、今後の研究課題が提示されている。\n"
+            }
+    
+        ,
+            {
+                "id": 1,
+                "href": "https://www.if-blog.site/posts/paper/paper13/",
+                "title": "MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)",
+                "section": "posts",
+                "date" : "2025.01.18",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2501.08313\nどんなもの MiniMax-01シリーズ（MiniMax-Text-01とMiniMax-VL-01を含む）は、最先端モデルと同等の性能を持ちながら、より長いコンテキストを処理できる優れた能力を持つ基盤モデルで す。 長コンテキスト処理を可能にするために、効率的なスケーリングが可能なlightning attentionを採用しています。計算能力を最大化するため、Mixture of Experts (MoE)と統合されており、32個の専門家と合計4560億個のパラメータを持ち、各トークンに対して459億個のパラメータが活性化されます。\n先行研究と比べてどこがすごいの？ MiniMax-01は、GPT-4oやClaude-3.5-Sonnetなどの最先端モデルと同等の性能を達成しながら、20～32倍長いコンテキストウィンドウ（最大400万トークン）を提供します。先行研 究で提案されたsparse attention、linear attention、long convolutions、state space models、linear RNNsなどは、理論的には有望でしたが、商業規模のモデルへの採用は限 られていました。MiniMax-01は、これらの先行研究の限界を克服し、大規模なlinear attentionの実装に初めて成功した点で優れています。\n技術や手法のきもはどこにある？ MiniMax-01の核となる技術はlightning attentionです。これは、因果言語モデリングにおける遅いcumsum演算を回避するタイル化技術を用いた、linear attentionのI/O対応 の最適化実装です。 計算の複雑さを線形に削減し、長コンテキストの処理を効率化します。さらに、計算能力とパラメータ数を最大化するためにMixture of Experts (MoE) を採用し、効率的な並列化戦略と計算・通信オーバーラップ技術を開発することで、数百億パラメータのモデルを効率的に訓練・推論できるようにしています。 また、softmax attentionとlightning attentionを組み合わせたハイブリッドアーキテクチャを採用することで、retrieval性能も向上させています。\nどうやって有効だと検証した？ 標準的な学術ベンチマーク（MMLU、MMLU-Pro、C-SimpleQA、IFEval、GPQA、MATH、Humanevalなど）と、実世界の使用状況から導き出された社内ベンチマークの両方で、MiniMax-01の有効性を検証しました。結果、最先端モデルと同等の性能を達成し、特に20万トークンを超えるコンテキストでは、有意に優れた性能を示しました。 さらに、様々な規模のモ デル（7000万～70億パラメータ）を用いたスケーリング実験を行い、lightning attentionのスケーラビリティと、softmax attentionとの比較を行いました。 また、MoEアーキテクチャの有効性についても、密なモデルとの比較実験で検証しています。 長コンテキストの処理効率については、prefilling latencyの比較や、様々なattention機構の訓練速度の比較実験も行っています。\n議論はあるか linear attentionの限界: 純粋なlinear attentionモデルは計算効率が良いものの、retrieval能力が不足しており、in-context learningには適さないことが示されました。そのため、softmax attentionと組み合わせたハイブリッドアーキテクチャを採用しています。このハイブリッドアプローチの妥当性については、更なる議論が必要となる可能性があります。 スケーリング則の精度: 大規模モデルへの外挿において、スケーリング則の予測精度が低下する問題がありました。論文では、これを解決するための新たな式を提案していますが、その一般性や信頼性については、更なる検証が必要です。 長コンテキスト評価の限界: 現在の長コンテキスト評価データセットは、人工的なシナリオに偏っている可能性があり、文書分析などの実用的なタスクにおける長文の推論 能力の評価は依然として限られています。より現実的な設定での評価が必要となります。 データセットのバイアス: 使用されたデータセットにバイアスが含まれている可能性があり、それがモデルの性能や公平性に影響を与えている可能性があります。 この点 についての詳細な分析が必要です。 "
+            }
+    
+        ,
+            {
+                "id": 2,
+                "href": "https://www.if-blog.site/posts/paper/paper10/",
+                "title": "SentenceVAE: Enable Next-sentence Prediction for Large Language Models with Faster Speed, Higher Accuracy and Longer Context (AI論文要約)",
+                "section": "posts",
+                "date" : "2025.01.18",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2408.00655\nどんなもの Large Language Models (LLMs) の推論効率を向上させるための新しい推論方法である next-sentence prediction を提案する。これは、Sentence Variational Autoencoder (SentenceVAE) を用いて、文を1つのトークンに圧縮し、LLMに入力することで実現される。SentenceVAEは、文をエンコードする Sentence Encoder と、圧縮されたトークンを元の文 に復元する Sentence Decoder から構成される。SentenceVAEをLLMの入力層と出力層に統合することで、文単位で推論を行う Sentence-level LLMs (SLLMs) を開発する。\n先行研究と比べてどこがすごいの？ 先行研究では、複数のトークンを同時に予測する手法が提案されているが、予測するトークンの数は固定されており、入力コンテキストの分割が柔軟性に欠けていた。本研究では、SentenceVAEを用いることで、文のセマンティックな内容に基づいて最適なトークンの数を適応的に選択し、推論速度の向上と精度の維持・向上を両立する。具体的には、従来のト ークン単位の予測 (next-token prediction) に比べ、next-sentence prediction によって推論速度を204～365%向上させ、perplexity (PPL) を46～75%削減、メモリオー バーヘッドを86～91%削減できることを実証した。\n技術や手法のきもはどこにある？ SentenceVAEのSentence EncoderとSentence Decoderが技術・手法のキモである。Sentence Encoderは、文中の複数のword-level tokensを1つのsentence-level tokenに圧 縮する。Sentence Decoderは、このsentence-level tokenを元のword-level tokensのシーケンスに復元する。文を単位として処理することで、元のセマンティックな内容の整合性 を維持し、精度を向上させる。また、sentence segmentation mechanismとfeature fusion mechanismにより、可変長のトークンシーケンスを単一のsentence-level token にエンコードする。\nどうやって有効だと検証した？ Wanjuanデータセットを用いた広範な実験により検証した。SentenceVAE単体では、自己教師あり学習で訓練し、クロスエントロピー損失とPPLを用いて検証セットで評価した。SLLMsについては、オープンソースのOPTシリーズのLLMにSentenceVAEを統合し、従来のOPTモデルと比較することで、推論速度、PPL、メモリ使用量を評価した。その結果、SLLMsは従来のLLMと比べて推論速度が2～3倍高速化し、PPLが改善し、メモリ使用量が削減されることを確認した。さらに、SLLMsがScaling Lawに従うことも確認した。\n議論はあるか SentenceVAEの性能: SentenceVAEの性能は、hidden sizeとhidden layersの数に依存する。より大きなモデルは、より良い性能を示す傾向があるが、計算コストも増加する。 入力データの前処理: SentenceVAEは、句読点で文を分割する前処理を必要とする。この前処理が不適切な場合、モデルの性能に影響を与える可能性がある。実験では、一部 の異常な入力に対してもある程度の頑健性を示しているものの、全てのケースで完璧な結果が得られるわけではない。 Scaling Lawの適用範囲: 本研究では、125Mから1.3BパラメータのモデルでScaling Lawを確認したが、より大きなモデルへの適用範囲については、今後の研究が必要である。 言語依存性: 現状、英語コーパスのみで訓練されているため、多言語への対応が今後の課題となる。 "
+            }
+    
+        ,
+            {
+                "id": 3,
+                "href": "https://www.if-blog.site/posts/paper/paper15/",
+                "title": "Small Language Models (SLMs) Can Still Pack a Punch: A survey (AI論文要約)",
+                "section": "posts",
+                "date" : "2025.01.18",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2501.05465\nどんなもの 本論文 \u0026ldquo;Small Language Models (SLMs) Can Still Pack a Punch: A survey\u0026rdquo; は、パラメータ数が10億～80億のSmall Language Models (SLMs) に関するサーベイ論文です。大規 模言語モデル (LLMs) の台頭に対し、巨大な規模だけが唯一の進歩の道ではないという疑問を提起し、SLMsがLLMsと同等、もしくは凌駕する性能を示すことを示す約160本の論文を調査しています。タスク非依存の汎用SLMs、タスク依存のSLMs、そしてSLMsを作成するための技術を網羅的に解説し、性能、効率性、スケーラビリティ、コストのバランスを取り ながらモデル構築を行うための指針を示しています。さらに、LLMsに対するSLMsの有効サイズを定義し、特徴づけています。\n先行研究と比べてどこがすごいの？ 先行研究であるLLMsに関するサーベイ論文 ([153, 47, 96, 158]) は、主に100億パラメータを超える大規模モデルを対象としており、SLMsについては軽く触れている程度でした。本論文は、近年発表された、大規模モデルと同等、もしくはそれ以上の性能を示すSLMsに焦点を当てた、世界で初めてのサーベイ論文です。 SLMsの設計、アーキテクチャ、そし て大規模モデルに匹敵する、あるいは場合によっては凌駕する性能を達成可能にする革新的な技術を詳細に分析しています。\n技術や手法のきもはどこにある？ SLMsの有効性を高めるための主要な技術や手法として、以下のものが挙げられています。\n様々な種類のSLMsの分類: タスク非依存型SLMs、タスク依存型SLMsに分類し、それぞれの特徴を分析。 効果的な訓練手法: 知識蒸留 (KD)、命令微調整 (instruction tuning)、思考連鎖 (Chain-of-Thought, CoT)、説明チューニング (explanation tuning)、漸進的学習 (progressive learning) など、SLMsを効率的に訓練するための様々な手法を紹介。特に、LLMsから得られた説明トレースを活用する手法が有効であると示唆。 効率的なアーキテクチャ: Transformerアーキテクチャをベースとしたモデルに加え、状態空間モデル (SSMs) を用いたハイブリッドアーキテクチャ (Hymba, Zamba, Jamba, Mamba) などの効率的なアーキテクチャの検討。 データ戦略: 高品質なデータセットの重要性を強調。LLMによって生成された合成データセット (TinyStories, TinyGSM) や、Common Crawlなどのインターネットデータセット (Pile) の活用例を紹介。 ポストトレーニング最適化: 量子化 (SmoothQuant, GPTQ, AWQ) やモデルプルーニング (BIP, HIL) などの手法によるモデルの軽量化と性能維持・向上。 ドラフトモデルの活用: 推論速度を向上させるためのドラフトモデルの概念と、独立型、依存型のドラフトモデルのアーキテクチャを紹介。 どうやって有効だと検証した？ 論文では、様々なSLMsの性能を、MMLU、HellaSwag、Winogrande、PIQA、ARC、BoolQ、GSM8K、HumanEval、MBPP、MATHなどの標準的なベンチマークを用いて評価しています。 多くの場合、SLMsは、パラメータ数がはるかに大きいLLMsと比較して同等以上の性能を示すことが示されています。また、論文では、モデルの性能に基づいて「有効サイズ」を推定し 、パラメータ数よりもはるかに大きなLLMsと同等の性能を持つSLMsが存在することを示しています。\n議論はあるか 論文では、SLMsがLLMsを凌駕する性能を示す理由について、データの質が量よりも重要であるという点以外、明確な結論は示されていません。既存のスケーリング則 (KaplanとChinchillaの法則) がSLMsの驚くべき性能を説明できない可能性を指摘し、データの質を考慮した修正版スケーリング則を提案しています。しかし、データの質を客観的に評価する方法については今後の課題として残されています。 また、タスク特化型SLMsが、特定のタスクにおいては、大規模汎用モデルを上回る性能を示すことも示されていますが、その理 由についても更なる研究が必要とされています。 さらに、SLMsの評価指標についても、言語タスクだけでなく、マルチモーダル理解、安全性、LLMsが苦手とする高度な専門タス クなど、より包括的な評価指標が必要であると議論されています。\n"
+            }
+    
+        ,
+            {
+                "id": 4,
+                "href": "https://www.if-blog.site/posts/paper/paper14/",
+                "title": "Tensor Product Attention Is All You Need (AI論文要約)",
+                "section": "posts",
+                "date" : "2025.01.18",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2501.06425\nどんなもの Tensor Product Attention (TPA) は、クエリ(Q)、キー(K)、バリュー(V)をコンパクトに表現するためにテンソル分解を用いる新しいアテンション機構です。推論時のKVキャッシ ュサイズを大幅に削減し、メモリ効率を向上させます。文脈依存の低ランク成分への因数分解（コンテキストファクター化）とRoPEとのシームレスな統合により、モデルの品質と メモリ効率の両方を向上させます。TPAに基づいて、シーケンスモデリングのための新しいモデルアーキテクチャであるTensor ProducT ATTenTion Transformer (T6)を提案してい ます。\n先行研究と比べてどこがすごいの？ 先行研究であるMulti-Head Attention (MHA)、Multi-Query Attention (MQA)、Grouped-Query Attention (GQA)、Multi-head Latent Attention (MLA)と比較して、TPAは推論時のKVキャッシュサイズを10倍以上削減します。これは、クエリ、キー、バリューのアクティベーションを動的に因数分解することで実現されています。また、TPAはRoPEとシームレス に統合できるため、LLaMAやGemmaなどの最新のLLMアーキテクチャへの容易な適用を可能にします。さらに、MHA、MQA、GQAはTPAの非文脈依存バリアントとして自然に現れることを明らかにすることで、既存のアテンション機構を統一しています。\n技術や手法のきもはどこにある？ TPAの核心は、アテンション計算中にクエリ(Q)、キー(K)、バリュー(V)をより高次のテンソルを用いて因数分解する点にあります。具体的には、文脈依存の低ランク表現を構築す るために、アクティベーションを動的に因数分解します（静的な重み（例：LoRA）の因数分解とは異なります）。これにより、表現能力を向上させながら、KVキャッシュのメモリ 使用量を大幅に削減します。 RoPEとの統合は、キーとバリューのテンソル次元因子を事前に回転させることで、推論時の回転計算を回避し、効率を高めています。\nどうやって有効だと検証した？ FineWeb-Edu 100Bデータセットを用いた言語モデリングタスクにおいて、様々な規模（124M、353M、773Mパラメータ）のモデルでT6をMHA、MQA、GQA、MLAと比較評価しました。そ の結果、T6は検証損失（perplexity）と様々な評価ベンチマークにおいて、MHA、MQA、GQA、MLAを上回る性能を示しました。特に、TPAのメモリ効率により、固定リソース制約下で大幅に長いシーケンスの処理が可能になり、最新の言語モデルにおける重要なスケーラビリティ課題に対処できることを実証しました。\n議論はあるか 論文では、TPAの様々なバリアント（KVのみを因数分解するTPA、非文脈依存のヘッド次元因子を用いるTPAなど）についても検討されています。これらのバリアントは、メモリコスト、計算オーバーヘッド、表現力のバランスを取るための柔軟性を示しています。しかし、最適なランク(RQ, RK, RV)の選択や、非線形ヘッド因子の導入による効果については、 更なる検討が必要となる可能性があります。また、異なるデータセットやタスクにおけるTPAの汎化性能についても、今後の研究課題として挙げられます。\n"
+            }
+    
+        ,
+            {
+                "id": 5,
+                "href": "https://www.if-blog.site/posts/paper/paper11/",
+                "title": "Titans: Learning to Memorize at Test Time (AI論文要約)",
+                "section": "posts",
+                "date" : "2025.01.18",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2501.00663\nどんなもの Titansは、テスト時に情報を記憶することを学習する新しいニューラル長期記憶モジュールを備えた、深層学習アーキテクチャのファミリーです。 このモジュールは、過去のコンテキストを記憶し、Attentionメカニズムが現在のコンテキストに注意を払いつつ、過去の情報を活用できるようにします。 Titansは、短期記憶として機能するAttentionメカニズムと、長期記憶として機能するニューラルメモリモジュールを組み合わせたアーキテクチャです。3つのバリエーション（Memory as a Context (MAC)、Memory as a Gate (MAG)、Memory as a Layer (MAL)）が提案されています。\n先行研究と比べてどこがすごいの？ 長期記憶の効率的な学習と利用: 既存のアーキテクチャ（Hopfield Networks、LSTMs、Transformers）は、汎化、長さの推定、推論において課題を抱えていましたが、Titansはテスト時に効率的かつ効果的に記憶することを学習するニューラル長期記憶モジュールを導入することで、これらの課題を克服します。 Transformerや最近の線形再帰モデルを凌駕する性能: 言語モデリング、常識推論、ゲノミクス、時系列タスクにおいて、Transformersや最近の最新の線形再帰モデルよりも 優れた性能を示します。 大規模なコンテキストウィンドウへの対応: Transformersの二次的な計算コストの問題を克服し、2Mを超えるコンテキストウィンドウサイズに効果的にスケールし、needle-in-haystackタスクにおいて高い精度を達成します。 並列化可能な高速な学習アルゴリズム: ニューラル長期記憶モジュールの学習は、並列化可能な高速なアルゴリズムを用いて行われます。 技術や手法のきもはどこにある？ ニューラル長期記憶モジュール: テスト時にデータをパラメータに記憶する方法を学習するメタモデルとして設計されています。人間の長期記憶システムに着想を得ており 、「驚き」の度合いを勾配を用いて測定し、驚くべき入力ほど記憶されやすくなります。 減衰メカニズムにより、記憶容量の制限に対処します。この減衰メカニズムは、最新の再帰モデルにおける忘却メカニズムの一般化となっています。 ミニバッチ勾配降下法のテンソル化: 高速で並列化可能な学習アルゴリズムを実現するために、ミニバッチ勾配降下法をテンソル化し、より多くのmatmul演算を使用します 。 持続的メモリ: タスクに関する知識をエンコードする、学習可能だがデータ非依存のパラメータです。 3つのTitansアーキテクチャ: 短期記憶（限定的なウィンドウサイズのAttention）、長期記憶（ニューラル長期記憶モジュール）、持続的メモリを、(1)コンテキストとして、(2)ゲートとして、(3)層として、それぞれ統合した3つのアーキテクチャバリエーションを提供します。 どうやって有効だと検証した？ 言語モデリング、常識推論、needle-in-haystackタスク、DNAモデリング、時系列予測タスクにおいて、様々なベースラインモデルと比較実験を行い、Titansの有効性を検証しまし た。 特に、長いコンテキストを扱うタスクにおいて、Titansはベースラインモデルよりも優れた性能を示しました。\n議論はあるか メモリ深度の影響: 深いメモリモジュールは性能を向上させるが、トレーニングのスループットを低下させるというトレードオフが存在します。 アーキテクチャのバリエーション: 3つのTitansアーキテクチャはそれぞれ長所・短所があり、効率性と有効性のトレードオフを示しています。 MACとMAGは言語モデリング と常識推論タスクで同等の性能を示しますが、MACは長いコンテキストのNIAHタスクでより優れた性能を示します。 MALはトレーニングが高速ですが、MACやMAGほど性能は高くありません。 計算コスト: 非常に長いシーケンスを扱う場合の計算コストに関する詳細な分析が不足しています。 論文では、大規模モデルの結果を今後のバージョンで報告すると述べられており、今後の研究の発展が期待されます。\n"
+            }
+    
+        ,
+            {
+                "id": 6,
+                "href": "https://www.if-blog.site/posts/paper/paper12/",
+                "title": "Transformer2 : Self-adaptive LLMs (AI論文要約)",
+                "section": "posts",
+                "date" : "2025.01.18",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2501.06252\nどんなもの Transformer2は、未学習のタスクに対してリアルタイムでLarge Language Models (LLMs) を適応させるための自己適応フレームワークです。重み行列の特異値成分のみを選択的に調整することで、計算コストの高い従来のファインチューニング手法の課題を解決します。推論時には、まずディスパッチシステムがタスクのプロパティを識別し、次に強化学習 を用いて訓練されたタスク固有の「専門家」ベクトルを動的に混合して、入力プロンプトに対するターゲットとなる動作を得ます。\n先行研究と比べてどこがすごいの？ Transformer2は、LoRAなどの従来手法と比べて、より少ないパラメータ数と高い効率性で、優れた性能を発揮します。 従来のファインチューニングは計算コストが高く、多様な タスクへの対応が静的なのに対し、Transformer2はリアルタイムで適応できる点が優れています。また、異なるLLMアーキテクチャやモダリティ（ビジョン言語タスクなど）にも対応できる汎用性を持ちます。先行研究のMixture of Experts (MoE)とは異なり、サンプルレベルのモジュール選択戦略を採用し、強化学習を用いてドメイン固有の知識を獲得した 「専門家」ベクトルを生成する点が異なります。 さらに、Singular Value Fine-tuning (SVF)という新しいパラメータ効率の良いファインチューニング手法を用いることで、少 ないデータ量でも過学習のリスクを抑え、計算コストを削減しています。\n技術や手法のきもはどこにある？ Transformer2の核となる技術は、Singular Value Fine-tuning (SVF) と 二段階推論メカニズム です。\nSVFは、モデルの重み行列$W \\in \\mathbb{R}^{n \\times m}$の特異値分解$W = U\\Sigma V^T$を利用し、特異値$\\Sigma$のスケールのみを調整する手法です。 これにより、学習パラメータ数を大幅に削減し、過学習を防ぎ、かつ、各特異値成分が独立に処理されるため、構成可能性が高まります。 学習されたベクトル$z \\in \\mathbb{R}^r$を用いて、新し い重み行列$W\u0026rsquo; = U\\Sigma\u0026rsquo;V^T$ ($\\Sigma\u0026rsquo; = \\Sigma \\otimes \\text{diag}(z)$) を生成します。\n強化学習を用いて、タスクパフォーマンスを直接最適化することで、効率的にドメイン特異的な「専門家」ベクトルを学習します。目的関数は以下の通りです。\n$$ J(\\theta_z) = \\mathbb{E} \\left[ \\log \\pi_{\\theta_{W\u0026rsquo;}}(\\hat{y}_i | x_i) \\right] r(\\hat{y}_i, y_i) $$\n$$ - \\lambda D_{KL}(\\pi_{\\theta_{W\u0026rsquo;}} | \\pi_{\\theta_W}) $$\nここで、$\\theta_z = {z_1, \\dots, z_{N \\times M}}$ は学習するSVFベクトルの集合、$\\theta_W = {W_1, \\dots, W_{N \\times M}}$は重み行列の集合、$r(\\hat{y}_i, y_i)$ は報酬、$\\lambda$はKLペナルティの係数です。\n二段階推論メカニズムでは、第一段階でモデルを実行し、タスク特性を識別します。第二段階で、第一段階で得られた情報に基づいて、学習済みの「専門家」ベクトルを組み合わ せ、LLMの基本的な重みを調整します。 論文では、プロンプトエンジニアリング、分類器ベース、Few-shot適応の3つの適応戦略が提案されています。\nどうやって有効だと検証した？ 様々なLLM (LLAMA3-8B-INSTRUCT, MISTRAL-7B-INSTRUCT-V0.3, LLAMA3-70B-INSTRUCT)とタスク(GSM8K, MBPP-pro, ARC-Easy, MATH, Humaneval, ARC-Challenge, OKVQA)を用いて、SVFとTransformer2の有効性を検証しました。\nSVFは、LoRAと比較して、少ないパラメータ数で高い性能を示しました。Transformer2は、様々な適応戦略を用いて、未学習のタスクに対しても高い適応能力を示しました。特に、Few-shot適応戦略では、テスト時の条件へのアクセスが増えるにつれて性能が向上することが確認されました。 ビジョン言語タスクに対しても、言語タスクで学習した専門家ベ クトルを用いて性能向上を確認しています。\n議論はあるか CEMベースの適応戦略の効率性: CEMを用いたFew-shot適応は、性能向上に寄与しますが、多くの専門ドメインへの拡張には、一度限りの計算コストの増加が課題となります。しかし、性能向上と自己適応能力の向上によるメリットによって相殺されると主張されています。 SVF専門家の能力の限界: SVF専門家の能力は、ベースモデルの潜在的な成分に依存します。モデルの統合技術が、この問題を解決する可能性があると示唆されています。 クロスモデル互換性: 異なるLLM間でのSVF専門家ベクトルの転移可能性は、モデルアーキテクチャの類似性に依存する可能性があり、さらなる研究が必要です。 "
+            }
+    
+        ,
+            {
+                "id": 7,
+                "href": "https://www.if-blog.site/posts/paper/paper9/",
                 "title": "Phi-4 Technical Report (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.11",
@@ -14,7 +84,7 @@
     
         ,
             {
-                "id": 1,
+                "id": 8,
                 "href": "https://www.if-blog.site/posts/paper/paper8/",
                 "title": "Can LLMs Design Good Questions Based on Context? (AI論文要約)",
                 "section": "posts",
@@ -24,7 +94,7 @@
     
         ,
             {
-                "id": 2,
+                "id": 9,
                 "href": "https://www.if-blog.site/posts/paper/paper7/",
                 "title": "rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking (AI論文要約)",
                 "section": "posts",
@@ -34,7 +104,7 @@
     
         ,
             {
-                "id": 3,
+                "id": 10,
                 "href": "https://www.if-blog.site/posts/paper/paper5/",
                 "title": "Fact-aware Sentence Split and Rephrase with Permutation Invariant Training (AI論文要約)",
                 "section": "posts",
@@ -44,7 +114,7 @@
     
         ,
             {
-                "id": 4,
+                "id": 11,
                 "href": "https://www.if-blog.site/posts/paper/paper4/",
                 "title": "Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)",
                 "section": "posts",
@@ -54,7 +124,7 @@
     
         ,
             {
-                "id": 5,
+                "id": 12,
                 "href": "https://www.if-blog.site/posts/paper/paper3/",
                 "title": "Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)",
                 "section": "posts",
@@ -64,7 +134,7 @@
     
         ,
             {
-                "id": 6,
+                "id": 13,
                 "href": "https://www.if-blog.site/posts/paper/paper2/",
                 "title": "Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (AI論文要約)",
                 "section": "posts",
@@ -74,7 +144,7 @@
     
         ,
             {
-                "id": 7,
+                "id": 14,
                 "href": "https://www.if-blog.site/posts/paper/paper1/",
                 "title": "Mechanistic Unlearning: Robust Knowledge Unlearning and Editing via Mechanistic Localization(AI論文要約)",
                 "section": "posts",
@@ -84,7 +154,7 @@
     
         ,
             {
-                "id": 8,
+                "id": 15,
                 "href": "https://www.if-blog.site/posts/nlp/mixture_of_experts_sample/",
                 "title": "Mixture of expertsのサンプル実装",
                 "section": "posts",
@@ -94,7 +164,7 @@
     
         ,
             {
-                "id": 9,
+                "id": 16,
                 "href": "https://www.if-blog.site/posts/nlp/hf_generation_wrap/",
                 "title": "huggingfaceのgenerationの関数をtorch modelから使えるようにしたい",
                 "section": "posts",
@@ -104,7 +174,7 @@
     
         ,
             {
-                "id": 10,
+                "id": 17,
                 "href": "https://www.if-blog.site/posts/nlp/transformer_any_architecture/",
                 "title": "llama2のアーキテクチャを変更してpre trainingしてみる",
                 "section": "posts",
@@ -114,7 +184,7 @@
     
         ,
             {
-                "id": 11,
+                "id": 18,
                 "href": "https://www.if-blog.site/posts/nlp/hf_ds_upload/",
                 "title": "複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ",
                 "section": "posts",
@@ -124,7 +194,7 @@
     
         ,
             {
-                "id": 12,
+                "id": 19,
                 "href": "https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/",
                 "title": "HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める",
                 "section": "posts",
@@ -134,7 +204,7 @@
     
         ,
             {
-                "id": 13,
+                "id": 20,
                 "href": "https://www.if-blog.site/posts/nlp/xgen-jglue/",
                 "title": "xgenでJGLUEを試す",
                 "section": "posts",
@@ -144,7 +214,7 @@
     
         ,
             {
-                "id": 14,
+                "id": 21,
                 "href": "https://www.if-blog.site/posts/nlp/calm_lora_quantize/",
                 "title": "OpenCALM-7Bをloraで学習して、quantizeするまで",
                 "section": "posts",
@@ -154,7 +224,7 @@
     
         ,
             {
-                "id": 15,
+                "id": 22,
                 "href": "https://www.if-blog.site/posts/nlp/rinna_lora_ja/",
                 "title": "loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す",
                 "section": "posts",
@@ -164,7 +234,7 @@
     
         ,
             {
-                "id": 16,
+                "id": 23,
                 "href": "https://www.if-blog.site/posts/nlp/rinna_3b_cpp/",
                 "title": "rinna 3Bをcppで動かす",
                 "section": "posts",
@@ -174,7 +244,7 @@
     
         ,
             {
-                "id": 17,
+                "id": 24,
                 "href": "https://www.if-blog.site/posts/nlp/react_start/",
                 "title": "VicunaでReActっぽいことを試してみる",
                 "section": "posts",
@@ -184,7 +254,7 @@
     
         ,
             {
-                "id": 18,
+                "id": 25,
                 "href": "https://www.if-blog.site/posts/nlp/rs-tokenizer/",
                 "title": "Rust TokenizerをC++から呼び出す",
                 "section": "posts",
@@ -194,7 +264,7 @@
     
         ,
             {
-                "id": 19,
+                "id": 26,
                 "href": "https://www.if-blog.site/posts/nlp/bloom_lora_start/",
                 "title": "BloomをLoRaで日本語finetuning",
                 "section": "posts",
@@ -204,7 +274,7 @@
     
         ,
             {
-                "id": 20,
+                "id": 27,
                 "href": "https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/",
                 "title": "LlamaIndex(GPTIndex)を触る",
                 "section": "posts",
@@ -214,7 +284,7 @@
     
         ,
             {
-                "id": 21,
+                "id": 28,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-render-block/",
                 "title": "code blockにrefarenceをつける",
                 "section": "posts",
@@ -224,7 +294,7 @@
     
         ,
             {
-                "id": 22,
+                "id": 29,
                 "href": "https://www.if-blog.site/posts/nlp/flexgen_start/",
                 "title": "FlexGenで遊ぶ",
                 "section": "posts",
@@ -234,7 +304,7 @@
     
         ,
             {
-                "id": 23,
+                "id": 30,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-text-gen/",
                 "title": "Huggingfaceのtext generation pipelineとtext2text generation pipeline",
                 "section": "posts",
@@ -244,7 +314,7 @@
     
         ,
             {
-                "id": 24,
+                "id": 31,
                 "href": "https://www.if-blog.site/posts/nlp/start-xglm-t5/",
                 "title": "xglmをquick start",
                 "section": "posts",
@@ -254,7 +324,7 @@
     
         ,
             {
-                "id": 25,
+                "id": 32,
                 "href": "https://www.if-blog.site/posts/nlp/start-flan-t5/",
                 "title": "flan_t5をquick start",
                 "section": "posts",
@@ -264,7 +334,7 @@
     
         ,
             {
-                "id": 26,
+                "id": 33,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-tokenizer/",
                 "title": "Hugging Faceのtokenizerで迷ったのでまとめておく",
                 "section": "posts",
@@ -274,7 +344,7 @@
     
         ,
             {
-                "id": 27,
+                "id": 34,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-conv/",
                 "title": "Hugging Faceのpipelineで会話モデルを動かす",
                 "section": "posts",
@@ -284,7 +354,7 @@
     
         ,
             {
-                "id": 28,
+                "id": 35,
                 "href": "https://www.if-blog.site/posts/typescript/typescript-oreilly/",
                 "title": "プログラミングTypeScript――スケールするJavaScriptアプリケーション開発",
                 "section": "posts",
@@ -294,7 +364,7 @@
     
         ,
             {
-                "id": 29,
+                "id": 36,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-doc/",
                 "title": "Hugging Face Transformersのドキュメント読んだ",
                 "section": "posts",
@@ -304,7 +374,7 @@
     
         ,
             {
-                "id": 30,
+                "id": 37,
                 "href": "https://www.if-blog.site/posts/emacs/text-lint/",
                 "title": "emacsにtext-lintを導入する",
                 "section": "posts",
@@ -314,7 +384,7 @@
     
         ,
             {
-                "id": 31,
+                "id": 38,
                 "href": "https://www.if-blog.site/posts/neuralnet/flax-jax/",
                 "title": "Flaxに入門してみる",
                 "section": "posts",
@@ -324,7 +394,7 @@
     
         ,
             {
-                "id": 32,
+                "id": 39,
                 "href": "https://www.if-blog.site/posts/python/arxiv-translate/",
                 "title": "Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る",
                 "section": "posts",
@@ -334,7 +404,7 @@
     
         ,
             {
-                "id": 33,
+                "id": 40,
                 "href": "https://www.if-blog.site/posts/python/arxiv-py-lib/",
                 "title": "pythonでarxivのAPIを使う",
                 "section": "posts",
@@ -344,7 +414,7 @@
     
         ,
             {
-                "id": 34,
+                "id": 41,
                 "href": "https://www.if-blog.site/posts/others/gas-translate/",
                 "title": "Google Apps ScriptでGoogle Translateを使う",
                 "section": "posts",
@@ -354,7 +424,7 @@
     
         ,
             {
-                "id": 35,
+                "id": 42,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-related-posts/",
                 "title": "Hugoの記事に関連記事を表示させる",
                 "section": "posts",
@@ -364,7 +434,7 @@
     
         ,
             {
-                "id": 36,
+                "id": 43,
                 "href": "https://www.if-blog.site/posts/python/open-ai-gym-quick/",
                 "title": "Open AI Gymをとりあえず動かす",
                 "section": "posts",
@@ -374,7 +444,7 @@
     
         ,
             {
-                "id": 37,
+                "id": 44,
                 "href": "https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/",
                 "title": "End-to-End Text Classification via Image-basedEmbedding using Character-level Networks",
                 "section": "posts",
@@ -384,7 +454,7 @@
     
         ,
             {
-                "id": 38,
+                "id": 45,
                 "href": "https://www.if-blog.site/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/",
                 "title": "Enhanced character embedding for Chinese named entity recognition",
                 "section": "posts",
@@ -394,7 +464,7 @@
     
         ,
             {
-                "id": 39,
+                "id": 46,
                 "href": "https://www.if-blog.site/posts/github/workflow-dispatch/",
                 "title": "GitHub Actionsを手動実行する",
                 "section": "posts",
@@ -404,7 +474,7 @@
     
         ,
             {
-                "id": 40,
+                "id": 47,
                 "href": "https://www.if-blog.site/posts/android/bottom-sheet/",
                 "title": "Bottom Sheetをつける",
                 "section": "posts",
@@ -414,7 +484,7 @@
     
         ,
             {
-                "id": 41,
+                "id": 48,
                 "href": "https://www.if-blog.site/posts/android/android-introduction/",
                 "title": "Webアプリケーションしか作ったことがない人がAndroidの開発を始めたときの情報収集の流れ",
                 "section": "posts",
@@ -424,7 +494,7 @@
     
         ,
             {
-                "id": 42,
+                "id": 49,
                 "href": "https://www.if-blog.site/posts/android/book-reports-firebase/",
                 "title": "ボタン以外のコンポーネントに波紋エフェクト(ripple effect)つける",
                 "section": "posts",
@@ -434,7 +504,7 @@
     
         ,
             {
-                "id": 43,
+                "id": 50,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-storage-vue/",
                 "title": "Vue.js+typescriptでVuetifyを使いマテリアルデザインに入門する",
                 "section": "posts",
@@ -444,7 +514,7 @@
     
         ,
             {
-                "id": 44,
+                "id": 51,
                 "href": "https://www.if-blog.site/posts/gatsby/gatsby-intro/",
                 "title": "技術ブログ用にGatsbyを整える",
                 "section": "posts",
@@ -454,7 +524,7 @@
     
         ,
             {
-                "id": 45,
+                "id": 52,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-hosting/",
                 "title": "Firebase Hostingを使ってみた",
                 "section": "posts",
@@ -464,7 +534,7 @@
     
         ,
             {
-                "id": 46,
+                "id": 53,
                 "href": "https://www.if-blog.site/posts/emacs/gopls-introduction/",
                 "title": "emacsのgo lang用のlanguage serverをgoplsに乗り換える",
                 "section": "posts",
@@ -474,7 +544,7 @@
     
         ,
             {
-                "id": 47,
+                "id": 54,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-cloud-functions/",
                 "title": "Firebase Cloud Functionsを使ってTwitterのOGPを設定する",
                 "section": "posts",
@@ -484,7 +554,7 @@
     
         ,
             {
-                "id": 48,
+                "id": 55,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-auth/",
                 "title": "Vue.js + Golang + Firebase Authenticationでログイン処理",
                 "section": "posts",
@@ -494,7 +564,7 @@
     
         ,
             {
-                "id": 49,
+                "id": 56,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-review/",
                 "title": "三行で読書感想文を書いて、SNSでシェアできるサービスを作った",
                 "section": "posts",
@@ -504,7 +574,7 @@
     
         ,
             {
-                "id": 50,
+                "id": 57,
                 "href": "https://www.if-blog.site/posts/python/python-matplotlib-base/",
                 "title": "matplotlibのよく使う記法まとめ",
                 "section": "posts",
@@ -514,7 +584,7 @@
     
         ,
             {
-                "id": 51,
+                "id": 58,
                 "href": "https://www.if-blog.site/posts/neuralnet/pepar-summary/",
                 "title": "Deeplearningまわりの最新論文を浅く広くみてまわる",
                 "section": "posts",
@@ -524,7 +594,7 @@
     
         ,
             {
-                "id": 52,
+                "id": 59,
                 "href": "https://www.if-blog.site/posts/others/http-portal-for-blog/",
                 "title": "Hugoで作ったwebサイトを公開する",
                 "section": "posts",
@@ -534,7 +604,7 @@
     
         ,
             {
-                "id": 53,
+                "id": 60,
                 "href": "https://www.if-blog.site/posts/neuralnet/combine-model/",
                 "title": "kerasでモデルを結合する",
                 "section": "posts",
@@ -544,7 +614,7 @@
     
         ,
             {
-                "id": 54,
+                "id": 61,
                 "href": "https://www.if-blog.site/posts/others/aws-cli-at-pyenv/",
                 "title": "pyenv環境でaws cli入れたらコマンドが見つからない",
                 "section": "posts",
@@ -554,7 +624,7 @@
     
         ,
             {
-                "id": 55,
+                "id": 62,
                 "href": "https://www.if-blog.site/posts/others/rust-macro-use-another/",
                 "title": "Rustでmodule間にまたがるmacro呼び出し",
                 "section": "posts",
@@ -564,7 +634,7 @@
     
         ,
             {
-                "id": 56,
+                "id": 63,
                 "href": "https://www.if-blog.site/posts/nlp/seqgan-paper/",
                 "title": "SeqGANの論文を読む",
                 "section": "posts",
@@ -574,7 +644,7 @@
     
         ,
             {
-                "id": 57,
+                "id": 64,
                 "href": "https://www.if-blog.site/posts/nlp/word2vec-output-word/",
                 "title": "word2vecでベクトルから単語を出力する",
                 "section": "posts",
@@ -584,7 +654,7 @@
     
         ,
             {
-                "id": 58,
+                "id": 65,
                 "href": "https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/",
                 "title": "ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数",
                 "section": "posts",
@@ -594,7 +664,7 @@
     
         ,
             {
-                "id": 59,
+                "id": 66,
                 "href": "https://www.if-blog.site/posts/others/tex-notation-numerical-formula/",
                 "title": "機械学習系の数式によく出てくる記号などのTex表記まとめ",
                 "section": "posts",
@@ -604,7 +674,7 @@
     
         ,
             {
-                "id": 60,
+                "id": 67,
                 "href": "https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/",
                 "title": "自然言語処理シリーズの構文解析を読む（概要）",
                 "section": "posts",
@@ -614,7 +684,7 @@
     
         ,
             {
-                "id": 61,
+                "id": 68,
                 "href": "https://www.if-blog.site/posts/nlp/char-vec/",
                 "title": "文字をベクトル化する",
                 "section": "posts",
@@ -624,7 +694,7 @@
     
         ,
             {
-                "id": 62,
+                "id": 69,
                 "href": "https://www.if-blog.site/posts/python/colaboratory-google-drive-mount/",
                 "title": "Google ColaboratoryでGoogle driveをマウントする",
                 "section": "posts",
@@ -634,7 +704,7 @@
     
         ,
             {
-                "id": 63,
+                "id": 70,
                 "href": "https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/",
                 "title": "emacsひな祭りいってきたのでためになったpackageなどをまとめておく",
                 "section": "posts",
@@ -644,7 +714,7 @@
     
         ,
             {
-                "id": 64,
+                "id": 71,
                 "href": "https://www.if-blog.site/posts/python/python-get-extn/",
                 "title": "pythonで拡張子を取得する",
                 "section": "posts",
@@ -654,7 +724,7 @@
     
         ,
             {
-                "id": 65,
+                "id": 72,
                 "href": "https://www.if-blog.site/posts/emacs/lsp-mode/",
                 "title": "lsp-modeを導入する",
                 "section": "posts",
@@ -664,7 +734,7 @@
     
         ,
             {
-                "id": 66,
+                "id": 73,
                 "href": "https://www.if-blog.site/posts/emacs/emacs-use-package/",
                 "title": "use-packagesを使ってみる",
                 "section": "posts",
@@ -674,7 +744,7 @@
     
         ,
             {
-                "id": 67,
+                "id": 74,
                 "href": "https://www.if-blog.site/posts/falcon/falcon-img-upload/",
                 "title": "falconでアップロードサーバーを作る",
                 "section": "posts",
@@ -684,7 +754,7 @@
     
         ,
             {
-                "id": 68,
+                "id": 75,
                 "href": "https://www.if-blog.site/posts/falcon/falcon-tips/",
                 "title": "falconを使ってみた",
                 "section": "posts",
@@ -694,7 +764,7 @@
     
         ,
             {
-                "id": 69,
+                "id": 76,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-start-article/",
                 "title": "Hugoでブログを作る",
                 "section": "posts",
@@ -704,7 +774,7 @@
     
         ,
             {
-                "id": 70,
+                "id": 77,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-href-to-target-blank/",
                 "title": "Hugoでリンクを新しいウィンドウで開く",
                 "section": "posts",
@@ -714,7 +784,7 @@
     
         ,
             {
-                "id": 71,
+                "id": 78,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-ga/",
                 "title": "Hugoにgoogle analyticsを導入する",
                 "section": "posts",
@@ -724,7 +794,7 @@
     
         ,
             {
-                "id": 72,
+                "id": 79,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/",
                 "title": "Hugoのディレクトリ構造やデプロイ方法の備忘録",
                 "section": "posts",
@@ -734,7 +804,7 @@
     
         ,
             {
-                "id": 73,
+                "id": 80,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-code-highlight/",
                 "title": "Hugoの記事でコードハイライトする",
                 "section": "posts",
@@ -744,7 +814,7 @@
     
         ,
             {
-                "id": 74,
+                "id": 81,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-add-site-description/",
                 "title": "Hugoの記事にdescriptionを追加する",
                 "section": "posts",
@@ -754,7 +824,7 @@
     
         ,
             {
-                "id": 75,
+                "id": 82,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-on-image/",
                 "title": "Hugoの記事に画像を載せる",
                 "section": "posts",
@@ -764,7 +834,7 @@
     
         ,
             {
-                "id": 76,
+                "id": 83,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-date-sort/",
                 "title": "Hugoの記事を更新順にソートする",
                 "section": "posts",
@@ -774,7 +844,7 @@
     
         ,
             {
-                "id": 77,
+                "id": 84,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-git-pages/",
                 "title": "HugoをGitHub Pagesで公開する",
                 "section": "posts",
@@ -784,7 +854,7 @@
     
         ,
             {
-                "id": 78,
+                "id": 85,
                 "href": "https://www.if-blog.site/posts/typescript/react-render-prop-typescript/",
                 "title": "reactのrender propsをtypescriptでやる",
                 "section": "posts",

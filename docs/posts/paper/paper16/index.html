@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Language Model Can Listen While Speaking (AI論文要約)</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2408.02622
+どんなもの 本論文は、リアルタイムの双方向音声対話を実現する、Listening-while-Speaking Language Model (LSLM) を" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Language Model Can Listen While Speaking (AI論文要約)
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-01-18
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2408.02622">https://arxiv.org/abs/2408.02622</a></p>
+<h2 id="どんなもの">どんなもの</h2>
+<p>本論文は、リアルタイムの双方向音声対話を実現する、Listening-while-Speaking Language Model (LSLM) を提案している。LSLMは、音声生成チャネルとリアルタイム音声入力チャネルの両方を備えた、エンドツーエンドのモデルである。音声生成にはトークンベースのdecoder-only TTS、音声入力にはストリーミングSelf-Supervised Learning (SSL) エンコーダを使用し、両チャネルを融合することで、自動回帰的な音声生成とリアルタイムのターンテイク検出を行う。</p>
+<h2 id="先行研究と比べてどこがすごいの">先行研究と比べてどこがすごいの？</h2>
+<p>先行研究のSpeech Language Model (SLM) はターンベースの会話に限定されており、リアルタイムの音声状況や割り込みに対応できないという限界があった。一方、LSLMは、<strong>Full Duplex Modeling (FDM)</strong> を実現することで、音声生成中にリアルタイムで音声入力を処理し、割り込みに対応できる。既存のモデルは、テキスト中心のLLMをベースに外部のASRとTTSモジュールを必要としていたため、レイテンシが問題となり、パラリンギスティックな能力も不足していたが、LSLMはSLM自体にFDM能力を持たせることで、これらの問題を 解決している。また、ノイズへの頑健性と未知の話者への感度も実験で示されている。</p>
+<h2 id="技術や手法のきもはどこにある">技術や手法のきもはどこにある？</h2>
+<p>LSLMの核となる技術は、音声生成チャネルと音声入力チャネルの同時処理と融合にある。音声生成には、リアルタイム性を重視したトークンベースのdecoder-only TTSを使用。音 声入力には、ストリーミング処理可能なvq-wav2vecを用いたSSLエンコーダを使用する。両チャネルの融合戦略として、Early Fusion、Middle Fusion、Late Fusionの3つの手法を 検討し、Middle Fusionが音声生成とリアルタイム対話のバランスにおいて最適であることを示している。さらに、割り込みを検知するために、IRQ (Interruption Request) トー クンを導入している。</p>
+<h2 id="どうやって有効だと検証した">どうやって有効だと検証した？</h2>
+<p>LSLMの有効性を検証するために、<strong>Command-based FDM</strong> と <strong>Voice-based FDM</strong> の2つの実験設定を用いた評価を行った。Command-based FDMでは、特定のコマンドによる割り込み、Voice-based FDMでは、未知の話者による様々な単語による割り込みをシミュレートした。評価指標としては、音声生成能力の評価にWord Error Rate (WER)、対話能力の評価 にPrecision、Recall、F1スコアを用いた。結果、LSLMはノイズに頑健であり、未知の話者からの割り込みにも感度良く反応し、既存システムへの影響を最小限に抑えながら双方向通信を実現できることを示した。</p>
+<h2 id="議論はあるか">議論はあるか</h2>
+<p>論文では、Middle Fusionが最適な融合戦略であると結論付けているが、データセットやモデルアーキテクチャによっては、他の融合戦略がより良い結果を示す可能性もある。また、Voice-based FDMにおけるWERの上昇は、リアルタイムのターンテイク問題の複雑さを示唆しており、さらなる改善の余地がある。さらに、より現実的なシナリオへの適用や、話 者追跡機能の追加、音声・視覚情報の同時利用など、今後の研究課題が提示されている。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper13/">MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper10/">SentenceVAE: Enable Next-sentence Prediction for Large Language Models with Faster Speed, Higher Accuracy and Longer Context (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper15/">Small Language Models (SLMs) Can Still Pack a Punch: A survey (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper14/">Tensor Product Attention Is All You Need (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper11/">Titans: Learning to Memorize at Test Time (AI論文要約)</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

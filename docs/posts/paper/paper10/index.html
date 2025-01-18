@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>SentenceVAE: Enable Next-sentence Prediction for Large Language Models with Faster Speed, Higher Accuracy and Longer Context (AI論文要約)</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2408.00655
+どんなもの Large Language Models (LLMs) の推論効率を向上させるための新しい推論方法である next-sentence predi" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		SentenceVAE: Enable Next-sentence Prediction for Large Language Models with Faster Speed, Higher Accuracy and Longer Context (AI論文要約)
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-01-18
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2408.00655">https://arxiv.org/abs/2408.00655</a></p>
+<h2 id="どんなもの">どんなもの</h2>
+<p>Large Language Models (LLMs) の推論効率を向上させるための新しい推論方法である <strong>next-sentence prediction</strong> を提案する。これは、Sentence Variational Autoencoder (SentenceVAE) を用いて、文を1つのトークンに圧縮し、LLMに入力することで実現される。SentenceVAEは、文をエンコードする Sentence Encoder と、圧縮されたトークンを元の文 に復元する Sentence Decoder から構成される。SentenceVAEをLLMの入力層と出力層に統合することで、文単位で推論を行う Sentence-level LLMs (SLLMs) を開発する。</p>
+<h2 id="先行研究と比べてどこがすごいの">先行研究と比べてどこがすごいの？</h2>
+<p>先行研究では、複数のトークンを同時に予測する手法が提案されているが、予測するトークンの数は固定されており、入力コンテキストの分割が柔軟性に欠けていた。本研究では、SentenceVAEを用いることで、文のセマンティックな内容に基づいて最適なトークンの数を適応的に選択し、推論速度の向上と精度の維持・向上を両立する。具体的には、従来のト ークン単位の予測 (<strong>next-token prediction</strong>) に比べ、<strong>next-sentence prediction</strong> によって推論速度を204～365%向上させ、perplexity (PPL) を46～75%削減、メモリオー バーヘッドを86～91%削減できることを実証した。</p>
+<h2 id="技術や手法のきもはどこにある">技術や手法のきもはどこにある？</h2>
+<p>SentenceVAEの<strong>Sentence Encoder</strong>と<strong>Sentence Decoder</strong>が技術・手法のキモである。Sentence Encoderは、文中の複数のword-level tokensを1つのsentence-level tokenに圧 縮する。Sentence Decoderは、このsentence-level tokenを元のword-level tokensのシーケンスに復元する。文を単位として処理することで、元のセマンティックな内容の整合性 を維持し、精度を向上させる。また、<strong>sentence segmentation mechanism</strong>と<strong>feature fusion mechanism</strong>により、可変長のトークンシーケンスを単一のsentence-level token にエンコードする。</p>
+<h2 id="どうやって有効だと検証した">どうやって有効だと検証した？</h2>
+<p>Wanjuanデータセットを用いた広範な実験により検証した。SentenceVAE単体では、自己教師あり学習で訓練し、クロスエントロピー損失とPPLを用いて検証セットで評価した。SLLMsについては、オープンソースのOPTシリーズのLLMにSentenceVAEを統合し、従来のOPTモデルと比較することで、推論速度、PPL、メモリ使用量を評価した。その結果、SLLMsは従来のLLMと比べて推論速度が2～3倍高速化し、PPLが改善し、メモリ使用量が削減されることを確認した。さらに、SLLMsがScaling Lawに従うことも確認した。</p>
+<h2 id="議論はあるか">議論はあるか</h2>
+<ul>
+<li><strong>SentenceVAEの性能:</strong> SentenceVAEの性能は、hidden sizeとhidden layersの数に依存する。より大きなモデルは、より良い性能を示す傾向があるが、計算コストも増加する。</li>
+<li><strong>入力データの前処理:</strong> SentenceVAEは、句読点で文を分割する前処理を必要とする。この前処理が不適切な場合、モデルの性能に影響を与える可能性がある。実験では、一部 の異常な入力に対してもある程度の頑健性を示しているものの、全てのケースで完璧な結果が得られるわけではない。</li>
+<li><strong>Scaling Lawの適用範囲:</strong> 本研究では、125Mから1.3BパラメータのモデルでScaling Lawを確認したが、より大きなモデルへの適用範囲については、今後の研究が必要である。</li>
+<li><strong>言語依存性:</strong> 現状、英語コーパスのみで訓練されているため、多言語への対応が今後の課題となる。</li>
+</ul>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper16/">Language Model Can Listen While Speaking (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper13/">MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper15/">Small Language Models (SLMs) Can Still Pack a Punch: A survey (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper14/">Tensor Product Attention Is All You Need (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper11/">Titans: Learning to Memorize at Test Time (AI論文要約)</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
