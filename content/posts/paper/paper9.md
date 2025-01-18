@@ -1,6 +1,6 @@
 ---
 title: "Phi-4 Technical Report (AI論文要約)"
-slug: "paper8"
+slug: "paper9"
 tags: ["nlp","deeplearning"]
 date: "2025-01-11T14:00:00+09:00"
 draft: false

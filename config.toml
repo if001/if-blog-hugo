@@ -97,3 +97,6 @@ hasCJKLanguage = true
   changefreq = 'monthly'
   filename = 'sitemap.xml'
   priority = 0.5
+
+# [params]
+#  customCSS = ["/css/custom.css"]
