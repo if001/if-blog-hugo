@@ -1,13 +1,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>vue.js on アンドロイドは推理小説を書くか?</title>
-		<link>https://www.if-blog.site/tags/vue.js/</link>
-		<description>Recent content in vue.js </description>
+		<title>Vue.js on アンドロイドは推理小説を書くか?</title>
+		<link>http://localhost:1313/tags/vue.js/</link>
+		<description>Recent content in Vue.js </description>
 		<generator>Hugo -- gohugo.io</generator>
 		
   		<language>ja</language>
 		
-		<managingEditor>Page(/tags/vue.js) (if_004)</managingEditor>
+		<managingEditor>/tags/vue.js</managingEditor>
     	
   		<lastBuildDate>Sat, 09 Nov 2019 00:01:00 +0900</lastBuildDate>
 		

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="&lt;p&gt;AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2410.04717&#34;&gt;https://arxiv.org/abs/2410.04717&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;どんなもの&#34;&gt;どんな" />
+  
+
+
+<meta name="generator" content="Hugo 0.147.5">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)
+		
+		<span class="draft-tag">(Draft)</span>
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/paper_summary/">paper_summary</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-05-17
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2410.04717">https://arxiv.org/abs/2410.04717</a></p>
+<h2 id="どんなもの">どんなもの</h2>
+<p>本論文は、大規模言語モデル (LLM) の訓練と評価におけるコスト高騰問題に対処するため、簡略化された言語環境を用いた小型言語モデル (LM) の訓練・評価手法を提案していま す。  簡略化された言語環境とは、常識的な知識やコミュニケーション能力の基礎を平易な形で提示することで、LM の学習効率を高め、効果的な訓練と評価に必要なモデルサイズ とデータ量を削減することを目指したものです。  具体的には、ノイズを最小限に抑え、語彙サイズを削減しながら、ジャンル特有の言語パターンを維持するテキストデータの改訂パイプラインを提案し、それに基づいてLEANER-Pretrain、LEANER-Instruct、LEANER-GLUE、LEANER-Evalという4つのデータセット群を作成しています。</p>
+<h2 id="先行研究と比べてどこがすごいの">先行研究と比べてどこがすごいの？</h2>
+<p>先行研究では、小型LMのためのデータセット作成において、言語データセットのノイズの削減と複雑さの軽減の両方を達成できていませんでした。一部は子供向け物語などに限定された単一テーマのデータセットしか提供しておらず、モデルの多様なスタイルや知識への露出が制限されていました。また、他のデータセットは、コンピュータが効率的に処理できる学習データと、人間が処理できるデータ（口語表現、インターネットからのテキストノイズ、一貫性のない表現など）の違いを考慮していませんでした。</p>
+<p>本研究では、「ノイズなし、低複雑性」という原則を提案し、従来のLM訓練データからTinyHelenという小型LMを訓練するためのLEANERデータセット群を生成するアルゴリズムを適 用しています。これにより、従来のLM訓練データセットの構成と評価ベンチマークの意図を維持しながら、言語的に大幅に簡素化された、最初のデータセット群が作成されました。</p>
+<h2 id="技術や手法のきもはどこにある">技術や手法のきもはどこにある？</h2>
+<p>本研究の核心は、テキストデータの改訂パイプラインにあります。このパイプラインは、以下の3つの側面に焦点を当てています。</p>
+<ol>
+<li><strong>必須の構文・意味的特徴の保持</strong>: テキストの重要な言語学的パターンを維持します。</li>
+<li><strong>無関係情報の削除</strong>: ウェブページなどに含まれるスクランブルされたテキスト、リンク、広告などの不要な要素を除去します。</li>
+<li><strong>世界記述の簡素化</strong>: よりコンパクトな語彙を用いて元のコンテンツを言い換え、複雑なアイデアをより単純な言葉で表現することで、テキストの情報エントロピーを削減し ます。</li>
+</ol>
+<p>このパイプラインは、大規模言語モデル (LLM) を利用して実装され、7100万トークン (71M) のLEANER-Pretrain、700万トークン (7M) のLEANER-Instruct、簡略化されたGLUEベン チマークであるLEANER-GLUE、命令遵守能力を評価するためのLEANER-Evalというデータセット群が生成されます。  Appendix Bでは、言語データセットの複雑さのの下限がテキスト分布の情報エントロピーによって決定されることが示されています。</p>
+<h2 id="どうやって有効だと検証した">どうやって有効だと検証した？</h2>
+<p>論文では3つの実験が行われています。</p>
+<ul>
+<li>
+<p><strong>実験1 (EXP1):</strong> 異なるLMアーキテクチャ（BERT、LLAMA、XLNET、MAMBA）のダウンサイズ版を、言語モデリングとダウンストリームタスクで比較。モデルサイズと事前学習デ ータは一定に保たれています。LEANER-Pretrainで事前学習したモデルは、元のより大きなコーパスで学習したモデルよりもダウンストリームタスクで優れた性能を示しました。</p>
+</li>
+<li>
+<p><strong>実験2 (EXP2):</strong> 異なる事前学習データと命令調整データの組み合わせで訓練された小型LMの命令遵守能力を評価。LEANERデータセットで事前学習および命令調整されたモデルは、コントロールモデルと比較して、命令に従う際の文法、一貫性、特異性において改善を示しました。</p>
+</li>
+<li>
+<p><strong>実験3 (EXP3):</strong> 小型プロキシモデルを用いたLM事前学習におけるカリキュラム学習戦略の探求。文の長さ、LM自己ペース損失、プロキシLM損失などの指標を用いて、LMのperplexityに基づいてトレーニングインスタンスを反復的に更新することで、トレーニングステップと必要なデータの両方を削減できることが示されました。</p>
+</li>
+</ul>
+<h2 id="議論はあるか">議論はあるか</h2>
+<ul>
+<li>
+<p><strong>命令遵守能力の限界:</strong> 71MトークンのLEANER-Pretrainでは、効果的に命令遵守能力を示すLMを訓練するには不十分であることが示されました。より大規模なデータセットが必要となる可能性があります。</p>
+</li>
+<li>
+<p><strong>LLMによるバイアス:</strong> LEANERデータセットはLLMを用いて作成されているため、LLM固有のバイアス（知識のカットオフや社会的バイアスなど）が導入されている可能性があり ます。より多様なプロンプトを使用することで、これらのバイアスを軽減できる可能性があります。</p>
+</li>
+<li>
+<p><strong>モデルアーキテクチャの比較:</strong>  実験1では、モデルサイズと事前学習データを制御した上で、異なるLMアーキテクチャの学習効率を比較していますが、より大規模なモデルやデータセットを用いた検証が必要でしょう。</p>
+</li>
+<li>
+<p><strong>カリキュラム学習戦略:</strong>  実験3では、簡素化された言語環境下でのカリキュラム学習戦略の効果を示していますが、より複雑な言語環境への適用可能性についてはさらなる研究が必要です。</p>
+</li>
+</ul>
+<p>全体として、本論文は小型LMの訓練・評価のための新しいアプローチを提案し、その有効性を示していますが、さらなる研究によって、より大規模なモデルや複雑な言語環境への適用可能性、バイアス問題の解決などが求められます。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper25/">EVALUATING THE DIVERSITY AND QUALITY OF LLM GENERATED CONTENT</a></li>
+    
+      <li><a href="/posts/paper/paper24/">Texygen: A Benchmarking Platform for Text Generation Models</a></li>
+    
+      <li><a href="/posts/paper/paper23_b/">Measuring Diversity in Synthetic Datasets</a></li>
+    
+      <li><a href="/posts/paper/paper23_a/">Measuring Diversity in Synthetic Datasets</a></li>
+    
+      <li><a href="/posts/paper/paper22/">Beyond Scale: The Diversity Coefficient as a Data Quality Metric for Variability in Natural Language Data</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about"></a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

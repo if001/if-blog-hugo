@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>アンドロイドは推理小説を書くか?</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -108,7 +97,7 @@
   
   
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -189,18 +178,20 @@
         
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/flexgen_start/">
+  <a href="http://localhost:1313/posts/nlp/redpajama_lora_start/">
     <h2 class="post-title">
-      FlexGenで遊ぶ
+      RedPajamaをLoRaで日本語fine tuning
+      
+      <span class="draft-tag">(Draft)</span>
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>くそでかlarge language modelsは一般人の持ってるPCだと動かすこともできない。 FlexGenでは、そんなLLMを限られたリソースで実行できるようにしてくれる。
-https://github.com/FMInference/FlexGen
-日本語が喋れるモデルでも動かせるように色</p>
-    <a href="https://www.if-blog.site/posts/nlp/flexgen_start/" class="post-read-more"></a>
+    <p>RedPajamaの3BをLoraでfine tuningしていく
+https://huggingface.co/togethercomputer/RedPajama-INCITE-Base-3B-v1
+fine tuning RedPajamaはgpt_neoxベースなので、このあたりを参考にしつ …</p>
+    <a href="http://localhost:1313/posts/nlp/redpajama_lora_start/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -208,13 +199,293 @@ https://github.com/FMInference/FlexGen
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-05-09
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/nlp/lang_chain_agent/">
+    <h2 class="post-title">
+      LangChainのAgentを調べる
+      
+      <span class="draft-tag">(Draft)</span>
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>LangChainにAgentsという機能がある。 AgentとはLLMを利用して、実行するactionとその順序を決定できる。
+https://python.langchain.com/en/latest/modules/agents/getting_started.html
+いまいちピンとこなか …</p>
+    <a href="http://localhost:1313/posts/nlp/lang_chain_agent/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/langchain/">langchain</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-04-20
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/nlp/react_start/">
+    <h2 class="post-title">
+      VicunaでReActっぽいことを試してみる
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>vicunaでReActっぽいことを試してみる。正確には違うので注意
+ReActは、Thought、Action、Observationをループさせ、LLMの出力の精度上げる手法
+ReActの処理の流れは以下のような形。LangChainの実装を参考にする。
+与えられた質問(Question)に対 …</p>
+    <a href="http://localhost:1313/posts/nlp/react_start/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/langchain/">langchain</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-04-01
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/nlp/rs-tokenizer/">
+    <h2 class="post-title">
+      Rust TokenizerをC&#43;&#43;から呼び出す
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Bloomz.cppのtokenizerが日本語でうまく動かなかったので、 Rust製のHuggingface TokenizerをC++から呼び出せるようにしました。
+初めに 「応答」の応の文字には２つのIDが振られている。
+model_name = …</p>
+    <a href="http://localhost:1313/posts/nlp/rs-tokenizer/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-03-31
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/nlp/bloom_lora_start/">
+    <h2 class="post-title">
+      BloomをLoRaで日本語finetuning
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>LlamaをAlpacaデータセットを使いLoRaでfine tuneしたものが良い感じだったので、Bloomを日本語で学習させてみようと思う。
+https://github.com/tloen/alpaca-lora
+とりあえず動かすまででしっかりfine tune …</p>
+    <a href="http://localhost:1313/posts/nlp/bloom_lora_start/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-03-20
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/nlp/gpt_index_llama_index_start/">
+    <h2 class="post-title">
+      LlamaIndex(GPTIndex)を触る
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>LlamaIndexを動かしていきます。最近名前がGPTIndexから変わったみたい。
+LlamaIndexとは、LLMのPromptの作成などを外部のデータソースと連携して行えるようにしたツールキット。 …</p>
+    <a href="http://localhost:1313/posts/nlp/gpt_index_llama_index_start/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-03-04
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/nlp/gpt_index_llama_index_start/">
+    <h2 class="post-title">
+      Parameter-Efficient Fine-Tuning (PEFT)
+      
+      <span class="draft-tag">(Draft)</span>
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Hugging FaceがParameter-Efficient Fine-Tuning (PEFT)を公開していたので、軽く調べる。
+https://github.com/huggingface/peft
+PEFT 巨大なLLMのすべてのweightを学習することなく、少数のパラメタを微調整するこ …</p>
+    <a href="http://localhost:1313/posts/nlp/gpt_index_llama_index_start/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-03-04
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/hugo/hugo-render-block/">
+    <h2 class="post-title">
+      code blockにrefarenceをつける
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Hugoでコードブロックを使うときは、GitHubからの引用し、その下に参照元のURLを貼り付けることが多い。 コードブロックの下にそのままURLが表示されるの若干見づらかったので、コードブロックとセットでいい感じに表示したい。
+HugoにMarkdown Render Hooks …</p>
+    <a href="http://localhost:1313/posts/hugo/hugo-render-block/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
     
   
 </div>
@@ -230,17 +501,18 @@ https://github.com/FMInference/FlexGen
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/huggingface-text-gen/">
+  <a href="http://localhost:1313/posts/nlp/flexgen_start/">
     <h2 class="post-title">
-      Huggingfaceのtext generation pipelineとtext2text generation pipeline
+      FlexGenで遊ぶ
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>HuggingfaceのpipelineでTextGenerationPipelineとText2TextGenerationPipelineがあるが、 何が違うのかよくわからなかったので軽く調査。
-https://huggingface.co/docs/transformers/main_clas</p>
-    <a href="https://www.if-blog.site/posts/nlp/huggingface-text-gen/" class="post-read-more"></a>
+    <p>くそでかlarge language modelsは一般人の持ってるPCだと動かすこともできない。 FlexGenでは、そんなLLMを限られたリソースで実行できるようにしてくれる。
+https://github.com/FMInference/FlexGen
+日本語が喋れるモデルでも動かせるように色 …</p>
+    <a href="http://localhost:1313/posts/nlp/flexgen_start/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -248,13 +520,52 @@ https://huggingface.co/docs/transformers/main_clas</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-02-28
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/nlp/huggingface-text-gen/">
+    <h2 class="post-title">
+      Huggingfaceのtext generation pipelineとtext2text generation pipeline
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>HuggingfaceのpipelineでTextGenerationPipelineとText2TextGenerationPipelineがあるが、 何が違うのかよくわからなかったので軽く調査。 …</p>
+    <a href="http://localhost:1313/posts/nlp/huggingface-text-gen/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
     
   
 </div>
@@ -270,7 +581,7 @@ https://huggingface.co/docs/transformers/main_clas</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/start-xglm-t5/">
+  <a href="http://localhost:1313/posts/nlp/start-xglm-t5/">
     <h2 class="post-title">
       xglmをquick start
       
@@ -281,8 +592,8 @@ https://huggingface.co/docs/transformers/main_clas</p>
     <p>多言語モデルであるxglmを動かしてみます。
 最も大きいもので7.5Bのparameterを持つ。
 同等のサイズのGPT3のモデルを上回るらしい。
-Our largest model with 7.5 billion parameters sets new state of the art in f</p>
-    <a href="https://www.if-blog.site/posts/nlp/start-xglm-t5/" class="post-read-more"></a>
+Our largest model with 7.5 billion parameters sets new state of the art in …</p>
+    <a href="http://localhost:1313/posts/nlp/start-xglm-t5/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -290,13 +601,13 @@ Our largest model with 7.5 billion parameters sets new state of the art in f</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
     
   
 </div>
@@ -312,7 +623,7 @@ Our largest model with 7.5 billion parameters sets new state of the art in f</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/start-flan-t5/">
+  <a href="http://localhost:1313/posts/nlp/start-flan-t5/">
     <h2 class="post-title">
       flan_t5をquick start
       
@@ -322,9 +633,8 @@ Our largest model with 7.5 billion parameters sets new state of the art in f</p>
   <div class="post-entry">
     <p>T5を強化したモデルであるFlan-t5を動かしてみます。
 FlanはFinetunedLAnguage Netの略。
-ちなみに、Flanはカスタードプリンとかプリンの意味らしい。だからプリンのイラストあったのか
-https://huggingface.co/docs/transformers/mo</p>
-    <a href="https://www.if-blog.site/posts/nlp/start-flan-t5/" class="post-read-more"></a>
+ちなみに、Flanはカスタードプリンとかプリンの意味らしい。 …</p>
+    <a href="http://localhost:1313/posts/nlp/start-flan-t5/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -332,13 +642,13 @@ https://huggingface.co/docs/transformers/mo</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
     
   
 </div>
@@ -354,7 +664,7 @@ https://huggingface.co/docs/transformers/mo</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/huggingface-tokenizer/">
+  <a href="http://localhost:1313/posts/nlp/huggingface-tokenizer/">
     <h2 class="post-title">
       Hugging Faceのtokenizerで迷ったのでまとめておく
       
@@ -364,8 +674,8 @@ https://huggingface.co/docs/transformers/mo</p>
   <div class="post-entry">
     <p>tokeninzerとかencodeとか色々あって毎回調べることになるのでメモ。
 以下の日本語tokenizerを使わせてもらう。
-tokenizer = T5Tokenizer.from_pretrained(&amp;#34;sonoisa/t5-base-japanese&amp;#34;) よく見る書き方 </p>
-    <a href="https://www.if-blog.site/posts/nlp/huggingface-tokenizer/" class="post-read-more"></a>
+tokenizer = T5Tokenizer.from_pretrained(&#34;sonoisa/t5-base-japanese&#34;) …</p>
+    <a href="http://localhost:1313/posts/nlp/huggingface-tokenizer/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -373,13 +683,13 @@ tokenizer = T5Tokenizer.from_pretrained(&amp;#34;sonoisa/t5-base-japanese&amp;#3
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
     
   
 </div>
@@ -395,7 +705,7 @@ tokenizer = T5Tokenizer.from_pretrained(&amp;#34;sonoisa/t5-base-japanese&amp;#3
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/huggingface-conv/">
+  <a href="http://localhost:1313/posts/nlp/huggingface-conv/">
     <h2 class="post-title">
       Hugging Faceのpipelineで会話モデルを動かす
       
@@ -407,8 +717,8 @@ tokenizer = T5Tokenizer.from_pretrained(&amp;#34;sonoisa/t5-base-japanese&amp;#3
 あまり日本語記事がなかったので残しておく。
 huggingfaceについてはこっちの記事を参照
 https://www.if-blog.site/posts/nlp/huggingface-doc/
-pipeline</p>
-    <a href="https://www.if-blog.site/posts/nlp/huggingface-conv/" class="post-read-more"></a>
+pipeline …</p>
+    <a href="http://localhost:1313/posts/nlp/huggingface-conv/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -416,13 +726,13 @@ pipeline</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
     
   
 </div>
@@ -438,7 +748,44 @@ pipeline</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/typescript/typescript-oreilly/">
+  <a href="http://localhost:1313/posts/typescript/react-render-prop-typescript/">
+    <h2 class="post-title">
+      reactのrender propsをtypescriptでやる
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>childrenに引数渡したい時、render propを使えばできる。 functional componentでのやり方がわからなくていろいろハマったのでメモ
+https://reactjs.org/docs/render-props.html
+結論 // children interface …</p>
+    <a href="http://localhost:1313/posts/typescript/react-render-prop-typescript/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="http://localhost:1313//tags/typescript/">typescript</a>&nbsp;
+    
+      <a href="http://localhost:1313//tags/react/">react</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2022-02-19
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/typescript/typescript-oreilly/">
     <h2 class="post-title">
       プログラミングTypeScript――スケールするJavaScriptアプリケーション開発
       
@@ -447,8 +794,8 @@ pipeline</p>
 
   <div class="post-entry">
     <p>オライリーのtypescriptの本を読んだ。 typescriptのジェネリクスなど基本的な動作は知ってたがいくつか知らないことが合ったので それだけメモしておく。
-4章 関数 4.1.4 thisの型付け javascriptではすべての関数に対してthisが定義される。 これによりコードが脆弱</p>
-    <a href="https://www.if-blog.site/posts/typescript/typescript-oreilly/" class="post-read-more"></a>
+4章 関数 4.1.4 thisの型付け javascriptではすべての関数に対してthisが定義される。 これによりコードが脆弱 …</p>
+    <a href="http://localhost:1313/posts/typescript/typescript-oreilly/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -456,7 +803,7 @@ pipeline</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/typescript/">typescript</a>&nbsp;
+      <a href="http://localhost:1313//tags/typescript/">typescript</a>&nbsp;
     
   
 </div>
@@ -472,7 +819,7 @@ pipeline</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/huggingface-doc/">
+  <a href="http://localhost:1313/posts/nlp/huggingface-doc/">
     <h2 class="post-title">
       Hugging Face Transformersのドキュメント読んだ
       
@@ -482,9 +829,8 @@ pipeline</p>
   <div class="post-entry">
     <p>Hugging FaceなのかTransformersなのか呼び方がわからん。
 BERTやGPT-2などの様々なモデルが扱えるライブラリ
-事前学習済のモデルとタスクが用意されており、そのままモデルを使ったりFine-Tuningが簡単にできる。
-https://huggingface.co/docs</p>
-    <a href="https://www.if-blog.site/posts/nlp/huggingface-doc/" class="post-read-more"></a>
+事前学習済のモデルとタスクが用意されており、そのままモデルを使ったりFine-Tuningが簡単にできる。 …</p>
+    <a href="http://localhost:1313/posts/nlp/huggingface-doc/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -492,13 +838,13 @@ https://huggingface.co/docs</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
     
   
 </div>
@@ -514,7 +860,7 @@ https://huggingface.co/docs</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/emacs/text-lint/">
+  <a href="http://localhost:1313/posts/emacs/text-lint/">
     <h2 class="post-title">
       emacsにtext-lintを導入する
       
@@ -524,8 +870,8 @@ https://huggingface.co/docs</p>
   <div class="post-entry">
     <p>日本語文章用に、textlintを導入する。
 install 今回は.emacs.d以下にsite-lispというディレクトリを作り、そこにtextlintをinstallする。
-cd .emacs.d/site-lisp npm install -D textlint textlintのルールには</p>
-    <a href="https://www.if-blog.site/posts/emacs/text-lint/" class="post-read-more"></a>
+cd .emacs.d/site-lisp npm install -D textlint textlintのルールに …</p>
+    <a href="http://localhost:1313/posts/emacs/text-lint/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -533,7 +879,7 @@ cd .emacs.d/site-lisp npm install -D textlint textlintのルールには</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/emacs/">emacs</a>&nbsp;
+      <a href="http://localhost:1313//tags/emacs/">emacs</a>&nbsp;
     
   
 </div>
@@ -549,7 +895,45 @@ cd .emacs.d/site-lisp npm install -D textlint textlintのルールには</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/neuralnet/flax-jax/">
+  <a href="http://localhost:1313/posts/typescript/typescript-init/">
+    <h2 class="post-title">
+      とりあえずtypescriptを書きたいときのinit
+      
+      <span class="draft-tag">(Draft)</span>
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>typescript
+https://basarat.gitbook.io/typescript/nodejs
+package.json npm init package.jsonのscriptに追加
+&#34;start&#34;:&#34;./node_modules/.bin/ts-node …</p>
+    <a href="http://localhost:1313/posts/typescript/typescript-init/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="http://localhost:1313//tags/typescript/">typescript</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2021-07-29
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/neuralnet/flax-jax/">
     <h2 class="post-title">
       Flaxに入門してみる
       
@@ -559,8 +943,8 @@ cd .emacs.d/site-lisp npm install -D textlint textlintのルールには</p>
   <div class="post-entry">
     <p>Googleが最近力を入れているニューラルネットワークのフレームワークらしい。
 一般的に、flaxは亜麻、linenは麻と訳される。flaxは植物で、その植物を加工し繊維状にしたものまでをflax、それを紡いで糸にしたもの及びその製品をlinenと呼ぶらしい。 (参照：日本麻紡績協会)
-例えばこのラ</p>
-    <a href="https://www.if-blog.site/posts/neuralnet/flax-jax/" class="post-read-more"></a>
+例えばこのラ …</p>
+    <a href="http://localhost:1313/posts/neuralnet/flax-jax/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -568,9 +952,9 @@ cd .emacs.d/site-lisp npm install -D textlint textlintのルールには</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
     
   
 </div>
@@ -585,379 +969,6 @@ cd .emacs.d/site-lisp npm install -D textlint textlintのルールには</p>
 </article>
 
       
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/python/arxiv-translate/">
-    <h2 class="post-title">
-      Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>朝の空いた時間などにarxivの新着論文を読みたくて、 アブストラクトを翻訳したものをslackに送るようにしました。
-流れは以下のような感じ。
-arxivはAPIを公開しているのでそこから、アブストや論文のタイトル、リンクなどを取得します。
-Google Apps Script（GAS）を使うと、</p>
-    <a href="https://www.if-blog.site/posts/python/arxiv-translate/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/arxiv/">arxiv</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/github/">github</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2021-07-24
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/python/arxiv-py-lib/">
-    <h2 class="post-title">
-      pythonでarxivのAPIを使う
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>arxivで公開されているAPIを使っていきます
-https://arxiv.org/
-APIを直接呼び出しても良いですが、responseがxmlで使いづらかったので pythonのライブラリを使わせてもらいます。
-https://github.com/lukasschwab/arxiv.py
-p</p>
-    <a href="https://www.if-blog.site/posts/python/arxiv-py-lib/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/arxiv/">arxiv</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2021-07-23
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/others/gas-translate/">
-    <h2 class="post-title">
-      Google Apps ScriptでGoogle Translateを使う
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>翻訳用のAPIを簡単に利用したいことあると思います。
-Google TranslateはAPIを公開してますが、気軽に使う場合には少し不便です。
-そういう場合は、Google Apps ScriptからGoogle Translateの機能を使うと便利です。
-結論 LanguageApp.trans</p>
-    <a href="https://www.if-blog.site/posts/others/gas-translate/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/gas/">gas</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/arxiv/">arxiv</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2021-07-22
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-related-posts/">
-    <h2 class="post-title">
-      Hugoの記事に関連記事を表示させる
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>記事の最後に関連記事を表示する方法が簡単になってた。
-https://gohugo.io/content-management/related/
-これで関連記事を取れる
-.Site.RegularPages.Related 以下のような感じで記事の最後につけるとおｋ
-{{ $related := .</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-related-posts/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2021-07-18
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/python/open-ai-gym-quick/">
-    <h2 class="post-title">
-      Open AI Gymをとりあえず動かす
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Open AI Gymのquick startです。とりあえず動かしてみます。
-document
-https://gym.openai.com/docs/
-Install pip install gym Run import gym env = gym.make(&amp;#39;CartPole-v0&amp;#</p>
-    <a href="https://www.if-blog.site/posts/python/open-ai-gym-quick/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2021-07-14
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/">
-    <h2 class="post-title">
-      End-to-End Text Classification via Image-basedEmbedding using Character-level Networks
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>日本語、中国語、タイ語など、形態素解析に基づく単語境界を持たない言語の分析や理解のためには、単語の埋め込みの前に適切な単語分割を行うことが望まれるが、これらの言語では本質的に困難である。しかし、これらの言語では、それは本質的に困難である。近年、ディープラーニングに基づく様々な言語モデルの進歩は目覚ま</p>
-    <a href="https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2020-12-30
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/">
-    <h2 class="post-title">
-      Enhanced character embedding for Chinese named entity recognition
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Enhanced character embedding for Chinese named entity recognition https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456
-従来の名前付き実体認識方法では、主に手作業に</p>
-    <a href="https://www.if-blog.site/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2020-12-30
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/github/workflow-dispatch/">
-    <h2 class="post-title">
-      GitHub Actionsを手動実行する
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>GitHub Actionsをcronとして定期実行していたが、動作の確認のために手動実行もしたかったのでメモ
-結論 onワークフロー構文に、workflow_dispatchを指定する
-name: Manually triggered workflow on: workflow_dispatch:</p>
-    <a href="https://www.if-blog.site/posts/github/workflow-dispatch/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/github/">github</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2020-07-19
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/android/bottom-sheet/">
-    <h2 class="post-title">
-      Bottom Sheetをつける
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Google Mapで下から引っ張ると出てくるやつ。
-調べたら以外と簡単にできた。
-dependenciesを追加。
-dependencies { implementation &amp;#39;com.google.android.material:material:1.0.0&amp;#39; } 例
-&amp;lt;</p>
-    <a href="https://www.if-blog.site/posts/android/bottom-sheet/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/android/">android</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2020-03-01
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/android/android-introduction/">
-    <h2 class="post-title">
-      Webアプリケーションしか作ったことがない人がAndroidの開発を始めたときの情報収集の流れ
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>これまでフロントエンド/バックエンドしか作ったことなく、ようやくAndroid開発に入門したのだが、
-始めのころの情報収集が意外と大変だったので、同じような境遇の人の為にまとめておく。
-上からみていくと、フロントエンド/バックエンドしか開発したことがなくても、流れが掴みやすいかと
-ライブラリ And</p>
-    <a href="https://www.if-blog.site/posts/android/android-introduction/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/android/">android</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2020-02-28
-  
-</div>
-
-  </div>
-</article>
-
-      
     </div>
 
     
@@ -965,14 +976,14 @@ dependencies { implementation &amp;#39;com.google.android.material:material:1.0.
       <ul class="pager">
         
           <li class="previous">
-            <a href="https://www.if-blog.site/page/2/"
+            <a href="http://localhost:1313/page/2/"
               ><i class="fas fa-chevron-left"></i></a
             >
           </li>
         
         
           <li class="next">
-            <a href="https://www.if-blog.site/page/4/"
+            <a href="http://localhost:1313/page/4/"
               ><i class="fas fa-chevron-right"></i
             ></a>
           </li>
@@ -994,12 +1005,12 @@ dependencies { implementation &amp;#39;com.google.android.material:material:1.0.
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

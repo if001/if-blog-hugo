@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>falconを使ってみた</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,13 +93,12 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
-簡単なtipsをメモしておく。
-シンプルな例 fa" />
+    <meta name="description" content="&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
+&lt;p&gt;Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとして&lt;a href=&#34;https://falconframework.org/&#34;&gt;falcon&lt;/a&gt;を使ってみた。ORMなど必要なく、簡単なアップロ" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -202,10 +190,10 @@
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/python/">python</a
+            <a href="http://localhost:1313//tags/python/">python</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/falcon/">falcon</a
+            <a href="http://localhost:1313//tags/falcon/">falcon</a
             >&nbsp;
           
         </div>
@@ -233,7 +221,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> falcon
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">QuoteResource</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_get</span>(self, req, resp):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_get</span>(<span style="font-style:italic">self</span>, req, resp):
 </span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;&#34;&#34;Handles GET requests&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>        quote <span style="color:#ff79c6">=</span> {
 </span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;quote&#39;</span>: (
@@ -272,7 +260,7 @@ Middleware&#39;s process_response</code></pre>
 </span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">....</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>@falcon.before(validate_image_type)
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_post</span>(self, req, resp):
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_post</span>(<span style="font-style:italic">self</span>, req, resp):
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">pass</span></span></span></code></pre></div>
   </div>
 
@@ -282,7 +270,7 @@ Middleware&#39;s process_response</code></pre>
 <p>corsくらいしか使わなかったが、dbのconnection poolとかに使うようのものとかあるんだろう。(<a href="https://falcon.readthedocs.io/en/stable/api/middleware.html">公式</a>)</p>
 <div class="code-block">
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">CORSMiddleware</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">process_request</span>(self, req, resp):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">process_request</span>(<span style="font-style:italic">self</span>, req, resp):
 </span></span><span style="display:flex;"><span>        resp<span style="color:#ff79c6">.</span>set_header(<span style="color:#f1fa8c">&#39;Access-Control-Allow-Origin&#39;</span>, <span style="color:#f1fa8c">&#39;*&#39;</span>)</span></span></code></pre></div>
   </div>
 
@@ -291,14 +279,14 @@ Middleware&#39;s process_response</code></pre>
 <p>routeが見つからなかった時に、エラーリスポンスを返したいときは以下のようにする。(<a href="https://falcon.readthedocs.io/en/stable/api/errors.html">公式</a>)</p>
 <div class="code-block">
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">Index</span>(<span style="color:#8be9fd;font-style:italic">object</span>):
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_get</span>(self, req, resp):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_get</span>(<span style="font-style:italic">self</span>, req, resp):
 </span></span><span style="display:flex;"><span>        resp<span style="color:#ff79c6">.</span>body <span style="color:#ff79c6">=</span> json<span style="color:#ff79c6">.</span>dumps({<span style="color:#f1fa8c">&#34;message&#34;</span>:<span style="color:#f1fa8c">&#34;ok&#34;</span>})
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>app <span style="color:#ff79c6">=</span> falcon<span style="color:#ff79c6">.</span>API()
 </span></span><span style="display:flex;"><span>app<span style="color:#ff79c6">.</span>add_route(<span style="color:#f1fa8c">&#34;/&#34;</span>, Index())
 </span></span><span style="display:flex;"><span>app<span style="color:#ff79c6">.</span>add_sink(handle_404, <span style="color:#f1fa8c">&#39;&#39;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> __name__ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">__name__</span> <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">from</span> wsgiref <span style="color:#ff79c6">import</span> simple_server
 </span></span><span style="display:flex;"><span>    httpd <span style="color:#ff79c6">=</span> simple_server<span style="color:#ff79c6">.</span>make_server(<span style="color:#f1fa8c">&#34;127.0.0.7&#34;</span>, <span style="color:#bd93f9">8000</span>, app)
 </span></span><span style="display:flex;"><span>    httpd<span style="color:#ff79c6">.</span>serve_forever()</span></span></code></pre></div>
@@ -310,7 +298,7 @@ Middleware&#39;s process_response</code></pre>
 <p>requsetの取得は以下のようになる。(<a href="https://falcon.readthedocs.io/en/stable/api/request_and_response.html">公式</a>)</p>
 <div class="code-block">
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">HealthCheck</span>(<span style="color:#8be9fd;font-style:italic">object</span>):
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_get</span>(self, req, resp):
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">on_get</span>(<span style="font-style:italic">self</span>, req, resp):
 </span></span><span style="display:flex;"><span>	<span style="color:#8be9fd;font-style:italic">print</span>(req<span style="color:#ff79c6">.</span>headers) <span style="color:#6272a4"># headerの取得</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#8be9fd;font-style:italic">print</span>(req<span style="color:#ff79c6">.</span>params[<span style="color:#f1fa8c">&#39;name&#39;</span>]) <span style="color:#6272a4"># request paramの取得</span>
 </span></span><span style="display:flex;"><span>
@@ -322,7 +310,7 @@ Middleware&#39;s process_response</code></pre>
 </span></span><span style="display:flex;"><span>app <span style="color:#ff79c6">=</span> falcon<span style="color:#ff79c6">.</span>API()
 </span></span><span style="display:flex;"><span>app<span style="color:#ff79c6">.</span>add_route(<span style="color:#f1fa8c">&#34;/&#34;</span>, index())
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> __name__ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">__name__</span> <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">from</span> wsgiref <span style="color:#ff79c6">import</span> simple_server
 </span></span><span style="display:flex;"><span>    httpd <span style="color:#ff79c6">=</span> simple_server<span style="color:#ff79c6">.</span>make_server(<span style="color:#f1fa8c">&#34;127.0.0.7&#34;</span>, <span style="color:#bd93f9">8000</span>, app)
 </span></span><span style="display:flex;"><span>    httpd<span style="color:#ff79c6">.</span>serve_forever()</span></span></code></pre></div>
@@ -339,13 +327,13 @@ Middleware&#39;s process_response</code></pre>
     
       <li><a href="/posts/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
     
+      <li><a href="/posts/nlp/gemini-api/">gemini api</a></li>
+    
       <li><a href="/posts/nlp/mixture_of_experts_sample/">Mixture of expertsのサンプル実装</a></li>
     
       <li><a href="/posts/nlp/hf_generation_wrap/">huggingfaceのgenerationの関数をtorch modelから使えるようにしたい</a></li>
     
       <li><a href="/posts/nlp/transformer_any_architecture/">llama2のアーキテクチャを変更してpre trainingしてみる</a></li>
-    
-      <li><a href="/posts/nlp/hf_ds_upload/">複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ</a></li>
     
   </ul>
 
@@ -373,12 +361,12 @@ Middleware&#39;s process_response</code></pre>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

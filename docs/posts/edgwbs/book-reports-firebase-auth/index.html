@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,13 +93,12 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="Vue.jsとGolangでWebアプリケーションでFirebase Authenticationを使い、ログイン処理を行います。
-https://firebase.google.com/docs/auth/?hl=ja
-Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がたくさん上" />
+    <meta name="description" content="&lt;p&gt;Vue.jsとGolangでWebアプリケーションでFirebase Authenticationを使い、ログイン処理を行います。&lt;br&gt;
+&lt;a href=&#34;https://firebase.google.com/docs/auth/?hl=ja&#34;&gt;https://firebase.googl" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -202,13 +190,13 @@ Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がた�
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/webapp/">WebApp</a
+            <a href="http://localhost:1313//tags/webapp/">WebApp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/firebase/">firebase</a
+            <a href="http://localhost:1313//tags/firebase/">firebase</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/golang/">golang</a
+            <a href="http://localhost:1313//tags/golang/">golang</a
             >&nbsp;
           
         </div>
@@ -386,11 +374,11 @@ Twitterデベロッパー側に、OAuthコールバックとして、firebaseの
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>ctx <span style="color:#ff79c6">:=</span> context.<span style="color:#50fa7b">Background</span>()
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">var</span> opt option.ClientOption
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">// localのjson keyから認証する場合
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>opt = option.<span style="color:#50fa7b">WithCredentialsFile</span>(<span style="color:#f1fa8c">&#34;****.json&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// localのjson keyから認証する場合</span>
+</span></span><span style="display:flex;"><span>opt = option.<span style="color:#50fa7b">WithCredentialsFile</span>(<span style="color:#f1fa8c">&#34;****.json&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 環境変数から認証する場合
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>credentials, err <span style="color:#ff79c6">:=</span> google.<span style="color:#50fa7b">CredentialsFromJSON</span>(ctx, []<span style="color:#8be9fd;font-style:italic">byte</span>(authKey))
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 環境変数から認証する場合</span>
+</span></span><span style="display:flex;"><span>credentials, err <span style="color:#ff79c6">:=</span> google.<span style="color:#50fa7b">CredentialsFromJSON</span>(ctx, []<span style="color:#8be9fd;font-style:italic">byte</span>(authKey))
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> err <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nil</span> {
 </span></span><span style="display:flex;"><span>        fmt.<span style="color:#50fa7b">Println</span>(err.<span style="color:#50fa7b">Error</span>())
 </span></span><span style="display:flex;"><span>	 os.<span style="color:#50fa7b">Exit</span>(<span style="color:#bd93f9">1</span>)
@@ -410,12 +398,12 @@ Twitterデベロッパー側に、OAuthコールバックとして、firebaseの
 </span></span><span style="display:flex;"><span>	 os.<span style="color:#50fa7b">Exit</span>(<span style="color:#bd93f9">1</span>)
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">// ヘッダーからIDトークンを取得
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>authHeader <span style="color:#ff79c6">:=</span> c.<span style="color:#50fa7b">GetHeader</span>((<span style="color:#f1fa8c">&#34;Authorization&#34;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// ヘッダーからIDトークンを取得</span>
+</span></span><span style="display:flex;"><span>authHeader <span style="color:#ff79c6">:=</span> c.<span style="color:#50fa7b">GetHeader</span>((<span style="color:#f1fa8c">&#34;Authorization&#34;</span>))
 </span></span><span style="display:flex;"><span>idToken <span style="color:#ff79c6">:=</span> strings.<span style="color:#50fa7b">Replace</span>(authHeader, <span style="color:#f1fa8c">&#34;Bearer &#34;</span>, <span style="color:#f1fa8c">&#34;&#34;</span>, <span style="color:#bd93f9">1</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">// トークンを確認
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>token, err <span style="color:#ff79c6">:=</span> client.<span style="color:#50fa7b">VerifyIDToken</span>(context.<span style="color:#50fa7b">Background</span>(), idToken)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// トークンを確認</span>
+</span></span><span style="display:flex;"><span>token, err <span style="color:#ff79c6">:=</span> client.<span style="color:#50fa7b">VerifyIDToken</span>(context.<span style="color:#50fa7b">Background</span>(), idToken)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> err <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">nil</span> {
 </span></span><span style="display:flex;"><span>        log.<span style="color:#50fa7b">Fatalf</span>(<span style="color:#f1fa8c">&#34;error verifying ID token: %v\n&#34;</span>, err)
 </span></span><span style="display:flex;"><span>}
@@ -444,7 +432,9 @@ Twitterデベロッパー側に、OAuthコールバックとして、firebaseの
     
       <li><a href="/posts/edgwbs/book-reports-review/">三行で読書感想文を書いて、SNSでシェアできるサービスを作った</a></li>
     
-      <li><a href="/posts/edgwbs/book-storage-vue/">Vue.js&#43;typescriptでVuetifyを使いマテリアルデザインに入門する</a></li>
+      <li><a href="/posts/edgwbs/book-reports-firebase/">Firebaseを使ってwebアプリを公開した</a></li>
+    
+      <li><a href="/posts/edgwbs/book-reports-storage-firestore/">Vue.jsからFirebase StorageとDatabaseを使う</a></li>
     
   </ul>
 
@@ -472,12 +462,12 @@ Twitterデベロッパー側に、OAuthコールバックとして、firebaseの
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

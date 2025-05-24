@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>Open AI Gymをとりあえず動かす</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,14 +93,14 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="Open AI Gymのquick startです。とりあえず動かしてみます。
-document
-https://gym.openai.com/docs/
-Install pip install gym Run import gym env = gym.make(&amp;#39;CartPole-v0&amp;#" />
+    <meta name="description" content="&lt;p&gt;Open AI Gymのquick startです。とりあえず動かしてみます。&lt;/p&gt;
+&lt;p&gt;document&lt;br&gt;
+&lt;a href=&#34;https://gym.openai.com/docs/&#34;&gt;https://gym.openai.com/docs/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;ins" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -203,7 +192,7 @@ Install pip install gym Run import gym env = gym.make(&amp;#39;CartPole-v0&amp;#
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/python/">python</a
+            <a href="http://localhost:1313//tags/python/">python</a
             >&nbsp;
           
         </div>
@@ -284,15 +273,15 @@ githubのドキュメント通り。</p>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">FooEnv</span>(gym<span style="color:#ff79c6">.</span>Env):
 </span></span><span style="display:flex;"><span>  metadata <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#39;render.modes&#39;</span>: [<span style="color:#f1fa8c">&#39;human&#39;</span>]}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>):
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">...</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">step</span>(self, action):
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">step</span>(<span style="font-style:italic">self</span>, action):
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">...</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">reset</span>(self):
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">reset</span>(<span style="font-style:italic">self</span>):
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">...</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">render</span>(self, mode<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;human&#39;</span>):
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">render</span>(<span style="font-style:italic">self</span>, mode<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;human&#39;</span>):
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">...</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">close</span>(self):
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">close</span>(<span style="font-style:italic">self</span>):
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">...</span></span></span></code></pre></div>
   </div>
 
@@ -313,7 +302,7 @@ githubのドキュメント通り。</p>
 <div class="code-block">
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> gym.envs.classic_control <span style="color:#ff79c6">import</span> rendering
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>self<span style="color:#ff79c6">.</span>viewer <span style="color:#ff79c6">=</span> rendering<span style="color:#ff79c6">.</span>Viewer(screen_width, screen_height)
+</span></span><span style="display:flex;"><span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>viewer <span style="color:#ff79c6">=</span> rendering<span style="color:#ff79c6">.</span>Viewer(screen_width, screen_height)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>circle <span style="color:#ff79c6">=</span> rendering<span style="color:#ff79c6">.</span>make_circle()</span></span></code></pre></div>
   </div>
@@ -335,7 +324,7 @@ githubのドキュメント通り。</p>
     
       <li><a href="/posts/python/arxiv-py-lib/">pythonでarxivのAPIを使う</a></li>
     
-      <li><a href="/posts/nlp/mixture_of_experts_sample/">Mixture of expertsのサンプル実装</a></li>
+      <li><a href="/posts/python/test/">test</a></li>
     
   </ul>
 
@@ -363,12 +352,12 @@ githubのドキュメント通り。</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

@@ -1,15 +1,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>読書 on アンドロイドは推理小説を書くか?</title>
-		<link>https://www.if-blog.site/tags/%E8%AA%AD%E6%9B%B8/</link>
+		<link>http://localhost:1313/tags/%E8%AA%AD%E6%9B%B8/</link>
 		<description>Recent content in 読書 </description>
 		<generator>Hugo -- gohugo.io</generator>
 		
   		<language>ja</language>
 		
-		<managingEditor>Page(/tags/読書) (if_004)</managingEditor>
+		<managingEditor>/tags/読書</managingEditor>
     	
-  		<lastBuildDate>Wed, 09 Oct 2019 00:00:00 +0000</lastBuildDate>
+  		<lastBuildDate>Fri, 23 Jul 2021 02:00:00 +0900</lastBuildDate>
 		
 		<atom:link href="/tags/%E8%AA%AD%E6%9B%B8/" rel="self" type="application/rss+xml" />
 		

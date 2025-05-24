@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>test</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,59 +16,97 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
 <link
   id="dark-mode-theme"
-  rel="stylesheet"
-  href="https://www.if-blog.site/css/dark.css"
-  disabled
-/>
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
-<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
-  rel="stylesheet"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
 />
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
-/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
 <script>
-  $(document).ready(function () {
-    renderMathInElement(document.body, {
-      delimiters: [
-        { left: '[[', right: ']]', display: true },
-        { left: '$', right: '$', display: false },
-      ],
-    })
-  })
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
 </script>
 
-<script src="https://www.if-blog.site/js/main.bundle.js"></script>
-<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
 
 
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="test0 aaaaa
-test1 $\alpha$
-$\beta$
-$a^2 &#43; b^2 = c^2$
-$$ a^2 &#43; b^2 = c^2 $$
-test3 $ hoge -t hoge subsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsub" />
+    <meta name="description" content="&lt;h2 id=&#34;test0&#34;&gt;test0&lt;/h2&gt;
+&lt;p&gt;aaaaa&lt;/p&gt;
+&lt;h2 id=&#34;test1&#34;&gt;test1&lt;/h2&gt;
+&lt;p&gt;$\alpha$&lt;/p&gt;
+&lt;p&gt;$\beta$&lt;/p&gt;
+&lt;p&gt;$a^2 &#43; b^2 = c^2$&lt;/p&gt;
+&lt;p&gt;$$
+a^2 &#43; b^2 = c^2
+$$&lt;/p&gt;
+" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -173,22 +200,22 @@ test3 $ hoge -t hoge subsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsub" />
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/python/">python</a
+            <a href="http://localhost:1313//tags/python/">python</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/hugo/">Hugo</a
+            <a href="http://localhost:1313//tags/hugo/">Hugo</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/aaa/">aaa</a
+            <a href="http://localhost:1313//tags/aaa/">aaa</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/%E8%AA%AD%E6%9B%B8/">読書</a
+            <a href="http://localhost:1313//tags/%E8%AA%AD%E6%9B%B8/">読書</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/%E8%AA%AD%E4%BA%86/">読了</a
+            <a href="http://localhost:1313//tags/%E8%AA%AD%E4%BA%86/">読了</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0/">長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ</a
+            <a href="http://localhost:1313//tags/%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0/">長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ</a
             >&nbsp;
           
         </div>
@@ -197,7 +224,7 @@ test3 $ hoge -t hoge subsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsub" />
       
         <div style="margin-bottom: 10px;">
           <i class="fa fa-calendar-alt"></i
-          >&nbsp;2019-10-09
+          >&nbsp;2021-07-23
         </div>
       
 
@@ -214,6 +241,11 @@ test3 $ hoge -t hoge subsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsub" />
 <p>$$
 a^2 + b^2 = c^2
 $$</p>
+<p>$$\int_{a}^{b} x^2 dx$$</p>
+<p>\begin{aligned}
+KL(\hat{y} || y) &amp;= \sum_{c=1}^{M}\hat{y}_c \log{\frac{\hat{y}_c}{y_c}} \
+JS(\hat{y} || y) &amp;= \frac{1}{2}(KL(y||\frac{y+\hat{y}}{2}) + KL(\hat{y}||\frac{y+\hat{y}}{2}))
+\end{aligned}</p>
 <h3 id="test3">test3</h3>
 <div class="code-block">
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hoge -t hoge</span></span></code></pre></div>
@@ -253,7 +285,7 @@ $$</p>
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">main</span>():
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">pass</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> __name__ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">__name__</span> <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>main()</span></span></code></pre></div>
   </div>
 
@@ -281,13 +313,13 @@ huga()
     
       <li><a href="/posts/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
     
-      <li><a href="/posts/python/python-matplotlib-base/">matplotlibのよく使う記法まとめ</a></li>
+      <li><a href="/posts/nlp/huggingface-doc/">Hugging Face Transformersのドキュメント読んだ</a></li>
     
-      <li><a href="/posts/others/http-portal-for-blog/">Hugoで作ったwebサイトを公開する</a></li>
+      <li><a href="/posts/neuralnet/flax-jax/">Flaxに入門してみる</a></li>
     
-      <li><a href="/posts/others/aws-cli-at-pyenv/">pyenv環境でaws cli入れたらコマンドが見つからない</a></li>
+      <li><a href="/posts/python/arxiv-translate/">Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る</a></li>
     
-      <li><a href="/posts/nlp/word2vec-output-word/">word2vecでベクトルから単語を出力する</a></li>
+      <li><a href="/posts/python/arxiv-py-lib/">pythonでarxivのAPIを使う</a></li>
     
   </ul>
 
@@ -315,12 +347,12 @@ huga()
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
-      2023
+      2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

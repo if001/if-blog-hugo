@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>LangChainのAgentを調べる</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,56 +16,90 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
 <link
   id="dark-mode-theme"
-  rel="stylesheet"
-  href="https://www.if-blog.site/css/dark.css"
-  disabled
-/>
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
-<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
-  rel="stylesheet"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
 />
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
-/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
 <script>
-  $(document).ready(function () {
-    renderMathInElement(document.body, {
-      delimiters: [
-        { left: '[[', right: ']]', display: true },
-        { left: '$', right: '$', display: false },
-      ],
-    })
-  })
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
 </script>
 
-<script src="https://www.if-blog.site/js/main.bundle.js"></script>
-<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
 
 
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="LangChainにAgentsという機能がある。 AgentとはLLMを利用して、実行するactionとその順序を決定できる。
-https://python.langchain.com/en/latest/modules/agents/getting_started.html
-いまいちピンとこなか" />
+    <meta name="description" content="&lt;p&gt;LangChainにAgentsという機能がある。
+AgentとはLLMを利用して、実行するactionとその順序を決定できる。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://python.langchain.com/en/latest/modules/agents/getting_star" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -143,6 +166,8 @@ https://python.langchain.com/en/latest/modules/agents/getting_started.html
 		
 		LangChainのAgentを調べる
 		
+		<span class="draft-tag">(Draft)</span>
+		
 		
                 </h1>
               
@@ -168,13 +193,13 @@ https://python.langchain.com/en/latest/modules/agents/getting_started.html
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            <a href="http://localhost:1313//tags/langchain/">langchain</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/python/">python</a
+            <a href="http://localhost:1313//tags/python/">python</a
             >&nbsp;
           
         </div>
@@ -301,15 +326,15 @@ Question: {input}
   <h2>See Also</h2>
   <ul>
     
-      <li><a href="/posts/nlp/bloom_lora_start/">BloomをLoRaで日本語finetuning</a></li>
+      <li><a href="/posts/nlp/react_start/">VicunaでReActっぽいことを試してみる</a></li>
     
-      <li><a href="/posts/nlp/gpt_index_llama_index_start/">LlamaIndex(GPTIndex)を触る</a></li>
+      <li><a href="/posts/nlp/mixture_of_experts_sample/">Mixture of expertsのサンプル実装</a></li>
     
-      <li><a href="/posts/nlp/flexgen_start/">FlexGenで遊ぶ</a></li>
+      <li><a href="/posts/nlp/hf_generation_wrap/">huggingfaceのgenerationの関数をtorch modelから使えるようにしたい</a></li>
     
-      <li><a href="/posts/nlp/huggingface-text-gen/">Huggingfaceのtext generation pipelineとtext2text generation pipeline</a></li>
+      <li><a href="/posts/nlp/transformer_any_architecture/">llama2のアーキテクチャを変更してpre trainingしてみる</a></li>
     
-      <li><a href="/posts/nlp/start-xglm-t5/">xglmをquick start</a></li>
+      <li><a href="/posts/nlp/hf_ds_upload/">複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ</a></li>
     
   </ul>
 
@@ -337,12 +362,12 @@ Question: {input}
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
-      2023
+      2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

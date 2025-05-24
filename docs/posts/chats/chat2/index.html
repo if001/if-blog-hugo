@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>データセット評価指標</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,15 +93,12 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="以下では LLM 学習用データセットの多様性（あるいは「同質性」を避けられているか）を測る代表的な指標を、定義 → 計算方法 → 読み取り方 → 長所/限界 の順で簡潔に整理します。
-distinct-N paper
-code
-定義
-生成コーパス（または学習データ）の中で 重複を除いた n-gram" />
+    <meta name="description" content="&lt;p&gt;以下では LLM 学習用データセットの多様性（あるいは「同質性」を避けられているか）を測る代表的な指標を、&lt;strong&gt;定義 → 計算方法 → 読み取り方 → 長所/限界&lt;/strong&gt; の順で簡潔に整理します。&lt;/p&gt;
+&lt;h3 id=&#34;distinct-n&#34;&gt;distinct-N&lt;/h3" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -204,16 +190,16 @@ code
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/chat/">chat</a
+            <a href="http://localhost:1313//tags/chat/">chat</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E6%8C%87%E6%A8%99/">データセット指標</a
+            <a href="http://localhost:1313//tags/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E6%8C%87%E6%A8%99/">データセット指標</a
             >&nbsp;
           
         </div>
@@ -335,58 +321,58 @@ $$</p>
 <strong>欠点</strong> 分類器設計・学習ハイパラに感度がある。</p>
 <h2 id="まとめ">まとめ</h2>
 <table>
-<thead>
-<tr>
-<th>指標</th>
-<th>捉える多様性</th>
-<th>軽量</th>
-<th>意味情報</th>
-<th>大規模データ適性</th>
-<th>主な弱点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>distinct-N</td>
-<td>表層 n-gram</td>
-<td>◎</td>
-<td>✕</td>
-<td>◎</td>
-<td>長文補正が必要</td>
-</tr>
-<tr>
-<td>Self-BLEU</td>
-<td>表層＋語順</td>
-<td>△</td>
-<td>✕</td>
-<td>○ (要サンプリング)</td>
-<td>計算 $O(N^2)$</td>
-</tr>
-<tr>
-<td>Diversity Coefficient</td>
-<td>概念・タスク</td>
-<td>○</td>
-<td>◎</td>
-<td>◎</td>
-<td>Task2Vec 依存</td>
-</tr>
-<tr>
-<td>LLM Cluster Score</td>
-<td>トピック分布</td>
-<td>○</td>
-<td>◎</td>
-<td>◎</td>
-<td>クラスタ数選定</td>
-</tr>
-<tr>
-<td>DCScore</td>
-<td>サンプル識別難度</td>
-<td>△</td>
-<td>◎</td>
-<td>○</td>
-<td>分類器依存</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>指標</th>
+          <th>捉える多様性</th>
+          <th>軽量</th>
+          <th>意味情報</th>
+          <th>大規模データ適性</th>
+          <th>主な弱点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>distinct-N</td>
+          <td>表層 n-gram</td>
+          <td>◎</td>
+          <td>✕</td>
+          <td>◎</td>
+          <td>長文補正が必要</td>
+      </tr>
+      <tr>
+          <td>Self-BLEU</td>
+          <td>表層＋語順</td>
+          <td>△</td>
+          <td>✕</td>
+          <td>○ (要サンプリング)</td>
+          <td>計算 $O(N^2)$</td>
+      </tr>
+      <tr>
+          <td>Diversity Coefficient</td>
+          <td>概念・タスク</td>
+          <td>○</td>
+          <td>◎</td>
+          <td>◎</td>
+          <td>Task2Vec 依存</td>
+      </tr>
+      <tr>
+          <td>LLM Cluster Score</td>
+          <td>トピック分布</td>
+          <td>○</td>
+          <td>◎</td>
+          <td>◎</td>
+          <td>クラスタ数選定</td>
+      </tr>
+      <tr>
+          <td>DCScore</td>
+          <td>サンプル識別難度</td>
+          <td>△</td>
+          <td>◎</td>
+          <td>○</td>
+          <td>分類器依存</td>
+      </tr>
+  </tbody>
 </table>
 <ul>
 <li><strong>高速スクリーニング</strong> → distinct-N, Self-BLEU</li>
@@ -407,11 +393,11 @@ $$</p>
     
       <li><a href="/posts/paper/paper24/">Texygen: A Benchmarking Platform for Text Generation Models</a></li>
     
-      <li><a href="/posts/paper/paper23/">Measuring Diversity in Synthetic Datasets</a></li>
+      <li><a href="/posts/paper/paper23_b/">Measuring Diversity in Synthetic Datasets</a></li>
+    
+      <li><a href="/posts/paper/paper23_a/">Measuring Diversity in Synthetic Datasets</a></li>
     
       <li><a href="/posts/paper/paper22/">Beyond Scale: The Diversity Coefficient as a Data Quality Metric for Variability in Natural Language Data</a></li>
-    
-      <li><a href="/posts/paper/paper21/">On the Diversity of Synthetic Data and its Impact on Training Large Language Models</a></li>
     
   </ul>
 
@@ -439,12 +425,12 @@ $$</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

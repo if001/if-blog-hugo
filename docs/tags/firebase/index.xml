@@ -1,13 +1,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>firebase on アンドロイドは推理小説を書くか?</title>
-		<link>https://www.if-blog.site/tags/firebase/</link>
-		<description>Recent content in firebase </description>
+		<title>Firebase on アンドロイドは推理小説を書くか?</title>
+		<link>http://localhost:1313/tags/firebase/</link>
+		<description>Recent content in Firebase </description>
 		<generator>Hugo -- gohugo.io</generator>
 		
   		<language>ja</language>
 		
-		<managingEditor>Page(/tags/firebase) (if_004)</managingEditor>
+		<managingEditor>/tags/firebase</managingEditor>
     	
   		<lastBuildDate>Thu, 10 Oct 2019 00:00:00 +0900</lastBuildDate>
 		

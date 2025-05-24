@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>Firebase Hostingを使ってみた</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,13 +93,14 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="Firebase Authenticationに続いて、Firebase Hostingも使ってみました。備忘録を残しておきます。
-今回は、Vue.jsをデプロイします。
-Firebase Hostingとは Firebase Hosting は、ウェブアプリ、静的コンテンツと動的コンテンツ、マイク" />
+    <meta name="description" content="&lt;p&gt;Firebase Authenticationに続いて、Firebase Hostingも使ってみました。備忘録を残しておきます。&lt;br&gt;
+今回は、Vue.jsをデプロイします。&lt;/p&gt;
+&lt;h2 id=&#34;firebase-hostingとは&#34;&gt;Firebase Hostingとは&lt;/h2&gt;
+&lt;" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -202,10 +192,10 @@ Firebase Hostingとは Firebase Hosting は、ウェブアプリ、静的コン�
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/firebase/">firebase</a
+            <a href="http://localhost:1313//tags/firebase/">firebase</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/webapp/">WebApp</a
+            <a href="http://localhost:1313//tags/webapp/">WebApp</a
             >&nbsp;
           
         </div>
@@ -226,11 +216,9 @@ Firebase Hostingとは Firebase Hosting は、ウェブアプリ、静的コン�
 今回は、Vue.jsをデプロイします。</p>
 <h2 id="firebase-hostingとは">Firebase Hostingとは</h2>
 <blockquote>
-<p>Firebase Hosting は、ウェブアプリ、静的コンテンツと動的コンテンツ、マイクロサービス向けの高速で安全性の高いホスティングを提供します。</p>
-</blockquote>
+<p>Firebase Hosting は、ウェブアプリ、静的コンテンツと動的コンテンツ、マイクロサービス向けの高速で安全性の高いホスティングを提供します。</p></blockquote>
 <blockquote>
-<p>Firebase Hosting はデベロッパー向けの、本番環境レベルのウェブ コンテンツ ホスティングです。1 つのコマンドですばやくウェブアプリをデプロイすることができ、静的コンテンツと動的コンテンツの両方をグローバル CDN（コンテンツ配信ネットワーク）に配信できます。Firebase Hosting と Cloud Functions または Cloud Run を併用してマイクロサービスを構築し、Firebase にホスティングすることもできます。</p>
-</blockquote>
+<p>Firebase Hosting はデベロッパー向けの、本番環境レベルのウェブ コンテンツ ホスティングです。1 つのコマンドですばやくウェブアプリをデプロイすることができ、静的コンテンツと動的コンテンツの両方をグローバル CDN（コンテンツ配信ネットワーク）に配信できます。Firebase Hosting と Cloud Functions または Cloud Run を併用してマイクロサービスを構築し、Firebase にホスティングすることもできます。</p></blockquote>
 <p>引用： <a href="https://firebase.google.com/docs/hosting?hl=ja">https://firebase.google.com/docs/hosting?hl=ja</a></p>
 <p>無料で手軽にアプリケーションを公開するにはすごく便利という印象。</p>
 <p>Firebaseでは、転送量を超えない限り、複数アプリケーションをデプロイできるので、本番環境だけでなく、テスト環境もほしいという場合には有効かと思います。Herokuの無料枠では起動している時間の制限などで実質１アプリケーションしか動かせませんでした。</p>
@@ -336,7 +324,9 @@ Vue.jsのプロジェクトの場合は、以下のようにビルド。</p>
     
       <li><a href="/posts/edgwbs/book-reports-review/">三行で読書感想文を書いて、SNSでシェアできるサービスを作った</a></li>
     
-      <li><a href="/posts/edgwbs/book-storage-vue/">Vue.js&#43;typescriptでVuetifyを使いマテリアルデザインに入門する</a></li>
+      <li><a href="/posts/edgwbs/book-reports-firebase/">Firebaseを使ってwebアプリを公開した</a></li>
+    
+      <li><a href="/posts/edgwbs/book-reports-storage-firestore/">Vue.jsからFirebase StorageとDatabaseを使う</a></li>
     
   </ul>
 
@@ -364,12 +354,12 @@ Vue.jsのプロジェクトの場合は、以下のようにビルド。</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

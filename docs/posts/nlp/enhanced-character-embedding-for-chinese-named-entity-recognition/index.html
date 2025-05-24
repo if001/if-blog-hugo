@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>Enhanced character embedding for Chinese named entity recognition</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,12 +93,12 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="Enhanced character embedding for Chinese named entity recognition https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456
-従来の名前付き実体認識方法では、主に手作業に" />
+    <meta name="description" content="&lt;h1 id=&#34;enhanced-character-embedding-for-chinese-named-entity-recognition&#34;&gt;Enhanced character embedding for Chinese named entity recognition&lt;/h1&gt;
+&lt;p&gt;&lt;" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -201,13 +190,13 @@
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a
+            <a href="http://localhost:1313//tags/%E8%AB%96%E6%96%87/">論文</a
             >&nbsp;
           
         </div>
@@ -227,8 +216,7 @@
         <h1 id="enhanced-character-embedding-for-chinese-named-entity-recognition">Enhanced character embedding for Chinese named entity recognition</h1>
 <p><a href="https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456">https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456</a></p>
 <blockquote>
-<p>従来の名前付き実体認識方法では、主に手作業による特徴の応用を模索しています。現在では、ディープラーニングの普及に伴い、名前付き実体認識のための深い特徴を捕捉するためにニューラルネットワークが導入されている。しかし、既存の手法の多くは、現代のコーパスを対象としたものに限られている。古文献の名前付き実体認識は、名前が時間の経過とともに進化してきたために困難である。本論文では、文字や筆跡の特徴を探ることで実体認識を試みる。トランスフォーマーとストロークからの双方向エンコーダ表現に基づいて、ECEMと名付けられた拡張文字埋め込みモデルを提案する。第一に、ECEMは単語の文脈に応じて動的に意味ベクトルを生成することができる。第二に、提案するアルゴリズムは、中国語の単語の形態素レベルの情報を導入する。最後に、強化された文字埋め込みは、学習のために双方向性の長期短期記憶条件付きランダムフィールドモデルに供給される。提案したアルゴリズムの効果を調べるために，実験 を古文と現代文の両方のコーパスで実施した．その結果，我々のアルゴリズムが非常に有効であることがわかった．従来のものと比較して、強力である。</p>
-</blockquote>
+<p>従来の名前付き実体認識方法では、主に手作業による特徴の応用を模索しています。現在では、ディープラーニングの普及に伴い、名前付き実体認識のための深い特徴を捕捉するためにニューラルネットワークが導入されている。しかし、既存の手法の多くは、現代のコーパスを対象としたものに限られている。古文献の名前付き実体認識は、名前が時間の経過とともに進化してきたために困難である。本論文では、文字や筆跡の特徴を探ることで実体認識を試みる。トランスフォーマーとストロークからの双方向エンコーダ表現に基づいて、ECEMと名付けられた拡張文字埋め込みモデルを提案する。第一に、ECEMは単語の文脈に応じて動的に意味ベクトルを生成することができる。第二に、提案するアルゴリズムは、中国語の単語の形態素レベルの情報を導入する。最後に、強化された文字埋め込みは、学習のために双方向性の長期短期記憶条件付きランダムフィールドモデルに供給される。提案したアルゴリズムの効果を調べるために，実験 を古文と現代文の両方のコーパスで実施した．その結果，我々のアルゴリズムが非常に有効であることがわかった．従来のものと比較して、強力である。</p></blockquote>
 <h2 id="the-proposed-recognition-algorithm">The proposed recognition algorithm</h2>
 <p>提案アルゴリズムであるECEMでは、前処理、embedding、BiLSTM Layer、CRF Layerの４つのコンポーネントからなる。</p>
 <p>embeddingでは、cw2vecとBERTを用いる。
@@ -298,12 +286,12 @@ NERには、BIO schemeを用いる。</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

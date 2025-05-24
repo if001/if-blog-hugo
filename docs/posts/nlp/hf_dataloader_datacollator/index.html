@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,13 +93,13 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="エラーでハマったので、hugging faceのdatasetからbatche_sizeごとのinput_idsやlabelsにするあたりの実装、特にDataLoaderとDataCollatorあたりをちゃんと確認しておく
-train loopは以下から始まる
-def train( self, r" />
+    <meta name="description" content="&lt;p&gt;エラーでハマったので、hugging faceのdatasetからbatche_sizeごとのinput_idsやlabelsにするあたりの実装、特にDataLoaderとDataCollatorあたりをちゃんと確認しておく&lt;/p&gt;
+&lt;p&gt;train loopは以下から始まる&lt;/p&gt;
+&lt;div" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -202,13 +191,13 @@ def train( self, r" />
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/python/">python</a
+            <a href="http://localhost:1313//tags/python/">python</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a
+            <a href="http://localhost:1313//tags/huggingface/">huggingface</a
             >&nbsp;
           
         </div>
@@ -229,7 +218,7 @@ def train( self, r" />
 <p>train loopは以下から始まる</p>
 <div class="code-block">
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">train</span>(
-</span></span><span style="display:flex;"><span>    self,
+</span></span><span style="display:flex;"><span>    <span style="font-style:italic">self</span>,
 </span></span><span style="display:flex;"><span>    resume_from_checkpoint: Optional[Union[<span style="color:#8be9fd;font-style:italic">str</span>, <span style="color:#8be9fd;font-style:italic">bool</span>]] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>,
 </span></span><span style="display:flex;"><span>    trial: Union[<span style="color:#f1fa8c">&#34;optuna.Trial&#34;</span>, Dict[<span style="color:#8be9fd;font-style:italic">str</span>, Any]] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>,
 </span></span><span style="display:flex;"><span>    ignore_keys_for_eval: Optional[List[<span style="color:#8be9fd;font-style:italic">str</span>]] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>,
@@ -245,13 +234,13 @@ def train( self, r" />
 <p>train loopの中で主な部分は<code>_inner_training_loop</code>関数となる</p>
 <div class="code-block">
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_inner_training_loop</span>(
-</span></span><span style="display:flex;"><span>    self, batch_size<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>, args<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>, resume_from_checkpoint<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>, trial<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>, ignore_keys_for_eval<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>
+</span></span><span style="display:flex;"><span>    <span style="font-style:italic">self</span>, batch_size<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>, args<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>, resume_from_checkpoint<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>, trial<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>, ignore_keys_for_eval<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>
 </span></span><span style="display:flex;"><span>):
-</span></span><span style="display:flex;"><span>    self<span style="color:#ff79c6">.</span>accelerator<span style="color:#ff79c6">.</span>free_memory()
-</span></span><span style="display:flex;"><span>    self<span style="color:#ff79c6">.</span>_train_batch_size <span style="color:#ff79c6">=</span> batch_size
-</span></span><span style="display:flex;"><span>    logger<span style="color:#ff79c6">.</span>debug(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Currently training with a batch size of: </span><span style="color:#f1fa8c">{</span>self<span style="color:#ff79c6">.</span>_train_batch_size<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>accelerator<span style="color:#ff79c6">.</span>free_memory()
+</span></span><span style="display:flex;"><span>    <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_train_batch_size <span style="color:#ff79c6">=</span> batch_size
+</span></span><span style="display:flex;"><span>    logger<span style="color:#ff79c6">.</span>debug(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Currently training with a batch size of: </span><span style="color:#f1fa8c">{</span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_train_batch_size<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Data loader and number of training steps</span>
-</span></span><span style="display:flex;"><span>    train_dataloader <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>get_train_dataloader()</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>    train_dataloader <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>get_train_dataloader()</span></span></code></pre></div>
   </div>
     <div class="ref">
       <span class="label">参照:</span
@@ -266,12 +255,12 @@ def train( self, r" />
 <div class="code-block">
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">return</span> DataLoader(
 </span></span><span style="display:flex;"><span>            train_dataset,
-</span></span><span style="display:flex;"><span>            batch_size<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>_train_batch_size,
+</span></span><span style="display:flex;"><span>            batch_size<span style="color:#ff79c6">=</span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_train_batch_size,
 </span></span><span style="display:flex;"><span>            sampler<span style="color:#ff79c6">=</span>train_sampler,
 </span></span><span style="display:flex;"><span>            collate_fn<span style="color:#ff79c6">=</span>data_collator,
-</span></span><span style="display:flex;"><span>            drop_last<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_drop_last,
-</span></span><span style="display:flex;"><span>            num_workers<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_num_workers,
-</span></span><span style="display:flex;"><span>            pin_memory<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_pin_memory,
+</span></span><span style="display:flex;"><span>            drop_last<span style="color:#ff79c6">=</span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_drop_last,
+</span></span><span style="display:flex;"><span>            num_workers<span style="color:#ff79c6">=</span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_num_workers,
+</span></span><span style="display:flex;"><span>            pin_memory<span style="color:#ff79c6">=</span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_pin_memory,
 </span></span><span style="display:flex;"><span>            worker_init_fn<span style="color:#ff79c6">=</span>seed_worker,
 </span></span><span style="display:flex;"><span>        )</span></span></code></pre></div>
   </div>
@@ -349,20 +338,20 @@ epoch_iteratorはdataloaderから作られるDataLoader型</p>
 </div>
 <p>iterator部分の実装は以下</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> __iter__(self) <span style="color:#ff79c6">-&gt;</span> <span style="color:#f1fa8c">&#39;_BaseDataLoaderIter&#39;</span>:
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__iter__</span>(<span style="font-style:italic">self</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#f1fa8c">&#39;_BaseDataLoaderIter&#39;</span>:
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># When using a single worker the returned iterator should be</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># created everytime to avoid reseting its state</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># However, in the case of a multiple workers iterator</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># the iterator is only created once in the lifetime of the</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># DataLoader object so that workers can be reused</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>persistent_workers <span style="color:#ff79c6">and</span> self<span style="color:#ff79c6">.</span>num_workers <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>_iterator <span style="color:#ff79c6">is</span> <span style="color:#ff79c6">None</span>:
-</span></span><span style="display:flex;"><span>                self<span style="color:#ff79c6">.</span>_iterator <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>_get_iterator()
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>persistent_workers <span style="color:#ff79c6">and</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>num_workers <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_iterator <span style="color:#ff79c6">is</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>                <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_iterator <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_get_iterator()
 </span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">else</span>:
-</span></span><span style="display:flex;"><span>                self<span style="color:#ff79c6">.</span>_iterator<span style="color:#ff79c6">.</span>_reset(self)
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>_iterator
+</span></span><span style="display:flex;"><span>                <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_iterator<span style="color:#ff79c6">.</span>_reset(<span style="font-style:italic">self</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_iterator
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">else</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>_get_iterator()</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_get_iterator()</span></span></code></pre></div>
   </div>
     <div class="ref">
       <span class="label">参照:</span
@@ -373,16 +362,16 @@ epoch_iteratorはdataloaderから作られるDataLoader型</p>
 <p>　
 いくつかの分岐があるが、よくあるパターンでは最後の_get_iterator()が呼び出される</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>_get_iterator()</span></span></code></pre></div>
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_get_iterator()</span></span></code></pre></div>
   </div>
 
 </div>
 <p><code>self._get_iterator()</code>により、<code>_SingleProcessDataLoaderIter</code>がiteratorの実装として返される。<br>
 <code>_SingleProcessDataLoaderIter</code>は<code>_BaseDataLoaderIter</code>を継承したもの</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span> <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_get_iterator</span>(self) <span style="color:#ff79c6">-&gt;</span> <span style="color:#f1fa8c">&#39;_BaseDataLoaderIter&#39;</span>:
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span> <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_get_iterator</span>(<span style="font-style:italic">self</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#f1fa8c">&#39;_BaseDataLoaderIter&#39;</span>:
 </span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">...</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">return</span> _SingleProcessDataLoaderIter(self)</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">return</span> _SingleProcessDataLoaderIter(<span style="font-style:italic">self</span>)</span></span></code></pre></div>
   </div>
     <div class="ref">
       <span class="label">参照:</span
@@ -393,7 +382,7 @@ epoch_iteratorはdataloaderから作られるDataLoader型</p>
 <p><code>_SingleProcessDataLoaderIter</code>の実装は以下を参照</p>
 <div class="code-block">
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">_SingleProcessDataLoaderIter</span>(_BaseDataLoaderIter):
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> __init__(self, loader):</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>, loader):</span></span></code></pre></div>
   </div>
     <div class="ref">
       <span class="label">参照:</span
@@ -403,12 +392,12 @@ epoch_iteratorはdataloaderから作られるDataLoader型</p>
 </div>
 <p>iteratorの1要素の作成は、<code>_SingleProcessDataLoaderIter</code>の<code>self._dataset_fetcher</code>によって作成される。</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>self<span style="color:#ff79c6">.</span>_dataset_fetcher <span style="color:#ff79c6">=</span> _DatasetKind<span style="color:#ff79c6">.</span>create_fetcher(
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>_dataset_kind, 
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>_dataset, 
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>_auto_collation, 
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>_collate_fn, 
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>_drop_last)</span></span></code></pre></div>
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_dataset_fetcher <span style="color:#ff79c6">=</span> _DatasetKind<span style="color:#ff79c6">.</span>create_fetcher(
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_dataset_kind, 
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_dataset, 
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_auto_collation, 
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_collate_fn, 
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_drop_last)</span></span></code></pre></div>
   </div>
     <div class="ref">
       <span class="label">参照:</span
@@ -418,9 +407,9 @@ epoch_iteratorはdataloaderから作られるDataLoader型</p>
 </div>
 <p>fetcherを使ってindexをもとにデータを取り出す。</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_next_data</span>(self):
-</span></span><span style="display:flex;"><span>    index <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>_next_index()  <span style="color:#6272a4"># may raise StopIteration</span>
-</span></span><span style="display:flex;"><span>    data <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>_dataset_fetcher<span style="color:#ff79c6">.</span>fetch(index)  <span style="color:#6272a4"># may raise StopIteration</span></span></span></code></pre></div>
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_next_data</span>(<span style="font-style:italic">self</span>):
+</span></span><span style="display:flex;"><span>    index <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_next_index()  <span style="color:#6272a4"># may raise StopIteration</span>
+</span></span><span style="display:flex;"><span>    data <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_dataset_fetcher<span style="color:#ff79c6">.</span>fetch(index)  <span style="color:#6272a4"># may raise StopIteration</span></span></span></code></pre></div>
   </div>
     <div class="ref">
       <span class="label">参照:</span
@@ -445,9 +434,9 @@ epoch_iteratorはdataloaderから作られるDataLoader型</p>
 <p><code>_MapDatasetFetcher</code>のfetch methodでDataCollatorが呼び出される</p>
 <div class="code-block">
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">_MapDatasetFetcher</span>(_BaseDatasetFetcher):
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">fetch</span>(self, possibly_batched_index):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">fetch</span>(<span style="font-style:italic">self</span>, possibly_batched_index):
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">...</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>collate_fn(data)</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>collate_fn(data)</span></span></code></pre></div>
   </div>
     <div class="ref">
       <span class="label">参照:</span
@@ -461,8 +450,8 @@ epoch_iteratorはdataloaderから作られるDataLoader型</p>
 <p>indexの中身は、長さがbatch_sizeのarrayでindexが要素である。<br>
 <code>e.g. [4, 128, 20, 10....]</code></p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_next_index</span>(self):
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">next</span>(self<span style="color:#ff79c6">.</span>_sampler_iter)  <span style="color:#6272a4"># may raise StopIteration</span></span></span></code></pre></div>
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_next_index</span>(<span style="font-style:italic">self</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">next</span>(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_sampler_iter)  <span style="color:#6272a4"># may raise StopIteration</span></span></span></code></pre></div>
   </div>
     <div class="ref">
       <span class="label">参照:</span
@@ -473,16 +462,16 @@ epoch_iteratorはdataloaderから作られるDataLoader型</p>
 <p>ここのindexは、DataLoaderのbatch_samplerが作り出す</p>
 <div class="code-block">
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>@property
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_index_sampler</span>(self):
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_index_sampler</span>(<span style="font-style:italic">self</span>):
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># The actual sampler used for generating indices for `_DatasetFetcher`</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># (see _utils/fetch.py) to read data at each time. This would be</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># `.batch_sampler` if in auto-collation mode, and `.sampler` otherwise.</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># We can&#39;t change `.sampler` and `.batch_sampler` attributes for BC</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># reasons.</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>_auto_collation:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>batch_sampler
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_auto_collation:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>batch_sampler
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">else</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>sampler</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>sampler</span></span></code></pre></div>
   </div>
     <div class="ref">
       <span class="label">参照:</span
@@ -495,12 +484,12 @@ epoch_iteratorはdataloaderから作られるDataLoader型</p>
 <div class="code-block">
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">return</span> DataLoader(
 </span></span><span style="display:flex;"><span>    train_dataset,
-</span></span><span style="display:flex;"><span>    batch_size<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>_train_batch_size,
+</span></span><span style="display:flex;"><span>    batch_size<span style="color:#ff79c6">=</span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>_train_batch_size,
 </span></span><span style="display:flex;"><span>    sampler<span style="color:#ff79c6">=</span>train_sampler,
 </span></span><span style="display:flex;"><span>    collate_fn<span style="color:#ff79c6">=</span>data_collator,
-</span></span><span style="display:flex;"><span>    drop_last<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_drop_last,
-</span></span><span style="display:flex;"><span>    num_workers<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_num_workers,
-</span></span><span style="display:flex;"><span>    pin_memory<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_pin_memory,
+</span></span><span style="display:flex;"><span>    drop_last<span style="color:#ff79c6">=</span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_drop_last,
+</span></span><span style="display:flex;"><span>    num_workers<span style="color:#ff79c6">=</span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_num_workers,
+</span></span><span style="display:flex;"><span>    pin_memory<span style="color:#ff79c6">=</span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_pin_memory,
 </span></span><span style="display:flex;"><span>    worker_init_fn<span style="color:#ff79c6">=</span>seed_worker,
 </span></span><span style="display:flex;"><span>)</span></span></code></pre></div>
   </div>
@@ -512,7 +501,7 @@ epoch_iteratorはdataloaderから作られるDataLoader型</p>
 </div>
 <p>transformersでは、シンプルなパターンの場合train_samplerとしてRandomSamplerが用いられる</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">return</span> RandomSampler(self<span style="color:#ff79c6">.</span>train_dataset, generator<span style="color:#ff79c6">=</span>generator)</span></span></code></pre></div>
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">return</span> RandomSampler(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>train_dataset, generator<span style="color:#ff79c6">=</span>generator)</span></span></code></pre></div>
   </div>
     <div class="ref">
       <span class="label">参照:</span
@@ -544,7 +533,7 @@ epoch_iteratorはdataloaderから作られるDataLoader型</p>
 </div>
 <p>DataLoaderがiteratorとして呼び出された場合は、<code>DataCollator</code>の<code>__call__</code>が呼び出される。</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> __call__(self, features, return_tensors<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>):</span></span></code></pre></div>
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__call__</span>(<span style="font-style:italic">self</span>, features, return_tensors<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>):</span></span></code></pre></div>
   </div>
     <div class="ref">
       <span class="label">参照:</span
@@ -572,11 +561,11 @@ batch_sizeが2の場合は以下のようになる。</p>
 </div>
 <p>feturesに対してpaddingが行われる</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  features <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>tokenizer<span style="color:#ff79c6">.</span>pad(
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  features <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>tokenizer<span style="color:#ff79c6">.</span>pad(
 </span></span><span style="display:flex;"><span>            features,
-</span></span><span style="display:flex;"><span>            padding<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>padding,
-</span></span><span style="display:flex;"><span>            max_length<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>max_length,
-</span></span><span style="display:flex;"><span>            pad_to_multiple_of<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>pad_to_multiple_of,
+</span></span><span style="display:flex;"><span>            padding<span style="color:#ff79c6">=</span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>padding,
+</span></span><span style="display:flex;"><span>            max_length<span style="color:#ff79c6">=</span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>max_length,
+</span></span><span style="display:flex;"><span>            pad_to_multiple_of<span style="color:#ff79c6">=</span><span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>pad_to_multiple_of,
 </span></span><span style="display:flex;"><span>            return_tensors<span style="color:#ff79c6">=</span>return_tensors,
 </span></span><span style="display:flex;"><span>        )</span></span></code></pre></div>
   </div>
@@ -723,12 +712,12 @@ batch_sizeが2の場合は以下のようになる。</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

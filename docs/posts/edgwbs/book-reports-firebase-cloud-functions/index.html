@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>Firebase Cloud Functionsを使ってTwitterのOGPを設定する</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,11 +93,11 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="Vue.jsで作ったWebAppをFirebase Hostingで公開し、そこでTwitter用のOGPを設定しようとしましたが、Twitterのクローラーがjavascriptを解釈できないということで、別途方法を考える必要がありました。そこで、Firebase Cloud Functionsを" />
+    <meta name="description" content="&lt;p&gt;Vue.jsで作ったWebAppをFirebase Hostingで公開し、そこでTwitter用のOGPを設定しようとしましたが、Twitterのクローラーがjavascriptを解釈できないということで、別途方法を考える必要がありました。そこで、Firebase Cloud Functio" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -200,10 +189,10 @@
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/firebase/">firebase</a
+            <a href="http://localhost:1313//tags/firebase/">firebase</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/webapp/">WebApp</a
+            <a href="http://localhost:1313//tags/webapp/">WebApp</a
             >&nbsp;
           
         </div>
@@ -223,8 +212,7 @@
         <p>Vue.jsで作ったWebAppをFirebase Hostingで公開し、そこでTwitter用のOGPを設定しようとしましたが、Twitterのクローラーがjavascriptを解釈できないということで、別途方法を考える必要がありました。そこで、Firebase Cloud Functionsを使ってtwitter：OGPを設定してみようと思います。</p>
 <p>Firebase Cloud Functionsとは</p>
 <blockquote>
-<p>Cloud Functions for Firebase を使用すると、Firebase 機能や HTTPS リクエストによってトリガーされたイベントに応じて、バックエンド コードを自動的に実行できます。コードは Google のクラウドに保存され、マネージド環境で実行されます。独自のサーバーを管理およびスケーリングする必要はありません。</p>
-</blockquote>
+<p>Cloud Functions for Firebase を使用すると、Firebase 機能や HTTPS リクエストによってトリガーされたイベントに応じて、バックエンド コードを自動的に実行できます。コードは Google のクラウドに保存され、マネージド環境で実行されます。独自のサーバーを管理およびスケーリングする必要はありません。</p></blockquote>
 <p>引用： <a href="https://firebase.google.com/docs/functions/?hl=ja">https://firebase.google.com/docs/functions/?hl=ja</a></p>
 <p>今回は、HTTPSリクエストをトリガーに使いましたが、FirebaseのDatabaseへの書き込みやGitHubのpush/commitなどもトリガーにできるようです。色々と便利に使えそうです。</p>
 <p>Cloud Functions で可能な処理:<br>
@@ -369,7 +357,9 @@ HTTPSリクエストをトリガーにし、Firebase Storageから情報を取�
     
       <li><a href="/posts/edgwbs/book-reports-review/">三行で読書感想文を書いて、SNSでシェアできるサービスを作った</a></li>
     
-      <li><a href="/posts/edgwbs/book-storage-vue/">Vue.js&#43;typescriptでVuetifyを使いマテリアルデザインに入門する</a></li>
+      <li><a href="/posts/edgwbs/book-reports-firebase/">Firebaseを使ってwebアプリを公開した</a></li>
+    
+      <li><a href="/posts/edgwbs/book-reports-storage-firestore/">Vue.jsからFirebase StorageとDatabaseを使う</a></li>
     
   </ul>
 
@@ -397,12 +387,12 @@ HTTPSリクエストをトリガーにし、Firebase Storageから情報を取�
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

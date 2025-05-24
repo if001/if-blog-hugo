@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,14 +93,15 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="朝の空いた時間などにarxivの新着論文を読みたくて、 アブストラクトを翻訳したものをslackに送るようにしました。
-流れは以下のような感じ。
-arxivはAPIを公開しているのでそこから、アブストや論文のタイトル、リンクなどを取得します。
-Google Apps Script（GAS）を使うと、" />
+    <meta name="description" content="&lt;p&gt;朝の空いた時間などにarxivの新着論文を読みたくて、
+アブストラクトを翻訳したものをslackに送るようにしました。&lt;/p&gt;
+&lt;p&gt;流れは以下のような感じ。&lt;/p&gt;
+&lt;p&gt;arxivはAPIを公開しているのでそこから、アブストや論文のタイトル、リンクなどを取得します。&lt;br&gt;
+Google " />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -203,13 +193,13 @@ Google Apps Script（GAS）を使うと、" />
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/python/">python</a
+            <a href="http://localhost:1313//tags/python/">python</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/arxiv/">arxiv</a
+            <a href="http://localhost:1313//tags/arxiv/">arxiv</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/github/">github</a
+            <a href="http://localhost:1313//tags/github/">github</a
             >&nbsp;
           
         </div>
@@ -271,7 +261,7 @@ Google Apps Script（GAS）を使うと、google translateが簡単に使え、�
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">steps</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">name</span>: hello
 </span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">run</span>: |<span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        </span>        echo &#34;hello world&#34;</span></span></code></pre></div>
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        echo &#34;hello world&#34;</span></span></span></code></pre></div>
   </div>
 
 </div>
@@ -302,13 +292,13 @@ Google Apps Script（GAS）を使うと、google translateが簡単に使え、�
 </span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">name</span>: Install dependencies
 </span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">run</span>: |<span style="color:#f1fa8c">
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        python -m pip install --upgrade pip    
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi      </span>        
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi      </span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">name</span>: Run Main
 </span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">env</span>:
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">APP_GAS_URL</span>: ${{ secrets.APP_GAS_URL }}
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">APP_SLACK_URL</span>: ${{ secrets.APP_SLACK_URL }}
 </span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">run</span>: |<span style="color:#f1fa8c">
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        </span>        python main.py</span></span></code></pre></div>
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        python main.py</span></span></span></code></pre></div>
   </div>
 
 </div>
@@ -329,7 +319,7 @@ arxivの各論文の持つid(entry_id)をsave.logというファイル名で書�
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git add save.log
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git commit -m &#34;update save.log&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git status
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git</span>        </span></span></code></pre></div>
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git</span></span></span></code></pre></div>
   </div>
 
 </div>
@@ -347,9 +337,9 @@ arxivの各論文の持つid(entry_id)をsave.logというファイル名で書�
     
       <li><a href="/posts/neuralnet/flax-jax/">Flaxに入門してみる</a></li>
     
-      <li><a href="/posts/others/gas-translate/">Google Apps ScriptでGoogle Translateを使う</a></li>
+      <li><a href="/posts/python/test/">test</a></li>
     
-      <li><a href="/posts/python/open-ai-gym-quick/">Open AI Gymをとりあえず動かす</a></li>
+      <li><a href="/posts/others/gas-translate/">Google Apps ScriptでGoogle Translateを使う</a></li>
     
   </ul>
 
@@ -377,12 +367,12 @@ arxivの各論文の持つid(entry_id)をsave.logというファイル名で書�
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

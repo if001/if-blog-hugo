@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>EVALUATING THE DIVERSITY AND QUALITY OF LLM GENERATED CONTENT</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,13 +93,13 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="https://arxiv.org/abs/2504.12522
-AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
-AIが作る文章やプログラムの「質」と「種類の豊富さ（多様性）」をどう評価するかの研究です。この論文では、ただ多様なだけでなく「使える（質の高い）」アウトプット" />
+    <meta name="description" content="&lt;p&gt;AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2504.12522&#34;&gt;https://arxiv.org/abs/2504.12522&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;AIが作る文章やプログラムの「" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -202,16 +191,16 @@ AIが作る文章やプログラムの「質」と「種類の豊富さ（多様
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a
+            <a href="http://localhost:1313//tags/paper_summary/">paper_summary</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E6%8C%87%E6%A8%99/">データセット指標</a
+            <a href="http://localhost:1313//tags/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E6%8C%87%E6%A8%99/">データセット指標</a
             >&nbsp;
           
         </div>
@@ -228,9 +217,8 @@ AIが作る文章やプログラムの「質」と「種類の豊富さ（多様
 
 
       <div class="article-main">
-        <p><a href="https://arxiv.org/abs/2504.12522">https://arxiv.org/abs/2504.12522</a></p>
-<p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
-<hr>
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2504.12522">https://arxiv.org/abs/2504.12522</a></p>
 <p>AIが作る文章やプログラムの「質」と「種類の豊富さ（多様性）」をどう評価するかの研究です。この論文では、ただ多様なだけでなく「使える（質の高い）」アウトプットがどれだけ多様か、という「実質的な意味的多様性」を測る新しい方法を提案しています。実験の結果、特定の調整をされたAIは、表現の多様性は減るものの、質の高いアウトプットをより多く作るため、結果として「実質的な意味的多様性」は高くなることが分かりました。</p>
 <h2 id="サマリー">サマリー</h2>
 <p>本論文は、大規模言語モデル（LLM）が生成するコンテンツの質と多様性を評価するための新しいフレームワーク「実質的な意味的多様性（effective semantic diversity）」を提案する 。これは、品質のしきい値を満たすアウトプット間での多様性を測定するものであり、LLMの実用的な有用性をより良く反映する。人間による評価を必要としない自由形式のタスクを用いて評価した結果、選好チューニングされたモデル（特に強化学習（RL）で訓練されたモデル）は、語彙的・統語的多様性は減少するものの、高品質なアウトプットを全体的により多く生成するため、教師ありファインチューニング（SFT）モデルやベースモデルよりも実質的な意味的多様性が高くなることが示された。選好チューニングは統語的多様性を減らしつつ意味的多様性を保持し、従来の指標が見落としがちな形式の多様性と内容の多様性の違いを明らかにした 。さらに、より小さなモデルの方が、固定されたサンプリングバジェット内でユニークなコンテンツを生成する上でパラメータ効率が良いことが示された。</p>
@@ -254,7 +242,6 @@ $$Div_{pair}(\mathcal{P}_{i})=\frac{1}{\binom{K}{2}}\sum_{g_{i}^{j},g_{i}^{k}\in
 <li>本研究フレームワークを活用し、将来のポストトレーニング戦略が多様性にどのように影響するかを評価すること。</li>
 <li>ニューラル多様性指標がLLM生成アウトプットにおける実質的な意味的内容の多様性を反映しているかについてのさらなる評価。特に、多様性を評価するために使用されるモデル（例：Sentence-BERT）は人間のテキストで訓練・評価されているが、LLMが生成する多様なテキスト（分布外の可能性あり）に対して頑健に一般化できるかは不明である。</li>
 </ul>
-
       </div>
       <div class="related-article">
         
@@ -264,13 +251,13 @@ $$Div_{pair}(\mathcal{P}_{i})=\frac{1}{\binom{K}{2}}\sum_{g_{i}^{j},g_{i}^{k}\in
     
       <li><a href="/posts/paper/paper24/">Texygen: A Benchmarking Platform for Text Generation Models</a></li>
     
-      <li><a href="/posts/paper/paper23/">Measuring Diversity in Synthetic Datasets</a></li>
+      <li><a href="/posts/paper/paper23_b/">Measuring Diversity in Synthetic Datasets</a></li>
+    
+      <li><a href="/posts/paper/paper23_a/">Measuring Diversity in Synthetic Datasets</a></li>
     
       <li><a href="/posts/paper/paper22/">Beyond Scale: The Diversity Coefficient as a Data Quality Metric for Variability in Natural Language Data</a></li>
     
       <li><a href="/posts/paper/paper21/">On the Diversity of Synthetic Data and its Impact on Training Large Language Models</a></li>
-    
-      <li><a href="/posts/chats/chat2/">データセット評価指標</a></li>
     
   </ul>
 
@@ -298,12 +285,12 @@ $$Div_{pair}(\mathcal{P}_{i})=\frac{1}{\binom{K}{2}}\sum_{g_{i}^{j},g_{i}^{k}\in
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

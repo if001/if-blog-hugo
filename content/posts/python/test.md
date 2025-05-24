@@ -1,9 +1,9 @@
 ---
-title: 'test'
-slug: 'test'
-tags: ["python","Hugo", "aaa","読書","読了", "長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ"]
+title: "test"
+slug: "test"
+tags: ["python","Hugo","aaa","読書","読了","長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ"]
 draft: true
-date: '2019-10-09'
+date: "2021-07-23T02:00:00+09:00"
 ---
 
 ## test0
@@ -29,7 +29,7 @@ JS(\hat{y} || y) &= \frac{1}{2}(KL(y||\frac{y+\hat{y}}{2}) + KL(\hat{y}||\frac{y
 \end{aligned}
 
 ### test3
-```bash{numberLines:false}
+```bash
 $ hoge -t hoge
 ```
 

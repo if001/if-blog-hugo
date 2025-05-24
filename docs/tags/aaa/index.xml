@@ -1,15 +1,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>aaa on アンドロイドは推理小説を書くか?</title>
-		<link>https://www.if-blog.site/tags/aaa/</link>
-		<description>Recent content in aaa </description>
+		<title>Aaa on アンドロイドは推理小説を書くか?</title>
+		<link>http://localhost:1313/tags/aaa/</link>
+		<description>Recent content in Aaa </description>
 		<generator>Hugo -- gohugo.io</generator>
 		
   		<language>ja</language>
 		
-		<managingEditor>Page(/tags/aaa) (if_004)</managingEditor>
+		<managingEditor>/tags/aaa</managingEditor>
     	
-  		<lastBuildDate>Wed, 09 Oct 2019 00:00:00 +0000</lastBuildDate>
+  		<lastBuildDate>Fri, 23 Jul 2021 02:00:00 +0900</lastBuildDate>
 		
 		<atom:link href="/tags/aaa/" rel="self" type="application/rss+xml" />
 		

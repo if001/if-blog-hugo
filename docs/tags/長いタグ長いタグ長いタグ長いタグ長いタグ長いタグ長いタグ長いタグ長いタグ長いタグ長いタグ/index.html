@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,54 +16,88 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
 <link
   id="dark-mode-theme"
-  rel="stylesheet"
-  href="https://www.if-blog.site/css/dark.css"
-  disabled
-/>
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
-<link rel="stylesheet" href="https://www.if-blog.site/css/main.css" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&display=swap"
-  rel="stylesheet"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
 />
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
-/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js"></script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
 <script>
-  $(document).ready(function () {
-    renderMathInElement(document.body, {
-      delimiters: [
-        { left: '[[', right: ']]', display: true },
-        { left: '$', right: '$', display: false },
-      ],
-    })
-  })
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
 </script>
 
-<script src="https://www.if-blog.site/js/main.bundle.js"></script>
-<script src="https://www.if-blog.site/js/instantpage.min.js" type="module" defer></script>
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
 
 
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
     <meta name="description" content="" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -163,7 +186,7 @@
       
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/python/test/">
+  <a href="http://localhost:1313/posts/python/test/">
     <h2 class="post-title">
       test
       
@@ -173,13 +196,17 @@
   </a>
 
   <div class="post-entry">
-    <p>test0 aaaaa
-test1 $\alpha$
-$\beta$
-$a^2 &#43; b^2 = c^2$
-$$ a^2 &#43; b^2 = c^2 $$
-test3 $ hoge -t hoge subsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsub</p>
-    <a href="https://www.if-blog.site/posts/python/test/" class="post-read-more"></a>
+    <p>&lt;h2 id=&#34;test0&#34;&gt;test0&lt;/h2&gt;
+&lt;p&gt;aaaaa&lt;/p&gt;
+&lt;h2 id=&#34;test1&#34;&gt;test1&lt;/h2&gt;
+&lt;p&gt;$\alpha$&lt;/p&gt;
+&lt;p&gt;$\beta$&lt;/p&gt;
+&lt;p&gt;$a^2 &#43; b^2 = c^2$&lt;/p&gt;
+&lt;p&gt;$$
+a^2 &#43; b^2 = c^2
+$$&lt;/p&gt;
+</p>
+    <a href="http://localhost:1313/posts/python/test/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -187,24 +214,24 @@ test3 $ hoge -t hoge subsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsub</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/hugo/">Hugo</a>&nbsp;
+      <a href="http://localhost:1313//tags/hugo/">Hugo</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/aaa/">aaa</a>&nbsp;
+      <a href="http://localhost:1313//tags/aaa/">aaa</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/%E8%AA%AD%E6%9B%B8/">読書</a>&nbsp;
+      <a href="http://localhost:1313//tags/%E8%AA%AD%E6%9B%B8/">読書</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/%E8%AA%AD%E4%BA%86/">読了</a>&nbsp;
+      <a href="http://localhost:1313//tags/%E8%AA%AD%E4%BA%86/">読了</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0/">長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ</a>&nbsp;
+      <a href="http://localhost:1313//tags/%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0/">長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ長いタグ</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-10-09
+  >&nbsp;2021-07-23
   
 </div>
 
@@ -231,12 +258,12 @@ test3 $ hoge -t hoge subsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsub</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
-      2023
+      2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

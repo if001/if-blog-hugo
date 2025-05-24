@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>llama2のアーキテクチャを変更してpre trainingしてみる</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,13 +93,13 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。
-比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する
-transformerのatt" />
+    <meta name="description" content="&lt;p&gt;できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。&lt;br&gt;
+比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する&lt;/p&gt;
+&lt;p&gt;t" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -202,16 +191,16 @@ transformerのatt" />
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/python/">python</a
+            <a href="http://localhost:1313//tags/python/">python</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/transformer/">transformer</a
+            <a href="http://localhost:1313//tags/transformer/">transformer</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/pre_training/">pre_training</a
+            <a href="http://localhost:1313//tags/pre_training/">pre_training</a
             >&nbsp;
           
         </div>
@@ -284,35 +273,35 @@ return attn_weight @ value</code></pre>
 <h3 id="lossとval-lossの比較">lossとval lossの比較</h3>
 <p>2epoch学習させた最終的なlossとval lossを表にまとめる</p>
 <table>
-<thead>
-<tr>
-<th>model</th>
-<th>loss</th>
-<th>val loss</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ベースモデル</td>
-<td>4.0861</td>
-<td>4.8150</td>
-</tr>
-<tr>
-<td>非線形活性化関数+bias</td>
-<td>4.2262</td>
-<td>4.6753</td>
-</tr>
-<tr>
-<td>query, key, valueの生成を分ける</td>
-<td>4.8802</td>
-<td>4.7191</td>
-</tr>
-<tr>
-<td>query*keyにscaleを追加</td>
-<td>4.9979</td>
-<td>4.7278</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>model</th>
+          <th>loss</th>
+          <th>val loss</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ベースモデル</td>
+          <td>4.0861</td>
+          <td>4.8150</td>
+      </tr>
+      <tr>
+          <td>非線形活性化関数+bias</td>
+          <td>4.2262</td>
+          <td>4.6753</td>
+      </tr>
+      <tr>
+          <td>query, key, valueの生成を分ける</td>
+          <td>4.8802</td>
+          <td>4.7191</td>
+      </tr>
+      <tr>
+          <td>query*keyにscaleを追加</td>
+          <td>4.9979</td>
+          <td>4.7278</td>
+      </tr>
+  </tbody>
 </table>
 <p>ベースモデルについて、他のモデルと比べlossは一番低いが、val lossは高くなっており、過学習の可能性がある。<br>
 val lossについては、<code>非線形活性化関数+bias</code>が一番低く、<code>query, key, valueの生成を分ける</code>と<code>query*keyにscaleを追加 </code>は近い値となった。</p>
@@ -320,30 +309,30 @@ val lossについては、<code>非線形活性化関数+bias</code>が一番低
 ただし、<code>query, key, valueの生成を分ける</code>や<code>query*keyにscaleを追加</code>ほどの複雑さは不要かもしれない</p>
 <h3 id="学習にかかった時間">学習にかかった時間</h3>
 <table>
-<thead>
-<tr>
-<th>model</th>
-<th>学習にかかった時間 (h)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ベースモデル</td>
-<td>13.6</td>
-</tr>
-<tr>
-<td>非線形活性化関数+bias</td>
-<td>13.3</td>
-</tr>
-<tr>
-<td>query, key, valueの生成を分ける</td>
-<td>12.2</td>
-</tr>
-<tr>
-<td>query*keyにscaleを追加</td>
-<td>14.6</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>model</th>
+          <th>学習にかかった時間 (h)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ベースモデル</td>
+          <td>13.6</td>
+      </tr>
+      <tr>
+          <td>非線形活性化関数+bias</td>
+          <td>13.3</td>
+      </tr>
+      <tr>
+          <td>query, key, valueの生成を分ける</td>
+          <td>12.2</td>
+      </tr>
+      <tr>
+          <td>query*keyにscaleを追加</td>
+          <td>14.6</td>
+      </tr>
+  </tbody>
 </table>
 <p>ベースモデルと<code>非線形活性化関数+bias</code>は同じくらいの学習時間であり、非線形の計算やbiasは大きなコストではないことがわかる。<br>
 <code>query, key, valueの生成を分ける</code>はベースモデルより学習時間は短くなっている。これは、<strong>query, key, valueの計算が効率的に行われた可能性</strong>がある。<br>
@@ -538,12 +527,12 @@ p:0.16, 立ち</code></pre>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

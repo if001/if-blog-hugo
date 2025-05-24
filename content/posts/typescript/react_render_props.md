@@ -2,7 +2,7 @@
 title: "reactのrender propsをtypescriptでやる"
 slug: "react-render-prop-typescript"
 tags: ["typescript", "react"]
-date: "2022-2-19T00:00:00+09:00"
+date: "2022-02-19T00:00:00+09:00"
 draft: false
 ---
 

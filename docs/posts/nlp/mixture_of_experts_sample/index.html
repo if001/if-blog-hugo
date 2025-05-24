@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>Mixture of expertsのサンプル実装</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,12 +93,14 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="mixture of expertsを実装してみる。 並列化や計算効率の向上などの部分は複雑なので、それら取り除いた簡単な実装を行ってみる。
-Mixture of expertsとは 特定のタスクに特化したexpertを複数用意し、入力に対してexpertを切り替えることで性能を上げる手法。 exp" />
+    <meta name="description" content="&lt;p&gt;mixture of expertsを実装してみる。
+並列化や計算効率の向上などの部分は複雑なので、それら取り除いた簡単な実装を行ってみる。&lt;/p&gt;
+&lt;h2 id=&#34;mixture-of-expertsとは&#34;&gt;Mixture of expertsとは&lt;/h2&gt;
+&lt;p&gt;特定のタスクに特化したex" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -201,13 +192,13 @@ Mixture of expertsとは 特定のタスクに特化したexpertを複数用意�
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/python/">python</a
+            <a href="http://localhost:1313//tags/python/">python</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/torch/">torch</a
+            <a href="http://localhost:1313//tags/torch/">torch</a
             >&nbsp;
           
         </div>
@@ -262,16 +253,16 @@ $P_i$は$expert_i$に割り振られる可能性の確率</p>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn.functional <span style="color:#ff79c6">as</span> F
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">MoE</span>(nn<span style="color:#ff79c6">.</span>Module):
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> __init__(self, 
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>, 
 </span></span><span style="display:flex;"><span>                 embed_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">128</span>, 
 </span></span><span style="display:flex;"><span>                 num_experts<span style="color:#ff79c6">=</span><span style="color:#bd93f9">4</span>, 
 </span></span><span style="display:flex;"><span>                 expert_hidden_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">256</span>, 
 </span></span><span style="display:flex;"><span>                 gate_hidden_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">256</span>,
 </span></span><span style="display:flex;"><span>                 device<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;auto&#34;</span>,
 </span></span><span style="display:flex;"><span>                 ):
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>(MoE, self)<span style="color:#ff79c6">.</span>__init__()
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>embed_size <span style="color:#ff79c6">=</span> embed_size
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>num_experts <span style="color:#ff79c6">=</span> num_experts
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>(MoE, <span style="font-style:italic">self</span>)<span style="color:#ff79c6">.</span><span style="color:#50fa7b">__init__</span>()
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>embed_size <span style="color:#ff79c6">=</span> embed_size
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>num_experts <span style="color:#ff79c6">=</span> num_experts
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        expert <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Sequential(
 </span></span><span style="display:flex;"><span>                nn<span style="color:#ff79c6">.</span>Linear(embed_size, expert_hidden_size),
@@ -279,15 +270,15 @@ $P_i$は$expert_i$に割り振られる可能性の確率</p>
 </span></span><span style="display:flex;"><span>                nn<span style="color:#ff79c6">.</span>Linear(expert_hidden_size, embed_size)
 </span></span><span style="display:flex;"><span>            )
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>experts <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>ModuleList([expert <span style="color:#ff79c6">for</span> _ <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(num_experts)])
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>experts <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>ModuleList([expert <span style="color:#ff79c6">for</span> _ <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(num_experts)])
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>gate <span style="color:#ff79c6">=</span>  nn<span style="color:#ff79c6">.</span>Sequential(
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>gate <span style="color:#ff79c6">=</span>  nn<span style="color:#ff79c6">.</span>Sequential(
 </span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>Linear(embed_size, gate_hidden_size),
 </span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>ELU(),
 </span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>Linear(gate_hidden_size, num_experts),
 </span></span><span style="display:flex;"><span>        )
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(self, x):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(<span style="font-style:italic">self</span>, x):
 </span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;&#34;&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        Forward pass for MoE
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        :param x: Input tensor of shape (batch_size, seq_len, embed_size)
@@ -295,11 +286,11 @@ $P_i$は$expert_i$に割り振られる可能性の確率</p>
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        &#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># batch_size, seq_len, _ = x.size()</span>
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        gating_scores <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>gate(x)
+</span></span><span style="display:flex;"><span>        gating_scores <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>gate(x)
 </span></span><span style="display:flex;"><span>        gating_weights <span style="color:#ff79c6">=</span> F<span style="color:#ff79c6">.</span>softmax(gating_scores, dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>) <span style="color:#6272a4"># (batch_size, seq_len, num_experts)</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;gating_weights&#39;</span>, gating_weights<span style="color:#ff79c6">.</span>shape, gating_weights)
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        expert_outputs <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>stack([expert(x) <span style="color:#ff79c6">for</span> expert <span style="color:#ff79c6">in</span> self<span style="color:#ff79c6">.</span>experts], dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>) <span style="color:#6272a4"># (batch_size, seq_len, num_experts, embed_size)</span>
+</span></span><span style="display:flex;"><span>        expert_outputs <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>stack([expert(x) <span style="color:#ff79c6">for</span> expert <span style="color:#ff79c6">in</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>experts], dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>) <span style="color:#6272a4"># (batch_size, seq_len, num_experts, embed_size)</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4">## gating_weights.unsqueeze(-1) # (batch_size, seq_len, num_experts, 1)</span>
 </span></span><span style="display:flex;"><span>        output <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>sum(gating_weights<span style="color:#ff79c6">.</span>unsqueeze(<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">*</span> expert_outputs, dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>) <span style="color:#6272a4">#  (batch_size, seq_len, embed_size)        </span>
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> output</span></span></code></pre></div>
@@ -390,12 +381,12 @@ tensor([[[ 0.5622, -0.0714,  0.0197, -0.2871],
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

@@ -1,13 +1,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>vuetify on アンドロイドは推理小説を書くか?</title>
-		<link>https://www.if-blog.site/tags/vuetify/</link>
-		<description>Recent content in vuetify </description>
+		<title>Vuetify on アンドロイドは推理小説を書くか?</title>
+		<link>http://localhost:1313/tags/vuetify/</link>
+		<description>Recent content in Vuetify </description>
 		<generator>Hugo -- gohugo.io</generator>
 		
   		<language>ja</language>
 		
-		<managingEditor>Page(/tags/vuetify) (if_004)</managingEditor>
+		<managingEditor>/tags/vuetify</managingEditor>
     	
   		<lastBuildDate>Sat, 09 Nov 2019 00:01:00 +0900</lastBuildDate>
 		

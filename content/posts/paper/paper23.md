@@ -1,9 +1,9 @@
 ---
 title: "Measuring Diversity in Synthetic Datasets"
-slug: "paper23"
+slug: "paper23_a"
 tags: ["nlp","deeplearning", "paper_summary", "データセット指標"]
 date: "2025-05-20T20:00:00+09:00"
-draft: false
+draft: true
 ---
 
 AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。

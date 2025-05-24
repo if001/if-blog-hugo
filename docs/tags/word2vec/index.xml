@@ -1,13 +1,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>word2vec on アンドロイドは推理小説を書くか?</title>
-		<link>https://www.if-blog.site/tags/word2vec/</link>
-		<description>Recent content in word2vec </description>
+		<title>Word2vec on アンドロイドは推理小説を書くか?</title>
+		<link>http://localhost:1313/tags/word2vec/</link>
+		<description>Recent content in Word2vec </description>
 		<generator>Hugo -- gohugo.io</generator>
 		
   		<language>ja</language>
 		
-		<managingEditor>Page(/tags/word2vec) (if_004)</managingEditor>
+		<managingEditor>/tags/word2vec</managingEditor>
     	
   		<lastBuildDate>Tue, 24 Sep 2019 00:00:00 +0900</lastBuildDate>
 		

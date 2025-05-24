@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>pythonでarxivのAPIを使う</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,15 +93,14 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="arxivで公開されているAPIを使っていきます
-https://arxiv.org/
-APIを直接呼び出しても良いですが、responseがxmlで使いづらかったので pythonのライブラリを使わせてもらいます。
-https://github.com/lukasschwab/arxiv.py
-p" />
+    <meta name="description" content="&lt;p&gt;arxivで公開されているAPIを使っていきます&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/&#34;&gt;https://arxiv.org/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;APIを直接呼び出しても良いですが、responseがxmlで使いづらかったので
+pythonのライブラリを使わ" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -204,10 +192,10 @@ p" />
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/python/">python</a
+            <a href="http://localhost:1313//tags/python/">python</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/arxiv/">arxiv</a
+            <a href="http://localhost:1313//tags/arxiv/">arxiv</a
             >&nbsp;
           
         </div>
@@ -255,66 +243,66 @@ results()で結果の一覧を取得</p>
 <p>結果用にResult Classが用意されており、<br>
 中身はそれぞれ以下のような形です。</p>
 <table>
-<thead>
-<tr>
-<th>field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>entry_id</td>
-<td>A url <a href="http://arxiv.org/abs/%7Bid%7D">http://arxiv.org/abs/{id}</a>.</td>
-</tr>
-<tr>
-<td>updated</td>
-<td>When the result was last updated.</td>
-</tr>
-<tr>
-<td>published</td>
-<td>When the result was originally published.</td>
-</tr>
-<tr>
-<td>title</td>
-<td>The title of the result.</td>
-</tr>
-<tr>
-<td>authors</td>
-<td>The result&rsquo;s authors, as arxiv.Authors.</td>
-</tr>
-<tr>
-<td>summary</td>
-<td>The result abstract.</td>
-</tr>
-<tr>
-<td>comment</td>
-<td>The authors&rsquo; comment if present.</td>
-</tr>
-<tr>
-<td>journal_ref</td>
-<td>A journal reference if present.</td>
-</tr>
-<tr>
-<td>doi</td>
-<td>A URL for the resolved DOI to an external resource if present.</td>
-</tr>
-<tr>
-<td>primary_category</td>
-<td>The result&rsquo;s primary arXiv category. See arXiv: Category Taxonomy.</td>
-</tr>
-<tr>
-<td>categories</td>
-<td>All of the result&rsquo;s categories. See arXiv: Category Taxonomy.</td>
-</tr>
-<tr>
-<td>links</td>
-<td>Up to three URLs associated with this result, as arxiv.Links.</td>
-</tr>
-<tr>
-<td>pdf_url</td>
-<td>A URL for the result&rsquo;s PDF if present. Note: this URL also appears among result.links.</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>field</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>entry_id</td>
+          <td>A url <a href="http://arxiv.org/abs/%7Bid%7D">http://arxiv.org/abs/{id}</a>.</td>
+      </tr>
+      <tr>
+          <td>updated</td>
+          <td>When the result was last updated.</td>
+      </tr>
+      <tr>
+          <td>published</td>
+          <td>When the result was originally published.</td>
+      </tr>
+      <tr>
+          <td>title</td>
+          <td>The title of the result.</td>
+      </tr>
+      <tr>
+          <td>authors</td>
+          <td>The result&rsquo;s authors, as arxiv.Authors.</td>
+      </tr>
+      <tr>
+          <td>summary</td>
+          <td>The result abstract.</td>
+      </tr>
+      <tr>
+          <td>comment</td>
+          <td>The authors&rsquo; comment if present.</td>
+      </tr>
+      <tr>
+          <td>journal_ref</td>
+          <td>A journal reference if present.</td>
+      </tr>
+      <tr>
+          <td>doi</td>
+          <td>A URL for the resolved DOI to an external resource if present.</td>
+      </tr>
+      <tr>
+          <td>primary_category</td>
+          <td>The result&rsquo;s primary arXiv category. See arXiv: Category Taxonomy.</td>
+      </tr>
+      <tr>
+          <td>categories</td>
+          <td>All of the result&rsquo;s categories. See arXiv: Category Taxonomy.</td>
+      </tr>
+      <tr>
+          <td>links</td>
+          <td>Up to three URLs associated with this result, as arxiv.Links.</td>
+      </tr>
+      <tr>
+          <td>pdf_url</td>
+          <td>A URL for the result&rsquo;s PDF if present. Note: this URL also appears among result.links.</td>
+      </tr>
+  </tbody>
 </table>
 
       </div>
@@ -330,9 +318,9 @@ results()で結果の一覧を取得</p>
     
       <li><a href="/posts/neuralnet/flax-jax/">Flaxに入門してみる</a></li>
     
-      <li><a href="/posts/others/gas-translate/">Google Apps ScriptでGoogle Translateを使う</a></li>
+      <li><a href="/posts/python/test/">test</a></li>
     
-      <li><a href="/posts/python/open-ai-gym-quick/">Open AI Gymをとりあえず動かす</a></li>
+      <li><a href="/posts/others/gas-translate/">Google Apps ScriptでGoogle Translateを使う</a></li>
     
   </ul>
 
@@ -360,12 +348,12 @@ results()で結果の一覧を取得</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

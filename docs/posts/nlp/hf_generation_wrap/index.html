@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>huggingfaceのgenerationの関数をtorch modelから使えるようにしたい</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,12 +93,13 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="torchなどのライブラリを使いpre_trainingを行い文章生成させる際、文章生成の計算は基本的に自分で実装する必要がある。 huggingface用のmodelに変換しても良いが、おれおれアーキテクチャにした場合、変換も面倒&amp;hellip;
-そこで、huggingfaceにあるtop_kやt" />
+    <meta name="description" content="&lt;p&gt;torchなどのライブラリを使いpre_trainingを行い文章生成させる際、文章生成の計算は基本的に自分で実装する必要がある。
+huggingface用のmodelに変換しても良いが、おれおれアーキテクチャにした場合、変換も面倒&amp;hellip;&lt;/p&gt;
+&lt;p&gt;そこで、huggingface" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -201,19 +191,19 @@
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/python/">python</a
+            <a href="http://localhost:1313//tags/python/">python</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a
+            <a href="http://localhost:1313//tags/huggingface/">huggingface</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/torch/">torch</a
+            <a href="http://localhost:1313//tags/torch/">torch</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/pre_training/">pre_training</a
+            <a href="http://localhost:1313//tags/pre_training/">pre_training</a
             >&nbsp;
           
         </div>
@@ -240,11 +230,11 @@ huggingface用のmodelに変換しても良いが、おれおれアーキテク�
 <a href="https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/logits_process.py">https://github.com/huggingface/transformers/blob/v4.35.2/src/transformers/generation/logits_process.py</a></p>
 <p>例えば、top_kは以下のような実装となっている。</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> __call__(self, input_ids: torch<span style="color:#ff79c6">.</span>LongTensor, scores: torch<span style="color:#ff79c6">.</span>FloatTensor) <span style="color:#ff79c6">-&gt;</span> torch<span style="color:#ff79c6">.</span>FloatTensor:
-</span></span><span style="display:flex;"><span>    top_k <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">min</span>(self<span style="color:#ff79c6">.</span>top_k, scores<span style="color:#ff79c6">.</span>size(<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>))  <span style="color:#6272a4"># Safety check</span>
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__call__</span>(<span style="font-style:italic">self</span>, input_ids: torch<span style="color:#ff79c6">.</span>LongTensor, scores: torch<span style="color:#ff79c6">.</span>FloatTensor) <span style="color:#ff79c6">-&gt;</span> torch<span style="color:#ff79c6">.</span>FloatTensor:
+</span></span><span style="display:flex;"><span>    top_k <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">min</span>(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>top_k, scores<span style="color:#ff79c6">.</span>size(<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>))  <span style="color:#6272a4"># Safety check</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Remove all tokens with a probability less than the last token of the top-k</span>
 </span></span><span style="display:flex;"><span>    indices_to_remove <span style="color:#ff79c6">=</span> scores <span style="color:#ff79c6">&lt;</span> torch<span style="color:#ff79c6">.</span>topk(scores, top_k)[<span style="color:#bd93f9">0</span>][<span style="color:#ff79c6">...</span>, <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>, <span style="color:#ff79c6">None</span>]
-</span></span><span style="display:flex;"><span>    scores <span style="color:#ff79c6">=</span> scores<span style="color:#ff79c6">.</span>masked_fill(indices_to_remove, self<span style="color:#ff79c6">.</span>filter_value)
+</span></span><span style="display:flex;"><span>    scores <span style="color:#ff79c6">=</span> scores<span style="color:#ff79c6">.</span>masked_fill(indices_to_remove, <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>filter_value)
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> scores</span></span></code></pre></div>
   </div>
     <div class="ref">
@@ -376,12 +366,12 @@ xはtokenizerされた単語のlist、例えば<code>[20, 15, 1, 1120, ....]</co
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

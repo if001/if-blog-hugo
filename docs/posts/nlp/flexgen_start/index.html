@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>FlexGenで遊ぶ</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,13 +93,13 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="くそでかlarge language modelsは一般人の持ってるPCだと動かすこともできない。 FlexGenでは、そんなLLMを限られたリソースで実行できるようにしてくれる。
-https://github.com/FMInference/FlexGen
-日本語が喋れるモデルでも動かせるように色" />
+    <meta name="description" content="&lt;p&gt;くそでかlarge language modelsは一般人の持ってるPCだと動かすこともできない。
+FlexGenでは、そんなLLMを限られたリソースで実行できるようにしてくれる。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/FMInference/FlexGen&#34;&gt;" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -202,16 +191,16 @@ https://github.com/FMInference/FlexGen
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/python/">python</a
+            <a href="http://localhost:1313//tags/python/">python</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a
+            <a href="http://localhost:1313//tags/huggingface/">huggingface</a
             >&nbsp;
           
         </div>
@@ -369,8 +358,8 @@ xglmではついていないのでdecoderは外しておく。</p>
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">XGLMSinusoidalPositionalEmbedding</span>(nn<span style="color:#ff79c6">.</span>Module):
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">.</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">.</span>
-</span></span><span style="display:flex;"><span> <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">make_weights</span>(self, num_embeddings: <span style="color:#8be9fd;font-style:italic">int</span>, embedding_dim: <span style="color:#8be9fd;font-style:italic">int</span>, padding_idx: Optional[<span style="color:#8be9fd;font-style:italic">int</span>] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>):
-</span></span><span style="display:flex;"><span>        emb_weights <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>get_embedding(num_embeddings, embedding_dim, padding_idx)</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span> <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">make_weights</span>(<span style="font-style:italic">self</span>, num_embeddings: <span style="color:#8be9fd;font-style:italic">int</span>, embedding_dim: <span style="color:#8be9fd;font-style:italic">int</span>, padding_idx: Optional[<span style="color:#8be9fd;font-style:italic">int</span>] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>):
+</span></span><span style="display:flex;"><span>        emb_weights <span style="color:#ff79c6">=</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>get_embedding(num_embeddings, embedding_dim, padding_idx)</span></span></code></pre></div>
   </div>
     <div class="ref">
       <span class="label">参照:</span
@@ -435,7 +424,7 @@ xglmではついていないのでdecoderは外しておく。</p>
 <p>とりあえずエラーなく実行はできたがなんかおかしい。</p>
 <p>xglmではpositional embeddingは学習してなさそうなので、FlexGenのInputEmbedのforwardの部分もweight使わないように修正しないとダメそう。</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(self, hidden, cache_read_buf, weight_read_buf, attention_mask,
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(<span style="font-style:italic">self</span>, hidden, cache_read_buf, weight_read_buf, attention_mask,
 </span></span><span style="display:flex;"><span>                cache_write_buf, i, k):
 </span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">...</span></span></span></code></pre></div>
   </div>
@@ -450,12 +439,12 @@ xglmではついていないのでdecoderは外しておく。</p>
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">XGLMSinusoidalPositionalEmbedding</span>(nn<span style="color:#ff79c6">.</span>Module):
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;This module produces sinusoidal positional embeddings of any length.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> __init__(self, num_positions: <span style="color:#8be9fd;font-style:italic">int</span>, embedding_dim: <span style="color:#8be9fd;font-style:italic">int</span>, padding_idx: Optional[<span style="color:#8be9fd;font-style:italic">int</span>] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>):
-</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span>__init__()
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>offset <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>embedding_dim <span style="color:#ff79c6">=</span> embedding_dim
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>padding_idx <span style="color:#ff79c6">=</span> padding_idx
-</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>make_weights(num_positions <span style="color:#ff79c6">+</span> self<span style="color:#ff79c6">.</span>offset, embedding_dim, padding_idx)  </span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">__init__</span>(<span style="font-style:italic">self</span>, num_positions: <span style="color:#8be9fd;font-style:italic">int</span>, embedding_dim: <span style="color:#8be9fd;font-style:italic">int</span>, padding_idx: Optional[<span style="color:#8be9fd;font-style:italic">int</span>] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>()<span style="color:#ff79c6">.</span><span style="color:#50fa7b">__init__</span>()
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>offset <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>embedding_dim <span style="color:#ff79c6">=</span> embedding_dim
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>padding_idx <span style="color:#ff79c6">=</span> padding_idx
+</span></span><span style="display:flex;"><span>        <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>make_weights(num_positions <span style="color:#ff79c6">+</span> <span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>offset, embedding_dim, padding_idx)  </span></span></code></pre></div>
   </div>
     <div class="ref">
       <span class="label">参照:</span
@@ -477,9 +466,9 @@ xglmではついていないのでdecoderは外しておく。</p>
     
       <li><a href="/posts/nlp/rinna_3b_cpp/">rinna 3Bをcppで動かす</a></li>
     
-      <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
+      <li><a href="/posts/nlp/redpajama_lora_start/">RedPajamaをLoRaで日本語fine tuning</a></li>
     
-      <li><a href="/posts/nlp/bloom_lora_start/">BloomをLoRaで日本語finetuning</a></li>
+      <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
     
   </ul>
 
@@ -507,12 +496,12 @@ xglmではついていないのでdecoderは外しておく。</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

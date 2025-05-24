@@ -2,718 +2,853 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.if-blog.site/tags/deeplearning/</loc>
+    <loc>http://localhost:1313/tags/deeplearning/</loc>
     <lastmod>2025-05-21T20:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper25/</loc>
+    <loc>http://localhost:1313/posts/paper/paper25/</loc>
     <lastmod>2025-05-21T20:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/nlp/</loc>
+    <loc>http://localhost:1313/tags/nlp/</loc>
     <lastmod>2025-05-21T20:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/paper_summary/</loc>
+    <loc>http://localhost:1313/tags/paper_summary/</loc>
     <lastmod>2025-05-21T20:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2025-05-21T20:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-05-21T20:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper24/</loc>
+    <loc>http://localhost:1313/posts/paper/paper24/</loc>
     <lastmod>2025-05-21T20:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2025-05-21T20:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E6%8C%87%E6%A8%99/</loc>
+    <loc>http://localhost:1313/tags/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E6%8C%87%E6%A8%99/</loc>
     <lastmod>2025-05-21T20:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/chat/</loc>
+    <loc>http://localhost:1313/tags/chat/</loc>
     <lastmod>2025-05-20T20:30:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/chats/chat2/</loc>
+    <loc>http://localhost:1313/posts/chats/chat2/</loc>
     <lastmod>2025-05-20T20:30:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper23/</loc>
+    <loc>http://localhost:1313/posts/paper/paper23_a/</loc>
     <lastmod>2025-05-20T20:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/hugo/</loc>
+    <loc>http://localhost:1313/posts/paper/paper23_b/</loc>
+    <lastmod>2025-05-20T20:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/hugo/</loc>
     <lastmod>2025-05-20T19:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/hugo/hugo-katex/</loc>
+    <loc>http://localhost:1313/posts/hugo/hugo-katex/</loc>
     <lastmod>2025-05-20T19:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper22/</loc>
+    <loc>http://localhost:1313/posts/paper/paper22/</loc>
     <lastmod>2025-05-19T12:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper21/</loc>
+    <loc>http://localhost:1313/posts/paper/paper21/</loc>
     <lastmod>2025-05-19T12:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper20/</loc>
+    <loc>http://localhost:1313/posts/paper/paper20/</loc>
     <lastmod>2025-05-18T12:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper19/</loc>
+    <loc>http://localhost:1313/posts/chats/chat1/</loc>
+    <lastmod>2025-05-18T12:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/paper/paper19/</loc>
     <lastmod>2025-05-17T12:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper17-2/</loc>
+    <loc>http://localhost:1313/posts/paper/paper17-2/</loc>
     <lastmod>2025-05-17T12:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper18/</loc>
+    <loc>http://localhost:1313/posts/paper/paper17/</loc>
     <lastmod>2025-05-17T12:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper16/</loc>
+    <loc>http://localhost:1313/posts/paper/paper18/</loc>
+    <lastmod>2025-05-17T12:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/paper/paper16/</loc>
     <lastmod>2025-01-18T14:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper13/</loc>
+    <loc>http://localhost:1313/posts/paper/paper13/</loc>
     <lastmod>2025-01-18T14:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper10/</loc>
+    <loc>http://localhost:1313/posts/paper/paper10/</loc>
     <lastmod>2025-01-18T14:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper15/</loc>
+    <loc>http://localhost:1313/posts/paper/paper15/</loc>
     <lastmod>2025-01-18T14:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper14/</loc>
+    <loc>http://localhost:1313/posts/paper/paper14/</loc>
     <lastmod>2025-01-18T14:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper11/</loc>
+    <loc>http://localhost:1313/posts/paper/paper11/</loc>
     <lastmod>2025-01-18T14:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper12/</loc>
+    <loc>http://localhost:1313/posts/paper/paper12/</loc>
     <lastmod>2025-01-18T14:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper9/</loc>
+    <loc>http://localhost:1313/posts/paper/paper9/</loc>
     <lastmod>2025-01-11T14:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper8/</loc>
+    <loc>http://localhost:1313/posts/paper/paper8/</loc>
     <lastmod>2025-01-11T13:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper7/</loc>
+    <loc>http://localhost:1313/posts/paper/paper7/</loc>
     <lastmod>2025-01-11T12:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper5/</loc>
+    <loc>http://localhost:1313/posts/paper/paper6/</loc>
     <lastmod>2025-01-02T12:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper4/</loc>
+    <loc>http://localhost:1313/posts/paper/paper5/</loc>
     <lastmod>2025-01-02T12:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper3/</loc>
+    <loc>http://localhost:1313/posts/paper/paper4/</loc>
     <lastmod>2025-01-02T12:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper2/</loc>
+    <loc>http://localhost:1313/posts/paper/paper3/</loc>
+    <lastmod>2025-01-02T12:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/paper/paper2/</loc>
     <lastmod>2025-01-02T11:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/paper/paper1/</loc>
+    <loc>http://localhost:1313/posts/paper/paper1/</loc>
     <lastmod>2025-01-02T10:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/mixture_of_experts_sample/</loc>
+    <loc>http://localhost:1313/posts/nlp/gemini-api/</loc>
+    <lastmod>2024-05-16T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/python/</loc>
+    <lastmod>2024-05-16T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/nlp/mixture_of_experts_sample/</loc>
     <lastmod>2023-12-16T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/python/</loc>
+    <loc>http://localhost:1313/tags/torch/</loc>
     <lastmod>2023-12-16T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/torch/</loc>
-    <lastmod>2023-12-16T00:00:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.if-blog.site/tags/huggingface/</loc>
+    <loc>http://localhost:1313/tags/huggingface/</loc>
     <lastmod>2023-12-05T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/hf_generation_wrap/</loc>
+    <loc>http://localhost:1313/posts/nlp/hf_generation_wrap/</loc>
     <lastmod>2023-12-05T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/transformer_any_architecture/</loc>
+    <loc>http://localhost:1313/posts/nlp/transformer_any_architecture/</loc>
     <lastmod>2023-12-05T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/pre_training/</loc>
+    <loc>http://localhost:1313/tags/pre_training/</loc>
     <lastmod>2023-12-05T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/transformer/</loc>
+    <loc>http://localhost:1313/tags/transformer/</loc>
     <lastmod>2023-12-05T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/hf_ds_upload/</loc>
+    <loc>http://localhost:1313/posts/nlp/hf_ds_upload/</loc>
     <lastmod>2023-11-21T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/</loc>
+    <loc>http://localhost:1313/posts/nlp/hf_dataloader_datacollator/</loc>
     <lastmod>2023-09-21T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/jglue/</loc>
+    <loc>http://localhost:1313/tags/jglue/</loc>
     <lastmod>2023-07-01T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/xgen/</loc>
+    <loc>http://localhost:1313/tags/xgen/</loc>
     <lastmod>2023-07-01T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/xgen-jglue/</loc>
+    <loc>http://localhost:1313/posts/nlp/xgen-jglue/</loc>
     <lastmod>2023-07-01T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/calm_lora_quantize/</loc>
+    <loc>http://localhost:1313/posts/nlp/calm_lora_quantize/</loc>
     <lastmod>2023-05-22T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/rinna_lora_ja/</loc>
+    <loc>http://localhost:1313/posts/nlp/rinna_lora_ja/</loc>
     <lastmod>2023-05-21T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/rinna_3b_cpp/</loc>
+    <loc>http://localhost:1313/posts/nlp/rinna_3b_cpp/</loc>
     <lastmod>2023-05-18T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/langchain/</loc>
+    <loc>http://localhost:1313/posts/nlp/redpajama_lora_start/</loc>
+    <lastmod>2023-05-09T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/langchain/</loc>
+    <lastmod>2023-04-20T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/nlp/lang_chain_agent/</loc>
+    <lastmod>2023-04-20T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/nlp/react_start/</loc>
     <lastmod>2023-04-01T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/react_start/</loc>
-    <lastmod>2023-04-01T00:00:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/rs-tokenizer/</loc>
+    <loc>http://localhost:1313/posts/nlp/rs-tokenizer/</loc>
     <lastmod>2023-03-31T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/bloom_lora_start/</loc>
+    <loc>http://localhost:1313/posts/nlp/bloom_lora_start/</loc>
     <lastmod>2023-03-20T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/</loc>
+    <loc>http://localhost:1313/posts/nlp/gpt_index_llama_index_start/</loc>
     <lastmod>2023-03-04T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/hugo/hugo-render-block/</loc>
+    <loc>http://localhost:1313/posts/nlp/gpt_index_llama_index_start/</loc>
+    <lastmod>2023-03-04T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/hugo/hugo-render-block/</loc>
     <lastmod>2023-02-28T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/flexgen_start/</loc>
+    <loc>http://localhost:1313/posts/nlp/flexgen_start/</loc>
     <lastmod>2023-02-28T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/huggingface-text-gen/</loc>
+    <loc>http://localhost:1313/posts/nlp/huggingface-text-gen/</loc>
     <lastmod>2023-02-06T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/start-xglm-t5/</loc>
+    <loc>http://localhost:1313/posts/nlp/start-xglm-t5/</loc>
     <lastmod>2023-02-05T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/start-flan-t5/</loc>
+    <loc>http://localhost:1313/posts/nlp/start-flan-t5/</loc>
     <lastmod>2023-02-04T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/huggingface-tokenizer/</loc>
+    <loc>http://localhost:1313/posts/nlp/huggingface-tokenizer/</loc>
     <lastmod>2022-08-16T09:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/huggingface-conv/</loc>
+    <loc>http://localhost:1313/posts/nlp/huggingface-conv/</loc>
     <lastmod>2022-05-05T09:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/typescript/</loc>
+    <loc>http://localhost:1313/tags/react/</loc>
+    <lastmod>2022-02-19T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/typescript/react-render-prop-typescript/</loc>
+    <lastmod>2022-02-19T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/typescript/</loc>
+    <lastmod>2022-02-19T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/typescript/typescript-oreilly/</loc>
     <lastmod>2021-12-26T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/typescript/typescript-oreilly/</loc>
-    <lastmod>2021-12-26T00:00:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/huggingface-doc/</loc>
+    <loc>http://localhost:1313/posts/nlp/huggingface-doc/</loc>
     <lastmod>2021-12-09T09:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/emacs/</loc>
+    <loc>http://localhost:1313/tags/emacs/</loc>
     <lastmod>2021-09-23T20:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/emacs/text-lint/</loc>
+    <loc>http://localhost:1313/posts/emacs/text-lint/</loc>
     <lastmod>2021-09-23T20:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/neuralnet/flax-jax/</loc>
+    <loc>http://localhost:1313/posts/typescript/typescript-init/</loc>
+    <lastmod>2021-07-29T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/neuralnet/flax-jax/</loc>
     <lastmod>2021-07-25T09:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/arxiv/</loc>
+    <loc>http://localhost:1313/tags/arxiv/</loc>
     <lastmod>2021-07-24T02:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/github/</loc>
+    <loc>http://localhost:1313/tags/github/</loc>
     <lastmod>2021-07-24T02:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/python/arxiv-translate/</loc>
+    <loc>http://localhost:1313/posts/python/arxiv-translate/</loc>
     <lastmod>2021-07-24T02:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/python/arxiv-py-lib/</loc>
+    <loc>http://localhost:1313/tags/aaa/</loc>
     <lastmod>2021-07-23T02:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/gas/</loc>
+    <loc>http://localhost:1313/tags/aws/</loc>
+    <lastmod>2021-07-23T02:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/azure/</loc>
+    <lastmod>2021-07-23T02:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/cloud/arxiv-py-lib/</loc>
+    <lastmod>2021-07-23T02:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/python/arxiv-py-lib/</loc>
+    <lastmod>2021-07-23T02:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/python/test/</loc>
+    <lastmod>2021-07-23T02:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0%E9%95%B7%E3%81%84%E3%82%BF%E3%82%B0/</loc>
+    <lastmod>2021-07-23T02:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/%E8%AA%AD%E6%9B%B8/</loc>
+    <lastmod>2021-07-23T02:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/%E8%AA%AD%E4%BA%86/</loc>
+    <lastmod>2021-07-23T02:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/gas/</loc>
     <lastmod>2021-07-22T02:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/others/gas-translate/</loc>
+    <loc>http://localhost:1313/posts/others/gas-translate/</loc>
     <lastmod>2021-07-22T02:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/hugo/hugo-related-posts/</loc>
+    <loc>http://localhost:1313/posts/hugo/hugo-related-posts/</loc>
     <lastmod>2021-07-18T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/python/open-ai-gym-quick/</loc>
+    <loc>http://localhost:1313/posts/python/open-ai-gym-quick/</loc>
     <lastmod>2021-07-14T02:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/</loc>
+    <loc>http://localhost:1313/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/</loc>
     <lastmod>2020-12-30T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/</loc>
+    <loc>http://localhost:1313/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/</loc>
     <lastmod>2020-12-30T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/</loc>
+    <loc>http://localhost:1313/tags/%E8%AB%96%E6%96%87/</loc>
     <lastmod>2020-12-30T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/github/workflow-dispatch/</loc>
+    <loc>http://localhost:1313/tags/book/</loc>
+    <lastmod>2020-09-08T17:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/kubernetes/kubernetes-complete-guide/</loc>
+    <lastmod>2020-09-08T17:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/books/an-introductory-book-on-cipher/</loc>
+    <lastmod>2020-09-04T17:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/github/workflow-dispatch/</loc>
     <lastmod>2020-07-19T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/android/</loc>
+    <loc>http://localhost:1313/tags/android/</loc>
     <lastmod>2020-03-01T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/android/bottom-sheet/</loc>
+    <loc>http://localhost:1313/posts/android/bottom-sheet/</loc>
     <lastmod>2020-03-01T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/android/android-introduction/</loc>
+    <loc>http://localhost:1313/posts/android/android-introduction/</loc>
     <lastmod>2020-02-28T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/android/book-reports-firebase/</loc>
+    <loc>http://localhost:1313/posts/android/book-reports-firebase/</loc>
     <lastmod>2020-02-28T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/vue.js/</loc>
+    <loc>http://localhost:1313/tags/vue.js/</loc>
     <lastmod>2019-11-09T00:01:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/edgwbs/book-storage-vue/</loc>
+    <loc>http://localhost:1313/posts/edgwbs/book-storage-vue/</loc>
     <lastmod>2019-11-09T00:01:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/vuetify/</loc>
+    <loc>http://localhost:1313/tags/vuetify/</loc>
     <lastmod>2019-11-09T00:01:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/webapp/</loc>
+    <loc>http://localhost:1313/tags/webapp/</loc>
     <lastmod>2019-11-09T00:01:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/gatsby/</loc>
+    <loc>http://localhost:1313/posts/edgwbs/book-storage-start/</loc>
+    <lastmod>2019-10-20T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/gatsby/</loc>
     <lastmod>2019-10-14T12:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/react/</loc>
+    <loc>http://localhost:1313/posts/gatsby/gatsby-intro/</loc>
     <lastmod>2019-10-14T12:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/gatsby/gatsby-intro/</loc>
-    <lastmod>2019-10-14T12:00:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.if-blog.site/tags/firebase/</loc>
+    <loc>http://localhost:1313/tags/firebase/</loc>
     <lastmod>2019-10-10T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/edgwbs/book-reports-firebase-hosting/</loc>
+    <loc>http://localhost:1313/posts/edgwbs/book-reports-firebase-hosting/</loc>
     <lastmod>2019-10-10T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/emacs/gopls-introduction/</loc>
+    <loc>http://localhost:1313/posts/emacs/gopls-introduction/</loc>
     <lastmod>2019-10-08T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/edgwbs/book-reports-firebase-cloud-functions/</loc>
+    <loc>http://localhost:1313/posts/edgwbs/book-reports-firebase-cloud-functions/</loc>
     <lastmod>2019-09-30T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/golang/</loc>
+    <loc>http://localhost:1313/tags/golang/</loc>
     <lastmod>2019-09-28T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/edgwbs/book-reports-firebase-auth/</loc>
+    <loc>http://localhost:1313/posts/edgwbs/book-reports-firebase-auth/</loc>
     <lastmod>2019-09-28T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/poem/</loc>
+    <loc>http://localhost:1313/tags/poem/</loc>
     <lastmod>2019-09-25T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/edgwbs/book-reports-review/</loc>
+    <loc>http://localhost:1313/posts/edgwbs/book-reports-review/</loc>
     <lastmod>2019-09-25T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/python/python-matplotlib-base/</loc>
+    <loc>http://localhost:1313/posts/python/python-matplotlib-base/</loc>
     <lastmod>2019-09-24T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/aws/</loc>
+    <loc>http://localhost:1313/posts/neuralnet/pepar-summary/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/neuralnet/pepar-summary/</loc>
+    <loc>http://localhost:1313/tags/docker/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/docker/</loc>
+    <loc>http://localhost:1313/posts/others/http-portal-for-blog/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/others/http-portal-for-blog/</loc>
+    <loc>http://localhost:1313/tags/keras/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/keras/</loc>
+    <loc>http://localhost:1313/posts/neuralnet/combine-model/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/neuralnet/combine-model/</loc>
+    <loc>http://localhost:1313/posts/others/aws-cli-at-pyenv/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/others/aws-cli-at-pyenv/</loc>
+    <loc>http://localhost:1313/tags/rust/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/rust/</loc>
+    <loc>http://localhost:1313/posts/others/rust-macro-use-another/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/others/rust-macro-use-another/</loc>
+    <loc>http://localhost:1313/tags/seq2seq/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/seq2seq/</loc>
+    <loc>http://localhost:1313/tags/seqgan/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/seqgan/</loc>
+    <loc>http://localhost:1313/posts/nlp/seqgan-paper/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/seqgan-paper/</loc>
+    <loc>http://localhost:1313/tags/tex/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/tex/</loc>
+    <loc>http://localhost:1313/tags/word2vec/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/word2vec/</loc>
+    <loc>http://localhost:1313/posts/nlp/word2vec-output-word/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/word2vec-output-word/</loc>
+    <loc>http://localhost:1313/posts/nlp/diversity-neural-conversation-model/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/</loc>
+    <loc>http://localhost:1313/tags/%E3%83%9D%E3%82%A8%E3%83%A0/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/others/tex-notation-numerical-formula/</loc>
+    <loc>http://localhost:1313/posts/others/tex-notation-numerical-formula/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/</loc>
+    <loc>http://localhost:1313/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/</loc>
+    <loc>http://localhost:1313/posts/nlp/nlp-parse-overview-1/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/nlp/char-vec/</loc>
+    <loc>http://localhost:1313/posts/nlp/char-to-sentences-fractal/</loc>
     <lastmod>2019-09-24T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/python/colaboratory-google-drive-mount/</loc>
+    <loc>http://localhost:1313/posts/nlp/char-vec/</loc>
+    <lastmod>2019-09-24T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/python/colaboratory-google-drive-mount/</loc>
     <lastmod>2019-09-23T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/</loc>
+    <loc>http://localhost:1313/posts/edgwbs/book-reports-firebase/</loc>
+    <lastmod>2019-09-22T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/edgwbs/book-reports-storage-firestore/</loc>
+    <lastmod>2019-09-22T00:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/emacs/emacs-keybind/</loc>
+    <lastmod>2019-03-23T17:00:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/posts/emacs/emacs-hinamatsuri/</loc>
     <lastmod>2019-03-08T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/python/python-get-extn/</loc>
+    <loc>http://localhost:1313/posts/python/python-get-extn/</loc>
     <lastmod>2019-03-01T20:48:42+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/emacs/lsp-mode/</loc>
+    <loc>http://localhost:1313/posts/emacs/lsp-mode/</loc>
     <lastmod>2018-11-20T20:48:42+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/emacs/emacs-use-package/</loc>
+    <loc>http://localhost:1313/posts/emacs/emacs-use-package/</loc>
     <lastmod>2018-11-20T20:48:42+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/falcon/</loc>
+    <loc>http://localhost:1313/tags/falcon/</loc>
     <lastmod>2018-10-16T20:48:42+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/falcon/falcon-img-upload/</loc>
+    <loc>http://localhost:1313/posts/falcon/falcon-img-upload/</loc>
     <lastmod>2018-10-16T20:48:42+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/falcon/falcon-tips/</loc>
+    <loc>http://localhost:1313/posts/falcon/falcon-tips/</loc>
     <lastmod>2018-10-16T20:48:42+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/tags/google-analytics/</loc>
+    <loc>http://localhost:1313/tags/google-analytics/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/hugo/hugo-start-article/</loc>
+    <loc>http://localhost:1313/posts/hugo/hugo-start-article/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/hugo/hugo-href-to-target-blank/</loc>
+    <loc>http://localhost:1313/posts/hugo/hugo-href-to-target-blank/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/hugo/hugo-ga/</loc>
+    <loc>http://localhost:1313/posts/hugo/hugo-ga/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/</loc>
+    <loc>http://localhost:1313/posts/hugo/hugo-long-time-no-see/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/hugo/hugo-code-highlight/</loc>
+    <loc>http://localhost:1313/posts/hugo/hugo-code-highlight/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/hugo/hugo-add-site-description/</loc>
+    <loc>http://localhost:1313/posts/hugo/hugo-add-site-description/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/hugo/hugo-on-image/</loc>
+    <loc>http://localhost:1313/posts/hugo/hugo-on-image/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/hugo/hugo-date-sort/</loc>
+    <loc>http://localhost:1313/posts/hugo/hugo-date-sort/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/hugo/hugo-git-pages/</loc>
+    <loc>http://localhost:1313/posts/hugo/hugo-git-pages/</loc>
     <lastmod>2018-10-16T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/pages/about/</loc>
+    <loc>http://localhost:1313/posts/hugo/katex-introduction/</loc>
+    <lastmod>2018-10-16T00:00:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/categories/</loc>
+    <loc>http://localhost:1313/pages/about/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/pages/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/posts/typescript/react-render-prop-typescript/</loc>
+    <loc>http://localhost:1313/posts/others/ga-define/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://www.if-blog.site/pages/search/</loc>
+    <loc>http://localhost:1313/pages/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/pages/search/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

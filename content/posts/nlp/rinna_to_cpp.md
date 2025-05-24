@@ -1,7 +1,7 @@
 ---
 title: "rinna 3Bをcppで動かす"
 slug: "rinna_3B_cpp"
-tags: ["nlp","deeplearning","python", "huggingface"]
+tags: ["nlp","deeplearning","python","huggingface"]
 date: "2023-05-18T00:00:00+09:00"
 draft: false
 ---
@@ -161,7 +161,7 @@ https://github.com/abetlen/llama-cpp-python
 まずはredpajama.cpp側でコンパイルして共有ライブラリを作る。   
 llama-cpp-pythonでgptneox_token_nlを呼び出しているので、以下のコメントを解除
 
-```cpp{ref="name="https://github.com/togethercomputer/redpajama.cpp/blob/master/examples/redpajama/gptneox.h#L196"}
+```cpp{ref="https://github.com/togethercomputer/redpajama.cpp/blob/master/examples/redpajama/gptneox.h#L196"}
 GPTNEOX_API gptneox_token gptneox_token_nl(); 
 ```
 

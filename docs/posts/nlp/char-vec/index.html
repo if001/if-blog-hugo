@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>文字をベクトル化する</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,11 +93,11 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="文章生成にchar-level lstmを使ってみる。英語ではうまくいっている例があるが日本語では難しい。これは、日本語は英語に比べ文字数が多く、ニューラルネットワークの次元数(パラメータ数)が増やす必要があるのが原因の1つだと思う。また、次元削減のため、日本語では文章を単語に区切り単語をベクトル化" />
+    <meta name="description" content="&lt;p&gt;文章生成にchar-level lstmを使ってみる。英語ではうまくいっている例があるが日本語では難しい。これは、日本語は英語に比べ文字数が多く、ニューラルネットワークの次元数(パラメータ数)が増やす必要があるのが原因の1つだと思う。また、次元削減のため、日本語では文章を単語に区切り単語をベク" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -200,13 +189,13 @@
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/python/">python</a
+            <a href="http://localhost:1313//tags/python/">python</a
             >&nbsp;
           
         </div>
@@ -310,7 +299,7 @@ kvsにはplyvelを使う。以下のようにインスタンス化する。</p>
 </span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
 </span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> MaxPooling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(self<span style="color:#ff79c6">.</span>hidden_dim, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>),
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(<span style="font-style:italic">self</span><span style="color:#ff79c6">.</span>hidden_dim, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>),
 </span></span><span style="display:flex;"><span>           padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
 </span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
 </span></span><span style="display:flex;"><span>encoded <span style="color:#ff79c6">=</span> MaxPooling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>, name<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;encoder&#34;</span>)(x)
@@ -377,9 +366,9 @@ val_loss:0.073542  </code></pre>
     
       <li><a href="/posts/nlp/rinna_3b_cpp/">rinna 3Bをcppで動かす</a></li>
     
-      <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
+      <li><a href="/posts/nlp/redpajama_lora_start/">RedPajamaをLoRaで日本語fine tuning</a></li>
     
-      <li><a href="/posts/nlp/bloom_lora_start/">BloomをLoRaで日本語finetuning</a></li>
+      <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
     
   </ul>
 
@@ -407,12 +396,12 @@ val_loss:0.073542  </code></pre>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

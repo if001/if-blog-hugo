@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
-<title>hugo</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
+<title>Hugo</title>
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -108,7 +97,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -175,7 +164,7 @@
               
                 <h1 style="font-size:2em;">
                   <i class="fas fa-tag" style="margin-right:10px"></i
-                  >hugo
+                  >Hugo
                 </h1>
               
 
@@ -197,7 +186,43 @@
       
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-add-site-description/">
+  <a href="http://localhost:1313/posts/hugo/hugo-code-highlight/">
+    <h2 class="post-title">
+      Hugoの記事でコードハイライトする
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>&lt;p&gt;Hugoでコードのシンタックスハイライトする場合のメモ&lt;br&gt;
+Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。&lt;/p&gt;
+&lt;h2 id=&#34;hugo自体の機能使う&#34;&gt;Hugo自体の機能使う&lt;/h2&gt;
+&lt;p&gt;Hugo 0.28からGo機能でシ</p>
+    <a href="http://localhost:1313/posts/hugo/hugo-code-highlight/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2018-10-16
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/hugo/hugo-add-site-description/">
     <h2 class="post-title">
       Hugoの記事にdescriptionを追加する
       
@@ -205,10 +230,10 @@
   </a>
 
   <div class="post-entry">
-    <p>Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
-html側で次のように書くと、markdownに書いたdescriptionが参照できます。
-{{ .Des</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-add-site-description/" class="post-read-more"></a>
+    <p>&lt;p&gt;Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。
+これでは検索に引っかからないのでdescriptionタグをつけましょう!&lt;/p&gt;
+&lt;p&gt;html側で次のように書くと、markdownに書いたdescriptionが参照できま</p>
+    <a href="http://localhost:1313/posts/hugo/hugo-add-site-description/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -216,7 +241,7 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
     
   
 </div>
@@ -232,7 +257,7 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/">
+  <a href="http://localhost:1313/posts/hugo/hugo-on-image/">
     <h2 class="post-title">
       Hugoの記事に画像を載せる
       
@@ -240,11 +265,10 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
   </a>
 
   <div class="post-entry">
-    <p>Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
-画像を配置するディクトリを以下のように作っておく。
-{root}/content/post/images/ 以下のように記述すると表示できる。
-{{&amp;lt; figure src=&amp;#34;../../images/test.p</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/" class="post-read-more"></a>
+    <p>&lt;p&gt;Hugoに画像を載せるときは、&lt;a href=&#34;https://gohugo.io/content-management/shortcodes/&#34;&gt;shortcodes&lt;/a&gt;を使うと良いらしい。&lt;/p&gt;
+&lt;p&gt;画像を配置するディクトリを以下のように作っておく。&lt;/p&gt;
+&lt;div class=</p>
+    <a href="http://localhost:1313/posts/hugo/hugo-on-image/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -252,7 +276,7 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
     
   
 </div>
@@ -268,7 +292,7 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/">
+  <a href="http://localhost:1313/posts/hugo/hugo-date-sort/">
     <h2 class="post-title">
       Hugoの記事を更新順にソートする
       
@@ -276,10 +300,9 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
   </a>
 
   <div class="post-entry">
-    <p>Hugoの記事を更新順にソートするメモです。
-まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、Lastmodで更新時刻が取得できるのでそれを使います。
-そのほかにもgitから情報が取得できます。https:</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/" class="post-read-more"></a>
+    <p>&lt;p&gt;Hugoの記事を更新順にソートするメモです。&lt;br&gt;
+まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、&lt;a href=&#34;https://gohugo.io/functions/format/&#34;&gt;Las</p>
+    <a href="http://localhost:1313/posts/hugo/hugo-date-sort/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -287,7 +310,7 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
     
   
 </div>
@@ -303,7 +326,7 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-git-pages/">
+  <a href="http://localhost:1313/posts/hugo/hugo-git-pages/">
     <h2 class="post-title">
       HugoをGitHub Pagesで公開する
       
@@ -311,11 +334,13 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
   </a>
 
   <div class="post-entry">
-    <p>GitHub Pagesを使ってHugoを公開する手順をメモ
-やりたいこととしては、
-Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定 の3つです。
-GitHub Pagesで公開 まずは、Hugoのプロジェクトル</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-git-pages/" class="post-read-more"></a>
+    <p>&lt;p&gt;GitHub Pagesを使ってHugoを公開する手順をメモ&lt;br&gt;
+やりたいこととしては、&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hugoのプロジェクトを丸ごとgitで管理&lt;/li&gt;
+&lt;li&gt;プロジェクトの下に作られるpublicをGitHub Pagesで公開&lt;/li&gt;
+&lt;li&gt;独自ドメインの設定&lt;/</p>
+    <a href="http://localhost:1313/posts/hugo/hugo-git-pages/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -323,7 +348,46 @@ GitHub Pagesで公開 まずは、Hugoのプロジェクトル</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2018-10-16
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/hugo/katex-introduction/">
+    <h2 class="post-title">
+      KaTeXを使ってみる
+      
+      <span class="draft-tag">(Draft)</span>
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>&lt;p&gt;これまでMathJaxを使っていたが、描画が遅いということもあり、KaTeXを使ってみることにしました。
+KaTeX:https://katex.org/&lt;/p&gt;
+&lt;p&gt;以下を加えるだけでおk&lt;/p&gt;
+&lt;div class=&#34;code-block&#34;&gt;
+  &lt;div class=&#34;body&#34;&gt;&lt;</p>
+    <a href="http://localhost:1313/posts/hugo/katex-introduction/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
     
   
 </div>
@@ -345,7 +409,7 @@ GitHub Pagesで公開 まずは、Hugoのプロジェクトル</p>
       <ul class="pager">
         
           <li class="previous">
-            <a href="https://www.if-blog.site/tags/hugo/page/1/"
+            <a href="http://localhost:1313/tags/hugo/page/1/"
               ><i class="fas fa-chevron-left"></i></a
             >
           </li>
@@ -368,12 +432,12 @@ GitHub Pagesで公開 まずは、Hugoのプロジェクトル</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

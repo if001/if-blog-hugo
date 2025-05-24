@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>rinna 3Bをcppで動かす</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.siteindex.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -104,12 +93,14 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="rinnaをcppで動かせるように色々試して見ました。 instructionもあり、そのままlangchainなどに突っ込んでも動かせそうということで、 ローカルで遊ぶならcppしてないと遊べないので色々試してみました。
-https://huggingface.co/rinna/japanese-" />
+    <meta name="description" content="&lt;p&gt;rinnaをcppで動かせるように色々試して見ました。
+instructionもあり、そのままlangchainなどに突っ込んでも動かせそうということで、
+ローカルで遊ぶならcppしてないと遊べないので色々試してみました。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface" />
   
 
 
-<meta name="generator" content="Hugo 0.110.0">
+<meta name="generator" content="Hugo 0.147.5">
   </head>
   <body>
     
@@ -201,16 +192,16 @@ https://huggingface.co/rinna/japanese-" />
         <div class="blog-tags">
           <i class="fas fa-tag" style="color:#111111"></i>
           
-            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/python/">python</a
+            <a href="http://localhost:1313//tags/python/">python</a
             >&nbsp;
           
-            <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a
+            <a href="http://localhost:1313//tags/huggingface/">huggingface</a
             >&nbsp;
           
         </div>
@@ -291,8 +282,7 @@ embed_out.weight</code></pre>
 <p>README通りにquantize</p>
 <p>q8_0が対応していたので、q8_0を指定</p>
 <blockquote>
-<p>Generate the quantized model, the supported types include: q4_0, q4_1, q4_2, q5_0, q5_1, and q8_0. For example, to run q4_1, you need to do the following convertion:</p>
-</blockquote>
+<p>Generate the quantized model, the supported types include: q4_0, q4_1, q4_2, q5_0, q5_1, and q8_0. For example, to run q4_1, you need to do the following convertion:</p></blockquote>
 <div class="code-block">
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;./output_dir/ggml-japanese-gpt-neox-3.6b-instruction-sft-f16.bin&#34;</span>
 </span></span><span style="display:flex;"><span>python ./examples/redpajama/scripts/quantize-gptneox.py <span style="color:#8be9fd;font-style:italic">$model</span> --quantize-output-type q8_0</span></span></code></pre></div>
@@ -374,6 +364,10 @@ llama-cpp-pythonでgptneox_token_nlを呼び出しているので、以下のコ
   <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>GPTNEOX_API gptneox_token <span style="color:#50fa7b">gptneox_token_nl</span>(); 
 </span></span></code></pre></div>
   </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/togethercomputer/redpajama.cpp/blob/master/examples/redpajama/gptneox.h#L196" target="_black">https://github.com/togethercomputer/redpajama.cpp/blob/master/examples/redpajama/gptneox.h#L196</a>
+    </div>
 
 </div>
 <p>以下を参考に、Makefile必要なファイルを加えて少し書き換える。<br>
@@ -509,11 +503,11 @@ $(CXX) $(CXXFLAGS) -shared -fPIC -o $@ $^ $(LDFLAGS)</code></pre>
     
       <li><a href="/posts/nlp/rinna_lora_ja/">loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</a></li>
     
+      <li><a href="/posts/nlp/redpajama_lora_start/">RedPajamaをLoRaで日本語fine tuning</a></li>
+    
       <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
     
       <li><a href="/posts/nlp/bloom_lora_start/">BloomをLoRaで日本語finetuning</a></li>
-    
-      <li><a href="/posts/nlp/gpt_index_llama_index_start/">LlamaIndex(GPTIndex)を触る</a></li>
     
   </ul>
 
@@ -541,12 +535,12 @@ $(CXX) $(CXXFLAGS) -shared -fPIC -o $@ $^ $(LDFLAGS)</code></pre>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>
