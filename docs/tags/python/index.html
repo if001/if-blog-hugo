@@ -231,10 +231,8 @@
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;mixture of expertsを実装してみる。
-並列化や計算効率の向上などの部分は複雑なので、それら取り除いた簡単な実装を行ってみる。&lt;/p&gt;
-&lt;h2 id=&#34;mixture-of-expertsとは&#34;&gt;Mixture of expertsとは&lt;/h2&gt;
-&lt;p&gt;特定のタスクに特化したex</p>
+    <p>mixture of expertsを実装してみる。 並列化や計算効率の向上などの部分は複雑なので、それら取り除いた簡単な実装を行ってみる。
+Mixture of expertsとは 特定のタスクに特化したexpertを複数用意し、入力に対してexpertを切り替えることで性能を上げる手法。 …</p>
     <a href="http://localhost:1313/posts/nlp/mixture_of_experts_sample/" class="post-read-more"></a>
   </div>
 
@@ -271,9 +269,8 @@
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;torchなどのライブラリを使いpre_trainingを行い文章生成させる際、文章生成の計算は基本的に自分で実装する必要がある。
-huggingface用のmodelに変換しても良いが、おれおれアーキテクチャにした場合、変換も面倒&amp;hellip;&lt;/p&gt;
-&lt;p&gt;そこで、huggingface</p>
+    <p>torchなどのライブラリを使いpre_trainingを行い文章生成させる際、文章生成の計算は基本的に自分で実装する必要がある。 huggingface用のmodelに変換しても良いが、おれおれアーキテクチャにした場合、変換も面倒&hellip;
+そこで、huggingfaceにあるtop_k …</p>
     <a href="http://localhost:1313/posts/nlp/hf_generation_wrap/" class="post-read-more"></a>
   </div>
 
@@ -314,9 +311,9 @@ huggingface用のmodelに変換しても良いが、おれおれアーキテク�
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。&lt;br&gt;
-比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する&lt;/p&gt;
-&lt;p&gt;t</p>
+    <p>できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。
+比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する
+transformer …</p>
     <a href="http://localhost:1313/posts/nlp/transformer_any_architecture/" class="post-read-more"></a>
   </div>
 
@@ -355,10 +352,9 @@ huggingface用のmodelに変換しても良いが、おれおれアーキテク�
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;データセットなどサイズの大きいデータをHuggingface Hubにアップロードして使う場合のメモ。&lt;br&gt;
-公式ドキュメントにはアップロードする方法が様々あるが、いまいちどれを使えば良いか分かりづらかったのでメモ。&lt;/p&gt;
-&lt;p&gt;今回作成したデータセットは以下。&lt;br&gt;
-&lt;a href=&#34;</p>
+    <p>データセットなどサイズの大きいデータをHuggingface Hubにアップロードして使う場合のメモ。
+公式ドキュメントにはアップロードする方法が様々あるが、いまいちどれを使えば良いか分かりづらかったのでメモ。
+今回作成したデータセットは以下。 …</p>
     <a href="http://localhost:1313/posts/nlp/hf_ds_upload/" class="post-read-more"></a>
   </div>
 
@@ -395,9 +391,9 @@ huggingface用のmodelに変換しても良いが、おれおれアーキテク�
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;エラーでハマったので、hugging faceのdatasetからbatche_sizeごとのinput_idsやlabelsにするあたりの実装、特にDataLoaderとDataCollatorあたりをちゃんと確認しておく&lt;/p&gt;
-&lt;p&gt;train loopは以下から始まる&lt;/p&gt;
-&lt;div</p>
+    <p>エラーでハマったので、hugging faceのdatasetからbatche_sizeごとのinput_idsやlabelsにするあたりの実装、特にDataLoaderとDataCollatorあたりをちゃんと確認しておく
+train loopは以下から始まる
+def train( self, …</p>
     <a href="http://localhost:1313/posts/nlp/hf_dataloader_datacollator/" class="post-read-more"></a>
   </div>
 
@@ -434,8 +430,10 @@ huggingface用のmodelに変換しても良いが、おれおれアーキテク�
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;日本語ベンチマークとしてJGLUE(JP Language Model Evaluation Harness)が提案されている。&lt;br&gt;
-&lt;a href=&#34;https://techblog.yahoo.co.jp/entry/2022122030379907/&#34;&gt;https://techblo</p>
+    <p>日本語ベンチマークとしてJGLUE(JP Language Model Evaluation Harness)が提案されている。
+https://techblog.yahoo.co.jp/entry/2022122030379907/
+文章分類、文ペア分類、質問応答のタスクに対し評価を行う。
+タスク …</p>
     <a href="http://localhost:1313/posts/nlp/xgen-jglue/" class="post-read-more"></a>
   </div>
 
@@ -474,8 +472,10 @@ huggingface用のmodelに変換しても良いが、おれおれアーキテク�
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;&lt;code&gt;cyberagent/open-calm-7b&lt;/code&gt;をLoraを用いて学習し、quantizeするまでやっていきます&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://huggingface.co/cyberagent/open-calm-7b&#34;&gt;https://huggin</p>
+    <p>cyberagent/open-calm-7bをLoraを用いて学習し、quantizeするまでやっていきます
+https://huggingface.co/cyberagent/open-calm-7b
+gpt-neoxのlora weight mergeの記事が見つからなかったのでメモとして
+動 …</p>
     <a href="http://localhost:1313/posts/nlp/calm_lora_quantize/" class="post-read-more"></a>
   </div>
 
@@ -514,10 +514,10 @@ huggingface用のmodelに変換しても良いが、おれおれアーキテク�
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;loraを用いて学習する場合の、promptのtemplateは日本語にしたほうが良いんだっけ？&lt;br&gt;
-ユーザー入力のフォーマットとかLLM側の出力のフォーマットとかどうすれば良いんだっけ？&lt;br&gt;
-ってなったので学習させて結果を比較してみる。&lt;/p&gt;
-&lt;p&gt;せっかくなので&lt;code&gt;rin</p>
+    <p>loraを用いて学習する場合の、promptのtemplateは日本語にしたほうが良いんだっけ？
+ユーザー入力のフォーマットとかLLM側の出力のフォーマットとかどうすれば良いんだっけ？
+ってなったので学習させて結果を比較してみる。
+せっかくなの …</p>
     <a href="http://localhost:1313/posts/nlp/rinna_lora_ja/" class="post-read-more"></a>
   </div>
 
@@ -556,10 +556,7 @@ huggingface用のmodelに変換しても良いが、おれおれアーキテク�
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;rinnaをcppで動かせるように色々試して見ました。
-instructionもあり、そのままlangchainなどに突っ込んでも動かせそうということで、
-ローカルで遊ぶならcppしてないと遊べないので色々試してみました。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://huggingface</p>
+    <p>rinnaをcppで動かせるように色々試して見ました。 instructionもあり、そのままlangchainなどに突っ込んでも動かせそうということで、 ローカルで遊ぶならcppしてないと遊べないので色々試してみました。 …</p>
     <a href="http://localhost:1313/posts/nlp/rinna_3b_cpp/" class="post-read-more"></a>
   </div>
 
@@ -619,7 +616,7 @@ instructionもあり、そのままlangchainなどに突っ込んでも動かせ
 
   <div class="container">
     <div class="credits copyright">
-      <a href="http://localhost:1313//pages/about"></a>
+      <a href="http://localhost:1313//pages/about">if_004</a>
       &nbsp;&copy;
       2025
       

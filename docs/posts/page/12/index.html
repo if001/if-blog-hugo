@@ -198,10 +198,10 @@
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;Hugoでコードのシンタックスハイライトする場合のメモ&lt;br&gt;
-Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。&lt;/p&gt;
-&lt;h2 id=&#34;hugo自体の機能使う&#34;&gt;Hugo自体の機能使う&lt;/h2&gt;
-&lt;p&gt;Hugo 0.28からGo機能でシ</p>
+    <p>Hugoでコードのシンタックスハイライトする場合のメモ
+Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。
+Hugo自体の機能使う Hugo 0.28からGo機能でシンタックスハイライトが可能になった。
+Syntax Highlighting …</p>
     <a href="http://localhost:1313/posts/hugo/hugo-code-highlight/" class="post-read-more"></a>
   </div>
 
@@ -234,9 +234,9 @@ Hugo自体の機能を使う方法と、ハイライトする機能を持つjava
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。
-これでは検索に引っかからないのでdescriptionタグをつけましょう!&lt;/p&gt;
-&lt;p&gt;html側で次のように書くと、markdownに書いたdescriptionが参照できま</p>
+    <p>Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
+html側で次のように書くと、markdownに書いたdescriptionが参照できます。
+{{ …</p>
     <a href="http://localhost:1313/posts/hugo/hugo-add-site-description/" class="post-read-more"></a>
   </div>
 
@@ -269,9 +269,10 @@ Hugo自体の機能を使う方法と、ハイライトする機能を持つjava
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;Hugoに画像を載せるときは、&lt;a href=&#34;https://gohugo.io/content-management/shortcodes/&#34;&gt;shortcodes&lt;/a&gt;を使うと良いらしい。&lt;/p&gt;
-&lt;p&gt;画像を配置するディクトリを以下のように作っておく。&lt;/p&gt;
-&lt;div class=</p>
+    <p>Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
+画像を配置するディクトリを以下のように作っておく。
+{root}/content/post/images/ 以下のように記述すると表示できる。
+{{&lt; figure …</p>
     <a href="http://localhost:1313/posts/hugo/hugo-on-image/" class="post-read-more"></a>
   </div>
 
@@ -304,8 +305,9 @@ Hugo自体の機能を使う方法と、ハイライトする機能を持つjava
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;Hugoの記事を更新順にソートするメモです。&lt;br&gt;
-まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、&lt;a href=&#34;https://gohugo.io/functions/format/&#34;&gt;Las</p>
+    <p>Hugoの記事を更新順にソートするメモです。
+まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、Lastmodで更新時刻が取得できるのでそれを使います。
+そのほかにもgitから情報が取得できま …</p>
     <a href="http://localhost:1313/posts/hugo/hugo-date-sort/" class="post-read-more"></a>
   </div>
 
@@ -338,12 +340,10 @@ Hugo自体の機能を使う方法と、ハイライトする機能を持つjava
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;GitHub Pagesを使ってHugoを公開する手順をメモ&lt;br&gt;
-やりたいこととしては、&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Hugoのプロジェクトを丸ごとgitで管理&lt;/li&gt;
-&lt;li&gt;プロジェクトの下に作られるpublicをGitHub Pagesで公開&lt;/li&gt;
-&lt;li&gt;独自ドメインの設定&lt;/</p>
+    <p>GitHub Pagesを使ってHugoを公開する手順をメモ
+やりたいこととしては、
+Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定 の3つです。
+GitHub Pagesで公開 まずは、Hugoのプロジェクト …</p>
     <a href="http://localhost:1313/posts/hugo/hugo-git-pages/" class="post-read-more"></a>
   </div>
 
@@ -378,11 +378,9 @@ Hugo自体の機能を使う方法と、ハイライトする機能を持つjava
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;これまでMathJaxを使っていたが、描画が遅いということもあり、KaTeXを使ってみることにしました。
-KaTeX:https://katex.org/&lt;/p&gt;
-&lt;p&gt;以下を加えるだけでおk&lt;/p&gt;
-&lt;div class=&#34;code-block&#34;&gt;
-  &lt;div class=&#34;body&#34;&gt;&lt;</p>
+    <p>これまでMathJaxを使っていたが、描画が遅いということもあり、KaTeXを使ってみることにしました。 KaTeX:https://katex.org/
+以下を加えるだけでおk
+&lt;link rel=&#34;stylesheet&#34; …</p>
     <a href="http://localhost:1313/posts/hugo/katex-introduction/" class="post-read-more"></a>
   </div>
 
@@ -417,14 +415,9 @@ KaTeX:https://katex.org/&lt;/p&gt;
   </a>
 
   <div class="post-entry">
-    <p>&lt;h2 id=&#34;ユーザー&#34;&gt;ユーザー&lt;/h2&gt;
-&lt;p&gt;PV:ページ毎に閲覧された回数
-セッション：30分以上の間隔をあけた操作、日付またぎ、別の参照元
-ユーザー：cookieで保持&lt;/p&gt;
-&lt;p&gt;GDPRにより以下のものから保持期間を選択できる&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;14 か月&lt;/li&gt;
-&lt;li</p>
+    <p>ユーザー PV:ページ毎に閲覧された回数 セッション：30分以上の間隔をあけた操作、日付またぎ、別の参照元 ユーザー：cookieで保持
+GDPRにより以下のものから保持期間を選択できる
+14 か月 26 か月(デフォルト) 38 か月 50 か月 自動的に期限切れにならない 集客 行動 コンバージ …</p>
     <a href="http://localhost:1313/posts/others/ga-define/" class="post-read-more"></a>
   </div>
 
@@ -478,7 +471,7 @@ KaTeX:https://katex.org/&lt;/p&gt;
 
   <div class="container">
     <div class="credits copyright">
-      <a href="http://localhost:1313//pages/about"></a>
+      <a href="http://localhost:1313//pages/about">if_004</a>
       &nbsp;&copy;
       2025
       

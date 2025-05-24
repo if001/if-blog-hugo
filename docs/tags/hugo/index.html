@@ -194,9 +194,11 @@
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;Hugoで数式を表示するために&lt;code&gt;katex@0.16.22&lt;/code&gt;を利用している。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://katex.org/docs/browser&#34;&gt;https://katex.org/docs/browser&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;基本的に表示さ</p>
+    <p>Hugoで数式を表示するためにkatex@0.16.22を利用している。
+https://katex.org/docs/browser
+基本的に表示されるが表示されないこともあり困っていた。
+結論 shortcodeを作る
+以下のようなpassthroughするだけのショートコー …</p>
     <a href="http://localhost:1313/posts/hugo/hugo-katex/" class="post-read-more"></a>
   </div>
 
@@ -229,9 +231,8 @@
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;Hugoでコードブロックを使うときは、GitHubからの引用し、その下に参照元のURLを貼り付けることが多い。
-コードブロックの下にそのままURLが表示されるの若干見づらかったので、コードブロックとセットでいい感じに表示したい。&lt;/p&gt;
-&lt;p&gt;HugoにMarkdown Render Hook</p>
+    <p>Hugoでコードブロックを使うときは、GitHubからの引用し、その下に参照元のURLを貼り付けることが多い。 コードブロックの下にそのままURLが表示されるの若干見づらかったので、コードブロックとセットでいい感じに表示したい。
+HugoにMarkdown Render Hooks …</p>
     <a href="http://localhost:1313/posts/hugo/hugo-render-block/" class="post-read-more"></a>
   </div>
 
@@ -266,16 +267,13 @@
   </a>
 
   <div class="post-entry">
-    <p>&lt;h2 id=&#34;test0&#34;&gt;test0&lt;/h2&gt;
-&lt;p&gt;aaaaa&lt;/p&gt;
-&lt;h2 id=&#34;test1&#34;&gt;test1&lt;/h2&gt;
-&lt;p&gt;$\alpha$&lt;/p&gt;
-&lt;p&gt;$\beta$&lt;/p&gt;
-&lt;p&gt;$a^2 &#43; b^2 = c^2$&lt;/p&gt;
-&lt;p&gt;$$
-a^2 &#43; b^2 = c^2
-$$&lt;/p&gt;
-</p>
+    <p>test0 aaaaa
+test1 $\alpha$
+$\beta$
+$a^2 + b^2 = c^2$
+$$ a^2 + b^2 = c^2 $$
+$$\int_{a}^{b} x^2 dx$$
+\begin{aligned} KL(\hat{y} || y) &amp;= …</p>
     <a href="http://localhost:1313/posts/python/test/" class="post-read-more"></a>
   </div>
 
@@ -318,9 +316,11 @@ $$&lt;/p&gt;
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;記事の最後に関連記事を表示する方法が簡単になってた。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://gohugo.io/content-management/related/&#34;&gt;https://gohugo.io/content-management/related/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;</p>
+    <p>記事の最後に関連記事を表示する方法が簡単になってた。
+https://gohugo.io/content-management/related/
+これで関連記事を取れる
+.Site.RegularPages.Related 以下のような感じで記事の最後につけるとおｋ
+{{ $related := …</p>
     <a href="http://localhost:1313/posts/hugo/hugo-related-posts/" class="post-read-more"></a>
   </div>
 
@@ -353,10 +353,9 @@ $$&lt;/p&gt;
   </a>
 
   <div class="post-entry">
-    <p>&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
-&lt;p&gt;GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。&lt;/p&gt;
-&lt;p&gt;いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。&lt;/p&gt;
-&lt;h2 id=&#34;インフラ&#34;&gt;</p>
+    <p>はじめに GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。
+いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。
+インフラ GCEを使います。ほんとは、image化してインスタンスグループで公開したかったので …</p>
     <a href="http://localhost:1313/posts/others/http-portal-for-blog/" class="post-read-more"></a>
   </div>
 
@@ -391,10 +390,7 @@ $$&lt;/p&gt;
   </a>
 
   <div class="post-entry">
-    <p>&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
-&lt;p&gt;現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。
-静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。
-falconをつかったのは、flaskやbo</p>
+    <p>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことな …</p>
     <a href="http://localhost:1313/posts/falcon/falcon-img-upload/" class="post-read-more"></a>
   </div>
 
@@ -431,9 +427,8 @@ falconをつかったのは、flaskやbo</p>
   </a>
 
   <div class="post-entry">
-    <p>&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;とは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。
-Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。&lt;</p>
+    <p>はじめに Hugoとは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。 Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。
+サイトの作成 インストール brew install hugo テンプレートの作成 hugo new site …</p>
     <a href="http://localhost:1313/posts/hugo/hugo-start-article/" class="post-read-more"></a>
   </div>
 
@@ -466,9 +461,8 @@ Hugoを使ってブログを作ってみたので構築方法を簡単にまと�
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。&lt;/p&gt;
-&lt;p&gt;hrefでは&lt;code&gt;target=&#39;_blank&#39;&lt;/code&gt;を指定すれば良いのだが、markdownでどうすれば良いのか調べた。
-Hugoでは次のようにcon</p>
+    <p>リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。
+hrefではtarget='_blank'を指定すれば良いのだが、markdownでどうすれば良いのか調べた。 Hugoでは次のようにconfig.tomlするといける。 …</p>
     <a href="http://localhost:1313/posts/hugo/hugo-href-to-target-blank/" class="post-read-more"></a>
   </div>
 
@@ -501,11 +495,11 @@ Hugoでは次のようにcon</p>
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;Hugoにgoogle analytics(ga)を導入しようと思ったら意外と簡単だった。&lt;/p&gt;
-&lt;p&gt;まず、gaアカウントを作成。&lt;/p&gt;
-&lt;p&gt;config.tomlに&lt;/p&gt;
-&lt;div class=&#34;code-block&#34;&gt;
-  &lt;div class=&#34;body&#34;&gt;&lt;pre tabin</p>
+    <p>Hugoにgoogle analytics(ga)を導入しようと思ったら意外と簡単だった。
+まず、gaアカウントを作成。
+config.tomlに
+googleAnalytics = &#34;{ga tracking ID}&#34; を設定するだけ。
+</p>
     <a href="http://localhost:1313/posts/hugo/hugo-ga/" class="post-read-more"></a>
   </div>
 
@@ -540,10 +534,10 @@ Hugoでは次のようにcon</p>
   </a>
 
   <div class="post-entry">
-    <p>&lt;p&gt;久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。&lt;/p&gt;
-&lt;h2 id=&#34;ディレクトリ&#34;&gt;ディレクトリ&lt;/h2&gt;
-&lt;p&gt;基本的なディレクトリは以下&lt;br&gt;
-markdownを書いたりと普段触るのはcontentデ</p>
+    <p>久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。
+ディレクトリ 基本的なディレクトリは以下
+markdownを書いたりと普段触るのはcontentディレクトリになる。
+デプロイ後生成されるpublicディレクトリはサー …</p>
     <a href="http://localhost:1313/posts/hugo/hugo-long-time-no-see/" class="post-read-more"></a>
   </div>
 
@@ -597,7 +591,7 @@ markdownを書いたりと普段触るのはcontentデ</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="http://localhost:1313//pages/about"></a>
+      <a href="http://localhost:1313//pages/about">if_004</a>
       &nbsp;&copy;
       2025
       
