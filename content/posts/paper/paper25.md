@@ -4,6 +4,7 @@ slug: "paper25"
 tags: ["nlp","deeplearning", "paper_summary", "データセット指標"]
 date: "2025-05-21T20:00:00+09:00"
 draft: false
+toc: false
 ---
 
 https://arxiv.org/abs/2504.12522
