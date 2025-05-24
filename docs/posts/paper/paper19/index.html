@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2502.19249
+どんなもの この研究は、形式言語での事前事前学習が自然言語学習に役立つことを示し、どのような形式言語が有効な帰納バイアス（inductive bias）を与え" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-05-17
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2502.19249">https://arxiv.org/abs/2502.19249</a></p>
+<hr>
+<h2 id="どんなもの">どんなもの</h2>
+<p>この研究は、<strong>形式言語での事前事前学習</strong>が自然言語学習に役立つことを示し、どのような形式言語が有効な帰納バイアス（inductive bias）を与えるのかを調査するものである。特に、<strong>Chomsky階層</strong> と <strong>回路複雑性階層（circuit complexity hierarchy）</strong> の交差点に着目し、Transformerが学習可能でかつ自然言語の階層的依存構造を持つ形式言語により、自然言語の学習効率と文法的汎化性能が向上することを示している。</p>
+<hr>
+<h2 id="先行研究と比べてどこがすごいの">先行研究と比べてどこがすごいの？</h2>
+<p>従来は、Chomsky階層における<strong>文脈自由（context-free）<strong>や</strong>文脈依存（context-sensitive）<strong>な形式言語が自然言語への転移に有効であるとされてきたが、Transformerの計算限界を考慮せず、すべての文脈依存言語が転移に適しているとは限らなかった。本研究では、新たに</strong>C-RASP</strong>および<strong>FO(M)</strong> という回路理論ベースの枠組みを導入し、Transformerが実際に学習可能な形式言語のクラスを特定した点が革新的である。</p>
+<hr>
+<h2 id="技術や手法のきもはどこにある">技術や手法のきもはどこにある？</h2>
+<p>以下の2点を満たす形式言語でのpre-pretrainingが最も効果的であるという仮説を立てて検証している：</p>
+<ol>
+<li><strong>自然言語の階層的依存構造を含む</strong>（context-free または context-sensitive）。</li>
+<li>**Transformerで長さ一般化が可能（length-generalizing learnability）**であり、<strong>C-RASP</strong> で定義可能。</li>
+</ol>
+<p>この仮説に基づき、次の形式言語を使用して比較実験を行った：</p>
+<ul>
+<li><strong>1-Dyck</strong>（context-free, C-RASPに含まれる）</li>
+<li><strong>k-Dyck</strong>（context-free, FO(M)には含まれるがC-RASPには含まれない）</li>
+<li><strong>k-Shuffle Dyck</strong>（context-sensitive, C-RASPに含まれる）</li>
+<li><strong>ww</strong>（copy language, context-sensitive, C-RASPに含まれない）</li>
+</ul>
+<p>また、Transformerの学習構造のうち、形式言語学習中に形成された<strong>サブネットワーク M</strong>が、自然言語学習中も再利用されるという「Subnetworks Hypothesis」も提唱・検証されている。</p>
+<hr>
+<h2 id="どうやって有効だと検証した">どうやって有効だと検証した？</h2>
+<p>以下の方法で実証された：</p>
+<ul>
+<li>
+<p>事前事前学習（pre-pretraining）を行った後、英語コーパス（C4）で事前学習（pretraining）を行い、<strong>検証損失（validation loss）</strong>、<strong>文法判別精度（BLiMP）</strong>、繰り返し構造の記憶（verbatim retrieval）で評価。</p>
+</li>
+<li>
+<p>結果、<strong>k-Shuffle Dyck</strong>でのpre-pretrainingが最も有効であり、同等の性能を達成するのに必要なトークン数が<strong>33%削減</strong>された。</p>
+</li>
+<li>
+<p>数式として、トークン効率の向上率は：</p>
+<p>$$
+\text{Token Efficiency Gain} = 1 - \frac{T_{\text{pre-pretraining}} + T_{\text{pretraining}}}{T_{\text{baseline}}}
+$$</p>
+<p>で定義され、実際に $1 - \frac{1.10B}{1.63B} = 0.33$ が達成された。</p>
+</li>
+<li>
+<p>また、注意ヘッドのプルーニング実験により、形式言語学習で得られたサブネットワークMが自然言語学習でも重要であることが示された（$p \ll 0.001$）。</p>
+</li>
+</ul>
+<hr>
+<h2 id="議論はあるか">議論はあるか</h2>
+<ul>
+<li><strong>万能ではない</strong>：すべてのBLiMPサブタスクで性能が向上するわけではなく、一部では性能低下も見られた。</li>
+<li><strong>非構文的知識（morphology）</strong> にも影響がある：形式言語によるpre-pretrainingは主に構文的知識を強化するが、形態論的性能にも二次的に良い影響があった。</li>
+<li><strong>他のモデルアーキテクチャへの拡張未検討</strong>：本研究はTransformerに限定されており、RNNやState Space Modelへの適用は今後の課題である。</li>
+<li><strong>形式言語のハイパーパラメータ調整が高コスト</strong>であり、スケーラブルな探索方法の導入が求められる。</li>
+</ul>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper25/">EVALUATING THE DIVERSITY AND QUALITY OF LLM GENERATED CONTENT</a></li>
+    
+      <li><a href="/posts/paper/paper24/">Texygen: A Benchmarking Platform for Text Generation Models</a></li>
+    
+      <li><a href="/posts/paper/paper23/">Measuring Diversity in Synthetic Datasets</a></li>
+    
+      <li><a href="/posts/paper/paper22/">Beyond Scale: The Diversity Coefficient as a Data Quality Metric for Variability in Natural Language Data</a></li>
+    
+      <li><a href="/posts/paper/paper21/">On the Diversity of Synthetic Data and its Impact on Training Large Language Models</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -59,21 +59,30 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    renderMathInElement(document.body, {
-      delimiters: [
-        {left: '\\[', right: '\\]', display: true},   
-        {left: '$$', right: '$$', display: true},     
-        {left: '\\(', right: '\\)', display: false},  
-        {left: '$', right: '$', display: false},  
-      ],
-      throwOnError : false
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
     });
-  });
 </script>
 
 
@@ -218,9 +227,20 @@
         </div>
       
         <div class="terms">
+          <a href="https://www.if-blog.site/tags/chat/" class="term-link">
+            chat
+            <span class="badge">1</span>
+          </a>
+          
+          
+          
+          
+        </div>
+      
+        <div class="terms">
           <a href="https://www.if-blog.site/tags/deeplearning/" class="term-link">
             deeplearning
-            <span class="badge">35</span>
+            <span class="badge">45</span>
           </a>
           
           
@@ -341,7 +361,7 @@
         <div class="terms">
           <a href="https://www.if-blog.site/tags/hugo/" class="term-link">
             hugo
-            <span class="badge">13</span>
+            <span class="badge">14</span>
           </a>
           
           
@@ -385,7 +405,18 @@
         <div class="terms">
           <a href="https://www.if-blog.site/tags/nlp/" class="term-link">
             nlp
-            <span class="badge">41</span>
+            <span class="badge">51</span>
+          </a>
+          
+          
+          
+          
+        </div>
+      
+        <div class="terms">
+          <a href="https://www.if-blog.site/tags/paper_summary/" class="term-link">
+            paper_summary
+            <span class="badge">24</span>
           </a>
           
           
@@ -562,6 +593,17 @@
           <a href="https://www.if-blog.site/tags/xgen/" class="term-link">
             xgen
             <span class="badge">1</span>
+          </a>
+          
+          
+          
+          
+        </div>
+      
+        <div class="terms">
+          <a href="https://www.if-blog.site/tags/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E6%8C%87%E6%A8%99/" class="term-link">
+            データセット指標
+            <span class="badge">6</span>
           </a>
           
           

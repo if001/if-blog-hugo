@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>On the Diversity of Synthetic Data and its Impact on Training Large Language Models</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/html/2410.15226v2
+エグゼクティブサマリー 本論文は synthetic data の多様性 が Large Language Models (LLMs) の性能に与える影" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		On the Diversity of Synthetic Data and its Impact on Training Large Language Models
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E6%8C%87%E6%A8%99/">データセット指標</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-05-19
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/html/2410.15226v2">https://arxiv.org/html/2410.15226v2</a></p>
+<hr>
+<h2 id="エグゼクティブサマリー">エグゼクティブサマリー</h2>
+<p>本論文は <strong>synthetic data の多様性</strong> が Large Language Models (LLMs) の性能に与える影響を体系的に解析した初の大規模研究である。著者らは、多様性を定量化するための新しい指標 <strong>「LLM Cluster-agent」</strong> を提案し、Wikipedia 由来の 62 万トピックから生成した複数の合成コーパスを用いて、350 M／1.4 B パラメータの Llama 系モデルを事前学習・教師あり微調整。実験の結果、提案指標で得られる <strong>LLM cluster score が高いほど、事前学習と微調整の双方でベンチマーク精度が一貫して向上</strong> することを示した。</p>
+<hr>
+<h2 id="主要なテーマと重要なアイデア">主要なテーマと重要なアイデア</h2>
+<ol>
+<li>
+<p><strong>Synthetic data 多様性の重要性</strong></p>
+<ul>
+<li>量や品質と同様に <em>diversity</em> が LLM 成績を左右するにもかかわらず、適切な測定法が欠如していたという課題認識。</li>
+</ul>
+</li>
+<li>
+<p><strong>LLM Cluster-agent 指標</strong></p>
+<ul>
+<li>(i) メタデータ／メトリクス生成、(ii) それらを用いた逐次クラスタリング、(iii) クラスター自己検証という 3 段から成るパイプラインで、平均的な「クラスター密度」 D を <strong>LLM cluster score</strong> として算出。</li>
+<li>ヒューリスティック指標（n-gram diversity 等）や K-means よりも分布差を鋭敏に捉え、実験成績との相関が最も高い。</li>
+</ul>
+</li>
+<li>
+<p><strong>多角的コントロール実験</strong></p>
+<ul>
+<li><strong>Underlying distribution</strong>: トピック数 T と 1 トピックあたり生成数 G を操作し、多様性と精度のトレードオフを定量化。</li>
+<li><strong>Prompt design</strong>: 文体・受取手 (persona)・複数トピックの導入で diversity を拡張し、Cosmopedia を上回る性能を達成。</li>
+<li><strong>Generation model</strong>: GPT-4o &gt; GPT-3.5 &gt; Llama-3.1 &gt; Mistral の順に多様性と精度が向上し、モデル混合も有効。</li>
+<li><strong>Real/Synthetic 比率</strong>: 合成比率を高めると 20 B までは精度向上するが、過度 (&gt;34 B) では冗長性により劣化。</li>
+<li><strong>モデルサイズ効果</strong>: 大きいモデルほど高い diversity を必要とし、微調整段階での利得が顕著。</li>
+</ul>
+</li>
+<li>
+<p><strong>アブレーションとロバスト性</strong></p>
+<ul>
+<li>パラメータ K/N/J/M の変化、パイプライン構成要素、使用 LLM を変えても指標は頑健である。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="貢献">貢献</h2>
+<ul>
+<li>
+<p><strong>LLM Cluster-agent</strong>: 合成テキスト多様性を高精度で評価する初の LLM ベース指標を提案し、公開ツールキットとして提供。</p>
+</li>
+<li>
+<p><strong>大規模統制実験</strong>: 34 B 実データ＋最大 50 B 合成データで 350 M/1.4 B モデルを学習し、多様性と性能の線形関係を実証。</p>
+</li>
+<li>
+<p><strong>設計指針の提示</strong>:</p>
+<ol>
+<li>トピックの広域カバレッジと適切な G が不可欠。</li>
+<li>文体・persona を組み合わせたプロンプトが多様性を大幅に向上。</li>
+<li>より強力な生成 LLM と異種混合は多様性をブースト。</li>
+<li>実データと合成データはバランス（1:1 付近）が最良。</li>
+</ol>
+</li>
+<li>
+<p><strong>スケーラビリティの検証</strong>: 指標と知見は 1.4 B 以上のモデルにも拡張可能であり、今後の効率的 synthetic data 生成プロセスに資する。</p>
+</li>
+</ul>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper25/">EVALUATING THE DIVERSITY AND QUALITY OF LLM GENERATED CONTENT</a></li>
+    
+      <li><a href="/posts/paper/paper24/">Texygen: A Benchmarking Platform for Text Generation Models</a></li>
+    
+      <li><a href="/posts/paper/paper23/">Measuring Diversity in Synthetic Datasets</a></li>
+    
+      <li><a href="/posts/paper/paper22/">Beyond Scale: The Diversity Coefficient as a Data Quality Metric for Variability in Natural Language Data</a></li>
+    
+      <li><a href="/posts/chats/chat2/">データセット評価指標</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

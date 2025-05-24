@@ -59,21 +59,30 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    renderMathInElement(document.body, {
-      delimiters: [
-        {left: '\\[', right: '\\]', display: true},   
-        {left: '$$', right: '$$', display: true},     
-        {left: '\\(', right: '\\)', display: false},  
-        {left: '$', right: '$', display: false},  
-      ],
-      throwOnError : false
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
     });
-  });
 </script>
 
 
@@ -188,16 +197,19 @@
       
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/char-vec/">
+  <a href="https://www.if-blog.site/posts/nlp/start-xglm-t5/">
     <h2 class="post-title">
-      文字をベクトル化する
+      xglmをquick start
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>文章生成にchar-level lstmを使ってみる。英語ではうまくいっている例があるが日本語では難しい。これは、日本語は英語に比べ文字数が多く、ニューラルネットワークの次元数(パラメータ数)が増やす必要があるのが原因の1つだと思う。また、次元削減のため、日本語では文章を単語に区切り単語をベクトル化</p>
-    <a href="https://www.if-blog.site/posts/nlp/char-vec/" class="post-read-more"></a>
+    <p>多言語モデルであるxglmを動かしてみます。
+最も大きいもので7.5Bのparameterを持つ。
+同等のサイズのGPT3のモデルを上回るらしい。
+Our largest model with 7.5 billion parameters sets new state of the art in f</p>
+    <a href="https://www.if-blog.site/posts/nlp/start-xglm-t5/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -210,6 +222,367 @@
       <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
       <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-02-05
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/start-flan-t5/">
+    <h2 class="post-title">
+      flan_t5をquick start
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>T5を強化したモデルであるFlan-t5を動かしてみます。
+FlanはFinetunedLAnguage Netの略。
+ちなみに、Flanはカスタードプリンとかプリンの意味らしい。だからプリンのイラストあったのか
+https://huggingface.co/docs/transformers/mo</p>
+    <a href="https://www.if-blog.site/posts/nlp/start-flan-t5/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-02-04
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/huggingface-tokenizer/">
+    <h2 class="post-title">
+      Hugging Faceのtokenizerで迷ったのでまとめておく
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>tokeninzerとかencodeとか色々あって毎回調べることになるのでメモ。
+以下の日本語tokenizerを使わせてもらう。
+tokenizer = T5Tokenizer.from_pretrained(&amp;#34;sonoisa/t5-base-japanese&amp;#34;) よく見る書き方 </p>
+    <a href="https://www.if-blog.site/posts/nlp/huggingface-tokenizer/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2022-08-16
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/huggingface-conv/">
+    <h2 class="post-title">
+      Hugging Faceのpipelineで会話モデルを動かす
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Hugging Faceのpipelineを’使って会話モデルを動かしたのでメモ。
+あまり日本語記事がなかったので残しておく。
+huggingfaceについてはこっちの記事を参照
+https://www.if-blog.site/posts/nlp/huggingface-doc/
+pipeline</p>
+    <a href="https://www.if-blog.site/posts/nlp/huggingface-conv/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2022-05-05
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/huggingface-doc/">
+    <h2 class="post-title">
+      Hugging Face Transformersのドキュメント読んだ
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Hugging FaceなのかTransformersなのか呼び方がわからん。
+BERTやGPT-2などの様々なモデルが扱えるライブラリ
+事前学習済のモデルとタスクが用意されており、そのままモデルを使ったりFine-Tuningが簡単にできる。
+https://huggingface.co/docs</p>
+    <a href="https://www.if-blog.site/posts/nlp/huggingface-doc/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2021-12-09
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/">
+    <h2 class="post-title">
+      End-to-End Text Classification via Image-basedEmbedding using Character-level Networks
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>日本語、中国語、タイ語など、形態素解析に基づく単語境界を持たない言語の分析や理解のためには、単語の埋め込みの前に適切な単語分割を行うことが望まれるが、これらの言語では本質的に困難である。しかし、これらの言語では、それは本質的に困難である。近年、ディープラーニングに基づく様々な言語モデルの進歩は目覚ま</p>
+    <a href="https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2020-12-30
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/">
+    <h2 class="post-title">
+      Enhanced character embedding for Chinese named entity recognition
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Enhanced character embedding for Chinese named entity recognition https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456
+従来の名前付き実体認識方法では、主に手作業に</p>
+    <a href="https://www.if-blog.site/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2020-12-30
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/seqgan-paper/">
+    <h2 class="post-title">
+      SeqGANの論文を読む
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
+https://arxiv.org/pdf/1609.05473.pdf
+SeqGANの論文を読んだのでまとめておきます。実装を行おうと思って読んだので手法をメインに読</p>
+    <a href="https://www.if-blog.site/posts/nlp/seqgan-paper/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/seqgan/">SeqGAN</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/">
+    <h2 class="post-title">
+      ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Qiitaに投稿した記事、kerasでHREDを構築してみるの記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
+A Diversity-Promoting Objective Function for Neural Conversation Models htt</p>
+    <a href="https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/seq2seq/">seq2seq</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/">
+    <h2 class="post-title">
+      自然言語処理シリーズの構文解析を読む（概要）
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>はじめに 自然言語処理シリーズの構文解析を読んでいきます。
+全体の概要把握:1時間 中身の細かいとこ：3時間 という感じで読み進めて行こうと思います。
+概要 構文解析を用いることで、単語の並びの背後にある文法的な構造を明らかにすることができる。構文解析を学ぶことで、自然言語処理で用いられる様々な先人</p>
+    <a href="https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/">構文解析</a>&nbsp;
     
   
 </div>
@@ -236,6 +609,12 @@
             >
           </li>
         
+        
+          <li class="next">
+            <a href="https://www.if-blog.site/tags/nlp/page/6/"
+              ><i class="fas fa-chevron-right"></i
+            ></a>
+          </li>
         
       </ul>
     

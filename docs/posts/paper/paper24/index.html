@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Texygen: A Benchmarking Platform for Text Generation Models</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/1802.01886
+サマリー 本論文では、オープン ドメイン テキスト生成モデルの研究を支援するためのベンチマーク プラットフォームである Texygen を紹介する。Texyg" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Texygen: A Benchmarking Platform for Text Generation Models
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E6%8C%87%E6%A8%99/">データセット指標</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-05-21
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/1802.01886">https://arxiv.org/abs/1802.01886</a></p>
+<h2 id="サマリー">サマリー</h2>
+<p>本論文では、オープン ドメイン テキスト生成モデルの研究を支援するためのベンチマーク プラットフォームである Texygen を紹介する。Texygen は、多数のテキスト生成モデルを実装しているだけでなく、生成されたテキストの多様性、品質、一貫性を評価する一連のメトリクスもカバーしている。このプラットフォームは、テキスト生成に関する研究の標準化、研究者間での微調整されたオープンソース実装の共有の促進、そして将来の研究作業の再現性と信頼性の向上に貢献することを目指している。</p>
+<h2 id="主要なテーマと重要なアイデア">主要なテーマと重要なアイデア</h2>
+<ul>
+<li>
+<p><strong>オープン ドメイン テキスト生成の課題</strong>: 論文では、テキスト生成における3つの主要な課題を指摘している。第一に、優れたテキスト生成モデルの基準が明確でないこと。第二に、研究者がソースコードを公開する義務がないため、報告された実験結果の再現が困難であること。第三に、テキスト生成は品質と多様性のトレードオフ問題に悩まされており、モード崩壊によって出力が限定的なパターンに縮小する可能性があることである。</p>
+</li>
+<li>
+<p><strong>Texygen プラットフォーム</strong>: この課題に対応するため、Texygen プラットフォームが提案された。Texygen は、テキスト生成モデルの標準化されたトップダウンの多次元評価システムを提供する。プラットフォームは、適切にトレーニングされたベースラインモデルと、自動的に計算可能な評価メトリクスの2つの要素で構成されている。</p>
+<ul>
+<li><strong>ベースラインモデル</strong>: Texygen には、vanilla MLE、SeqGAN、MaliGAN、RankGAN、TextGAN、GSGAN、LeakGAN など、さまざまな尤度ベースのモデル、敵対的メソッド、階層的メソッドが含まれている。
+<ul>
+<li>Vanilla MLE: $max_{\theta}\sum_{x}\sum_{t}log~\pi_{\theta}(x_{t}|s_{t})$</li>
+<li>SeqGAN: ジェネレーターは REINFORCE アルゴリズムを使用して GAN の目的関数を最適化する: $$min_{\phi}-\bigoplus_{Y\sim p_{datu}}[log~D_{\phi}(Y)]-\mathbb{R}_{Y-G_{\theta}}[log(1-D_{\phi}(Y))]$$</li>
+<li>MaliGAN: 報酬をリスケールする: $r_{D}(x_{i})^{\prime}=\frac{r_{D}(x_{i})}{\sum_{f=1}^{m}r_{D}(x_{f})}-b$。</li>
+<li>RankGAN: ランキング損失を最適化する: $L_{\phi}=\mathbb{E}_{s\sim p_{data}}[log~R_{\phi}(s|U,C^{-})]-\mathbb{E}_{s\sim G_{\theta}}[log~R_{\phi}(s|U,C^{+})]$。</li>
+<li>GSGAN: Gumbel Softmax トリックを使用する: arg max [softmax(h+g)] ~ softmax(h)。</li>
+<li>TextGAN: MMD 損失を最適化する: $L_{recon}=||z-\hat{z}||$。</li>
+<li>LeakGAN: Manager と Worker の2つのモジュールを持つ階層型強化学習フレームワーク。</li>
+</ul>
+</li>
+<li><strong>評価メトリクス</strong>: Texygen は、BLEU、EmbSim、NLL-oracle、NLL-test、Self-BLEUという5つのテキスト生成メトリクスを実装している。これらは、ドキュメントの類似性に基づくメトリクス、尤度ベースのメトリクス、発散ベースのメトリクスに分類される。
+<ul>
+<li>EmbSim: $$EmbSim=log(\sum_{i=1}^{N}cos(W_{i}^{\prime},W_{i})/N)$$</li>
+<li>NLL-oracle: $$NLL_{oracle}=-\mathbb{E}_{Y_{1:T-G_{\rho}}}[\sum_{t=1}^{T}log(G_{oracle}(y_{t}|Y_{1:t-1}))]$$</li>
+<li>NLL-test: $$NLL_{test}=-\mathbb{B}_{Y_{1:T-G_{teal}}}[\sum_{t=1}^{T}log(G_{\theta}(y_{t}|Y_{1:t-1}))]$$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>実験</strong>: 合成データと実データ（COCO 画像キャプション）を使用して実験が行われた。$NLL_{oracle}$ と $NLL_{test}$ は合成データトレーニングに適用され、BLEU スコア、Self-BLEU スコア、EmbSim は実データトレーニングに適用された。LeakGAN は多くのメトリクスで良好な性能を示した。</p>
+</li>
+</ul>
+<h2 id="貢献">貢献</h2>
+<ul>
+<li><strong>Texygen ベンチマーク プラットフォームの導入</strong>: オープン ドメイン テキスト生成モデルの研究をサポートする、オープンソースのベンチマーク プラットフォームをリリースした。</li>
+<li><strong>多数のベースラインモデルと評価メトリクスの実装</strong>: Texygen は、多数のベースラインモデルと、生成テキストの多様性、品質、一貫性を評価するためのさまざまなメトリクスを実装している。</li>
+<li><strong>研究の標準化と再現性の向上への貢献</strong>: このプラットフォームは、テキスト生成に関する研究の標準化、研究作業の再現性の向上、およびより高度なアプリケーションの奨励に役立つことが期待される。</li>
+<li><strong>新しいメトリクスの提案</strong>: EmbSim や Self-BLEU といった新しい評価メトリクスを提案した。</li>
+<li><strong>既存モデルの包括的な比較研究</strong>: さまざまなメトリクスを用いて、既存のテキスト生成モデルの包括的な比較研究を実施した。</li>
+</ul>
+<h2 id="評価メトリクス">評価メトリクス</h2>
+<h3 id="1-ドキュメント類似性ベースのメトリクス-document-similarity-based-metrics">1. ドキュメント類似性ベースのメトリクス (Document Similarity based Metrics)</h3>
+<p>生成されたドキュメントの品質を測る最も直感的な方法は、それらが自然言語、つまりトレーニングデータセットにどれほど似ているかです。</p>
+<ul>
+<li>
+<p><strong>BLEU (Bilingual Evaluation Understudy)</strong></p>
+<ul>
+<li>文やドキュメント間の単語の類似性を評価するために広く使われているメトリクスです。</li>
+</ul>
+</li>
+<li>
+<p><strong>EmbSim (Embedding Similarity)</strong></p>
+<ul>
+<li>BLEUに触発され、提案されたメトリクスで、「embedding similarity」の略です。</li>
+<li>単語ごとに文を比較するのではなく、単語埋め込みを比較します。</li>
+<li>まず、実際のデータでskip-gramモデルを用いて単語埋め込みを評価します。</li>
+<li>各単語埋め込みについて、他の単語とのコサイン類似度を計算し、これを実データの類似性行列 $W$ として定式化します。ここで、$W_{i,j}=cos(e_{i},e_{j})$ であり、$e_i, e_j$ は実データからの単語iとjの単語埋め込みです。</li>
+<li>同様に、生成データから同じskip-gramモデルを用いて単語埋め込み $e&rsquo;_i, e&rsquo;_j$ を得て、類似性行列 $W&rsquo;$ を得ます。</li>
+<li>EmbSimは以下のように定義されます:
+$EmbSim=log(\sum_{i=1}^{N}cos(W_{i}^{\prime},W_{i})/N)$
+ここで、$N$ は総単語数、$W_i$ と $W&rsquo;_i$ はそれぞれ $W$ と $W&rsquo;$ のi番目の列を示します。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-尤度ベースのメトリクス-likelihood-based-metrics">2. 尤度ベースのメトリクス (Likelihood-based Metrics)</h3>
+<p>真のデータ分布 $p$ とモデルからの生成データ分布 $q$ の間のクロスエントロピーを最小化することを目指す最尤推定（MLE）に基づいて、データの適合度やモデルの良さを尤度を測定することで評価するメトリクスです。これらのモデルは、データだけでなくモデルに関する詳細も必要とします。</p>
+<ul>
+<li>
+<p><strong>NLL-oracle (Negative Log-Likelihood oracle)</strong></p>
+<ul>
+<li>元々はSeqGANで導入されたもので、特に合成データ実験に適用され、生成されたデータがオラクル言語モデルによってどれだけうまく適合されているかを示します。</li>
+<li>$NLL_{oracle}$ では、ランダムに初期化されたLSTMが真のモデル、つまりオラクルとみなされます。</li>
+<li>テキスト生成モデルは、オラクルLSTMにおける生成データの平均負の対数尤度、すなわち $\mathbb{E}_{x\sim q}log~p(x)$ （$x$ は生成データを指す）を最小化する必要があります。</li>
+<li>LSTMが真のモデルとみなされるため、このメトリクスは各文に対して単語ごとに平均損失を計算できます:
+$$NLL_{oracle}=-\mathbb{E}_{Y_{1:T-G_{\rho}}}[\sum_{t=1}^{T}log(G_{oracle}(y_{t}|Y_{1:t-1}))]$$
+ここで、$G_{oracle}$ はオラクルLSTMを、$G_{\theta}$ は生成モデルを示します。</li>
+</ul>
+</li>
+<li>
+<p><strong>NLL-test (Negative Log-Likelihood test)</strong></p>
+<ul>
+<li>提案されたメトリクスで、$NLL_{oracle}$ と対になるもので、モデルが実際のテストデータに適合する能力を評価します。</li>
+<li>$$NLL_{test}=-\mathbb{E}_{Y_{1:T \sim G_{real}}}[\sum_{t=1}^{T}log(G_{\theta}(y_{t}|Y_{1:t-1}))]$$
+ここで、$G_{real}$ は実データの分布を示します。</li>
+<li>$NLL_{test}$ は、$G_{\theta}(y_{t}|Y_{1:t-1})$ が特定の単語の尤度を計算するためにジェネレータに基づいて以前の単語に基づいて関与するため、RNNのような自己回帰ジェネレータにのみ適用可能です。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-発散ベースのメトリクス-divergence-based-metrics">3. 発散ベースのメトリクス (Divergence based Metrics)</h3>
+<p>GANモデルはしばしばモード崩壊問題に悩まされ、ジェネレータが単一のサンプルまたは非常に類似したサンプルの小さなファミリーのみを生成するように崩壊する可能性があります。したがって、オープン ドメイン テキスト生成タスクでは、より多様なパターンを生成することを奨励するメトリクスが含まれます。</p>
+<ul>
+<li><strong>Self-BLEU</strong>
+<ul>
+<li>生成されたデータの多様性を評価するために提案されたメトリクスです。</li>
+<li>BLEUは2つの文がどれほど類似しているかを評価することを目的としているため、生成されたコレクション内で1つの文が残りの文とどれほど類似しているかを評価するためにも使用できます。</li>
+<li>1つの文を仮説とし、他の文を参照として、生成された各文に対してBLEUスコアを計算し、その平均BLEUスコアをドキュメントのSelf-BLEUと定義します。</li>
+<li>Self-BLEUスコアが高いほど、ドキュメントの多様性が低く、GANモデルのモード崩壊が深刻であることを意味します。</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper25/">EVALUATING THE DIVERSITY AND QUALITY OF LLM GENERATED CONTENT</a></li>
+    
+      <li><a href="/posts/paper/paper23/">Measuring Diversity in Synthetic Datasets</a></li>
+    
+      <li><a href="/posts/paper/paper22/">Beyond Scale: The Diversity Coefficient as a Data Quality Metric for Variability in Natural Language Data</a></li>
+    
+      <li><a href="/posts/paper/paper21/">On the Diversity of Synthetic Data and its Impact on Training Large Language Models</a></li>
+    
+      <li><a href="/posts/chats/chat2/">データセット評価指標</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -59,21 +59,30 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    renderMathInElement(document.body, {
-      delimiters: [
-        {left: '\\[', right: '\\]', display: true},   
-        {left: '$$', right: '$$', display: true},     
-        {left: '\\(', right: '\\)', display: false},  
-        {left: '$', right: '$', display: false},  
-      ],
-      throwOnError : false
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
     });
-  });
 </script>
 
 
@@ -188,61 +197,18 @@
       
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/xgen-jglue/">
+  <a href="https://www.if-blog.site/posts/paper/paper5/">
     <h2 class="post-title">
-      xgenでJGLUEを試す
+      Fact-aware Sentence Split and Rephrase with Permutation Invariant Training (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>日本語ベンチマークとしてJGLUE(JP Language Model Evaluation Harness)が提案されている。
-https://techblog.yahoo.co.jp/entry/2022122030379907/
-文章分類、文ペア分類、質問応答のタスクに対し評価を行う。
-タスク</p>
-    <a href="https://www.if-blog.site/posts/nlp/xgen-jglue/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/jglue/">jglue</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/xgen/">xgen</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-07-01
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/calm_lora_quantize/">
-    <h2 class="post-title">
-      OpenCALM-7Bをloraで学習して、quantizeするまで
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>cyberagent/open-calm-7bをLoraを用いて学習し、quantizeするまでやっていきます
-https://huggingface.co/cyberagent/open-calm-7b
-gpt-neoxのlora weight mergeの記事が見つからなかったのでメモとして
-動</p>
-    <a href="https://www.if-blog.site/posts/nlp/calm_lora_quantize/" class="post-read-more"></a>
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2001.11383
+どんなもの 複雑な文を意味を保ったまま複数の簡単な文に分割・言い換える Sentence Split and Rephrase タスクのための新しいフレームワ</p>
+    <a href="https://www.if-blog.site/posts/paper/paper5/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -254,16 +220,14 @@ gpt-neoxのlora weight mergeの記事が見つからなかったのでメモと�
     
       <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-05-22
+  >&nbsp;2025-01-02
   
 </div>
 
@@ -272,19 +236,18 @@ gpt-neoxのlora weight mergeの記事が見つからなかったのでメモと�
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/rinna_lora_ja/">
+  <a href="https://www.if-blog.site/posts/paper/paper4/">
     <h2 class="post-title">
-      loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す
+      Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>loraを用いて学習する場合の、promptのtemplateは日本語にしたほうが良いんだっけ？
-ユーザー入力のフォーマットとかLLM側の出力のフォーマットとかどうすれば良いんだっけ？
-ってなったので学習させて結果を比較してみる。
-せっかくなのでrinna/japanese-gpt-neox-3.6</p>
-    <a href="https://www.if-blog.site/posts/nlp/rinna_lora_ja/" class="post-read-more"></a>
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2404.07143
+どんなもの Transformerベースの大規模言語モデル(LLMs)を、bounded memoryとcomputationで無限長の入力にスケールするため</p>
+    <a href="https://www.if-blog.site/posts/paper/paper4/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -296,16 +259,14 @@ gpt-neoxのlora weight mergeの記事が見つからなかったのでメモと�
     
       <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-05-21
+  >&nbsp;2025-01-02
   
 </div>
 
@@ -314,17 +275,18 @@ gpt-neoxのlora weight mergeの記事が見つからなかったのでメモと�
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/rinna_3b_cpp/">
+  <a href="https://www.if-blog.site/posts/paper/paper3/">
     <h2 class="post-title">
-      rinna 3Bをcppで動かす
+      Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>rinnaをcppで動かせるように色々試して見ました。 instructionもあり、そのままlangchainなどに突っ込んでも動かせそうということで、 ローカルで遊ぶならcppしてないと遊べないので色々試してみました。
-https://huggingface.co/rinna/japanese-</p>
-    <a href="https://www.if-blog.site/posts/nlp/rinna_3b_cpp/" class="post-read-more"></a>
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2410.04717
+どんなもの 大規模言語モデル（LLM）の指示遵守能力を向上させるためのデータセット構築戦略に関する研究。特に、instruction diversity（指示</p>
+    <a href="https://www.if-blog.site/posts/paper/paper3/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -336,16 +298,14 @@ https://huggingface.co/rinna/japanese-</p>
     
       <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-05-18
+  >&nbsp;2025-01-02
   
 </div>
 
@@ -354,58 +314,18 @@ https://huggingface.co/rinna/japanese-</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/react_start/">
+  <a href="https://www.if-blog.site/posts/paper/paper2/">
     <h2 class="post-title">
-      VicunaでReActっぽいことを試してみる
+      Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>vicunaでReActっぽいことを試してみる。正確には違うので注意
-ReActは、Thought、Action、Observationをループさせ、LLMの出力の精度上げる手法
-ReActの処理の流れは以下のような形。LangChainの実装を参考にする。
-与えられた質問(Question)に対し</p>
-    <a href="https://www.if-blog.site/posts/nlp/react_start/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/langchain/">langchain</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-04-01
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/rs-tokenizer/">
-    <h2 class="post-title">
-      Rust TokenizerをC&#43;&#43;から呼び出す
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Bloomz.cppのtokenizerが日本語でうまく動かなかったので、 Rust製のHuggingface TokenizerをC&#43;&#43;から呼び出せるようにしました。
-初めに 「応答」の応の文字には２つのIDが振られている。
-model_name = &amp;#34;bigscience/bloomz-</p>
-    <a href="https://www.if-blog.site/posts/nlp/rs-tokenizer/" class="post-read-more"></a>
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2410.15999
+どんなもの 本論文は、大規模言語モデル (LLM) の知識選択行動を、事前学習済みスパースオートエンコーダ (SAE) を用いた表現エンジニアリング手法 SP</p>
+    <a href="https://www.if-blog.site/posts/paper/paper2/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -417,16 +337,14 @@ model_name = &amp;#34;bigscience/bloomz-</p>
     
       <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-03-31
+  >&nbsp;2025-01-02
   
 </div>
 
@@ -435,19 +353,18 @@ model_name = &amp;#34;bigscience/bloomz-</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/bloom_lora_start/">
+  <a href="https://www.if-blog.site/posts/paper/paper1/">
     <h2 class="post-title">
-      BloomをLoRaで日本語finetuning
+      Mechanistic Unlearning: Robust Knowledge Unlearning and Editing via Mechanistic Localization(AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>LlamaをAlpacaデータセットを使いLoRaでfine tuneしたものが良い感じだったので、Bloomを日本語で学習させてみようと思う。
-https://github.com/tloen/alpaca-lora
-とりあえず動かすまででしっかりfine tuneしきってないので注意
-huggi</p>
-    <a href="https://www.if-blog.site/posts/nlp/bloom_lora_start/" class="post-read-more"></a>
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2410.12949
+どんなもの 本論文は、大規模言語モデル(LLM)から望ましくない知識を削除または修正する「知識のアンラーニングと編集」手法に関する研究です。特に、モデルの特定</p>
+    <a href="https://www.if-blog.site/posts/paper/paper1/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -459,16 +376,14 @@ huggi</p>
     
       <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-03-20
+  >&nbsp;2025-01-02
   
 </div>
 
@@ -477,18 +392,17 @@ huggi</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/">
+  <a href="https://www.if-blog.site/posts/nlp/mixture_of_experts_sample/">
     <h2 class="post-title">
-      LlamaIndex(GPTIndex)を触る
+      Mixture of expertsのサンプル実装
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>LlamaIndexを動かしていきます。最近名前がGPTIndexから変わったみたい。
-LlamaIndexとは、LLMのPromptの作成などを外部のデータソースと連携して行えるようにしたツールキット。
-https://gpt-index.readthedocs.io/en/latest/guid</p>
-    <a href="https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/" class="post-read-more"></a>
+    <p>mixture of expertsを実装してみる。 並列化や計算効率の向上などの部分は複雑なので、それら取り除いた簡単な実装を行ってみる。
+Mixture of expertsとは 特定のタスクに特化したexpertを複数用意し、入力に対してexpertを切り替えることで性能を上げる手法。 exp</p>
+    <a href="https://www.if-blog.site/posts/nlp/mixture_of_experts_sample/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -496,20 +410,18 @@ https://gpt-index.readthedocs.io/en/latest/guid</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
       <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/torch/">torch</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-03-04
+  >&nbsp;2023-12-16
   
 </div>
 
@@ -518,18 +430,17 @@ https://gpt-index.readthedocs.io/en/latest/guid</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/flexgen_start/">
+  <a href="https://www.if-blog.site/posts/nlp/hf_generation_wrap/">
     <h2 class="post-title">
-      FlexGenで遊ぶ
+      huggingfaceのgenerationの関数をtorch modelから使えるようにしたい
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>くそでかlarge language modelsは一般人の持ってるPCだと動かすこともできない。 FlexGenでは、そんなLLMを限られたリソースで実行できるようにしてくれる。
-https://github.com/FMInference/FlexGen
-日本語が喋れるモデルでも動かせるように色</p>
-    <a href="https://www.if-blog.site/posts/nlp/flexgen_start/" class="post-read-more"></a>
+    <p>torchなどのライブラリを使いpre_trainingを行い文章生成させる際、文章生成の計算は基本的に自分で実装する必要がある。 huggingface用のmodelに変換しても良いが、おれおれアーキテクチャにした場合、変換も面倒&amp;hellip;
+そこで、huggingfaceにあるtop_kやt</p>
+    <a href="https://www.if-blog.site/posts/nlp/hf_generation_wrap/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -537,20 +448,22 @@ https://github.com/FMInference/FlexGen
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
-    
       <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
     
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
       <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/torch/">torch</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/pre_training/">pre_training</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-02-28
+  >&nbsp;2023-12-05
   
 </div>
 
@@ -559,17 +472,18 @@ https://github.com/FMInference/FlexGen
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/huggingface-text-gen/">
+  <a href="https://www.if-blog.site/posts/nlp/transformer_any_architecture/">
     <h2 class="post-title">
-      Huggingfaceのtext generation pipelineとtext2text generation pipeline
+      llama2のアーキテクチャを変更してpre trainingしてみる
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>HuggingfaceのpipelineでTextGenerationPipelineとText2TextGenerationPipelineがあるが、 何が違うのかよくわからなかったので軽く調査。
-https://huggingface.co/docs/transformers/main_clas</p>
-    <a href="https://www.if-blog.site/posts/nlp/huggingface-text-gen/" class="post-read-more"></a>
+    <p>できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。
+比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する
+transformerのatt</p>
+    <a href="https://www.if-blog.site/posts/nlp/transformer_any_architecture/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -577,11 +491,51 @@ https://huggingface.co/docs/transformers/main_clas</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
       <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/transformer/">transformer</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/pre_training/">pre_training</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-12-05
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/hf_ds_upload/">
+    <h2 class="post-title">
+      複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>データセットなどサイズの大きいデータをHuggingface Hubにアップロードして使う場合のメモ。
+公式ドキュメントにはアップロードする方法が様々あるが、いまいちどれを使えば良いか分かりづらかったのでメモ。
+今回作成したデータセットは以下。
+https://huggingface.co/data</p>
+    <a href="https://www.if-blog.site/posts/nlp/hf_ds_upload/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
     
       <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
     
       <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
     
@@ -590,7 +544,46 @@ https://huggingface.co/docs/transformers/main_clas</p>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-02-06
+  >&nbsp;2023-11-21
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/">
+    <h2 class="post-title">
+      HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>エラーでハマったので、hugging faceのdatasetからbatche_sizeごとのinput_idsやlabelsにするあたりの実装、特にDataLoaderとDataCollatorあたりをちゃんと確認しておく
+train loopは以下から始まる
+def train( self, r</p>
+    <a href="https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2023-09-21
   
 </div>
 

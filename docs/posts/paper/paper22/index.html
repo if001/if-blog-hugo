@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>Beyond Scale: The Diversity Coefficient as a Data Quality Metric for Variability in Natural Language Data</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2306.13840
+https://github.com/brando90/beyond-scale-language-data-diversity
+サマリー 本論文は、LLMの" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Beyond Scale: The Diversity Coefficient as a Data Quality Metric for Variability in Natural Language Data
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E6%8C%87%E6%A8%99/">データセット指標</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-05-19
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2306.13840">https://arxiv.org/abs/2306.13840</a></p>
+<p><a href="https://github.com/brando90/beyond-scale-language-data-diversity">https://github.com/brando90/beyond-scale-language-data-diversity</a></p>
+<h2 id="サマリー">サマリー</h2>
+<p>本論文は、LLMの前処理データにおける <strong>多様性 (diversity)</strong> を定量化する指標として <strong>Task2Vec diversity coefficient</strong> を提案する。Task2Vec で得たバッチ埋め込み間の期待コサイン距離を多様性係数と定義し、理論的な下限・上限と比較しつつ公開データセットの多様性を測定。さらに GPT-2 と LLaMA-v2 を 44 モデル（51 M–7 B parameters）再学習し、多様性係数が高いデータで事前学習すると下流の言語モデリング性能が一貫して向上することを<strong>介入実験</strong>で示した。</p>
+<h2 id="主要なテーマと重要なアイデア">主要なテーマと重要なアイデア</h2>
+<ol>
+<li>
+<p><strong>Task2Vec 埋め込みによるバッチ表現</strong></p>
+<ul>
+<li>
+<p>固定プローブ網 (GPT-2) の最終層を各バッチで微調整し、対角フィッシャー情報行列
+
+    $$\hat F_B=\mathbb{E}_{x,t,\hat x_t}\bigl[\nabla_w\log\hat p_w(\hat x_t\mid x_{1:t-1})\;\nabla_w\log\hat p_w(\hat x_t\mid x_{1:t-1})^{\!\top}\bigr]$$
+    </p>
+<p>の対角 $\mathbf f_B=\mathrm{Diag}(\hat F_B)$ を <strong>Task2Vec embedding</strong> とする。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Diversity coefficient の定義</strong></p>
+<ul>
+<li>
+<p>データセット $D$ に対し
+
+     $$\hat{\mathrm{div}}(D)=\mathbb{E}_{B_1,B_2\sim D}\,d\bigl(\mathbf f_{B_1},\mathbf f_{B_2}\bigr)$$
+     
+を多様性係数、異なるデータセット間の類似度を</p>
+<p><div>
+     $$\hat{\mathrm{cdiv}}(D_1,D_2)=\mathbb{E}_{B_1\sim D_1,B_2\sim D_2}d\bigl(\mathbf f_{B_1},\mathbf f_{B_2}\bigr)$$
+     </div>
+と定義（$d$: コサイン距離）。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>多様性の妥当性検証</strong></p>
+<ul>
+<li><em>概念的下限</em>（語彙2個の偏ったデータ）と <em>上限</em>（語彙全トークンを一様抽出）を構築し、公開12 データセットの係数が下限の2.7–4.8倍、上限の半分超であることを確認。</li>
+<li>GINC 合成データで潜在概念数や語彙数を操作し、係数が直感に沿って単調増加することを示す。</li>
+</ul>
+</li>
+<li>
+<p><strong>介入実験での性能向上</strong></p>
+<ul>
+<li>USPTO (0.158)、PubMed (0.168)、USPTO+PubMed (0.195) という多様性が段階的に高い三種コーパスで同一トークン数学習。多様性係数が高いほど検証クロスエントロピーが低下し、R² ≈ 0.8 の強い相関を得た。</li>
+</ul>
+</li>
+<li>
+<p><strong>データ結合による多様性増加</strong></p>
+<ul>
+<li>C4+WikiText-103 や The Pile 部分集合を結合すると cross-diversity が単体より 0.03–0.1 向上。</li>
+</ul>
+</li>
+</ol>
+<h2 id="貢献">貢献</h2>
+<ul>
+<li><strong>データ中心の視点への転換</strong>：モデル・データ規模のスケーリング一辺倒から、質的指標としての <strong>diversity coefficient</strong> を導入。</li>
+<li><strong>解釈可能かつ形式的な多様性測度</strong> を自然言語に適用し、Task2Vec を用いた計算レシピを提示。</li>
+<li><strong>直感と一致する性質の実証</strong>：潜在概念数・語彙サイズ・データセット結合で係数が理論通り変動することを示し、理解容易性を担保。</li>
+<li><strong>公開コーパスの定量比較</strong>：C4, The Pile など主要LLM用データが形式的にも高多様性であることを初めて報告。</li>
+<li><strong>因果的エビデンス</strong>：多様性係数が高いデータで事前学習したモデルは下流評価で一貫して性能向上することを <strong>介入実験</strong> で検証。</li>
+</ul>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper25/">EVALUATING THE DIVERSITY AND QUALITY OF LLM GENERATED CONTENT</a></li>
+    
+      <li><a href="/posts/paper/paper24/">Texygen: A Benchmarking Platform for Text Generation Models</a></li>
+    
+      <li><a href="/posts/paper/paper23/">Measuring Diversity in Synthetic Datasets</a></li>
+    
+      <li><a href="/posts/paper/paper21/">On the Diversity of Synthetic Data and its Impact on Training Large Language Models</a></li>
+    
+      <li><a href="/posts/chats/chat2/">データセット評価指標</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

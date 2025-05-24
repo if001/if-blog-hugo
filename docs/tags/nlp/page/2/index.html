@@ -59,21 +59,30 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    renderMathInElement(document.body, {
-      delimiters: [
-        {left: '\\[', right: '\\]', display: true},   
-        {left: '$$', right: '$$', display: true},     
-        {left: '\\(', right: '\\)', display: false},  
-        {left: '$', right: '$', display: false},  
-      ],
-      throwOnError : false
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
     });
-  });
 </script>
 
 
@@ -188,18 +197,18 @@
       
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/paper/paper5/">
+  <a href="https://www.if-blog.site/posts/paper/paper16/">
     <h2 class="post-title">
-      Fact-aware Sentence Split and Rephrase with Permutation Invariant Training (AI論文要約)
+      Language Model Can Listen While Speaking (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
     <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
-https://arxiv.org/abs/2001.11383
-どんなもの 複雑な文を意味を保ったまま複数の簡単な文に分割・言い換える Sentence Split and Rephrase タスクのための新しいフレームワ</p>
-    <a href="https://www.if-blog.site/posts/paper/paper5/" class="post-read-more"></a>
+https://arxiv.org/abs/2408.02622
+どんなもの 本論文は、リアルタイムの双方向音声対話を実現する、Listening-while-Speaking Language Model (LSLM) を</p>
+    <a href="https://www.if-blog.site/posts/paper/paper16/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -211,12 +220,14 @@ https://arxiv.org/abs/2001.11383
     
       <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
+    
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2025-01-02
+  >&nbsp;2025-01-18
   
 </div>
 
@@ -225,18 +236,18 @@ https://arxiv.org/abs/2001.11383
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/paper/paper4/">
+  <a href="https://www.if-blog.site/posts/paper/paper13/">
     <h2 class="post-title">
-      Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)
+      MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
     <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
-https://arxiv.org/abs/2404.07143
-どんなもの Transformerベースの大規模言語モデル(LLMs)を、bounded memoryとcomputationで無限長の入力にスケールするため</p>
-    <a href="https://www.if-blog.site/posts/paper/paper4/" class="post-read-more"></a>
+https://arxiv.org/abs/2501.08313
+どんなもの MiniMax-01シリーズ（MiniMax-Text-01とMiniMax-VL-01を含む）は、最先端モデルと同等の性能を持ちながら、より長い</p>
+    <a href="https://www.if-blog.site/posts/paper/paper13/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -248,12 +259,14 @@ https://arxiv.org/abs/2404.07143
     
       <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
+    
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2025-01-02
+  >&nbsp;2025-01-18
   
 </div>
 
@@ -262,18 +275,18 @@ https://arxiv.org/abs/2404.07143
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/paper/paper3/">
+  <a href="https://www.if-blog.site/posts/paper/paper10/">
     <h2 class="post-title">
-      Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)
+      SentenceVAE: Enable Next-sentence Prediction for Large Language Models with Faster Speed, Higher Accuracy and Longer Context (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
     <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
-https://arxiv.org/abs/2410.04717
-どんなもの 大規模言語モデル（LLM）の指示遵守能力を向上させるためのデータセット構築戦略に関する研究。特に、instruction diversity（指示</p>
-    <a href="https://www.if-blog.site/posts/paper/paper3/" class="post-read-more"></a>
+https://arxiv.org/abs/2408.00655
+どんなもの Large Language Models (LLMs) の推論効率を向上させるための新しい推論方法である next-sentence predi</p>
+    <a href="https://www.if-blog.site/posts/paper/paper10/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -285,12 +298,14 @@ https://arxiv.org/abs/2410.04717
     
       <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
+    
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2025-01-02
+  >&nbsp;2025-01-18
   
 </div>
 
@@ -299,18 +314,18 @@ https://arxiv.org/abs/2410.04717
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/paper/paper2/">
+  <a href="https://www.if-blog.site/posts/paper/paper15/">
     <h2 class="post-title">
-      Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (AI論文要約)
+      Small Language Models (SLMs) Can Still Pack a Punch: A survey (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
     <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
-https://arxiv.org/abs/2410.15999
-どんなもの 本論文は、大規模言語モデル (LLM) の知識選択行動を、事前学習済みスパースオートエンコーダ (SAE) を用いた表現エンジニアリング手法 SP</p>
-    <a href="https://www.if-blog.site/posts/paper/paper2/" class="post-read-more"></a>
+https://arxiv.org/abs/2501.05465
+どんなもの 本論文 &amp;ldquo;Small Language Models (SLMs) Can Still Pack a Punch: A survey&amp;</p>
+    <a href="https://www.if-blog.site/posts/paper/paper15/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -322,12 +337,14 @@ https://arxiv.org/abs/2410.15999
     
       <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
+    
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2025-01-02
+  >&nbsp;2025-01-18
   
 </div>
 
@@ -336,18 +353,18 @@ https://arxiv.org/abs/2410.15999
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/paper/paper1/">
+  <a href="https://www.if-blog.site/posts/paper/paper14/">
     <h2 class="post-title">
-      Mechanistic Unlearning: Robust Knowledge Unlearning and Editing via Mechanistic Localization(AI論文要約)
+      Tensor Product Attention Is All You Need (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
     <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
-https://arxiv.org/abs/2410.12949
-どんなもの 本論文は、大規模言語モデル(LLM)から望ましくない知識を削除または修正する「知識のアンラーニングと編集」手法に関する研究です。特に、モデルの特定</p>
-    <a href="https://www.if-blog.site/posts/paper/paper1/" class="post-read-more"></a>
+https://arxiv.org/abs/2501.06425
+どんなもの Tensor Product Attention (TPA) は、クエリ(Q)、キー(K)、バリュー(V)をコンパクトに表現するためにテンソル分解</p>
+    <a href="https://www.if-blog.site/posts/paper/paper14/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -359,12 +376,14 @@ https://arxiv.org/abs/2410.12949
     
       <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
+    
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2025-01-02
+  >&nbsp;2025-01-18
   
 </div>
 
@@ -373,17 +392,18 @@ https://arxiv.org/abs/2410.12949
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/mixture_of_experts_sample/">
+  <a href="https://www.if-blog.site/posts/paper/paper11/">
     <h2 class="post-title">
-      Mixture of expertsのサンプル実装
+      Titans: Learning to Memorize at Test Time (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>mixture of expertsを実装してみる。 並列化や計算効率の向上などの部分は複雑なので、それら取り除いた簡単な実装を行ってみる。
-Mixture of expertsとは 特定のタスクに特化したexpertを複数用意し、入力に対してexpertを切り替えることで性能を上げる手法。 exp</p>
-    <a href="https://www.if-blog.site/posts/nlp/mixture_of_experts_sample/" class="post-read-more"></a>
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2501.00663
+どんなもの Titansは、テスト時に情報を記憶することを学習する新しいニューラル長期記憶モジュールを備えた、深層学習アーキテクチャのファミリーです。 このモ</p>
+    <a href="https://www.if-blog.site/posts/paper/paper11/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -391,18 +411,18 @@ Mixture of expertsとは 特定のタスクに特化したexpertを複数用意�
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
       <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/torch/">torch</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-12-16
+  >&nbsp;2025-01-18
   
 </div>
 
@@ -411,17 +431,18 @@ Mixture of expertsとは 特定のタスクに特化したexpertを複数用意�
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/hf_generation_wrap/">
+  <a href="https://www.if-blog.site/posts/paper/paper12/">
     <h2 class="post-title">
-      huggingfaceのgenerationの関数をtorch modelから使えるようにしたい
+      Transformer2 : Self-adaptive LLMs (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>torchなどのライブラリを使いpre_trainingを行い文章生成させる際、文章生成の計算は基本的に自分で実装する必要がある。 huggingface用のmodelに変換しても良いが、おれおれアーキテクチャにした場合、変換も面倒&amp;hellip;
-そこで、huggingfaceにあるtop_kやt</p>
-    <a href="https://www.if-blog.site/posts/nlp/hf_generation_wrap/" class="post-read-more"></a>
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2501.06252
+どんなもの Transformer2は、未学習のタスクに対してリアルタイムでLarge Language Models (LLMs) を適応させるための自己適</p>
+    <a href="https://www.if-blog.site/posts/paper/paper12/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -429,22 +450,18 @@ Mixture of expertsとは 特定のタスクに特化したexpertを複数用意�
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
       <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/torch/">torch</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/pre_training/">pre_training</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-12-05
+  >&nbsp;2025-01-18
   
 </div>
 
@@ -453,18 +470,18 @@ Mixture of expertsとは 特定のタスクに特化したexpertを複数用意�
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/transformer_any_architecture/">
+  <a href="https://www.if-blog.site/posts/paper/paper9/">
     <h2 class="post-title">
-      llama2のアーキテクチャを変更してpre trainingしてみる
+      Phi-4 Technical Report (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。
-比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する
-transformerのatt</p>
-    <a href="https://www.if-blog.site/posts/nlp/transformer_any_architecture/" class="post-read-more"></a>
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2412.08905
+どんなもの 140億パラメータの言語モデルphi-4。データの質に重点を置いたトレーニングレシピで開発された。ウェブコンテンツやコードなどのオーガニックデータ</p>
+    <a href="https://www.if-blog.site/posts/paper/paper9/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -472,20 +489,18 @@ transformerのatt</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
       <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/transformer/">transformer</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/pre_training/">pre_training</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-12-05
+  >&nbsp;2025-01-11
   
 </div>
 
@@ -494,19 +509,18 @@ transformerのatt</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/hf_ds_upload/">
+  <a href="https://www.if-blog.site/posts/paper/paper8/">
     <h2 class="post-title">
-      複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ
+      Can LLMs Design Good Questions Based on Context? (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>データセットなどサイズの大きいデータをHuggingface Hubにアップロードして使う場合のメモ。
-公式ドキュメントにはアップロードする方法が様々あるが、いまいちどれを使えば良いか分かりづらかったのでメモ。
-今回作成したデータセットは以下。
-https://huggingface.co/data</p>
-    <a href="https://www.if-blog.site/posts/nlp/hf_ds_upload/" class="post-read-more"></a>
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2501.03491
+どんなもの 本論文は、Large Language Models (LLMs)を用いたコンテキストベースの質問生成 (Question Generation:</p>
+    <a href="https://www.if-blog.site/posts/paper/paper8/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -514,18 +528,18 @@ https://huggingface.co/data</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
       <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-11-21
+  >&nbsp;2025-01-11
   
 </div>
 
@@ -534,18 +548,18 @@ https://huggingface.co/data</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/">
+  <a href="https://www.if-blog.site/posts/paper/paper7/">
     <h2 class="post-title">
-      HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める
+      rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking (AI論文要約)
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>エラーでハマったので、hugging faceのdatasetからbatche_sizeごとのinput_idsやlabelsにするあたりの実装、特にDataLoaderとDataCollatorあたりをちゃんと確認しておく
-train loopは以下から始まる
-def train( self, r</p>
-    <a href="https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/" class="post-read-more"></a>
+    <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2501.04519
+どんなもの rStar-Mathは、大規模言語モデル(LLM)からの蒸留なしに、小さな言語モデル(SLM)がOpenAI o1と同等以上の数学的推論能力を持つ</p>
+    <a href="https://www.if-blog.site/posts/paper/paper7/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -553,18 +567,18 @@ def train( self, r</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
       <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/huggingface/">huggingface</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/paper_summary/">paper_summary</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-09-21
+  >&nbsp;2025-01-11
   
 </div>
 

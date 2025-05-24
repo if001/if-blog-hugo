@@ -59,21 +59,30 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    renderMathInElement(document.body, {
-      delimiters: [
-        {left: '\\[', right: '\\]', display: true},   
-        {left: '$$', right: '$$', display: true},     
-        {left: '\\(', right: '\\)', display: false},  
-        {left: '$', right: '$', display: false},  
-      ],
-      throwOnError : false
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
     });
-  });
 </script>
 
 
@@ -192,20 +201,19 @@
       
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/edgwbs/book-storage-vue/">
+  <a href="https://www.if-blog.site/posts/python/arxiv-translate/">
     <h2 class="post-title">
-      Vue.js&#43;typescriptでVuetifyを使いマテリアルデザインに入門する
+      Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>はじめに Vuetifyは、Vue.jsで使えるマテリアルデザインのフレームワークです。
-https://vuetifyjs.com/ja/
-マテリアルデザインに入門すべく、Vuetifyを使って読んだ本を管理するサービスを作ってみました。
-Book Storage
-簡単にマテリアルデザインを使える</p>
-    <a href="https://www.if-blog.site/posts/edgwbs/book-storage-vue/" class="post-read-more"></a>
+    <p>朝の空いた時間などにarxivの新着論文を読みたくて、 アブストラクトを翻訳したものをslackに送るようにしました。
+流れは以下のような感じ。
+arxivはAPIを公開しているのでそこから、アブストや論文のタイトル、リンクなどを取得します。
+Google Apps Script（GAS）を使うと、</p>
+    <a href="https://www.if-blog.site/posts/python/arxiv-translate/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -213,18 +221,18 @@ Book Storage
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/vue.js/">vue.js</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/webapp/">WebApp</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/arxiv/">arxiv</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/vuetify/">vuetify</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/github/">github</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-11-09
+  >&nbsp;2021-07-24
   
 </div>
 
@@ -233,17 +241,20 @@ Book Storage
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/gatsby/gatsby-intro/">
+  <a href="https://www.if-blog.site/posts/python/arxiv-py-lib/">
     <h2 class="post-title">
-      技術ブログ用にGatsbyを整える
+      pythonでarxivのAPIを使う
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>これまでHugoを使っていたが、gatsbyを使ってみようと思います。 https://www.gatsbyjs.org/
-gatsbyは、react製の静的サイトジェネレーターです。PWAやOGPなどがあらかじめ設定してあり(themeによる？)便利です。また、記事などの任意のデータ取得のためのイ</p>
-    <a href="https://www.if-blog.site/posts/gatsby/gatsby-intro/" class="post-read-more"></a>
+    <p>arxivで公開されているAPIを使っていきます
+https://arxiv.org/
+APIを直接呼び出しても良いですが、responseがxmlで使いづらかったので pythonのライブラリを使わせてもらいます。
+https://github.com/lukasschwab/arxiv.py
+p</p>
+    <a href="https://www.if-blog.site/posts/python/arxiv-py-lib/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -251,16 +262,16 @@ gatsbyは、react製の静的サイトジェネレーターです。PWAやOGPな
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/react/">react</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/gatsby/">gatsby</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/arxiv/">arxiv</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-10-14
+  >&nbsp;2021-07-23
   
 </div>
 
@@ -269,18 +280,19 @@ gatsbyは、react製の静的サイトジェネレーターです。PWAやOGPな
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase-hosting/">
+  <a href="https://www.if-blog.site/posts/others/gas-translate/">
     <h2 class="post-title">
-      Firebase Hostingを使ってみた
+      Google Apps ScriptでGoogle Translateを使う
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>Firebase Authenticationに続いて、Firebase Hostingも使ってみました。備忘録を残しておきます。
-今回は、Vue.jsをデプロイします。
-Firebase Hostingとは Firebase Hosting は、ウェブアプリ、静的コンテンツと動的コンテンツ、マイク</p>
-    <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase-hosting/" class="post-read-more"></a>
+    <p>翻訳用のAPIを簡単に利用したいことあると思います。
+Google TranslateはAPIを公開してますが、気軽に使う場合には少し不便です。
+そういう場合は、Google Apps ScriptからGoogle Translateの機能を使うと便利です。
+結論 LanguageApp.trans</p>
+    <a href="https://www.if-blog.site/posts/others/gas-translate/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -288,16 +300,16 @@ Firebase Hostingとは Firebase Hosting は、ウェブアプリ、静的コン�
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/firebase/">firebase</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/gas/">gas</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/webapp/">WebApp</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/arxiv/">arxiv</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-10-10
+  >&nbsp;2021-07-22
   
 </div>
 
@@ -306,19 +318,20 @@ Firebase Hostingとは Firebase Hosting は、ウェブアプリ、静的コン�
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/emacs/gopls-introduction/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-related-posts/">
     <h2 class="post-title">
-      emacsのgo lang用のlanguage serverをgoplsに乗り換える
+      Hugoの記事に関連記事を表示させる
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>emacsでgo langを書くときに使っているlspのlanguage serverがbingoからgoplsに変わったので、emacsの設定も更新しておこうと思います。
-bingoは、golangの公式に取り込まれる形になったようですね。
-インストール ドキュメント通りです。
-https://g</p>
-    <a href="https://www.if-blog.site/posts/emacs/gopls-introduction/" class="post-read-more"></a>
+    <p>記事の最後に関連記事を表示する方法が簡単になってた。
+https://gohugo.io/content-management/related/
+これで関連記事を取れる
+.Site.RegularPages.Related 以下のような感じで記事の最後につけるとおｋ
+{{ $related := .</p>
+    <a href="https://www.if-blog.site/posts/hugo/hugo-related-posts/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -326,14 +339,14 @@ https://g</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/emacs/">emacs</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-10-08
+  >&nbsp;2021-07-18
   
 </div>
 
@@ -342,133 +355,19 @@ https://g</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase-cloud-functions/">
+  <a href="https://www.if-blog.site/posts/python/open-ai-gym-quick/">
     <h2 class="post-title">
-      Firebase Cloud Functionsを使ってTwitterのOGPを設定する
+      Open AI Gymをとりあえず動かす
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>Vue.jsで作ったWebAppをFirebase Hostingで公開し、そこでTwitter用のOGPを設定しようとしましたが、Twitterのクローラーがjavascriptを解釈できないということで、別途方法を考える必要がありました。そこで、Firebase Cloud Functionsを</p>
-    <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase-cloud-functions/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/firebase/">firebase</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/webapp/">WebApp</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-30
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase-auth/">
-    <h2 class="post-title">
-      Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Vue.jsとGolangでWebアプリケーションでFirebase Authenticationを使い、ログイン処理を行います。
-https://firebase.google.com/docs/auth/?hl=ja
-Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がたくさん上</p>
-    <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase-auth/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/webapp/">WebApp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/firebase/">firebase</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/golang/">golang</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-28
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/edgwbs/book-reports-review/">
-    <h2 class="post-title">
-      三行で読書感想文を書いて、SNSでシェアできるサービスを作った
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>サービス概要 「読書感想文をもっと気軽に」をコンセプトに読んだ本の感想文/レビューを三行だけ書き、SNSでシェアするサービスです。
-三行読書感想文
-使い方 googleアカウントもしくは、Twitterアカウントでログインできます。
-その他のSNSアカウントでのログインは、随時対応していこうと思いま</p>
-    <a href="https://www.if-blog.site/posts/edgwbs/book-reports-review/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/webapp/">WebApp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/poem/">poem</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/firebase/">firebase</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-25
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/python/python-matplotlib-base/">
-    <h2 class="post-title">
-      matplotlibのよく使う記法まとめ
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>すぐ忘れるので、matplotlibのよく使う記法をまとめておく
-公式：https://matplotlib.org/gallery.html
-普段は散布図とかplotとかしか使わないけど、こうして見るといろんなグラフがかけるみたい
-matplotlib,pyplot,pylabの違い matplo</p>
-    <a href="https://www.if-blog.site/posts/python/python-matplotlib-base/" class="post-read-more"></a>
+    <p>Open AI Gymのquick startです。とりあえず動かしてみます。
+document
+https://gym.openai.com/docs/
+Install pip install gym Run import gym env = gym.make(&amp;#39;CartPole-v0&amp;#</p>
+    <a href="https://www.if-blog.site/posts/python/open-ai-gym-quick/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -483,7 +382,7 @@ matplotlib,pyplot,pylabの違い matplo</p>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
+  >&nbsp;2021-07-14
   
 </div>
 
@@ -492,20 +391,16 @@ matplotlib,pyplot,pylabの違い matplo</p>
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/neuralnet/pepar-summary/">
+  <a href="https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/">
     <h2 class="post-title">
-      Deeplearningまわりの最新論文を浅く広くみてまわる
+      End-to-End Text Classification via Image-basedEmbedding using Character-level Networks
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>最新論文の情報を広く浅く集めたい場合の巡回するサイトたちをまとめておきます。
-おすすめがあれば教えてください。
-Google Scholar: https://scholar.google.com/schhp?hl=ja
-研究者やキーワードが決まっていると探しやすい。ただ、ザッピングには向かない。
-</p>
-    <a href="https://www.if-blog.site/posts/neuralnet/pepar-summary/" class="post-read-more"></a>
+    <p>日本語、中国語、タイ語など、形態素解析に基づく単語境界を持たない言語の分析や理解のためには、単語の埋め込みの前に適切な単語分割を行うことが望まれるが、これらの言語では本質的に困難である。しかし、これらの言語では、それは本質的に困難である。近年、ディープラーニングに基づく様々な言語モデルの進歩は目覚ま</p>
+    <a href="https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -515,12 +410,16 @@ Google Scholar: https://scholar.google.com/schhp?hl=ja
     
       <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
+    
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
+  >&nbsp;2020-12-30
   
 </div>
 
@@ -529,18 +428,17 @@ Google Scholar: https://scholar.google.com/schhp?hl=ja
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/others/http-portal-for-blog/">
+  <a href="https://www.if-blog.site/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/">
     <h2 class="post-title">
-      Hugoで作ったwebサイトを公開する
+      Enhanced character embedding for Chinese named entity recognition
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>はじめに GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。
-いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。
-インフラ GCEを使います。ほんとは、image化してインスタンスグループで公開したかったので</p>
-    <a href="https://www.if-blog.site/posts/others/http-portal-for-blog/" class="post-read-more"></a>
+    <p>Enhanced character embedding for Chinese named entity recognition https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456
+従来の名前付き実体認識方法では、主に手作業に</p>
+    <a href="https://www.if-blog.site/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -548,16 +446,126 @@ Google Scholar: https://scholar.google.com/schhp?hl=ja
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
     
-      <a href="https://www.if-blog.site/tags/docker/">docker</a>&nbsp;
+      <a href="https://www.if-blog.site/tags/nlp/">nlp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
+  >&nbsp;2020-12-30
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/github/workflow-dispatch/">
+    <h2 class="post-title">
+      GitHub Actionsを手動実行する
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>GitHub Actionsをcronとして定期実行していたが、動作の確認のために手動実行もしたかったのでメモ
+結論 onワークフロー構文に、workflow_dispatchを指定する
+name: Manually triggered workflow on: workflow_dispatch:</p>
+    <a href="https://www.if-blog.site/posts/github/workflow-dispatch/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/github/">github</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2020-07-19
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/android/bottom-sheet/">
+    <h2 class="post-title">
+      Bottom Sheetをつける
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Google Mapで下から引っ張ると出てくるやつ。
+調べたら以外と簡単にできた。
+dependenciesを追加。
+dependencies { implementation &amp;#39;com.google.android.material:material:1.0.0&amp;#39; } 例
+&amp;lt;</p>
+    <a href="https://www.if-blog.site/posts/android/bottom-sheet/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/android/">android</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2020-03-01
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/android/android-introduction/">
+    <h2 class="post-title">
+      Webアプリケーションしか作ったことがない人がAndroidの開発を始めたときの情報収集の流れ
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>これまでフロントエンド/バックエンドしか作ったことなく、ようやくAndroid開発に入門したのだが、
+始めのころの情報収集が意外と大変だったので、同じような境遇の人の為にまとめておく。
+上からみていくと、フロントエンド/バックエンドしか開発したことがなくても、流れが掴みやすいかと
+ライブラリ And</p>
+    <a href="https://www.if-blog.site/posts/android/android-introduction/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/android/">android</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2020-02-28
   
 </div>
 

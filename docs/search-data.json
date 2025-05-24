@@ -5,6 +5,116 @@
         
             {
                 "id": 0,
+                "href": "https://www.if-blog.site/posts/paper/paper25/",
+                "title": "EVALUATING THE DIVERSITY AND QUALITY OF LLM GENERATED CONTENT",
+                "section": "posts",
+                "date" : "2025.05.21",
+                "body": "https://arxiv.org/abs/2504.12522\nAIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nAIが作る文章やプログラムの「質」と「種類の豊富さ（多様性）」をどう評価するかの研究です。この論文では、ただ多様なだけでなく「使える（質の高い）」アウトプットがどれだけ多様か、という「実質的な意味的多様性」を測る新しい方法を提案しています。実験の結果、特定の調整をされたAIは、表現の多様性は減るものの、質の高いアウトプットをより多く作るため、結果として「実質的な意味的多様性」は高くなることが分かりました。\nサマリー 本論文は、大規模言語モデル（LLM）が生成するコンテンツの質と多様性を評価するための新しいフレームワーク「実質的な意味的多様性（effective semantic diversity）」を提案する 。これは、品質のしきい値を満たすアウトプット間での多様性を測定するものであり、LLMの実用的な有用性をより良く反映する。人間による評価を必要としない自由形式のタスクを用いて評価した結果、選好チューニングされたモデル（特に強化学習（RL）で訓練されたモデル）は、語彙的・統語的多様性は減少するものの、高品質なアウトプットを全体的により多く生成するため、教師ありファインチューニング（SFT）モデルやベースモデルよりも実質的な意味的多様性が高くなることが示された。選好チューニングは統語的多様性を減らしつつ意味的多様性を保持し、従来の指標が見落としがちな形式の多様性と内容の多様性の違いを明らかにした 。さらに、より小さなモデルの方が、固定されたサンプリングバジェット内でユニークなコンテンツを生成する上でパラメータ効率が良いことが示された。\n主要なテーマと重要なアイデア 実質的な意味的多様性 (Effective Semantic Diversity): 品質基準を満たす生成物の中での意味的な多様性を指す。ランダムなトークンのように単に多様であるだけでは不十分であり、実用的な価値を持つのは質の高い生成物における多様性であるという考え方。 品質と多様性のトレードオフ: LLMの評価において、品質と多様性の両方を考慮する必要がある。本研究では、この二つの要素の相互作用を考慮した評価フレームワークを提案している。 選好チューニングの影響: RLHF（PPO、GRPOなど）やDPOといった選好チューニング技術は、語彙的・統語的多様性を減少させる傾向があるが、高品質な生成物の割合を増やすことで、結果的に実質的な意味的多様性を向上させる。特にRLアルゴリズムは、DPOと比較して語彙的・統語的多様性をより大きく減少させるが、意味的多様性は保持する。 形式の多様性と内容の多様性: 選好チューニングは統語的多様性を減らす一方で意味的多様性を保持することから、生成物の「形式（form）」の多様性と「内容（content）」の多様性は区別して考える必要がある。 モデルサイズの影響: より大きなモデルは、語彙的・統語的多様性を犠牲にすることなく、より高い意味的多様性を示す傾向がある。しかし、ユニークなプログラムを生成する際のパラメータ効率では、5億パラメータ程度のより小さなモデルの方が優れている場合がある。 評価手法: プログラム生成タスクと自動実行テストケースを用いて、品質（有効性）と意味的同等性を評価する。具体的には、生成されたプログラムがエラーなく実行され、全てのテストケースに対して非NULLの出力を生成するかどうかで有効性を判断し、テストセットに対する出力トレースが同一かどうかで意味的同等性を判断する。提案された実質的な意味的多様性は、次の式で定義される。 $$Div_{fixed}(\\mathcal{P}_{i})=\\frac{|Set(\\{S(g_{i}^{k})|g_{i}^{k}\\in\\mathcal{P}_{i},V(g_{i}^{k})=1\\})|}{K}$$ (Equation 2) または、サンプルサイズ効果に対処するためにペアワイズの多様性指標を用いる。 $$Div_{pair}(\\mathcal{P}_{i})=\\frac{1}{\\binom{K}{2}}\\sum_{g_{i}^{j},g_{i}^{k}\\in\\mathcal{P}_{i}} d_{sem}(g_{i}^{j},g_{i}^{k})$$ (Equation 3) ここで、$d_{sem}$は意味的距離関数である。 次の課題 本研究で提案されたフレームワークと方法論を、プログラム生成以外のドメイン、例えば自然言語生成などへ拡張すること。 より多くのサンプル数で実験を行い、特定のモデルクラスにおいて意味的にユニークなプログラムの飽和が他のクラスよりも速く起こるかどうかなど、サンプリングバジェットと多様性の関係をさらに調査すること。 本研究フレームワークを活用し、将来のポストトレーニング戦略が多様性にどのように影響するかを評価すること。 ニューラル多様性指標がLLM生成アウトプットにおける実質的な意味的内容の多様性を反映しているかについてのさらなる評価。特に、多様性を評価するために使用されるモデル（例：Sentence-BERT）は人間のテキストで訓練・評価されているが、LLMが生成する多様なテキスト（分布外の可能性あり）に対して頑健に一般化できるかは不明である。 "
+            }
+    
+        ,
+            {
+                "id": 1,
+                "href": "https://www.if-blog.site/posts/paper/paper24/",
+                "title": "Texygen: A Benchmarking Platform for Text Generation Models",
+                "section": "posts",
+                "date" : "2025.05.21",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/1802.01886\nサマリー 本論文では、オープン ドメイン テキスト生成モデルの研究を支援するためのベンチマーク プラットフォームである Texygen を紹介する。Texygen は、多数のテキスト生成モデルを実装しているだけでなく、生成されたテキストの多様性、品質、一貫性を評価する一連のメトリクスもカバーしている。このプラットフォームは、テキスト生成に関する研究の標準化、研究者間での微調整されたオープンソース実装の共有の促進、そして将来の研究作業の再現性と信頼性の向上に貢献することを目指している。\n主要なテーマと重要なアイデア オープン ドメイン テキスト生成の課題: 論文では、テキスト生成における3つの主要な課題を指摘している。第一に、優れたテキスト生成モデルの基準が明確でないこと。第二に、研究者がソースコードを公開する義務がないため、報告された実験結果の再現が困難であること。第三に、テキスト生成は品質と多様性のトレードオフ問題に悩まされており、モード崩壊によって出力が限定的なパターンに縮小する可能性があることである。\nTexygen プラットフォーム: この課題に対応するため、Texygen プラットフォームが提案された。Texygen は、テキスト生成モデルの標準化されたトップダウンの多次元評価システムを提供する。プラットフォームは、適切にトレーニングされたベースラインモデルと、自動的に計算可能な評価メトリクスの2つの要素で構成されている。\nベースラインモデル: Texygen には、vanilla MLE、SeqGAN、MaliGAN、RankGAN、TextGAN、GSGAN、LeakGAN など、さまざまな尤度ベースのモデル、敵対的メソッド、階層的メソッドが含まれている。 Vanilla MLE: $max_{\\theta}\\sum_{x}\\sum_{t}log~\\pi_{\\theta}(x_{t}|s_{t})$ SeqGAN: ジェネレーターは REINFORCE アルゴリズムを使用して GAN の目的関数を最適化する: $$min_{\\phi}-\\bigoplus_{Y\\sim p_{datu}}[log~D_{\\phi}(Y)]-\\mathbb{R}_{Y-G_{\\theta}}[log(1-D_{\\phi}(Y))]$$ MaliGAN: 報酬をリスケールする: $r_{D}(x_{i})^{\\prime}=\\frac{r_{D}(x_{i})}{\\sum_{f=1}^{m}r_{D}(x_{f})}-b$。 RankGAN: ランキング損失を最適化する: $L_{\\phi}=\\mathbb{E}_{s\\sim p_{data}}[log~R_{\\phi}(s|U,C^{-})]-\\mathbb{E}_{s\\sim G_{\\theta}}[log~R_{\\phi}(s|U,C^{+})]$。 GSGAN: Gumbel Softmax トリックを使用する: arg max [softmax(h+g)] ~ softmax(h)。 TextGAN: MMD 損失を最適化する: $L_{recon}=||z-\\hat{z}||$。 LeakGAN: Manager と Worker の2つのモジュールを持つ階層型強化学習フレームワーク。 評価メトリクス: Texygen は、BLEU、EmbSim、NLL-oracle、NLL-test、Self-BLEUという5つのテキスト生成メトリクスを実装している。これらは、ドキュメントの類似性に基づくメトリクス、尤度ベースのメトリクス、発散ベースのメトリクスに分類される。 EmbSim: $$EmbSim=log(\\sum_{i=1}^{N}cos(W_{i}^{\\prime},W_{i})/N)$$ NLL-oracle: $$NLL_{oracle}=-\\mathbb{E}_{Y_{1:T-G_{\\rho}}}[\\sum_{t=1}^{T}log(G_{oracle}(y_{t}|Y_{1:t-1}))]$$ NLL-test: $$NLL_{test}=-\\mathbb{B}_{Y_{1:T-G_{teal}}}[\\sum_{t=1}^{T}log(G_{\\theta}(y_{t}|Y_{1:t-1}))]$$ 実験: 合成データと実データ（COCO 画像キャプション）を使用して実験が行われた。$NLL_{oracle}$ と $NLL_{test}$ は合成データトレーニングに適用され、BLEU スコア、Self-BLEU スコア、EmbSim は実データトレーニングに適用された。LeakGAN は多くのメトリクスで良好な性能を示した。\n貢献 Texygen ベンチマーク プラットフォームの導入: オープン ドメイン テキスト生成モデルの研究をサポートする、オープンソースのベンチマーク プラットフォームをリリースした。 多数のベースラインモデルと評価メトリクスの実装: Texygen は、多数のベースラインモデルと、生成テキストの多様性、品質、一貫性を評価するためのさまざまなメトリクスを実装している。 研究の標準化と再現性の向上への貢献: このプラットフォームは、テキスト生成に関する研究の標準化、研究作業の再現性の向上、およびより高度なアプリケーションの奨励に役立つことが期待される。 新しいメトリクスの提案: EmbSim や Self-BLEU といった新しい評価メトリクスを提案した。 既存モデルの包括的な比較研究: さまざまなメトリクスを用いて、既存のテキスト生成モデルの包括的な比較研究を実施した。 評価メトリクス 1. ドキュメント類似性ベースのメトリクス (Document Similarity based Metrics) 生成されたドキュメントの品質を測る最も直感的な方法は、それらが自然言語、つまりトレーニングデータセットにどれほど似ているかです。\nBLEU (Bilingual Evaluation Understudy)\n文やドキュメント間の単語の類似性を評価するために広く使われているメトリクスです。 EmbSim (Embedding Similarity)\nBLEUに触発され、提案されたメトリクスで、「embedding similarity」の略です。 単語ごとに文を比較するのではなく、単語埋め込みを比較します。 まず、実際のデータでskip-gramモデルを用いて単語埋め込みを評価します。 各単語埋め込みについて、他の単語とのコサイン類似度を計算し、これを実データの類似性行列 $W$ として定式化します。ここで、$W_{i,j}=cos(e_{i},e_{j})$ であり、$e_i, e_j$ は実データからの単語iとjの単語埋め込みです。 同様に、生成データから同じskip-gramモデルを用いて単語埋め込み $e\u0026rsquo;_i, e\u0026rsquo;_j$ を得て、類似性行列 $W\u0026rsquo;$ を得ます。 EmbSimは以下のように定義されます: $EmbSim=log(\\sum_{i=1}^{N}cos(W_{i}^{\\prime},W_{i})/N)$ ここで、$N$ は総単語数、$W_i$ と $W\u0026rsquo;_i$ はそれぞれ $W$ と $W\u0026rsquo;$ のi番目の列を示します。 2. 尤度ベースのメトリクス (Likelihood-based Metrics) 真のデータ分布 $p$ とモデルからの生成データ分布 $q$ の間のクロスエントロピーを最小化することを目指す最尤推定（MLE）に基づいて、データの適合度やモデルの良さを尤度を測定することで評価するメトリクスです。これらのモデルは、データだけでなくモデルに関する詳細も必要とします。\nNLL-oracle (Negative Log-Likelihood oracle)\n元々はSeqGANで導入されたもので、特に合成データ実験に適用され、生成されたデータがオラクル言語モデルによってどれだけうまく適合されているかを示します。 $NLL_{oracle}$ では、ランダムに初期化されたLSTMが真のモデル、つまりオラクルとみなされます。 テキスト生成モデルは、オラクルLSTMにおける生成データの平均負の対数尤度、すなわち $\\mathbb{E}_{x\\sim q}log~p(x)$ （$x$ は生成データを指す）を最小化する必要があります。 LSTMが真のモデルとみなされるため、このメトリクスは各文に対して単語ごとに平均損失を計算できます: $$NLL_{oracle}=-\\mathbb{E}_{Y_{1:T-G_{\\rho}}}[\\sum_{t=1}^{T}log(G_{oracle}(y_{t}|Y_{1:t-1}))]$$ ここで、$G_{oracle}$ はオラクルLSTMを、$G_{\\theta}$ は生成モデルを示します。 NLL-test (Negative Log-Likelihood test)\n提案されたメトリクスで、$NLL_{oracle}$ と対になるもので、モデルが実際のテストデータに適合する能力を評価します。 $$NLL_{test}=-\\mathbb{E}_{Y_{1:T \\sim G_{real}}}[\\sum_{t=1}^{T}log(G_{\\theta}(y_{t}|Y_{1:t-1}))]$$ ここで、$G_{real}$ は実データの分布を示します。 $NLL_{test}$ は、$G_{\\theta}(y_{t}|Y_{1:t-1})$ が特定の単語の尤度を計算するためにジェネレータに基づいて以前の単語に基づいて関与するため、RNNのような自己回帰ジェネレータにのみ適用可能です。 3. 発散ベースのメトリクス (Divergence based Metrics) GANモデルはしばしばモード崩壊問題に悩まされ、ジェネレータが単一のサンプルまたは非常に類似したサンプルの小さなファミリーのみを生成するように崩壊する可能性があります。したがって、オープン ドメイン テキスト生成タスクでは、より多様なパターンを生成することを奨励するメトリクスが含まれます。\nSelf-BLEU 生成されたデータの多様性を評価するために提案されたメトリクスです。 BLEUは2つの文がどれほど類似しているかを評価することを目的としているため、生成されたコレクション内で1つの文が残りの文とどれほど類似しているかを評価するためにも使用できます。 1つの文を仮説とし、他の文を参照として、生成された各文に対してBLEUスコアを計算し、その平均BLEUスコアをドキュメントのSelf-BLEUと定義します。 Self-BLEUスコアが高いほど、ドキュメントの多様性が低く、GANモデルのモード崩壊が深刻であることを意味します。 "
+            }
+    
+        ,
+            {
+                "id": 2,
+                "href": "https://www.if-blog.site/posts/chats/chat2/",
+                "title": "データセット評価指標",
+                "section": "posts",
+                "date" : "2025.05.20",
+                "body": "以下では LLM 学習用データセットの多様性（あるいは「同質性」を避けられているか）を測る代表的な指標を、定義 → 計算方法 → 読み取り方 → 長所/限界 の順で簡潔に整理します。\ndistinct-N paper\ncode\n定義\n生成コーパス（または学習データ）の中で 重複を除いた n-gram の種類数 を、総 n-gram 数で割った比率。\n$$ \\text{distinct-}n=\\frac{\\lvert{\\text{unique }n\\text{-grams}}\\rvert}{\\text{total }n\\text{-grams}} $$\n読み取り方\n値は 0〜1。1 に近いほど語彙的な反復が少なく、表層的に多様。 distinct-1 / distinct-2（1,2-gram）が最も一般的。 強み\n軽量・参照不要・タスク非依存。 限界 長文ほど分母が大きくなり過大評価されやすい。 内容的（意味的）な多様性は把握できない。 Diversity Coefficient（Task2Vec-DC） paper\n着想 Task2Vec で「サンプル1 バッチ = 1 タスク」と見立て、タスク埋め込み間の平均距離でデータ内部の潜在概念のばらつきを定量化する。\n計算フロー（概要）\nデータセットからランダムに $B$ サンプルを抽出（= 1 タスク）。\nTask2Vec (Barrett et al., 2019) で各タスクをベクトル化（勾配のFisher情報行列対角を縮約）。\nタスク埋め込み集合 ${\\mathbf{t}_i}$ の分散（例：平均コサイン距離や Frobenius ノルム）を取り\n$$ \\text{DC} = \\frac{2}{B(B-1)}\\sum_{i\u0026lt;j} d(\\mathbf{t}_i,\\mathbf{t}_j) $$\n大きいほど「タスクが互いに異なる」= より多様。\n強み 意味レベルでの多様性を高速に近似。\n限界 Task2Vecの前提（モデルと層選択）に依存／語順など表層のばらつきは捉えにくい。\nSelf-BLEU paper\n参考\n定義\nコーパス内の 各文を「仮説」、残り全文を 「参照」 とみなして BLEU を計算し、文ごとに平均。 低いほど多様（互いに似ていない）。 計算\n$$ \\text{Self-BLEU} = \\frac1{N}\\sum_{i=1}^{N}\\text{BLEU}\\bigl(\\text{sent}_i,; \\mathcal{D}\\setminus{\\text{sent}_i}\\bigr) $$\n読み取り方\n0 に近いほど高多様性。 BLEU ベースなので n-gram 重み付けや平滑化は通常の BLEU と同一。 長所 distinct-n より“語順を伴う重複”を強くペナルティ。\n弱点 計算が $O(N^2)$、BLEU の問題（語義を見ない）を継承。 LLM Cluster Score paper\nアイデア\nLLM に各サンプルのメタ特徴（トピックなど）を要約・埋め込みさせる。\n埋め込みをクラスタリング（K-means 等）。\nクラスタ数 $K$ と 各クラスタのエントロピー から\n$$ \\text{Cluster Score}=H(\\text{cluster labels}) \\times \\frac{K}{K_{\\max}} $$\n— 直感的に「サンプルが均等に多くの話題に散らばっているほど高得点」。\n用途 巨大合成コーパスで従来指標が飽和・不安定になる問題を緩和。\n注意点 LLM の“まとめ方”がクラスタ品質を左右／高次元でのクラスタ個数設定がハイパーパラメータになる。\nDCScore paper\ncode\n発想 「もし各サンプルを分類クラスだと思って識別器を訓練したら、正解率が高いほど互いに違う＝多様」と捉える。\n手順\n$N$ サンプルを N-way 1-shot のようにラベル付け（サンプル $i$ はクラス $i$)。 小型テキスト分類器 $f_\\theta$ を数エポックだけ学習。 開発セットでの 分類精度を Diversity Classification Score (DCScore) として採用。 高精度 = サンプルを容易に区別 ⇒ データが互いに異質で多様 低精度 = 似た文が多く誤分類 ⇒ 同質的 利点 語彙・構文・意味差分をまとめて反映しつつ計算コストを抑制（学習回数はごく少ない）。\n欠点 分類器設計・学習ハイパラに感度がある。\nまとめ 指標 捉える多様性 軽量 意味情報 大規模データ適性 主な弱点 distinct-N 表層 n-gram ◎ ✕ ◎ 長文補正が必要 Self-BLEU 表層＋語順 △ ✕ ○ (要サンプリング) 計算 $O(N^2)$ Diversity Coefficient 概念・タスク ○ ◎ ◎ Task2Vec 依存 LLM Cluster Score トピック分布 ○ ◎ ◎ クラスタ数選定 DCScore サンプル識別難度 △ ◎ ○ 分類器依存 高速スクリーニング → distinct-N, Self-BLEU 意味レベルの網羅性 → DC, LLM Cluster, DCScore 超大規模コーパス → DC, LLM Cluster（計算がバッチ並列化しやすい） 生成モデルの出力評価 → distinct-N + Self-BLEU（表層反復チェック） これらの指標を併用し、表層と意味の両面からバランス良く評価することが、実際の LLM 学習データ選定では推奨されます。\n"
+            }
+    
+        ,
+            {
+                "id": 3,
+                "href": "https://www.if-blog.site/posts/paper/paper23/",
+                "title": "Measuring Diversity in Synthetic Datasets",
+                "section": "posts",
+                "date" : "2025.05.20",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2502.08512\nhttps://github.com/bluewhalelab/dcscore\nサマリー 大規模言語モデル（LLM）が生成する synthetic datasets の多様性を定量的に測定するため，著者らは DCScore を提案した。DCScore は「多様性をサンプル分類タスクとして扱う」という視点を導入し，\n各サンプル間の相互関係を Holistic にとらえる， effective number／identical samples／symmetry／monotonicity の 4 つの Axioms を理論的に満たす， 非線形カーネル使用時に従来法（VendiScore など）より 低計算コストを達成する， という特長を示した。実験では生成温度 τg・人間評価・GPT-4 評価との高い相関を確認し，多数のデータセットでベースラインを凌駕した。 主要なテーマと重要なアイデア テーマ 重要なアイデア・数式 分類視点の多様性評価 多様性評価を n-クラス分類とみなし，サンプル T̃i を埋め込み Φ で表現し$H=\\Phi({T̃_i}_{i=1}^n),;K=\\text{Kernel}(H)$ 確率行列 P の構築 カーネル行列の各行を温度付き Softmax で正規化し $$P(c=c_j\\mid T̃_i)=\\frac{\\exp\\!\\bigl(K[i,j]/\\tau\\bigr)}{\\sum_j\\exp\\!\\bigl(K[i,j]/\\tau\\bigr)}$$ DCScore の定義 分類結果の自己一致度をトレースで集約$$\\text{DCScore}(D)=\\mathrm{tr}(P)=\\sum_{i=1}^n P[i,i]$$ 理論的保証 上式により DCScore は 1 ≤ DCScore ≤ n を満たし，4 つの Axioms を証明済み。 計算量削減 〈一般カーネル〉で $\\mathcal O(n^2,O_\\text{kernel}+n^2)$ となり，VendiScore の $\\mathcal O(n^2,O_\\text{kernel}+n^3)$ を大幅に短縮。 貢献 DCScore の提案 ― 多様性評価をサンプル分類タスクとして定式化し，相互関係を直接捉える新指標を提示。 公理的妥当性の証明 ― effective number・identical samples・symmetry・monotonicity の各公理を満たすことを理論的に示した。 計算効率の向上 ― 非線形カーネルで VendiScore より低い計算量を解析・実証し，大規模データセットにも適用可能とした。 多面的実証 ― 生成温度 τg・人間判断・GPT-4 判断との強相関，および下流タスク性能向上を多数の実験で確認し，指標としての有効性を裏付けた。 "
+            }
+    
+        ,
+            {
+                "id": 4,
+                "href": "https://www.if-blog.site/posts/hugo/hugo-katex/",
+                "title": "Hugoでkatexを使った数式が表示されなくて困った",
+                "section": "posts",
+                "date" : "2025.05.20",
+                "body": "Hugoで数式を表示するためにkatex@0.16.22を利用している。\nhttps://katex.org/docs/browser\n基本的に表示されるが表示されないこともあり困っていた。\n結論 shortcodeを作る\n以下のようなpassthroughするだけのショートコードを作る\nthemes/shortcodes/math.html{{- .Inner -}} 記事のmarkdown内で数式をショートコードで囲んで呼び出すだけ\n$X_{n_1}$ 原因 https://discourse.gohugo.io/t/one-of-several-latex-equations-is-not-rendered-by-katex/47790\nmarkdownのレンダラーが失敗してるらしい。確かに少し長めの数式が失敗してた。\n"
+            }
+    
+        ,
+            {
+                "id": 5,
+                "href": "https://www.if-blog.site/posts/paper/paper22/",
+                "title": "Beyond Scale: The Diversity Coefficient as a Data Quality Metric for Variability in Natural Language Data",
+                "section": "posts",
+                "date" : "2025.05.19",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2306.13840\nhttps://github.com/brando90/beyond-scale-language-data-diversity\nサマリー 本論文は、LLMの前処理データにおける 多様性 (diversity) を定量化する指標として Task2Vec diversity coefficient を提案する。Task2Vec で得たバッチ埋め込み間の期待コサイン距離を多様性係数と定義し、理論的な下限・上限と比較しつつ公開データセットの多様性を測定。さらに GPT-2 と LLaMA-v2 を 44 モデル（51 M–7 B parameters）再学習し、多様性係数が高いデータで事前学習すると下流の言語モデリング性能が一貫して向上することを介入実験で示した。\n主要なテーマと重要なアイデア Task2Vec 埋め込みによるバッチ表現\n固定プローブ網 (GPT-2) の最終層を各バッチで微調整し、対角フィッシャー情報行列 $$\\hat F_B=\\mathbb{E}_{x,t,\\hat x_t}\\bigl[\\nabla_w\\log\\hat p_w(\\hat x_t\\mid x_{1:t-1})\\;\\nabla_w\\log\\hat p_w(\\hat x_t\\mid x_{1:t-1})^{\\!\\top}\\bigr]$$ の対角 $\\mathbf f_B=\\mathrm{Diag}(\\hat F_B)$ を Task2Vec embedding とする。\nDiversity coefficient の定義\nデータセット $D$ に対し $$\\hat{\\mathrm{div}}(D)=\\mathbb{E}_{B_1,B_2\\sim D}\\,d\\bigl(\\mathbf f_{B_1},\\mathbf f_{B_2}\\bigr)$$ を多様性係数、異なるデータセット間の類似度を\n$$\\hat{\\mathrm{cdiv}}(D_1,D_2)=\\mathbb{E}_{B_1\\sim D_1,B_2\\sim D_2}d\\bigl(\\mathbf f_{B_1},\\mathbf f_{B_2}\\bigr)$$ と定義（$d$: コサイン距離）。\n多様性の妥当性検証\n概念的下限（語彙2個の偏ったデータ）と 上限（語彙全トークンを一様抽出）を構築し、公開12 データセットの係数が下限の2.7–4.8倍、上限の半分超であることを確認。 GINC 合成データで潜在概念数や語彙数を操作し、係数が直感に沿って単調増加することを示す。 介入実験での性能向上\nUSPTO (0.158)、PubMed (0.168)、USPTO+PubMed (0.195) という多様性が段階的に高い三種コーパスで同一トークン数学習。多様性係数が高いほど検証クロスエントロピーが低下し、R² ≈ 0.8 の強い相関を得た。 データ結合による多様性増加\nC4+WikiText-103 や The Pile 部分集合を結合すると cross-diversity が単体より 0.03–0.1 向上。 貢献 データ中心の視点への転換：モデル・データ規模のスケーリング一辺倒から、質的指標としての diversity coefficient を導入。 解釈可能かつ形式的な多様性測度 を自然言語に適用し、Task2Vec を用いた計算レシピを提示。 直感と一致する性質の実証：潜在概念数・語彙サイズ・データセット結合で係数が理論通り変動することを示し、理解容易性を担保。 公開コーパスの定量比較：C4, The Pile など主要LLM用データが形式的にも高多様性であることを初めて報告。 因果的エビデンス：多様性係数が高いデータで事前学習したモデルは下流評価で一貫して性能向上することを 介入実験 で検証。 "
+            }
+    
+        ,
+            {
+                "id": 6,
+                "href": "https://www.if-blog.site/posts/paper/paper21/",
+                "title": "On the Diversity of Synthetic Data and its Impact on Training Large Language Models",
+                "section": "posts",
+                "date" : "2025.05.19",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/html/2410.15226v2\nエグゼクティブサマリー 本論文は synthetic data の多様性 が Large Language Models (LLMs) の性能に与える影響を体系的に解析した初の大規模研究である。著者らは、多様性を定量化するための新しい指標 「LLM Cluster-agent」 を提案し、Wikipedia 由来の 62 万トピックから生成した複数の合成コーパスを用いて、350 M／1.4 B パラメータの Llama 系モデルを事前学習・教師あり微調整。実験の結果、提案指標で得られる LLM cluster score が高いほど、事前学習と微調整の双方でベンチマーク精度が一貫して向上 することを示した。\n主要なテーマと重要なアイデア Synthetic data 多様性の重要性\n量や品質と同様に diversity が LLM 成績を左右するにもかかわらず、適切な測定法が欠如していたという課題認識。 LLM Cluster-agent 指標\n(i) メタデータ／メトリクス生成、(ii) それらを用いた逐次クラスタリング、(iii) クラスター自己検証という 3 段から成るパイプラインで、平均的な「クラスター密度」 D を LLM cluster score として算出。 ヒューリスティック指標（n-gram diversity 等）や K-means よりも分布差を鋭敏に捉え、実験成績との相関が最も高い。 多角的コントロール実験\nUnderlying distribution: トピック数 T と 1 トピックあたり生成数 G を操作し、多様性と精度のトレードオフを定量化。 Prompt design: 文体・受取手 (persona)・複数トピックの導入で diversity を拡張し、Cosmopedia を上回る性能を達成。 Generation model: GPT-4o \u0026gt; GPT-3.5 \u0026gt; Llama-3.1 \u0026gt; Mistral の順に多様性と精度が向上し、モデル混合も有効。 Real/Synthetic 比率: 合成比率を高めると 20 B までは精度向上するが、過度 (\u0026gt;34 B) では冗長性により劣化。 モデルサイズ効果: 大きいモデルほど高い diversity を必要とし、微調整段階での利得が顕著。 アブレーションとロバスト性\nパラメータ K/N/J/M の変化、パイプライン構成要素、使用 LLM を変えても指標は頑健である。 貢献 LLM Cluster-agent: 合成テキスト多様性を高精度で評価する初の LLM ベース指標を提案し、公開ツールキットとして提供。\n大規模統制実験: 34 B 実データ＋最大 50 B 合成データで 350 M/1.4 B モデルを学習し、多様性と性能の線形関係を実証。\n設計指針の提示:\nトピックの広域カバレッジと適切な G が不可欠。 文体・persona を組み合わせたプロンプトが多様性を大幅に向上。 より強力な生成 LLM と異種混合は多様性をブースト。 実データと合成データはバランス（1:1 付近）が最良。 スケーラビリティの検証: 指標と知見は 1.4 B 以上のモデルにも拡張可能であり、今後の効率的 synthetic data 生成プロセスに資する。\n"
+            }
+    
+        ,
+            {
+                "id": 7,
+                "href": "https://www.if-blog.site/posts/paper/paper20/",
+                "title": "Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)",
+                "section": "posts",
+                "date" : "2025.05.18",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://ceur-ws.org/Vol-3290/short_paper2780.pdf\n背景と目的 既存の語彙多様度指標（TTR、Shannon entropy 等）は 表層文字列のユニークさに依存するため，OCR 誤りや歴史的綴り揺れを含むコーパスでは過大評価を招く。 生態学で用いられる 属性多様度 (attribute diversity) の枠組みを導入し，「語彙項目同士の機能的 / 意味的距離」を考慮した Functional Diversity (FD) を Humanities 研究に適用することが本研究の目的。 提案手法 語彙間距離の計算\n歴史英語 LL﻿M MacBERTh で各トークンの文脈依存埋め込みを取得し，コサイン距離で語彙間距離行列 Δ を作成。 機能グループの定義\n距離しきい値 θ を設定し，Δ ≤ θ の語を同一 functional group とみなす。 多様度の定式化\n各語タイプ i の出現頻度 $f_i$ と機能グループ頻度 $g_i(θ)$ を用い，\n$$ FD_{q}(θ) ;=;\\Bigl(\\sum_{i=1}^{A} \\bigl[,\\tfrac{f_i}{g_i(θ)},\\bigr]^{q}\\Bigr)^{\\tfrac{1}{1-q}} $$\nと定義（$q=0$ は機能的リッチネス，$q=1$ は Shannon，$q=2$ は Gini–Simpson の逆数に対応）。\nこれは Chao \u0026amp; Chiu の Functional Hill Numbers 拡張に一致する。\n実験設定 コーパス: ARCHER 3.2（1600–1999 年，約 3.3 M 語，12 ジャンル）。 ノイズシミュレーション: 確率 p = 0, 0.1, 0.2, 0.35, 0.5, 0.75 で各語内の文字をランダム置換し OCR / 綴り誤りを再現。 各設定で 5 回再生成し，FD と従来のタイプ数 (θ = θ_min) を比較。 主な結果 観点 従来の「タイプ数」 Functional Diversity ノイズ耐性 p 上昇に伴いほぼ線形で過大評価 θ = θ_mean では変化が小さく安定 ジャンル差 広告 vs. 小説で顕著差出ず 広告は「列挙型」で functional group への凝集度が高く，小説は幅広い機能範囲を示す 語数補正 TTR では短文優遇 Hill Numbers により頻度分布まで統一尺度で比較可能 考察・意義 実務的利点: OCR エラーや歴史綴りを多く含むコーパスでも，前処理なしで頑健に語彙多様度を評価できる。 理論的利点: 「語彙の幅 (breadth) と深さ (depth)」を分離評価でき，語彙豊富さに新しい次元を導入。 ツールキットへの貢献: 生態学的属性多様度を計算人文学へ転用し，計量語彙研究の標準指標に機能的側面を追加。 結論 Functional Diversity は\n綴りノイズに強く， 意味的内実を捉える 多様度指標であり， 歴史コーパスを含む計算人文学研究に有益である。 著者らは FD を「従来のカテゴリカル指標の補完」と位置付け，公開済みモデル (MacBERTh) とスクリプトで再現可能な手法として提供している。\n"
+            }
+    
+        ,
+            {
+                "id": 8,
+                "href": "https://www.if-blog.site/posts/paper/paper19/",
+                "title": "Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)",
+                "section": "posts",
+                "date" : "2025.05.17",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2502.19249\nどんなもの この研究は、形式言語での事前事前学習が自然言語学習に役立つことを示し、どのような形式言語が有効な帰納バイアス（inductive bias）を与えるのかを調査するものである。特に、Chomsky階層 と 回路複雑性階層（circuit complexity hierarchy） の交差点に着目し、Transformerが学習可能でかつ自然言語の階層的依存構造を持つ形式言語により、自然言語の学習効率と文法的汎化性能が向上することを示している。\n先行研究と比べてどこがすごいの？ 従来は、Chomsky階層における文脈自由（context-free）や文脈依存（context-sensitive）な形式言語が自然言語への転移に有効であるとされてきたが、Transformerの計算限界を考慮せず、すべての文脈依存言語が転移に適しているとは限らなかった。本研究では、新たにC-RASPおよびFO(M) という回路理論ベースの枠組みを導入し、Transformerが実際に学習可能な形式言語のクラスを特定した点が革新的である。\n技術や手法のきもはどこにある？ 以下の2点を満たす形式言語でのpre-pretrainingが最も効果的であるという仮説を立てて検証している：\n自然言語の階層的依存構造を含む（context-free または context-sensitive）。 **Transformerで長さ一般化が可能（length-generalizing learnability）**であり、C-RASP で定義可能。 この仮説に基づき、次の形式言語を使用して比較実験を行った：\n1-Dyck（context-free, C-RASPに含まれる） k-Dyck（context-free, FO(M)には含まれるがC-RASPには含まれない） k-Shuffle Dyck（context-sensitive, C-RASPに含まれる） ww（copy language, context-sensitive, C-RASPに含まれない） また、Transformerの学習構造のうち、形式言語学習中に形成されたサブネットワーク Mが、自然言語学習中も再利用されるという「Subnetworks Hypothesis」も提唱・検証されている。\nどうやって有効だと検証した？ 以下の方法で実証された：\n事前事前学習（pre-pretraining）を行った後、英語コーパス（C4）で事前学習（pretraining）を行い、検証損失（validation loss）、文法判別精度（BLiMP）、繰り返し構造の記憶（verbatim retrieval）で評価。\n結果、k-Shuffle Dyckでのpre-pretrainingが最も有効であり、同等の性能を達成するのに必要なトークン数が33%削減された。\n数式として、トークン効率の向上率は：\n$$ \\text{Token Efficiency Gain} = 1 - \\frac{T_{\\text{pre-pretraining}} + T_{\\text{pretraining}}}{T_{\\text{baseline}}} $$\nで定義され、実際に $1 - \\frac{1.10B}{1.63B} = 0.33$ が達成された。\nまた、注意ヘッドのプルーニング実験により、形式言語学習で得られたサブネットワークMが自然言語学習でも重要であることが示された（$p \\ll 0.001$）。\n議論はあるか 万能ではない：すべてのBLiMPサブタスクで性能が向上するわけではなく、一部では性能低下も見られた。 非構文的知識（morphology） にも影響がある：形式言語によるpre-pretrainingは主に構文的知識を強化するが、形態論的性能にも二次的に良い影響があった。 他のモデルアーキテクチャへの拡張未検討：本研究はTransformerに限定されており、RNNやState Space Modelへの適用は今後の課題である。 形式言語のハイパーパラメータ調整が高コストであり、スケーラブルな探索方法の導入が求められる。 "
+            }
+    
+        ,
+            {
+                "id": 9,
+                "href": "https://www.if-blog.site/posts/paper/paper17-2/",
+                "title": "TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)",
+                "section": "posts",
+                "date" : "2025.05.17",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2501.00522\nどんなもの この研究は、大規模言語モデル（LLM）の訓練に必要なリソースを削減するために、「簡素な言語環境」を構築し、その中で小型の言語モデル（Tiny LMs）を効果的に訓練・評価するためのカリキュラムを提案します。特に、「ノイズなし・低複雑性（no noise, low complexity）」という原則に基づき、以下のデータセットを作成しました：\nLEANER-Pretrain（71Mトークン）：プレトレーニング用 LEANER-Instruct（7Mトークン）：命令調整用 LEANER-GLUE：簡素化したGLUEベンチマーク LEANER-Eval：命令追従能力の評価用 このデータセットにより、学習効率が高まり、学習データやモデルサイズを削減しつつも有用な言語スキルを獲得できることを示しています。\n先行研究と比べてどこがすごいの？ 先行研究（TinyStories, BabyLM, miniGPT など）では、子供向けストーリーや字幕といった特定の形式に限定された簡易データを使用していましたが、本研究は以下の点で優れています：\n多様なジャンル（ウェブ、書籍、会話、コード、数学など）を含む構成でありながら、語彙と構文を簡素化 情報エントロピーを定量的に削減しており、学習効率の改善を理論的・実証的に示している 小型モデルに対するベンチマークも併せて提供し、命令追従の習得やカリキュラム学習の効果の比較が可能 技術や手法のきもはどこにある？ 技術的な肝は以下の点にあります：\nLEANERデータセット構築アルゴリズム 特に以下のアルゴリズムがコアです：\nAlgorithm 1: LEANER-Training Dataset Collection Algorithm 2: LEANER-GLUE Benchmark Creation Algorithm 3: LEANER-Eval Benchmark Creation 情報エントロピーを用いた簡素化の定量的指標 N-gramエントロピー比較：\n$$ \\text{Entropy}_{1\\text{-gram}}(\\text{Original}) = 16.41 $$\n$$ \\text{Entropy}_{1\\text{-gram}}(\\text{LEANER}) = 15.86 $$\nカリキュラム学習の導入 以下の難易度指標に基づいて学習サンプルを段階的に導入：\n文長（SentLen） モデルの自己損失（Self-loss） 事前学習済モデルによる損失（LM-loss） データ導入の進行：\n$$ \\sum_{j=0}^{i} p_j = 1\\quad \\text{(全データ導入)} $$\nどうやって有効だと検証した？ 3つの実験によって検証しています：\nEXP1: モデルアーキテクチャの比較\n同一データ・同一パラメータ（14M）で、BERT、LLAMA、XLNET、MAMBAを比較 LEANER-Pretrainを使ったモデルが、Originalよりも高得点 例えば： $$ \\text{Avg}_{\\text{LEANER-XLNET}} = 0.963 $$\n$$ \\text{Avg}_{\\text{ORI-XLNET}} = 0.900 $$\nEXP2: 命令追従能力の評価\nLEANER vs Original の組み合わせ4通りの事前学習＋命令調整\n評価指標は「文法」「一貫性」「具体性」（各5点満点）で合計15点満点\nLEANERデータでの事前学習が最も高いスコア：\n$$ \\text{LEANER-Ori Sum Score} = 4.1 $$\n$$ \\text{Ori-Ori} = 2.7 $$\nEXP3: カリキュラム学習の効果検証\nITER. LM-LOSS 戦略が、ランダム戦略よりも20%学習ステップを削減 データ量も20%削減して同等以上の性能を実現 議論はあるか いくつかの重要な議論があります：\nTiny LMsはInstruction-following能力に限界がある\n71Mトークンでは、平均スコア1点台とまだ不十分 人間はマルチモーダルで学習するため、言語だけでは限界がある LLMによる書き換えに内在するバイアス\n「LEANER」データはGPT-4により再記述されたため、元の文脈からのバイアスが含まれる可能性がある 人間の学習過程とのアナロジー\n「TinyHelen」という名前はヘレン・ケラーにちなんでおり、人間が簡単な言語から学び始めるプロセスを模倣している 必要であれば各数式やアルゴリズムの詳細も展開できます。続きを希望されますか？\n"
+            }
+    
+        ,
+            {
+                "id": 10,
+                "href": "https://www.if-blog.site/posts/paper/paper18/",
+                "title": "Towards Data-Efficient Language Models: A Child-Inspired Approach to Language Learning (AI論文要約)",
+                "section": "posts",
+                "date" : "2025.05.17",
+                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2503.04611\nどんなもの 本論文は、従来の大規模言語モデル（LLM）と比べて大幅に少ないデータで言語モデル（LM）を訓練する手法を提案しています。その手法は、人間の子供が言語を習得する方法から 着想を得ています。具体的には、子供向けの書き起こしを主に用いた1000万語のキュレーションされたデータセットでモデルを訓練します。\n先行研究と比べてどこがすごいの？ 先行研究のLLMは数十億語規模の膨大なデータで訓練されるのに対し、本研究では、子供向けの書き起こしを主に用いた1000万語（850万語にフィルタリング後、テレビ番組の対話データ150万語を追加）のデータセットを用いて、高性能な言語モデルを訓練することに成功しています。これは、人間の子供の言語習得におけるデータ効率の高さに着目し、それを 模倣したアプローチによる成果です。また、従来手法では性能向上に寄与する高品質な単一言語データセット（MADLAD-400）の追加が性能を低下させるのに対し、本手法ではテレビ番組の対話データの追加が性能向上に寄与しています。\n技術や手法のきもはどこにある？ 本研究の主要な技術的貢献は以下の通りです。\nデータセットのキュレーション: 子供向けの書き起こしを主に用いた1000万語のデータセットを作成し、重複削除や品質基準に基づくフィルタリングを行い、850万語に絞り込みました。さらに、子供のメディア接触を考慮し、テレビ番組の対話データ150万語を追加しました。 語彙のスケーリング: 子供の初期の言語習得段階における語彙の制限を模倣するために、モデルの語彙サイズを32,000トークンに削減しました。 モデルアーキテクチャ: 1億2500万パラメータのSmolLMモデル（decoder-only Transformer）を採用しました。 カリキュラム学習: 文の長さ、平均単語長、固有単語比率、句読点の使用量に基づいて文の複雑さを評価する独自のスコアリング関数 $score(d) = \\sum_{f∈F} w_f f(d)$ (1) を開発し、データセットを難易度順にソートすることで、カリキュラム学習を実装しました。ここで、$d$はデータポイント、$F$はスコアリング関数集合、$w_f$は各スコアリ ング関数の重み(0から1の間で、合計が1)です。 どうやって有効だと検証した？ 様々な実験を通して、提案手法の有効性を検証しました。\nテレビ番組の対話データの追加効果：テレビ番組の対話データを追加することで、BLIMPとBLIMP Supplementベンチマークにおいて性能が向上しました。(Table 2) 語彙サイズの最適化：語彙サイズ32,000トークンが最適であることを確認しました。(Table 3) カリキュラム学習の効果：カリキュラム学習によって、モデルの性能が向上しました。 MADLAD-400データセットの効果：高品質データセットとされるMADLAD-400データセットを用いた場合、性能が低下しました。これは、低リソース環境では、言語構造が豊富で多様なデータが重要であることを示唆しています。 ベースラインとの比較：提案手法は、BabyLlamaやLTG-BERTなどのベースラインと比較して、ほとんどのベンチマークで同等以上の性能を示しました。(Table 4) 議論はあるか カリキュラム学習におけるスコアリング関数の重み付けは実験的に決定されており、最適な重み付けの決定には計算コストがかかる可能性があります。 テレビ番組のデータの適切な量は実験的に決定されており、他のデータセットでは異なる可能性があります。 本手法による訓練が、下流タスクの性能に悪影響を与える可能性があります。 これらの制限事項を克服するために、スコアリング関数の重み付けの信頼性と堅牢性の向上、テレビ番組データの適切な量の決定、下流タスクへの影響評価などが今後の課題として挙げられています。 また、Influence functions, Representer point, TracIn, HYDRA, RL-based methodsなどのデータ評価手法を用いることで、より効率的なデータキュレーシ ョンが可能になる可能性も示唆されています。\n"
+            }
+    
+        ,
+            {
+                "id": 11,
                 "href": "https://www.if-blog.site/posts/paper/paper16/",
                 "title": "Language Model Can Listen While Speaking (AI論文要約)",
                 "section": "posts",
@@ -14,7 +124,7 @@
     
         ,
             {
-                "id": 1,
+                "id": 12,
                 "href": "https://www.if-blog.site/posts/paper/paper13/",
                 "title": "MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)",
                 "section": "posts",
@@ -24,7 +134,7 @@
     
         ,
             {
-                "id": 2,
+                "id": 13,
                 "href": "https://www.if-blog.site/posts/paper/paper10/",
                 "title": "SentenceVAE: Enable Next-sentence Prediction for Large Language Models with Faster Speed, Higher Accuracy and Longer Context (AI論文要約)",
                 "section": "posts",
@@ -34,7 +144,7 @@
     
         ,
             {
-                "id": 3,
+                "id": 14,
                 "href": "https://www.if-blog.site/posts/paper/paper15/",
                 "title": "Small Language Models (SLMs) Can Still Pack a Punch: A survey (AI論文要約)",
                 "section": "posts",
@@ -44,7 +154,7 @@
     
         ,
             {
-                "id": 4,
+                "id": 15,
                 "href": "https://www.if-blog.site/posts/paper/paper14/",
                 "title": "Tensor Product Attention Is All You Need (AI論文要約)",
                 "section": "posts",
@@ -54,7 +164,7 @@
     
         ,
             {
-                "id": 5,
+                "id": 16,
                 "href": "https://www.if-blog.site/posts/paper/paper11/",
                 "title": "Titans: Learning to Memorize at Test Time (AI論文要約)",
                 "section": "posts",
@@ -64,7 +174,7 @@
     
         ,
             {
-                "id": 6,
+                "id": 17,
                 "href": "https://www.if-blog.site/posts/paper/paper12/",
                 "title": "Transformer2 : Self-adaptive LLMs (AI論文要約)",
                 "section": "posts",
@@ -74,7 +184,7 @@
     
         ,
             {
-                "id": 7,
+                "id": 18,
                 "href": "https://www.if-blog.site/posts/paper/paper9/",
                 "title": "Phi-4 Technical Report (AI論文要約)",
                 "section": "posts",
@@ -84,7 +194,7 @@
     
         ,
             {
-                "id": 8,
+                "id": 19,
                 "href": "https://www.if-blog.site/posts/paper/paper8/",
                 "title": "Can LLMs Design Good Questions Based on Context? (AI論文要約)",
                 "section": "posts",
@@ -94,7 +204,7 @@
     
         ,
             {
-                "id": 9,
+                "id": 20,
                 "href": "https://www.if-blog.site/posts/paper/paper7/",
                 "title": "rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking (AI論文要約)",
                 "section": "posts",
@@ -104,7 +214,7 @@
     
         ,
             {
-                "id": 10,
+                "id": 21,
                 "href": "https://www.if-blog.site/posts/paper/paper5/",
                 "title": "Fact-aware Sentence Split and Rephrase with Permutation Invariant Training (AI論文要約)",
                 "section": "posts",
@@ -114,7 +224,7 @@
     
         ,
             {
-                "id": 11,
+                "id": 22,
                 "href": "https://www.if-blog.site/posts/paper/paper4/",
                 "title": "Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)",
                 "section": "posts",
@@ -124,7 +234,7 @@
     
         ,
             {
-                "id": 12,
+                "id": 23,
                 "href": "https://www.if-blog.site/posts/paper/paper3/",
                 "title": "Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)",
                 "section": "posts",
@@ -134,7 +244,7 @@
     
         ,
             {
-                "id": 13,
+                "id": 24,
                 "href": "https://www.if-blog.site/posts/paper/paper2/",
                 "title": "Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (AI論文要約)",
                 "section": "posts",
@@ -144,7 +254,7 @@
     
         ,
             {
-                "id": 14,
+                "id": 25,
                 "href": "https://www.if-blog.site/posts/paper/paper1/",
                 "title": "Mechanistic Unlearning: Robust Knowledge Unlearning and Editing via Mechanistic Localization(AI論文要約)",
                 "section": "posts",
@@ -154,7 +264,7 @@
     
         ,
             {
-                "id": 15,
+                "id": 26,
                 "href": "https://www.if-blog.site/posts/nlp/mixture_of_experts_sample/",
                 "title": "Mixture of expertsのサンプル実装",
                 "section": "posts",
@@ -164,7 +274,7 @@
     
         ,
             {
-                "id": 16,
+                "id": 27,
                 "href": "https://www.if-blog.site/posts/nlp/hf_generation_wrap/",
                 "title": "huggingfaceのgenerationの関数をtorch modelから使えるようにしたい",
                 "section": "posts",
@@ -174,7 +284,7 @@
     
         ,
             {
-                "id": 17,
+                "id": 28,
                 "href": "https://www.if-blog.site/posts/nlp/transformer_any_architecture/",
                 "title": "llama2のアーキテクチャを変更してpre trainingしてみる",
                 "section": "posts",
@@ -184,7 +294,7 @@
     
         ,
             {
-                "id": 18,
+                "id": 29,
                 "href": "https://www.if-blog.site/posts/nlp/hf_ds_upload/",
                 "title": "複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ",
                 "section": "posts",
@@ -194,7 +304,7 @@
     
         ,
             {
-                "id": 19,
+                "id": 30,
                 "href": "https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/",
                 "title": "HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める",
                 "section": "posts",
@@ -204,7 +314,7 @@
     
         ,
             {
-                "id": 20,
+                "id": 31,
                 "href": "https://www.if-blog.site/posts/nlp/xgen-jglue/",
                 "title": "xgenでJGLUEを試す",
                 "section": "posts",
@@ -214,7 +324,7 @@
     
         ,
             {
-                "id": 21,
+                "id": 32,
                 "href": "https://www.if-blog.site/posts/nlp/calm_lora_quantize/",
                 "title": "OpenCALM-7Bをloraで学習して、quantizeするまで",
                 "section": "posts",
@@ -224,7 +334,7 @@
     
         ,
             {
-                "id": 22,
+                "id": 33,
                 "href": "https://www.if-blog.site/posts/nlp/rinna_lora_ja/",
                 "title": "loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す",
                 "section": "posts",
@@ -234,7 +344,7 @@
     
         ,
             {
-                "id": 23,
+                "id": 34,
                 "href": "https://www.if-blog.site/posts/nlp/rinna_3b_cpp/",
                 "title": "rinna 3Bをcppで動かす",
                 "section": "posts",
@@ -244,7 +354,7 @@
     
         ,
             {
-                "id": 24,
+                "id": 35,
                 "href": "https://www.if-blog.site/posts/nlp/react_start/",
                 "title": "VicunaでReActっぽいことを試してみる",
                 "section": "posts",
@@ -254,7 +364,7 @@
     
         ,
             {
-                "id": 25,
+                "id": 36,
                 "href": "https://www.if-blog.site/posts/nlp/rs-tokenizer/",
                 "title": "Rust TokenizerをC++から呼び出す",
                 "section": "posts",
@@ -264,7 +374,7 @@
     
         ,
             {
-                "id": 26,
+                "id": 37,
                 "href": "https://www.if-blog.site/posts/nlp/bloom_lora_start/",
                 "title": "BloomをLoRaで日本語finetuning",
                 "section": "posts",
@@ -274,7 +384,7 @@
     
         ,
             {
-                "id": 27,
+                "id": 38,
                 "href": "https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/",
                 "title": "LlamaIndex(GPTIndex)を触る",
                 "section": "posts",
@@ -284,7 +394,7 @@
     
         ,
             {
-                "id": 28,
+                "id": 39,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-render-block/",
                 "title": "code blockにrefarenceをつける",
                 "section": "posts",
@@ -294,7 +404,7 @@
     
         ,
             {
-                "id": 29,
+                "id": 40,
                 "href": "https://www.if-blog.site/posts/nlp/flexgen_start/",
                 "title": "FlexGenで遊ぶ",
                 "section": "posts",
@@ -304,7 +414,7 @@
     
         ,
             {
-                "id": 30,
+                "id": 41,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-text-gen/",
                 "title": "Huggingfaceのtext generation pipelineとtext2text generation pipeline",
                 "section": "posts",
@@ -314,7 +424,7 @@
     
         ,
             {
-                "id": 31,
+                "id": 42,
                 "href": "https://www.if-blog.site/posts/nlp/start-xglm-t5/",
                 "title": "xglmをquick start",
                 "section": "posts",
@@ -324,7 +434,7 @@
     
         ,
             {
-                "id": 32,
+                "id": 43,
                 "href": "https://www.if-blog.site/posts/nlp/start-flan-t5/",
                 "title": "flan_t5をquick start",
                 "section": "posts",
@@ -334,7 +444,7 @@
     
         ,
             {
-                "id": 33,
+                "id": 44,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-tokenizer/",
                 "title": "Hugging Faceのtokenizerで迷ったのでまとめておく",
                 "section": "posts",
@@ -344,7 +454,7 @@
     
         ,
             {
-                "id": 34,
+                "id": 45,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-conv/",
                 "title": "Hugging Faceのpipelineで会話モデルを動かす",
                 "section": "posts",
@@ -354,7 +464,7 @@
     
         ,
             {
-                "id": 35,
+                "id": 46,
                 "href": "https://www.if-blog.site/posts/typescript/typescript-oreilly/",
                 "title": "プログラミングTypeScript――スケールするJavaScriptアプリケーション開発",
                 "section": "posts",
@@ -364,7 +474,7 @@
     
         ,
             {
-                "id": 36,
+                "id": 47,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-doc/",
                 "title": "Hugging Face Transformersのドキュメント読んだ",
                 "section": "posts",
@@ -374,7 +484,7 @@
     
         ,
             {
-                "id": 37,
+                "id": 48,
                 "href": "https://www.if-blog.site/posts/emacs/text-lint/",
                 "title": "emacsにtext-lintを導入する",
                 "section": "posts",
@@ -384,7 +494,7 @@
     
         ,
             {
-                "id": 38,
+                "id": 49,
                 "href": "https://www.if-blog.site/posts/neuralnet/flax-jax/",
                 "title": "Flaxに入門してみる",
                 "section": "posts",
@@ -394,7 +504,7 @@
     
         ,
             {
-                "id": 39,
+                "id": 50,
                 "href": "https://www.if-blog.site/posts/python/arxiv-translate/",
                 "title": "Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る",
                 "section": "posts",
@@ -404,7 +514,7 @@
     
         ,
             {
-                "id": 40,
+                "id": 51,
                 "href": "https://www.if-blog.site/posts/python/arxiv-py-lib/",
                 "title": "pythonでarxivのAPIを使う",
                 "section": "posts",
@@ -414,7 +524,7 @@
     
         ,
             {
-                "id": 41,
+                "id": 52,
                 "href": "https://www.if-blog.site/posts/others/gas-translate/",
                 "title": "Google Apps ScriptでGoogle Translateを使う",
                 "section": "posts",
@@ -424,7 +534,7 @@
     
         ,
             {
-                "id": 42,
+                "id": 53,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-related-posts/",
                 "title": "Hugoの記事に関連記事を表示させる",
                 "section": "posts",
@@ -434,7 +544,7 @@
     
         ,
             {
-                "id": 43,
+                "id": 54,
                 "href": "https://www.if-blog.site/posts/python/open-ai-gym-quick/",
                 "title": "Open AI Gymをとりあえず動かす",
                 "section": "posts",
@@ -444,7 +554,7 @@
     
         ,
             {
-                "id": 44,
+                "id": 55,
                 "href": "https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/",
                 "title": "End-to-End Text Classification via Image-basedEmbedding using Character-level Networks",
                 "section": "posts",
@@ -454,7 +564,7 @@
     
         ,
             {
-                "id": 45,
+                "id": 56,
                 "href": "https://www.if-blog.site/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/",
                 "title": "Enhanced character embedding for Chinese named entity recognition",
                 "section": "posts",
@@ -464,7 +574,7 @@
     
         ,
             {
-                "id": 46,
+                "id": 57,
                 "href": "https://www.if-blog.site/posts/github/workflow-dispatch/",
                 "title": "GitHub Actionsを手動実行する",
                 "section": "posts",
@@ -474,7 +584,7 @@
     
         ,
             {
-                "id": 47,
+                "id": 58,
                 "href": "https://www.if-blog.site/posts/android/bottom-sheet/",
                 "title": "Bottom Sheetをつける",
                 "section": "posts",
@@ -484,7 +594,7 @@
     
         ,
             {
-                "id": 48,
+                "id": 59,
                 "href": "https://www.if-blog.site/posts/android/android-introduction/",
                 "title": "Webアプリケーションしか作ったことがない人がAndroidの開発を始めたときの情報収集の流れ",
                 "section": "posts",
@@ -494,7 +604,7 @@
     
         ,
             {
-                "id": 49,
+                "id": 60,
                 "href": "https://www.if-blog.site/posts/android/book-reports-firebase/",
                 "title": "ボタン以外のコンポーネントに波紋エフェクト(ripple effect)つける",
                 "section": "posts",
@@ -504,7 +614,7 @@
     
         ,
             {
-                "id": 50,
+                "id": 61,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-storage-vue/",
                 "title": "Vue.js+typescriptでVuetifyを使いマテリアルデザインに入門する",
                 "section": "posts",
@@ -514,7 +624,7 @@
     
         ,
             {
-                "id": 51,
+                "id": 62,
                 "href": "https://www.if-blog.site/posts/gatsby/gatsby-intro/",
                 "title": "技術ブログ用にGatsbyを整える",
                 "section": "posts",
@@ -524,7 +634,7 @@
     
         ,
             {
-                "id": 52,
+                "id": 63,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-hosting/",
                 "title": "Firebase Hostingを使ってみた",
                 "section": "posts",
@@ -534,7 +644,7 @@
     
         ,
             {
-                "id": 53,
+                "id": 64,
                 "href": "https://www.if-blog.site/posts/emacs/gopls-introduction/",
                 "title": "emacsのgo lang用のlanguage serverをgoplsに乗り換える",
                 "section": "posts",
@@ -544,7 +654,7 @@
     
         ,
             {
-                "id": 54,
+                "id": 65,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-cloud-functions/",
                 "title": "Firebase Cloud Functionsを使ってTwitterのOGPを設定する",
                 "section": "posts",
@@ -554,7 +664,7 @@
     
         ,
             {
-                "id": 55,
+                "id": 66,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-auth/",
                 "title": "Vue.js + Golang + Firebase Authenticationでログイン処理",
                 "section": "posts",
@@ -564,7 +674,7 @@
     
         ,
             {
-                "id": 56,
+                "id": 67,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-review/",
                 "title": "三行で読書感想文を書いて、SNSでシェアできるサービスを作った",
                 "section": "posts",
@@ -574,7 +684,7 @@
     
         ,
             {
-                "id": 57,
+                "id": 68,
                 "href": "https://www.if-blog.site/posts/python/python-matplotlib-base/",
                 "title": "matplotlibのよく使う記法まとめ",
                 "section": "posts",
@@ -584,7 +694,7 @@
     
         ,
             {
-                "id": 58,
+                "id": 69,
                 "href": "https://www.if-blog.site/posts/neuralnet/pepar-summary/",
                 "title": "Deeplearningまわりの最新論文を浅く広くみてまわる",
                 "section": "posts",
@@ -594,7 +704,7 @@
     
         ,
             {
-                "id": 59,
+                "id": 70,
                 "href": "https://www.if-blog.site/posts/others/http-portal-for-blog/",
                 "title": "Hugoで作ったwebサイトを公開する",
                 "section": "posts",
@@ -604,7 +714,7 @@
     
         ,
             {
-                "id": 60,
+                "id": 71,
                 "href": "https://www.if-blog.site/posts/neuralnet/combine-model/",
                 "title": "kerasでモデルを結合する",
                 "section": "posts",
@@ -614,7 +724,7 @@
     
         ,
             {
-                "id": 61,
+                "id": 72,
                 "href": "https://www.if-blog.site/posts/others/aws-cli-at-pyenv/",
                 "title": "pyenv環境でaws cli入れたらコマンドが見つからない",
                 "section": "posts",
@@ -624,7 +734,7 @@
     
         ,
             {
-                "id": 62,
+                "id": 73,
                 "href": "https://www.if-blog.site/posts/others/rust-macro-use-another/",
                 "title": "Rustでmodule間にまたがるmacro呼び出し",
                 "section": "posts",
@@ -634,7 +744,7 @@
     
         ,
             {
-                "id": 63,
+                "id": 74,
                 "href": "https://www.if-blog.site/posts/nlp/seqgan-paper/",
                 "title": "SeqGANの論文を読む",
                 "section": "posts",
@@ -644,7 +754,7 @@
     
         ,
             {
-                "id": 64,
+                "id": 75,
                 "href": "https://www.if-blog.site/posts/nlp/word2vec-output-word/",
                 "title": "word2vecでベクトルから単語を出力する",
                 "section": "posts",
@@ -654,7 +764,7 @@
     
         ,
             {
-                "id": 65,
+                "id": 76,
                 "href": "https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/",
                 "title": "ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数",
                 "section": "posts",
@@ -664,7 +774,7 @@
     
         ,
             {
-                "id": 66,
+                "id": 77,
                 "href": "https://www.if-blog.site/posts/others/tex-notation-numerical-formula/",
                 "title": "機械学習系の数式によく出てくる記号などのTex表記まとめ",
                 "section": "posts",
@@ -674,7 +784,7 @@
     
         ,
             {
-                "id": 67,
+                "id": 78,
                 "href": "https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/",
                 "title": "自然言語処理シリーズの構文解析を読む（概要）",
                 "section": "posts",
@@ -684,7 +794,7 @@
     
         ,
             {
-                "id": 68,
+                "id": 79,
                 "href": "https://www.if-blog.site/posts/nlp/char-vec/",
                 "title": "文字をベクトル化する",
                 "section": "posts",
@@ -694,7 +804,7 @@
     
         ,
             {
-                "id": 69,
+                "id": 80,
                 "href": "https://www.if-blog.site/posts/python/colaboratory-google-drive-mount/",
                 "title": "Google ColaboratoryでGoogle driveをマウントする",
                 "section": "posts",
@@ -704,7 +814,7 @@
     
         ,
             {
-                "id": 70,
+                "id": 81,
                 "href": "https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/",
                 "title": "emacsひな祭りいってきたのでためになったpackageなどをまとめておく",
                 "section": "posts",
@@ -714,7 +824,7 @@
     
         ,
             {
-                "id": 71,
+                "id": 82,
                 "href": "https://www.if-blog.site/posts/python/python-get-extn/",
                 "title": "pythonで拡張子を取得する",
                 "section": "posts",
@@ -724,7 +834,7 @@
     
         ,
             {
-                "id": 72,
+                "id": 83,
                 "href": "https://www.if-blog.site/posts/emacs/lsp-mode/",
                 "title": "lsp-modeを導入する",
                 "section": "posts",
@@ -734,7 +844,7 @@
     
         ,
             {
-                "id": 73,
+                "id": 84,
                 "href": "https://www.if-blog.site/posts/emacs/emacs-use-package/",
                 "title": "use-packagesを使ってみる",
                 "section": "posts",
@@ -744,7 +854,7 @@
     
         ,
             {
-                "id": 74,
+                "id": 85,
                 "href": "https://www.if-blog.site/posts/falcon/falcon-img-upload/",
                 "title": "falconでアップロードサーバーを作る",
                 "section": "posts",
@@ -754,7 +864,7 @@
     
         ,
             {
-                "id": 75,
+                "id": 86,
                 "href": "https://www.if-blog.site/posts/falcon/falcon-tips/",
                 "title": "falconを使ってみた",
                 "section": "posts",
@@ -764,7 +874,7 @@
     
         ,
             {
-                "id": 76,
+                "id": 87,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-start-article/",
                 "title": "Hugoでブログを作る",
                 "section": "posts",
@@ -774,7 +884,7 @@
     
         ,
             {
-                "id": 77,
+                "id": 88,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-href-to-target-blank/",
                 "title": "Hugoでリンクを新しいウィンドウで開く",
                 "section": "posts",
@@ -784,7 +894,7 @@
     
         ,
             {
-                "id": 78,
+                "id": 89,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-ga/",
                 "title": "Hugoにgoogle analyticsを導入する",
                 "section": "posts",
@@ -794,7 +904,7 @@
     
         ,
             {
-                "id": 79,
+                "id": 90,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/",
                 "title": "Hugoのディレクトリ構造やデプロイ方法の備忘録",
                 "section": "posts",
@@ -804,7 +914,7 @@
     
         ,
             {
-                "id": 80,
+                "id": 91,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-code-highlight/",
                 "title": "Hugoの記事でコードハイライトする",
                 "section": "posts",
@@ -814,7 +924,7 @@
     
         ,
             {
-                "id": 81,
+                "id": 92,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-add-site-description/",
                 "title": "Hugoの記事にdescriptionを追加する",
                 "section": "posts",
@@ -824,7 +934,7 @@
     
         ,
             {
-                "id": 82,
+                "id": 93,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-on-image/",
                 "title": "Hugoの記事に画像を載せる",
                 "section": "posts",
@@ -834,7 +944,7 @@
     
         ,
             {
-                "id": 83,
+                "id": 94,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-date-sort/",
                 "title": "Hugoの記事を更新順にソートする",
                 "section": "posts",
@@ -844,7 +954,7 @@
     
         ,
             {
-                "id": 84,
+                "id": 95,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-git-pages/",
                 "title": "HugoをGitHub Pagesで公開する",
                 "section": "posts",
@@ -854,7 +964,7 @@
     
         ,
             {
-                "id": 85,
+                "id": 96,
                 "href": "https://www.if-blog.site/posts/typescript/react-render-prop-typescript/",
                 "title": "reactのrender propsをtypescriptでやる",
                 "section": "posts",

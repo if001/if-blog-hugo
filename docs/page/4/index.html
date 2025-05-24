@@ -59,21 +59,30 @@
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    renderMathInElement(document.body, {
-      delimiters: [
-        {left: '\\[', right: '\\]', display: true},   
-        {left: '$$', right: '$$', display: true},     
-        {left: '\\(', right: '\\)', display: false},  
-        {left: '$', right: '$', display: false},  
-      ],
-      throwOnError : false
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
     });
-  });
 </script>
 
 
@@ -178,6 +187,416 @@
       
         
         
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/android/book-reports-firebase/">
+    <h2 class="post-title">
+      ボタン以外のコンポーネントに波紋エフェクト(ripple effect)つける
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>TextViewなどのbackgroudに以下を指定すればおk
+android:background=&amp;quot;?attr/selectableItemBackground&amp;quot;
+backgroundで色などをすでに指定している場合は、以下のようにする。 foregroundに指定する。
+&amp;</p>
+    <a href="https://www.if-blog.site/posts/android/book-reports-firebase/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/android/">android</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2020-02-28
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/edgwbs/book-storage-vue/">
+    <h2 class="post-title">
+      Vue.js&#43;typescriptでVuetifyを使いマテリアルデザインに入門する
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>はじめに Vuetifyは、Vue.jsで使えるマテリアルデザインのフレームワークです。
+https://vuetifyjs.com/ja/
+マテリアルデザインに入門すべく、Vuetifyを使って読んだ本を管理するサービスを作ってみました。
+Book Storage
+簡単にマテリアルデザインを使える</p>
+    <a href="https://www.if-blog.site/posts/edgwbs/book-storage-vue/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/vue.js/">vue.js</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/webapp/">WebApp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/vuetify/">vuetify</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-11-09
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/gatsby/gatsby-intro/">
+    <h2 class="post-title">
+      技術ブログ用にGatsbyを整える
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>これまでHugoを使っていたが、gatsbyを使ってみようと思います。 https://www.gatsbyjs.org/
+gatsbyは、react製の静的サイトジェネレーターです。PWAやOGPなどがあらかじめ設定してあり(themeによる？)便利です。また、記事などの任意のデータ取得のためのイ</p>
+    <a href="https://www.if-blog.site/posts/gatsby/gatsby-intro/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/react/">react</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/gatsby/">gatsby</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-10-14
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase-hosting/">
+    <h2 class="post-title">
+      Firebase Hostingを使ってみた
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Firebase Authenticationに続いて、Firebase Hostingも使ってみました。備忘録を残しておきます。
+今回は、Vue.jsをデプロイします。
+Firebase Hostingとは Firebase Hosting は、ウェブアプリ、静的コンテンツと動的コンテンツ、マイク</p>
+    <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase-hosting/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/firebase/">firebase</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/webapp/">WebApp</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-10-10
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/emacs/gopls-introduction/">
+    <h2 class="post-title">
+      emacsのgo lang用のlanguage serverをgoplsに乗り換える
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>emacsでgo langを書くときに使っているlspのlanguage serverがbingoからgoplsに変わったので、emacsの設定も更新しておこうと思います。
+bingoは、golangの公式に取り込まれる形になったようですね。
+インストール ドキュメント通りです。
+https://g</p>
+    <a href="https://www.if-blog.site/posts/emacs/gopls-introduction/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/emacs/">emacs</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-10-08
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase-cloud-functions/">
+    <h2 class="post-title">
+      Firebase Cloud Functionsを使ってTwitterのOGPを設定する
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Vue.jsで作ったWebAppをFirebase Hostingで公開し、そこでTwitter用のOGPを設定しようとしましたが、Twitterのクローラーがjavascriptを解釈できないということで、別途方法を考える必要がありました。そこで、Firebase Cloud Functionsを</p>
+    <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase-cloud-functions/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/firebase/">firebase</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/webapp/">WebApp</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-30
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase-auth/">
+    <h2 class="post-title">
+      Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>Vue.jsとGolangでWebアプリケーションでFirebase Authenticationを使い、ログイン処理を行います。
+https://firebase.google.com/docs/auth/?hl=ja
+Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がたくさん上</p>
+    <a href="https://www.if-blog.site/posts/edgwbs/book-reports-firebase-auth/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/webapp/">WebApp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/firebase/">firebase</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/golang/">golang</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-28
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/edgwbs/book-reports-review/">
+    <h2 class="post-title">
+      三行で読書感想文を書いて、SNSでシェアできるサービスを作った
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>サービス概要 「読書感想文をもっと気軽に」をコンセプトに読んだ本の感想文/レビューを三行だけ書き、SNSでシェアするサービスです。
+三行読書感想文
+使い方 googleアカウントもしくは、Twitterアカウントでログインできます。
+その他のSNSアカウントでのログインは、随時対応していこうと思いま</p>
+    <a href="https://www.if-blog.site/posts/edgwbs/book-reports-review/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/webapp/">WebApp</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/poem/">poem</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/firebase/">firebase</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-25
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/python/python-matplotlib-base/">
+    <h2 class="post-title">
+      matplotlibのよく使う記法まとめ
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>すぐ忘れるので、matplotlibのよく使う記法をまとめておく
+公式：https://matplotlib.org/gallery.html
+普段は散布図とかplotとかしか使わないけど、こうして見るといろんなグラフがかけるみたい
+matplotlib,pyplot,pylabの違い matplo</p>
+    <a href="https://www.if-blog.site/posts/python/python-matplotlib-base/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/neuralnet/pepar-summary/">
+    <h2 class="post-title">
+      Deeplearningまわりの最新論文を浅く広くみてまわる
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>最新論文の情報を広く浅く集めたい場合の巡回するサイトたちをまとめておきます。
+おすすめがあれば教えてください。
+Google Scholar: https://scholar.google.com/schhp?hl=ja
+研究者やキーワードが決まっていると探しやすい。ただ、ザッピングには向かない。
+</p>
+    <a href="https://www.if-blog.site/posts/neuralnet/pepar-summary/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="https://www.if-blog.site/posts/others/http-portal-for-blog/">
+    <h2 class="post-title">
+      Hugoで作ったwebサイトを公開する
+      
+    </h2>   
+  </a>
+
+  <div class="post-entry">
+    <p>はじめに GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。
+いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。
+インフラ GCEを使います。ほんとは、image化してインスタンスグループで公開したかったので</p>
+    <a href="https://www.if-blog.site/posts/others/http-portal-for-blog/" class="post-read-more"></a>
+  </div>
+
+  <div class="postmeta">
+    <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+    
+      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
+    
+      <a href="https://www.if-blog.site/tags/docker/">docker</a>&nbsp;
+    
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-24
+  
+</div>
+
+  </div>
+</article>
+
       
         <article class="post-preview">
   <a href="https://www.if-blog.site/posts/neuralnet/combine-model/">
@@ -507,404 +926,6 @@ A Diversity-Promoting Objective Function for Neural Conversation Models htt</p>
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
   >&nbsp;2019-09-24
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/python/colaboratory-google-drive-mount/">
-    <h2 class="post-title">
-      Google ColaboratoryでGoogle driveをマウントする
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
-before 認証
-!apt-get install -y -qq software-properties-common python-software-properties module-init-to</p>
-    <a href="https://www.if-blog.site/posts/python/colaboratory-google-drive-mount/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-23
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/">
-    <h2 class="post-title">
-      emacsひな祭りいってきたのでためになったpackageなどをまとめておく
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>2019年3月3日に開催された東京Emacsひなまつりにいってきました。
-https://tokyo-emacs.connpass.com/event/121603/
-随時コメント追加していきます。
-ox-hugo
-https://ox-hugo.scripter.co/
-Ox-hugo
-https</p>
-    <a href="https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/emacs/">emacs</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-03-08
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/python/python-get-extn/">
-    <h2 class="post-title">
-      pythonで拡張子を取得する
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>ファイルの拡張子を取得する方法をいつも忘れるのでメモ
-import os file_path = &amp;#34;hoge/test.md&amp;#34; root, ext = os.path.splitext(file_path) print(root, ext) 出力
-hoge/test .md </p>
-    <a href="https://www.if-blog.site/posts/python/python-get-extn/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-03-01
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/emacs/lsp-mode/">
-    <h2 class="post-title">
-      lsp-modeを導入する
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>大学時代から使っていたemacsの設定たちを綺麗にするという目的で、ついでにlsp-modeを導入してみようと思う。
-lsp-mode
-https://github.com/emacs-lsp/lsp-mode
-language server protocolとは language server p</p>
-    <a href="https://www.if-blog.site/posts/emacs/lsp-mode/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/emacs/">emacs</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-11-20
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/emacs/emacs-use-package/">
-    <h2 class="post-title">
-      use-packagesを使ってみる
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>これまで長い間放置しててきたemacsの設定たちを見直すついでに、use-pacakgeを使ってみようと思う。
-https://github.com/jwiegley/use-package
-use-packageとは、emacsのパッケージ管理を強化するパッケージです。
-use-packageのマ</p>
-    <a href="https://www.if-blog.site/posts/emacs/emacs-use-package/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/emacs/">emacs</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-11-20
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/falcon/falcon-img-upload/">
-    <h2 class="post-title">
-      falconでアップロードサーバーを作る
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことな</p>
-    <a href="https://www.if-blog.site/posts/falcon/falcon-img-upload/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/falcon/">falcon</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/falcon/falcon-tips/">
-    <h2 class="post-title">
-      falconを使ってみた
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
-簡単なtipsをメモしておく。
-シンプルな例 fa</p>
-    <a href="https://www.if-blog.site/posts/falcon/falcon-tips/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/falcon/">falcon</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-start-article/">
-    <h2 class="post-title">
-      Hugoでブログを作る
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>はじめに Hugoとは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。 Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。
-サイトの作成 インストール brew install hugo テンプレートの作成 hugo new site</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-start-article/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-href-to-target-blank/">
-    <h2 class="post-title">
-      Hugoでリンクを新しいウィンドウで開く
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。
-hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownでどうすれば良いのか調べた。 Hugoでは次のようにconfig.tomlするといける。
-[blackf</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-href-to-target-blank/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-ga/">
-    <h2 class="post-title">
-      Hugoにgoogle analyticsを導入する
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Hugoにgoogle analytics(ga)を導入しようと思ったら意外と簡単だった。
-まず、gaアカウントを作成。
-config.tomlに
-googleAnalytics = &amp;#34;{ga tracking ID}&amp;#34; を設定するだけ。</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-ga/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/google-analytics/">google-analytics</a>&nbsp;
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/">
-    <h2 class="post-title">
-      Hugoのディレクトリ構造やデプロイ方法の備忘録
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。
-ディレクトリ 基本的なディレクトリは以下
-markdownを書いたりと普段触るのはcontentディレクトリになる。
-デプロイ後生成されるpublicディレクトリはサー</p>
-    <a href="https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site/tags/hugo/">hugo</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
   
 </div>
 

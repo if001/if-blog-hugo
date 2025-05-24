@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>データセット評価指標</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.siteindex.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="https://www.if-blog.site/fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="以下では LLM 学習用データセットの多様性（あるいは「同質性」を避けられているか）を測る代表的な指標を、定義 → 計算方法 → 読み取り方 → 長所/限界 の順で簡潔に整理します。
+distinct-N paper
+code
+定義
+生成コーパス（または学習データ）の中で 重複を除いた n-gram" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		データセット評価指標
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="https://www.if-blog.site/tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/chat/">chat</a
+            >&nbsp;
+          
+            <a href="https://www.if-blog.site/tags/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88%E6%8C%87%E6%A8%99/">データセット指標</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-05-20
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>以下では LLM 学習用データセットの多様性（あるいは「同質性」を避けられているか）を測る代表的な指標を、<strong>定義 → 計算方法 → 読み取り方 → 長所/限界</strong> の順で簡潔に整理します。</p>
+<hr>
+<h3 id="distinct-n">distinct-N</h3>
+<p><a href="https://arxiv.org/abs/1510.03055">paper</a><br>
+<a href="https://github.com/neural-dialogue-metrics/Distinct-N">code</a></p>
+<p><strong>定義</strong></p>
+<ul>
+<li>
+<p>生成コーパス（または学習データ）の中で <strong>重複を除いた n-gram の種類数</strong> を、総 n-gram 数で割った比率。</p>
+<p>$$
+\text{distinct-}n=\frac{\lvert{\text{unique }n\text{-grams}}\rvert}{\text{total }n\text{-grams}}
+$$</p>
+</li>
+</ul>
+<p><strong>読み取り方</strong></p>
+<ul>
+<li>値は 0〜1。1 に近いほど語彙的な反復が少なく、表層的に多様。</li>
+<li><strong>distinct-1 / distinct-2</strong>（1,2-gram）が最も一般的。</li>
+</ul>
+<p><strong>強み</strong></p>
+<ul>
+<li>軽量・参照不要・タスク非依存。
+<strong>限界</strong></li>
+<li>長文ほど分母が大きくなり過大評価されやすい。</li>
+<li>内容的（意味的）な多様性は把握できない。</li>
+</ul>
+<hr>
+<h3 id="diversity-coefficienttask2vec-dc">Diversity Coefficient（Task2Vec-DC）</h3>
+<p><a href="/posts/paper/paper22/">paper</a></p>
+<p><strong>着想</strong> Task2Vec で「サンプル1 バッチ = 1 タスク」と見立て、タスク埋め込み間の平均距離でデータ内部の<strong>潜在概念のばらつき</strong>を定量化する。</p>
+<p><strong>計算フロー（概要）</strong></p>
+<ol>
+<li>
+<p>データセットからランダムに $B$ サンプルを抽出（= 1 タスク）。</p>
+</li>
+<li>
+<p>Task2Vec (Barrett et al., 2019) で各タスクをベクトル化（勾配のFisher情報行列対角を縮約）。</p>
+</li>
+<li>
+<p>タスク埋め込み集合 ${\mathbf{t}_i}$ の分散（例：平均コサイン距離や Frobenius ノルム）を取り</p>
+<p>$$
+\text{DC} = \frac{2}{B(B-1)}\sum_{i&lt;j} d(\mathbf{t}_i,\mathbf{t}_j)
+$$</p>
+</li>
+<li>
+<p>大きいほど「タスクが互いに異なる」= より多様。</p>
+</li>
+</ol>
+<p><strong>強み</strong> 意味レベルでの多様性を高速に近似。<br>
+<strong>限界</strong> Task2Vecの前提（モデルと層選択）に依存／語順など表層のばらつきは捉えにくい。</p>
+<hr>
+<h3 id="self-bleu">Self-BLEU</h3>
+<p><a href="https://arxiv.org/pdf/1802.01886">paper</a><br>
+<a href="https://www.digitalocean.com/community/tutorials/automated-metrics-for-evaluating-generated-text?utm_source=chatgpt.com#self-bleu">参考</a></p>
+<p><strong>定義</strong></p>
+<ul>
+<li>コーパス内の <strong>各文を「仮説」</strong>、残り全文を <strong>「参照」</strong> とみなして BLEU を計算し、文ごとに平均。
+低いほど多様（互いに似ていない）。</li>
+</ul>
+<p><strong>計算</strong></p>
+<p>$$
+\text{Self-BLEU} = \frac1{N}\sum_{i=1}^{N}\text{BLEU}\bigl(\text{sent}_i,; \mathcal{D}\setminus{\text{sent}_i}\bigr)
+$$</p>
+<p><strong>読み取り方</strong></p>
+<ul>
+<li>0 に近いほど高多様性。</li>
+<li>BLEU ベースなので n-gram 重み付けや平滑化は通常の BLEU と同一。</li>
+</ul>
+<p><strong>長所</strong> distinct-n より“語順を伴う重複”を強くペナルティ。<br>
+<strong>弱点</strong> 計算が $O(N^2)$、BLEU の問題（語義を見ない）を継承。 </p>
+<hr>
+<h3 id="llm-cluster-score">LLM Cluster Score</h3>
+<p><a href="/posts/paper/paper21/">paper</a></p>
+<p><strong>アイデア</strong></p>
+<ol>
+<li>
+<p>LLM に<strong>各サンプルのメタ特徴</strong>（トピックなど）を要約・埋め込みさせる。</p>
+</li>
+<li>
+<p>埋め込みをクラスタリング（K-means 等）。</p>
+</li>
+<li>
+<p><strong>クラスタ数 $K$</strong> と <strong>各クラスタのエントロピー</strong> から</p>
+<p>$$
+\text{Cluster Score}=H(\text{cluster labels}) \times \frac{K}{K_{\max}}
+$$</p>
+<p>— 直感的に「サンプルが均等に多くの話題に散らばっているほど高得点」。</p>
+</li>
+</ol>
+<p><strong>用途</strong> 巨大合成コーパスで従来指標が飽和・不安定になる問題を緩和。<br>
+<strong>注意点</strong> LLM の“まとめ方”がクラスタ品質を左右／高次元でのクラスタ個数設定がハイパーパラメータになる。</p>
+<hr>
+<h3 id="dcscore"><strong>DCScore</strong></h3>
+<p><a href="/posts/paper/paper23/">paper</a><br>
+<a href="https://github.com/bluewhalelab/dcscore">code</a></p>
+<p><strong>発想</strong> 「もし各サンプルを<strong>分類クラス</strong>だと思って識別器を訓練したら、正解率が高いほど互いに違う＝多様」と捉える。</p>
+<p><strong>手順</strong></p>
+<ol>
+<li>$N$ サンプルを N-way 1-shot のようにラベル付け（サンプル $i$ はクラス $i$)。</li>
+<li>小型テキスト分類器 $f_\theta$ を数エポックだけ学習。</li>
+<li>開発セットでの <strong>分類精度を Diversity Classification Score (DCScore)</strong> として採用。</li>
+</ol>
+<ul>
+<li><strong>高精度 = サンプルを容易に区別 ⇒ データが互いに異質で多様</strong></li>
+<li><strong>低精度 = 似た文が多く誤分類 ⇒ 同質的</strong></li>
+</ul>
+<p><strong>利点</strong> 語彙・構文・意味差分をまとめて反映しつつ計算コストを抑制（学習回数はごく少ない）。<br>
+<strong>欠点</strong> 分類器設計・学習ハイパラに感度がある。</p>
+<hr>
+<h2 id="まとめ">まとめ</h2>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>捉える多様性</th>
+<th>軽量</th>
+<th>意味情報</th>
+<th>大規模データ適性</th>
+<th>主な弱点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>distinct-N</td>
+<td>表層 n-gram</td>
+<td>◎</td>
+<td>✕</td>
+<td>◎</td>
+<td>長文補正が必要</td>
+</tr>
+<tr>
+<td>Self-BLEU</td>
+<td>表層＋語順</td>
+<td>△</td>
+<td>✕</td>
+<td>○ (要サンプリング)</td>
+<td>計算 $O(N^2)$</td>
+</tr>
+<tr>
+<td>Diversity Coefficient</td>
+<td>概念・タスク</td>
+<td>○</td>
+<td>◎</td>
+<td>◎</td>
+<td>Task2Vec 依存</td>
+</tr>
+<tr>
+<td>LLM Cluster Score</td>
+<td>トピック分布</td>
+<td>○</td>
+<td>◎</td>
+<td>◎</td>
+<td>クラスタ数選定</td>
+</tr>
+<tr>
+<td>DCScore</td>
+<td>サンプル識別難度</td>
+<td>△</td>
+<td>◎</td>
+<td>○</td>
+<td>分類器依存</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>高速スクリーニング</strong> → distinct-N, Self-BLEU</li>
+<li><strong>意味レベルの網羅性</strong> → DC, LLM Cluster, DCScore</li>
+<li><strong>超大規模コーパス</strong> → DC, LLM Cluster（計算がバッチ並列化しやすい）</li>
+<li><strong>生成モデルの出力評価</strong> → distinct-N + Self-BLEU（表層反復チェック）</li>
+</ul>
+<p>これらの指標を併用し、表層と意味の両面からバランス良く評価することが、実際の LLM 学習データ選定では推奨されます。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper25/">EVALUATING THE DIVERSITY AND QUALITY OF LLM GENERATED CONTENT</a></li>
+    
+      <li><a href="/posts/paper/paper24/">Texygen: A Benchmarking Platform for Text Generation Models</a></li>
+    
+      <li><a href="/posts/paper/paper23/">Measuring Diversity in Synthetic Datasets</a></li>
+    
+      <li><a href="/posts/paper/paper22/">Beyond Scale: The Diversity Coefficient as a Data Quality Metric for Variability in Natural Language Data</a></li>
+    
+      <li><a href="/posts/paper/paper21/">On the Diversity of Synthetic Data and its Impact on Training Large Language Models</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site/pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
