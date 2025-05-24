@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8" />
 <title>Posts</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
 
 
 <script
@@ -16,11 +27,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="http://localhost:1313/index.xml"
+  href="https://www.if-blog.site/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
 
 
 
@@ -190,16 +201,20 @@
       
       
         <article class="post-preview">
-  <a href="http://localhost:1313/posts/nlp/word2vec-output-word/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-ga/">
     <h2 class="post-title">
-      word2vecでベクトルから単語を出力する
+      Hugoにgoogle analyticsを導入する
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 …</p>
-    <a href="http://localhost:1313/posts/nlp/word2vec-output-word/" class="post-read-more"></a>
+    <p>Hugoにgoogle analytics(ga)を導入しようと思ったら意外と簡単だった。
+まず、gaアカウントを作成。
+config.tomlに
+googleAnalytics = &#34;{ga tracking ID}&#34; を設定するだけ。
+</p>
+    <a href="https://www.if-blog.site/posts/hugo/hugo-ga/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -207,16 +222,16 @@
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+      <a href="https://www.if-blog.site//tags/google-analytics/">google-analytics</a>&nbsp;
     
-      <a href="http://localhost:1313//tags/word2vec/">word2vec</a>&nbsp;
+      <a href="https://www.if-blog.site//tags/hugo/">hugo</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
+  >&nbsp;2018-10-16
   
 </div>
 
@@ -225,17 +240,19 @@
 
       
         <article class="post-preview">
-  <a href="http://localhost:1313/posts/nlp/diversity-neural-conversation-model/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/">
     <h2 class="post-title">
-      ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数
+      Hugoのディレクトリ構造やデプロイ方法の備忘録
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>Qiitaに投稿した記事、kerasでHREDを構築してみるの記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
-A Diversity-Promoting Objective Function for Neural Conversation Models …</p>
-    <a href="http://localhost:1313/posts/nlp/diversity-neural-conversation-model/" class="post-read-more"></a>
+    <p>久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。
+ディレクトリ 基本的なディレクトリは以下
+markdownを書いたりと普段触るのはcontentディレクトリになる。
+デプロイ後生成されるpublicディレクトリはサー …</p>
+    <a href="https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -243,20 +260,14 @@ A Diversity-Promoting Objective Function for Neural Conversation Models …</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="http://localhost:1313//tags/seq2seq/">seq2seq</a>&nbsp;
-    
-      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="http://localhost:1313//tags/%E8%AB%96%E6%96%87/">論文</a>&nbsp;
+      <a href="https://www.if-blog.site//tags/hugo/">hugo</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
+  >&nbsp;2018-10-16
   
 </div>
 
@@ -265,17 +276,19 @@ A Diversity-Promoting Objective Function for Neural Conversation Models …</p>
 
       
         <article class="post-preview">
-  <a href="http://localhost:1313/posts/others/tex-notation-numerical-formula/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-code-highlight/">
     <h2 class="post-title">
-      機械学習系の数式によく出てくる記号などのTex表記まとめ
+      Hugoの記事でコードハイライトする
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>すぐ忘れるのでTex表記をまとめて起きます。 Qiitaが使っているというEasy Copy MathJaxを用います。
-読み 表示 tex デルタ $\Delta$ \Delta ナブラ $\nabla$ \nabla 白抜き $\mathbb E[\cdot]$ \mathbb E[\cdot] …</p>
-    <a href="http://localhost:1313/posts/others/tex-notation-numerical-formula/" class="post-read-more"></a>
+    <p>Hugoでコードのシンタックスハイライトする場合のメモ
+Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。
+Hugo自体の機能使う Hugo 0.28からGo機能でシンタックスハイライトが可能になった。
+Syntax Highlighting …</p>
+    <a href="https://www.if-blog.site/posts/hugo/hugo-code-highlight/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -283,14 +296,14 @@ A Diversity-Promoting Objective Function for Neural Conversation Models …</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="http://localhost:1313//tags/tex/">tex</a>&nbsp;
+      <a href="https://www.if-blog.site//tags/hugo/">hugo</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
+  >&nbsp;2018-10-16
   
 </div>
 
@@ -299,18 +312,18 @@ A Diversity-Promoting Objective Function for Neural Conversation Models …</p>
 
       
         <article class="post-preview">
-  <a href="http://localhost:1313/posts/nlp/nlp-parse-overview-1/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-add-site-description/">
     <h2 class="post-title">
-      自然言語処理シリーズの構文解析を読む（概要）
+      Hugoの記事にdescriptionを追加する
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>はじめに 自然言語処理シリーズの構文解析を読んでいきます。
-全体の概要把握:1時間 中身の細かいとこ：3時間 という感じで読み進めて行こうと思います。
-概要 構文解析を用いることで、単語の並びの背後にある文法的な構造を明らかにすることができる。構文解析を学ぶことで、自然言語処理で用いられる様々な先人 …</p>
-    <a href="http://localhost:1313/posts/nlp/nlp-parse-overview-1/" class="post-read-more"></a>
+    <p>Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
+html側で次のように書くと、markdownに書いたdescriptionが参照できます。
+{{ …</p>
+    <a href="https://www.if-blog.site/posts/hugo/hugo-add-site-description/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -318,16 +331,14 @@ A Diversity-Promoting Objective Function for Neural Conversation Models …</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="http://localhost:1313//tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/">構文解析</a>&nbsp;
+      <a href="https://www.if-blog.site//tags/hugo/">hugo</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
+  >&nbsp;2018-10-16
   
 </div>
 
@@ -336,23 +347,19 @@ A Diversity-Promoting Objective Function for Neural Conversation Models …</p>
 
       
         <article class="post-preview">
-  <a href="http://localhost:1313/posts/nlp/char-to-sentences-fractal/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/">
     <h2 class="post-title">
-      文字から文章へのフラクタル性
-      
-      <span class="draft-tag">(Draft)</span>
+      Hugoの記事に画像を載せる
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>文を生成させたいし、文の集合である文章を書かせたいのだが、そのポエム
-文字の集まりが単語になり、単語の集まりが文になり、文の集まりが文章になる。
-文字→単語→文→文章
-ようは文字から文章間にはフラクタル性のようなものがあると僕は思っている。
-なぜこのようなことを考える必要があるかというと、
-文字、単 …</p>
-    <a href="http://localhost:1313/posts/nlp/char-to-sentences-fractal/" class="post-read-more"></a>
+    <p>Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
+画像を配置するディクトリを以下のように作っておく。
+{root}/content/post/images/ 以下のように記述すると表示できる。
+{{&lt; figure …</p>
+    <a href="https://www.if-blog.site/posts/hugo/hugo-on-image/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -360,16 +367,14 @@ A Diversity-Promoting Objective Function for Neural Conversation Models …</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="http://localhost:1313//tags/%E3%83%9D%E3%82%A8%E3%83%A0/">ポエム</a>&nbsp;
+      <a href="https://www.if-blog.site//tags/hugo/">hugo</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
+  >&nbsp;2018-10-16
   
 </div>
 
@@ -378,16 +383,18 @@ A Diversity-Promoting Objective Function for Neural Conversation Models …</p>
 
       
         <article class="post-preview">
-  <a href="http://localhost:1313/posts/nlp/char-vec/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/">
     <h2 class="post-title">
-      文字をベクトル化する
+      Hugoの記事を更新順にソートする
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>文章生成にchar-level lstmを使ってみる。英語ではうまくいっている例があるが日本語では難しい。これは、日本語は英語に比べ文字数が多く、ニューラルネットワークの次元数(パラメータ数)が増やす必要があるのが原因の1つだと思う。また、次元削減のため、日本語では文章を単語に区切り単語をベクトル化 …</p>
-    <a href="http://localhost:1313/posts/nlp/char-vec/" class="post-read-more"></a>
+    <p>Hugoの記事を更新順にソートするメモです。
+まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、Lastmodで更新時刻が取得できるのでそれを使います。
+そのほかにもgitから情報が取得できま …</p>
+    <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -395,18 +402,14 @@ A Diversity-Promoting Objective Function for Neural Conversation Models …</p>
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+      <a href="https://www.if-blog.site//tags/hugo/">hugo</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
+  >&nbsp;2018-10-16
   
 </div>
 
@@ -415,18 +418,19 @@ A Diversity-Promoting Objective Function for Neural Conversation Models …</p>
 
       
         <article class="post-preview">
-  <a href="http://localhost:1313/posts/python/colaboratory-google-drive-mount/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-git-pages/">
     <h2 class="post-title">
-      Google ColaboratoryでGoogle driveをマウントする
+      HugoをGitHub Pagesで公開する
       
     </h2>   
   </a>
 
   <div class="post-entry">
-    <p>久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
-before 認証
-!apt-get install -y -qq software-properties-common python-software-properties …</p>
-    <a href="http://localhost:1313/posts/python/colaboratory-google-drive-mount/" class="post-read-more"></a>
+    <p>GitHub Pagesを使ってHugoを公開する手順をメモ
+やりたいこととしては、
+Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定 の3つです。
+GitHub Pagesで公開 まずは、Hugoのプロジェクト …</p>
+    <a href="https://www.if-blog.site/posts/hugo/hugo-git-pages/" class="post-read-more"></a>
   </div>
 
   <div class="postmeta">
@@ -434,130 +438,14 @@ before 認証
   <i class="fas fa-tag" style="color:#111111"></i>
   
     
-      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+      <a href="https://www.if-blog.site//tags/hugo/">hugo</a>&nbsp;
     
   
 </div>
 
 <div class="meta-post" style="display:inline-block; float: right;">
   <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-23
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="http://localhost:1313/posts/edgwbs/book-reports-firebase/">
-    <h2 class="post-title">
-      Firebaseを使ってwebアプリを公開した
-      
-      <span class="draft-tag">(Draft)</span>
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>firebaseのみで三行で読書感想文をSNSにシェアできるwebアプリケーションを作ってみました。
-画像
-構築の備忘録を残しておきます。
-今回使ったのは、以下のサービス
-hosting authentication storage database function authenticateは以前 …</p>
-    <a href="http://localhost:1313/posts/edgwbs/book-reports-firebase/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="http://localhost:1313//tags/firebase/">firebase</a>&nbsp;
-    
-      <a href="http://localhost:1313//tags/webapp/">WebApp</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-22
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="http://localhost:1313/posts/edgwbs/book-reports-storage-firestore/">
-    <h2 class="post-title">
-      Vue.jsからFirebase StorageとDatabaseを使う
-      
-      <span class="draft-tag">(Draft)</span>
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>はじめに Authentication、Hostingに続いて、Vue.jsからFirebaseのCloud Storage、FireStoreをつかってみました。
-それぞれの、簡単な使い方をまとめておきます。すべて同じプロジェクト上のものを利用するので、連携はとても楽でした。
-ざっくりとした流れは …</p>
-    <a href="http://localhost:1313/posts/edgwbs/book-reports-storage-firestore/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="http://localhost:1313//tags/webapp/">WebApp</a>&nbsp;
-    
-      <a href="http://localhost:1313//tags/firebase/">firebase</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-22
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="http://localhost:1313/posts/emacs/emacs-keybind/">
-    <h2 class="post-title">
-      keybind
-      
-      <span class="draft-tag">(Draft)</span>
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p> (define-key KEYMAP KEY &#39;COMMAND) KEYMAPにglobal-mapを指定したものは、以下と同義となる。
-(global-set-key KEY COMMAND) </p>
-    <a href="http://localhost:1313/posts/emacs/emacs-keybind/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="http://localhost:1313//tags/emacs/">emacs</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-03-23
+  >&nbsp;2018-10-16
   
 </div>
 
@@ -572,17 +460,11 @@ hosting authentication storage database function authenticateは以前 …</p>
       <ul class="pager">
         
           <li class="previous">
-            <a href="http://localhost:1313/posts/page/9/"
+            <a href="https://www.if-blog.site/posts/page/9/"
               ><i class="fas fa-chevron-left"></i></a
             >
           </li>
         
-        
-          <li class="next">
-            <a href="http://localhost:1313/posts/page/11/"
-              ><i class="fas fa-chevron-right"></i
-            ></a>
-          </li>
         
       </ul>
     
@@ -601,12 +483,12 @@ hosting authentication storage database function authenticateは以前 …</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="http://localhost:1313//pages/about">if_004</a>
+      <a href="https://www.if-blog.site//pages/about">if_004</a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       <i class="fas fa-moon" id="dark-mode-toggle"></i>

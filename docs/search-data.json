@@ -5,7 +5,7 @@
         
             {
                 "id": 0,
-                "href": "http://localhost:1313/posts/paper/paper25/",
+                "href": "https://www.if-blog.site/posts/paper/paper25/",
                 "title": "EVALUATING THE DIVERSITY AND QUALITY OF LLM GENERATED CONTENT",
                 "section": "posts",
                 "date" : "2025.05.21",
@@ -15,7 +15,7 @@
         ,
             {
                 "id": 1,
-                "href": "http://localhost:1313/posts/paper/paper24/",
+                "href": "https://www.if-blog.site/posts/paper/paper24/",
                 "title": "Texygen: A Benchmarking Platform for Text Generation Models",
                 "section": "posts",
                 "date" : "2025.05.21",
@@ -25,7 +25,7 @@
         ,
             {
                 "id": 2,
-                "href": "http://localhost:1313/posts/chats/chat2/",
+                "href": "https://www.if-blog.site/posts/chats/chat2/",
                 "title": "データセット評価指標",
                 "section": "posts",
                 "date" : "2025.05.20",
@@ -35,17 +35,7 @@
         ,
             {
                 "id": 3,
-                "href": "http://localhost:1313/posts/paper/paper23_a/",
-                "title": "Measuring Diversity in Synthetic Datasets",
-                "section": "posts",
-                "date" : "2025.05.20",
-                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2502.08512\nhttps://github.com/bluewhalelab/dcscore\nサマリー 大規模言語モデル（LLM）が生成する synthetic datasets の多様性を定量的に測定するため，著者らは DCScore を提案した。DCScore は「多様性をサンプル分類タスクとして扱う」という視点を導入し，\n各サンプル間の相互関係を Holistic にとらえる， effective number／identical samples／symmetry／monotonicity の 4 つの Axioms を理論的に満たす， 非線形カーネル使用時に従来法（VendiScore など）より 低計算コストを達成する， という特長を示した。実験では生成温度 τg・人間評価・GPT-4 評価との高い相関を確認し，多数のデータセットでベースラインを凌駕した。 主要なテーマと重要なアイデア テーマ 重要なアイデア・数式 分類視点の多様性評価 多様性評価を n-クラス分類とみなし，サンプル T̃i を埋め込み Φ で表現し$H=\\Phi({T̃_i}_{i=1}^n),;K=\\text{Kernel}(H)$ 確率行列 P の構築 カーネル行列の各行を温度付き Softmax で正規化し $$P(c=c_j\\mid T̃_i)=\\frac{\\exp\\!\\bigl(K[i,j]/\\tau\\bigr)}{\\sum_j\\exp\\!\\bigl(K[i,j]/\\tau\\bigr)}$$ DCScore の定義 分類結果の自己一致度をトレースで集約$$\\text{DCScore}(D)=\\mathrm{tr}(P)=\\sum_{i=1}^n P[i,i]$$ 理論的保証 上式により DCScore は 1 ≤ DCScore ≤ n を満たし，4 つの Axioms を証明済み。 計算量削減 〈一般カーネル〉で $\\mathcal O(n^2,O_\\text{kernel}+n^2)$ となり，VendiScore の $\\mathcal O(n^2,O_\\text{kernel}+n^3)$ を大幅に短縮。 貢献 DCScore の提案 ― 多様性評価をサンプル分類タスクとして定式化し，相互関係を直接捉える新指標を提示。 公理的妥当性の証明 ― effective number・identical samples・symmetry・monotonicity の各公理を満たすことを理論的に示した。 計算効率の向上 ― 非線形カーネルで VendiScore より低い計算量を解析・実証し，大規模データセットにも適用可能とした。 多面的実証 ― 生成温度 τg・人間判断・GPT-4 判断との強相関，および下流タスク性能向上を多数の実験で確認し，指標としての有効性を裏付けた。 "
-            }
-    
-        ,
-            {
-                "id": 4,
-                "href": "http://localhost:1313/posts/paper/paper23_b/",
+                "href": "https://www.if-blog.site/posts/paper/paper23_b/",
                 "title": "Measuring Diversity in Synthetic Datasets",
                 "section": "posts",
                 "date" : "2025.05.20",
@@ -54,8 +44,8 @@
     
         ,
             {
-                "id": 5,
-                "href": "http://localhost:1313/posts/hugo/hugo-katex/",
+                "id": 4,
+                "href": "https://www.if-blog.site/posts/hugo/hugo-katex/",
                 "title": "Hugoでkatexを使った数式が表示されなくて困った",
                 "section": "posts",
                 "date" : "2025.05.20",
@@ -64,8 +54,8 @@
     
         ,
             {
-                "id": 6,
-                "href": "http://localhost:1313/posts/paper/paper22/",
+                "id": 5,
+                "href": "https://www.if-blog.site/posts/paper/paper22/",
                 "title": "Beyond Scale: The Diversity Coefficient as a Data Quality Metric for Variability in Natural Language Data",
                 "section": "posts",
                 "date" : "2025.05.19",
@@ -74,8 +64,8 @@
     
         ,
             {
-                "id": 7,
-                "href": "http://localhost:1313/posts/paper/paper21/",
+                "id": 6,
+                "href": "https://www.if-blog.site/posts/paper/paper21/",
                 "title": "On the Diversity of Synthetic Data and its Impact on Training Large Language Models",
                 "section": "posts",
                 "date" : "2025.05.19",
@@ -84,8 +74,8 @@
     
         ,
             {
-                "id": 8,
-                "href": "http://localhost:1313/posts/paper/paper20/",
+                "id": 7,
+                "href": "https://www.if-blog.site/posts/paper/paper20/",
                 "title": "Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.05.18",
@@ -94,18 +84,8 @@
     
         ,
             {
-                "id": 9,
-                "href": "http://localhost:1313/posts/chats/chat1/",
-                "title": "重みのエントロピー分布",
-                "section": "posts",
-                "date" : "2025.05.18",
-                "body": "要約 重み分布のエントロピーを「パラメータ空間の自由度」の尺度として捉え、\nエントロピーの定義と計算法（ヒストグラム法・微分エントロピー／Laplace 近似） 学習過程でのエントロピー変動と Loss の関係 大規模 GPT／Llama 系で Dropout 0・L2 正則化・LR アニーリングが採用される理由 小型 (≈0.5 B) モデルで「高エントロピーを維持しつつ Loss を下げる」手法と、 そのために必要なデータ多様性の評価指標 ――を精確に整理した技術メモ。 ターゲット 0.5 B 級 LLM の事前学習／微調整を検討する ML エンジニア モデル圧縮・ベイズ的正則化・データ選別に関心がある研究者 重みエントロピーと汎化・計算効率のトレードオフを理解したい人 重みエントロピーと学習動態 トピック 要点 定義 シャノンエントロピー（離散化後） $H=-\\sum p_i\\log_2 p_i$ ／ 微分エントロピー $h=\\tfrac12\\log_2!\\bigl((2\\pi e)^d\\det\\Sigma\\bigr)$ 計算法 - ヒストグラム法：256 ビン量子化 → 平均 bits/weight- Laplace 近似：Hessian 逆行列で共分散推定 学習での挙動 初期低→中盤増→終盤横ばい/減 が典型だが、ReLU 大規模ネットでは圧縮相が観測されないケースも報告 Loss と H の非単調性 Loss↓でも H↑, H→一定, H↓ の全パターンが起こり得る（正則化・学習率・データ難度に依存） LLM 標準レシピ Dropout 0＋L2＋LR アニーリング＝学習安定＆高速化優先。潜在自由度はモデル規模で既に過剰 高エントロピー維持手法とデータ多様性評価 高エントロピー維持・Loss 低減の代表手法 SGLD / Entropy-SGD：勾配に温度付きノイズを付加し広い事後を探索 SWA / SWAG：学習後期の重みを平均化（共分散も保存）→ 1-pass ベイズ近似 MoE / Adapter 分岐：実行経路ごとに重みを切替え自由度を確保 データ多様性評価指標（推奨 3 系統併用） 系統 代表指標 コメント 語彙 TTR・MTLD・n-gram Shannon Entropy・Distinct-n テキスト長補正済み指標を推奨 意味 Sentence-BERT 距離平均／Self-BLEU、Task2Vec Diversity Coefficient、DCScore embed 空間の分散を定量化 構造・トピック BERTopic トピック数＋Entropy、依存構造 n-gram カバレッジ、Hill 数 文体・構文の偏り検出 実務フロー（最小セット）\n乱抽出 10 M token → TTR・Distinct-4・Shannon H を計測 embed 距離平均＋Task2Vec Diversity BERTopic でトピック Entropy 高スコア部分を優先抽出し 0.5 B モデルを訓練 まとめ 重みエントロピーは「必要ビット長＝自由度」の客観指標\nLoss 減少と Entropy の動きは独立で、正則化・学習率・データ難度に左右される\nGPT/Llama の標準設定は「過剰自由度より安定学習」を優先\n小型モデルで性能を維持するには\n高密度・高多様性データを選別し、 SGLD／SWAG などで事後分布を広げる の両輪が鍵となる。 "
-            }
-    
-        ,
-            {
-                "id": 10,
-                "href": "http://localhost:1313/posts/paper/paper19/",
+                "id": 8,
+                "href": "https://www.if-blog.site/posts/paper/paper19/",
                 "title": "Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.05.17",
@@ -114,8 +94,8 @@
     
         ,
             {
-                "id": 11,
-                "href": "http://localhost:1313/posts/paper/paper17-2/",
+                "id": 9,
+                "href": "https://www.if-blog.site/posts/paper/paper17-2/",
                 "title": "TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.05.17",
@@ -124,18 +104,8 @@
     
         ,
             {
-                "id": 12,
-                "href": "http://localhost:1313/posts/paper/paper17/",
-                "title": "TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)",
-                "section": "posts",
-                "date" : "2025.05.17",
-                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2410.04717\nどんなもの 本論文は、大規模言語モデル (LLM) の訓練と評価におけるコスト高騰問題に対処するため、簡略化された言語環境を用いた小型言語モデル (LM) の訓練・評価手法を提案していま す。 簡略化された言語環境とは、常識的な知識やコミュニケーション能力の基礎を平易な形で提示することで、LM の学習効率を高め、効果的な訓練と評価に必要なモデルサイズ とデータ量を削減することを目指したものです。 具体的には、ノイズを最小限に抑え、語彙サイズを削減しながら、ジャンル特有の言語パターンを維持するテキストデータの改訂パイプラインを提案し、それに基づいてLEANER-Pretrain、LEANER-Instruct、LEANER-GLUE、LEANER-Evalという4つのデータセット群を作成しています。\n先行研究と比べてどこがすごいの？ 先行研究では、小型LMのためのデータセット作成において、言語データセットのノイズの削減と複雑さの軽減の両方を達成できていませんでした。一部は子供向け物語などに限定された単一テーマのデータセットしか提供しておらず、モデルの多様なスタイルや知識への露出が制限されていました。また、他のデータセットは、コンピュータが効率的に処理できる学習データと、人間が処理できるデータ（口語表現、インターネットからのテキストノイズ、一貫性のない表現など）の違いを考慮していませんでした。\n本研究では、「ノイズなし、低複雑性」という原則を提案し、従来のLM訓練データからTinyHelenという小型LMを訓練するためのLEANERデータセット群を生成するアルゴリズムを適 用しています。これにより、従来のLM訓練データセットの構成と評価ベンチマークの意図を維持しながら、言語的に大幅に簡素化された、最初のデータセット群が作成されました。\n技術や手法のきもはどこにある？ 本研究の核心は、テキストデータの改訂パイプラインにあります。このパイプラインは、以下の3つの側面に焦点を当てています。\n必須の構文・意味的特徴の保持: テキストの重要な言語学的パターンを維持します。 無関係情報の削除: ウェブページなどに含まれるスクランブルされたテキスト、リンク、広告などの不要な要素を除去します。 世界記述の簡素化: よりコンパクトな語彙を用いて元のコンテンツを言い換え、複雑なアイデアをより単純な言葉で表現することで、テキストの情報エントロピーを削減し ます。 このパイプラインは、大規模言語モデル (LLM) を利用して実装され、7100万トークン (71M) のLEANER-Pretrain、700万トークン (7M) のLEANER-Instruct、簡略化されたGLUEベン チマークであるLEANER-GLUE、命令遵守能力を評価するためのLEANER-Evalというデータセット群が生成されます。 Appendix Bでは、言語データセットの複雑さのの下限がテキスト分布の情報エントロピーによって決定されることが示されています。\nどうやって有効だと検証した？ 論文では3つの実験が行われています。\n実験1 (EXP1): 異なるLMアーキテクチャ（BERT、LLAMA、XLNET、MAMBA）のダウンサイズ版を、言語モデリングとダウンストリームタスクで比較。モデルサイズと事前学習デ ータは一定に保たれています。LEANER-Pretrainで事前学習したモデルは、元のより大きなコーパスで学習したモデルよりもダウンストリームタスクで優れた性能を示しました。\n実験2 (EXP2): 異なる事前学習データと命令調整データの組み合わせで訓練された小型LMの命令遵守能力を評価。LEANERデータセットで事前学習および命令調整されたモデルは、コントロールモデルと比較して、命令に従う際の文法、一貫性、特異性において改善を示しました。\n実験3 (EXP3): 小型プロキシモデルを用いたLM事前学習におけるカリキュラム学習戦略の探求。文の長さ、LM自己ペース損失、プロキシLM損失などの指標を用いて、LMのperplexityに基づいてトレーニングインスタンスを反復的に更新することで、トレーニングステップと必要なデータの両方を削減できることが示されました。\n議論はあるか 命令遵守能力の限界: 71MトークンのLEANER-Pretrainでは、効果的に命令遵守能力を示すLMを訓練するには不十分であることが示されました。より大規模なデータセットが必要となる可能性があります。\nLLMによるバイアス: LEANERデータセットはLLMを用いて作成されているため、LLM固有のバイアス（知識のカットオフや社会的バイアスなど）が導入されている可能性があり ます。より多様なプロンプトを使用することで、これらのバイアスを軽減できる可能性があります。\nモデルアーキテクチャの比較: 実験1では、モデルサイズと事前学習データを制御した上で、異なるLMアーキテクチャの学習効率を比較していますが、より大規模なモデルやデータセットを用いた検証が必要でしょう。\nカリキュラム学習戦略: 実験3では、簡素化された言語環境下でのカリキュラム学習戦略の効果を示していますが、より複雑な言語環境への適用可能性についてはさらなる研究が必要です。\n全体として、本論文は小型LMの訓練・評価のための新しいアプローチを提案し、その有効性を示していますが、さらなる研究によって、より大規模なモデルや複雑な言語環境への適用可能性、バイアス問題の解決などが求められます。\n"
-            }
-    
-        ,
-            {
-                "id": 13,
-                "href": "http://localhost:1313/posts/paper/paper18/",
+                "id": 10,
+                "href": "https://www.if-blog.site/posts/paper/paper18/",
                 "title": "Towards Data-Efficient Language Models: A Child-Inspired Approach to Language Learning (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.05.17",
@@ -144,8 +114,8 @@
     
         ,
             {
-                "id": 14,
-                "href": "http://localhost:1313/posts/paper/paper16/",
+                "id": 11,
+                "href": "https://www.if-blog.site/posts/paper/paper16/",
                 "title": "Language Model Can Listen While Speaking (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.18",
@@ -154,8 +124,8 @@
     
         ,
             {
-                "id": 15,
-                "href": "http://localhost:1313/posts/paper/paper13/",
+                "id": 12,
+                "href": "https://www.if-blog.site/posts/paper/paper13/",
                 "title": "MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.18",
@@ -164,8 +134,8 @@
     
         ,
             {
-                "id": 16,
-                "href": "http://localhost:1313/posts/paper/paper10/",
+                "id": 13,
+                "href": "https://www.if-blog.site/posts/paper/paper10/",
                 "title": "SentenceVAE: Enable Next-sentence Prediction for Large Language Models with Faster Speed, Higher Accuracy and Longer Context (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.18",
@@ -174,8 +144,8 @@
     
         ,
             {
-                "id": 17,
-                "href": "http://localhost:1313/posts/paper/paper15/",
+                "id": 14,
+                "href": "https://www.if-blog.site/posts/paper/paper15/",
                 "title": "Small Language Models (SLMs) Can Still Pack a Punch: A survey (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.18",
@@ -184,8 +154,8 @@
     
         ,
             {
-                "id": 18,
-                "href": "http://localhost:1313/posts/paper/paper14/",
+                "id": 15,
+                "href": "https://www.if-blog.site/posts/paper/paper14/",
                 "title": "Tensor Product Attention Is All You Need (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.18",
@@ -194,8 +164,8 @@
     
         ,
             {
-                "id": 19,
-                "href": "http://localhost:1313/posts/paper/paper11/",
+                "id": 16,
+                "href": "https://www.if-blog.site/posts/paper/paper11/",
                 "title": "Titans: Learning to Memorize at Test Time (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.18",
@@ -204,8 +174,8 @@
     
         ,
             {
-                "id": 20,
-                "href": "http://localhost:1313/posts/paper/paper12/",
+                "id": 17,
+                "href": "https://www.if-blog.site/posts/paper/paper12/",
                 "title": "Transformer2 : Self-adaptive LLMs (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.18",
@@ -214,8 +184,8 @@
     
         ,
             {
-                "id": 21,
-                "href": "http://localhost:1313/posts/paper/paper9/",
+                "id": 18,
+                "href": "https://www.if-blog.site/posts/paper/paper9/",
                 "title": "Phi-4 Technical Report (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.11",
@@ -224,8 +194,8 @@
     
         ,
             {
-                "id": 22,
-                "href": "http://localhost:1313/posts/paper/paper8/",
+                "id": 19,
+                "href": "https://www.if-blog.site/posts/paper/paper8/",
                 "title": "Can LLMs Design Good Questions Based on Context? (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.11",
@@ -234,8 +204,8 @@
     
         ,
             {
-                "id": 23,
-                "href": "http://localhost:1313/posts/paper/paper7/",
+                "id": 20,
+                "href": "https://www.if-blog.site/posts/paper/paper7/",
                 "title": "rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.11",
@@ -244,18 +214,8 @@
     
         ,
             {
-                "id": 24,
-                "href": "http://localhost:1313/posts/paper/paper6/",
-                "title": "A Comprehensive Survey of Compression Algorithms for Language Models (AI論文要約)",
-                "section": "posts",
-                "date" : "2025.01.02",
-                "body": "AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。\nhttps://arxiv.org/abs/2401.15347\n"
-            }
-    
-        ,
-            {
-                "id": 25,
-                "href": "http://localhost:1313/posts/paper/paper5/",
+                "id": 21,
+                "href": "https://www.if-blog.site/posts/paper/paper5/",
                 "title": "Fact-aware Sentence Split and Rephrase with Permutation Invariant Training (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.02",
@@ -264,8 +224,8 @@
     
         ,
             {
-                "id": 26,
-                "href": "http://localhost:1313/posts/paper/paper4/",
+                "id": 22,
+                "href": "https://www.if-blog.site/posts/paper/paper4/",
                 "title": "Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.02",
@@ -274,8 +234,8 @@
     
         ,
             {
-                "id": 27,
-                "href": "http://localhost:1313/posts/paper/paper3/",
+                "id": 23,
+                "href": "https://www.if-blog.site/posts/paper/paper3/",
                 "title": "Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.02",
@@ -284,8 +244,8 @@
     
         ,
             {
-                "id": 28,
-                "href": "http://localhost:1313/posts/paper/paper2/",
+                "id": 24,
+                "href": "https://www.if-blog.site/posts/paper/paper2/",
                 "title": "Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.02",
@@ -294,8 +254,8 @@
     
         ,
             {
-                "id": 29,
-                "href": "http://localhost:1313/posts/paper/paper1/",
+                "id": 25,
+                "href": "https://www.if-blog.site/posts/paper/paper1/",
                 "title": "Mechanistic Unlearning: Robust Knowledge Unlearning and Editing via Mechanistic Localization(AI論文要約)",
                 "section": "posts",
                 "date" : "2025.01.02",
@@ -304,8 +264,8 @@
     
         ,
             {
-                "id": 30,
-                "href": "http://localhost:1313/posts/nlp/mixture_of_experts_sample/",
+                "id": 26,
+                "href": "https://www.if-blog.site/posts/nlp/mixture_of_experts_sample/",
                 "title": "Mixture of expertsのサンプル実装",
                 "section": "posts",
                 "date" : "2023.12.16",
@@ -314,8 +274,8 @@
     
         ,
             {
-                "id": 31,
-                "href": "http://localhost:1313/posts/nlp/hf_generation_wrap/",
+                "id": 27,
+                "href": "https://www.if-blog.site/posts/nlp/hf_generation_wrap/",
                 "title": "huggingfaceのgenerationの関数をtorch modelから使えるようにしたい",
                 "section": "posts",
                 "date" : "2023.12.05",
@@ -324,8 +284,8 @@
     
         ,
             {
-                "id": 32,
-                "href": "http://localhost:1313/posts/nlp/transformer_any_architecture/",
+                "id": 28,
+                "href": "https://www.if-blog.site/posts/nlp/transformer_any_architecture/",
                 "title": "llama2のアーキテクチャを変更してpre trainingしてみる",
                 "section": "posts",
                 "date" : "2023.12.05",
@@ -334,8 +294,8 @@
     
         ,
             {
-                "id": 33,
-                "href": "http://localhost:1313/posts/nlp/hf_ds_upload/",
+                "id": 29,
+                "href": "https://www.if-blog.site/posts/nlp/hf_ds_upload/",
                 "title": "複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ",
                 "section": "posts",
                 "date" : "2023.11.21",
@@ -344,8 +304,8 @@
     
         ,
             {
-                "id": 34,
-                "href": "http://localhost:1313/posts/nlp/hf_dataloader_datacollator/",
+                "id": 30,
+                "href": "https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/",
                 "title": "HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める",
                 "section": "posts",
                 "date" : "2023.09.21",
@@ -354,8 +314,8 @@
     
         ,
             {
-                "id": 35,
-                "href": "http://localhost:1313/posts/nlp/xgen-jglue/",
+                "id": 31,
+                "href": "https://www.if-blog.site/posts/nlp/xgen-jglue/",
                 "title": "xgenでJGLUEを試す",
                 "section": "posts",
                 "date" : "2023.07.01",
@@ -364,8 +324,8 @@
     
         ,
             {
-                "id": 36,
-                "href": "http://localhost:1313/posts/nlp/calm_lora_quantize/",
+                "id": 32,
+                "href": "https://www.if-blog.site/posts/nlp/calm_lora_quantize/",
                 "title": "OpenCALM-7Bをloraで学習して、quantizeするまで",
                 "section": "posts",
                 "date" : "2023.05.22",
@@ -374,8 +334,8 @@
     
         ,
             {
-                "id": 37,
-                "href": "http://localhost:1313/posts/nlp/rinna_lora_ja/",
+                "id": 33,
+                "href": "https://www.if-blog.site/posts/nlp/rinna_lora_ja/",
                 "title": "loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す",
                 "section": "posts",
                 "date" : "2023.05.21",
@@ -384,8 +344,8 @@
     
         ,
             {
-                "id": 38,
-                "href": "http://localhost:1313/posts/nlp/rinna_3b_cpp/",
+                "id": 34,
+                "href": "https://www.if-blog.site/posts/nlp/rinna_3b_cpp/",
                 "title": "rinna 3Bをcppで動かす",
                 "section": "posts",
                 "date" : "2023.05.18",
@@ -394,28 +354,8 @@
     
         ,
             {
-                "id": 39,
-                "href": "http://localhost:1313/posts/nlp/redpajama_lora_start/",
-                "title": "RedPajamaをLoRaで日本語fine tuning",
-                "section": "posts",
-                "date" : "2023.05.09",
-                "body": "RedPajamaの3BをLoraでfine tuningしていく\nhttps://huggingface.co/togethercomputer/RedPajama-INCITE-Base-3B-v1\nfine tuning RedPajamaはgpt_neoxベースなので、このあたりを参考にしつつ調整する。\nhttps://github.com/tloen/alpaca-lora/blob/main/finetune.py\nhttps://github.com/satani99/alpaca-lora_gpt_neox_20b/blob/main/finetune.py\nパラメーターはこんな感じ\nlearning_rate: float = 3e-4 LORA_R=8 LORA_ALPHA=16 LORA_DROPOUT=0.05 日本語のデータセットはこれをありがたく使わせて頂く.\nhttps://huggingface.co/datasets/kunishou/databricks-dolly-15k-ja\n"
-            }
-    
-        ,
-            {
-                "id": 40,
-                "href": "http://localhost:1313/posts/nlp/lang_chain_agent/",
-                "title": "LangChainのAgentを調べる",
-                "section": "posts",
-                "date" : "2023.04.20",
-                "body": "LangChainにAgentsという機能がある。 AgentとはLLMを利用して、実行するactionとその順序を決定できる。\nhttps://python.langchain.com/en/latest/modules/agents/getting_started.html\nいまいちピンとこなかったので、コードを読んでみる\nTools toolには、Google Search APIやその他いくつかのAPIが指定できる\nhttps://python.langchain.com/en/latest/modules/agents/tools.html\nサンプル AgentとToolsを定義し、AgentExecutorに渡し、実行するという流れ\n## Agent agent = CustomAgent(llm_chain=llm_chain, tools=tools, verbose=True) ## Tools from langchain import Wikipedia from langchain.agents.react.base import DocstoreExplorer docstore=DocstoreExplorer(Wikipedia()) tools = [ Tool( name=\u0026#34;Search\u0026#34;, func=docstore.search, description=\u0026#34;searchに利用する\u0026#34; ), Tool( name=\u0026#34;Lookup\u0026#34;, func=docstore.lookup, description=\u0026#34;lookupに利用する\u0026#34; ) ] ## AgentExecutor agent_chain = AgentExecutor.from_agent_and_tools( agent=agent, tools=tools, verbose=True ) r = agent_chain.run(input=\u0026#34;日本の人口を教えて下さい\u0026#34;) print(\u0026#39;result\u0026#39;, r) コードをよむ AgentはReAct形式のpromptを扱う。 ReActは、Thought、Action、Observationをループさせ、LLMの出力の精度上げる手法\n今回は例として、ZeroShotAgentを見る。 Agentを継承したClassは他にもあるが、promptの作り方の実装が異なる感じっぽい。\n継承関係は以下\nBaseModel \u0026lt;- BaseSingleActionAgent \u0026lt;- Agent \u0026lt;- ZeroShotAgent promptはこんな感じ {input}にはユーザからの入力、{agent_scratchpad}にはagentからの入力が入る\nAnswer the following questions as best you can, but speaking as a pirate might speak. You have access to the following tools: Search: useful for when you need to answer questions about current events Use the following format: Question: the input question you must answer Thought: you should always think about what to do Action: the action to take, should be one of [Search] Action Input: the input to the action Observation: the result of the action ... (this Thought/Action/Action Input/Observation can repeat N times) Thought: I now know the final answer Final Answer: the final answer to the original input question Begin! Remember to speak as a pirate when giving your final answer. Use lots of \u0026#34;Args\u0026#34; Question: {input} {agent_scratchpad} langchain/agents/mrkl/prompt.py\n大まかな流れは、AgentExecutor._callを見るとわかる\nhttps://github.com/hwchase17/langchain/blob/master/langchain/agents/agent.py#L777\nshould_continueがTrueの間ループ\nループ数がmax_iterations(default=15)に到達するまでループ take_next_step ループを抜ける判定 take_next_step\nagent.plan 次のアクションを取り出す agent.plan "
-            }
-    
-        ,
-            {
-                "id": 41,
-                "href": "http://localhost:1313/posts/nlp/react_start/",
+                "id": 35,
+                "href": "https://www.if-blog.site/posts/nlp/react_start/",
                 "title": "VicunaでReActっぽいことを試してみる",
                 "section": "posts",
                 "date" : "2023.04.01",
@@ -424,8 +364,8 @@
     
         ,
             {
-                "id": 42,
-                "href": "http://localhost:1313/posts/nlp/rs-tokenizer/",
+                "id": 36,
+                "href": "https://www.if-blog.site/posts/nlp/rs-tokenizer/",
                 "title": "Rust TokenizerをC++から呼び出す",
                 "section": "posts",
                 "date" : "2023.03.31",
@@ -434,8 +374,8 @@
     
         ,
             {
-                "id": 43,
-                "href": "http://localhost:1313/posts/nlp/bloom_lora_start/",
+                "id": 37,
+                "href": "https://www.if-blog.site/posts/nlp/bloom_lora_start/",
                 "title": "BloomをLoRaで日本語finetuning",
                 "section": "posts",
                 "date" : "2023.03.20",
@@ -444,8 +384,8 @@
     
         ,
             {
-                "id": 44,
-                "href": "http://localhost:1313/posts/nlp/gpt_index_llama_index_start/",
+                "id": 38,
+                "href": "https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/",
                 "title": "LlamaIndex(GPTIndex)を触る",
                 "section": "posts",
                 "date" : "2023.03.04",
@@ -454,18 +394,8 @@
     
         ,
             {
-                "id": 45,
-                "href": "http://localhost:1313/posts/nlp/gpt_index_llama_index_start/",
-                "title": "Parameter-Efficient Fine-Tuning (PEFT)",
-                "section": "posts",
-                "date" : "2023.03.04",
-                "body": "Hugging FaceがParameter-Efficient Fine-Tuning (PEFT)を公開していたので、軽く調べる。\nhttps://github.com/huggingface/peft\nPEFT 巨大なLLMのすべてのweightを学習することなく、少数のパラメタを微調整することで、計算コストやリソースコストを削減する手法。\n現在、4つの手法がサポートされている\nLoRA Prefix Tuning P-Tuning Prompt Tuning LoRa(LOW-RANK ADAPTATION OF LARGE LANGUAGE MODELS) weightをSDVで分解し、分解したものを学習\nfacebook/OPTをfinetuningしたサンプル\nhttps://colab.research.google.com/drive/1jCkpikz0J2o20FBQmYmAGdiKmJGOMo-o?usp=sharing\n"
-            }
-    
-        ,
-            {
-                "id": 46,
-                "href": "http://localhost:1313/posts/hugo/hugo-render-block/",
+                "id": 39,
+                "href": "https://www.if-blog.site/posts/hugo/hugo-render-block/",
                 "title": "code blockにrefarenceをつける",
                 "section": "posts",
                 "date" : "2023.02.28",
@@ -474,8 +404,8 @@
     
         ,
             {
-                "id": 47,
-                "href": "http://localhost:1313/posts/nlp/flexgen_start/",
+                "id": 40,
+                "href": "https://www.if-blog.site/posts/nlp/flexgen_start/",
                 "title": "FlexGenで遊ぶ",
                 "section": "posts",
                 "date" : "2023.02.28",
@@ -484,8 +414,8 @@
     
         ,
             {
-                "id": 48,
-                "href": "http://localhost:1313/posts/nlp/huggingface-text-gen/",
+                "id": 41,
+                "href": "https://www.if-blog.site/posts/nlp/huggingface-text-gen/",
                 "title": "Huggingfaceのtext generation pipelineとtext2text generation pipeline",
                 "section": "posts",
                 "date" : "2023.02.06",
@@ -494,8 +424,8 @@
     
         ,
             {
-                "id": 49,
-                "href": "http://localhost:1313/posts/nlp/start-xglm-t5/",
+                "id": 42,
+                "href": "https://www.if-blog.site/posts/nlp/start-xglm-t5/",
                 "title": "xglmをquick start",
                 "section": "posts",
                 "date" : "2023.02.05",
@@ -504,8 +434,8 @@
     
         ,
             {
-                "id": 50,
-                "href": "http://localhost:1313/posts/nlp/start-flan-t5/",
+                "id": 43,
+                "href": "https://www.if-blog.site/posts/nlp/start-flan-t5/",
                 "title": "flan_t5をquick start",
                 "section": "posts",
                 "date" : "2023.02.04",
@@ -514,8 +444,8 @@
     
         ,
             {
-                "id": 51,
-                "href": "http://localhost:1313/posts/nlp/huggingface-tokenizer/",
+                "id": 44,
+                "href": "https://www.if-blog.site/posts/nlp/huggingface-tokenizer/",
                 "title": "Hugging Faceのtokenizerで迷ったのでまとめておく",
                 "section": "posts",
                 "date" : "2022.08.16",
@@ -524,8 +454,8 @@
     
         ,
             {
-                "id": 52,
-                "href": "http://localhost:1313/posts/nlp/huggingface-conv/",
+                "id": 45,
+                "href": "https://www.if-blog.site/posts/nlp/huggingface-conv/",
                 "title": "Hugging Faceのpipelineで会話モデルを動かす",
                 "section": "posts",
                 "date" : "2022.05.05",
@@ -534,8 +464,8 @@
     
         ,
             {
-                "id": 53,
-                "href": "http://localhost:1313/posts/typescript/react-render-prop-typescript/",
+                "id": 46,
+                "href": "https://www.if-blog.site/posts/typescript/react-render-prop-typescript/",
                 "title": "reactのrender propsをtypescriptでやる",
                 "section": "posts",
                 "date" : "2022.02.19",
@@ -544,8 +474,8 @@
     
         ,
             {
-                "id": 54,
-                "href": "http://localhost:1313/posts/typescript/typescript-oreilly/",
+                "id": 47,
+                "href": "https://www.if-blog.site/posts/typescript/typescript-oreilly/",
                 "title": "プログラミングTypeScript――スケールするJavaScriptアプリケーション開発",
                 "section": "posts",
                 "date" : "2021.12.26",
@@ -554,8 +484,8 @@
     
         ,
             {
-                "id": 55,
-                "href": "http://localhost:1313/posts/nlp/huggingface-doc/",
+                "id": 48,
+                "href": "https://www.if-blog.site/posts/nlp/huggingface-doc/",
                 "title": "Hugging Face Transformersのドキュメント読んだ",
                 "section": "posts",
                 "date" : "2021.12.09",
@@ -564,8 +494,8 @@
     
         ,
             {
-                "id": 56,
-                "href": "http://localhost:1313/posts/emacs/text-lint/",
+                "id": 49,
+                "href": "https://www.if-blog.site/posts/emacs/text-lint/",
                 "title": "emacsにtext-lintを導入する",
                 "section": "posts",
                 "date" : "2021.09.23",
@@ -574,18 +504,8 @@
     
         ,
             {
-                "id": 57,
-                "href": "http://localhost:1313/posts/typescript/typescript-init/",
-                "title": "とりあえずtypescriptを書きたいときのinit",
-                "section": "posts",
-                "date" : "2021.07.29",
-                "body": "typescript\nhttps://basarat.gitbook.io/typescript/nodejs\npackage.json npm init package.jsonのscriptに追加\n\u0026#34;start\u0026#34;:\u0026#34;./node_modules/.bin/ts-node ./src/index.ts\u0026#34; typescript npm install -D typescript npm install -D ts-node run src/index.tsを追加、npm run startで起動\nindex.ts\nconst main = () =\u0026gt; { console.log(\u0026#34;hello\u0026#34;) } main() jest npm i jest @types/jest ts-jest -D // jest.config.ts import type {Config} from \u0026#39;@jest/types\u0026#39;; // Sync object const config: Config.InitialOptions = { verbose: true, }; export default config; // Or async function export default async (): Promise\u0026lt;Config.InitialOptions\u0026gt; =\u0026gt; { return { verbose: true, }; }; https://jestjs.io/ja/docs/configuration\n"
-            }
-    
-        ,
-            {
-                "id": 58,
-                "href": "http://localhost:1313/posts/neuralnet/flax-jax/",
+                "id": 50,
+                "href": "https://www.if-blog.site/posts/neuralnet/flax-jax/",
                 "title": "Flaxに入門してみる",
                 "section": "posts",
                 "date" : "2021.07.25",
@@ -594,8 +514,8 @@
     
         ,
             {
-                "id": 59,
-                "href": "http://localhost:1313/posts/python/arxiv-translate/",
+                "id": 51,
+                "href": "https://www.if-blog.site/posts/python/arxiv-translate/",
                 "title": "Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る",
                 "section": "posts",
                 "date" : "2021.07.24",
@@ -604,18 +524,8 @@
     
         ,
             {
-                "id": 60,
-                "href": "http://localhost:1313/posts/cloud/arxiv-py-lib/",
-                "title": "Cloud Design Pattern",
-                "section": "posts",
-                "date" : "2021.07.23",
-                "body": "この辺読みたい\nhttp://aws.clouddesignpattern.org/index.php/%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%9A%E3%83%BC%E3%82%B8\nhttps://docs.microsoft.com/ja-jp/azure/architecture/patterns/\n"
-            }
-    
-        ,
-            {
-                "id": 61,
-                "href": "http://localhost:1313/posts/python/arxiv-py-lib/",
+                "id": 52,
+                "href": "https://www.if-blog.site/posts/python/arxiv-py-lib/",
                 "title": "pythonでarxivのAPIを使う",
                 "section": "posts",
                 "date" : "2021.07.23",
@@ -624,18 +534,8 @@
     
         ,
             {
-                "id": 62,
-                "href": "http://localhost:1313/posts/python/test/",
-                "title": "test",
-                "section": "posts",
-                "date" : "2021.07.23",
-                "body": "test0 aaaaa\ntest1 $\\alpha$\n$\\beta$\n$a^2 + b^2 = c^2$\n$$ a^2 + b^2 = c^2 $$\n$$\\int_{a}^{b} x^2 dx$$\n\\begin{aligned} KL(\\hat{y} || y) \u0026amp;= \\sum_{c=1}^{M}\\hat{y}_c \\log{\\frac{\\hat{y}_c}{y_c}} \\ JS(\\hat{y} || y) \u0026amp;= \\frac{1}{2}(KL(y||\\frac{y+\\hat{y}}{2}) + KL(\\hat{y}||\\frac{y+\\hat{y}}{2})) \\end{aligned}\ntest3 $ hoge -t hoge subsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsub\ntest4 subsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsub\ntest2 texttexttexttexttexttext\ntexttexttexttexttexttextinlinetexttext\n// In your gatsby-config.js plugins: [ { resolve: `gatsby-transformer-remark`, options: { plugins: [ `gatsby-remark-prismjs`, ] } } ] var hoge = 1; function () { var huga = 2; } def main(): pass if __name__ == \u0026#34;__main__\u0026#34;: main() \u0026lt;div\u0026gt;hoge\u0026lt;/div\u0026gt; not function hoge() { huga() } "
-            }
-    
-        ,
-            {
-                "id": 63,
-                "href": "http://localhost:1313/posts/others/gas-translate/",
+                "id": 53,
+                "href": "https://www.if-blog.site/posts/others/gas-translate/",
                 "title": "Google Apps ScriptでGoogle Translateを使う",
                 "section": "posts",
                 "date" : "2021.07.22",
@@ -644,8 +544,8 @@
     
         ,
             {
-                "id": 64,
-                "href": "http://localhost:1313/posts/hugo/hugo-related-posts/",
+                "id": 54,
+                "href": "https://www.if-blog.site/posts/hugo/hugo-related-posts/",
                 "title": "Hugoの記事に関連記事を表示させる",
                 "section": "posts",
                 "date" : "2021.07.18",
@@ -654,8 +554,8 @@
     
         ,
             {
-                "id": 65,
-                "href": "http://localhost:1313/posts/python/open-ai-gym-quick/",
+                "id": 55,
+                "href": "https://www.if-blog.site/posts/python/open-ai-gym-quick/",
                 "title": "Open AI Gymをとりあえず動かす",
                 "section": "posts",
                 "date" : "2021.07.14",
@@ -664,8 +564,8 @@
     
         ,
             {
-                "id": 66,
-                "href": "http://localhost:1313/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/",
+                "id": 56,
+                "href": "https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/",
                 "title": "End-to-End Text Classification via Image-basedEmbedding using Character-level Networks",
                 "section": "posts",
                 "date" : "2020.12.30",
@@ -674,8 +574,8 @@
     
         ,
             {
-                "id": 67,
-                "href": "http://localhost:1313/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/",
+                "id": 57,
+                "href": "https://www.if-blog.site/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/",
                 "title": "Enhanced character embedding for Chinese named entity recognition",
                 "section": "posts",
                 "date" : "2020.12.30",
@@ -684,28 +584,8 @@
     
         ,
             {
-                "id": 68,
-                "href": "http://localhost:1313/posts/kubernetes/kubernetes-complete-guide/",
-                "title": "Kubernetes完全ガイド 第２版",
-                "section": "posts",
-                "date" : "2020.09.08",
-                "body": "3.2.3 ローカル kubernetes kind 4.5.8 リソースの状態のチェックと待機 目的の状態になるまで、待機する\nkubectl wait --for=condition=Readey pod/label 5.2.1 PODのデザインパターン "
-            }
-    
-        ,
-            {
-                "id": 69,
-                "href": "http://localhost:1313/posts/books/an-introductory-book-on-cipher/",
-                "title": "暗号技術入門",
-                "section": "posts",
-                "date" : "2020.09.04",
-                "body": "1.歴史上の暗号 シーザー暗号 一文字ずらすやつ\n単一換字暗号 文字を1対1で対応させて変換する\nエニグマ 対象暗号 パッド暗号 バーナム暗号\n文字列をASCIIでbit化、同じ長さのbit(これが鍵)とのXORを取ることで、暗号化 XORの性質として、A XOR B という処理を行いその結果にさらにXOR Bを行うことでAが得られる、というものがある。 これを利用し、復号化する。 この暗号はブルートフォースアタックで複合可能だが、複合したものが正しいかわからないので解読できない暗号である。\n5.公開鍵暗号 暗号化/復号化\n暗号文 = 平文 ^ E mod N 平文= 暗号文 ^ D mod N Nを求める(2つの素数 N = p * q) Lを求める (L = lcm(p-1, q-1)) Eを求める (1 \u0026lt; E \u0026lt; L, mod(E, L) = 1) Dを求める (1 \u0026lt; D \u0026lt; L, E*D mod L = 1) 6.ハイブリッド暗号システム 対象暗号と公開鍵暗号で暗号化\n平文を一時的なセッション鍵を用いて対象暗号で暗号化したものとセッション鍵を公開鍵で暗号化したものを結合し暗号文を作成。\n暗号文を分解し、秘密鍵でセッション鍵を複合、セッション鍵を用いて暗号文を複合\nセッション鍵と公開鍵/秘密鍵のバランスが大事。一方が長いなど偏りがあると、攻撃者に推測されやすい。\n7.一方ハッシュ関数 正真性のチェック/改ざんの検出\n弱衝突性: メッセージのハッシュ値から、同じハッシュ値をもつメッセージを見つけ出すこと 強衝突性: 同じハッシュ値をもつ異なるメッセージを見つけ出すこと\nMD4 128bitのハッシュ値 (強衝突性は突破されている) MD5 128bitのハッシュ値 (強衝突性は突破されている) SHA-1 160bitのハッシュ値 (互換性維持以外の目的では非推奨) SHA-256 256bit SHA-384 384bit SHA-512 512bit 8.メッセージの認証 メッセージ認証コード(MAC)を使う\n一方ハッシュ関数を使った方法 メッセージと共有鍵を使ってハッシュ値を計算。このハッシュ値がMAC値となる。 メッセージ認証コードでは共有鍵を持っていない第三者に対する証明が行えない。\n9.デジタル署名 メッセージを秘密鍵で暗号化したものを署名として使う。 メッセージを受け取った人は公開鍵で復号化。 うまく複合化できたら、秘密鍵の持ち主による暗号化がなさせれたと言える。\nメッセージをそのまま暗号化すると、メッセージが長いと不便なので、 メッセージをハッシュ化した後に、暗号化する手法がある。\n別の手法 ElGamal方式 DSA ECDSA Rabin方式 署名に対する攻撃 10.証明書 公開鍵が正しいものか検証\n"
-            }
-    
-        ,
-            {
-                "id": 70,
-                "href": "http://localhost:1313/posts/github/workflow-dispatch/",
+                "id": 58,
+                "href": "https://www.if-blog.site/posts/github/workflow-dispatch/",
                 "title": "GitHub Actionsを手動実行する",
                 "section": "posts",
                 "date" : "2020.07.19",
@@ -714,8 +594,8 @@
     
         ,
             {
-                "id": 71,
-                "href": "http://localhost:1313/posts/android/bottom-sheet/",
+                "id": 59,
+                "href": "https://www.if-blog.site/posts/android/bottom-sheet/",
                 "title": "Bottom Sheetをつける",
                 "section": "posts",
                 "date" : "2020.03.01",
@@ -724,8 +604,8 @@
     
         ,
             {
-                "id": 72,
-                "href": "http://localhost:1313/posts/android/android-introduction/",
+                "id": 60,
+                "href": "https://www.if-blog.site/posts/android/android-introduction/",
                 "title": "Webアプリケーションしか作ったことがない人がAndroidの開発を始めたときの情報収集の流れ",
                 "section": "posts",
                 "date" : "2020.02.28",
@@ -734,8 +614,8 @@
     
         ,
             {
-                "id": 73,
-                "href": "http://localhost:1313/posts/android/book-reports-firebase/",
+                "id": 61,
+                "href": "https://www.if-blog.site/posts/android/book-reports-firebase/",
                 "title": "ボタン以外のコンポーネントに波紋エフェクト(ripple effect)つける",
                 "section": "posts",
                 "date" : "2020.02.28",
@@ -744,8 +624,8 @@
     
         ,
             {
-                "id": 74,
-                "href": "http://localhost:1313/posts/edgwbs/book-storage-vue/",
+                "id": 62,
+                "href": "https://www.if-blog.site/posts/edgwbs/book-storage-vue/",
                 "title": "Vue.js+typescriptでVuetifyを使いマテリアルデザインに入門する",
                 "section": "posts",
                 "date" : "2019.11.09",
@@ -754,8 +634,8 @@
     
         ,
             {
-                "id": 75,
-                "href": "http://localhost:1313/posts/gatsby/gatsby-intro/",
+                "id": 63,
+                "href": "https://www.if-blog.site/posts/gatsby/gatsby-intro/",
                 "title": "技術ブログ用にGatsbyを整える",
                 "section": "posts",
                 "date" : "2019.10.14",
@@ -764,8 +644,8 @@
     
         ,
             {
-                "id": 76,
-                "href": "http://localhost:1313/posts/edgwbs/book-reports-firebase-hosting/",
+                "id": 64,
+                "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-hosting/",
                 "title": "Firebase Hostingを使ってみた",
                 "section": "posts",
                 "date" : "2019.10.10",
@@ -774,8 +654,8 @@
     
         ,
             {
-                "id": 77,
-                "href": "http://localhost:1313/posts/emacs/gopls-introduction/",
+                "id": 65,
+                "href": "https://www.if-blog.site/posts/emacs/gopls-introduction/",
                 "title": "emacsのgo lang用のlanguage serverをgoplsに乗り換える",
                 "section": "posts",
                 "date" : "2019.10.08",
@@ -784,8 +664,8 @@
     
         ,
             {
-                "id": 78,
-                "href": "http://localhost:1313/posts/edgwbs/book-reports-firebase-cloud-functions/",
+                "id": 66,
+                "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-cloud-functions/",
                 "title": "Firebase Cloud Functionsを使ってTwitterのOGPを設定する",
                 "section": "posts",
                 "date" : "2019.09.30",
@@ -794,8 +674,8 @@
     
         ,
             {
-                "id": 79,
-                "href": "http://localhost:1313/posts/edgwbs/book-reports-firebase-auth/",
+                "id": 67,
+                "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-auth/",
                 "title": "Vue.js + Golang + Firebase Authenticationでログイン処理",
                 "section": "posts",
                 "date" : "2019.09.28",
@@ -804,8 +684,8 @@
     
         ,
             {
-                "id": 80,
-                "href": "http://localhost:1313/posts/edgwbs/book-reports-review/",
+                "id": 68,
+                "href": "https://www.if-blog.site/posts/edgwbs/book-reports-review/",
                 "title": "三行で読書感想文を書いて、SNSでシェアできるサービスを作った",
                 "section": "posts",
                 "date" : "2019.09.25",
@@ -814,8 +694,8 @@
     
         ,
             {
-                "id": 81,
-                "href": "http://localhost:1313/posts/python/python-matplotlib-base/",
+                "id": 69,
+                "href": "https://www.if-blog.site/posts/python/python-matplotlib-base/",
                 "title": "matplotlibのよく使う記法まとめ",
                 "section": "posts",
                 "date" : "2019.09.24",
@@ -824,8 +704,8 @@
     
         ,
             {
-                "id": 82,
-                "href": "http://localhost:1313/posts/neuralnet/pepar-summary/",
+                "id": 70,
+                "href": "https://www.if-blog.site/posts/neuralnet/pepar-summary/",
                 "title": "Deeplearningまわりの最新論文を浅く広くみてまわる",
                 "section": "posts",
                 "date" : "2019.09.24",
@@ -834,8 +714,8 @@
     
         ,
             {
-                "id": 83,
-                "href": "http://localhost:1313/posts/others/http-portal-for-blog/",
+                "id": 71,
+                "href": "https://www.if-blog.site/posts/others/http-portal-for-blog/",
                 "title": "Hugoで作ったwebサイトを公開する",
                 "section": "posts",
                 "date" : "2019.09.24",
@@ -844,8 +724,8 @@
     
         ,
             {
-                "id": 84,
-                "href": "http://localhost:1313/posts/neuralnet/combine-model/",
+                "id": 72,
+                "href": "https://www.if-blog.site/posts/neuralnet/combine-model/",
                 "title": "kerasでモデルを結合する",
                 "section": "posts",
                 "date" : "2019.09.24",
@@ -854,8 +734,8 @@
     
         ,
             {
-                "id": 85,
-                "href": "http://localhost:1313/posts/others/aws-cli-at-pyenv/",
+                "id": 73,
+                "href": "https://www.if-blog.site/posts/others/aws-cli-at-pyenv/",
                 "title": "pyenv環境でaws cli入れたらコマンドが見つからない",
                 "section": "posts",
                 "date" : "2019.09.24",
@@ -864,8 +744,8 @@
     
         ,
             {
-                "id": 86,
-                "href": "http://localhost:1313/posts/others/rust-macro-use-another/",
+                "id": 74,
+                "href": "https://www.if-blog.site/posts/others/rust-macro-use-another/",
                 "title": "Rustでmodule間にまたがるmacro呼び出し",
                 "section": "posts",
                 "date" : "2019.09.24",
@@ -874,8 +754,8 @@
     
         ,
             {
-                "id": 87,
-                "href": "http://localhost:1313/posts/nlp/seqgan-paper/",
+                "id": 75,
+                "href": "https://www.if-blog.site/posts/nlp/seqgan-paper/",
                 "title": "SeqGANの論文を読む",
                 "section": "posts",
                 "date" : "2019.09.24",
@@ -884,8 +764,8 @@
     
         ,
             {
-                "id": 88,
-                "href": "http://localhost:1313/posts/nlp/word2vec-output-word/",
+                "id": 76,
+                "href": "https://www.if-blog.site/posts/nlp/word2vec-output-word/",
                 "title": "word2vecでベクトルから単語を出力する",
                 "section": "posts",
                 "date" : "2019.09.24",
@@ -894,8 +774,8 @@
     
         ,
             {
-                "id": 89,
-                "href": "http://localhost:1313/posts/nlp/diversity-neural-conversation-model/",
+                "id": 77,
+                "href": "https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/",
                 "title": "ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数",
                 "section": "posts",
                 "date" : "2019.09.24",
@@ -904,8 +784,8 @@
     
         ,
             {
-                "id": 90,
-                "href": "http://localhost:1313/posts/others/tex-notation-numerical-formula/",
+                "id": 78,
+                "href": "https://www.if-blog.site/posts/others/tex-notation-numerical-formula/",
                 "title": "機械学習系の数式によく出てくる記号などのTex表記まとめ",
                 "section": "posts",
                 "date" : "2019.09.24",
@@ -914,8 +794,8 @@
     
         ,
             {
-                "id": 91,
-                "href": "http://localhost:1313/posts/nlp/nlp-parse-overview-1/",
+                "id": 79,
+                "href": "https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/",
                 "title": "自然言語処理シリーズの構文解析を読む（概要）",
                 "section": "posts",
                 "date" : "2019.09.24",
@@ -924,18 +804,8 @@
     
         ,
             {
-                "id": 92,
-                "href": "http://localhost:1313/posts/nlp/char-to-sentences-fractal/",
-                "title": "文字から文章へのフラクタル性",
-                "section": "posts",
-                "date" : "2019.09.24",
-                "body": "文を生成させたいし、文の集合である文章を書かせたいのだが、そのポエム\n文字の集まりが単語になり、単語の集まりが文になり、文の集まりが文章になる。\n文字→単語→文→文章\nようは文字から文章間にはフラクタル性のようなものがあると僕は思っている。\nなぜこのようなことを考える必要があるかというと、\n文字、単語、文、文章はそれぞれベクトル化される必要がある。\nベクトル化については、ニューラルネットワークで扱えるのが固定次元のベクトルだからである。\nおそらく、人間の脳もそうなっているだろう。\nただ、反映されるのがnステップまでというような束縛条件はあるだろう。\nすなわち、t番目のある1文が得られているとして、t番目からt-n番目の文章によって感情が生成される\nというようなものである。例えば、人間の場合も現在読んでる文章\n"
-            }
-    
-        ,
-            {
-                "id": 93,
-                "href": "http://localhost:1313/posts/nlp/char-vec/",
+                "id": 80,
+                "href": "https://www.if-blog.site/posts/nlp/char-vec/",
                 "title": "文字をベクトル化する",
                 "section": "posts",
                 "date" : "2019.09.24",
@@ -944,8 +814,8 @@
     
         ,
             {
-                "id": 94,
-                "href": "http://localhost:1313/posts/python/colaboratory-google-drive-mount/",
+                "id": 81,
+                "href": "https://www.if-blog.site/posts/python/colaboratory-google-drive-mount/",
                 "title": "Google ColaboratoryでGoogle driveをマウントする",
                 "section": "posts",
                 "date" : "2019.09.23",
@@ -954,38 +824,8 @@
     
         ,
             {
-                "id": 95,
-                "href": "http://localhost:1313/posts/edgwbs/book-reports-firebase/",
-                "title": "Firebaseを使ってwebアプリを公開した",
-                "section": "posts",
-                "date" : "2019.09.22",
-                "body": "firebaseのみで三行で読書感想文をSNSにシェアできるwebアプリケーションを作ってみました。\n画像\n構築の備忘録を残しておきます。\n今回使ったのは、以下のサービス\nhosting authentication storage database function authenticateは以前使ったことがあり、大変便利だったので他のサービスを使ってみようと言うのが動機です。\nロジックの概要 vuejsで本の感想を入力するフォームを作り、プレビュー画面を表示 表示されたhtmlを画像に変換 画像をストレージに保存 ストレージのURLとその他諸々をDBに保存 Hostingだけでは、TwitterのOGPに対応できなかったので、Twitterのクローラーの時は、 OGP用のヘッダーをつけたHTML、そうでない時はHostingのページを表示する Authentication Google、Twitterを用いてのログインができる様にします。\nfirebase\nHosting Vuejs(typescript)をHostingで配信します。\nまず、それっぽくコードを書きます。\nCSSのフレームワークはマテリアルデザインのVuetifyを使いました。\n"
-            }
-    
-        ,
-            {
-                "id": 96,
-                "href": "http://localhost:1313/posts/edgwbs/book-reports-storage-firestore/",
-                "title": "Vue.jsからFirebase StorageとDatabaseを使う",
-                "section": "posts",
-                "date" : "2019.09.22",
-                "body": "はじめに Authentication、Hostingに続いて、Vue.jsからFirebaseのCloud Storage、FireStoreをつかってみました。\nそれぞれの、簡単な使い方をまとめておきます。すべて同じプロジェクト上のものを利用するので、連携はとても楽でした。\nざっくりとした流れは以下になります。\n画像\nVue.jsで画像を生成、Cloud Storageに保存、保存したURLを取得し、URLやその他の情報をFireStoreに保存という流れです。\nCloud Storage FireStore "
-            }
-    
-        ,
-            {
-                "id": 97,
-                "href": "http://localhost:1313/posts/emacs/emacs-keybind/",
-                "title": "keybind",
-                "section": "posts",
-                "date" : "2019.03.23",
-                "body": " (define-key KEYMAP KEY \u0026#39;COMMAND) KEYMAPにglobal-mapを指定したものは、以下と同義となる。\n(global-set-key KEY COMMAND) "
-            }
-    
-        ,
-            {
-                "id": 98,
-                "href": "http://localhost:1313/posts/emacs/emacs-hinamatsuri/",
+                "id": 82,
+                "href": "https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/",
                 "title": "emacsひな祭りいってきたのでためになったpackageなどをまとめておく",
                 "section": "posts",
                 "date" : "2019.03.08",
@@ -994,8 +834,8 @@
     
         ,
             {
-                "id": 99,
-                "href": "http://localhost:1313/posts/python/python-get-extn/",
+                "id": 83,
+                "href": "https://www.if-blog.site/posts/python/python-get-extn/",
                 "title": "pythonで拡張子を取得する",
                 "section": "posts",
                 "date" : "2019.03.01",
@@ -1004,8 +844,8 @@
     
         ,
             {
-                "id": 100,
-                "href": "http://localhost:1313/posts/emacs/lsp-mode/",
+                "id": 84,
+                "href": "https://www.if-blog.site/posts/emacs/lsp-mode/",
                 "title": "lsp-modeを導入する",
                 "section": "posts",
                 "date" : "2018.11.20",
@@ -1014,8 +854,8 @@
     
         ,
             {
-                "id": 101,
-                "href": "http://localhost:1313/posts/emacs/emacs-use-package/",
+                "id": 85,
+                "href": "https://www.if-blog.site/posts/emacs/emacs-use-package/",
                 "title": "use-packagesを使ってみる",
                 "section": "posts",
                 "date" : "2018.11.20",
@@ -1024,8 +864,8 @@
     
         ,
             {
-                "id": 102,
-                "href": "http://localhost:1313/posts/falcon/falcon-img-upload/",
+                "id": 86,
+                "href": "https://www.if-blog.site/posts/falcon/falcon-img-upload/",
                 "title": "falconでアップロードサーバーを作る",
                 "section": "posts",
                 "date" : "2018.10.16",
@@ -1034,8 +874,8 @@
     
         ,
             {
-                "id": 103,
-                "href": "http://localhost:1313/posts/falcon/falcon-tips/",
+                "id": 87,
+                "href": "https://www.if-blog.site/posts/falcon/falcon-tips/",
                 "title": "falconを使ってみた",
                 "section": "posts",
                 "date" : "2018.10.16",
@@ -1044,8 +884,8 @@
     
         ,
             {
-                "id": 104,
-                "href": "http://localhost:1313/posts/hugo/hugo-start-article/",
+                "id": 88,
+                "href": "https://www.if-blog.site/posts/hugo/hugo-start-article/",
                 "title": "Hugoでブログを作る",
                 "section": "posts",
                 "date" : "2018.10.16",
@@ -1054,8 +894,8 @@
     
         ,
             {
-                "id": 105,
-                "href": "http://localhost:1313/posts/hugo/hugo-href-to-target-blank/",
+                "id": 89,
+                "href": "https://www.if-blog.site/posts/hugo/hugo-href-to-target-blank/",
                 "title": "Hugoでリンクを新しいウィンドウで開く",
                 "section": "posts",
                 "date" : "2018.10.16",
@@ -1064,8 +904,8 @@
     
         ,
             {
-                "id": 106,
-                "href": "http://localhost:1313/posts/hugo/hugo-ga/",
+                "id": 90,
+                "href": "https://www.if-blog.site/posts/hugo/hugo-ga/",
                 "title": "Hugoにgoogle analyticsを導入する",
                 "section": "posts",
                 "date" : "2018.10.16",
@@ -1074,8 +914,8 @@
     
         ,
             {
-                "id": 107,
-                "href": "http://localhost:1313/posts/hugo/hugo-long-time-no-see/",
+                "id": 91,
+                "href": "https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/",
                 "title": "Hugoのディレクトリ構造やデプロイ方法の備忘録",
                 "section": "posts",
                 "date" : "2018.10.16",
@@ -1084,8 +924,8 @@
     
         ,
             {
-                "id": 108,
-                "href": "http://localhost:1313/posts/hugo/hugo-code-highlight/",
+                "id": 92,
+                "href": "https://www.if-blog.site/posts/hugo/hugo-code-highlight/",
                 "title": "Hugoの記事でコードハイライトする",
                 "section": "posts",
                 "date" : "2018.10.16",
@@ -1094,8 +934,8 @@
     
         ,
             {
-                "id": 109,
-                "href": "http://localhost:1313/posts/hugo/hugo-add-site-description/",
+                "id": 93,
+                "href": "https://www.if-blog.site/posts/hugo/hugo-add-site-description/",
                 "title": "Hugoの記事にdescriptionを追加する",
                 "section": "posts",
                 "date" : "2018.10.16",
@@ -1104,8 +944,8 @@
     
         ,
             {
-                "id": 110,
-                "href": "http://localhost:1313/posts/hugo/hugo-on-image/",
+                "id": 94,
+                "href": "https://www.if-blog.site/posts/hugo/hugo-on-image/",
                 "title": "Hugoの記事に画像を載せる",
                 "section": "posts",
                 "date" : "2018.10.16",
@@ -1114,8 +954,8 @@
     
         ,
             {
-                "id": 111,
-                "href": "http://localhost:1313/posts/hugo/hugo-date-sort/",
+                "id": 95,
+                "href": "https://www.if-blog.site/posts/hugo/hugo-date-sort/",
                 "title": "Hugoの記事を更新順にソートする",
                 "section": "posts",
                 "date" : "2018.10.16",
@@ -1124,32 +964,12 @@
     
         ,
             {
-                "id": 112,
-                "href": "http://localhost:1313/posts/hugo/hugo-git-pages/",
+                "id": 96,
+                "href": "https://www.if-blog.site/posts/hugo/hugo-git-pages/",
                 "title": "HugoをGitHub Pagesで公開する",
                 "section": "posts",
                 "date" : "2018.10.16",
                 "body": "GitHub Pagesを使ってHugoを公開する手順をメモ\nやりたいこととしては、\nHugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定 の3つです。\nGitHub Pagesで公開 まずは、Hugoのプロジェクトルートをgitで管理します。\nGitHub Pagesで公開するために、GitHubのリポジトリの設定からPagesで公開するための設定を行います。このとき、そのまま公開すると、Hugoをビルドして生成されるファイルはプロジェクトルート直下のpublic以下に生成されるので、\nhttps://{ユーザー名}.github.io/{リポジトリ名}/{public} というように、URLにpublicが付いてしまいます。これは嫌なので、git subtreeを使います。\ngh-pagesという新しいブランチを作成し、public以下のファイルのみをpushしています。github pagesではgh-pagesを公開するよう設定します。\n$ git subtree push --prefix public/ . gh-pages $ git push origin gh-pages:gh-pages GitHubから独自ドメインの設定をすると、ブランチgh-pagesにCNAMEファイルが追加、commitされるのですが、この変更をローカルのmasterに取り込めないという問題が発生しました。このため、ローカルで記事を追加したときなど、non-fast-forwardでpush、pullもできなくなりました。そこで、しょうがなくmaster側にローカルからCNAMEファイルを追加しました。\nそれでもうまくいかないときは、エラー文のcommitのハッシュを使って無理やりpushしてとりあえず回避してます。\n例\n$ git subtree push --prefix public/ . gh-pages git push using: . gh-pages To . 59 (58) ! [rejected] 95625bda7b4247ff0d05b2e76c8db1cbb7e87dad -\u0026gt; gh-pages (non-fast-forward) error: failed to push some refs to \u0026#39;.\u0026#39; hint: Updates were rejected because a pushed branch tip is behind its remote hint: counterpart. Check out this branch and integrate the remote changes hint: (e.g. \u0026#39;git pull ...\u0026#39;) before pushing again. hint: See the \u0026#39;Note about fast-forwards\u0026#39; in \u0026#39;git push --help\u0026#39; for details. $ git push origin 95625bda7b4247ff0d05b2e76c8db1cbb7e87dad:gh-pages 独自ドメインの設定 今回は、お名前.comでドメインを取得しました。お名前.comでDNSの設定をします。\nGitHub Pagesのドメインは\nhttps://{ユーザー名}.github.io/{リポジトリ名} なので、取得したドメインでGitHub PagesのドメインがひけるようにCNAMEの設定を行います。\nGitHub側では、リポジトリの設定からCustom domainを取得したドメインで設定します。Custom domainを設定すると、Enforce HTTPSにチェックを入れることができるので、設定するとhttpsで通信が行えるようになります。\n"
-            }
-    
-        ,
-            {
-                "id": 113,
-                "href": "http://localhost:1313/posts/hugo/katex-introduction/",
-                "title": "KaTeXを使ってみる",
-                "section": "posts",
-                "date" : "2018.10.16",
-                "body": "これまでMathJaxを使っていたが、描画が遅いということもあり、KaTeXを使ってみることにしました。 KaTeX:https://katex.org/\n以下を加えるだけでおk\n\u0026lt;link rel=\u0026#34;stylesheet\u0026#34; href=\u0026#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css\u0026#34; /\u0026gt; \u0026lt;script src=\u0026#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js\u0026#34;\u0026gt;\u0026lt;/script\u0026gt; \u0026lt;script src=\u0026#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js\u0026#34;\u0026gt;\u0026lt;/script\u0026gt; \u0026lt;script\u0026gt;$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: \u0026#34;[[\u0026#34;, right: \u0026#34;]]\u0026#34;, display: true},{left: \u0026#34;$\u0026#34;, right: \u0026#34;$\u0026#34;, display: false}]})});\u0026lt;/script\u0026gt; MathJaxで表示していた数式も無事表示されてとりあえず問題なしです。 実際に入れてみた感じやっぱり早い。\n参考 KaTeXによる数式の表示:https://sekika.github.io/2017/05/01/katex-equation/ \\ KaTeXを導入しました:http://nshi.jp/contents/other/katex/ \\ KaTeXのデモ:http://sixthform.info/katex/examples/demo.html\n"
-            }
-    
-        ,
-            {
-                "id": 114,
-                "href": "http://localhost:1313/posts/others/ga-define/",
-                "title": "GoogleAnalyticsのPV、セッション、ユーザーの定義",
-                "section": "posts",
-                "date" : "0001.01.01",
-                "body": "ユーザー PV:ページ毎に閲覧された回数 セッション：30分以上の間隔をあけた操作、日付またぎ、別の参照元 ユーザー：cookieで保持\nGDPRにより以下のものから保持期間を選択できる\n14 か月 26 か月(デフォルト) 38 か月 50 か月 自動的に期限切れにならない 集客 行動 コンバージョン "
             }
     
 ]

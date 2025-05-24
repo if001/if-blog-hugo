@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Python on アンドロイドは推理小説を書くか?</title>
-		<link>http://localhost:1313/tags/python/</link>
+		<link>https://www.if-blog.site/tags/python/</link>
 		<description>Recent content in Python </description>
 		<generator>Hugo -- gohugo.io</generator>
 		
@@ -9,7 +9,7 @@
 		
 		<managingEditor>/tags/python (if_004)</managingEditor>
     	
-  		<lastBuildDate>Thu, 16 May 2024 00:00:00 +0900</lastBuildDate>
+  		<lastBuildDate>Sat, 16 Dec 2023 00:00:00 +0900</lastBuildDate>
 		
 		<atom:link href="/tags/python/" rel="self" type="application/rss+xml" />
 		
