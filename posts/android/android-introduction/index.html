@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>Webアプリケーションしか作ったことがない人がAndroidの開発を始めたときの情報収集の流れ</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="これまでフロントエンド/バックエンドしか作ったことなく、ようやくAndroid開発に入門したのだが、
+始めのころの情報収集が意外と大変だったので、同じような境遇の人の為にまとめておく。
+上からみていくと、フロントエンド/バックエンドしか開発したことがなくても、流れが掴みやすいかと
+ライブラリ And" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Webアプリケーションしか作ったことがない人がAndroidの開発を始めたときの情報収集の流れ
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/android/">android</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2020-02-28
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>これまでフロントエンド/バックエンドしか作ったことなく、ようやくAndroid開発に入門したのだが、<br>
+始めのころの情報収集が意外と大変だったので、同じような境遇の人の為にまとめておく。</p>
+<p>上からみていくと、フロントエンド/バックエンドしか開発したことがなくても、流れが掴みやすいかと</p>
+<h2 id="ライブラリ">ライブラリ</h2>
+<p>Android 9.0(API 28)以降では、Android Xというライブラリを使っていく。<br>
+Android Xは、Android Jetpackという、ライブラリ群の1部らしい。</p>
+<p>Android Jetpackとは、</p>
+<blockquote>
+<p>Jetpack は、高品質の Android アプリをデベロッパーが簡単に作成するための一連のライブラリ、ツール、およびガイダンスです。</p>
+</blockquote>
+<p><a href="https://developer.android.com/jetpack?hl=ja">https://developer.android.com/jetpack?hl=ja</a></p>
+<p>Jetpackについては、以下の記事が参考になった。<br>
+<a href="https://qiita.com/k_masa777/items/c01c1de6ac763ce5c075">https://qiita.com/k_masa777/items/c01c1de6ac763ce5c075</a></p>
+<p>検索する際には、古いライブラリの記事が結構出てくるので、Android Xかどうか注意</p>
+<h2 id="アーキテクチャ">アーキテクチャ</h2>
+<p>MVCやクリーンアーキテクチャなどのアーキテクチャがAndroidでも存在する。<br>
+Model-View-ViewModelで構成されるMVVMという構成が主流っぽい</p>
+<p><img src="../../../images/android/mvvm.png" alt="activity"></p>
+<p>View: 画面表示<br>
+ViewModel: Modelから値を取得、Viewに表示する値を管理<br>
+Model: データモデル、ビジネスロジック</p>
+<p>ここでのモデルは、DDDのモデルよりも少し多機能な感じ</p>
+<p>アーキテクチャを一通り紹介していてわかりやすかった。<br>
+<a href="https://employment.en-japan.com/engineerhub/entry/2018/01/17/110000">https://employment.en-japan.com/engineerhub/entry/2018/01/17/110000</a></p>
+<p>MVVMの実装する上でわかりやすかった<br>
+<a href="https://qiita.com/Tsutou/items/69a28ebbd69b69e51703">https://qiita.com/Tsutou/items/69a28ebbd69b69e51703</a></p>
+<h4 id="コードサンプル">コードサンプル</h4>
+<p>MVVM意外にもクリーンアーキテクチャなど、様々なサンプルがあってわかりやすい<br>
+<a href="https://github.com/android/architecture-samples">https://github.com/android/architecture-samples</a><br>
+<a href="https://github.com/android10/Android-CleanArchitecture-Kotlin">https://github.com/android10/Android-CleanArchitecture-Kotlin</a></p>
+<h2 id="ロジック">ロジック</h2>
+<p>Androidでは、APIを叩く、画面表示する、ホスト(Android端末)のリソースを管理するなど、やることが多い。<br>
+まずは、Webアプリケーションにおける、バックエンドに当たる部分について、まとめる。</p>
+<h3 id="http-request">HTTP Request</h3>
+<p>http clientは、retrofitというライブラリがよく使われてる様子<br>
+<a href="https://square.github.io/retrofit/">https://square.github.io/retrofit/</a></p>
+<p>参考<br>
+<a href="https://qiita.com/SYABU555/items/3b280a8e81d2cc897383">https://qiita.com/SYABU555/items/3b280a8e81d2cc897383</a></p>
+<h3 id="非同期処理">非同期処理</h3>
+<p>APIは非同期で実行したい。Androidでは、UIスレッドと呼ばれる、スレッドがメインスレッドとして動作する。<br>
+UIの描画など、UIスレッドで実行しなければならないものがある。<br>
+別スレッドを起動することも可能だが、非同期処理を行いたい場合は、コルーチンを使うのが主流。</p>
+<p>コルーチンは、スレッドを作るより軽量で、中断可能な処理を行えるもの。</p>
+<p>調べると色々出てくるが、使い方については、以下が参考になった。<br>
+<a href="https://kotlinlang.org/docs/reference/coroutines/basics.html">https://kotlinlang.org/docs/reference/coroutines/basics.html</a><br>
+<a href="https://qiita.com/kawmra/items/ee4acb7db61f70dec9a8">https://qiita.com/kawmra/items/ee4acb7db61f70dec9a8</a></p>
+<h3 id="result">Result</h3>
+<p>APIのresponseを受け取る際には、成功/失敗をいい感じにハンドリングしたい。<br>
+kotlinでは、Success/Failureの2つの型を持てるResult型が存在する。</p>
+<p><a href="https://satoshun.github.io/2018/12/result/">https://satoshun.github.io/2018/12/result/</a><br>
+<a href="https://qiita.com/kencharos/items/6fd0a9e92363b08c0340">https://qiita.com/kencharos/items/6fd0a9e92363b08c0340</a></p>
+<p>使ったことないけど、Eitherも使えるライブラリもある<br>
+<a href="https://arrow-kt.io/">https://arrow-kt.io/</a></p>
+<h3 id="db">DB</h3>
+<p>Androidでは、SQLiteが使えます。APIをキャッシュするような使い方も可能です。<br>
+Android JetpackにRoomというライブラリがあるので、それを使います。</p>
+<p>単純な使い方はググればいくらでも出てくるので、それ以外の通常の開発に必要なものを羅列します。</p>
+<p>オブジェクト間のリレーションを定義する<br>
+<a href="https://developer.android.com/training/data-storage/room/relationships?hl=ja">https://developer.android.com/training/data-storage/room/relationships?hl=ja</a></p>
+<p>Roomで1対多を実現する<br>
+<a href="https://medium.com/@star_zero/room%E3%81%A71%E5%AF%BE%E5%A4%9A%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B-fa27615345ba">https://medium.com/@star_zero/room%E3%81%A71%E5%AF%BE%E5%A4%9A%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B-fa27615345ba</a></p>
+<p>型コンバーターを使用する<br>
+<a href="https://developer.android.com/training/data-storage/room/referencing-data?hl=ja#type-converters">https://developer.android.com/training/data-storage/room/referencing-data?hl=ja#type-converters</a></p>
+<p>特定の列をインデックスに登録する<br>
+<a href="https://developer.android.com/training/data-storage/room/defining-data?hl=ja#column-indexing">https://developer.android.com/training/data-storage/room/defining-data?hl=ja#column-indexing</a></p>
+<h4 id="androidに保存したデータをみたいとき">Androidに保存した、データをみたいとき</h4>
+<p>Android Studioの(通常)右下にあるDevice File Explorerを選択。<br>
+エミュレーター内のファイルを見ることができるので、<code>data/ data/“package_name”/databases </code>にある<br>
+以下のファイル群を保存。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>database_name
+database_name-shm
+database_name-wal</code></pre>
+  </div>
+
+</div>
+<p>SQLite用のクライアントを使って中身を確認することができる。</p>
+<p>クライアント<br>
+<a href="https://sqlitebrowser.org/dl/">https://sqlitebrowser.org/dl/</a></p>
+<h2 id="ui">UI</h2>
+<p>Androidでは、基本的に、Activieにロジックを記述し、Activityとxmlで記述されたlayoutが1対1で対応し1つの画面を構成する。</p>
+<p><img src="../../../images/android/activity-layout.png" alt="activity"></p>
+<p>これでは、Activityが肥大化してしまうので、MVVMでは、1つのActivityに複数の画面(Fragment)を持たせる。<br>
+Acitivtyでは画面の構成、Fragmentでは各画面のロジックのみを持つ。</p>
+<p><img src="../../../images/android/activity-fragment.png" alt="activity"></p>
+<p>また、Fragmentは、 コンポーネントの用に複数のFragmentを用いて、1つの画面を構成するという使い方もできる。</p>
+<p>activityとfragmentはそれぞれ異なるライフサイクルを持ち、<br>
+例えば、画面の回転や、List表示する為のデータの保持などの場合に考慮する必要がある。</p>
+<p>activityのライフサイクル
+<a href="https://developer.android.com/guide/components/activities/activity-lifecycle?hl=ja#alc">https://developer.android.com/guide/components/activities/activity-lifecycle?hl=ja#alc</a></p>
+<p>fragmentのライフサイクル
+<a href="https://developer.android.com/guide/components/fragments?hl=ja#Creating">https://developer.android.com/guide/components/fragments?hl=ja#Creating</a></p>
+<h3 id="layout">Layout</h3>
+<p>コンポーネントを単純に縦横に並べるだけなら、LinearLayoutで良い。<br>
+細かく指定したい場合は、ConstraintLayoutが便利。</p>
+<p>位置の指定の仕方に始めは、戸惑うが以下がわかれば簡単。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>app:layout_constraint[自分の辺]_to[相手の辺]Of=&#34;@+id/相手のid&#34;</code></pre>
+  </div>
+
+</div>
+<p>さらに詳しくは、以下の記事が参考になった。<br>
+[Android] ConstraintLayout レイアウト逆引きまとめ<br>
+<a href="https://qiita.com/tktktks10/items/62d85dabac4bdb8c1f94">https://qiita.com/tktktks10/items/62d85dabac4bdb8c1f94</a></p>
+<h3 id="データバインディング">データバインディング</h3>
+<p>Android Jetpackの提供する、データバインディングライブラリを使う。<br>
+Webアプリケーションでは、HTMLとロジック間でデータをバインディングしリアルタイムで表示を変えたりなどを行う。<br>
+データバインディングライブラリを使うことで、同様のことが実現できる。</p>
+<p>データバインディング<br>
+<a href="https://developer.android.com/topic/libraries/data-binding/?hl=ja">https://developer.android.com/topic/libraries/data-binding/?hl=ja</a></p>
+<h3 id="アイコン">アイコン</h3>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>res &gt; vector &gt; ....</code></pre>
+  </div>
+
+</div>
+<p>でアイコンの追加が行える。<br>
+意外と出てこなくてハマった。</p>
+<h4 id="font-awesome使う場合">font-awesome使う場合</h4>
+<p>以下の記事が参考になった<br>
+<a href="https://www.androidhive.info/2019/06/use-font-awesome-icons-android/">https://www.androidhive.info/2019/06/use-font-awesome-icons-android/</a></p>
+<p><a href="https://fontawesome.com/icons?d=gallery">https://fontawesome.com/icons?d=gallery</a></p>
+<h3 id="アニメーション">アニメーション</h3>
+<p>メニューのアコーディオンや、移動など単純なアニメーションは、<br>
+<code>res/anim/sample.xml</code>を配置し、実現できる。</p>
+<p>移動アニメーションの例<br>
+<a href="https://akira-watson.com/android/translate-animation.html">https://akira-watson.com/android/translate-animation.html</a></p>
+<h3 id="paging">Paging</h3>
+<p>リストを描画し、無限スクロールさせたい場面は多いと思う。<br>
+ViewModelとPaging library、RecyclerViewを使って実現できる。</p>
+<p>以下の記事が参考になった。</p>
+<p>Android Jetpack 初級 ( Paging library + LiveData + Retrofitで、簡単無限スクロール)<br>
+<a href="https://qiita.com/Tsutou/items/bae47cf55292f3349284#livedata">https://qiita.com/Tsutou/items/bae47cf55292f3349284#livedata</a></p>
+<p>Paging Library + API でページング処理<br>
+<a href="https://medium.com/@star_zero/paging-library-api-%E3%81%A7%E3%83%9A%E3%83%BC%E3%82%B8%E3%83%B3%E3%82%B0%E5%87%A6%E7%90%86-5e68543e7031">https://medium.com/@star_zero/paging-library-api-%E3%81%A7%E3%83%9A%E3%83%BC%E3%82%B8%E3%83%B3%E3%82%B0%E5%87%A6%E7%90%86-5e68543e7031</a><br>
+<a href="https://github.com/STAR-ZERO/paging-retrofit-sample">https://github.com/STAR-ZERO/paging-retrofit-sample</a></p>
+<p>コードサンプル<br>
+<a href="https://github.com/Tsutou/PagingLiveData">https://github.com/Tsutou/PagingLiveData</a></p>
+<p>APIを叩きつつ、DBにキャッシュする例<br>
+<a href="https://medium.com/@star_zero/paging-library-api-%E3%83%87%E3%83%BC%E3%82%BF%E8%BF%BD%E5%8A%A0-%E5%89%8A%E9%99%A4-eae42d0853cb">https://medium.com/@star_zero/paging-library-api-%E3%83%87%E3%83%BC%E3%82%BF%E8%BF%BD%E5%8A%A0-%E5%89%8A%E9%99%A4-eae42d0853cb</a></p>
+<h2 id="firebase">firebase</h2>
+<p>Authenticationやデータベースなどが簡単に使える。<br>
+Googleアカウントでのログインを行いたい場合など便利</p>
+<p>Android プロジェクトに Firebase を追加する<br>
+<a href="https://firebase.google.com/docs/android/setup?hl=ja">https://firebase.google.com/docs/android/setup?hl=ja</a></p>
+<h2 id="リリース">リリース</h2>
+<p><a href="https://developer.android.com/studio/publish/preparing?hl=ja">https://developer.android.com/studio/publish/preparing?hl=ja</a></p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/android/bottom-sheet/">Bottom Sheetをつける</a></li>
+    
+      <li><a href="/posts/android/book-reports-firebase/">ボタン以外のコンポーネントに波紋エフェクト(ripple effect)つける</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

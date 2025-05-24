@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>Can LLMs Design Good Questions Based on Context? (AI論文要約)</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2501.03491
+どんなもの 本論文は、Large Language Models (LLMs)を用いたコンテキストベースの質問生成 (Question Generation:" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Can LLMs Design Good Questions Based on Context? (AI論文要約)
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/paper_summary/">paper_summary</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-01-11
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2501.03491">https://arxiv.org/abs/2501.03491</a></p>
+<h2 id="どんなもの">どんなもの</h2>
+<p>本論文は、Large Language Models (LLMs)を用いたコンテキストベースの質問生成 (Question Generation: QG) の特性を評価する研究である。具体的には、Wikipedia コーパスか ら抽出したパラグラフをコンテキストとして、LLMと人間が生成した質問を6つの評価次元（質問の種類、長さ、コンテキストカバレッジ、回答可能性、独自性、必要な回答の長さ）で比較している。  LLMベースの自動評価手法も提案している。</p>
+<h2 id="先行研究と比べてどこがすごいの">先行研究と比べてどこがすごいの？</h2>
+<p>先行研究では、LLMによるQGの性能向上は示されてきたものの、LLMが生成する質問の特性に関する詳細な研究は不足していた。本研究は、LLM生成質問と人間生成質問を、6つの評価次元で定量的に比較することで、LLMのQGにおける特性を初めて明らかにしている点で優れている。また、既存の統計的な質問品質基準を拡張し、LLMを用いた自動評価ワークフローを導入している点も新規性が高い。</p>
+<h2 id="技術や手法のきもはどこにある">技術や手法のきもはどこにある？</h2>
+<p>LLMにコンテキストと質問生成指示を与え、複数の質問を生成させる。生成された質問を、質問の種類、長さ、コンテキストカバレッジ（単語レベルと文レベル）の3つの回答非依存指標と、回答可能性、独自性、必要な回答の長さの3つの回答依存指標の計6つの次元で評価する。回答依存指標の評価には、LLMを用いた自動評価手法を用いている。コンテキスト カバレッジの評価では、単語レベルと文レベルでのカバレッジに加え、コンテキストのどの部分をLLMが重視しているかについても分析している。</p>
+<h2 id="どうやって有効だと検証した">どうやって有効だと検証した？</h2>
+<p>GPT-4oとLLaMA-3.1-70b-Instructという2つの代表的なLLMを用いて、Wikipedia コーパスからサンプリングした256個のパラグラフに対してそれぞれ1024個の質問を生成させた。生 成された質問と、既存のHotpotQA、TriviaQAデータセットの人間生成質問を、前述の6つの評価次元で比較した。  評価には、人間によるアノテーションとLLMによる自動評価を組み合わせ、人間のアノテーションとの高い一致率を確認している。</p>
+<h2 id="議論はあるか">議論はあるか</h2>
+<ul>
+<li><strong>モデルとプロンプトの限定性:</strong> 本研究では、代表的な2つのLLMと特定のプロンプトを用いているため、他のLLMやプロンプトを用いた場合の結果は異なる可能性がある。</li>
+<li><strong>大規模な人間アノテーションの不足:</strong> リソースの制約から、人間アノテーションはサンプリングされたデータセットに対してのみ行われた。大規模な人間アノテーションによる検証が必要である。</li>
+<li><strong>特定のダウンストリームタスクへの適用:</strong> 本研究は一般的なQG設定に焦点を当てているが、RAGシステム評価や幻覚検出などの特定のダウンストリームタスクへの適用可能性 についても検討が必要である。</li>
+<li><strong>ドメイン特異性:</strong>  Wikipedia をベースとしたため、金融や医療テキストなどの専門分野のコンテキストを用いた場合の結果は異なる可能性がある。</li>
+</ul>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper17/">TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper17/">TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper18/">Towards Data-Efficient Language Models: A Child-Inspired Approach to Language Learning (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper16/">Language Model Can Listen While Speaking (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper13/">MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

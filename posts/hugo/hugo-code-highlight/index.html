@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>Hugoの記事でコードハイライトする</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="Hugoでコードのシンタックスハイライトする場合のメモ
+Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。
+Hugo自体の機能使う Hugo 0.28からGo機能でシンタックスハイライトが可能になった。
+Syntax Highlighting
+c" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Hugoの記事でコードハイライトする
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/hugo/">hugo</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2018-10-16
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>Hugoでコードのシンタックスハイライトする場合のメモ<br>
+Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。</p>
+<h2 id="hugo自体の機能使う">Hugo自体の機能使う</h2>
+<p>Hugo 0.28からGo機能でシンタックスハイライトが可能になった。<br>
+<a href="https://gohugo.io/content-management/syntax-highlighting/">Syntax Highlighting</a><br>
+config.tomlに以下のように記述</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>pygmentsCodefences = <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>pygmentsUseClasses = <span style="color:#ff79c6">true</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>以下のコマンドでcssを生成する。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">$hugo</span> gen chromastyles --style<span style="color:#ff79c6">=</span>monokai &gt; syntax.css</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>生成したcssをindex.htmlなどから読み込むと反映される。<br>
+<code>--style</code>オプションの指定は、<a href="https://help.farbox.com/pygments.html">pygments</a>から探す。</p>
+<h2 id="highlightjsを使う">highlightjsを使う</h2>
+<p><a href="https://highlightjs.org/">highlightjs</a><br>
+対応言語が多いのがメリット。</p>
+<p>以下のようにcdnからとってくるようにしておくと良い。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">link</span> <span style="color:#50fa7b">rel</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;stylesheet&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span>&gt;hljs.initHighlightingOnLoad();&lt;/<span style="color:#ff79c6">script</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>一行目の記述を以下のように書き換えることでテーマを選択できる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">link</span> <span style="color:#50fa7b">rel</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;stylesheet&#34;</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/zenburn.min.css&#34;</span>&gt;</span></span></code></pre></div>
+  </div>
+
+</div>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
+    
+      <li><a href="/posts/hugo/hugo-start-article/">Hugoでブログを作る</a></li>
+    
+      <li><a href="/posts/hugo/hugo-href-to-target-blank/">Hugoでリンクを新しいウィンドウで開く</a></li>
+    
+      <li><a href="/posts/hugo/hugo-ga/">Hugoにgoogle analyticsを導入する</a></li>
+    
+      <li><a href="/posts/hugo/hugo-long-time-no-see/">Hugoのディレクトリ構造やデプロイ方法の備忘録</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

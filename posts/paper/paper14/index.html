@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>Tensor Product Attention Is All You Need (AI論文要約)</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2501.06425
+どんなもの Tensor Product Attention (TPA) は、クエリ(Q)、キー(K)、バリュー(V)をコンパクトに表現するためにテンソル分解" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Tensor Product Attention Is All You Need (AI論文要約)
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/paper_summary/">paper_summary</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-01-18
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2501.06425">https://arxiv.org/abs/2501.06425</a></p>
+<h2 id="どんなもの">どんなもの</h2>
+<p>Tensor Product Attention (TPA) は、クエリ(Q)、キー(K)、バリュー(V)をコンパクトに表現するためにテンソル分解を用いる新しいアテンション機構です。推論時のKVキャッシ ュサイズを大幅に削減し、メモリ効率を向上させます。文脈依存の低ランク成分への因数分解（コンテキストファクター化）とRoPEとのシームレスな統合により、モデルの品質と メモリ効率の両方を向上させます。TPAに基づいて、シーケンスモデリングのための新しいモデルアーキテクチャであるTensor ProducT ATTenTion Transformer (T6)を提案してい ます。</p>
+<h2 id="先行研究と比べてどこがすごいの">先行研究と比べてどこがすごいの？</h2>
+<p>先行研究であるMulti-Head Attention (MHA)、Multi-Query Attention (MQA)、Grouped-Query Attention (GQA)、Multi-head Latent Attention (MLA)と比較して、TPAは推論時のKVキャッシュサイズを10倍以上削減します。これは、クエリ、キー、バリューのアクティベーションを動的に因数分解することで実現されています。また、TPAはRoPEとシームレス に統合できるため、LLaMAやGemmaなどの最新のLLMアーキテクチャへの容易な適用を可能にします。さらに、MHA、MQA、GQAはTPAの非文脈依存バリアントとして自然に現れることを明らかにすることで、既存のアテンション機構を統一しています。</p>
+<h2 id="技術や手法のきもはどこにある">技術や手法のきもはどこにある？</h2>
+<p>TPAの核心は、アテンション計算中にクエリ(Q)、キー(K)、バリュー(V)をより高次のテンソルを用いて因数分解する点にあります。具体的には、文脈依存の低ランク表現を構築す るために、アクティベーションを動的に因数分解します（静的な重み（例：LoRA）の因数分解とは異なります）。これにより、表現能力を向上させながら、KVキャッシュのメモリ 使用量を大幅に削減します。  RoPEとの統合は、キーとバリューのテンソル次元因子を事前に回転させることで、推論時の回転計算を回避し、効率を高めています。</p>
+<h2 id="どうやって有効だと検証した">どうやって有効だと検証した？</h2>
+<p>FineWeb-Edu 100Bデータセットを用いた言語モデリングタスクにおいて、様々な規模（124M、353M、773Mパラメータ）のモデルでT6をMHA、MQA、GQA、MLAと比較評価しました。そ の結果、T6は検証損失（perplexity）と様々な評価ベンチマークにおいて、MHA、MQA、GQA、MLAを上回る性能を示しました。特に、TPAのメモリ効率により、固定リソース制約下で大幅に長いシーケンスの処理が可能になり、最新の言語モデルにおける重要なスケーラビリティ課題に対処できることを実証しました。</p>
+<h2 id="議論はあるか">議論はあるか</h2>
+<p>論文では、TPAの様々なバリアント（KVのみを因数分解するTPA、非文脈依存のヘッド次元因子を用いるTPAなど）についても検討されています。これらのバリアントは、メモリコスト、計算オーバーヘッド、表現力のバランスを取るための柔軟性を示しています。しかし、最適なランク(RQ, RK, RV)の選択や、非線形ヘッド因子の導入による効果については、 更なる検討が必要となる可能性があります。また、異なるデータセットやタスクにおけるTPAの汎化性能についても、今後の研究課題として挙げられます。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper17/">TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper17/">TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper18/">Towards Data-Efficient Language Models: A Child-Inspired Approach to Language Learning (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper16/">Language Model Can Listen While Speaking (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper13/">MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

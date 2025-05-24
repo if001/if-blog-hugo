@@ -1,7 +1,7 @@
 ---
 title: "Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)"
 slug: "paper4"
-tags: ["nlp","deeplearning"]
+tags: ["nlp","deeplearning", "paper_summary"]
 date: "2025-01-02T12:00:00+09:00"
 draft: false
 ---

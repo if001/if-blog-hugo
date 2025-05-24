@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>機械学習系の数式によく出てくる記号などのTex表記まとめ</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="すぐ忘れるのでTex表記をまとめて起きます。 Qiitaが使っているというEasy Copy MathJaxを用います。
+読み 表示 tex デルタ $\Delta$ \Delta ナブラ $\nabla$ \nabla 白抜き $\mathbb E[\cdot]$ \mathbb E[\cdot]" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		機械学習系の数式によく出てくる記号などのTex表記まとめ
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/tex/">tex</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2019-09-24
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>すぐ忘れるのでTex表記をまとめて起きます。
+Qiitaが使っているという<a href="https://www.mathjax.org/">Easy Copy MathJax</a>を用います。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">読み</th>
+<th style="text-align:right">表示</th>
+<th style="text-align:center">tex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">デルタ</td>
+<td style="text-align:right">$\Delta$</td>
+<td style="text-align:center"><code>\Delta</code></td>
+</tr>
+<tr>
+<td style="text-align:left">ナブラ</td>
+<td style="text-align:right">$\nabla$</td>
+<td style="text-align:center"><code>\nabla</code></td>
+</tr>
+<tr>
+<td style="text-align:left">白抜き</td>
+<td style="text-align:right">$\mathbb E[\cdot]$</td>
+<td style="text-align:center"><code>\mathbb E[\cdot]</code></td>
+</tr>
+<tr>
+<td style="text-align:left">属する</td>
+<td style="text-align:right">$\in$</td>
+<td style="text-align:center"><code>\in</code></td>
+</tr>
+<tr>
+<td style="text-align:left">要素</td>
+<td style="text-align:right">$\ni$</td>
+<td style="text-align:center"><code>\ni</code></td>
+</tr>
+<tr>
+<td style="text-align:left">条件付き確率</td>
+<td style="text-align:right">$p(x \mid y)$</td>
+<td style="text-align:center"><code>p(x \mid y)</code></td>
+</tr>
+<tr>
+<td style="text-align:left">ドット</td>
+<td style="text-align:right">$x_1,x_2, \ldots, x_t$</td>
+<td style="text-align:center"><code>x_1,x_2, \ldots, x_t</code></td>
+</tr>
+<tr>
+<td style="text-align:left">カリグラフィーフォント</td>
+<td style="text-align:right">$\mathcal L$</td>
+<td style="text-align:center"><code>\cal L</code></td>
+</tr>
+<tr>
+<td style="text-align:left">太文字ベクトル</td>
+<td style="text-align:right">$\boldsymbol{w}$</td>
+<td style="text-align:center"><code>\boldsymbol{w}</code></td>
+</tr>
+</tbody>
+</table>
+<p>macだと、ギリシャ文字は日本語の読み方で変換するとスペルが出てくるので便利。</p>
+<p>参考：http://easy-copy-mathjax.xxxx7.com/</p>
+<h3 id="追記">追記</h3>
+<p>$\KaTeX$だと、カリグラフィーフォントは、$\mathcal L$:<code>\mathcal L</code>こう。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

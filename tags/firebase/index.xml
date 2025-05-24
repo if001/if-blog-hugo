@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>firebase on アンドロイドは推理小説を書くか?</title>
+		<link>http://localhost:1313/tags/firebase/</link>
+		<description>Recent content in firebase </description>
+		<generator>Hugo -- gohugo.io</generator>
+		
+  		<language>ja</language>
+		
+		<managingEditor>Page(/tags/firebase) (if_004)</managingEditor>
+    	
+  		<lastBuildDate>Thu, 10 Oct 2019 00:00:00 +0900</lastBuildDate>
+		
+		<atom:link href="/tags/firebase/" rel="self" type="application/rss+xml" />
+		
+	</channel>
+</rss>

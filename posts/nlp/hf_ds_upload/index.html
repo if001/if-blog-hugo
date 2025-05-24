@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="データセットなどサイズの大きいデータをHuggingface Hubにアップロードして使う場合のメモ。
+公式ドキュメントにはアップロードする方法が様々あるが、いまいちどれを使えば良いか分かりづらかったのでメモ。
+今回作成したデータセットは以下。
+https://huggingface.co/data" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/python/">python</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/huggingface/">huggingface</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-11-21
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>データセットなどサイズの大きいデータをHuggingface Hubにアップロードして使う場合のメモ。<br>
+公式ドキュメントにはアップロードする方法が様々あるが、いまいちどれを使えば良いか分かりづらかったのでメモ。</p>
+<p>今回作成したデータセットは以下。<br>
+<a href="https://huggingface.co/datasets/if001/oscar_2023_filtered">https://huggingface.co/datasets/if001/oscar_2023_filtered</a></p>
+<h2 id="repositoryの作成">repositoryの作成</h2>
+<p>以下を参考にnew datasetからdatasetを作成<br>
+<a href="https://huggingface.co/docs/datasets/upload_dataset">https://huggingface.co/docs/datasets/upload_dataset</a></p>
+<p>readmeを修正することになるので、sshの設定などgitのコマンドからアクセスできるようにしておく。</p>
+<p>接続テスト<br>
+<code>ssh -T git@hf.co</code></p>
+<p>clone<br>
+<code>git clone git@hf.co:datasets/if001/oscar_2023_filtered</code></p>
+<p><code>GIT_LFS_SKIP_SMUDGE=1</code>をつけておくと、大きいファイルを除いてpullできる。<br>
+readmeの修正は一度でうまくできないのでつけておくと便利。</p>
+<h2 id="datasetcardの作成">datasetcardの作成</h2>
+<p>readmeにdatasetcardというデータセットの情報を記述する</p>
+<p>templateはこんな感じ<br>
+<a href="https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1">https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1</a></p>
+<p>train dataとtest dataなどを別けておく事もできる。<br>
+loadした後にスクリプト側でわけると、splitを書いたらうまくいかなかったのでわけなかったが予め別けておくほうが良さそう</p>
+<p>repositoryの構造については以下を参照<br>
+<a href="https://huggingface.co/docs/datasets/repository_structure#custom-filename-split">https://huggingface.co/docs/datasets/repository_structure#custom-filename-split</a></p>
+<p>dataset cardについては以下も参照<br>
+<a href="https://github.com/huggingface/datasets/blob/main/templates/README_guide.md">https://github.com/huggingface/datasets/blob/main/templates/README_guide.md</a></p>
+<h2 id="datasetの作成">Datasetの作成</h2>
+<p>今回はoscarをフィルタリングしたものをuploadする。<br>
+<a href="https://huggingface.co/datasets/oscar-corpus/OSCAR-2301/viewer/ja/train">https://huggingface.co/datasets/oscar-corpus/OSCAR-2301/viewer/ja/train</a></p>
+<p>HojiCharを使い以下のフィルタリングを行う。<br>
+<a href="https://github.com/HojiChar/HojiChar">https://github.com/HojiChar/HojiChar</a></p>
+<p>フィルターで以下の文章を取り出す</p>
+<ul>
+<li>100文字 &lt; 文章 &lt; 50000文字</li>
+<li>日本語の文章であること</li>
+<li>oscarのmeta dataのうち、header, footer, noisy以外のもの</li>
+<li>半角や全角のスペースが少ないこと</li>
+<li>指定されたNG wordを含まないこと</li>
+<li>KenLMのスコア</li>
+</ul>
+<p>Oscarをフィルタリングした記事はこっちを参照<br>
+<a href="https://zenn.dev/if001/articles/cc262413e69e3d">https://zenn.dev/if001/articles/cc262413e69e3d</a></p>
+<p>フィルタリングの詳細は以下<br>
+<a href="https://github.com/if001/HojiChar_OSCAR_sample/blob/0.0.4/pre_filter.py">https://github.com/if001/HojiChar_OSCAR_sample/blob/0.0.4/pre_filter.py</a></p>
+<p>重複削除に関しては、pythonだと重かったのでcppで行う<br>
+<a href="https://github.com/if001/dedup_sentence/tree/0.0.6">https://github.com/if001/dedup_sentence/tree/0.0.6</a></p>
+<p>フィルターとdedupの結果、119個のファイルができる。<br>
+サイズは元の約半分程度。</p>
+<h2 id="datasetのupload">Datasetのupload</h2>
+<p>huggingfaceへのファイルのuploadは色々方法があるが、今回はupload_file関数を使う<br>
+指定されたディレクトリにあるファイルを圧縮し、アップロードする。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> huggingface_hub <span style="color:#ff79c6">import</span> upload_file  
+</span></span><span style="display:flex;"><span>upload_file(
+</span></span><span style="display:flex;"><span>            path_or_fileobj<span style="color:#ff79c6">=</span>zst_file_path,
+</span></span><span style="display:flex;"><span>            path_in_repo<span style="color:#ff79c6">=</span>zst_file_name,
+</span></span><span style="display:flex;"><span>            repo_id<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>hf_username<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">/</span><span style="color:#f1fa8c">{</span>dataset_name<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>,
+</span></span><span style="display:flex;"><span>            repo_type<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;dataset&#34;</span>
+</span></span><span style="display:flex;"><span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>ここでは、jsonlファイルをzstに圧縮してuploadしている。<br>
+サンプルはこんな感じ。<br>
+<a href="https://github.com/if001/HojiChar_OSCAR_sample/blob/0.0.4/upload_to_hf.py">https://github.com/if001/HojiChar_OSCAR_sample/blob/0.0.4/upload_to_hf.py</a></p>
+<p>oscarの場合、言語の選択やmeta dataの設定などを行う。<br>
+<a href="https://huggingface.co/datasets/oscar-corpus/OSCAR-2301/blob/main/OSCAR-2301.py">https://huggingface.co/datasets/oscar-corpus/OSCAR-2301/blob/main/OSCAR-2301.py</a></p>
+<h2 id="datasetのdownload">Datasetのdownload</h2>
+<p>基本的にはいつもと同じように使える</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> datasets <span style="color:#ff79c6">import</span> load_dataset
+</span></span><span style="display:flex;"><span>ds<span style="color:#ff79c6">=</span>load_dataset(<span style="color:#f1fa8c">&#34;if001/oscar_2023_filtered&#34;</span>)
+</span></span><span style="display:flex;"><span>ds[<span style="color:#f1fa8c">&#39;train&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Dataset({
+</span></span><span style="display:flex;"><span>    features: [<span style="color:#f1fa8c">&#39;text&#39;</span>],
+</span></span><span style="display:flex;"><span>    num_rows: <span style="color:#bd93f9">312396</span>
+</span></span><span style="display:flex;"><span>})</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>今回は使わなかったが、downloadする前にデータに対し処理を行えるscriptが配置できる。<br>
+<a href="https://huggingface.co/docs/datasets/dataset_script">https://huggingface.co/docs/datasets/dataset_script</a></p>
+<p>uploadしたjsonl.zstファイルを解凍して色々したい場合は、以下のように特定のディレクトリにダウンロードできる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> huggingface_hub <span style="color:#ff79c6">import</span> snapshot_download
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>snapshot_download(repo_id<span style="color:#ff79c6">=</span>repo_id, allow_patterns<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;*.jsonl.zst&#34;</span>, local_dir<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;./download_dir&#34;</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>local_dir(download_dir)にjsonl.zstファイルがダウンロードされる。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/hf_generation_wrap/">huggingfaceのgenerationの関数をtorch modelから使えるようにしたい</a></li>
+    
+      <li><a href="/posts/nlp/hf_dataloader_datacollator/">HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める</a></li>
+    
+      <li><a href="/posts/nlp/calm_lora_quantize/">OpenCALM-7Bをloraで学習して、quantizeするまで</a></li>
+    
+      <li><a href="/posts/nlp/rinna_lora_ja/">loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</a></li>
+    
+      <li><a href="/posts/nlp/rinna_3b_cpp/">rinna 3Bをcppで動かす</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

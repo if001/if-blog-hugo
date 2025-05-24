@@ -1,7 +1,7 @@
 ---
 title: "Can LLMs Design Good Questions Based on Context? (AI論文要約)"
 slug: "paper8"
-tags: ["nlp","deeplearning"]
+tags: ["nlp","deeplearning", "paper_summary"]
 date: "2025-01-11T13:00:00+09:00"
 draft: false
 ---

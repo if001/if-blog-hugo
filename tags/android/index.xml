@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>android on アンドロイドは推理小説を書くか?</title>
+		<link>http://localhost:1313/tags/android/</link>
+		<description>Recent content in android </description>
+		<generator>Hugo -- gohugo.io</generator>
+		
+  		<language>ja</language>
+		
+		<managingEditor>Page(/tags/android) (if_004)</managingEditor>
+    	
+  		<lastBuildDate>Sun, 01 Mar 2020 00:00:00 +0900</lastBuildDate>
+		
+		<atom:link href="/tags/android/" rel="self" type="application/rss+xml" />
+		
+	</channel>
+</rss>

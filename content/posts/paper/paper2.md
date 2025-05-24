@@ -1,7 +1,7 @@
 ---
 title: "Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (AI論文要約)"
 slug: "paper2"
-tags: ["nlp","deeplearning"]
+tags: ["nlp","deeplearning", "paper_summary"]
 date: "2025-01-02T11:00:00+09:00"
 draft: false
 ---

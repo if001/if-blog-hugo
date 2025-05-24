@@ -1,7 +1,7 @@
 ---
 title: "Mechanistic Unlearning: Robust Knowledge Unlearning and Editing via Mechanistic Localization(AI論文要約)"
 slug: "paper1"
-tags: ["nlp","deeplearning"]
+tags: ["nlp","deeplearning", "paper_summary"]
 date: "2025-01-02T10:00:00+09:00"
 draft: false
 ---

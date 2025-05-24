@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="エラーでハマったので、hugging faceのdatasetからbatche_sizeごとのinput_idsやlabelsにするあたりの実装、特にDataLoaderとDataCollatorあたりをちゃんと確認しておく
+train loopは以下から始まる
+def train( self, r" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/python/">python</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/huggingface/">huggingface</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-09-21
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>エラーでハマったので、hugging faceのdatasetからbatche_sizeごとのinput_idsやlabelsにするあたりの実装、特にDataLoaderとDataCollatorあたりをちゃんと確認しておく</p>
+<p>train loopは以下から始まる</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">train</span>(
+</span></span><span style="display:flex;"><span>    self,
+</span></span><span style="display:flex;"><span>    resume_from_checkpoint: Optional[Union[<span style="color:#8be9fd;font-style:italic">str</span>, <span style="color:#8be9fd;font-style:italic">bool</span>]] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>,
+</span></span><span style="display:flex;"><span>    trial: Union[<span style="color:#f1fa8c">&#34;optuna.Trial&#34;</span>, Dict[<span style="color:#8be9fd;font-style:italic">str</span>, Any]] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>,
+</span></span><span style="display:flex;"><span>    ignore_keys_for_eval: Optional[List[<span style="color:#8be9fd;font-style:italic">str</span>]] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">**</span>kwargs,
+</span></span><span style="display:flex;"><span>):</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L1566" target="_black">https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L1566</a>
+    </div>
+
+</div>
+<p>train loopの中で主な部分は<code>_inner_training_loop</code>関数となる</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_inner_training_loop</span>(
+</span></span><span style="display:flex;"><span>    self, batch_size<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>, args<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>, resume_from_checkpoint<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>, trial<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>, ignore_keys_for_eval<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>
+</span></span><span style="display:flex;"><span>):
+</span></span><span style="display:flex;"><span>    self<span style="color:#ff79c6">.</span>accelerator<span style="color:#ff79c6">.</span>free_memory()
+</span></span><span style="display:flex;"><span>    self<span style="color:#ff79c6">.</span>_train_batch_size <span style="color:#ff79c6">=</span> batch_size
+</span></span><span style="display:flex;"><span>    logger<span style="color:#ff79c6">.</span>debug(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Currently training with a batch size of: </span><span style="color:#f1fa8c">{</span>self<span style="color:#ff79c6">.</span>_train_batch_size<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Data loader and number of training steps</span>
+</span></span><span style="display:flex;"><span>    train_dataloader <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>get_train_dataloader()</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L1652" target="_black">https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L1652</a>
+    </div>
+
+</div>
+<p>train_dataloaderがdatasetをbatch sizeに揃えたり、paddingを行う<br>
+<a href="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L1659">https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L1659</a></p>
+<h2 id="dataloader">DataLoader</h2>
+<p>dataloaderは、以下のようにインスタンス化される</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">return</span> DataLoader(
+</span></span><span style="display:flex;"><span>            train_dataset,
+</span></span><span style="display:flex;"><span>            batch_size<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>_train_batch_size,
+</span></span><span style="display:flex;"><span>            sampler<span style="color:#ff79c6">=</span>train_sampler,
+</span></span><span style="display:flex;"><span>            collate_fn<span style="color:#ff79c6">=</span>data_collator,
+</span></span><span style="display:flex;"><span>            drop_last<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_drop_last,
+</span></span><span style="display:flex;"><span>            num_workers<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_num_workers,
+</span></span><span style="display:flex;"><span>            pin_memory<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_pin_memory,
+</span></span><span style="display:flex;"><span>            worker_init_fn<span style="color:#ff79c6">=</span>seed_worker,
+</span></span><span style="display:flex;"><span>        )</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L921-L930" target="_black">https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L921-L930</a>
+    </div>
+
+</div>
+<p>例として、以下のような配列をtransfomers.Trainerの引数として渡すと<code>from torch.utils.data import DataLoader</code>がreturnされる</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    &#39;input_ids&#39;: [0, 0, 0, 0, 0...],
+</span></span><span style="display:flex;"><span>    &#39;labels&#39;: [0, 0, 0, 0, 0...],
+</span></span><span style="display:flex;"><span>    &#39;attention_mask&#39;: [0, 0, 0, 0, 0...]
+</span></span><span style="display:flex;"><span>  }, 
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    &#39;input_ids&#39;: [0, 0, 0, 0, 0...],
+</span></span><span style="display:flex;"><span>    &#39;labels&#39;: [0, 0, 0, 0, 0...],
+</span></span><span style="display:flex;"><span>    &#39;attention_mask&#39;: [0, 0, 0, 0, 0...]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>]</span></span></code></pre></div>
+  </div>
+
+</div>
+<p><strong>※ 配列のまま使うのではなく、DataSet Classとして扱う方が都合良いです。</strong><br>
+<code>train_data = Dataset.from_list(配列データ)</code>のような感じ</p>
+<p>DataLoaderはイテレーターとして、train.pyでは以下のように使われる。<br>
+epoch_iteratorはdataloaderから作られるDataLoader型</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span> <span style="color:#ff79c6">for</span> step, inputs <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(epoch_iterator):</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L1916" target="_black">https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L1916</a>
+    </div>
+
+</div>
+<p>このときのループ変数であるinputsは、input_idsとlabelsとattention_maskでbatchごとにまとめたものとなる</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  &#39;input_ids&#39;: tensor(batch_size, embedding_len),
+</span></span><span style="display:flex;"><span>  &#39;labels&#39;: tensor(batch_size, embedding_len),
+</span></span><span style="display:flex;"><span>  &#39;attention_mask&#39;: tensor(batch_size, embedding_len)
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>DataLoaderに引数として渡したdata_collatorが1 loopごとに呼び出される。<br>
+このdata_collatorは<code>transformers.Trainer</code>に渡したものが使われる。<br>
+例えば、data_collatorは以下のようになる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>data_collator<span style="color:#ff79c6">=</span>DataCollatorForSeq2Seq(
+</span></span><span style="display:flex;"><span>            tokenizer, 
+</span></span><span style="display:flex;"><span>            pad_to_multiple_of<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>,
+</span></span><span style="display:flex;"><span>            return_tensors<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;pt&#34;</span>,
+</span></span><span style="display:flex;"><span>            padding<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>, 
+</span></span><span style="display:flex;"><span>            label_pad_token_id<span style="color:#ff79c6">=</span>tokenizer<span style="color:#ff79c6">.</span>pad_token_id,
+</span></span><span style="display:flex;"><span>        ),</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="dataloaderの実装">DataLoaderの実装</h2>
+<p>どのようにbatch_sizeごとのデータをとりだしているか確認する</p>
+<p>DataLoader Classの実装は以下</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">DataLoader</span>(Generic[T_co]):</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L129" target="_black">https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L129</a>
+    </div>
+
+</div>
+<p>iterator部分の実装は以下</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> __iter__(self) <span style="color:#ff79c6">-&gt;</span> <span style="color:#f1fa8c">&#39;_BaseDataLoaderIter&#39;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># When using a single worker the returned iterator should be</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># created everytime to avoid reseting its state</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># However, in the case of a multiple workers iterator</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># the iterator is only created once in the lifetime of the</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># DataLoader object so that workers can be reused</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>persistent_workers <span style="color:#ff79c6">and</span> self<span style="color:#ff79c6">.</span>num_workers <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>_iterator <span style="color:#ff79c6">is</span> <span style="color:#ff79c6">None</span>:
+</span></span><span style="display:flex;"><span>                self<span style="color:#ff79c6">.</span>_iterator <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>_get_iterator()
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span>                self<span style="color:#ff79c6">.</span>_iterator<span style="color:#ff79c6">.</span>_reset(self)
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>_iterator
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>_get_iterator()</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L428-L441" target="_black">https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L428-L441</a>
+    </div>
+
+</div>
+<p>　
+いくつかの分岐があるが、よくあるパターンでは最後の_get_iterator()が呼び出される</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>_get_iterator()</span></span></code></pre></div>
+  </div>
+
+</div>
+<p><code>self._get_iterator()</code>により、<code>_SingleProcessDataLoaderIter</code>がiteratorの実装として返される。<br>
+<code>_SingleProcessDataLoaderIter</code>は<code>_BaseDataLoaderIter</code>を継承したもの</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span> <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_get_iterator</span>(self) <span style="color:#ff79c6">-&gt;</span> <span style="color:#f1fa8c">&#39;_BaseDataLoaderIter&#39;</span>:
+</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">...</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">return</span> _SingleProcessDataLoaderIter(self)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L385" target="_black">https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L385</a>
+    </div>
+
+</div>
+<p><code>_SingleProcessDataLoaderIter</code>の実装は以下を参照</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">_SingleProcessDataLoaderIter</span>(_BaseDataLoaderIter):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> __init__(self, loader):</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L660" target="_black">https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L660</a>
+    </div>
+
+</div>
+<p>iteratorの1要素の作成は、<code>_SingleProcessDataLoaderIter</code>の<code>self._dataset_fetcher</code>によって作成される。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>self<span style="color:#ff79c6">.</span>_dataset_fetcher <span style="color:#ff79c6">=</span> _DatasetKind<span style="color:#ff79c6">.</span>create_fetcher(
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>_dataset_kind, 
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>_dataset, 
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>_auto_collation, 
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>_collate_fn, 
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>_drop_last)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L672-L673" target="_black">https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L672-L673</a>
+    </div>
+
+</div>
+<p>fetcherを使ってindexをもとにデータを取り出す。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_next_data</span>(self):
+</span></span><span style="display:flex;"><span>    index <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>_next_index()  <span style="color:#6272a4"># may raise StopIteration</span>
+</span></span><span style="display:flex;"><span>    data <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>_dataset_fetcher<span style="color:#ff79c6">.</span>fetch(index)  <span style="color:#6272a4"># may raise StopIteration</span></span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L676-L677" target="_black">https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L676-L677</a>
+    </div>
+
+</div>
+<p>ここのindexについては後述</p>
+<p><code>self._dataset_fetcher</code>は、<code>create_fetcher</code>により<code>_MapDatasetFetcher</code>クラスをインスタンス化したもの</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>@staticmethod
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">create_fetcher</span>(kind, dataset, auto_collation, collate_fn, drop_last):
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">return</span> _utils<span style="color:#ff79c6">.</span>fetch<span style="color:#ff79c6">.</span>_MapDatasetFetcher(dataset, auto_collation, collate_fn, drop_last)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L70" target="_black">https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L70</a>
+    </div>
+
+</div>
+<p><code>_MapDatasetFetcher</code>のfetch methodでDataCollatorが呼び出される</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">_MapDatasetFetcher</span>(_BaseDatasetFetcher):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">fetch</span>(self, possibly_batched_index):
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>collate_fn(data)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/_utils/fetch.py#L54" target="_black">https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/_utils/fetch.py#L54</a>
+    </div>
+
+</div>
+<h3 id="index">index</h3>
+<p><code>next_index</code>の実装は、<code>_BaseDataLoaderIter</code>が持つ。<br>
+<code>_BaseDataLoaderIter</code>は、<code>_SingleProcessDataLoaderIter</code>の継承元。</p>
+<p>indexの中身は、長さがbatch_sizeのarrayでindexが要素である。<br>
+<code>e.g. [4, 128, 20, 10....]</code></p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_next_index</span>(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">next</span>(self<span style="color:#ff79c6">.</span>_sampler_iter)  <span style="color:#6272a4"># may raise StopIteration</span></span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L622-L623" target="_black">https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L622-L623</a>
+    </div>
+
+</div>
+<p>ここのindexは、DataLoaderのbatch_samplerが作り出す</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>@property
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">_index_sampler</span>(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># The actual sampler used for generating indices for `_DatasetFetcher`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># (see _utils/fetch.py) to read data at each time. This would be</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># `.batch_sampler` if in auto-collation mode, and `.sampler` otherwise.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># We can&#39;t change `.sampler` and `.batch_sampler` attributes for BC</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># reasons.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> self<span style="color:#ff79c6">.</span>_auto_collation:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>batch_sampler
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> self<span style="color:#ff79c6">.</span>sampler</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L448" target="_black">https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/dataloader.py#L448</a>
+    </div>
+
+</div>
+<p>batch_samplerは、DataLoaderのインスタンスを作ったときに渡したものが使われる。<br>
+ここでは、<code>sampler=train_sampler,</code></p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">return</span> DataLoader(
+</span></span><span style="display:flex;"><span>    train_dataset,
+</span></span><span style="display:flex;"><span>    batch_size<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>_train_batch_size,
+</span></span><span style="display:flex;"><span>    sampler<span style="color:#ff79c6">=</span>train_sampler,
+</span></span><span style="display:flex;"><span>    collate_fn<span style="color:#ff79c6">=</span>data_collator,
+</span></span><span style="display:flex;"><span>    drop_last<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_drop_last,
+</span></span><span style="display:flex;"><span>    num_workers<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_num_workers,
+</span></span><span style="display:flex;"><span>    pin_memory<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>args<span style="color:#ff79c6">.</span>dataloader_pin_memory,
+</span></span><span style="display:flex;"><span>    worker_init_fn<span style="color:#ff79c6">=</span>seed_worker,
+</span></span><span style="display:flex;"><span>)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L921" target="_black">https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L921</a>
+    </div>
+
+</div>
+<p>transformersでは、シンプルなパターンの場合train_samplerとしてRandomSamplerが用いられる</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">return</span> RandomSampler(self<span style="color:#ff79c6">.</span>train_dataset, generator<span style="color:#ff79c6">=</span>generator)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L861" target="_black">https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/trainer.py#L861</a>
+    </div>
+
+</div>
+<p><code>RandomSampler</code>Classの実装はpytorchが持つ</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">RandomSampler</span>(Sampler[<span style="color:#8be9fd;font-style:italic">int</span>]):</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/sampler.py#L82" target="_black">https://github.com/pytorch/pytorch/blob/v2.0.1/torch/utils/data/sampler.py#L82</a>
+    </div>
+
+</div>
+<h2 id="datacollator">DataCollator</h2>
+<p>DataCollatorの実装は以下</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>@dataclass
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">DataCollatorForSeq2Seq</span>:</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/data/data_collator.py#L517" target="_black">https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/data/data_collator.py#L517</a>
+    </div>
+
+</div>
+<p>DataLoaderがiteratorとして呼び出された場合は、<code>DataCollator</code>の<code>__call__</code>が呼び出される。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> __call__(self, features, return_tensors<span style="color:#ff79c6">=</span><span style="color:#ff79c6">None</span>):</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/data/data_collator.py#L559" target="_black">https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/data/data_collator.py#L559</a>
+    </div>
+
+</div>
+<p>引数のfeaturesは、batche_sizeごとのinput_idsとlabels、attention_maskとなる。<br>
+batch_sizeが2の場合は以下のようになる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    &#39;input_ids&#39;: [...],
+</span></span><span style="display:flex;"><span>    &#39;labels&#39;: [...],
+</span></span><span style="display:flex;"><span>    &#39;attention_mask&#39;: [...]
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    &#39;input_ids&#39;: [...],
+</span></span><span style="display:flex;"><span>    &#39;labels&#39;: [...],
+</span></span><span style="display:flex;"><span>    &#39;attention_mask&#39;: [...]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>]</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>feturesに対してpaddingが行われる</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  features <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>tokenizer<span style="color:#ff79c6">.</span>pad(
+</span></span><span style="display:flex;"><span>            features,
+</span></span><span style="display:flex;"><span>            padding<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>padding,
+</span></span><span style="display:flex;"><span>            max_length<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>max_length,
+</span></span><span style="display:flex;"><span>            pad_to_multiple_of<span style="color:#ff79c6">=</span>self<span style="color:#ff79c6">.</span>pad_to_multiple_of,
+</span></span><span style="display:flex;"><span>            return_tensors<span style="color:#ff79c6">=</span>return_tensors,
+</span></span><span style="display:flex;"><span>        )</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/data/data_collator.py#L586" target="_black">https://github.com/huggingface/transformers/blob/v4.30.2/src/transformers/data/data_collator.py#L586</a>
+    </div>
+
+</div>
+<p>paddingしたことによって、以下のような形になる</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  &#39;input_ids&#39;: tensor(batch_size, embedding_len),
+</span></span><span style="display:flex;"><span>  &#39;labels&#39;: tensor(batch_size, embedding_len),
+</span></span><span style="display:flex;"><span>  &#39;attention_mask&#39;: tensor(batch_size, embedding_len)
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>このデータがinputsで受け取れるものとなる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">for</span> step, inputs <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(epoch_iterator):
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">...</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>stepごとに<code>DataCollator.__call__</code>が呼び出されることになる。</p>
+<h2 id="まとめ">まとめ</h2>
+<p>DataLoaderがiteratorの実装を持っており、batch_size単位でループが回る。
+ループの1要素である以下のobjectは、ループごとにDataCollatorが整形する</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  &#39;input_ids&#39;: tensor(batch_size, embedding_len),
+</span></span><span style="display:flex;"><span>  &#39;labels&#39;: tensor(batch_size, embedding_len),
+</span></span><span style="display:flex;"><span>  &#39;attention_mask&#39;: tensor(batch_size, embedding_len)
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="追記">追記</h2>
+<p><code>transformers.Trainer</code>のtrain_datasetとして配列を渡すと、2epoch目からdata_setがおかしくなる。例えば、<code>DataCollatorForSeq2Seq</code>はbatchごとにpaddingを追加する処理を行うが、1epoch目で追加したpaddingに対し更にpaddingを行うため、input_idsとlabelsの長さが異なってしまう。</p>
+<p>これは、epochのループの中でepoch_iteratorつまりDataLoaderを呼び出しループしているため。datasetが参照渡しになり、前回の変更が残ってしまう。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">for</span> epoch <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(epochs_trained, num_train_epochs):
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">...</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">for</span> step, inputs <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(epoch_iterator):
+</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">...</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p><code>transformers.Trainer</code>のtrain_datasetに渡すのは、DataSet Classを使うのが良さそう。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>data <span style="color:#ff79c6">=</span> load_dataset(<span style="color:#f1fa8c">&#34;json&#34;</span>, data_files<span style="color:#ff79c6">=</span>data_path)  
+</span></span><span style="display:flex;"><span>train_val <span style="color:#ff79c6">=</span> data[<span style="color:#f1fa8c">&#34;train&#34;</span>]<span style="color:#ff79c6">.</span>train_test_split(test_size<span style="color:#ff79c6">=</span>val_set_size, shuffle<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>, seed<span style="color:#ff79c6">=</span><span style="color:#bd93f9">42</span>)
+</span></span><span style="display:flex;"><span>train_data <span style="color:#ff79c6">=</span> (tokenizerなどの処理)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">## listからDatasetに変換</span>
+</span></span><span style="display:flex;"><span>train_data <span style="color:#ff79c6">=</span> Dataset<span style="color:#ff79c6">.</span>from_list(train_data)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">or</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data <span style="color:#ff79c6">=</span> load_dataset(<span style="color:#f1fa8c">&#34;json&#34;</span>, data_files<span style="color:#ff79c6">=</span>data_path)  
+</span></span><span style="display:flex;"><span>train_val <span style="color:#ff79c6">=</span> data[<span style="color:#f1fa8c">&#34;train&#34;</span>]<span style="color:#ff79c6">.</span>train_test_split(test_size<span style="color:#ff79c6">=</span>val_set_size, shuffle<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>, seed<span style="color:#ff79c6">=</span><span style="color:#bd93f9">42</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">## mapを使う</span>
+</span></span><span style="display:flex;"><span>train_data <span style="color:#ff79c6">=</span> train_val[<span style="color:#f1fa8c">&#34;train&#34;</span>]<span style="color:#ff79c6">.</span>shuffle()<span style="color:#ff79c6">.</span>map(generate_and_tokenize_prompt)</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="確認用サンプル">確認用サンプル</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> torch.utils.data.dataloader <span style="color:#ff79c6">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> torch.utils.data.sampler <span style="color:#ff79c6">import</span> RandomSampler
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> transformers
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> datasets <span style="color:#ff79c6">import</span> load_dataset
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data <span style="color:#ff79c6">=</span> load_dataset(<span style="color:#f1fa8c">&#39;json&#39;</span>, data_files<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;./sample.json&#34;</span>)
+</span></span><span style="display:flex;"><span>train_val <span style="color:#ff79c6">=</span> data[<span style="color:#f1fa8c">&#34;train&#34;</span>]<span style="color:#ff79c6">.</span>train_test_split(
+</span></span><span style="display:flex;"><span>            test_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>, shuffle<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>, seed<span style="color:#ff79c6">=</span><span style="color:#bd93f9">42</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>train_data <span style="color:#ff79c6">=</span> train_val[<span style="color:#f1fa8c">&#34;train&#34;</span>]<span style="color:#ff79c6">.</span>shuffle()<span style="color:#ff79c6">.</span>map(any_function)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># mapを使うとDataSet型のまま</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># train_dataが配列の場合はDataSet型にしておく</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># train_data = Dataset.from_list(train_data)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sampler <span style="color:#ff79c6">=</span> RandomSampler(train_data, generator<span style="color:#ff79c6">=</span>torch<span style="color:#ff79c6">.</span>Generator())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data_collator<span style="color:#ff79c6">=</span>transformers<span style="color:#ff79c6">.</span>DataCollatorForSeq2Seq(
+</span></span><span style="display:flex;"><span>    tokenizer, pad_to_multiple_of<span style="color:#ff79c6">=</span><span style="color:#bd93f9">8</span>, return_tensors<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;pt&#34;</span>, padding<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>data_loader<span style="color:#ff79c6">=</span>DataLoader(
+</span></span><span style="display:flex;"><span>    train_data,
+</span></span><span style="display:flex;"><span>    batch_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">4</span>,
+</span></span><span style="display:flex;"><span>    collate_fn<span style="color:#ff79c6">=</span>data_collator,
+</span></span><span style="display:flex;"><span>    sampler<span style="color:#ff79c6">=</span>sampler,    
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> steps, <span style="color:#8be9fd;font-style:italic">input</span> <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">enumerate</span>(data_loader):    
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(steps, <span style="color:#8be9fd;font-style:italic">input</span>[<span style="color:#f1fa8c">&#39;input_ids&#39;</span>]<span style="color:#ff79c6">.</span>shape, <span style="color:#8be9fd;font-style:italic">input</span>[<span style="color:#f1fa8c">&#39;labels&#39;</span>]<span style="color:#ff79c6">.</span>shape)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;end&#39;</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/hf_generation_wrap/">huggingfaceのgenerationの関数をtorch modelから使えるようにしたい</a></li>
+    
+      <li><a href="/posts/nlp/hf_ds_upload/">複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ</a></li>
+    
+      <li><a href="/posts/nlp/calm_lora_quantize/">OpenCALM-7Bをloraで学習して、quantizeするまで</a></li>
+    
+      <li><a href="/posts/nlp/rinna_lora_ja/">loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</a></li>
+    
+      <li><a href="/posts/nlp/rinna_3b_cpp/">rinna 3Bをcppで動かす</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

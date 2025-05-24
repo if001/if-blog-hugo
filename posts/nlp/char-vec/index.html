@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>文字をベクトル化する</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="文章生成にchar-level lstmを使ってみる。英語ではうまくいっている例があるが日本語では難しい。これは、日本語は英語に比べ文字数が多く、ニューラルネットワークの次元数(パラメータ数)が増やす必要があるのが原因の1つだと思う。また、次元削減のため、日本語では文章を単語に区切り単語をベクトル化" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		文字をベクトル化する
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/python/">python</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2019-09-24
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>文章生成にchar-level lstmを使ってみる。英語ではうまくいっている例があるが日本語では難しい。これは、日本語は英語に比べ文字数が多く、ニューラルネットワークの次元数(パラメータ数)が増やす必要があるのが原因の1つだと思う。また、次元削減のため、日本語では文章を単語に区切り単語をベクトル化し、lstmで文章を生成する手法もあるが、単語に区切る時点でしゃべり言葉やネットの言葉ではうまく区切れないという問題がある。そこで、日本語の文字を画像として生成し、その画像をauto-encoderを用いてベクトル化することで、文字のベクトル化を行い、lstmに食わせるという手法を試して見ようと思う。<br>
+今回は、auto-encodeを用いた文字レベルのベクトル化までを行ってみようと思う。<br>
+コードはここ、https://github.com/if001/fifc.git</p>
+<p>以下の3工程で行う。</p>
+<ul>
+<li>フォントファイルからフォント画像を生成</li>
+<li>文字列とフォント画像をマッピング</li>
+<li>フォント画像から特徴量を生成</li>
+</ul>
+<h2 id="フォントファイルからフォント画像を生成">フォントファイルからフォント画像を生成</h2>
+<p>フォントファイルは、PILのImageFontの<a href="https://pillow.readthedocs.io/en/3.0.x/reference/ImageFont.html#PIL.ImageFont.truetype">turetype</a>を使い読み込むことができる。<br>
+フォントファイルとフォントのサイズを引数に与えることで、fontオブジェクトが生成できる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> PIL <span style="color:#ff79c6">import</span> ImageFont
+</span></span><span style="display:flex;"><span>font_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">28</span>
+</span></span><span style="display:flex;"><span>font <span style="color:#ff79c6">=</span> ImageFont<span style="color:#ff79c6">.</span>truetype(font_file, font_size, encoding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;unic&#39;</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>読み込んだフォントは下記のように保存する。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> PIL <span style="color:#ff79c6">import</span> Image
+</span></span><span style="display:flex;"><span>pict_height<span style="color:#ff79c6">=</span><span style="color:#bd93f9">28</span>
+</span></span><span style="display:flex;"><span>pict_width<span style="color:#ff79c6">=</span><span style="color:#bd93f9">28</span>
+</span></span><span style="display:flex;"><span>image <span style="color:#ff79c6">=</span> Image<span style="color:#ff79c6">.</span>new(<span style="color:#f1fa8c">&#39;RGB&#39;</span>, (pict_height, pict_width), (<span style="color:#bd93f9">255</span>, <span style="color:#bd93f9">255</span>, <span style="color:#bd93f9">255</span>))
+</span></span><span style="display:flex;"><span>draw <span style="color:#ff79c6">=</span> ImageDraw<span style="color:#ff79c6">.</span>Draw(image)
+</span></span><span style="display:flex;"><span>draw<span style="color:#ff79c6">.</span>text(pos, yomi, font<span style="color:#ff79c6">=</span>font, fill<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;#000000&#39;</span>)
+</span></span><span style="display:flex;"><span>image<span style="color:#ff79c6">.</span>save(<span style="color:#f1fa8c">&#34;./font&#34;</span>, <span style="color:#f1fa8c">&#39;PNG&#39;</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>Image.new()</code></pre>
+  </div>
+
+</div>
+<p>で空のイメージを生成し、</p>
+<p>Drawオブジェクトに対しの<a href="https://pillow.readthedocs.io/en/3.0.x/reference/ImageDraw.html#PIL.ImageDraw.PIL.ImageDraw.Draw.text">text関数</a>を用いてフォントファイルを書き込む。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>draw.text(pos, yomi, font=font, fill=&#39;#000000&#39;)</code></pre>
+  </div>
+
+</div>
+<p>引数は、上記のtext関数のリンクを参照。</p>
+<p>保存するファイル名は、以下のように文字を16進数変換したものを使う。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>yomi<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;歩&#34;</span>
+</span></span><span style="display:flex;"><span>bytes_yomi <span style="color:#ff79c6">=</span> yomi<span style="color:#ff79c6">.</span>encode(<span style="color:#f1fa8c">&#34;UTF-8&#34;</span>)<span style="color:#ff79c6">.</span>hex()
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;</span> <span style="color:#f1fa8c">&#39;e6ada9&#39;</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="文字列とフォント画像をマッピング">文字列とフォント画像をマッピング</h2>
+<p>ファイル名を読み仮名を16進数変換し保存しているので、文字から毎回画像ファイルを読み込んでも良いが、高速に呼び出せるように、1文字と画像をファイルとkvsを使ってマッピングしておく。<br>
+kvsにはplyvelを使う。以下のようにインスタンス化する。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> plyvel
+</span></span><span style="display:flex;"><span>db <span style="color:#ff79c6">=</span> plyvel<span style="color:#ff79c6">.</span>DB(db_path, create_if_missing<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>以下のように、保存と取り出しを行う。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>db<span style="color:#ff79c6">.</span>put(key, value) <span style="color:#6272a4"># 保存</span>
+</span></span><span style="display:flex;"><span>db<span style="color:#ff79c6">.</span>get(key) <span style="color:#6272a4"># 取り出す</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="フォント画像から特徴量を生成">フォント画像から特徴量を生成</h2>
+<p>auto-encoderを使って、保存した画像から特徴量を抽出する。<br>
+モデルの構造はkerasの公式ブログを参考にし、以下の構造とした。</p>
+<p><img src="../../../images/char_vec/auto-encoder-img.png" alt="auto-encoder-img"></p>
+<p>各層の次元は以下のようにした。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>font_size <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">32</span>
+</span></span><span style="display:flex;"><span>input_img <span style="color:#ff79c6">=</span> Input(shape<span style="color:#ff79c6">=</span>(font_size, font_size, <span style="color:#bd93f9">1</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">16</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(input_img)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> BatchNormalization()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> MaxPooling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">8</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> BatchNormalization()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> MaxPooling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(self<span style="color:#ff79c6">.</span>hidden_dim, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>),
+</span></span><span style="display:flex;"><span>           padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
+</span></span><span style="display:flex;"><span>encoded <span style="color:#ff79c6">=</span> MaxPooling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>, name<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;encoder&#34;</span>)(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">8</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>, name<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;decoder&#34;</span>)(encoded)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> UpSampling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>))(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">8</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> BatchNormalization()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> UpSampling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>))(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">16</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> BatchNormalization()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> ReLU()(x)
+</span></span><span style="display:flex;"><span>x <span style="color:#ff79c6">=</span> UpSampling2D((<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">2</span>))(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>decoded <span style="color:#ff79c6">=</span> Conv2D(<span style="color:#bd93f9">1</span>, (<span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">3</span>), activation<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;sigmoid&#39;</span>, padding<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;same&#39;</span>)(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>autoencoder <span style="color:#ff79c6">=</span> Model(input_img, decoded)
+</span></span><span style="display:flex;"><span>autoencoder<span style="color:#ff79c6">.</span>summary()</span></span></code></pre></div>
+  </div>
+
+</div>
+<h3 id="学習">学習</h3>
+<p>損失関数と最適化関数はそれぞれ、mean_squared_errorとadamを用いた。</p>
+<p>教師データとバリデーションデータはそれぞれ、66918個、16730個とした。また、バッチサイズは128とした。<br>
+学習は、kerasのearlystoppingを使いval_lossが減少がなくなるまで行った。</p>
+<h3 id="結果">結果</h3>
+<p><img src="../../../images/char_vec/training_log.png" alt="training_log"></p>
+<p>最中的なスコア</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>epoch :4  
+acc :0.591411  
+loss :0.046486  
+val_acc :0.529843  
+val_loss:0.073542  </code></pre>
+  </div>
+
+</div>
+<p>だいぶ早めに学習が打ち切られているのがわかる。<br>
+2epoch目くらいからほとんどlossもaccも変化しなくなっている。次元数や層の数が少なくパラメタが足りないのか???</p>
+<p>一応デコードされた文字を確認しておく。</p>
+<p><img src="../../../images/char_vec/decoded_char.png" alt="decoded_char"></p>
+<p>左が教師データ、右がdecodeされた文字となる。auto-encoderなのでぼやけているのはしょうがないが割と綺麗にデコードできている。ただし、画数の多い文字となるとやはりぼやけて元の文字がわからない。この辺は、モデルや学習のパラメタを調整することでも少し改善されると思う。</p>
+<p>生成された特徴量も確認しておく。<br>
+以下に、&lsquo;寂&rsquo;, &lsquo;,&rsquo;, &lsquo;ッ&rsquo;, &lsquo;鏡&rsquo;, &lsquo;奸&rsquo;, &lsquo;Ｐ&rsquo;, &lsquo;跳&rsquo;, &lsquo;・&rsquo;, &lsquo;“&rsquo;, &lsquo;ょ&rsquo;の記号を含む10文字を与えた際の特徴量を図示する。
+特徴量は、1文字あたり(4,4,8)次元となるので、4×4の画像を8枚横に並べたものを表示している。</p>
+<p><img src="../../../images/char_vec/hidden_dim.png" alt="hidden_dim"></p>
+<p>図をみると、文字ごとの偏りはなく学習できているように見える。</p>
+<p>lossは0.04とある程度小さい値となったが、accは0.6とそこまで高い値とはならなかった。改善のため何をすれば良いかの指標がいまいちわからん。損失関数と最適化関数は良さそうなので、とりあえず、層の数やunit数、学習率などのパラメタや教師データを増やすなど試してみようと思う。随時更新していく。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/calm_lora_quantize/">OpenCALM-7Bをloraで学習して、quantizeするまで</a></li>
+    
+      <li><a href="/posts/nlp/rinna_lora_ja/">loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</a></li>
+    
+      <li><a href="/posts/nlp/rinna_3b_cpp/">rinna 3Bをcppで動かす</a></li>
+    
+      <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
+    
+      <li><a href="/posts/nlp/bloom_lora_start/">BloomをLoRaで日本語finetuning</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

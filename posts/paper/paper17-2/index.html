@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2501.00522
+どんなもの この研究は、大規模言語モデル（LLM）の訓練に必要なリソースを削減するために、「簡素な言語環境」を構築し、その中で小型の言語モデル（Tiny LM" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/paper_summary/">paper_summary</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-05-17
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2501.00522">https://arxiv.org/abs/2501.00522</a></p>
+<hr>
+<h2 id="どんなもの">どんなもの</h2>
+<p>この研究は、大規模言語モデル（LLM）の訓練に必要なリソースを削減するために、「簡素な言語環境」を構築し、その中で小型の言語モデル（Tiny LMs）を効果的に訓練・評価するためのカリキュラムを提案します。特に、「ノイズなし・低複雑性（no noise, low complexity）」という原則に基づき、以下のデータセットを作成しました：</p>
+<ul>
+<li><strong>LEANER-Pretrain</strong>（71Mトークン）：プレトレーニング用</li>
+<li><strong>LEANER-Instruct</strong>（7Mトークン）：命令調整用</li>
+<li><strong>LEANER-GLUE</strong>：簡素化したGLUEベンチマーク</li>
+<li><strong>LEANER-Eval</strong>：命令追従能力の評価用</li>
+</ul>
+<p>このデータセットにより、学習効率が高まり、学習データやモデルサイズを削減しつつも有用な言語スキルを獲得できることを示しています。</p>
+<hr>
+<h2 id="先行研究と比べてどこがすごいの">先行研究と比べてどこがすごいの？</h2>
+<p>先行研究（TinyStories, BabyLM, miniGPT など）では、子供向けストーリーや字幕といった特定の形式に限定された簡易データを使用していましたが、本研究は以下の点で優れています：</p>
+<ul>
+<li>多様なジャンル（ウェブ、書籍、会話、コード、数学など）を含む構成でありながら、<strong>語彙と構文を簡素化</strong></li>
+<li><strong>情報エントロピーを定量的に削減</strong>しており、学習効率の改善を理論的・実証的に示している</li>
+<li>小型モデルに対するベンチマークも併せて提供し、<strong>命令追従の習得やカリキュラム学習の効果の比較が可能</strong></li>
+</ul>
+<hr>
+<h2 id="技術や手法のきもはどこにある">技術や手法のきもはどこにある？</h2>
+<p>技術的な肝は以下の点にあります：</p>
+<ul>
+<li>
+<p><strong>LEANERデータセット構築アルゴリズム</strong>
+特に以下のアルゴリズムがコアです：</p>
+<ul>
+<li><strong>Algorithm 1: LEANER-Training Dataset Collection</strong></li>
+<li><strong>Algorithm 2: LEANER-GLUE Benchmark Creation</strong></li>
+<li><strong>Algorithm 3: LEANER-Eval Benchmark Creation</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>情報エントロピーを用いた簡素化の定量的指標</strong>
+N-gramエントロピー比較：</p>
+</li>
+</ul>
+<p>$$
+\text{Entropy}_{1\text{-gram}}(\text{Original}) = 16.41
+$$</p>
+<p>$$
+\text{Entropy}_{1\text{-gram}}(\text{LEANER}) = 15.86
+$$</p>
+<ul>
+<li>
+<p><strong>カリキュラム学習の導入</strong>
+以下の難易度指標に基づいて学習サンプルを段階的に導入：</p>
+<ul>
+<li>文長（SentLen）</li>
+<li>モデルの自己損失（Self-loss）</li>
+<li>事前学習済モデルによる損失（LM-loss）</li>
+</ul>
+<p>データ導入の進行：</p>
+</li>
+</ul>
+<p>$$
+\sum_{j=0}^{i} p_j = 1\quad \text{(全データ導入)}
+$$</p>
+<hr>
+<h2 id="どうやって有効だと検証した">どうやって有効だと検証した？</h2>
+<p>3つの実験によって検証しています：</p>
+<ol>
+<li>
+<p><strong>EXP1: モデルアーキテクチャの比較</strong></p>
+<ul>
+<li>同一データ・同一パラメータ（14M）で、BERT、LLAMA、XLNET、MAMBAを比較</li>
+<li>LEANER-Pretrainを使ったモデルが、Originalよりも高得点</li>
+<li>例えば：</li>
+</ul>
+<p>$$
+\text{Avg}_{\text{LEANER-XLNET}} = 0.963
+$$</p>
+<p>$$
+\text{Avg}_{\text{ORI-XLNET}} = 0.900
+$$</p>
+</li>
+<li>
+<p><strong>EXP2: 命令追従能力の評価</strong></p>
+<ul>
+<li>
+<p>LEANER vs Original の組み合わせ4通りの事前学習＋命令調整</p>
+</li>
+<li>
+<p>評価指標は「文法」「一貫性」「具体性」（各5点満点）で合計15点満点</p>
+</li>
+<li>
+<p>LEANERデータでの事前学習が最も高いスコア：</p>
+<p>$$
+\text{LEANER-Ori Sum Score} = 4.1
+$$</p>
+<p>$$
+\text{Ori-Ori} = 2.7
+$$</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>EXP3: カリキュラム学習の効果検証</strong></p>
+<ul>
+<li>ITER. LM-LOSS 戦略が、ランダム戦略よりも<strong>20%学習ステップを削減</strong></li>
+<li>データ量も20%削減して同等以上の性能を実現</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="議論はあるか">議論はあるか</h2>
+<p>いくつかの重要な議論があります：</p>
+<ul>
+<li>
+<p><strong>Tiny LMsはInstruction-following能力に限界がある</strong></p>
+<ul>
+<li>71Mトークンでは、平均スコア1点台とまだ不十分</li>
+<li>人間はマルチモーダルで学習するため、言語だけでは限界がある</li>
+</ul>
+</li>
+<li>
+<p><strong>LLMによる書き換えに内在するバイアス</strong></p>
+<ul>
+<li>「LEANER」データはGPT-4により再記述されたため、元の文脈からのバイアスが含まれる可能性がある</li>
+</ul>
+</li>
+<li>
+<p><strong>人間の学習過程とのアナロジー</strong></p>
+<ul>
+<li>「TinyHelen」という名前はヘレン・ケラーにちなんでおり、人間が簡単な言語から学び始めるプロセスを模倣している</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>必要であれば各数式やアルゴリズムの詳細も展開できます。続きを希望されますか？</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper20/">Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper19/">Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper18/">Towards Data-Efficient Language Models: A Child-Inspired Approach to Language Learning (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper16/">Language Model Can Listen While Speaking (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper13/">MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

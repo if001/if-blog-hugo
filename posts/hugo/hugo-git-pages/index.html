@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>HugoをGitHub Pagesで公開する</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="GitHub Pagesを使ってHugoを公開する手順をメモ
+やりたいこととしては、
+Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定 の3つです。
+GitHub Pagesで公開 まずは、Hugoのプロジェクトル" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		HugoをGitHub Pagesで公開する
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/hugo/">hugo</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2018-10-16
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>GitHub Pagesを使ってHugoを公開する手順をメモ<br>
+やりたいこととしては、</p>
+<ul>
+<li>Hugoのプロジェクトを丸ごとgitで管理</li>
+<li>プロジェクトの下に作られるpublicをGitHub Pagesで公開</li>
+<li>独自ドメインの設定</li>
+</ul>
+<p>の3つです。</p>
+<h2 id="github-pagesで公開">GitHub Pagesで公開</h2>
+<p>まずは、Hugoのプロジェクトルートをgitで管理します。<br>
+GitHub Pagesで公開するために、GitHubのリポジトリの設定からPagesで公開するための設定を行います。このとき、そのまま公開すると、Hugoをビルドして生成されるファイルはプロジェクトルート直下のpublic以下に生成されるので、</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> https://<span style="color:#ff79c6">{</span>ユーザー名<span style="color:#ff79c6">}</span>.github.io/<span style="color:#ff79c6">{</span>リポジトリ名<span style="color:#ff79c6">}</span>/<span style="color:#ff79c6">{</span>public<span style="color:#ff79c6">}</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>というように、URLにpublicが付いてしまいます。これは嫌なので、git subtreeを使います。<br>
+gh-pagesという新しいブランチを作成し、public以下のファイルのみをpushしています。github pagesではgh-pagesを公開するよう設定します。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git subtree push --prefix public/ . gh-pages
+</span></span><span style="display:flex;"><span>$ git push origin gh-pages:gh-pages</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>GitHubから独自ドメインの設定をすると、ブランチgh-pagesにCNAMEファイルが追加、commitされるのですが、この変更をローカルのmasterに取り込めないという問題が発生しました。このため、ローカルで記事を追加したときなど、non-fast-forwardでpush、pullもできなくなりました。そこで、しょうがなくmaster側にローカルからCNAMEファイルを追加しました。</p>
+<p>それでもうまくいかないときは、エラー文のcommitのハッシュを使って無理やりpushしてとりあえず回避してます。</p>
+<p>例</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> $ git subtree push --prefix public/ . gh-pages
+</span></span><span style="display:flex;"><span> git push using:  . gh-pages
+</span></span><span style="display:flex;"><span> To .     <span style="color:#bd93f9">59</span> <span style="color:#ff79c6">(</span>58<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>  ! <span style="color:#ff79c6">[</span>rejected<span style="color:#ff79c6">]</span>        95625bda7b4247ff0d05b2e76c8db1cbb7e87dad -&gt; gh-pages <span style="color:#ff79c6">(</span>non-fast-forward<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span> error: failed to push some refs to <span style="color:#f1fa8c">&#39;.&#39;</span>
+</span></span><span style="display:flex;"><span> hint: Updates were rejected because a pushed branch tip is behind its remote
+</span></span><span style="display:flex;"><span> hint: counterpart. Check out this branch and integrate the remote changes
+</span></span><span style="display:flex;"><span> hint: <span style="color:#ff79c6">(</span>e.g. <span style="color:#f1fa8c">&#39;git pull ...&#39;</span><span style="color:#ff79c6">)</span> before pushing again.
+</span></span><span style="display:flex;"><span> hint: See the <span style="color:#f1fa8c">&#39;Note about fast-forwards&#39;</span> in <span style="color:#f1fa8c">&#39;git push --help&#39;</span> <span style="color:#ff79c6">for</span> details.</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> $ git push origin 95625bda7b4247ff0d05b2e76c8db1cbb7e87dad:gh-pages</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="独自ドメインの設定">独自ドメインの設定</h2>
+<p>今回は、お名前.comでドメインを取得しました。お名前.comでDNSの設定をします。<br>
+GitHub Pagesのドメインは</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> https://<span style="color:#ff79c6">{</span>ユーザー名<span style="color:#ff79c6">}</span>.github.io/<span style="color:#ff79c6">{</span>リポジトリ名<span style="color:#ff79c6">}</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>なので、取得したドメインでGitHub PagesのドメインがひけるようにCNAMEの設定を行います。</p>
+<p>GitHub側では、リポジトリの設定からCustom domainを取得したドメインで設定します。Custom domainを設定すると、Enforce HTTPSにチェックを入れることができるので、設定するとhttpsで通信が行えるようになります。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
+    
+      <li><a href="/posts/hugo/hugo-start-article/">Hugoでブログを作る</a></li>
+    
+      <li><a href="/posts/hugo/hugo-href-to-target-blank/">Hugoでリンクを新しいウィンドウで開く</a></li>
+    
+      <li><a href="/posts/hugo/hugo-ga/">Hugoにgoogle analyticsを導入する</a></li>
+    
+      <li><a href="/posts/hugo/hugo-long-time-no-see/">Hugoのディレクトリ構造やデプロイ方法の備忘録</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

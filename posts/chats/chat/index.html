@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title></title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="要約 重み分布のエントロピーを「パラメータ空間の自由度」の尺度として捉え、
+エントロピーの定義と計算法（ヒストグラム法・微分エントロピー／Laplace 近似） 学習過程でのエントロピー変動と Loss の関係 大規模 GPT／Llama 系で Dropout 0・L2 正則化・LR アニーリングが" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <div class="intro-header"></div>
+
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;0001-01-01
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <h2 id="要約">要約</h2>
+<p>重み分布のエントロピーを「パラメータ空間の自由度」の尺度として捉え、</p>
+<ol>
+<li>エントロピーの定義と計算法（ヒストグラム法・微分エントロピー／Laplace 近似）</li>
+<li>学習過程でのエントロピー変動と Loss の関係</li>
+<li>大規模 GPT／Llama 系で Dropout 0・L2 正則化・LR アニーリングが採用される理由</li>
+<li>小型 (≈0.5 B) モデルで「高エントロピーを維持しつつ Loss を下げる」手法と、
+ そのために必要なデータ多様性の評価指標
+――を精確に整理した技術メモ。</li>
+</ol>
+<h2 id="ターゲット">ターゲット</h2>
+<ul>
+<li>0.5 B 級 LLM の事前学習／微調整を検討する ML エンジニア</li>
+<li>モデル圧縮・ベイズ的正則化・データ選別に関心がある研究者</li>
+<li>重みエントロピーと汎化・計算効率のトレードオフを理解したい人</li>
+</ul>
+<h2 id="重みエントロピーと学習動態">重みエントロピーと学習動態</h2>
+<table>
+<thead>
+<tr>
+<th>トピック</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>定義</strong></td>
+<td>シャノンエントロピー（離散化後） $H=-\sum p_i\log_2 p_i$ ／ 微分エントロピー $h=\tfrac12\log_2!\bigl((2\pi e)^d\det\Sigma\bigr)$</td>
+</tr>
+<tr>
+<td><strong>計算法</strong></td>
+<td>- <strong>ヒストグラム法</strong>：256 ビン量子化 → 平均 bits/weight<!-- raw HTML omitted -->- <strong>Laplace 近似</strong>：Hessian 逆行列で共分散推定</td>
+</tr>
+<tr>
+<td><strong>学習での挙動</strong></td>
+<td>初期低→中盤増→終盤横ばい/減 が典型だが、ReLU 大規模ネットでは圧縮相が観測されないケースも報告</td>
+</tr>
+<tr>
+<td><strong>Loss と H の非単調性</strong></td>
+<td>Loss↓でも <strong>H↑, H→一定, H↓</strong> の全パターンが起こり得る（正則化・学習率・データ難度に依存）</td>
+</tr>
+<tr>
+<td><strong>LLM 標準レシピ</strong></td>
+<td>Dropout 0＋L2＋LR アニーリング＝学習安定＆高速化優先。潜在自由度はモデル規模で既に過剰</td>
+</tr>
+</tbody>
+</table>
+<h2 id="高エントロピー維持手法とデータ多様性評価">高エントロピー維持手法とデータ多様性評価</h2>
+<h3 id="高エントロピー維持loss-低減の代表手法">高エントロピー維持・Loss 低減の代表手法</h3>
+<ul>
+<li><strong>SGLD / Entropy-SGD</strong>：勾配に温度付きノイズを付加し広い事後を探索</li>
+<li><strong>SWA / SWAG</strong>：学習後期の重みを平均化（共分散も保存）→ 1-pass ベイズ近似</li>
+<li><strong>MoE / Adapter 分岐</strong>：実行経路ごとに重みを切替え自由度を確保</li>
+</ul>
+<h3 id="データ多様性評価指標推奨-3-系統併用">データ多様性評価指標（推奨 3 系統併用）</h3>
+<table>
+<thead>
+<tr>
+<th>系統</th>
+<th>代表指標</th>
+<th>コメント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>語彙</strong></td>
+<td>TTR・MTLD・n-gram Shannon Entropy・Distinct-n</td>
+<td>テキスト長補正済み指標を推奨</td>
+</tr>
+<tr>
+<td><strong>意味</strong></td>
+<td>Sentence-BERT 距離平均／Self-BLEU、Task2Vec Diversity Coefficient、DCScore</td>
+<td>embed 空間の分散を定量化</td>
+</tr>
+<tr>
+<td><strong>構造・トピック</strong></td>
+<td>BERTopic トピック数＋Entropy、依存構造 n-gram カバレッジ、Hill 数</td>
+<td>文体・構文の偏り検出</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>実務フロー（最小セット）</strong></p>
+<ol>
+<li>乱抽出 10 M token → <strong>TTR・Distinct-4・Shannon H</strong> を計測</li>
+<li>embed 距離平均＋Task2Vec Diversity</li>
+<li>BERTopic でトピック Entropy</li>
+<li>高スコア部分を優先抽出し 0.5 B モデルを訓練</li>
+</ol>
+</blockquote>
+<h2 id="まとめ">まとめ</h2>
+<ul>
+<li>
+<p><strong>重みエントロピー</strong>は「必要ビット長＝自由度」の客観指標</p>
+</li>
+<li>
+<p>Loss 減少と Entropy の動きは独立で、正則化・学習率・データ難度に左右される</p>
+</li>
+<li>
+<p>GPT/Llama の標準設定は「過剰自由度より安定学習」を優先</p>
+</li>
+<li>
+<p>小型モデルで性能を維持するには</p>
+<ol>
+<li><strong>高密度・高多様性データ</strong>を選別し、</li>
+<li><strong>SGLD／SWAG などで事後分布を広げる</strong>
+の両輪が鍵となる。</li>
+</ol>
+</li>
+</ul>
+
+      </div>
+      <div class="related-article">
+        
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

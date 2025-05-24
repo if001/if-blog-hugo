@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2501.08313
+どんなもの MiniMax-01シリーズ（MiniMax-Text-01とMiniMax-VL-01を含む）は、最先端モデルと同等の性能を持ちながら、より長い" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/paper_summary/">paper_summary</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-01-18
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2501.08313">https://arxiv.org/abs/2501.08313</a></p>
+<h2 id="どんなもの">どんなもの</h2>
+<p>MiniMax-01シリーズ（MiniMax-Text-01とMiniMax-VL-01を含む）は、最先端モデルと同等の性能を持ちながら、より長いコンテキストを処理できる優れた能力を持つ基盤モデルで す。  長コンテキスト処理を可能にするために、効率的なスケーリングが可能なlightning attentionを採用しています。計算能力を最大化するため、Mixture of Experts (MoE)と統合されており、32個の専門家と合計4560億個のパラメータを持ち、各トークンに対して459億個のパラメータが活性化されます。</p>
+<h2 id="先行研究と比べてどこがすごいの">先行研究と比べてどこがすごいの？</h2>
+<p>MiniMax-01は、GPT-4oやClaude-3.5-Sonnetなどの最先端モデルと同等の性能を達成しながら、20～32倍長いコンテキストウィンドウ（最大400万トークン）を提供します。先行研 究で提案されたsparse attention、linear attention、long convolutions、state space models、linear RNNsなどは、理論的には有望でしたが、商業規模のモデルへの採用は限 られていました。MiniMax-01は、これらの先行研究の限界を克服し、大規模なlinear attentionの実装に初めて成功した点で優れています。</p>
+<h2 id="技術や手法のきもはどこにある">技術や手法のきもはどこにある？</h2>
+<p>MiniMax-01の核となる技術は<strong>lightning attention</strong>です。これは、因果言語モデリングにおける遅いcumsum演算を回避するタイル化技術を用いた、linear attentionのI/O対応 の最適化実装です。  計算の複雑さを線形に削減し、長コンテキストの処理を効率化します。さらに、計算能力とパラメータ数を最大化するために<strong>Mixture of Experts (MoE)</strong> を採用し、効率的な並列化戦略と計算・通信オーバーラップ技術を開発することで、数百億パラメータのモデルを効率的に訓練・推論できるようにしています。  また、softmax attentionとlightning attentionを組み合わせたハイブリッドアーキテクチャを採用することで、retrieval性能も向上させています。</p>
+<h2 id="どうやって有効だと検証した">どうやって有効だと検証した？</h2>
+<p>標準的な学術ベンチマーク（MMLU、MMLU-Pro、C-SimpleQA、IFEval、GPQA、MATH、Humanevalなど）と、実世界の使用状況から導き出された社内ベンチマークの両方で、MiniMax-01の有効性を検証しました。結果、最先端モデルと同等の性能を達成し、特に20万トークンを超えるコンテキストでは、有意に優れた性能を示しました。  さらに、様々な規模のモ デル（7000万～70億パラメータ）を用いたスケーリング実験を行い、lightning attentionのスケーラビリティと、softmax attentionとの比較を行いました。  また、MoEアーキテクチャの有効性についても、密なモデルとの比較実験で検証しています。  長コンテキストの処理効率については、prefilling latencyの比較や、様々なattention機構の訓練速度の比較実験も行っています。</p>
+<h2 id="議論はあるか">議論はあるか</h2>
+<ul>
+<li><strong>linear attentionの限界:</strong>  純粋なlinear attentionモデルは計算効率が良いものの、retrieval能力が不足しており、in-context learningには適さないことが示されました。そのため、softmax attentionと組み合わせたハイブリッドアーキテクチャを採用しています。このハイブリッドアプローチの妥当性については、更なる議論が必要となる可能性があります。</li>
+<li><strong>スケーリング則の精度:</strong>  大規模モデルへの外挿において、スケーリング則の予測精度が低下する問題がありました。論文では、これを解決するための新たな式を提案していますが、その一般性や信頼性については、更なる検証が必要です。</li>
+<li><strong>長コンテキスト評価の限界:</strong> 現在の長コンテキスト評価データセットは、人工的なシナリオに偏っている可能性があり、文書分析などの実用的なタスクにおける長文の推論 能力の評価は依然として限られています。より現実的な設定での評価が必要となります。</li>
+<li><strong>データセットのバイアス:</strong> 使用されたデータセットにバイアスが含まれている可能性があり、それがモデルの性能や公平性に影響を与えている可能性があります。  この点 についての詳細な分析が必要です。</li>
+</ul>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper17/">TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper17/">TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper18/">Towards Data-Efficient Language Models: A Child-Inspired Approach to Language Learning (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper16/">Language Model Can Listen While Speaking (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper10/">SentenceVAE: Enable Next-sentence Prediction for Large Language Models with Faster Speed, Higher Accuracy and Longer Context (AI論文要約)</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

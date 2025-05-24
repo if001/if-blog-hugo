@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>VicunaでReActっぽいことを試してみる</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="vicunaでReActっぽいことを試してみる。正確には違うので注意
+ReActは、Thought、Action、Observationをループさせ、LLMの出力の精度上げる手法
+ReActの処理の流れは以下のような形。LangChainの実装を参考にする。
+与えられた質問(Question)に対し" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		VicunaでReActっぽいことを試してみる
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/python/">python</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/langchain/">langchain</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-04-01
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>vicunaでReActっぽいことを試してみる。正確には違うので注意</p>
+<p>ReActは、Thought、Action、Observationをループさせ、LLMの出力の精度上げる手法</p>
+<p>ReActの処理の流れは以下のような形。LangChainの実装を参考にする。</p>
+<ul>
+<li>与えられた質問(Question)に対し、</li>
+<li>Thoughtで質問をどのように解決するかの思考を行い、</li>
+<li>Actionでツールを選択する</li>
+<li>選択したツールを実行し、その結果をObservationとして受け取る</li>
+<li>更にThought、Action&hellip;とループしていき、最終的な結果を得る</li>
+</ul>
+<p>LangChainではツールには、Google検索やwikipediaの検索が指定できる。<br>
+<a href="https://python.langchain.com/en/latest/modules/agents/tools.html">https://python.langchain.com/en/latest/modules/agents/tools.html</a><br>
+(LangChainのagentについては別の記事で書きます)</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># flake8: noqa</span>
+</span></span><span style="display:flex;"><span>PREFIX <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;&#34;Answer the following questions as best you can. You have access to the following tools:&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>FORMAT_INSTRUCTIONS <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;&#34;Use the following format:
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">Question: the input question you must answer
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">Thought: you should always think about what to do
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">Action: the action to take, should be one of [</span><span style="color:#f1fa8c">{tool_names}</span><span style="color:#f1fa8c">]
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">Action Input: the input to the action
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">Observation: the result of the action
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">... (this Thought/Action/Action Input/Observation can repeat N times)
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">Thought: I now know the final answer
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">Final Answer: the final answer to the original input question&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>SUFFIX <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;&#34;Begin!
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">Question: </span><span style="color:#f1fa8c">{input}</span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">Thought:</span><span style="color:#f1fa8c">{agent_scratchpad}</span><span style="color:#f1fa8c">&#34;&#34;&#34;</span></span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/hwchase17/langchain/blob/master/langchain/agents/mrkl/prompt.py" target="_black">https://github.com/hwchase17/langchain/blob/master/langchain/agents/mrkl/prompt.py</a>
+    </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(省略)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Question: Musician <span style="color:#ff79c6">and</span> satirist Allie Goertz wrote a song about the <span style="color:#f1fa8c">&#34;The Simpsons&#34;</span> character Milhouse, who Matt Groening named after who?
+</span></span><span style="display:flex;"><span>Thought: The question simplifies to <span style="color:#f1fa8c">&#34;The Simpsons&#34;</span> character Milhouse <span style="color:#ff79c6">is</span> named after who<span style="color:#ff79c6">.</span> I only need to search Milhouse <span style="color:#ff79c6">and</span> find who it <span style="color:#ff79c6">is</span> named after<span style="color:#ff79c6">.</span>
+</span></span><span style="display:flex;"><span>Action: Search[Milhouse]
+</span></span><span style="display:flex;"><span>Observation: Milhouse Mussolini Van Houten <span style="color:#ff79c6">is</span> a recurring character <span style="color:#ff79c6">in</span> the Fox animated television series The Simpsons voiced by Pamela Hayden <span style="color:#ff79c6">and</span> created by Matt Groening<span style="color:#ff79c6">.</span>
+</span></span><span style="display:flex;"><span>Thought: The paragraph does <span style="color:#ff79c6">not</span> tell who Milhouse <span style="color:#ff79c6">is</span> named after, maybe I can look up <span style="color:#f1fa8c">&#34;named after&#34;</span><span style="color:#ff79c6">.</span>
+</span></span><span style="display:flex;"><span>Action: Lookup[named after]
+</span></span><span style="display:flex;"><span>Observation: (Result <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">1</span>) Milhouse was named after U<span style="color:#ff79c6">.</span>S<span style="color:#ff79c6">.</span> president Richard Nixon, whose middle name was Milhous<span style="color:#ff79c6">.</span>
+</span></span><span style="display:flex;"><span>Thought: Milhouse was named after U<span style="color:#ff79c6">.</span>S<span style="color:#ff79c6">.</span> president Richard Nixon, so the answer <span style="color:#ff79c6">is</span> Richard Nixon<span style="color:#ff79c6">.</span>
+</span></span><span style="display:flex;"><span>Action: Finish[Richard Nixon]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(省略)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/hwchase17/langchain/blob/master/langchain/agents/react/wiki_prompt.py" target="_black">https://github.com/hwchase17/langchain/blob/master/langchain/agents/react/wiki_prompt.py</a>
+    </div>
+
+</div>
+<h2 id="動かす">動かす</h2>
+<p>vicunaを使ってReAct風のものを動かしてみる。</p>
+<p>モデルは13bのq5_1を使う。<br>
+<a href="https://huggingface.co/eachadea/ggml-vicuna-13b-1.1">https://huggingface.co/eachadea/ggml-vicuna-13b-1.1</a></p>
+<p>LangChainを色々書き換えるのはめんどくさかったので、とりあえず動くように自分で実装する。</p>
+<p>質問を「日本の現在の総理大臣を教えてください」として、一旦そのまま出力させてみる</p>
+<p>prompt</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>### HUMAN: 日本の現在の総理大臣を教えてください
+### ASSISTANT:</code></pre>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>申し訳ありませんが、私は実行中にあるプログラムに従って、ユーザーからの入力を承知することはできません。そのため、私は現在の日本の総理大臣を教えることはで きません。ご了承ください。
+---
+日本の現在の総理大臣は「安孫子」として知られています。
+---
+日本の現在の総理大臣は、2021年9月15日に選任された山田孝兼です。</code></pre>
+  </div>
+
+</div>
+<h2 id="react風で動かす">ReAct風で動かす</h2>
+<h3 id="ツールの選択と入力">ツールの選択と入力</h3>
+<p>以下のpromptをLLMに与え、ツールの選択を入力を生成する。
+ツールとツールへの入力が得られるまでループする。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">create_first_prompt</span>(qa):
+</span></span><span style="display:flex;"><span> <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;&#34;&#34;### HUMAN: 質問に対し以下のフォーマットで回答して下さい。
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">以下のツールが選択できます
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">- Web検索: Webページを検索する
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">- Wikipedia検索: Wikipediaを検索する
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">以下のフォーマットで出力して下さい
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">- 思考: 質問に対しあなたが解決すべき課題
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">- ツールの選択: [Web検索]、[Wikipedia検索]から行動を１つ選択して下さい
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">- ツールへの入力: ツールに入力するキーワード
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span><span style="color:#f1fa8c">{</span>qa<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">### ASSISTANT:&#34;&#34;&#34;</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span> <span style="color:#ff79c6">while</span> <span style="color:#ff79c6">True</span>:
+</span></span><span style="display:flex;"><span>        prompt <span style="color:#ff79c6">=</span> create_first_prompt(qa)        
+</span></span><span style="display:flex;"><span>        output <span style="color:#ff79c6">=</span> llm(prompt)
+</span></span><span style="display:flex;"><span>        action, action_input <span style="color:#ff79c6">=</span> get_tool(output)    
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> action <span style="color:#ff79c6">and</span> action_input:
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">break</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>LangChainの実装を参考に、LLMの出力からツールとツールに対する入力を取り出す。</p>
+<p><a href="https://github.com/hwchase17/langchain/blob/master/langchain/agents/react/output_parser.py">https://github.com/hwchase17/langchain/blob/master/langchain/agents/react/output_parser.py</a></p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">get_tool</span>(t):
+</span></span><span style="display:flex;"><span>    action <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>
+</span></span><span style="display:flex;"><span>    regex <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">r</span><span style="color:#f1fa8c">&#34;ツールの選択[: |：].*?\[(.*?)\].*?[\n]+&#34;</span>
+</span></span><span style="display:flex;"><span>    match <span style="color:#ff79c6">=</span> re<span style="color:#ff79c6">.</span>search(regex, t, re<span style="color:#ff79c6">.</span>DOTALL)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> match:
+</span></span><span style="display:flex;"><span>        action <span style="color:#ff79c6">=</span> match<span style="color:#ff79c6">.</span>group(<span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    action_input <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">None</span>
+</span></span><span style="display:flex;"><span>    regex <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">r</span><span style="color:#f1fa8c">&#34;ツールへの入力[: |：](.*?)[\n]+&#34;</span>
+</span></span><span style="display:flex;"><span>    match <span style="color:#ff79c6">=</span> re<span style="color:#ff79c6">.</span>search(regex, t, re<span style="color:#ff79c6">.</span>DOTALL)    
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> match:        
+</span></span><span style="display:flex;"><span>        action_input <span style="color:#ff79c6">=</span> match<span style="color:#ff79c6">.</span>group(<span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> action, action_input</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>質問を、「日本の現在の総理大臣を教えてください」として、動かしてみる。</p>
+<p>1ループ目</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>思考: 日本の現在の総理大臣を知りたい。
+
+ツールの選択: Web検索
+
+入力: &#34;日本の現在の総理大臣&#34;
+
+結果: 現在の日本の総理大臣は「安孫子守」です。
+
+==========
+action: None
+actoin_input: None
+==========</code></pre>
+  </div>
+
+</div>
+<p>2ループ目</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>思考: 日本の現在の総理大臣について知りたいことがあるのですね。
+
+ツールの選択: Web検索
+
+入力: &#34;日本の総理大臣&#34;
+
+結果: 現在の日本の総理大臣は【Shinzo Abe】です。
+==========
+action: None
+actoin_input: None
+==========</code></pre>
+  </div>
+
+</div>
+<p>3ループ目</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>以下は、&#34;日本の現在の総理大臣を教えてください&#34;という質問に対する回答です。
+
+- 思考: 質問に対しあなたが解決すべき課題
+日本の現在の総理大臣は、2021年9月現在です。私には、現在の情報をお知らせいただけると思われます。
+
+- ツールの選択: [Web検索]、[Wikipedia検索]から行動を１つ選択して下さい
+- ツールへの入力: &#34;日本の総理大臣&#34;
+==========
+action: Web検索
+actoin_input:  &#34;日本の総理大臣&#34;
+==========</code></pre>
+  </div>
+
+</div>
+<h3 id="結果の取得">結果の取得</h3>
+<p>ツールには、LangChainでwrapされているDuckDuckGoとwikipediaAPIを利用する</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> langchain <span style="color:#ff79c6">import</span> Wikipedia
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> langchain.tools <span style="color:#ff79c6">import</span> DuckDuckGoSearchRun
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docstore<span style="color:#ff79c6">=</span>DocstoreExplorer(Wikipedia())
+</span></span><span style="display:flex;"><span>dd_search <span style="color:#ff79c6">=</span> DuckDuckGoSearchRun()</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>前述の実行結果より、ツールにweb検索を指定したのでその結果を利用する。
+以下がweb検索の結果</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>この項目では、日本の内閣総理大臣の一覧について説明しています。. その他の用法については「 内閣総理大臣 (曖昧さ回避) 」をご覧ください。. 内閣総理大臣.  現職. 岸田文雄. 第2次岸田改造内閣. 就任日：2021年11月10日. 歴代の首相と内閣. 歴代内閣総理大臣. 内閣総理大臣 （ないかくそうりだいじん、 英: Prime Minister [1] ）は、 日本 の 内閣 の 首長 たる 国務大臣 [2] 。. 文民 である 国会議員 が就任し、その 地位 及び 権限 は 日本国憲法</code></pre>
+  </div>
+
+</div>
+<p>ツールの結果をpromptに追加し、最終的な回答が得られるまでループする。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">create_react_prompt</span>(qa, tool_result):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;&#34;&#34; 質問に対し以下のフォーマットで回答して下さい。
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">追加情報: </span><span style="color:#f1fa8c">{</span>tool_result<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">以下のツールが選択できます
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">- Web検索: Webページを検索する
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">- Wikipedia検索: Wikipediaを検索する
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">以下のフォーマットで出力して下さい
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">- 思考: 質問に対しあなたが解決すべき課題
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">- ツールの選択: [Web検索]、[Wikipedia検索]から行動を１つ選択して下さい
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">- ツールへの入力: ツールに入力するキーワード
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">(思考を繰り返し、ツールを選択する必要がない場合、最終的な回答を出力してください。)
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">- 最終的な回答: 質問に対する最終的な答えを出力して下さい。
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">### HUMAN: </span><span style="color:#f1fa8c">{</span>qa<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">### ASSISTANT:&#34;&#34;&#34;</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4">## promptが長くなりすぎるのでカット</span>
+</span></span><span style="display:flex;"><span>tool_result <span style="color:#ff79c6">=</span> tool_result[:<span style="color:#bd93f9">250</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> create_react_prompt(qa, tool_result)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">while</span> <span style="color:#ff79c6">True</span>:
+</span></span><span style="display:flex;"><span>    output <span style="color:#ff79c6">=</span> llm(prompt)        
+</span></span><span style="display:flex;"><span>    final_answer <span style="color:#ff79c6">=</span> get_final_answer(output)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> final_answer:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">break</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<h3 id="実行結果">実行結果</h3>
+<p>prompt</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code> 質問に対し以下のフォーマットで回答して下さい。
+
+追加情報: この項目では、日本の内閣総理大臣の一覧について説明しています。. その他の用法については「 内閣総理大臣 (曖昧さ回避) 」をご覧ください。. 内閣総理大臣. 現 職. 岸田文雄. 第2次岸田改造内閣. 就任日：2021年11月10日. 歴代の首相と内閣. 歴代内閣総理大臣. 内閣総理大臣 （ないかくそうりだいじん、 英: Prime Minister [1] ）は、 日本 の 内閣 の 首長 たる 国務大臣 [2] 。. 文民 である 国会議員 が就任し、その 地位 及び 権限 は 日本国憲法
+
+以下のツールが選択できます
+- Web検索: Webページを検索する
+- Wikipedia検索: Wikipediaを検索する
+
+
+以下のフォーマットで出力して下さい
+- 思考: 質問に対しあなたが解決すべき課題
+- ツールの選択: [Web検索]、[Wikipedia検索]から行動を１つ選択して下さい
+- ツールへの入力: ツールに入力するキーワード
+(思考を繰り返し、ツールを選択する必要がない場合、最終的な回答を出力してください。)
+- 最終的な回答: 質問に対する最終的な答えを出力して下さい。
+
+### HUMAN: 日本の現在の総理大臣を教えてください
+### ASSISTANT:</code></pre>
+  </div>
+
+</div>
+<p>出力</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>思考: 質問に対する最終的な回答を見つけるために、日本の内閣総理大臣に関する情報を検索する必要があります。
+
+ツールの選択: [Wikipedia検索]から行動を選択します。
+
+ツールへの入力: 「日本の内閣総理大臣」
+
+最終的な回答: 現在の内閣総理大臣は岸田文雄です。</code></pre>
+  </div>
+
+</div>
+<p>ツールやツールへの入力が出力されているが、最終的な回答が出力されているのでここでbreak</p>
+<h3 id="最終的な結果を出力">最終的な結果を出力</h3>
+<p>最終的な回答を含めて、回答を行う。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">create_qa_prompt</span>(qa, info):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;&#34;&#34;### Human: 関連情報を用いて、質問に答えてください。
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">関連情報: </span><span style="color:#f1fa8c">{</span>info<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">### HUMAN: </span><span style="color:#f1fa8c">{</span>qa<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">### ASSISTANT: &#34;&#34;&#34;</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>qa_prompt <span style="color:#ff79c6">=</span> create_qa_prompt(qa, final_answer)
+</span></span><span style="display:flex;"><span>result <span style="color:#ff79c6">=</span> llm(qa_prompt)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;result: &#39;</span>, result)</span></span></code></pre></div>
+  </div>
+
+</div>
+<h3 id="実行結果-1">実行結果</h3>
+<p>prompt</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>### Human: 関連情報を用いて、質問に答えてください。
+
+関連情報: 現在の内閣総理大臣は岸田文雄です。
+
+
+### HUMAN: 日本の現在の総理大臣を教えてください
+### ASSISTANT:</code></pre>
+  </div>
+
+</div>
+<p>出力</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>result:  現在の日本の内閣総理大臣は岸田文雄です。</code></pre>
+  </div>
+
+</div>
+<p>コードサンプル<br>
+<a href="https://github.com/if001/langchain_react_sample/blob/master/run.py">https://github.com/if001/langchain_react_sample/blob/master/run.py</a></p>
+<h3 id="まとめ">まとめ</h3>
+<p>vicunaで以下のフォーマットで出力というのが使えるのは強い</p>
+<p>LangChainとの違いとして、LangChainではこれまでのThought、Action、ObservationをループもPromptに含めている。  ローカルで動かすモデルでは長いPromptを処理できないので、そのあたりを含めることができなかった。</p>
+<p>ツールとツールへの入力をLLMに出力させるために何度かループさせる必要がある。<br>
+LLMの出力に表記ゆれがあるので、ツールやツールへの入力の取得にはregexを頑張る必要がある。
+うまく出力されるまでループするのでだいぶ時間がかかる。実用性はまだない</p>
+<p>1回の実行が速いわけではないので、prompt作るの結構大変だった。
+別のモデルでやるとこのPromptではうまく動かなかったので、モデルごとにprompt作り直す必要がある。<br>
+promptを学習する機構とかそろそろ出るかなぁ..</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/mixture_of_experts_sample/">Mixture of expertsのサンプル実装</a></li>
+    
+      <li><a href="/posts/nlp/hf_generation_wrap/">huggingfaceのgenerationの関数をtorch modelから使えるようにしたい</a></li>
+    
+      <li><a href="/posts/nlp/transformer_any_architecture/">llama2のアーキテクチャを変更してpre trainingしてみる</a></li>
+    
+      <li><a href="/posts/nlp/hf_ds_upload/">複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ</a></li>
+    
+      <li><a href="/posts/nlp/hf_dataloader_datacollator/">HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

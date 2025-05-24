@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。
+https://arxiv.org/abs/2410.04717
+どんなもの 大規模言語モデル（LLM）の指示遵守能力を向上させるためのデータセット構築戦略に関する研究。特に、instruction diversity（指示" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/paper_summary/">paper_summary</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2025-01-02
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>AIを使った論文要約です。簡単なサーベイ用で詳細は論文を参照してください。</p>
+<p><a href="https://arxiv.org/abs/2410.04717">https://arxiv.org/abs/2410.04717</a></p>
+<h2 id="どんなもの">どんなもの</h2>
+<p>大規模言語モデル（LLM）の指示遵守能力を向上させるためのデータセット構築戦略に関する研究。特に、<strong>instruction diversity</strong>（指示の多様性）が汎化性能に与える決定的な影響を明らかにしている。 制御された実験を通して、<strong>instruction-following</strong>（指示遵守）能力に焦点を当て、推論や知識検索能力とは切り離して評価している。</p>
+<h2 id="先行研究と比べてどこがすごいの">先行研究と比べてどこがすごいの？</h2>
+<p>先行研究では、データセットの選択やデータ量の増加がLLMの性能に与える影響について、ばらつきのある結果が報告されていた。本研究は、<strong>instruction-following</strong>能力に焦点を絞り、<strong>instruction diversity</strong>の重要性を厳密に検証した点が優れている。 特に、Turing-complete Markov algorithmに着想を得た制御された実験により、多様な意味 領域にわたるデータの多様化が、未知の指示への汎化に不可欠であることを示している。単に限定的な領域内で多様化しても、堅牢な汎化は保証されないことを明らかにしている。</p>
+<h2 id="技術や手法のきもはどこにある">技術や手法のきもはどこにある？</h2>
+<p>Turing-complete Markov algorithmに着想を得た文字列置換タスクを用いた制御実験が中心。このタスクは、LLMの<strong>instruction-following</strong>能力を、推論能力とは独立に評価できるシンプルなモデルを提供する。 実験では、<strong>instruction diversity</strong>を様々な方法で変化させ（指示の数、No-Opの割合、指示の分布、意味制約など）、未知の指示に対する汎化性能を測定している。さらに、専門家モデルと汎用モデルのファインチューニング実験にも拡張し、現実世界のシナリオでの有効性を検証している。</p>
+<h2 id="どうやって有効だと検証した">どうやって有効だと検証した？</h2>
+<ul>
+<li>
+<p><strong>制御実験（文字列置換タスク</strong>）: 異なるレベルの<strong>instruction diversity</strong>で訓練したGPT-2モデルを、未知の指示でテスト。指示の多様性が一定の閾値を超えると、汎化 性能が劇的に向上することを示した。</p>
+</li>
+<li>
+<p><strong>抽象化を導入した実験</strong>: 数学的推論タスクを用いて、抽象的な規則とその具体的な適用（groundings）を扱うより複雑な状況をシミュレート。 規則の多様性の増加が汎化性能を向上させることを確認した。</p>
+</li>
+<li>
+<p><strong>現実世界での実験（コード生成）</strong>: HumanEval、MBPP、EvalPlusなどのベンチマークを用いて、コード生成モデルのファインチューニング実験を実施。コード特化データと一 般ドメインデータ（Alpacaなど）を混ぜることで、性能向上を確認した。</p>
+</li>
+<li>
+<p><strong>現実世界での実験（汎用LLM）</strong>: UltraInteract-SFT、OpenOrca、Alpacaのデータ混合による汎用LLMのファインチューニング実験。データの多様化が、データ量の増加よりも 効果的であることを示した。</p>
+</li>
+</ul>
+<h2 id="議論はあるか">議論はあるか</h2>
+<p>現実世界のデータセットでは、指示が完全に均一に分布することはありえない。本研究では、power law distributionを用いて不均衡な分布の影響を検証し、十分な意味的カバレッジがあれば汎化が可能であることを示唆しているが、現実世界のデータセットにおける不均衡の影響については更なる検討が必要となる可能性がある。また、専門家モデルの訓練において、専門領域外のデータの導入による性能向上は、どの程度の領域の広がりが必要なのか、最適なバランスは何かといった点については、今後の研究でより詳細な検討が必要である。さらに、異なるデータセットを混合する際の最適な比率についても、タスクやモデルによって異なる可能性があり、普遍的な最適解を見つけることは難しいかもしれない。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/paper/paper20/">Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper19/">Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper17-2/">TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper18/">Towards Data-Efficient Language Models: A Child-Inspired Approach to Language Learning (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper16/">Language Model Can Listen While Speaking (AI論文要約)</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

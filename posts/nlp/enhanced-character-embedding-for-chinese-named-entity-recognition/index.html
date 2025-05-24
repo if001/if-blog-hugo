@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>Enhanced character embedding for Chinese named entity recognition</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="Enhanced character embedding for Chinese named entity recognition https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456
+従来の名前付き実体認識方法では、主に手作業に" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Enhanced character embedding for Chinese named entity recognition
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/%E8%AB%96%E6%96%87/">論文</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2020-12-30
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <h1 id="enhanced-character-embedding-for-chinese-named-entity-recognition">Enhanced character embedding for Chinese named entity recognition</h1>
+<p><a href="https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456">https://journals.sagepub.com/doi/pdf/10.1177/0020294020952456</a></p>
+<blockquote>
+<p>従来の名前付き実体認識方法では、主に手作業による特徴の応用を模索しています。現在では、ディープラーニングの普及に伴い、名前付き実体認識のための深い特徴を捕捉するためにニューラルネットワークが導入されている。しかし、既存の手法の多くは、現代のコーパスを対象としたものに限られている。古文献の名前付き実体認識は、名前が時間の経過とともに進化してきたために困難である。本論文では、文字や筆跡の特徴を探ることで実体認識を試みる。トランスフォーマーとストロークからの双方向エンコーダ表現に基づいて、ECEMと名付けられた拡張文字埋め込みモデルを提案する。第一に、ECEMは単語の文脈に応じて動的に意味ベクトルを生成することができる。第二に、提案するアルゴリズムは、中国語の単語の形態素レベルの情報を導入する。最後に、強化された文字埋め込みは、学習のために双方向性の長期短期記憶条件付きランダムフィールドモデルに供給される。提案したアルゴリズムの効果を調べるために，実験 を古文と現代文の両方のコーパスで実施した．その結果，我々のアルゴリズムが非常に有効であることがわかった．従来のものと比較して、強力である。</p>
+</blockquote>
+<h2 id="the-proposed-recognition-algorithm">The proposed recognition algorithm</h2>
+<p>提案アルゴリズムであるECEMでは、前処理、embedding、BiLSTM Layer、CRF Layerの４つのコンポーネントからなる。</p>
+<p>embeddingでは、cw2vecとBERTを用いる。
+NERには、BIO schemeを用いる。</p>
+<h3 id="data-pre-processing">Data pre-processing</h3>
+<p>固有表現抽出/the named entity recognition (NER)</p>
+<h3 id="enhanced-character-embedding">Enhanced character embedding</h3>
+<h3 id="bert">BERT</h3>
+<h3 id="bilstm-layer">BiLSTM layer</h3>
+<h3 id="crf-layer">CRF layer</h3>
+<p>input sequence: <code>X = (x_1, x_2, ... x_n)</code></p>
+<p>predictin sequence: <code>y = (y_1, y_2, ... y_n)</code></p>
+<p>the equence yの確率は、softmaxを使って計算される。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>p(y | X) softmax(e^f(X, y))</code></pre>
+  </div>
+
+</div>
+<p>ここで、f(X,y)は、以下の用に計算される。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>f(X,y)=</code></pre>
+  </div>
+
+</div>
+<p>ただし、PはBiLSTMの出力した行列である。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/">End-to-End Text Classification via Image-basedEmbedding using Character-level Networks</a></li>
+    
+      <li><a href="/posts/nlp/diversity-neural-conversation-model/">ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数</a></li>
+    
+      <li><a href="/posts/paper/paper17/">TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper17/">TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)</a></li>
+    
+      <li><a href="/posts/paper/paper18/">Towards Data-Efficient Language Models: A Child-Inspired Approach to Language Learning (AI論文要約)</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

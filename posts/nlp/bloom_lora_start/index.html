@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>BloomをLoRaで日本語finetuning</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="LlamaをAlpacaデータセットを使いLoRaでfine tuneしたものが良い感じだったので、Bloomを日本語で学習させてみようと思う。
+https://github.com/tloen/alpaca-lora
+とりあえず動かすまででしっかりfine tuneしきってないので注意
+huggi" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		BloomをLoRaで日本語finetuning
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/python/">python</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/huggingface/">huggingface</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-03-20
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>LlamaをAlpacaデータセットを使いLoRaでfine tuneしたものが良い感じだったので、Bloomを日本語で学習させてみようと思う。</p>
+<p><a href="https://github.com/tloen/alpaca-lora">https://github.com/tloen/alpaca-lora</a></p>
+<p>とりあえず動かすまででしっかりfine tuneしきってないので注意</p>
+<p>hugging faceのpeftも見ておくと良さそう</p>
+<p><a href="https://github.com/huggingface/peft">https://github.com/huggingface/peft</a></p>
+<h2 id="finetune">finetune</h2>
+<p>fine tune対象をBloomに変更</p>
+<div class="code-block">
+  <div class="body"><div class="name">finetune.py</div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> LlamaForCausalLM<span style="color:#ff79c6">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;decapoda-research/llama-7b-hf&#34;</span>,
+</span></span><span style="display:flex;"><span>    load_in_8bit<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,
+</span></span><span style="display:flex;"><span>    device_map<span style="color:#ff79c6">=</span>device_map,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>tokenizer <span style="color:#ff79c6">=</span> LlamaTokenizer<span style="color:#ff79c6">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;decapoda-research/llama-7b-hf&#34;</span>, add_eos_token<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span>)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/tloen/alpaca-lora/blob/main/finetune.py#L47-L54" target="_black">https://github.com/tloen/alpaca-lora/blob/main/finetune.py#L47-L54</a>
+    </div>
+
+</div>
+<p>こんな感じで良さそう。一旦動かしたいので小さいモデルを使う</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model_name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;bigscience/bloom-1b1&#34;</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> AutoModelForCausalLM<span style="color:#ff79c6">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>    model_name,
+</span></span><span style="display:flex;"><span>    load_in_8bit<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,
+</span></span><span style="display:flex;"><span>    device_map<span style="color:#ff79c6">=</span>device_map,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>tokenizer <span style="color:#ff79c6">=</span> AutoTokenizer<span style="color:#ff79c6">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>    model_name,add_eos_token<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>LoraConfigのtarget_modulesをBloom用に変更</p>
+<div class="code-block">
+  <div class="body"><div class="name">finetune.py</div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>config <span style="color:#ff79c6">=</span> LoraConfig(
+</span></span><span style="display:flex;"><span>    r<span style="color:#ff79c6">=</span>LORA_R,
+</span></span><span style="display:flex;"><span>    lora_alpha<span style="color:#ff79c6">=</span>LORA_ALPHA,
+</span></span><span style="display:flex;"><span>    target_modules<span style="color:#ff79c6">=</span>TARGET_MODULES,
+</span></span><span style="display:flex;"><span>    lora_dropout<span style="color:#ff79c6">=</span>LORA_DROPOUT,
+</span></span><span style="display:flex;"><span>    bias<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;none&#34;</span>,
+</span></span><span style="display:flex;"><span>    task_type<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;CAUSAL_LM&#34;</span>,
+</span></span><span style="display:flex;"><span>)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/tloen/alpaca-lora/blob/main/finetune.py#L58-L65" target="_black">https://github.com/tloen/alpaca-lora/blob/main/finetune.py#L58-L65</a>
+    </div>
+
+</div>
+<p>huggingfaceのpeftを見ると、以下を指定すれば良さそう。</p>
+<div class="code-block">
+  <div class="body"><div class="name">mapping.py</div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;bloom&#34;</span>: [<span style="color:#f1fa8c">&#34;query_key_value&#34;</span>],</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/huggingface/peft/blob/main/src/peft/mapping.py#L46" target="_black">https://github.com/huggingface/peft/blob/main/src/peft/mapping.py#L46</a>
+    </div>
+
+</div>
+<p>llamaやOPTだと、queryとvalue layerのみを指定しているが、Bloomの場合query_key_valueすべて指定してしまって良いのかわからない。
+Bloomのlayerがそもそもquery, key, valueが１つになってるからしょうがなさそうだけどこの辺、key layerはできるだけ低ランクにしないほうが良いとかある？？？？</p>
+<p>このあたりも日本語にしとく</p>
+<div class="code-block">
+  <div class="body"><div class="name">finetune.py</div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>user_prompt <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>        (
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;&#34;&#34;Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.</span></span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/tloen/alpaca-lora/blob/main/finetune.py#L112" target="_black">https://github.com/tloen/alpaca-lora/blob/main/finetune.py#L112</a>
+    </div>
+
+</div>
+<p>あとは、<code>python finetune.py</code>を動かすだけ</p>
+<p>データセットは、DeepLを使って翻訳<br>
+とりあえず動かしたかったので、一部のみ</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;instruction&#34;</span>: <span style="color:#f1fa8c">&#34;波ではなく、神の手を見る」の意味を説明する。&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;input&#34;</span>: <span style="color:#f1fa8c">&#34;&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;output&#34;</span>: <span style="color:#f1fa8c">&#34;私は波を見ず、神の手を見る」という言葉は、しばしば信仰の力を表現するために使われます。これは、どんな逆境に立たされても、最終的には神が支配し、激動の時代を導いてくれることを意味しています。困難に目を向けるのではなく、信仰を強く持ち、神の計画を信じるべきだということを示唆しています。&#34;</span>
+</span></span><span style="display:flex;"><span>    }, 
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;instruction&#34;</span>: <span style="color:#f1fa8c">&#34;平均年齢を算出する。&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;input&#34;</span>: <span style="color:#f1fa8c">&#34;ジェームズ - 22\nマルティナ - 18\nジョニー - 26&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;output&#34;</span>: <span style="color:#f1fa8c">&#34;22.3&#34;</span>
+</span></span><span style="display:flex;"><span>}, 
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;instruction&#34;</span>: <span style="color:#f1fa8c">&#34;xが4、yが7のとき、x÷yを計算する。&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;input&#34;</span>: <span style="color:#f1fa8c">&#34;&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;output&#34;</span>: <span style="color:#f1fa8c">&#34;0.5714285714285714&#34;</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="generate">generate</h2>
+<p>以下を参考に、Bloomとfinetuneしたweightをロードする</p>
+<div class="code-block">
+  <div class="body"><div class="name">finetune.py</div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  model <span style="color:#ff79c6">=</span> LlamaForCausalLM<span style="color:#ff79c6">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>        BASE_MODEL,
+</span></span><span style="display:flex;"><span>        load_in_8bit<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,
+</span></span><span style="display:flex;"><span>        torch_dtype<span style="color:#ff79c6">=</span>torch<span style="color:#ff79c6">.</span>float16,
+</span></span><span style="display:flex;"><span>        device_map<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;auto&#34;</span>,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    model <span style="color:#ff79c6">=</span> PeftModel<span style="color:#ff79c6">.</span>from_pretrained(model, LORA_WEIGHTS, torch_dtype<span style="color:#ff79c6">=</span>torch<span style="color:#ff79c6">.</span>float16)</span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/tloen/alpaca-lora/blob/main/generate.py#L28-L34" target="_black">https://github.com/tloen/alpaca-lora/blob/main/generate.py#L28-L34</a>
+    </div>
+
+</div>
+<p>デフォルトで<code>./lora-alpaca</code>以下に<code>adapter_config.json</code>と<code>adapter_model.bin</code>が生成される。
+<code>PeftModel</code>のロードには、<code>./lora-alpaca</code>を指定する。</p>
+<p>こんな感じで良さそう</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>BASE_MODEL <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;bigscience/bloom-1b1&#34;</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> AutoModelForCausalLM<span style="color:#ff79c6">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>    BASE_MODEL,
+</span></span><span style="display:flex;"><span>    load_in_8bit<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,
+</span></span><span style="display:flex;"><span>    torch_dtype<span style="color:#ff79c6">=</span>torch<span style="color:#ff79c6">.</span>float16,
+</span></span><span style="display:flex;"><span>    device_map<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;auto&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>LORA_WEIGHTS <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;./lora-alpaca&#39;</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> PeftModel<span style="color:#ff79c6">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>    model,
+</span></span><span style="display:flex;"><span>    LORA_WEIGHTS,
+</span></span><span style="display:flex;"><span>    torch_dtype<span style="color:#ff79c6">=</span>torch<span style="color:#ff79c6">.</span>float16,   
+</span></span><span style="display:flex;"><span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="まとめ">まとめ</h2>
+<p>alpaca data setを使ってLoRaでBloomをfine tuneしてみた。
+ここまでで、とりあえずfine tuneはできた。</p>
+<p>Bloom用のparameterの調整やモデルサイズ、alpaca data setを全体を使ったfine tuneはこれから試す</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/calm_lora_quantize/">OpenCALM-7Bをloraで学習して、quantizeするまで</a></li>
+    
+      <li><a href="/posts/nlp/rinna_lora_ja/">loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</a></li>
+    
+      <li><a href="/posts/nlp/rinna_3b_cpp/">rinna 3Bをcppで動かす</a></li>
+    
+      <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
+    
+      <li><a href="/posts/nlp/gpt_index_llama_index_start/">LlamaIndex(GPTIndex)を触る</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

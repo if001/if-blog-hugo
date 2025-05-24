@@ -1,7 +1,7 @@
 ---
 title: "rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking (AI論文要約)"
 slug: "paper7"
-tags: ["nlp","deeplearning"]
+tags: ["nlp","deeplearning", "paper_summary"]
 date: "2025-01-11T12:00:00+09:00"
 draft: false
 ---

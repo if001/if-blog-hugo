@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>Mixture of expertsのサンプル実装</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="mixture of expertsを実装してみる。 並列化や計算効率の向上などの部分は複雑なので、それら取り除いた簡単な実装を行ってみる。
+Mixture of expertsとは 特定のタスクに特化したexpertを複数用意し、入力に対してexpertを切り替えることで性能を上げる手法。 exp" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Mixture of expertsのサンプル実装
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/python/">python</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/torch/">torch</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-12-16
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>mixture of expertsを実装してみる。
+並列化や計算効率の向上などの部分は複雑なので、それら取り除いた簡単な実装を行ってみる。</p>
+<h2 id="mixture-of-expertsとは">Mixture of expertsとは</h2>
+<p>特定のタスクに特化したexpertを複数用意し、入力に対してexpertを切り替えることで性能を上げる手法。
+expertを選択するgate部分とexpert部分からなる。</p>
+<p>decoder型のtransformer、特にcausal modelの場合、Mixture of expertsはattention層のあとのFFNに対して適応される。
+(学習時では、attention層とexpertやgate部分は同時に進行していくが、expertにちゃんとわかれるのかがよくわからん&hellip;
+一応loss関数でとあるexpertだけに集中しないようになどの工夫はあるが)</p>
+<p>図</p>
+<p><a href="https://arxiv.org/abs/2101.03961">https://arxiv.org/abs/2101.03961</a></p>
+<p>gate関数やexpert層の違いによりいくつかのMoEの種類が提案されているが、sparse MoEを使ったものが多く見られる</p>
+<h3 id="sparse-moe">sparse MoE</h3>
+<p>gate関数が上位n個のexpertを選択するような出力を行う。選択するexpert以外の部分は0になるようなスパース性を持つ。<br>
+0が含まれることで選択されないexpertでは計算する必要がないため、計算コストが削減される</p>
+<p>mixtralの実装はこんな感じ<br>
+<a href="https://github.com/huggingface/transformers/blob/238d2e3c44366aba9dc5c770c95475765a6725cb/src/transformers/models/mixtral/modeling_mixtral.py#L688">https://github.com/huggingface/transformers/blob/238d2e3c44366aba9dc5c770c95475765a6725cb/src/transformers/models/mixtral/modeling_mixtral.py#L688</a></p>
+<p>通常のMoEでは、特定のexpertが多く選択されてしまうことがあり、学習が非効率なものとなってしまう。
+これを軽減するため、auxiliary lossを導入する。</p>
+<p>図</p>
+<p>$f_i$は$expert_i$に割り振られたトークンの割合
+$P_i$は$expert_i$に割り振られる可能性の確率</p>
+<p>$f_i$と$P_i$が均等であれば、ルーティングも均等になるというlossになる</p>
+<p>mixtralのlossの実装はこんな感じ<br>
+<a href="https://github.com/huggingface/transformers/blob/238d2e3c44366aba9dc5c770c95475765a6725cb/src/transformers/models/mixtral/modeling_mixtral.py#L76">https://github.com/huggingface/transformers/blob/238d2e3c44366aba9dc5c770c95475765a6725cb/src/transformers/models/mixtral/modeling_mixtral.py#L76</a></p>
+<h2 id="st-moe">ST-MoE</h2>
+<p>Stable and Transferable Mixture-of-Expertsの提案
+(設計ガイドとして良さそうなのであとでちゃんと読む)</p>
+<p><a href="https://arxiv.org/abs/2202.08906">https://arxiv.org/abs/2202.08906</a></p>
+<p>実装が以下で公開されている<br>
+<a href="https://github.com/tensorflow/mesh/blob/master/mesh_tensorflow/transformer/moe.py">https://github.com/tensorflow/mesh/blob/master/mesh_tensorflow/transformer/moe.py</a></p>
+<h2 id="実装">実装</h2>
+<p>今回はsparseでなく、もっと単純なもので動きを確認する。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn <span style="color:#ff79c6">as</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn.functional <span style="color:#ff79c6">as</span> F
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">MoE</span>(nn<span style="color:#ff79c6">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> __init__(self, 
+</span></span><span style="display:flex;"><span>                 embed_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">128</span>, 
+</span></span><span style="display:flex;"><span>                 num_experts<span style="color:#ff79c6">=</span><span style="color:#bd93f9">4</span>, 
+</span></span><span style="display:flex;"><span>                 expert_hidden_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">256</span>, 
+</span></span><span style="display:flex;"><span>                 gate_hidden_size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">256</span>,
+</span></span><span style="display:flex;"><span>                 device<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;auto&#34;</span>,
+</span></span><span style="display:flex;"><span>                 ):
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>(MoE, self)<span style="color:#ff79c6">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>embed_size <span style="color:#ff79c6">=</span> embed_size
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>num_experts <span style="color:#ff79c6">=</span> num_experts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        expert <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>Sequential(
+</span></span><span style="display:flex;"><span>                nn<span style="color:#ff79c6">.</span>Linear(embed_size, expert_hidden_size),
+</span></span><span style="display:flex;"><span>                nn<span style="color:#ff79c6">.</span>ReLU(),
+</span></span><span style="display:flex;"><span>                nn<span style="color:#ff79c6">.</span>Linear(expert_hidden_size, embed_size)
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>experts <span style="color:#ff79c6">=</span> nn<span style="color:#ff79c6">.</span>ModuleList([expert <span style="color:#ff79c6">for</span> _ <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(num_experts)])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff79c6">.</span>gate <span style="color:#ff79c6">=</span>  nn<span style="color:#ff79c6">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>Linear(embed_size, gate_hidden_size),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>ELU(),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#ff79c6">.</span>Linear(gate_hidden_size, num_experts),
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">forward</span>(self, x):
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        Forward pass for MoE
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        :param x: Input tensor of shape (batch_size, seq_len, embed_size)
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        :return: Output tensor. shape (batch_size, seq_len, embed_size)
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># batch_size, seq_len, _ = x.size()</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        gating_scores <span style="color:#ff79c6">=</span> self<span style="color:#ff79c6">.</span>gate(x)
+</span></span><span style="display:flex;"><span>        gating_weights <span style="color:#ff79c6">=</span> F<span style="color:#ff79c6">.</span>softmax(gating_scores, dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>) <span style="color:#6272a4"># (batch_size, seq_len, num_experts)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;gating_weights&#39;</span>, gating_weights<span style="color:#ff79c6">.</span>shape, gating_weights)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        expert_outputs <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>stack([expert(x) <span style="color:#ff79c6">for</span> expert <span style="color:#ff79c6">in</span> self<span style="color:#ff79c6">.</span>experts], dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>) <span style="color:#6272a4"># (batch_size, seq_len, num_experts, embed_size)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">## gating_weights.unsqueeze(-1) # (batch_size, seq_len, num_experts, 1)</span>
+</span></span><span style="display:flex;"><span>        output <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>sum(gating_weights<span style="color:#ff79c6">.</span>unsqueeze(<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">*</span> expert_outputs, dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>) <span style="color:#6272a4">#  (batch_size, seq_len, embed_size)        </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> output</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>実装自体はシンプルで、gate関数の出力をsoftmaxを取ったもので、各expertを割合で増減させるイメージ。</p>
+<p>例えば、以下のような例を入力とする
+(実際には埋め込んだ状態でなく、attention weightを計算したあとのtensorになるので注意)</p>
+<p>sequence_length=3
+埋め込みサイズ=4</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>[I am running] =&gt; [[0.4081, 0.7244, 0.0221, 0.1677],[0.2508, 0.8103, 0.3783, 0.0399],[0.6584, 0.4243, 0.5941, 0.6102]]</code></pre>
+  </div>
+
+</div>
+<p>expert=2, batch_size=1の例を入力する</p>
+<p>入力shapeは(batch_size,sequence_length, 埋め込みサイズ)<br>
+gating_weightsは、sequence_length毎にどのexpertに割り振られるかの確率となっている</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>input: torch.Size([1, 3, 4]) 
+tensor([[[0.4081, 0.7244, 0.0221, 0.1677],
+         [0.2508, 0.8103, 0.3783, 0.0399],
+         [0.6584, 0.4243, 0.5941, 0.6102]]])
+
+gating_weights torch.Size([1, 3, 2]) 
+tensor([[[0.5903, 0.4097],
+         [0.6000, 0.4000],
+         [0.6028, 0.3972]]], grad_fn=&lt;SoftmaxBackward0&gt;)
+
+output: torch.Size([1, 3, 4]) 
+tensor([[[ 0.5622, -0.0714,  0.0197, -0.2871],
+         [ 0.6389, -0.1067, -0.0396, -0.2993],
+         [ 0.4812, -0.0484,  0.0448, -0.4018]]], grad_fn=&lt;SumBackward1&gt;)</code></pre>
+  </div>
+
+</div>
+<h2 id="参考">参考</h2>
+<h3 id="moeについて">MoEについて</h3>
+<p><a href="https://huggingface.co/blog/moe">https://huggingface.co/blog/moe</a></p>
+<p><a href="https://deeplearning.hatenablog.com/entry/moe">https://deeplearning.hatenablog.com/entry/moe</a></p>
+<h3 id="moe実装例">moe実装例</h3>
+<p><a href="https://github.com/huggingface/transformers/blob/238d2e3c44366aba9dc5c770c95475765a6725cb/src/transformers/models/mixtral/modeling_mixtral.py#L688">https://github.com/huggingface/transformers/blob/238d2e3c44366aba9dc5c770c95475765a6725cb/src/transformers/models/mixtral/modeling_mixtral.py#L688</a></p>
+<p><a href="https://hungyuling.com/blog/fast-mixture-of-experts-in-pytorch/">https://hungyuling.com/blog/fast-mixture-of-experts-in-pytorch/</a></p>
+<p><a href="https://github.com/laekov/fastmoe/blob/master/README.md">https://github.com/laekov/fastmoe/blob/master/README.md</a></p>
+<p><a href="https://github.com/lucidrains/mixture-of-experts/blob/master/mixture_of_experts/mixture_of_experts.py">https://github.com/lucidrains/mixture-of-experts/blob/master/mixture_of_experts/mixture_of_experts.py</a></p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/hf_generation_wrap/">huggingfaceのgenerationの関数をtorch modelから使えるようにしたい</a></li>
+    
+      <li><a href="/posts/nlp/transformer_any_architecture/">llama2のアーキテクチャを変更してpre trainingしてみる</a></li>
+    
+      <li><a href="/posts/nlp/hf_ds_upload/">複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ</a></li>
+    
+      <li><a href="/posts/nlp/hf_dataloader_datacollator/">HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める</a></li>
+    
+      <li><a href="/posts/nlp/xgen-jglue/">xgenでJGLUEを試す</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>word2vecでベクトルから単語を出力する</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 https://stackoverflow.com/questions/32759712/how-to-fin" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		word2vecでベクトルから単語を出力する
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/python/">python</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/word2vec/">word2vec</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2019-09-24
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。
+stack overflowにあった。
+<a href="https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec">https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec</a></p>
+<h2 id="結論">結論</h2>
+<p>結論から言うと、以下のように適当にモデルを作りmost_simlar関数にベクトルを与えるだけ。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sentences <span style="color:#ff79c6">=</span> gensim<span style="color:#ff79c6">.</span>models<span style="color:#ff79c6">.</span>word2vec<span style="color:#ff79c6">.</span>Text8Corpus(filename)
+</span></span><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> Word2Vec(sentences, size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">100</span>, window<span style="color:#ff79c6">=</span><span style="color:#bd93f9">5</span>, min_count<span style="color:#ff79c6">=</span><span style="color:#bd93f9">5</span>, workers<span style="color:#ff79c6">=</span><span style="color:#bd93f9">4</span>)
+</span></span><span style="display:flex;"><span>model<span style="color:#ff79c6">.</span>most_similar( [ vector ], [], <span style="color:#bd93f9">1</span>)[<span style="color:#bd93f9">0</span>][<span style="color:#bd93f9">0</span>]</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>ただし、第3引数は出力する類似単語数を表す。</p>
+<h2 id="使用例">使用例</h2>
+<p><a href="http://www.aozora.gr.jp/index_pages/person1779.html">青空文庫：江戸川乱歩</a>の解析をしたので、その例を示す。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model<span style="color:#ff79c6">.</span>wv[<span style="color:#f1fa8c">&#34;ベクトル化したい単語&#34;</span>]</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>で単語をベクトル化できる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sentences <span style="color:#ff79c6">=</span> gensim<span style="color:#ff79c6">.</span>models<span style="color:#ff79c6">.</span>word2vec<span style="color:#ff79c6">.</span>Text8Corpus(filename)
+</span></span><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> Word2Vec(sentences, size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">100</span>, window<span style="color:#ff79c6">=</span><span style="color:#bd93f9">5</span>, min_count<span style="color:#ff79c6">=</span><span style="color:#bd93f9">5</span>, workers<span style="color:#ff79c6">=</span><span style="color:#bd93f9">4</span>)
+</span></span><span style="display:flex;"><span>vector <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>wv[<span style="color:#f1fa8c">&#34;犯罪&#34;</span>]
+</span></span><span style="display:flex;"><span>word <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>most_similar( [ vector ], [], <span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(vector)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(word)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>上記のようなコードを実行すると、</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>-0.01494294 -0.1509463   0.06123272 ...,  0.01335443  0.03439184
+</span></span><span style="display:flex;"><span>  0.05130962<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[(</span><span style="color:#f1fa8c">&#39;犯罪&#39;</span>, 1.0000001192092896<span style="color:#ff79c6">)]</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>となり、「犯罪」をベクトル化し、そのベクトルから単語が出力できている。</p>
+<h3 id="出力数を変更">出力数を変更</h3>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>vector <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>wv[<span style="color:#f1fa8c">&#34;明智&#34;</span>]
+</span></span><span style="display:flex;"><span>word <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>most_similar( [ vector ], [], <span style="color:#bd93f9">5</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>以下のような結果が得られる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[(</span><span style="color:#f1fa8c">&#39;明智&#39;</span>, 1.0000001192092896<span style="color:#ff79c6">)</span>, <span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#39;名&#39;</span>, 0.8110731840133667<span style="color:#ff79c6">)</span>, <span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#39;博士&#39;</span>,　0.8006758093833923<span style="color:#ff79c6">)</span>, <span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#39;氏&#39;</span>, 0.7667115330696106<span style="color:#ff79c6">)</span>, <span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#39;殿村&#39;</span>, 0.7487545609474182<span style="color:#ff79c6">)]</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<h3 id="単語のみを出力">単語のみを出力</h3>
+<p>単語のみを出力するために、以下のようにしておくとよい</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model<span style="color:#ff79c6">.</span>most_similar( [ vector ], [], <span style="color:#bd93f9">1</span>)[<span style="color:#bd93f9">0</span>][<span style="color:#bd93f9">0</span>]</span></span></code></pre></div>
+  </div>
+
+</div>
+<h3 id="任意のベクトル入力">任意のベクトル入力</h3>
+<p>以下のようにして、任意のベクトルができる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>vec <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>zeros(<span style="color:#bd93f9">3000</span>)
+</span></span><span style="display:flex;"><span>vec[<span style="color:#bd93f9">2</span>] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>vec <span style="color:#ff79c6">=</span> np<span style="color:#ff79c6">.</span>array(vec,dtype<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;f&#39;</span>)
+</span></span><span style="display:flex;"><span>word <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>most_similar( [ vector ], [], <span style="color:#bd93f9">5</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>出力結果</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[(</span><span style="color:#f1fa8c">&#39;点い&#39;</span>, 0.04825586825609207<span style="color:#ff79c6">)</span>, <span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#39;ワハハハハハハハハ&#39;</span>, 0.04788881167769432<span style="color:#ff79c6">)</span>, <span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#39;珍奇&#39;</span>, 0.04669386148452759<span style="color:#ff79c6">)</span>, <span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#39;憎らしい&#39;</span>, 0.04500409588217735<span style="color:#ff79c6">)</span>, <span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#39;な&#39;</span>, 0.04486800357699394<span style="color:#ff79c6">)]</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="まとめ">まとめ</h2>
+<p><code>most_similar</code>使えばいける。ちなみに公式には、<code>model.wv.most_similar</code>って書いてあったけど、wvなくてもできた。公式には、ベクトルは、<code>model.wv</code>のKeyedVectorsインスタンスに保存されてるって書いてあったけどよくわかってない。
+今回は総単語数19002だったのだが、実行時間は1分ほど。word2vec高速すごい。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/python/python-matplotlib-base/">matplotlibのよく使う記法まとめ</a></li>
+    
+      <li><a href="/posts/others/aws-cli-at-pyenv/">pyenv環境でaws cli入れたらコマンドが見つからない</a></li>
+    
+      <li><a href="/posts/nlp/char-vec/">文字をベクトル化する</a></li>
+    
+      <li><a href="/posts/python/colaboratory-google-drive-mount/">Google ColaboratoryでGoogle driveをマウントする</a></li>
+    
+      <li><a href="/posts/python/python-get-extn/">pythonで拡張子を取得する</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

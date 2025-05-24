@@ -1,7 +1,7 @@
 ---
 title: "Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)"
 slug: "paper3"
-tags: ["nlp","deeplearning"]
+tags: ["nlp","deeplearning", "paper_summary"]
 date: "2025-01-02T12:00:00+09:00"
 draft: false
 ---

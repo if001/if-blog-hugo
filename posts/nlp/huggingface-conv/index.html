@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>Hugging Faceのpipelineで会話モデルを動かす</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="Hugging Faceのpipelineを’使って会話モデルを動かしたのでメモ。
+あまり日本語記事がなかったので残しておく。
+huggingfaceについてはこっちの記事を参照
+https://www.if-blog.site/posts/nlp/huggingface-doc/
+pipeline" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Hugging Faceのpipelineで会話モデルを動かす
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/python/">python</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/huggingface/">huggingface</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2022-05-05
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>Hugging Faceのpipelineを’使って会話モデルを動かしたのでメモ。<br>
+あまり日本語記事がなかったので残しておく。</p>
+<p>huggingfaceについてはこっちの記事を参照<br>
+<a href="https://www.if-blog.site/posts/nlp/huggingface-doc/">https://www.if-blog.site/posts/nlp/huggingface-doc/</a></p>
+<h2 id="pipelineを作る">pipelineを作る</h2>
+<p>transformersはインストールしておく</p>
+<p>pipelineインスタンスを作る。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>tokenizer <span style="color:#ff79c6">=</span> AutoTokenizer<span style="color:#ff79c6">.</span>from_pretrained(<span style="color:#f1fa8c">&#34;microsoft/DialoGPT-small&#34;</span>)
+</span></span><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> AutoModelForCausalLM<span style="color:#ff79c6">.</span>from_pretrained(<span style="color:#f1fa8c">&#34;microsoft/DialoGPT-small&#34;</span>)
+</span></span><span style="display:flex;"><span>gen_pipeline <span style="color:#ff79c6">=</span> pipeline(task, model<span style="color:#ff79c6">=</span>model, tokenizer<span style="color:#ff79c6">=</span>tokenizer)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>今回はDialogGPT-smallというモデルを使う</p>
+<p><a href="https://huggingface.co/microsoft/DialoGPT-small">https://huggingface.co/microsoft/DialoGPT-small</a></p>
+<p>modelによってはtokenizerを自動で選択してくれるが、一応tokenizerも引数で指定しておく。</p>
+<h2 id="conversational">conversational</h2>
+<p>pipeline用のconversationalがあるのでそれを使う。</p>
+<p><a href="https://huggingface.co/transformers/v4.8.2/_modules/transformers/pipelines/conversational.html">https://huggingface.co/transformers/v4.8.2/_modules/transformers/pipelines/conversational.html</a></p>
+<p>会話のコンテキストを渡す方法が２つ</p>
+<p>１つ目。</p>
+<p>conversationクラスのコンストラクタ引数の</p>
+<ul>
+<li>text: 現在のユーザーの入力</li>
+<li><code>past_user_inputs</code>: 過去のユーザーの入力</li>
+<li><code>generated_residence</code>: 過去の返答</li>
+</ul>
+<p>をセットする。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>p <span style="color:#ff79c6">=</span> pipeline(task, model<span style="color:#ff79c6">=</span>model, tokenizer<span style="color:#ff79c6">=</span>tokenizer)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ui <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;Does money buy happiness?&#34;</span>, <span style="color:#f1fa8c">&#34;What is the best way to buy happiness ?&#34;</span>]
+</span></span><span style="display:flex;"><span>gr <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#34;Depends how much money you spend on it .&#34;</span>, <span style="color:#f1fa8c">&#34;You just have to be a millionaire by your early 20s, then you can be happy .&#34;</span>]
+</span></span><span style="display:flex;"><span>current_input <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;This is so difficult !&#34;</span>
+</span></span><span style="display:flex;"><span>conversation <span style="color:#ff79c6">=</span> Conversation(text<span style="color:#ff79c6">=</span>current_input, past_user_inputs<span style="color:#ff79c6">=</span>ui, generated_responses<span style="color:#ff79c6">=</span>gr)
+</span></span><span style="display:flex;"><span>r <span style="color:#ff79c6">=</span> p(conversation)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;result&#39;</span>, r)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>結果</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>result Conversation id: 9be5d5e0-33c7-477a-940b-8c4bb73f6152 
+user &gt;&gt; Does money buy happiness? 
+bot &gt;&gt; Depends how much money you spend on it . 
+user &gt;&gt; What is the best way to buy happiness ? 
+bot &gt;&gt; You just have to be a millionaire by your early 20s, then you can be happy . 
+user &gt;&gt; This is so difficult ! 
+bot &gt;&gt; I&#39;m not sure if I can afford to buy a house.</code></pre>
+  </div>
+
+</div>
+<hr>
+<p>2つ目。</p>
+<p>conversationクラスのメソッドからも会話のコンテキストをセットできる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>p <span style="color:#ff79c6">=</span> pipeline(task, model<span style="color:#ff79c6">=</span>model, tokenizer<span style="color:#ff79c6">=</span>tokenizer)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>conversation <span style="color:#ff79c6">=</span> Conversation()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># ユーザー入力/返答を追加</span>
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;Does money buy happiness?&#34;</span>)
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>mark_processed()
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;Depends how much money you spend on it .&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># ユーザー入力/返答を追加</span>
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;What is the best way to buy happiness ?&#34;</span>)
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>mark_processed()
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;You just have to be a millionaire by your early 20s, then you can be happy .&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 現在のユーザーの入力をセット</span>
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;This is so difficult !&#34;</span>)
+</span></span><span style="display:flex;"><span>r <span style="color:#ff79c6">=</span> p(conversation)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p><code>add_user_input</code>でユーザーの入力をセット、<code>mark_processed</code>でセットしたユーザーの入力をコンテキスト(履歴)にセットする。
+<code>append_response</code>で返答を追加。</p>
+<p><code>add_user_input</code>と<code>append_response</code>は以下の用に、どの順番でも大丈夫。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>conversation <span style="color:#ff79c6">=</span> Conversation()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># ユーザー入力の履歴を追加 </span>
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;Does money buy happiness?&#34;</span>)
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>mark_processed()
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;What is the best way to buy happiness ?&#34;</span>)
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>mark_processed()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 返答の履歴を追加</span>
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;Depends how much money you spend on it .&#34;</span>)
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>append_response(<span style="color:#f1fa8c">&#34;You just have to be a millionaire by your early 20s, then you can be happy .&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>conversation<span style="color:#ff79c6">.</span>add_user_input(<span style="color:#f1fa8c">&#34;This is so difficult !&#34;</span>)</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>結果は１つ目の方法と同じ。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>result Conversation id: 9be5d5e0-33c7-477a-940b-8c4bb73f6152 
+user &gt;&gt; Does money buy happiness? 
+bot &gt;&gt; Depends how much money you spend on it . 
+user &gt;&gt; What is the best way to buy happiness ? 
+bot &gt;&gt; You just have to be a millionaire by your early 20s, then you can be happy . 
+user &gt;&gt; This is so difficult ! 
+bot &gt;&gt; I&#39;m not sure if I can afford to buy a house.</code></pre>
+  </div>
+
+</div>
+<h2 id="まとめ">まとめ</h2>
+<p><code>Conversation</code>クラスを使うと簡単にpipelineで会話モデルを試せて良い感じ。</p>
+<p>日本語モデルだと会話タスクは用意されていないようだったので、fine tuningするしかないみたい</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/huggingface-tokenizer/">Hugging Faceのtokenizerで迷ったのでまとめておく</a></li>
+    
+      <li><a href="/posts/nlp/calm_lora_quantize/">OpenCALM-7Bをloraで学習して、quantizeするまで</a></li>
+    
+      <li><a href="/posts/nlp/rinna_lora_ja/">loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</a></li>
+    
+      <li><a href="/posts/nlp/rinna_3b_cpp/">rinna 3Bをcppで動かす</a></li>
+    
+      <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

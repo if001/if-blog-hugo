@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>flan_t5をquick start</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="T5を強化したモデルであるFlan-t5を動かしてみます。
+FlanはFinetunedLAnguage Netの略。
+ちなみに、Flanはカスタードプリンとかプリンの意味らしい。だからプリンのイラストあったのか
+https://huggingface.co/docs/transformers/mo" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		flan_t5をquick start
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/python/">python</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/huggingface/">huggingface</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2023-02-04
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>T5を強化したモデルであるFlan-t5を動かしてみます。</p>
+<p>FlanはFinetunedLAnguage Netの略。</p>
+<p>ちなみに、Flanはカスタードプリンとかプリンの意味らしい。だからプリンのイラストあったのか</p>
+<p><a href="https://huggingface.co/docs/transformers/model_doc/flan-t5">https://huggingface.co/docs/transformers/model_doc/flan-t5</a></p>
+<p>ライブラリはこの辺を入れておく</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>!pip install torch transformers sentencepiece</code></pre>
+  </div>
+
+</div>
+<h2 id="modelのロード">modelのロード</h2>
+<p>google colaboratoryでは、xlは無理だったので、largeを試す。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> T5Tokenizer, AutoModelForSeq2SeqLM
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># model_name = &#34;google/flan-t5-small&#34;</span>
+</span></span><span style="display:flex;"><span>model_name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;google/flan-t5-large&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># model_name = &#34;google/flan-t5-xl&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tokenizer <span style="color:#ff79c6">=</span> T5Tokenizer<span style="color:#ff79c6">.</span>from_pretrained(model_name)
+</span></span><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> AutoModelForSeq2SeqLM<span style="color:#ff79c6">.</span>from_pretrained(model_name)</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="生成タスク">生成タスク</h2>
+<p>色々と生成してみる</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">gen</span>(prompt):
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">input</span> <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>encode(prompt, return_tensors<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;pt&#34;</span>)
+</span></span><span style="display:flex;"><span>    generate_kwargs  <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;top_p&#39;</span>: <span style="color:#bd93f9">0.95</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;top_k&#39;</span>: <span style="color:#bd93f9">50</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#39;do_sample&#39;</span>:<span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    output <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>generate(<span style="color:#8be9fd;font-style:italic">input</span>, <span style="color:#ff79c6">**</span>generate_kwargs)
+</span></span><span style="display:flex;"><span>    result <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>batch_decode(output, skip_special_tokens<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(result)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;&#34;A step by step recipe to make a sandwich.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>gen(prompt)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&gt;&gt; [&#39;Cut a hamburger in half. Lay a tortilla open on the serving dish. Fill it&#39;]</code></pre>
+  </div>
+
+</div>
+<p>なんとなくあってそう。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;What is the highest mountain in the world?&#34;</span>
+</span></span><span style="display:flex;"><span>gen(prompt)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&gt;&gt; [&#39;mount everest&#39;]</code></pre>
+  </div>
+
+</div>
+<p>これは大丈夫</p>
+<h2 id="翻訳タスク">翻訳タスク</h2>
+<p>multi languageらしいので試してみる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;&#34;Translate to German: Good morning&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>get(prompt)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&gt;&gt; [&#39;Der frankreichischer Sonntag&#39;]</code></pre>
+  </div>
+
+</div>
+<p>googleの翻訳によると、<code>The French Sunday</code> らしい。なんかおしい。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Translate to English: Guten Morgen&#34;</span>
+</span></span><span style="display:flex;"><span>get(prompt)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&gt;&gt; [&#39;Good morning!&#39;]</code></pre>
+  </div>
+
+</div>
+<p>逆はいける、と</p>
+<h2 id="翻訳タスク2">翻訳タスク2</h2>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Translate to Japanese: Good morning&#34;</span>
+</span></span><span style="display:flex;"><span>gen(prompt)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&gt;&gt; [&#39;&#39;]</code></pre>
+  </div>
+
+</div>
+<p>日本語はしゃべれないっぽい</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>prompt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Translate to English: おはようございます&#34;</span>
+</span></span><span style="display:flex;"><span>gen(prompt)</span></span></code></pre></div>
+  </div>
+
+</div>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>&gt;&gt; [&#39;No&#39;]</code></pre>
+  </div>
+
+</div>
+<p>逆はなんか拒否されるｗ</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/calm_lora_quantize/">OpenCALM-7Bをloraで学習して、quantizeするまで</a></li>
+    
+      <li><a href="/posts/nlp/rinna_lora_ja/">loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</a></li>
+    
+      <li><a href="/posts/nlp/rinna_3b_cpp/">rinna 3Bをcppで動かす</a></li>
+    
+      <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
+    
+      <li><a href="/posts/nlp/bloom_lora_start/">BloomをLoRaで日本語finetuning</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

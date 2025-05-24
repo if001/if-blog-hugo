@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>Hugoで作ったwebサイトを公開する</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="はじめに GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。
+いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。
+インフラ GCEを使います。ほんとは、image化してインスタンスグループで公開したかったので" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Hugoで作ったwebサイトを公開する
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/hugo/">hugo</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/docker/">docker</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2019-09-24
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <h2 id="はじめに">はじめに</h2>
+<p>GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。</p>
+<p>いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。</p>
+<h2 id="インフラ">インフラ</h2>
+<p>GCEを使います。ほんとは、image化してインスタンスグループで公開したかったのですが、とりあえず、コンテナをVM上にデプロイすることにします。</p>
+<h2 id="ドメイン">ドメイン</h2>
+<p>ドメインは、お名前.comで取得します。これは特に説明なしでいけます。</p>
+<p>DNSは、route53を使いたかったんですが、今回はgoogleのcloud DNSを使います。</p>
+<p>Google Cloud Consoleから、「ネットワークサービス」→「Cloud DNS」を選択します。</p>
+<p>任意のゾーン名、取得したドメイン、(説明)を入力して作成。</p>
+<p><img src="../../../images/cloud-dns-register.png" alt="cloud-dns-register"></p>
+<h3 id="aレコードの登録">Aレコードの登録</h3>
+<p>DNS名には、www.取得したドメイン、リソースタイプにはAレコードを設定し、作成します。</p>
+<p><img src="../../../images/cloud-dns-Arecord-register.png" alt="cloud-dns-Arecord-register"></p>
+<h3 id="レジストラへの登録">レジストラへの登録</h3>
+<p>生成されるNSレコードの<code>ns-cloud-c1.googledomains.com.</code>をお名前.com側に登録します。</p>
+<h2 id="https化">https化</h2>
+<p>let&rsquo;s encryptを使ってhttps化しようと思っていたところ便利なものを発見したのでこちらを使います。</p>
+<p><a href="https://github.com/SteveLTN/https-portal">https-portal</a></p>
+<p>自動で証明書の更新も行ってくれます。すごい。便利。</p>
+<p>親切にdocker-composeが公式に載せてあるので、参考にします。
+docker-composeのインストールはpipなどで行ってください。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">https-portal</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">image</span>: steveltn/https-portal:1
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f1fa8c">&#39;80:80&#39;</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f1fa8c">&#39;443:443&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">links</span>:
+</span></span><span style="display:flex;"><span>    - wordpress
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">restart</span>: always
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">environment</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">DOMAINS</span>: <span style="color:#f1fa8c">&#39;wordpress.example.com -&gt; http://wordpress:80&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># STAGE: &#39;production&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># FORCE_RENEW: &#39;true&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">wordpress</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">image</span>: wordpress
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">links</span>:
+</span></span><span style="display:flex;"><span>    - db:mysql
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">db</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">image</span>: mariadb
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">environment</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">MYSQL_ROOT_PASSWORD</span>: <span style="color:#f1fa8c">&#39;&lt;a secure password&gt;&#39;</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>imageのバージョンは:1と指定しましょう。最新版を取ってくるようになります。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>image: steveltn/https-portal:1</code></pre>
+  </div>
+
+</div>
+<p>1.2以下だと、let&rsquo;s Encryptで証明書を取得する際にエラーが起きるので注意です。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">links</span>:
+</span></span><span style="display:flex;"><span>- wordpress</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>linksで公開するサービス名を指定しましょう。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">environment</span>:
+</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">DOMAINS</span>: <span style="color:#f1fa8c">&#39;wordpress.example.com -&gt; http://wordpress:80&#39;</span></span></span></code></pre></div>
+  </div>
+
+</div>
+<p>環境変数のDMAINSでは、リクエストを受けるドメイン -&gt; https化したいエンドポイントを指定します。</p>
+<p>linksで指定したエイリアスで指定できます。また、-&gt;を=&gt;に変更することでリダイレクトができます。</p>
+<p>STAGEは、次の3つが指定できます。</p>
+<ul>
+<li><code>STAGE: 'local'</code>でオレオレ証明書を作成します。テストなどに</li>
+<li><code>STAGE: 'staging'</code>でテスト用の証明書を作成します。</li>
+<li><code>STAGE: 'production'</code>で本番用に、Let&rsquo;s Encryptで正式な証明書を作成します。</li>
+</ul>
+<p>その他、環境変数も指定できます。この辺りを参考しながら、設定を行います。</p>
+<p><a href="https://github.com/SteveLTN/https-portal/tree/master/fs_overlay/var/lib/nginx-conf">https://github.com/SteveLTN/https-portal/tree/master/fs_overlay/var/lib/nginx-conf</a></p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/hugo/hugo-render-block/">code blockにrefarenceをつける</a></li>
+    
+      <li><a href="/posts/hugo/hugo-related-posts/">Hugoの記事に関連記事を表示させる</a></li>
+    
+      <li><a href="/posts/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
+    
+      <li><a href="/posts/hugo/hugo-start-article/">Hugoでブログを作る</a></li>
+    
+      <li><a href="/posts/hugo/hugo-href-to-target-blank/">Hugoでリンクを新しいウィンドウで開く</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

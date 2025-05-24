@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="朝の空いた時間などにarxivの新着論文を読みたくて、 アブストラクトを翻訳したものをslackに送るようにしました。
+流れは以下のような感じ。
+arxivはAPIを公開しているのでそこから、アブストや論文のタイトル、リンクなどを取得します。
+Google Apps Script（GAS）を使うと、" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/python/">python</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/arxiv/">arxiv</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/github/">github</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2021-07-24
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>朝の空いた時間などにarxivの新着論文を読みたくて、
+アブストラクトを翻訳したものをslackに送るようにしました。</p>
+<p>流れは以下のような感じ。</p>
+<p>arxivはAPIを公開しているのでそこから、アブストや論文のタイトル、リンクなどを取得します。<br>
+Google Apps Script（GAS）を使うと、google translateが簡単に使え、翻訳ができます。<br>
+タイトルや翻訳したものをslackに送り、これをgithub actionsで定期実行させます。</p>
+<ul>
+<li>arxivからsubmittedDate順に上から10件を取得</li>
+<li>GASへリクエストを送り、アブストを翻訳</li>
+<li>slackに送る</li>
+<li>以上の処理をgithub actionsを使って毎朝実行されるようにします</li>
+</ul>
+<p>全体はこれ</p>
+<p><a href="https://github.com/if001/arXiv_translate">https://github.com/if001/arXiv_translate</a></p>
+<h2 id="arxivから記事を取得">arxivから記事を取得</h2>
+<p>pythonのライブラリを使います。</p>
+<p><a href="https://github.com/lukasschwab/arxiv.py">https://github.com/lukasschwab/arxiv.py</a></p>
+<p>詳細は以下</p>
+<p><a href="../arxiv-py-lib/">pythonでarxivのAPIを使う</a></p>
+<h2 id="google-apps-scriptでアブストを翻訳">Google Apps Scriptでアブストを翻訳</h2>
+<p>Google TranslateはAPIを公開してますが、GASを使うと比較的簡単に翻訳が行えます。</p>
+<p>GASを使って翻訳用のエンドポイントを作ります。</p>
+<p>その後、arxivのAPIの結果から、タイトルとアブストを翻訳します。</p>
+<p>詳細は以下</p>
+<p><a href="../../others/gas-translate/">Google Apps ScriptでGoogle Translateを使う</a></p>
+<h2 id="slackに送信">Slackに送信</h2>
+<p>Incoming Webhooksを使うと簡単にslackにメッセージを送れます。</p>
+<p><a href="https://api.slack.com/messaging/webhooks">https://api.slack.com/messaging/webhooks</a></p>
+<p>諸々登録を済ませると、メッセージsend用のURLが吐き出されるので、<br>
+そのURLに対してメッセージをPOSTします。</p>
+<p>翻訳/原文タイトル、翻訳/原文アブスト、arxivのリンクを送ります。</p>
+<h2 id="github-actionsで定期実行">Github Actionsで定期実行</h2>
+<p>Github Actionsでcron実行するにはこんな感じ。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">name</span>: cron sample
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">schedule</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">cron</span>: <span style="color:#f1fa8c">&#39;0 6 * * *&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">build</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">runs-on</span>: ubuntu-latest
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">steps</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">name</span>: hello
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">run</span>: |<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        </span>        echo &#34;hello world&#34;</span></span></code></pre></div>
+  </div>
+
+</div>
+<p><a href="https://docs.github.com/ja/actions/reference/events-that-trigger-workflows#schedule">https://docs.github.com/ja/actions/reference/events-that-trigger-workflows#schedule</a></p>
+<p>確認用に手動実行したい場合は、<code>workflow_dispatch</code>を指定する。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">on</span>:
+</span></span><span style="display:flex;"><span>  workflow_dispatch:</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>作成したscriptを実行させる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">notify</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">runs-on</span>: ubuntu-latest
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">strategy</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">matrix</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">python-version</span>: [<span style="color:#bd93f9">3.7</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">steps</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">uses</span>: actions/checkout@v2
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">name</span>: Set up Python ${{ matrix.python-version }}
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">uses</span>: actions/setup-python@v2
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">with</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">python-version</span>: ${{ matrix.python-version }}
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">name</span>: Install dependencies
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">run</span>: |<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        python -m pip install --upgrade pip    
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi      </span>        
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">name</span>: Run Main
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">env</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">APP_GAS_URL</span>: ${{ secrets.APP_GAS_URL }}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">APP_SLACK_URL</span>: ${{ secrets.APP_SLACK_URL }}
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">run</span>: |<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        </span>        python main.py</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>前日にslackにPOSTした論文と同じものがPOSTされないように、<br>
+arxivの各論文の持つid(entry_id)をsave.logというファイル名で書き出して、<br>
+同じリポジトリにpushしておきます。</p>
+<p>ファイルの中身と、arxivから取得した論文の差分を取り、slackに送ります。</p>
+<p>Github Actionsで、自信の変更を自信のリポジトリにpushするのは、以下のようにできる。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span> - <span style="color:#ff79c6">name</span>: Run Change push
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">run</span>: |<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        s=`git status -s`
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        if [ -z &#34;$s&#34; ]; then
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">          exit 0
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        fi
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git config --global user.email &#34;workflow@example.com&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git config --global user.name &#34;workflow user&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git add save.log
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git commit -m &#34;update save.log&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git status
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git</span>        </span></span></code></pre></div>
+  </div>
+
+</div>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/python/arxiv-py-lib/">pythonでarxivのAPIを使う</a></li>
+    
+      <li><a href="/posts/nlp/huggingface-doc/">Hugging Face Transformersのドキュメント読んだ</a></li>
+    
+      <li><a href="/posts/neuralnet/flax-jax/">Flaxに入門してみる</a></li>
+    
+      <li><a href="/posts/others/gas-translate/">Google Apps ScriptでGoogle Translateを使う</a></li>
+    
+      <li><a href="/posts/python/open-ai-gym-quick/">Open AI Gymをとりあえず動かす</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

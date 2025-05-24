@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="Qiitaに投稿した記事、kerasでHREDを構築してみるの記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
+A Diversity-Promoting Objective Function for Neural Conversation Models htt" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/seq2seq/">seq2seq</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/nlp/">nlp</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/%E8%AB%96%E6%96%87/">論文</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2019-09-24
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>Qiitaに投稿した記事、<a href="https://qiita.com/iss-f/items/0b5a2766e789213b42c1">kerasでHREDを構築してみる</a>の記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。</p>
+<p>A Diversity-Promoting Objective Function for Neural Conversation Models
+<a href="https://arxiv.org/abs/1510.03055">https://arxiv.org/abs/1510.03055</a></p>
+<p>会話タスクにおける、入力文章(メッセージ)とそれに対する応答に多様性をもたせる手法を提案した論文です。
+モデル周りをメインにそれ以外は軽く流し読みしているので、悪しからず。</p>
+<h2 id="はじめに">はじめに</h2>
+<p>sequence to sequece(seq2seq)などの対話モデルでは、多様で文法的な応答が求められる。このモデルでは、入力される文章と出力される文章の対応のみを考慮しているため、I&rsquo;m OKやI&rsquo;dont knowのような高頻度フレーズを生成しがちである。したがって、メッセージに関する応答の依存性だけでなく、応答とメッセージの関係性についても考慮すべきである。</p>
+<p>そこで、私たちは、Maximum Mutual Information（MMI）を目的関数とする対話モデルを提案する。私たちは、MMIを使用することで、多様で興味深い文章を生成することを示します。</p>
+<h2 id="mmiモデル">MMIモデル</h2>
+<p>seq2seqモデルの標準的な目的関数は以下のように表される。</p>
+<p>$$\hat{T} = argmax_T{\log p(T|S)}$$</p>
+<p>$N$は単語数を表し、入力文章(メッセージ)$S$とそれに対する応答$T$は以下のように表される。
+$S = {s_1, s_2, &hellip;, s_{N_s} }$
+$T = {t_1, t_2, &hellip;, t_{N_t}, EOS}$</p>
+<p>seq2seqモデルの目的関数を以下のように修正する。</p>
+<p>$$\hat{T} = argmax_T {\log p(T|S) - \log p(T)}$$</p>
+<p>このとき、argmaxの中身は、以下のように式変形から、<a href="https://ja.wikipedia.org/wiki/%E7%9B%B8%E4%BA%92%E6%83%85%E5%A0%B1%E9%87%8F">相互情報量(wikipedia)</a> を表していることがわかる。</p>
+<p>$${\log p(T|S) - \log p(T)} = \frac{\log p(S,T)}{\log p(S) \log p(T)}$$</p>
+<p>したがって、この式は、相互情報量を最大化(MMI)する応答を出力することとなる。</p>
+<p>また、$\log p(T)$は、seq2seqの標準的な目的関数に対するペナルティ項とみなすことができる。メッセージに対するありふれた応答に対してペナルティを与えることで、応答の多様性を保つことを期待している。</p>
+<p>このペナルティー項を調節できるように、(2)式に対して、パラメタ$\lambda$を追加する。これを、<strong>MMI-antiLM</strong>と呼ぶ。</p>
+<p>$$\hat{T} = argmax_T {\log p(T|S) - \lambda \log p(T)} &ndash;(1)$$</p>
+<p>式(3)をベイズの定理を用いて変形すると、以下のようになる。これを<strong>MMI-bidi</strong>と呼ぶ</p>
+<p>$$\hat{T} = argmax_T {(1-\lambda)\log p(T|S) + \lambda \log p(S|T)} &ndash;(2)$$</p>
+<p>MMI-bidiでは、$p(T|S)$と$p(S|T)$がトレードオフの関係にあることがわかる。</p>
+<p>seq2seqモデルの学習にMMIを適応させることは、重要ではない。さらに、モデルの訓練に時間がかかるので、訓練なしに$\lambda$を調整したい。そこで、モデルを訓練するのではなく、学習時には最尤モデルを、テスト時にMMI基準を使用する。</p>
+<h2 id="実用的な考察">実用的な考察</h2>
+<p>MMI-antiLMとMMI-bidiを適応するにあたり、</p>
+<ul>
+<li>文法的におかしな応答 (MMI-antiLM)</li>
+<li>デコードを困難にする (MMI-bidi)</li>
+</ul>
+<p>という問題があり、直接decodingに適応するのは困難である。</p>
+<p>そこで、これらの問題について、以下で解決策を説明する。</p>
+<h3 id="mmi-antilman-anti-language-model">MMI-antiLM(an anti-language model)</h3>
+<p>式(1)の第2項の$p(T)$は、次のように表される。</p>
+<p>$$ p(T) = \prod_ {k=1}^{N_ t} p(t_ k \mid t_ 1 , \cdots , t_ {k-1} ) $$</p>
+<p>anti-language modelでは、流暢な応答にもペナルティを与えるので、誤った文法の出力に繋がる可能性がある。そこで、$P(T)$に現在の単語$k$に基づく重み$g(k)$を乗算した、$U(T)$を導入する。</p>
+<p>$$ U(T)=\prod_ {k=1}^{N_ t} p(t_ k \mid t_ 1 \cdots t_ {k-1} )・g(k) $$</p>
+<h1 id="gk">\begin{eqnarray}
+g(k)</h1>
+<p>\begin{cases}
+1 &amp; ( k \leq \gamma ) \\\
+0 &amp; ( k \gt \gamma )
+\end{cases}
+\end{eqnarray}</p>
+<p>ここで、$\gamma$は文頭から数えて何単語目かを表す閾値である。</p>
+<p>式（1）は、以下のように書き直すことができる。</p>
+<p>$$\hat{T} = argmax_T {\log p(T|S) - \lambda \log U(T) }$$</p>
+<p>こうすることで、メッセージにおける全ての単語に対して、ペナルティを与えるわけではなく、初めの何単語かにだけペナルティを与えることで、典型的なパターンがくるのを避けることを期待する。</p>
+<h3 id="mmi-bidi">MMI-bidi</h3>
+<p>式（2）の第2項には、$p(S|T)$が含まれている。</p>
+<p>$$\hat{T} = argmax_T {(1-\lambda)\log p(T|S) + \lambda \log p(S|T)}$$</p>
+<p>$p(S|T)$は、応答$T$の生成後でないと計算することはできない。また、応答$T$の探索空間が広すぎるために、全てを探索するのは難しい。したがって、この式を用いて直接decodeすることはできない。</p>
+<p>そこで、近似的なアプローチを行う。</p>
+<ul>
+<li>MMI-bidiの第1項である$p(T|S)$ (すなわち、標準的なseq2seqの目的関数)を与えられた第1世代N-bestリストを生成</li>
+<li>MMI-bidiの第2項を使ってN-bestリストをrerankする</li>
+<li>一般的に、標準的なseq2seqモデルから得られるN-bestは文法的であるため、最終的に選択されるoptionsは適切な文法である可能性が高い。</li>
+</ul>
+<h2 id="training">Training</h2>
+<ul>
+<li>encoderとdecoderはそれぞれ4層のLSTMから構成</li>
+<li>隠れ層は1000個の素子、単語埋め込み数の次元は1000次元</li>
+<li>LSTMパラメタと埋め込みは a uniform distribution in [−0.08, 0.08]で初期化</li>
+<li>SGDの学習率は0.1</li>
+<li>バッチサイズは256</li>
+<li>Gradient clipping is adopted by scaling gradients when the norm exceeded a threshold of 1</li>
+</ul>
+<h2 id="decoding">decoding</h2>
+<h3 id="mmi-antilm">MMI-antiLM</h3>
+<p>MMI-antiLMの式は簡単に実装できる。
+実験において、応答の長さも重要だと気づいた。そこで、損失関数に応答の長さのパラメタを加えた。</p>
+<p>$$ Score(T) = p(T|S) - \lambda U(T) + \gamma N_t$$</p>
+<p>ここで、$N_t$はターゲットの長さ、$\gamma$はその重みを表す。
+応答の候補のN-best listに関するMERTを使って、$\gamma$と$\lambda$を最適化した。</p>
+<h3 id="mmi-bidi-1">MMI-bidi</h3>
+<h2 id="結果">結果</h2>
+<p>評価には、BLEUを使う。さらに、生成された応答における異なるユニグラムおよびバイグラムの数を計算し、多様性を評価する。</p>
+<h3 id="twitter-conversation-triple-dataset">Twitter Conversation Triple Dataset</h3>
+<p>129Mのメッセージと応答の集合から、2300万の会話スニペットを使用。</p>
+<p>statistical machine translation (SMT)とseq2seqとの比較を行った。　MMI-bidiのBLEU評価値が一番高い。</p>
+<h3 id="opensubtitles-dataset">OpenSubtitles Dataset</h3>
+<p>60M、70Mのノイズを多く含む、映画キャラクターの対話データ</p>
+<p>他のモデルに比べ、MMI-antiLMモデルがBLEUの評価値と多様性の評価値どちらにおいても最も高くなった。MMI-bidiがMMI-antiLMより低い性能となったのは、N-bestリストの初期世代に左右されるからである。</p>
+<h2 id="まとめ">まとめ</h2>
+<p>seq2seqを使った対話モデルでは、メッセージに対する応答が、一般的でありふれたものになる傾向があるという問題点があった。我々の分析では、これは、入力（メッセージ）を与えられた出力（応答）の単方向尤度の使用に起因することを示唆している。そこで目的関数に最大相互情報量(MMI)を使用することを提案した。実験の結果、提案されたMMIモデルでは、より多様で興味深い応答を生成することができた。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/">End-to-End Text Classification via Image-basedEmbedding using Character-level Networks</a></li>
+    
+      <li><a href="/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/">Enhanced character embedding for Chinese named entity recognition</a></li>
+    
+      <li><a href="/posts/nlp/seqgan-paper/">SeqGANの論文を読む</a></li>
+    
+      <li><a href="/posts/nlp/char-vec/">文字をベクトル化する</a></li>
+    
+      <li><a href="/posts/paper/paper17/">TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

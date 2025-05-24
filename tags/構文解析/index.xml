@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>構文解析 on アンドロイドは推理小説を書くか?</title>
+		<link>http://localhost:1313/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/</link>
+		<description>Recent content in 構文解析 </description>
+		<generator>Hugo -- gohugo.io</generator>
+		
+  		<language>ja</language>
+		
+		<managingEditor>Page(/tags/構文解析) (if_004)</managingEditor>
+    	
+  		<lastBuildDate>Tue, 24 Sep 2019 00:00:00 +0900</lastBuildDate>
+		
+		<atom:link href="/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/" rel="self" type="application/rss+xml" />
+		
+	</channel>
+</rss>

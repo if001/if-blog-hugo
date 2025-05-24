@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<title>Firebase Hostingを使ってみた</title>
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="http://localhost:1313/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},   
+        {left: '$$', right: '$$', display: true},     
+        {left: '\\(', right: '\\)', display: false},  
+        {left: '$', right: '$', display: false},  
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="Firebase Authenticationに続いて、Firebase Hostingも使ってみました。備忘録を残しておきます。
+今回は、Vue.jsをデプロイします。
+Firebase Hostingとは Firebase Hosting は、ウェブアプリ、静的コンテンツと動的コンテンツ、マイク" />
+  
+
+
+<meta name="generator" content="Hugo 0.110.0">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+              
+              <h1>
+		
+		Firebase Hostingを使ってみた
+		
+		
+                </h1>
+              
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+        <div class="blog-tags">
+          <i class="fas fa-tag" style="color:#111111"></i>
+          
+            <a href="http://localhost:1313//tags/firebase/">firebase</a
+            >&nbsp;
+          
+            <a href="http://localhost:1313//tags/webapp/">WebApp</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+        <div style="margin-bottom: 10px;">
+          <i class="fa fa-calendar-alt"></i
+          >&nbsp;2019-10-10
+        </div>
+      
+
+      
+
+
+      <div class="article-main">
+        <p>Firebase Authenticationに続いて、Firebase Hostingも使ってみました。備忘録を残しておきます。<br>
+今回は、Vue.jsをデプロイします。</p>
+<h2 id="firebase-hostingとは">Firebase Hostingとは</h2>
+<blockquote>
+<p>Firebase Hosting は、ウェブアプリ、静的コンテンツと動的コンテンツ、マイクロサービス向けの高速で安全性の高いホスティングを提供します。</p>
+</blockquote>
+<blockquote>
+<p>Firebase Hosting はデベロッパー向けの、本番環境レベルのウェブ コンテンツ ホスティングです。1 つのコマンドですばやくウェブアプリをデプロイすることができ、静的コンテンツと動的コンテンツの両方をグローバル CDN（コンテンツ配信ネットワーク）に配信できます。Firebase Hosting と Cloud Functions または Cloud Run を併用してマイクロサービスを構築し、Firebase にホスティングすることもできます。</p>
+</blockquote>
+<p>引用： <a href="https://firebase.google.com/docs/hosting?hl=ja">https://firebase.google.com/docs/hosting?hl=ja</a></p>
+<p>無料で手軽にアプリケーションを公開するにはすごく便利という印象。</p>
+<p>Firebaseでは、転送量を超えない限り、複数アプリケーションをデプロイできるので、本番環境だけでなく、テスト環境もほしいという場合には有効かと思います。Herokuの無料枠では起動している時間の制限などで実質１アプリケーションしか動かせませんでした。</p>
+<p>また、Hostingで利用できる無料のストレージが１GBですが、ブログなどのようにどんどんコンテンツが増えていくサイトでなければ十分な量だと思います。画像などがある場合は、Firebase Storageなどを利用する手もあるかと思います。</p>
+<p>参考<br>
+<a href="https://firebase.google.com/pricing/?hl=ja">Firebaseの料金体系</a></p>
+<p><a href="https://medium.com/google-cloud-jp/%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9B%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%AE%E7%82%BA%E3%81%AEgcs-gae-firebase-hosting%E6%AF%94%E8%BC%83-e7d406609f2e">静的サイトホスティングの為のGCS/GAE/Firebase Hosting比較</a></p>
+<p><img src="../../../images/bookreports_edgwbs/logo.png" alt="logo"></p>
+<p>Firebase Hostingを使って公開したアプリはこちら</p>
+<p><a href="https://www.if-blog.site/posts/edgwbs/book_reports_review/">三行で読書感想文を書いて、SNSでシェアできるサービスを作った</a></p>
+<h2 id="準備">準備</h2>
+<p>デプロイ用のコマンドラインツールをインストールします。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ npm install -g firebase-tools</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>以下のコマンドで、firebaseにログインします。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ firebase login</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>プロジェクトで、初めてfirebaseを使う場合には、以下のコマンドでfirebaseを初期化します。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ firebase init</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>初期化すると、<code>firebase.json</code>が作成されます。Hostingやstorage、functionsなどのその他のfirebaseの設定を記述します。基本的にはここで生成された<code>firebase.json</code>を書き換えることなく利用できます。</p>
+<h2 id="デプロイ">デプロイ</h2>
+<p>生成された<code>firebase.json</code>にデプロイ用のディレクトリは、<code>public</code>と設定されているので、publicにアプリをビルドします。
+Vue.jsのプロジェクトの場合は、以下のようにビルド。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>$ npm run build</code></pre>
+  </div>
+
+</div>
+<p><code>public</code>以下に生成された成果物は、以下のコマンドでfirebaseにデプロイすることができます。</p>
+<div class="code-block">
+  <div class="body"><pre tabindex="0"><code>$ firebase deploy</code></pre>
+  </div>
+
+</div>
+<h2 id="複数サイトをデプロイする">複数サイトをデプロイする</h2>
+<p>本番環境とテスト環境がほしい場合などには、複数サイトをデプロイしたです。<br>
+(別のアプリをデプロイする場合は、プロジェクト変えるよね？普通？本番/テスト以外にどう使うんだろう??)</p>
+<p><code>firebase.json</code>のhostingの項目を以下のように書き換えます。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;hosting&#34;</span>: [ {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&#34;target&#34;</span>: <span style="color:#f1fa8c">&#34;env&#34;</span>, <span style="color:#6272a4">// 自分で定義した、一意なアプリの識別子
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#ff79c6">&#34;public&#34;</span>: <span style="color:#f1fa8c">&#34;app/public&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&#34;target&#34;</span>: <span style="color:#f1fa8c">&#34;prod&#34;</span>, <span style="color:#6272a4">// 自分で定義した、一意なアプリの識別子
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#ff79c6">&#34;public&#34;</span>: <span style="color:#f1fa8c">&#34;app/public&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>次に以下のコマンドで、<code>target</code>名とプロジェクトのサイト名を対応付けます。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6272a4"># $ firebase target:apply hosting target-name resource-name</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ firebase target:apply hosting env myapp-blog
+</span></span><span style="display:flex;"><span>$ firebase target:apply hosting prod myapp-blog</span></span></code></pre></div>
+  </div>
+
+</div>
+<p>あとは、以下のコマンドでデプロイします。</p>
+<div class="code-block">
+  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6272a4"># $ firebase deploy --only hosting:target-name</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ firebase deploy --only hosting:env
+</span></span><span style="display:flex;"><span>$ firebase deploy --only hosting:prod</span></span></code></pre></div>
+  </div>
+
+</div>
+<h2 id="ドメインを設定">ドメインを設定</h2>
+<p>Hostingのサイトの管理、「ドメインを接続」からドメインが設定できます。<br>
+手順どおりで簡単に行なえます。<br>
+証明書が入るまでに少し時間がかかったので気長に待ちましょう。</p>
+<p>ちなみに、CNAMEでいけるかと思ったけど無理でした。</p>
+<h2 id="まとめ">まとめ</h2>
+<p>Firebase Hostingを使って、アプリケーションのデプロイを行いました。<br>
+デプロイは驚くほど簡単でした。ローカルで動いているアプリケーションをそのまま、デプロイできるのが良かったです。</p>
+
+      </div>
+      <div class="related-article">
+        
+
+  <h2>See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/edgwbs/book-reports-firebase-cloud-functions/">Firebase Cloud Functionsを使ってTwitterのOGPを設定する</a></li>
+    
+      <li><a href="/posts/edgwbs/book-reports-firebase-auth/">Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理</a></li>
+    
+      <li><a href="/posts/edgwbs/book-reports-review/">三行で読書感想文を書いて、SNSでシェアできるサービスを作った</a></li>
+    
+      <li><a href="/posts/edgwbs/book-storage-vue/">Vue.js&#43;typescriptでVuetifyを使いマテリアルデザインに入門する</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="http://localhost:1313//pages/about">if_004</a>
+      &nbsp;&copy;
+      2025
+      
+        &nbsp;/&nbsp;
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
