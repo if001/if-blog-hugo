@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8" />
 <title>技術ブログ用にGatsbyを整える</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
 
 
 <script
@@ -16,11 +27,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="http://localhost:1313/index.xml"
+  href="https://www.if-blog.site/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
 
 
 
@@ -190,25 +201,27 @@
 
       
       <div class="postmeta mb-4">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/react/">react</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/gatsby/">gatsby</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/react/">react</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/gatsby/">gatsby</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-10-14
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2019-10-14
+    
+  </div>
 </div>
 
       </div>
@@ -242,11 +255,10 @@
 <p><a href="https://www.gatsbyjs.org/docs/adding-markdown-pages/">https://www.gatsbyjs.org/docs/adding-markdown-pages/</a><br>
 ある程度試して使い方がわかれば、markdownに対応したthemeがあるので、そちらを使った方が楽かと思います。</p>
 <p>以下のようなqueryで一覧が取得できます。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  allMarkdownRemark {
 </span></span><span style="display:flex;"><span>    edges {
 </span></span><span style="display:flex;"><span>      node {
@@ -263,19 +275,20 @@
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <p>日付順にソート、limit、skipを与えることで、ページング処理もできます。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>   allMarkdownRemark(
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>   allMarkdownRemark(
 </span></span><span style="display:flex;"><span>      sort: { fields: [frontmatter___date], order: DESC }
 </span></span><span style="display:flex;"><span>      limit: $limit
 </span></span><span style="display:flex;"><span>      skip: $skip
 </span></span><span style="display:flex;"><span>    ) {
 </span></span><span style="display:flex;"><span>    .
 </span></span><span style="display:flex;"><span>    .</span></span></code></pre></div>
+  </div>
 </div>
 <h2 id="icons">icons</h2>
 <p>以下のものがすぐに使えてよかったです。</p>
@@ -294,13 +307,13 @@
 <p>コードハイライトにファイル名やタイトルを表示させたかったので、以下を使いました。<br>
 <a href="https://www.gatsbyjs.org/packages/gatsby-remark-code-titles/?=gatsby-remark-code-titles">https://www.gatsbyjs.org/packages/gatsby-remark-code-titles/?=gatsby-remark-code-titles</a></p>
 <p>例</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json:title=test.json" data-lang="json:title=test.json"><span style="display:flex;"><span>{
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json:title=test.json" data-lang="json:title=test.json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;test&#34;</span>: <span style="color:#f1fa8c">&#34;test&#34;</span>
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <h2 id="katex">katex</h2>
 <p>記事中に数式を書くことがあるので、必要でした。以下のプラグインを使うと簡単にできます。</p>
@@ -317,11 +330,10 @@
 <p>プラグインgatsby-remark-tocを使うことで目次をつけることができます。ただ、記事のトップにしかつけることができず、Qiitaのようなサイドバーに目次をつけたかったので、以下のようにしました。</p>
 <p>queryに<code>tableOfContents</code>を加えると、目次が取得できます。</p>
 <p>例</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>markdownRemark(fields: { slug: { eq: $slug } }) {
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>markdownRemark(fields: { slug: { eq: $slug } }) {
 </span></span><span style="display:flex;"><span>      html
 </span></span><span style="display:flex;"><span>      frontmatter {
 </span></span><span style="display:flex;"><span>        title
@@ -331,14 +343,15 @@
 </span></span><span style="display:flex;"><span>      tableOfContents
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  }</span></span></code></pre></div>
+  </div>
 </div>
 <p>取得したものを表示します。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> tableOfContens <span style="color:#ff79c6">=</span> props.data.markdownRemarks.tableOfContents;
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> tableOfContens <span style="color:#ff79c6">=</span> props.data.markdownRemarks.tableOfContents;
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;</span>div dangerouslySetInnerHTML<span style="color:#ff79c6">=</span>{{__html<span style="color:#ff79c6">:</span> tableOfContens}}<span style="color:#ff79c6">/&gt;</span></span></span></code></pre></div>
+  </div>
 </div>
 <p>参考<br>
 <a href="https://nakawork.net/posts/gatsby-toc">https://nakawork.net/posts/gatsby-toc</a></p>
@@ -347,11 +360,10 @@
 <p><a href="https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/">https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/</a></p>
 <h2 id="google-adsense">google adsense</h2>
 <p><code>$ npm install --save gatsby-plugin-google-adsense </code></p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>// In your gatsby-config.js file
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>// In your gatsby-config.js file
 </span></span><span style="display:flex;"><span>plugins: [
 </span></span><span style="display:flex;"><span>    {
 </span></span><span style="display:flex;"><span>      resolve: `gatsby-plugin-google-adsense`,
@@ -360,6 +372,7 @@
 </span></span><span style="display:flex;"><span>      },
 </span></span><span style="display:flex;"><span>    },
 </span></span><span style="display:flex;"><span>]</span></span></code></pre></div>
+  </div>
 </div>
 <p>プロジェクトのrootディレクトリにstaticディレクトリを作成。<br>
 staticディレクトリ以下に、CNAMEファイル、ads.txtを追加。</p>
@@ -377,15 +390,15 @@ staticディレクトリ以下に、CNAMEファイル、ads.txtを追加。</p>
 <p>gh-pagesをインストール</p>
 <p><code>$ npm install gh-pages --save-dev</code></p>
 <p>以下を追加</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json:title=package.json" data-lang="json:title=package.json"><span style="display:flex;"><span>{
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json:title=package.json" data-lang="json:title=package.json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;scripts&#34;</span>: {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;deploy&#34;</span>: <span style="color:#f1fa8c">&#34;gatsby build &amp;&amp; gh-pages -d public&#34;</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <p>デプロイ</p>
 <p><code>$ npm run deploy</code></p>
@@ -403,25 +416,27 @@ staticディレクトリ以下に、CNAMEファイル、ads.txtを追加。</p>
 
       
       <div class="postmeta mb-2">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/react/">react</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/gatsby/">gatsby</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/react/">react</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/gatsby/">gatsby</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-10-14
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2019-10-14
+    
+  </div>
 </div>
 
       </div>
@@ -445,6 +460,7 @@ staticディレクトリ以下に、CNAMEファイル、ads.txtを追加。</p>
     
     
       
+
     
   </div>
 
@@ -461,12 +477,12 @@ staticディレクトリ以下に、CNAMEファイル、ads.txtを追加。</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="http://localhost:1313//pages/about"></a>
+      <a href="https://www.if-blog.site//pages/about">if_004</a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       

@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8" />
 <title>Hugoで作ったwebサイトを公開する</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
 
 
 <script
@@ -16,11 +27,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="http://localhost:1313/index.xml"
+  href="https://www.if-blog.site/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
 
 
 
@@ -191,25 +202,27 @@
 
       
       <div class="postmeta mb-4">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/docker/">docker</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/hugo/">hugo</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/docker/">docker</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2019-09-24
+    
+  </div>
 </div>
 
       </div>
@@ -243,11 +256,10 @@
 <p>自動で証明書の更新も行ってくれます。すごい。便利。</p>
 <p>親切にdocker-composeが公式に載せてあるので、参考にします。
 docker-composeのインストールはpipなどで行ってください。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">https-portal</span>:
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">https-portal</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">image</span>: steveltn/https-portal:1
 </span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">ports</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#f1fa8c">&#39;80:80&#39;</span>
@@ -269,29 +281,30 @@ docker-composeのインストールはpipなどで行ってください。</p>
 </span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">image</span>: mariadb
 </span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">environment</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">MYSQL_ROOT_PASSWORD</span>: <span style="color:#f1fa8c">&#39;&lt;a secure password&gt;&#39;</span></span></span></code></pre></div>
+  </div>
 </div>
 <p>imageのバージョンは:1と指定しましょう。最新版を取ってくるようになります。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>image: steveltn/https-portal:1</span></span></code></pre></div>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>image: steveltn/https-portal:1</span></span></code></pre></div>
+  </div>
 </div>
 <p>1.2以下だと、let&rsquo;s Encryptで証明書を取得する際にエラーが起きるので注意です。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">links</span>:
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">links</span>:
 </span></span><span style="display:flex;"><span>- wordpress</span></span></code></pre></div>
+  </div>
 </div>
 <p>linksで公開するサービス名を指定しましょう。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">environment</span>:
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">environment</span>:
 </span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">DOMAINS</span>: <span style="color:#f1fa8c">&#39;wordpress.example.com -&gt; http://wordpress:80&#39;</span></span></span></code></pre></div>
+  </div>
 </div>
 <p>環境変数のDMAINSでは、リクエストを受けるドメイン -&gt; https化したいエンドポイントを指定します。</p>
 <p>linksで指定したエイリアスで指定できます。また、-&gt;を=&gt;に変更することでリダイレクトができます。</p>
@@ -309,25 +322,27 @@ docker-composeのインストールはpipなどで行ってください。</p>
 
       
       <div class="postmeta mb-2">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/docker/">docker</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/hugo/">hugo</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/docker/">docker</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2019-09-24
+    
+  </div>
 </div>
 
       </div>
@@ -343,11 +358,11 @@ docker-composeのインストールはpipなどで行ってください。</p>
     
       <li><a href="/posts/hugo/hugo-render-block/">code blockにrefarenceをつける</a></li>
     
-      <li><a href="/posts/python/test/">test</a></li>
-    
       <li><a href="/posts/hugo/hugo-related-posts/">Hugoの記事に関連記事を表示させる</a></li>
     
       <li><a href="/posts/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
+    
+      <li><a href="/posts/hugo/hugo-start-article/">Hugoでブログを作る</a></li>
     
   </ul>
 
@@ -359,6 +374,7 @@ docker-composeのインストールはpipなどで行ってください。</p>
     
     
       
+
     
   </div>
 
@@ -375,12 +391,12 @@ docker-composeのインストールはpipなどで行ってください。</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="http://localhost:1313//pages/about"></a>
+      <a href="https://www.if-blog.site//pages/about">if_004</a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       

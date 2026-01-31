@@ -1,13 +1,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Rust on アンドロイドは推理小説を書くか?</title>
-		<link>http://localhost:1313/tags/rust/</link>
+		<link>https://www.if-blog.site/tags/rust/</link>
 		<description>Recent content in Rust </description>
 		<generator>Hugo -- gohugo.io</generator>
 		
   		<language>ja</language>
 		
-		<managingEditor>/tags/rust</managingEditor>
+		<managingEditor>/tags/rust (if_004)</managingEditor>
     	
   		<lastBuildDate>Tue, 24 Sep 2019 00:00:00 +0900</lastBuildDate>
 		

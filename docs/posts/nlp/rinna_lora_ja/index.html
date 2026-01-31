@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8" />
 <title>loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
 
 
 <script
@@ -16,11 +27,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="http://localhost:1313/index.xml"
+  href="https://www.if-blog.site/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
 
 
 
@@ -191,33 +202,35 @@
 
       
       <div class="postmeta mb-4">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-05-21
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-05-21
+    
+  </div>
 </div>
 
       </div>
@@ -236,61 +249,60 @@
 <p><a href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft">https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft</a></p>
 <h2 id="templateを確認">templateを確認</h2>
 <p>alpacaのtemplateは、<code>#</code>を付けて、ユーザー入力は<code>Instruction</code>、LLM側の出力は<code>Response</code>のようになっている。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&#34;Below is an instruction that describes a task. Write a response that appropriately completes the request.
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&#34;Below is an instruction that describes a task. Write a response that appropriately completes the request.
 </span></span><span style="display:flex;"><span>### Instruction:
 </span></span><span style="display:flex;"><span>{instruction}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>### Response:</span></span></code></pre></div>
+  </div>
 </div>
 <p>一方、rinna instructionは、
 <code>#</code>を付けずに、ユーザー入力は<code>ユーザー</code>、LLM側の出力は<code>アシスタント</code>となっており、改行は<code>&lt;NL&gt;</code>となっている。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># &#34;ユーザー: 日本のおすすめの観光地を教えてください。&lt;NL&gt;システム: どの地域の観光地が知りたいですか？&lt;NL&gt;ユーザー: 渋谷の観光地を教えてください。&lt;NL&gt;システム: &#34;</span></span></code></pre></div>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># &#34;ユーザー: 日本のおすすめの観光地を教えてください。&lt;NL&gt;システム: どの地域の観光地が知りたいですか？&lt;NL&gt;ユーザー: 渋谷の観光地を教えてください。&lt;NL&gt;システム: &#34;</span></span></code></pre></div>
+  </div>
 </div>
 <h2 id="templateの用意">templateの用意</h2>
 <p>templateは２つ用意して、それぞれ学習させて比較する。</p>
 <p>データセットは日本語dollyを使わせてもらいました。<br>
 <a href="https://huggingface.co/datasets/kunishou/databricks-dolly-15k-ja">https://huggingface.co/datasets/kunishou/databricks-dolly-15k-ja</a></p>
 <p>1つ目、alpaca templateを日本語にしたもの</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    &#34;description&#34;: &#34;Template used by Alpaca-LoRA.&#34;,
 </span></span><span style="display:flex;"><span>    &#34;prompt_input&#34;: &#34;以下は、タスクを記述する命令と、さらなるコンテキストを提供する入力の組み合わせです。依頼を適切に完了させる応答を書きなさい。\n\n### 指示:\n{instruction}\n\n### 入力:\n{input}\n\n### 応答:\n&#34;,
 </span></span><span style="display:flex;"><span>    &#34;prompt_no_input&#34;: &#34;以下は、ある作業を記述した指示です。依頼を適切に完了させる応答を書きなさい\n\n### 指示:\n{instruction}\n\n### 応答:\n&#34;,
 </span></span><span style="display:flex;"><span>    &#34;response_split&#34;: &#34;### 応答:&#34;
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <p>2つ目、rinnaっぽいフォーマット</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    &#34;description&#34;: &#34;Template used by Alpaca-LoRA.&#34;,
 </span></span><span style="display:flex;"><span>    &#34;prompt_input&#34;: &#34;以下は、タスクのコンテキストとユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;コンテキスト: {input}&lt;NL&gt;&lt;NL&gt;ユーザー: {instruction}&lt;NL&gt;&lt;NL&gt;システム: &#34;,
 </span></span><span style="display:flex;"><span>    &#34;prompt_no_input&#34;: &#34;以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: {instruction}&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;&#34;,
 </span></span><span style="display:flex;"><span>    &#34;response_split&#34;: &#34;システム: &#34;
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <h2 id="loraで学習">loraで学習</h2>
 <p>rinnnaはgpt-neoxベースなので、redpajama用のコードがそのまま使える。</p>
 <p><a href="https://github.com/leehanchung/lora-instruct">https://github.com/leehanchung/lora-instruct</a></p>
 <p>学習環境は、colab 4T ハイメモリ</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>base_model=&#34;rinna/japanese-gpt-neox-3.6b-instruction-sft&#34;
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>base_model=&#34;rinna/japanese-gpt-neox-3.6b-instruction-sft&#34;
 </span></span><span style="display:flex;"><span>data_path=&#34;kunishou/databricks-dolly-15k-ja&#34;
 </span></span><span style="display:flex;"><span>template=&#34;dolly_ja&#34;
 </span></span><span style="display:flex;"><span>
@@ -306,14 +318,14 @@
 </span></span><span style="display:flex;"><span>--data_path=$data_path \
 </span></span><span style="display:flex;"><span>--gradient_checkpointing=False \
 </span></span><span style="display:flex;"><span>--resume_from_checkpoint=$output_path</span></span></code></pre></div>
+  </div>
 </div>
 <h2 id="結果">結果</h2>
 <p>generateのパラメタは以下</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>generation_output <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>generate(
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>generation_output <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>generate(
 </span></span><span style="display:flex;"><span>        input_ids<span style="color:#ff79c6">=</span>input_ids,
 </span></span><span style="display:flex;"><span>        do_sample<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,
 </span></span><span style="display:flex;"><span>        temperature<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0.9</span>,
@@ -322,17 +334,17 @@
 </span></span><span style="display:flex;"><span>        output_scores<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>,
 </span></span><span style="display:flex;"><span>        max_new_tokens<span style="color:#ff79c6">=</span>max_new_tokens,
 </span></span><span style="display:flex;"><span>)</span></span></code></pre></div>
+  </div>
 </div>
 <h3 id="alpaca-templateを日本語にしたもの">alpaca templateを日本語にしたもの</h3>
 <p>時々変な回答もあるが、「赤、青、黄」や「富士山」など、ちゃんと正解を出力できている。<br>
 回答は、単語で短めなことが多い。</p>
 <p>同じ回答をしたものは除いたが、感覚的には山に対する回答がおかしくなる気がする<br>
 ちなみに富士山の標高は3,776 mらしい。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 色の三原色を教えてください ### 応答: 赤、青、黄です。&lt;/s&gt;
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 色の三原色を教えてください ### 応答: 赤、青、黄です。&lt;/s&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 色の三原色を教えてください ### 応答: RGB。&lt;/s&gt;
 </span></span><span style="display:flex;"><span>
@@ -341,12 +353,12 @@
 </span></span><span style="display:flex;"><span>以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 色の三原色を教えてください ### 応答: 画像を参照してください&lt;/s&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 色の三原色を教えてください ### 応答: はい、以下に図を示します: 青色: 光が青色であるように、赤色: 光が赤いように、そして緑色: 光が緑色であるように、すべての色は互いに反対の色です。答え: はい。&lt;/s&gt;</span></span></code></pre></div>
+  </div>
 </div>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 日本で最も高い山を教えてください ### 応答: 高さ4,810フィートの山の頂上にあるレーダーです。&lt;/s&gt;
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 日本で最も高い山を教えてください ### 応答: 高さ4,810フィートの山の頂上にあるレーダーです。&lt;/s&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 日本で最も高い山を教えてください ### 応答: 日本で最も高い山は槍ヶ岳です。&lt;/s&gt;
 </span></span><span style="display:flex;"><span>
@@ -355,15 +367,15 @@
 </span></span><span style="display:flex;"><span>以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 日本で最も高い山を教えてください ### 応答: 活火山の雌岳(2,409メートル)は、日本の山で最も高い山です。&lt;/s&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>以下は、あるタスクを記述した指示です。質問に対する適切な回答を書きなさい。 ### 指示: 日本で最も高い山を教えてください ### 応答: 東京スカイツリー&lt;/s&gt;</span></span></code></pre></div>
+  </div>
 </div>
 <h3 id="rinnaっぽいフォーマット">rinnaっぽいフォーマット</h3>
 <p>こちらも時々変な回答もあるが、正解を出力できている。<br>
 alpacaのtemplateに比べ少し、出力が長い。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;&lt;NL&gt;2C2(コンピュータディスプレイではRGBとして知られています)&lt;/s&gt;
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;&lt;NL&gt;2C2(コンピュータディスプレイではRGBとして知られています)&lt;/s&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;&lt;NL&gt;赤色、緑色、黄色です。&lt;/s&gt;
 </span></span><span style="display:flex;"><span>
@@ -372,12 +384,12 @@ alpacaのtemplateに比べ少し、出力が長い。</p>
 </span></span><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;&lt;NL&gt;色の三原色とは、赤、青、紫の光を混ぜ合わせた色です。例えば、りんごやバナナ、白いシャツや黒いジーンズ、そして赤い車の色などが含まれます。これらの色は互いに混ざり合って、明るい色になり、暗い色になります。この色は、光が光子(光の粒子)または波の形に変換されたことを意味します。&lt;/s&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;&lt;NL&gt;「色の三原色」というのは、赤・青・黄色のことです。この3つの色は、通常、赤と青と黄色を混ぜると緑色になります。しかし、3色を混ぜると、黒色になります。これは、光合成が光が吸収される過程と、光が電子を励起する過程の両方を記述しているためです。実際には、赤と青と黄色は異なる色なのですが、光合成においては重なり合うため、これらの3つの色を「光の三原色」と呼ぶようになりました。つまり、赤と青と黄色は、光の3つの色と考えることができます</span></span></code></pre></div>
+  </div>
 </div>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で最も高い山を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;日本の最高峰は、標高8,850メートル(25,700フィート)の富士山です。&lt;/s&gt;
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で最も高い山を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;日本の最高峰は、標高8,850メートル(25,700フィート)の富士山です。&lt;/s&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で最も高い山を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;東京の高尾山は標高1,300メートルです。&lt;/s&gt;
 </span></span><span style="display:flex;"><span>
@@ -386,6 +398,7 @@ alpacaのtemplateに比べ少し、出力が長い。</p>
 </span></span><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で最も高い山を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;日本で最も高い山は、標高22,302メートルのマウント・ホイットニーです。&lt;/s&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で最も高い山を教えてください&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;日本の最高峰は、北アルプスの槍ヶ岳であり、東京から7時間の距離に位置しています。&lt;/s&gt;</span></span></code></pre></div>
+  </div>
 </div>
 <h2 id="まとめ">まとめ</h2>
 <p>alpacaのtemplateをそのまま日本語にしたものとrinnaっぽいフォーマットの２つのpromptを用いて、loraでそれぞれ学習させた。<br>
@@ -394,11 +407,10 @@ loraで学習する場合、finetuningのフォーマットについては気に
 <h2 id="オチ">オチ</h2>
 <p>そういえば、loraで学習してないrinnaはどうだっけ？と思って、２つのtemplateを試してみる。</p>
 <p><code>prompt='以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: {instruction}&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;'</code></p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
 </span></span><span style="display:flex;"><span>&lt;NL&gt;「色の三原色」とは、赤、緑、青の組み合わせです。&lt;/s&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
@@ -406,12 +418,12 @@ loraで学習する場合、finetuningのフォーマットについては気に
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 色の三原色を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
 </span></span><span style="display:flex;"><span>&lt;NL&gt;赤、緑、青の光の混合物です。&lt;/s&gt;</span></span></code></pre></div>
+  </div>
 </div>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で一番高い山を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で一番高い山を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
 </span></span><span style="display:flex;"><span>これはかなり高価であり、あなたは単に「日本で最も高い山」と検索して、あなたが見つけたものを得ることができます!&lt;NL&gt;&lt;NL&gt;この記事は、どの国でも最も高い山が何であるかについて情報提供をしています。&lt;NL&gt;&lt;NL&gt;この記事には「高い山」という言葉が頻繁に出てきますが、それが何を意味するのかを説明しています。&lt;NL&gt;&lt;NL&gt;この記事で引用されている記事は、日本の最も高い山のいくつかと、それらの山が世界で一番高い場所である証拠に関する非常に詳細かつ厳密な科学的研究
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で一番高い山を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
@@ -419,14 +431,14 @@ loraで学習する場合、finetuningのフォーマットについては気に
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>以下は、ユーザーの入力です。適切な応答を出力してください。&lt;NL&gt;&lt;NL&gt;ユーザー: 日本で一番高い山を教えてください。&lt;NL&gt;&lt;NL&gt;システム: &lt;NL&gt;
 </span></span><span style="display:flex;"><span>&lt;NL&gt;日本で最も高い山は、高さ1,067メートルの北岳で、富士山、エベレスト山、槍ヶ岳に次ぐ標高です。&lt;/s&gt;</span></span></code></pre></div>
+  </div>
 </div>
 <hr>
 <p><code>prompt='以下は、ある作業を記述した指示です。依頼を適切に完了させる応答を書きなさい\n\n### 指示:\n{instruction}\n\n### 応答:\n'</code></p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>### 指示:
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>### 指示:
 </span></span><span style="display:flex;"><span>色の三原色を教えてください。
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>### 応答:
@@ -454,12 +466,12 @@ loraで学習する場合、finetuningのフォーマットについては気に
 </span></span><span style="display:flex;"><span>### 応答:
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>はい、こちらが指示です。  ???? ?????? ???1949&lt;/s&gt;</span></span></code></pre></div>
+  </div>
 </div>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、ある作業を記述した指示です。依頼を適切に完了させる応答を書きなさい
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>以下は、ある作業を記述した指示です。依頼を適切に完了させる応答を書きなさい
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>### 指示:
 </span></span><span style="display:flex;"><span>日本で一番高い山を教えてください。
@@ -489,6 +501,7 @@ loraで学習する場合、finetuningのフォーマットについては気に
 </span></span><span style="display:flex;"><span>### 応答:
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>北から順番に並べると、次のようになります: 9,8と称された峰から、最高峰の槍ヶ岳と次に高い山は御嶽山です。 この峰は、海抜21,003フィートの日本で2番目に高い山です。 したがって、答えは御嶽山です。&lt;/s&gt;</span></span></code></pre></div>
+  </div>
 </div>
 <p>時々おかしな出力になるものの、lora必要だったか？くらいちゃんと出力できている。</p>
 <p>rinnaがそもそもinstructionされているので、そこそこ出力できるだろうとは思っていたが、<br>
@@ -500,33 +513,35 @@ alpacaのフォーマットでもそこそこ出力できるのは驚いた。</
 
       
       <div class="postmeta mb-2">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-05-21
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-05-21
+    
+  </div>
 </div>
 
       </div>
@@ -542,11 +557,11 @@ alpacaのフォーマットでもそこそこ出力できるのは驚いた。</
     
       <li><a href="/posts/nlp/rinna_3b_cpp/">rinna 3Bをcppで動かす</a></li>
     
-      <li><a href="/posts/nlp/redpajama_lora_start/">RedPajamaをLoRaで日本語fine tuning</a></li>
-    
       <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
     
       <li><a href="/posts/nlp/bloom_lora_start/">BloomをLoRaで日本語finetuning</a></li>
+    
+      <li><a href="/posts/nlp/gpt_index_llama_index_start/">LlamaIndex(GPTIndex)を触る</a></li>
     
   </ul>
 
@@ -558,6 +573,7 @@ alpacaのフォーマットでもそこそこ出力できるのは驚いた。</
     
     
       
+
     
   </div>
 
@@ -574,12 +590,12 @@ alpacaのフォーマットでもそこそこ出力できるのは驚いた。</
 
   <div class="container">
     <div class="credits copyright">
-      <a href="http://localhost:1313//pages/about"></a>
+      <a href="https://www.if-blog.site//pages/about">if_004</a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       

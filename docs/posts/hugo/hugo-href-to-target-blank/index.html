@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8" />
 <title>Hugoでリンクを新しいウィンドウで開く</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
 
 
 <script
@@ -16,11 +27,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="http://localhost:1313/index.xml"
+  href="https://www.if-blog.site/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
 
 
 
@@ -190,21 +201,23 @@ Hugoでは次のようにcon" />
 
       
       <div class="postmeta mb-4">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/hugo/">hugo</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2018-10-16
+    
+  </div>
 </div>
 
       </div>
@@ -219,12 +232,12 @@ Hugoでは次のようにcon" />
         <p>リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。</p>
 <p>hrefでは<code>target='_blank'</code>を指定すれば良いのだが、markdownでどうすれば良いのか調べた。
 Hugoでは次のようにconfig.tomlするといける。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[blackfriday]
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[blackfriday]
 </span></span><span style="display:flex;"><span>   hrefTargetBlank = <span style="color:#ff79c6">true</span></span></span></code></pre></div>
+  </div>
 </div>
 <p>簡単！</p>
 <p>参考：</p>
@@ -238,21 +251,23 @@ Hugoでは次のようにconfig.tomlするといける。</p>
 
       
       <div class="postmeta mb-2">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/hugo/">hugo</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2018-10-16
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2018-10-16
+    
+  </div>
 </div>
 
       </div>
@@ -284,6 +299,7 @@ Hugoでは次のようにconfig.tomlするといける。</p>
     
     
       
+
     
   </div>
 
@@ -300,12 +316,12 @@ Hugoでは次のようにconfig.tomlするといける。</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="http://localhost:1313//pages/about"></a>
+      <a href="https://www.if-blog.site//pages/about">if_004</a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       

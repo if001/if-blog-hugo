@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8" />
 <title>プログラミングTypeScript――スケールするJavaScriptアプリケーション開発</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
 
 
 <script
@@ -16,11 +27,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="http://localhost:1313/index.xml"
+  href="https://www.if-blog.site/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
 
 
 
@@ -192,21 +203,23 @@ typescriptのジェネリクスなど基本的な動作は知ってたがいく�
 
       
       <div class="postmeta mb-4">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/typescript/">typescript</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/typescript/">typescript</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2021-12-26
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2021-12-26
+    
+  </div>
 </div>
 
       </div>
@@ -228,47 +241,47 @@ typescriptのジェネリクスなど基本的な動作は知ってたがいく�
 これによりコードが脆弱になり、理解しづらくなる。</p>
 </blockquote>
 <p>これを無効にするにはTSLintで、以下のようにしておく。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  // note you must disable the base rule as it can report incorrect errors
 </span></span><span style="display:flex;"><span>  &#34;no-invalid-this&#34;: &#34;off&#34;,
 </span></span><span style="display:flex;"><span>  &#34;@typescript-eslint/no-invalid-this&#34;: [&#34;error&#34;]
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <p>基本的にthisは(.)ドットの左側を指す。
 以下のようなコードがあるとき、thisはxになる。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> x <span style="color:#ff79c6">=</span> {
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> x <span style="color:#ff79c6">=</span> {
 </span></span><span style="display:flex;"><span>  a() {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>;
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>x.a()</span></span></code></pre></div>
+  </div>
 </div>
 <p>しかし、どこかの時点でaが再割り当てし、呼び出すとundefinedになる</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> a <span style="color:#ff79c6">=</span> x.a
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> a <span style="color:#ff79c6">=</span> x.a
 </span></span><span style="display:flex;"><span>a()</span></span></code></pre></div>
+  </div>
 </div>
 <h3 id="426-ジェネリック型のデフォルトの型">4.2.6 ジェネリック型のデフォルトの型</h3>
 <p>デフォルトの型使えるの知らなかった</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> MyEvent&lt;<span style="color:#ff79c6">T</span> = <span style="color:#50fa7b">HTMLElement</span>&gt; <span style="color:#ff79c6">=</span> {
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> MyEvent&lt;<span style="color:#ff79c6">T</span> = <span style="color:#50fa7b">HTMLElement</span>&gt; <span style="color:#ff79c6">=</span> {
 </span></span><span style="display:flex;"><span>  target: <span style="color:#8be9fd">T</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">type</span><span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span>
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <h2 id="5章-クラスとインターフェース">5章 クラスとインターフェース</h2>
 <h3 id="54-インターフェース">5.4 インターフェース</h3>
@@ -278,12 +291,12 @@ typescriptのジェネリクスなど基本的な動作は知ってたがいく�
 </ul>
 <p>（型エイリアスだと、合併型(Union Types)と交差型(Intersection Types)が使える）<br>
 以下のような、型エイリアスはインターフェースとして書き直すことができない。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> A <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">number</span>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> A <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">number</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">type</span> B <span style="color:#ff79c6">=</span> A <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">string</span></span></span></code></pre></div>
+  </div>
 </div>
 <ul>
 <li>インターフェースを拡張する際に割り当て可能かをチェックする</li>
@@ -291,11 +304,10 @@ typescriptのジェネリクスなど基本的な動作は知ってたがいく�
 <p>インターフェースの場合、interface AとBのもつメソッドbadの引数の型が異なるのでエラーとなる。</p>
 <p>型エイリアスの場合、extendsを＆に変えると、拡張元と拡張先の型を結合したbadメソッドのオーバーロードされたシグネチャを生み出し、
 コンパイルエラーが回避される。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> A {
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> A {
 </span></span><span style="display:flex;"><span>  good(x: <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span>
 </span></span><span style="display:flex;"><span>  bad(s: <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span>
 </span></span><span style="display:flex;"><span>}
@@ -304,16 +316,16 @@ typescriptのジェネリクスなど基本的な動作は知ってたがいく�
 </span></span><span style="display:flex;"><span>  good(x: <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span>
 </span></span><span style="display:flex;"><span>  bad(s: <span style="color:#8be9fd">string</span>)<span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span>
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <ul>
 <li>同じスコープ内に同じ名前のインターフェースがあるとマージ</li>
 </ul>
 <p>interfaceの場合、自動でマージされる。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> User {
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> User {
 </span></span><span style="display:flex;"><span>  name: <span style="color:#8be9fd">string</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
@@ -321,16 +333,16 @@ typescriptのジェネリクスなど基本的な動作は知ってたがいく�
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">interface</span> User {
 </span></span><span style="display:flex;"><span>  age: <span style="color:#8be9fd">number</span>
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <p>型エイリアスだと、同じ名前の定義があるとコンパイルエラーになる</p>
 <h3 id="58-ミックスイン">5.8 ミックスイン</h3>
 <p>いくつか知らない書き方合った</p>
 <p>debugしづらいUserクラスがあるとき、debug機能をmixinすることでdebug機能を追加する。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> Constructor&lt;<span style="color:#ff79c6">T</span>&gt; <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> (...arg: <span style="color:#8be9fd">any</span>[]) <span style="color:#ff79c6">=&gt;</span> T
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> Constructor&lt;<span style="color:#ff79c6">T</span>&gt; <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> (...arg: <span style="color:#8be9fd">any</span>[]) <span style="color:#ff79c6">=&gt;</span> T
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> WithEZDebug <span style="color:#ff79c6">=</span> &lt;<span style="color:#ff79c6">C</span> <span style="color:#50fa7b">extends</span> <span style="color:#50fa7b">Constructor</span>&lt;{
 </span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">getClass</span>(): <span style="color:#50fa7b">string</span>
@@ -360,22 +372,23 @@ typescriptのジェネリクスなど基本的な動作は知ってたがいく�
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> user <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> u(<span style="color:#f1fa8c">&#34;name&#34;</span>)
 </span></span><span style="display:flex;"><span>    user.debug()
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <p>この書き方初めて知った</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#ff79c6">extends</span> Class</span></span></code></pre></div>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#ff79c6">extends</span> Class</span></span></code></pre></div>
+  </div>
 </div>
 <p>型引数にそのままobject書けるのも初めて知った。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span> &lt;<span style="color:#ff79c6">C</span> <span style="color:#50fa7b">extends</span> <span style="color:#50fa7b">Constructor</span>&lt;{
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span> &lt;<span style="color:#ff79c6">C</span> <span style="color:#50fa7b">extends</span> <span style="color:#50fa7b">Constructor</span>&lt;{
 </span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">getClass</span>(): <span style="color:#50fa7b">string</span>
 </span></span><span style="display:flex;"><span>}&gt;<span style="color:#ff79c6">&gt;</span></span></span></code></pre></div>
+  </div>
 </div>
 <p>TypeScript Deep Dive:
 <a href="https://typescript-jp.gitbook.io/deep-dive/type-system/mixins">https://typescript-jp.gitbook.io/deep-dive/type-system/mixins</a></p>
@@ -383,11 +396,10 @@ typescriptのジェネリクスなど基本的な動作は知ってたがいく�
 <h3 id="6151-タグ付き合併型">6.1.5.1 タグ付き合併型</h3>
 <p>ユーザーのイベントを定義している場合を例にする。
 handleのif文の分岐で、event.valueはそれぞれstring/[number, number]になる。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserTextEvent <span style="color:#ff79c6">=</span> { value: <span style="color:#8be9fd">string</span> }
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserTextEvent <span style="color:#ff79c6">=</span> { value: <span style="color:#8be9fd">string</span> }
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserMouseEvent <span style="color:#ff79c6">=</span> { value<span style="color:#ff79c6">:</span> [<span style="color:#8be9fd">number</span>, <span style="color:#8be9fd">number</span>] }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserEvent <span style="color:#ff79c6">=</span> UserTextEvent <span style="color:#ff79c6">|</span> UserMouseEvent
@@ -398,13 +410,13 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 </span></span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// event.valueは[number, number]
 </span></span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <p>UserTextEventとUserMouseEventにtargetを追加する。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserTextEvent <span style="color:#ff79c6">=</span> { value: <span style="color:#8be9fd">string</span>, target: <span style="color:#8be9fd">HTMLInputElement</span> }
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserTextEvent <span style="color:#ff79c6">=</span> { value: <span style="color:#8be9fd">string</span>, target: <span style="color:#8be9fd">HTMLInputElement</span> }
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserMouseEvent <span style="color:#ff79c6">=</span> { value<span style="color:#ff79c6">:</span> [<span style="color:#8be9fd">number</span>, <span style="color:#8be9fd">number</span>], target: <span style="color:#8be9fd">HTMLElement</span> }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserEvent <span style="color:#ff79c6">=</span> UserTextEvent <span style="color:#ff79c6">|</span> UserMouseEvent
@@ -417,6 +429,7 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// event.valueは[number, number]
 </span></span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// event.targetは HTMLInputElement or HTMLElement
 </span></span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <p>この場合、if文の分岐の中でtargetの型が絞られない。</p>
 <p>これを解決するには、タグ付けを行う。</p>
@@ -429,11 +442,10 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 </ul>
 <p>stringとか使うと無難。</p>
 <p>書き直すとこんな感じ</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserTextEvent <span style="color:#ff79c6">=</span> { <span style="color:#ff79c6">type</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;TextEvent&#39;</span>,value: <span style="color:#8be9fd">string</span>, target: <span style="color:#8be9fd">HTMLInputElement</span> }
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserTextEvent <span style="color:#ff79c6">=</span> { <span style="color:#ff79c6">type</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;TextEvent&#39;</span>,value: <span style="color:#8be9fd">string</span>, target: <span style="color:#8be9fd">HTMLInputElement</span> }
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserMouseEvent <span style="color:#ff79c6">=</span> { <span style="color:#ff79c6">type</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;MouseEvent&#39;</span>, value<span style="color:#ff79c6">:</span> [<span style="color:#8be9fd">number</span>, <span style="color:#8be9fd">number</span>], target: <span style="color:#8be9fd">HTMLElement</span> }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserEvent <span style="color:#ff79c6">=</span> UserTextEvent <span style="color:#ff79c6">|</span> UserMouseEvent
@@ -446,15 +458,15 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// event.valueは[number, number]
 </span></span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// event.targetは HTMLElement
 </span></span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <h3 id="634-コンパニオンオブジェクトパターン">6.3.4 コンパニオンオブジェクトパターン</h3>
 <p>typescriptでは、型と値が別々の名前空間が異なる。
 これを使ったして、コンパニオンオブジェクトパターンができる。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> Currency <span style="color:#ff79c6">=</span> {
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> Currency <span style="color:#ff79c6">=</span> {
 </span></span><span style="display:flex;"><span>    price: <span style="color:#8be9fd">number</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
@@ -469,16 +481,16 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> main <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
 </span></span><span style="display:flex;"><span>    Currency.<span style="color:#ff79c6">from</span>(<span style="color:#bd93f9">1</span>)
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <p>言われると確かにって感じだけど、やろうと思わなかった。
 いまいちメリットがわからん。</p>
 <h3 id="642-ユーザー定義型ガード">6.4.2 ユーザー定義型ガード</h3>
 <p>typescriptだと、isStringがbooleanを返すことしかわからない。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> isString <span style="color:#ff79c6">=</span> (s: <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">boolean</span> <span style="color:#ff79c6">=&gt;</span> {
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> isString <span style="color:#ff79c6">=</span> (s: <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">boolean</span> <span style="color:#ff79c6">=&gt;</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">typeof</span> s <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;string&#39;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
@@ -489,13 +501,13 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// なんかの処理
 </span></span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <p>その場合、ユーザー定義型ガードを使う</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> isString <span style="color:#ff79c6">=</span> (s: <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> s <span style="color:#ff79c6">is</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">=&gt;</span> {
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> isString <span style="color:#ff79c6">=</span> (s: <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">|</span> <span style="color:#8be9fd">number</span>)<span style="color:#ff79c6">:</span> s <span style="color:#ff79c6">is</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">=&gt;</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">typeof</span> s <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;string&#39;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
@@ -506,35 +518,35 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// なんかの処理
 </span></span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <h3 id="65-条件型">6.5 条件型</h3>
 <p><code>U :&lt; V</code>であれば、TをAに、そうでなければTをBに割り当てるようなこと。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> IsString&lt;<span style="color:#ff79c6">T</span>&gt; <span style="color:#ff79c6">=</span> T <span style="color:#ff79c6">extends</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">?</span> <span style="color:#ff79c6">true</span> <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>;
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> IsString&lt;<span style="color:#ff79c6">T</span>&gt; <span style="color:#ff79c6">=</span> T <span style="color:#ff79c6">extends</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">?</span> <span style="color:#ff79c6">true</span> <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>;
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">type</span> A <span style="color:#ff79c6">=</span> IsString&lt;<span style="color:#ff79c6">string</span>&gt;
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">type</span> B <span style="color:#ff79c6">=</span> IsString&lt;<span style="color:#ff79c6">number</span>&gt;</span></span></code></pre></div>
+  </div>
 </div>
 <h3 id="67-名前的型をシミュレートする">6.7 名前的型をシミュレートする</h3>
 <p>UserIDとCustomerIDのような型エイリアスしている場合</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">type</span> CustomerID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> userID <span style="color:#ff79c6">=</span> (id: <span style="color:#8be9fd">string</span>)<span style="color:#ff79c6">:</span> UserID <span style="color:#ff79c6">=&gt;</span> id <span style="color:#ff79c6">as</span> UserID
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> customerID <span style="color:#ff79c6">=</span> (id: <span style="color:#8be9fd">string</span>)<span style="color:#ff79c6">:</span> CustomerID <span style="color:#ff79c6">=&gt;</span> id <span style="color:#ff79c6">as</span> CustomerID</span></span></code></pre></div>
+  </div>
 </div>
 <p>UserIDを引数に取る、checkIDを使ってもエラーにならない。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> checkID <span style="color:#ff79c6">=</span> (id: <span style="color:#8be9fd">UserID</span>) <span style="color:#ff79c6">=&gt;</span> {
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> checkID <span style="color:#ff79c6">=</span> (id: <span style="color:#8be9fd">UserID</span>) <span style="color:#ff79c6">=&gt;</span> {
 </span></span><span style="display:flex;"><span>    console.log(id)
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
@@ -545,29 +557,30 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> cID <span style="color:#ff79c6">=</span> customerID(<span style="color:#f1fa8c">&#39;002&#39;</span>)
 </span></span><span style="display:flex;"><span>    checkID(cID) <span style="color:#6272a4">// エラーにならない
 </span></span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <p>これはUserIDはstringのエイリアスにすぎないから。</p>
 <p>型のブランド化で解決できる。</p>
 <p>型エイリアスを次のように書き直す。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">&amp;</span> { <span style="color:#ff79c6">readonly</span> brand: <span style="color:#8be9fd">unique</span> <span style="color:#8be9fd">symbol</span> }
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">type</span> UserID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">&amp;</span> { <span style="color:#ff79c6">readonly</span> brand: <span style="color:#8be9fd">unique</span> <span style="color:#8be9fd">symbol</span> }
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">type</span> CustomerID <span style="color:#ff79c6">=</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">&amp;</span> { <span style="color:#ff79c6">readonly</span> brand: <span style="color:#8be9fd">unique</span> <span style="color:#8be9fd">symbol</span> }</span></span></code></pre></div>
+  </div>
 </div>
 <p>すると、checkIDでエラーになる。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> main <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> main <span style="color:#ff79c6">=</span> () <span style="color:#ff79c6">=&gt;</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> uID <span style="color:#ff79c6">=</span> userID(<span style="color:#f1fa8c">&#39;001&#39;</span>)
 </span></span><span style="display:flex;"><span>    checkID(uID)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> cID <span style="color:#ff79c6">=</span> customerID(<span style="color:#f1fa8c">&#39;002&#39;</span>)
 </span></span><span style="display:flex;"><span>    checkID(cID) <span style="color:#6272a4">// エラーになる
 </span></span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </div>
 </div>
 <h2 id="付録">付録</h2>
 <p>tsconfig</p>
@@ -591,21 +604,23 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 
       
       <div class="postmeta mb-2">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/typescript/">typescript</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/typescript/">typescript</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2021-12-26
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2021-12-26
+    
+  </div>
 </div>
 
       </div>
@@ -616,8 +631,6 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 
   <h2 class="see-also">See Also</h2>
   <ul>
-    
-      <li><a href="/posts/typescript/typescript-init/">とりあえずtypescriptを書きたいときのinit</a></li>
     
       <li><a href="/posts/typescript/react-render-prop-typescript/">reactのrender propsをtypescriptでやる</a></li>
     
@@ -631,6 +644,7 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
     
     
       
+
     
   </div>
 
@@ -647,12 +661,12 @@ handleのif文の分岐で、event.valueはそれぞれstring/[number, number]�
 
   <div class="container">
     <div class="credits copyright">
-      <a href="http://localhost:1313//pages/about"></a>
+      <a href="https://www.if-blog.site//pages/about">if_004</a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       

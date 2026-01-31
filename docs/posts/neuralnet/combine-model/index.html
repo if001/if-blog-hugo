@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8" />
 <title>kerasでモデルを結合する</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
 
 
 <script
@@ -16,11 +27,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="http://localhost:1313/index.xml"
+  href="https://www.if-blog.site/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
 
 
 
@@ -190,25 +201,27 @@
 
       
       <div class="postmeta mb-4">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/keras/">keras</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/keras/">keras</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2019-09-24
+    
+  </div>
 </div>
 
       </div>
@@ -225,11 +238,10 @@
 <p>Modelの結合は前はできなかった気がするが、できるようになっていたのでメモ。</p>
 <p>Kerasのバージョンは、2.1.1</p>
 <p>まずは、シンプルなモデルを2つ作る。input→model1→model2→outputを作る。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">model1</span>():
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">model1</span>():
 </span></span><span style="display:flex;"><span>    layer_input <span style="color:#ff79c6">=</span> Input(shape<span style="color:#ff79c6">=</span>(<span style="color:#ff79c6">None</span>, <span style="color:#bd93f9">10</span>))
 </span></span><span style="display:flex;"><span>    layer_output <span style="color:#ff79c6">=</span> Dense(<span style="color:#bd93f9">10</span>)(layer_input)
 </span></span><span style="display:flex;"><span>    model <span style="color:#ff79c6">=</span> Model(layer_input, layer_output)
@@ -242,13 +254,13 @@
 </span></span><span style="display:flex;"><span>    model <span style="color:#ff79c6">=</span> Model(layer_input, layer_output)
 </span></span><span style="display:flex;"><span>    model<span style="color:#ff79c6">.</span>summary()
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> model</span></span></code></pre></div>
+  </div>
 </div>
 <p>まず、model1へのインプットを作る。model1のアウトプットをmodel2のインプットにし、Modelのインスタンスを作る。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>m1 <span style="color:#ff79c6">=</span> model1()
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>m1 <span style="color:#ff79c6">=</span> model1()
 </span></span><span style="display:flex;"><span>m2 <span style="color:#ff79c6">=</span> model2()
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>inp <span style="color:#ff79c6">=</span> Input(shape<span style="color:#ff79c6">=</span>(<span style="color:#ff79c6">None</span>, <span style="color:#bd93f9">10</span>))
@@ -256,13 +268,13 @@
 </span></span><span style="display:flex;"><span>out <span style="color:#ff79c6">=</span> m2(model1_output)
 </span></span><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> Model(inp, out)
 </span></span><span style="display:flex;"><span>model<span style="color:#ff79c6">.</span>summary()</span></span></code></pre></div>
+  </div>
 </div>
 <p>すると、こんな感じでモデルが結合できたのが確認できる。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Using TensorFlow backend.
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Using TensorFlow backend.
 </span></span><span style="display:flex;"><span>_________________________________________________________________
 </span></span><span style="display:flex;"><span>Layer <span style="color:#ff79c6">(</span><span style="color:#8be9fd;font-style:italic">type</span><span style="color:#ff79c6">)</span>                 Output Shape              Param <span style="color:#6272a4">#</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">=================================================================</span>
@@ -298,13 +310,13 @@
 </span></span><span style="display:flex;"><span>Trainable params: <span style="color:#bd93f9">220</span>
 </span></span><span style="display:flex;"><span>Non-trainable params: <span style="color:#bd93f9">0</span>
 </span></span><span style="display:flex;"><span>_________________________________________________________________</span></span></code></pre></div>
+  </div>
 </div>
 <p>コード全体はこんな感じ。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> keras.layers <span style="color:#ff79c6">import</span> Dense
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> keras.layers <span style="color:#ff79c6">import</span> Dense
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> keras.models <span style="color:#ff79c6">import</span> Model
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">model1</span>():
@@ -333,6 +345,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">__name__</span> <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#39;__main__&#39;</span>:
 </span></span><span style="display:flex;"><span>   main()</span></span></code></pre></div>
+  </div>
 </div>
 <p>モデルインスタンスの再利用性が上がってて使いやすくなってる。</p>
 
@@ -341,25 +354,27 @@
 
       
       <div class="postmeta mb-2">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/keras/">keras</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/keras/">keras</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2019-09-24
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2019-09-24
+    
+  </div>
 </div>
 
       </div>
@@ -391,6 +406,7 @@
     
     
       
+
     
   </div>
 
@@ -407,12 +423,12 @@
 
   <div class="container">
     <div class="credits copyright">
-      <a href="http://localhost:1313//pages/about"></a>
+      <a href="https://www.if-blog.site//pages/about">if_004</a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       

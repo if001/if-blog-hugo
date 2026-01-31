@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8" />
 <title>rinna 3Bをcppで動かす</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
 
 
 <script
@@ -16,11 +27,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="http://localhost:1313/index.xml"
+  href="https://www.if-blog.site/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
 
 
 
@@ -191,33 +202,35 @@ instructionもあり、そのままlangchainなどに突っ込んでも動かせ
 
       
       <div class="postmeta mb-4">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-05-18
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-05-18
+    
+  </div>
 </div>
 
       </div>
@@ -238,23 +251,22 @@ instructionもあり、そのままlangchainなどに突っ込んでも動かせ
 <p>実行環境は、colab T4 ハイメモリ</p>
 <h2 id="調査">調査</h2>
 <p>以下で中身を確認</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> AutoModelForCausalLM
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> AutoModelForCausalLM
 </span></span><span style="display:flex;"><span>base_model <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;rinna/japanese-gpt-neox-3.6b-instruction-sft&#39;</span>
 </span></span><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> AutoModelForCausalLM<span style="color:#ff79c6">.</span>from_pretrained(base_model)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> v <span style="color:#ff79c6">in</span> model<span style="color:#ff79c6">.</span>state_dict()<span style="color:#ff79c6">.</span>items():
 </span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">print</span>(v[<span style="color:#bd93f9">0</span>])</span></span></code></pre></div>
+  </div>
 </div>
 <p>アーキテクチャはgpt-neox</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>gpt_neox.embed_in.weight
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>gpt_neox.embed_in.weight
 </span></span><span style="display:flex;"><span>gpt_neox.layers.0.input_layernorm.weight
 </span></span><span style="display:flex;"><span>gpt_neox.layers.0.input_layernorm.bias
 </span></span><span style="display:flex;"><span>gpt_neox.layers.0.post_attention_layernorm.weight
@@ -267,60 +279,60 @@ instructionもあり、そのままlangchainなどに突っ込んでも動かせ
 </span></span><span style="display:flex;"><span>gpt_neox.final_layer_norm.weight
 </span></span><span style="display:flex;"><span>gpt_neox.final_layer_norm.bias
 </span></span><span style="display:flex;"><span>embed_out.weight</span></span></code></pre></div>
+  </div>
 </div>
 <p>redpajamaがgpe-neoxベースだったので、以下がそのまま使えそう。</p>
 <p><a href="https://github.com/togethercomputer/redpajama.cpp/tree/master/examples/redpajama">https://github.com/togethercomputer/redpajama.cpp/tree/master/examples/redpajama</a></p>
 <h2 id="ggml形式に変換">ggml形式に変換</h2>
 <p>packageなどinstallして、以下のコードを参考に実行。</p>
 <p><a href="https://github.com/togethercomputer/redpajama.cpp/blob/master/examples/redpajama/scripts/convert_gptneox_to_ggml.py">https://github.com/togethercomputer/redpajama.cpp/blob/master/examples/redpajama/scripts/convert_gptneox_to_ggml.py</a></p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python convert_gptneox_to_ggml.py <span style="color:#f1fa8c">&#39;rinna/japanese-gpt-neox-3.6b-instruction-sft&#39;</span> ./output_dir</span></span></code></pre></div>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python convert_gptneox_to_ggml.py <span style="color:#f1fa8c">&#39;rinna/japanese-gpt-neox-3.6b-instruction-sft&#39;</span> ./output_dir</span></span></code></pre></div>
+  </div>
 </div>
 <p>convert_gptneox_to_ggml.pyの中で、以下のようにモデルの中身を全部見てるので多少redpajamaと違ってもいけてそう</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>hparams <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>config<span style="color:#ff79c6">.</span>to_dict()
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>hparams <span style="color:#ff79c6">=</span> model<span style="color:#ff79c6">.</span>config<span style="color:#ff79c6">.</span>to_dict()
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Model loaded: &#34;</span>, model_name)</span></span></code></pre></div>
+  </div>
 </div>
 <h2 id="quantize">quantize</h2>
 <p>README通りにコンパイル</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make quantize-gptneox</span></span></code></pre></div>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make quantize-gptneox</span></span></code></pre></div>
+  </div>
 </div>
 <p>README通りにquantize</p>
 <p>q8_0が対応していたので、q8_0を指定</p>
 <blockquote>
 <p>Generate the quantized model, the supported types include: q4_0, q4_1, q4_2, q5_0, q5_1, and q8_0. For example, to run q4_1, you need to do the following convertion:</p>
 </blockquote>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;./output_dir/ggml-japanese-gpt-neox-3.6b-instruction-sft-f16.bin&#34;</span>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;./output_dir/ggml-japanese-gpt-neox-3.6b-instruction-sft-f16.bin&#34;</span>
 </span></span><span style="display:flex;"><span>python ./examples/redpajama/scripts/quantize-gptneox.py <span style="color:#8be9fd;font-style:italic">$model</span> --quantize-output-type q8_0</span></span></code></pre></div>
+  </div>
 </div>
 <h2 id="動作確認">動作確認</h2>
 <p>実行用のスクリプトをコンパイル</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make redpajama</span></span></code></pre></div>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make redpajama</span></span></code></pre></div>
+  </div>
 </div>
 <p>実行</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/content/drive/MyDrive/models/rinna_3B_cpp/ggml-rinna-3B-q8_0.bin&#34;</span>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/content/drive/MyDrive/models/rinna_3B_cpp/ggml-rinna-3B-q8_0.bin&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">prompt</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">[</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">{</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;speaker&#34;</span>: <span style="color:#f1fa8c">&#34;ユーザー&#34;</span>,
@@ -362,15 +374,16 @@ instructionもあり、そのままlangchainなどに突っ込んでも動かせ
 </span></span></span><span style="display:flex;"><span>  --n_predict <span style="color:#bd93f9">256</span> <span style="color:#f1fa8c">\
 </span></span></span><span style="display:flex;"><span>  --verbose-prompt <span style="color:#f1fa8c">\
 </span></span></span><span style="display:flex;"><span>  -p <span style="color:#f1fa8c">&#34;</span><span style="color:#8be9fd;font-style:italic">$prompt</span><span style="color:#f1fa8c">&#34;</span></span></span></code></pre></div>
+  </div>
 </div>
 <p>出力</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&gt; ユーザー:&lt;0x1C&gt;日本のおすすめの観光地を教えてください。&lt;NL&gt;システム:&lt;0x1C&gt;どの地域の観光地が知りたいですか&lt;0xEB&gt;&lt;0xB8&gt;&lt;0x9B&gt;&lt;NL&gt;ユーザー:&lt;0x1C&gt;渋谷の観光地を教えてください。&lt;NL&gt;システム:&lt;0x1C&gt;
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&gt; ユーザー:&lt;0x1C&gt;日本のおすすめの観光地を教えてください。&lt;NL&gt;システム:&lt;0x1C&gt;どの地域の観光地が知りたいですか&lt;0xEB&gt;&lt;0xB8&gt;&lt;0x9B&gt;&lt;NL&gt;ユーザー:&lt;0x1C&gt;渋谷の観光地を教えてください。&lt;NL&gt;システム:&lt;0x1C&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>東京の観光地について知りたいですか?&lt;/s&gt;(注)この記事は、私が作成したものではなく、記事の著者は、この記事の作成に同意していません。&lt;/s&gt;この記事は、</span></span></code></pre></div>
+  </div>
 </div>
 <p>だいぶあほになってそうだが、とりあえず日本語は出力できている。
 (半角スペースや改行コードはおそらくスクリプト側で出力？)</p>
@@ -381,28 +394,32 @@ instructionもあり、そのままlangchainなどに突っ込んでも動かせ
 <h3 id="libllamasoの作成">libllama.soの作成</h3>
 <p>まずはredpajama.cpp側でコンパイルして共有ライブラリを作る。<br>
 llama-cpp-pythonでgptneox_token_nlを呼び出しているので、以下のコメントを解除</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight" ref="https://github.com/togethercomputer/redpajama.cpp/blob/master/examples/redpajama/gptneox.h#L196"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>GPTNEOX_API gptneox_token <span style="color:#50fa7b">gptneox_token_nl</span>(); 
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight" ref="https://github.com/togethercomputer/redpajama.cpp/blob/master/examples/redpajama/gptneox.h#L196"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>GPTNEOX_API gptneox_token <span style="color:#50fa7b">gptneox_token_nl</span>(); 
 </span></span></code></pre></div>
+  </div>
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="https://github.com/togethercomputer/redpajama.cpp/blob/master/examples/redpajama/gptneox.h#L196" target="_black">https://github.com/togethercomputer/redpajama.cpp/blob/master/examples/redpajama/gptneox.h#L196</a>
+    </div>
 </div>
 <p>以下を参考に、Makefile必要なファイルを加えて少し書き換える。<br>
 <a href="https://github.com/togethercomputer/redpajama.cpp/blob/master/Makefile#L193">https://github.com/togethercomputer/redpajama.cpp/blob/master/Makefile#L193</a></p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>libllama.so: ggml.o gptneox.o common-gptneox.o $(OBJS)
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>libllama.so: ggml.o gptneox.o common-gptneox.o $(OBJS)
 </span></span><span style="display:flex;"><span>$(CXX) $(CXXFLAGS) -shared -fPIC -o $@ $^ $(LDFLAGS)</span></span></code></pre></div>
+  </div>
 </div>
 <p>コンパイル</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>make libllama.so</span></span></code></pre></div>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>make libllama.so</span></span></code></pre></div>
+  </div>
 </div>
 <p>llama-cpp-pythonをinstallしたディレクトリ(多分こんな感じ <code>lib/python3.8/site-packages/llama_cpp</code>)の
 <code>libllama.so</code>を今作った<code>libllama.so</code>に置き換える。</p>
@@ -411,33 +428,32 @@ llama-cpp-pythonでgptneox_token_nlを呼び出しているので、以下のコ
 <p><a href="https://github.com/abetlen/llama-cpp-python/blob/main/llama_cpp/llama_cpp.py">https://github.com/abetlen/llama-cpp-python/blob/main/llama_cpp/llama_cpp.py</a></p>
 <p><code>_lib.llama</code> → <code>_lib.gptnexo</code>を置き換え</p>
 <p>例えば、以下のような感じ</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">llama_context_default_params</span>() <span style="color:#ff79c6">-&gt;</span> llama_context_params:
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">llama_context_default_params</span>() <span style="color:#ff79c6">-&gt;</span> llama_context_params:
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> _lib<span style="color:#ff79c6">.</span>llama_context_default_params()
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>_lib<span style="color:#ff79c6">.</span>llama_context_default_params<span style="color:#ff79c6">.</span>argtypes <span style="color:#ff79c6">=</span> []
 </span></span><span style="display:flex;"><span>_lib<span style="color:#ff79c6">.</span>llama_context_default_params<span style="color:#ff79c6">.</span>restype <span style="color:#ff79c6">=</span> llama_context_params</span></span></code></pre></div>
+  </div>
 </div>
 <p>↓</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">llama_context_default_params</span>() <span style="color:#ff79c6">-&gt;</span> llama_context_params:
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">llama_context_default_params</span>() <span style="color:#ff79c6">-&gt;</span> llama_context_params:
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> _lib<span style="color:#ff79c6">.</span>gptneox_context_default_params()
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>_lib<span style="color:#ff79c6">.</span>gptneox_context_default_params<span style="color:#ff79c6">.</span>argtypes <span style="color:#ff79c6">=</span> []
 </span></span><span style="display:flex;"><span>_lib<span style="color:#ff79c6">.</span>gptneox_context_default_params<span style="color:#ff79c6">.</span>restype <span style="color:#ff79c6">=</span> llama_context_params</span></span></code></pre></div>
+  </div>
 </div>
 <h2 id="langchainから呼び出す">langchainから呼び出す</h2>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> langchain.llms <span style="color:#ff79c6">import</span> LlamaCpp
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> langchain.llms <span style="color:#ff79c6">import</span> LlamaCpp
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>model_path<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;../llama.cpp/models/ggml-rinna-3B-q8_0.bin&#39;</span>
 </span></span><span style="display:flex;"><span>stop <span style="color:#ff79c6">=</span> [
@@ -460,13 +476,13 @@ llama-cpp-pythonでgptneox_token_nlを呼び出しているので、以下のコ
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>r <span style="color:#ff79c6">=</span> llm(prompt)
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(r)</span></span></code></pre></div>
+  </div>
 </div>
 <p>以下は4回実行した結果。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gptneox.cpp: loading model from ./models/ggml-rinna-3B-q8_0.bin
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gptneox.cpp: loading model from ./models/ggml-rinna-3B-q8_0.bin
 </span></span><span style="display:flex;"><span>gptneox_model_load_internal: <span style="color:#8be9fd;font-style:italic">format</span>     <span style="color:#ff79c6">=</span> ggjt v1 <span style="color:#ff79c6">(</span>latest<span style="color:#ff79c6">)</span>
 </span></span><span style="display:flex;"><span>gptneox_model_load_internal: <span style="color:#8be9fd;font-style:italic">n_vocab</span>    <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">32000</span>
 </span></span><span style="display:flex;"><span>gptneox_model_load_internal: <span style="color:#8be9fd;font-style:italic">n_ctx</span>      <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1024</span>
@@ -501,6 +517,7 @@ llama-cpp-pythonでgptneox_token_nlを呼び出しているので、以下のコ
 </span></span><span style="display:flex;"><span>--
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>ああ、これは難しい質問ですね!私は東京の観光地について専門家ではありませんが、調べてみますか?</span></span></code></pre></div>
+  </div>
 </div>
 <p>とりあえず、それっぽいことは返せているが、ちょっとあほになってそう。</p>
 <h2 id="まとめ">まとめ</h2>
@@ -509,11 +526,11 @@ llama-cpp-pythonでgptneox_token_nlを呼び出しているので、以下のコ
 もうちょっと調査してforkかPR作るかなぁ&hellip;</p>
 <h2 id="追記">追記</h2>
 <p>rinnaの場合、勝手にeosを付けないようにtokenize時に<code>add_special_tokens=False</code>とする必要がある。</p>
-
-<div style="border:2px solid red; padding:8px; margin:8px 0;">
-  <div><strong>DEBUG codeblock hook fired</strong></div>
-  
-  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>token_ids <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>encode(prompt, add_special_tokens<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>, return_tensors<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;pt&#34;</span>)</span></span></code></pre></div>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>token_ids <span style="color:#ff79c6">=</span> tokenizer<span style="color:#ff79c6">.</span>encode(prompt, add_special_tokens<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>, return_tensors<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;pt&#34;</span>)</span></span></code></pre></div>
+  </div>
 </div>
 <p>cppだと勝手にeos付けてそうな気がするので、確認しないと</p>
 
@@ -522,33 +539,35 @@ llama-cpp-pythonでgptneox_token_nlを呼び出しているので、以下のコ
 
       
       <div class="postmeta mb-2">
-        <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
-  </span>
-  
-  <span class="blog-tag">
-    <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
-  </span>
-  
-  
-</div>
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-05-18
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-05-18
+    
+  </div>
 </div>
 
       </div>
@@ -564,11 +583,11 @@ llama-cpp-pythonでgptneox_token_nlを呼び出しているので、以下のコ
     
       <li><a href="/posts/nlp/rinna_lora_ja/">loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す</a></li>
     
-      <li><a href="/posts/nlp/redpajama_lora_start/">RedPajamaをLoRaで日本語fine tuning</a></li>
-    
       <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
     
       <li><a href="/posts/nlp/bloom_lora_start/">BloomをLoRaで日本語finetuning</a></li>
+    
+      <li><a href="/posts/nlp/gpt_index_llama_index_start/">LlamaIndex(GPTIndex)を触る</a></li>
     
   </ul>
 
@@ -580,6 +599,7 @@ llama-cpp-pythonでgptneox_token_nlを呼び出しているので、以下のコ
     
     
       
+
     
   </div>
 
@@ -596,12 +616,12 @@ llama-cpp-pythonでgptneox_token_nlを呼び出しているので、以下のコ
 
   <div class="container">
     <div class="credits copyright">
-      <a href="http://localhost:1313//pages/about"></a>
+      <a href="https://www.if-blog.site//pages/about">if_004</a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
+        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
       
