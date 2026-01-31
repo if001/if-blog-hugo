@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>xgenでJGLUEを試す</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.site/index.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -109,7 +98,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.147.5">
+<meta name="generator" content="Hugo 0.155.1">
   </head>
   <body>
     
@@ -171,14 +160,14 @@
           
             
 
-              
-              <h1>
-		
-		xgenでJGLUEを試す
-		
-		
-                </h1>
-              
+            
+            <h1 class="post-title">
+		      
+		      xgenでJGLUEを試す
+		      
+		      
+            </h1>
+            
 
               
 
@@ -197,32 +186,45 @@
     
   <div class="container" role="main">
     <article class="article" class="blog-post">
-      
-        <div class="blog-tags">
-          <i class="fas fa-tag" style="color:#111111"></i>
-          
-            <a href="https://www.if-blog.site//tags/python/">python</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/nlp/">nlp</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/jglue/">jglue</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/xgen/">xgen</a
-            >&nbsp;
-          
-        </div>
-      
 
       
-        <div style="margin-bottom: 10px;">
-          <i class="fa fa-calendar-alt"></i
-          >&nbsp;2023-07-01
-        </div>
+      <div class="postmeta mb-4">
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/jglue/">jglue</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/xgen/">xgen</a>&nbsp;
+    </span>
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-07-01
+    
+  </div>
+</div>
+
+      </div>
       
 
+
+      
       
 
 
@@ -277,11 +279,12 @@
 <p><a href="https://huggingface.co/Salesforce/xgen-7b-8k-base">https://huggingface.co/Salesforce/xgen-7b-8k-base</a></p>
 <h2 id="install">install</h2>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>git clone <span style="color:#ff79c6">-</span>b jp<span style="color:#ff79c6">-</span>stable https:<span style="color:#ff79c6">//</span>github<span style="color:#ff79c6">.</span>com<span style="color:#ff79c6">/</span>Stability<span style="color:#ff79c6">-</span>AI<span style="color:#ff79c6">/</span>lm<span style="color:#ff79c6">-</span>evaluation<span style="color:#ff79c6">-</span>harness<span style="color:#ff79c6">.</span>git
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>git clone <span style="color:#ff79c6">-</span>b jp<span style="color:#ff79c6">-</span>stable https:<span style="color:#ff79c6">//</span>github<span style="color:#ff79c6">.</span>com<span style="color:#ff79c6">/</span>Stability<span style="color:#ff79c6">-</span>AI<span style="color:#ff79c6">/</span>lm<span style="color:#ff79c6">-</span>evaluation<span style="color:#ff79c6">-</span>harness<span style="color:#ff79c6">.</span>git
 </span></span><span style="display:flex;"><span>cd lm<span style="color:#ff79c6">-</span>evaluation<span style="color:#ff79c6">-</span>harness
 </span></span><span style="display:flex;"><span>pip install <span style="color:#ff79c6">-</span>e <span style="color:#f1fa8c">&#34;.[ja]&#34;</span></span></span></code></pre></div>
   </div>
-
 </div>
 <h2 id="start">start</h2>
 <p>repositoryのmain関数を動かすだけ</p>
@@ -299,7 +302,9 @@
 <a href="https://github.com/Stability-AI/lm-evaluation-harness/blob/jp-stable/docs/prompt_templates.md">https://github.com/Stability-AI/lm-evaluation-harness/blob/jp-stable/docs/prompt_templates.md</a></p>
 <h3 id="実行例">実行例</h3>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">args</span><span style="color:#ff79c6">=[</span>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">args</span><span style="color:#ff79c6">=[</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;pretrained=Salesforce/xgen-7b-8k-base&#34;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;peft=/content/drive/MyDrive/models/xgen-7b-8k-base/qlora&#34;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;load_in_8bit=True&#34;</span>,
@@ -312,14 +317,13 @@
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">TASK</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;jcommonsenseqa-1.1-0.3,jnli-1.1-0.3,marc_ja-1.1-0.3,jsquad-1.1-0.3,xlsum_ja&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>!python main.py <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--model hf-causal-experimental <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--model_args <span style="color:#8be9fd;font-style:italic">$MODEL_ARGS</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--tasks <span style="color:#8be9fd;font-style:italic">$TASK</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--num_fewshot <span style="color:#f1fa8c">&#34;2,3,3,3,1&#34;</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--device <span style="color:#f1fa8c">&#34;cuda&#34;</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>--output_path <span style="color:#f1fa8c">&#34;./result.json&#34;</span></span></span></code></pre></div>
+</span></span></span><span style="display:flex;"><span>--model hf-causal-experimental <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span>--model_args <span style="color:#8be9fd;font-style:italic">$MODEL_ARGS</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span>--tasks <span style="color:#8be9fd;font-style:italic">$TASK</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span>--num_fewshot <span style="color:#f1fa8c">&#34;2,3,3,3,1&#34;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span>--device <span style="color:#f1fa8c">&#34;cuda&#34;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span>--output_path <span style="color:#f1fa8c">&#34;./result.json&#34;</span></span></span></code></pre></div>
   </div>
-
 </div>
 <p>すべてのタスクをまとめて実行するとcolab A100で100ユニットでも終わらなかったので注意
 タスクは別々にやったほうが良いかも</p>
@@ -327,21 +331,23 @@
 <p>xgenをdolly_jaで学習させたものと、githubのリンクにあるrinna-instruction-ppoを比較する。</p>
 <p>xgen-dolly_ja-qlora</p>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>JCommonsenseQA: 55.32
-JNLI: 53.04
-MARC-ja: 86.52
-JSQuAD: 59.55</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>JCommonsenseQA: 55.32
+</span></span><span style="display:flex;"><span>JNLI: 53.04
+</span></span><span style="display:flex;"><span>MARC-ja: 86.52
+</span></span><span style="display:flex;"><span>JSQuAD: 59.55</span></span></code></pre></div>
   </div>
-
 </div>
 <p>rinna-instruction-ppo</p>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>JCommonsenseQA: 41.38
-JNLI: 54.03
-MARC-ja: 89.71
-JSQuAD: 53.42</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>JCommonsenseQA: 41.38
+</span></span><span style="display:flex;"><span>JNLI: 54.03
+</span></span><span style="display:flex;"><span>MARC-ja: 89.71
+</span></span><span style="display:flex;"><span>JSQuAD: 53.42</span></span></code></pre></div>
   </div>
-
 </div>
 <p><a href="https://github.com/Stability-AI/lm-evaluation-harness/blob/jp-stable/models/rinna/rinna-japanese-gpt-neox-3.6b-instruction-ppo/result.json">https://github.com/Stability-AI/lm-evaluation-harness/blob/jp-stable/models/rinna/rinna-japanese-gpt-neox-3.6b-instruction-ppo/result.json</a></p>
 <p>質疑応答に関するJCommonsenseQAとJSQuADではxgenが高い値となっている。
@@ -355,61 +361,104 @@ xgenは長いcontextで学習させたので、それが質疑応答の結果に
 <h3 id="xgenの文章生成">xgenの文章生成</h3>
 <p>eosかpaddingがなんかおかしい</p>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>&gt; 以下は、ある作業を記述した指示です。要求を適切に満たすような応答を書きなさい。
-&gt; 
-&gt; ### 命令:
-&gt; 色の三原色とはなんですか？
-
-### 応答:
-色の三原色とは赤、青、黄色です。
-
-### 命令:
-色の三原色とはなんですか？
-
-### 応答:
-色の三原色とは赤、青、黄色です。</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&gt; 以下は、ある作業を記述した指示です。要求を適切に満たすような応答を書きなさい。
+</span></span><span style="display:flex;"><span>&gt; 
+</span></span><span style="display:flex;"><span>&gt; ### 命令:
+</span></span><span style="display:flex;"><span>&gt; 色の三原色とはなんですか？
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>### 応答:
+</span></span><span style="display:flex;"><span>色の三原色とは赤、青、黄色です。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>### 命令:
+</span></span><span style="display:flex;"><span>色の三原色とはなんですか？
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>### 応答:
+</span></span><span style="display:flex;"><span>色の三原色とは赤、青、黄色です。</span></span></code></pre></div>
   </div>
-
 </div>
 <h3 id="raw-result">raw result</h3>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>|         Task         |Version| Metric |Value |   |Stderr|
-|----------------------|------:|--------|-----:|---|-----:|
-|jcommonsenseqa-1.1-0.3|    1.1|acc     |0.5532|±  |0.0149|
-|                      |       |acc_norm|0.5130|±  |0.0149|</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>|         Task         |Version| Metric |Value |   |Stderr|
+</span></span><span style="display:flex;"><span>|----------------------|------:|--------|-----:|---|-----:|
+</span></span><span style="display:flex;"><span>|jcommonsenseqa-1.1-0.3|    1.1|acc     |0.5532|±  |0.0149|
+</span></span><span style="display:flex;"><span>|                      |       |acc_norm|0.5130|±  |0.0149|</span></span></code></pre></div>
   </div>
-
 </div>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>|    Task    |Version| Metric |Value |   |Stderr|
-|------------|------:|--------|-----:|---|-----:|
-|jnli-1.1-0.3|    1.1|acc     |0.5304|±  |0.0101|
-|            |       |acc_norm|0.4684|±  |0.0101|</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>|    Task    |Version| Metric |Value |   |Stderr|
+</span></span><span style="display:flex;"><span>|------------|------:|--------|-----:|---|-----:|
+</span></span><span style="display:flex;"><span>|jnli-1.1-0.3|    1.1|acc     |0.5304|±  |0.0101|
+</span></span><span style="display:flex;"><span>|            |       |acc_norm|0.4684|±  |0.0101|</span></span></code></pre></div>
   </div>
-
 </div>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>|     Task      |Version| Metric |Value |   |Stderr|
-|---------------|------:|--------|-----:|---|-----:|
-|marc_ja-1.1-0.3|    1.1|acc     |0.8652|±  |0.0045|
-|               |       |acc_norm|0.8652|±  |0.0045|</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>|     Task      |Version| Metric |Value |   |Stderr|
+</span></span><span style="display:flex;"><span>|---------------|------:|--------|-----:|---|-----:|
+</span></span><span style="display:flex;"><span>|marc_ja-1.1-0.3|    1.1|acc     |0.8652|±  |0.0045|
+</span></span><span style="display:flex;"><span>|               |       |acc_norm|0.8652|±  |0.0045|</span></span></code></pre></div>
   </div>
-
 </div>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>|     Task     |Version|  Metric   | Value |   |Stderr|
-|--------------|------:|-----------|------:|---|------|
-|jsquad-1.1-0.3|    1.1|exact_match|59.5452|   |      |
-|              |       |f1         |72.2966|   |      |</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>|     Task     |Version|  Metric   | Value |   |Stderr|
+</span></span><span style="display:flex;"><span>|--------------|------:|-----------|------:|---|------|
+</span></span><span style="display:flex;"><span>|jsquad-1.1-0.3|    1.1|exact_match|59.5452|   |      |
+</span></span><span style="display:flex;"><span>|              |       |f1         |72.2966|   |      |</span></span></code></pre></div>
   </div>
-
 </div>
 
       </div>
+      
+
+      
+      <div class="postmeta mb-2">
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/jglue/">jglue</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/xgen/">xgen</a>&nbsp;
+    </span>
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-07-01
+    
+  </div>
+</div>
+
+      </div>
+      
+
       <div class="related-article">
         
 
-  <h2>See Also</h2>
+  <h2 class="see-also">See Also</h2>
   <ul>
     
       <li><a href="/posts/nlp/mixture_of_experts_sample/">Mixture of expertsのサンプル実装</a></li>
@@ -427,11 +476,11 @@ xgenは長いcontextで学習させたので、それが質疑応答の結果に
 
       </div>
     </article>
+
     
     
     
       
-
     
   </div>
 
@@ -448,15 +497,15 @@ xgenは長いcontextで学習させたので、それが質疑応答の結果に
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site//pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
-      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+      
 
       <p class="credits theme-by">
          <a href="https://gohugo.io">Hugo</a>&nbsp;Theme

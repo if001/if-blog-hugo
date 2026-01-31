@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.site/index.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -111,7 +100,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.147.5">
+<meta name="generator" content="Hugo 0.155.1">
   </head>
   <body>
     
@@ -173,14 +162,14 @@
           
             
 
-              
-              <h1>
-		
-		複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ
-		
-		
-                </h1>
-              
+            
+            <h1 class="post-title">
+		      
+		      複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ
+		      
+		      
+            </h1>
+            
 
               
 
@@ -199,29 +188,41 @@
     
   <div class="container" role="main">
     <article class="article" class="blog-post">
-      
-        <div class="blog-tags">
-          <i class="fas fa-tag" style="color:#111111"></i>
-          
-            <a href="https://www.if-blog.site//tags/python/">python</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/nlp/">nlp</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a
-            >&nbsp;
-          
-        </div>
-      
 
       
-        <div style="margin-bottom: 10px;">
-          <i class="fa fa-calendar-alt"></i
-          >&nbsp;2023-11-21
-        </div>
+      <div class="postmeta mb-4">
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    </span>
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-11-21
+    
+  </div>
+</div>
+
+      </div>
       
 
+
+      
       
 
 
@@ -276,7 +277,9 @@ loadした後にスクリプト側でわけると、splitを書いたらうま�
 <p>huggingfaceへのファイルのuploadは色々方法があるが、今回はupload_file関数を使う<br>
 指定されたディレクトリにあるファイルを圧縮し、アップロードする。</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> huggingface_hub <span style="color:#ff79c6">import</span> upload_file  
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> huggingface_hub <span style="color:#ff79c6">import</span> upload_file  
 </span></span><span style="display:flex;"><span>upload_file(
 </span></span><span style="display:flex;"><span>            path_or_fileobj<span style="color:#ff79c6">=</span>zst_file_path,
 </span></span><span style="display:flex;"><span>            path_in_repo<span style="color:#ff79c6">=</span>zst_file_name,
@@ -284,7 +287,6 @@ loadした後にスクリプト側でわけると、splitを書いたらうま�
 </span></span><span style="display:flex;"><span>            repo_type<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;dataset&#34;</span>
 </span></span><span style="display:flex;"><span>)</span></span></code></pre></div>
   </div>
-
 </div>
 <p>ここでは、jsonlファイルをzstに圧縮してuploadしている。<br>
 サンプルはこんな感じ。<br>
@@ -294,7 +296,9 @@ loadした後にスクリプト側でわけると、splitを書いたらうま�
 <h2 id="datasetのdownload">Datasetのdownload</h2>
 <p>基本的にはいつもと同じように使える</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> datasets <span style="color:#ff79c6">import</span> load_dataset
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> datasets <span style="color:#ff79c6">import</span> load_dataset
 </span></span><span style="display:flex;"><span>ds<span style="color:#ff79c6">=</span>load_dataset(<span style="color:#f1fa8c">&#34;if001/oscar_2023_filtered&#34;</span>)
 </span></span><span style="display:flex;"><span>ds[<span style="color:#f1fa8c">&#39;train&#39;</span>]
 </span></span><span style="display:flex;"><span>
@@ -303,25 +307,59 @@ loadした後にスクリプト側でわけると、splitを書いたらうま�
 </span></span><span style="display:flex;"><span>    num_rows: <span style="color:#bd93f9">312396</span>
 </span></span><span style="display:flex;"><span>})</span></span></code></pre></div>
   </div>
-
 </div>
 <p>今回は使わなかったが、downloadする前にデータに対し処理を行えるscriptが配置できる。<br>
 <a href="https://huggingface.co/docs/datasets/dataset_script">https://huggingface.co/docs/datasets/dataset_script</a></p>
 <p>uploadしたjsonl.zstファイルを解凍して色々したい場合は、以下のように特定のディレクトリにダウンロードできる。</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> huggingface_hub <span style="color:#ff79c6">import</span> snapshot_download
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> huggingface_hub <span style="color:#ff79c6">import</span> snapshot_download
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>snapshot_download(repo_id<span style="color:#ff79c6">=</span>repo_id, allow_patterns<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;*.jsonl.zst&#34;</span>, local_dir<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;./download_dir&#34;</span>)</span></span></code></pre></div>
   </div>
-
 </div>
 <p>local_dir(download_dir)にjsonl.zstファイルがダウンロードされる。</p>
 
       </div>
+      
+
+      
+      <div class="postmeta mb-2">
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    </span>
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-11-21
+    
+  </div>
+</div>
+
+      </div>
+      
+
       <div class="related-article">
         
 
-  <h2>See Also</h2>
+  <h2 class="see-also">See Also</h2>
   <ul>
     
       <li><a href="/posts/nlp/hf_generation_wrap/">huggingfaceのgenerationの関数をtorch modelから使えるようにしたい</a></li>
@@ -339,11 +377,11 @@ loadした後にスクリプト側でわけると、splitを書いたらうま�
 
       </div>
     </article>
+
     
     
     
       
-
     
   </div>
 
@@ -360,15 +398,15 @@ loadした後にスクリプト側でわけると、splitを書いたらうま�
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site//pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
-      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+      
 
       <p class="credits theme-by">
          <a href="https://gohugo.io">Hugo</a>&nbsp;Theme

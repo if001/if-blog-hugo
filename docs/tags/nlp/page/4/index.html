@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>Nlp</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.site/index.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -108,7 +97,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.147.5">
+<meta name="generator" content="Hugo 0.155.1">
   </head>
   <body>
     
@@ -170,7 +159,7 @@
           
             
 
-              
+            
 
               
                 <h1 style="font-size:2em;">
@@ -197,11 +186,266 @@
       
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/xgen-jglue/">
+  <a href="http://localhost:1313/posts/nlp/mixture_of_experts_sample/">
+    <h2 class="post-title">
+      Mixture of expertsのサンプル実装
+      
+    </h2>
+  </a>
+
+  <div class="post-entry">
+    <p>mixture of expertsを実装してみる。 並列化や計算効率の向上などの部分は複雑なので、それら取り除いた簡単な実装を行ってみる。
+Mixture of expertsとは 特定のタスクに特化したexpertを複数用意し、入力に対してexpertを切り替えることで性能を上げる手法。 …</p>
+    
+    <a href="/posts/nlp/mixture_of_experts_sample/" class="post-read-more"></a>
+    
+  </div>
+
+  <div class="postmeta">
+    <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/torch/">torch</a>&nbsp;
+    </span>
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-12-16
+    
+  </div>
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/nlp/hf_generation_wrap/">
+    <h2 class="post-title">
+      huggingfaceのgenerationの関数をtorch modelから使えるようにしたい
+      
+    </h2>
+  </a>
+
+  <div class="post-entry">
+    <p>torchなどのライブラリを使いpre_trainingを行い文章生成させる際、文章生成の計算は基本的に自分で実装する必要がある。 huggingface用のmodelに変換しても良いが、おれおれアーキテクチャにした場合、変換も面倒&hellip;
+そこで、huggingfaceにあるtop_kや …</p>
+    
+    <a href="/posts/nlp/hf_generation_wrap/" class="post-read-more"></a>
+    
+  </div>
+
+  <div class="postmeta">
+    <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/torch/">torch</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/pre_training/">pre_training</a>&nbsp;
+    </span>
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-12-05
+    
+  </div>
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/nlp/transformer_any_architecture/">
+    <h2 class="post-title">
+      llama2のアーキテクチャを変更してpre trainingしてみる
+      
+    </h2>
+  </a>
+
+  <div class="post-entry">
+    <p>できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。
+比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する
+transformerの …</p>
+    
+    <a href="/posts/nlp/transformer_any_architecture/" class="post-read-more"></a>
+    
+  </div>
+
+  <div class="postmeta">
+    <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/transformer/">transformer</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/pre_training/">pre_training</a>&nbsp;
+    </span>
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-12-05
+    
+  </div>
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/nlp/hf_ds_upload/">
+    <h2 class="post-title">
+      複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ
+      
+    </h2>
+  </a>
+
+  <div class="post-entry">
+    <p>データセットなどサイズの大きいデータをHuggingface Hubにアップロードして使う場合のメモ。
+公式ドキュメントにはアップロードする方法が様々あるが、いまいちどれを使えば良いか分かりづらかったのでメモ。
+今回作成したデータセットは以下。 …</p>
+    
+    <a href="/posts/nlp/hf_ds_upload/" class="post-read-more"></a>
+    
+  </div>
+
+  <div class="postmeta">
+    <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    </span>
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-11-21
+    
+  </div>
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/nlp/hf_dataloader_datacollator/">
+    <h2 class="post-title">
+      HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める
+      
+    </h2>
+  </a>
+
+  <div class="post-entry">
+    <p>エラーでハマったので、hugging faceのdatasetからbatche_sizeごとのinput_idsやlabelsにするあたりの実装、特にDataLoaderとDataCollatorあたりをちゃんと確認しておく
+train loopは以下から始まる
+def train( self, …</p>
+    
+    <a href="/posts/nlp/hf_dataloader_datacollator/" class="post-read-more"></a>
+    
+  </div>
+
+  <div class="postmeta">
+    <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    </span>
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-09-21
+    
+  </div>
+</div>
+
+  </div>
+</article>
+
+      
+        <article class="post-preview">
+  <a href="http://localhost:1313/posts/nlp/xgen-jglue/">
     <h2 class="post-title">
       xgenでJGLUEを試す
       
-    </h2>   
+    </h2>
   </a>
 
   <div class="post-entry">
@@ -209,29 +453,41 @@
 https://techblog.yahoo.co.jp/entry/2022122030379907/
 文章分類、文ペア分類、質問応答のタスクに対し評価を行う。
 タスク …</p>
-    <a href="https://www.if-blog.site/posts/nlp/xgen-jglue/" class="post-read-more"></a>
+    
+    <a href="/posts/nlp/xgen-jglue/" class="post-read-more"></a>
+    
   </div>
 
   <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
+    <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
     
-      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
     
-      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
     
-      <a href="https://www.if-blog.site//tags/jglue/">jglue</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
     
-      <a href="https://www.if-blog.site//tags/xgen/">xgen</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/jglue/">jglue</a>&nbsp;
+    </span>
     
-  
-</div>
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/xgen/">xgen</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-07-01
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-07-01
+    
+  </div>
 </div>
 
   </div>
@@ -239,11 +495,11 @@ https://techblog.yahoo.co.jp/entry/2022122030379907/
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/calm_lora_quantize/">
+  <a href="http://localhost:1313/posts/nlp/calm_lora_quantize/">
     <h2 class="post-title">
       OpenCALM-7Bをloraで学習して、quantizeするまで
       
-    </h2>   
+    </h2>
   </a>
 
   <div class="post-entry">
@@ -251,29 +507,41 @@ https://techblog.yahoo.co.jp/entry/2022122030379907/
 https://huggingface.co/cyberagent/open-calm-7b
 gpt-neoxのlora weight mergeの記事が見つからなかったのでメモとして
 動 …</p>
-    <a href="https://www.if-blog.site/posts/nlp/calm_lora_quantize/" class="post-read-more"></a>
+    
+    <a href="/posts/nlp/calm_lora_quantize/" class="post-read-more"></a>
+    
   </div>
 
   <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
+    <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
     
-      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
     
-      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
+    </span>
     
-      <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
     
-  
-</div>
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-05-22
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-05-22
+    
+  </div>
 </div>
 
   </div>
@@ -281,41 +549,53 @@ gpt-neoxのlora weight mergeの記事が見つからなかったのでメモと�
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/rinna_lora_ja/">
+  <a href="http://localhost:1313/posts/nlp/rinna_lora_ja/">
     <h2 class="post-title">
       loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す
       
-    </h2>   
+    </h2>
   </a>
 
   <div class="post-entry">
     <p>loraを用いて学習する場合の、promptのtemplateは日本語にしたほうが良いんだっけ？
 ユーザー入力のフォーマットとかLLM側の出力のフォーマットとかどうすれば良いんだっけ？
 ってなったので学習させて結果を比較してみる。
-せっかくなの …</p>
-    <a href="https://www.if-blog.site/posts/nlp/rinna_lora_ja/" class="post-read-more"></a>
+せっかくなので …</p>
+    
+    <a href="/posts/nlp/rinna_lora_ja/" class="post-read-more"></a>
+    
   </div>
 
   <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
+    <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
     
-      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
     
-      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
+    </span>
     
-      <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
     
-  
-</div>
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-05-21
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-05-21
+    
+  </div>
 </div>
 
   </div>
@@ -323,38 +603,50 @@ gpt-neoxのlora weight mergeの記事が見つからなかったのでメモと�
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/rinna_3b_cpp/">
+  <a href="http://localhost:1313/posts/nlp/rinna_3b_cpp/">
     <h2 class="post-title">
       rinna 3Bをcppで動かす
       
-    </h2>   
+    </h2>
   </a>
 
   <div class="post-entry">
     <p>rinnaをcppで動かせるように色々試して見ました。 instructionもあり、そのままlangchainなどに突っ込んでも動かせそうということで、 ローカルで遊ぶならcppしてないと遊べないので色々試してみました。 …</p>
-    <a href="https://www.if-blog.site/posts/nlp/rinna_3b_cpp/" class="post-read-more"></a>
+    
+    <a href="/posts/nlp/rinna_3b_cpp/" class="post-read-more"></a>
+    
   </div>
 
   <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
+    <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
     
-      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
     
-      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
+    </span>
     
-      <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
     
-  
-</div>
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    </span>
+    
+    
+  </div>
 
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-05-18
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-05-18
+    
+  </div>
 </div>
 
   </div>
@@ -362,241 +654,52 @@ gpt-neoxのlora weight mergeの記事が見つからなかったのでメモと�
 
       
         <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/react_start/">
+  <a href="http://localhost:1313/posts/nlp/redpajama_lora_start/">
     <h2 class="post-title">
-      VicunaでReActっぽいことを試してみる
+      RedPajamaをLoRaで日本語fine tuning
       
-    </h2>   
+      <span class="draft-tag">(Draft)</span>
+      
+    </h2>
   </a>
 
   <div class="post-entry">
-    <p>vicunaでReActっぽいことを試してみる。正確には違うので注意
-ReActは、Thought、Action、Observationをループさせ、LLMの出力の精度上げる手法
-ReActの処理の流れは以下のような形。LangChainの実装を参考にする。
-与えられた質問(Question)に対 …</p>
-    <a href="https://www.if-blog.site/posts/nlp/react_start/" class="post-read-more"></a>
+    <p>RedPajamaの3BをLoraでfine tuningしていく
+https://huggingface.co/togethercomputer/RedPajama-INCITE-Base-3B-v1
+fine tuning RedPajamaはgpt_neoxベースなので、このあたりを参考にしつ …</p>
+    
   </div>
 
   <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
+    <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
     
-      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
     
-      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
     
-      <a href="https://www.if-blog.site//tags/langchain/">langchain</a>&nbsp;
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
+    </span>
     
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-04-01
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/rs-tokenizer/">
-    <h2 class="post-title">
-      Rust TokenizerをC&#43;&#43;から呼び出す
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>Bloomz.cppのtokenizerが日本語でうまく動かなかったので、 Rust製のHuggingface TokenizerをC++から呼び出せるようにしました。
-初めに 「応答」の応の文字には２つのIDが振られている。
-model_name = …</p>
-    <a href="https://www.if-blog.site/posts/nlp/rs-tokenizer/" class="post-read-more"></a>
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+    </span>
+    
+    
   </div>
 
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-05-09
     
-      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-03-31
-  
-</div>
-
   </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/bloom_lora_start/">
-    <h2 class="post-title">
-      BloomをLoRaで日本語finetuning
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>LlamaをAlpacaデータセットを使いLoRaでfine tuneしたものが良い感じだったので、Bloomを日本語で学習させてみようと思う。
-https://github.com/tloen/alpaca-lora
-とりあえず動かすまででしっかりfine tune …</p>
-    <a href="https://www.if-blog.site/posts/nlp/bloom_lora_start/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-03-20
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/">
-    <h2 class="post-title">
-      LlamaIndex(GPTIndex)を触る
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>LlamaIndexを動かしていきます。最近名前がGPTIndexから変わったみたい。
-LlamaIndexとは、LLMのPromptの作成などを外部のデータソースと連携して行えるようにしたツールキット。 …</p>
-    <a href="https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-03-04
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/flexgen_start/">
-    <h2 class="post-title">
-      FlexGenで遊ぶ
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>くそでかlarge language modelsは一般人の持ってるPCだと動かすこともできない。 FlexGenでは、そんなLLMを限られたリソースで実行できるようにしてくれる。
-https://github.com/FMInference/FlexGen
-日本語が喋れるモデルでも動かせるように色 …</p>
-    <a href="https://www.if-blog.site/posts/nlp/flexgen_start/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-02-28
-  
-</div>
-
-  </div>
-</article>
-
-      
-        <article class="post-preview">
-  <a href="https://www.if-blog.site/posts/nlp/huggingface-text-gen/">
-    <h2 class="post-title">
-      Huggingfaceのtext generation pipelineとtext2text generation pipeline
-      
-    </h2>   
-  </a>
-
-  <div class="post-entry">
-    <p>HuggingfaceのpipelineでTextGenerationPipelineとText2TextGenerationPipelineがあるが、 何が違うのかよくわからなかったので軽く調査。 …</p>
-    <a href="https://www.if-blog.site/posts/nlp/huggingface-text-gen/" class="post-read-more"></a>
-  </div>
-
-  <div class="postmeta">
-    <div class="meta-post blog-tags" style="display:inline-block">
-  <i class="fas fa-tag" style="color:#111111"></i>
-  
-    
-      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
-    
-      <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a>&nbsp;
-    
-  
-</div>
-
-<div class="meta-post" style="display:inline-block; float: right;">
-  <i class="fa fa-calendar-alt"></i
-  >&nbsp;2023-02-06
-  
 </div>
 
   </div>
@@ -610,14 +713,14 @@ https://github.com/FMInference/FlexGen
       <ul class="pager">
         
           <li class="previous">
-            <a href="https://www.if-blog.site/tags/nlp/page/3/"
+            <a href="http://localhost:1313/tags/nlp/page/3/"
               ><i class="fas fa-chevron-left"></i></a
             >
           </li>
         
         
           <li class="next">
-            <a href="https://www.if-blog.site/tags/nlp/page/5/"
+            <a href="http://localhost:1313/tags/nlp/page/5/"
               ><i class="fas fa-chevron-right"></i
             ></a>
           </li>
@@ -639,15 +742,15 @@ https://github.com/FMInference/FlexGen
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site//pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
-      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+      
 
       <p class="credits theme-by">
          <a href="https://gohugo.io">Hugo</a>&nbsp;Theme

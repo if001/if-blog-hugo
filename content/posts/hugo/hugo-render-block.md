@@ -31,7 +31,7 @@ def hello():
 
 このように参照元をつけることができる
 
-```python{ref="this is ref", name="test.js"}
+```python{ref="this is ref", name="ファイル名"}
 def hello():
     print("hello world")
 ````
@@ -41,7 +41,7 @@ render-codeblock.htmlの例はこのような感じ
 ```html
 <div class="code-block">
     <div>
-      {{- highlight (.Inner | safeHTML) .Type .Options }}  
+      {{- highlight (.Inner | safeHTML) .Type .Options }}
     </div>
     {{- $ref := .Attributes.ref -}}
     {{ with $ref }}<div class="ref">参照: <a href={{ . }} target="_black">{{ . }}</a></div>{{ end }}

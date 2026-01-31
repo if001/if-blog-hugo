@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>Hugoの記事に画像を載せる</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.site/index.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -106,11 +95,12 @@
   
     <meta name="description" content="&lt;p&gt;Hugoに画像を載せるときは、&lt;a href=&#34;https://gohugo.io/content-management/shortcodes/&#34;&gt;shortcodes&lt;/a&gt;を使うと良いらしい。&lt;/p&gt;
 &lt;p&gt;画像を配置するディクトリを以下のように作っておく。&lt;/p&gt;
-&lt;div class=" />
+
+&lt;div style" />
   
 
 
-<meta name="generator" content="Hugo 0.147.5">
+<meta name="generator" content="Hugo 0.155.1">
   </head>
   <body>
     
@@ -172,14 +162,14 @@
           
             
 
-              
-              <h1>
-		
-		Hugoの記事に画像を載せる
-		
-		
-                </h1>
-              
+            
+            <h1 class="post-title">
+		      
+		      Hugoの記事に画像を載せる
+		      
+		      
+            </h1>
+            
 
               
 
@@ -198,57 +188,69 @@
     
   <div class="container" role="main">
     <article class="article" class="blog-post">
-      
-        <div class="blog-tags">
-          <i class="fas fa-tag" style="color:#111111"></i>
-          
-            <a href="https://www.if-blog.site//tags/hugo/">hugo</a
-            >&nbsp;
-          
-        </div>
-      
 
       
-        <div style="margin-bottom: 10px;">
-          <i class="fa fa-calendar-alt"></i
-          >&nbsp;2018-10-16
-        </div>
+      <div class="postmeta mb-4">
+        <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
+  </span>
+  
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2018-10-16
+  
+</div>
+
+      </div>
       
 
+
+      
       
 
 
       <div class="article-main">
         <p>Hugoに画像を載せるときは、<a href="https://gohugo.io/content-management/shortcodes/">shortcodes</a>を使うと良いらしい。</p>
 <p>画像を配置するディクトリを以下のように作っておく。</p>
-<div class="code-block">
-  <div class="body"><pre tabindex="0"><code>{root}/content/post/images/</code></pre>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{root}/content/post/images/</span></span></code></pre></div>
 </div>
 <p>以下のように記述すると表示できる。</p>
-<div class="code-block">
-  <div class="body"><pre tabindex="0"><code>{{&lt; figure src=&#34;../../images/test.png&#34; title=&#34;test&#34; width=&#34;320&#34; height=&#34;640&#34; &gt;}}</code></pre>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{&lt; figure src=&#34;../../images/test.png&#34; title=&#34;test&#34; width=&#34;320&#34; height=&#34;640&#34; &gt;}}</span></span></code></pre></div>
 </div>
 <p>or</p>
-<div class="code-block">
-  <div class="body"><pre tabindex="0"><code>[!tag](path)</code></pre>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[!tag](path)</span></span></code></pre></div>
 </div>
 <p>相対パスで記述でき、width、heightも設定可能。<br>
 生成されるHTMLは以下のようになる。</p>
-<div class="code-block">
-  <div class="body"><pre tabindex="0"><code>&lt;figure&gt;
-  &lt;img src=&#34;../../images/test.png&#34;  /&gt;
-  &lt;figcaption&gt;
-      &lt;h4&gt;test&lt;/h4&gt;
-  &lt;/figcaption&gt;
-&lt;/figure&gt;</code></pre>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;figure&gt;
+</span></span><span style="display:flex;"><span>  &lt;img src=&#34;../../images/test.png&#34;  /&gt;
+</span></span><span style="display:flex;"><span>  &lt;figcaption&gt;
+</span></span><span style="display:flex;"><span>      &lt;h4&gt;test&lt;/h4&gt;
+</span></span><span style="display:flex;"><span>  &lt;/figcaption&gt;
+</span></span><span style="display:flex;"><span>&lt;/figure&gt;</span></span></code></pre></div>
 </div>
 <p>画像を実際に表示<br>
 <figure><img src="../../../images/pa14039476984952.jpg" width="100" height="100">
@@ -258,10 +260,34 @@
 画像が多くなりすぎるとgitで管理したくないので、クラウドストレージとかに移行するとかしないとな&hellip;</p>
 
       </div>
+      
+
+      
+      <div class="postmeta mb-2">
+        <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
+  </span>
+  
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2018-10-16
+  
+</div>
+
+      </div>
+      
+
       <div class="related-article">
         
 
-  <h2>See Also</h2>
+  <h2 class="see-also">See Also</h2>
   <ul>
     
       <li><a href="/posts/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
@@ -279,11 +305,11 @@
 
       </div>
     </article>
+
     
     
     
       
-
     
   </div>
 
@@ -300,15 +326,15 @@
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site//pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
-      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+      
 
       <p class="credits theme-by">
          <a href="https://gohugo.io">Hugo</a>&nbsp;Theme

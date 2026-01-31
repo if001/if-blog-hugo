@@ -1,13 +1,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>React on アンドロイドは推理小説を書くか?</title>
-		<link>https://www.if-blog.site/tags/react/</link>
+		<link>http://localhost:1313/tags/react/</link>
 		<description>Recent content in React </description>
 		<generator>Hugo -- gohugo.io</generator>
 		
   		<language>ja</language>
 		
-		<managingEditor>/tags/react (if_004)</managingEditor>
+		<managingEditor>/tags/react</managingEditor>
     	
   		<lastBuildDate>Sat, 19 Feb 2022 00:00:00 +0900</lastBuildDate>
 		

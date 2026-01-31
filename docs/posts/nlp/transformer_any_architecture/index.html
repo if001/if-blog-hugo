@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>llama2のアーキテクチャを変更してpre trainingしてみる</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.site/index.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -110,7 +99,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.147.5">
+<meta name="generator" content="Hugo 0.155.1">
   </head>
   <body>
     
@@ -172,14 +161,14 @@
           
             
 
-              
-              <h1>
-		
-		llama2のアーキテクチャを変更してpre trainingしてみる
-		
-		
-                </h1>
-              
+            
+            <h1 class="post-title">
+		      
+		      llama2のアーキテクチャを変更してpre trainingしてみる
+		      
+		      
+            </h1>
+            
 
               
 
@@ -198,32 +187,45 @@
     
   <div class="container" role="main">
     <article class="article" class="blog-post">
-      
-        <div class="blog-tags">
-          <i class="fas fa-tag" style="color:#111111"></i>
-          
-            <a href="https://www.if-blog.site//tags/python/">python</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/nlp/">nlp</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/transformer/">transformer</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/pre_training/">pre_training</a
-            >&nbsp;
-          
-        </div>
-      
 
       
-        <div style="margin-bottom: 10px;">
-          <i class="fa fa-calendar-alt"></i
-          >&nbsp;2023-12-05
-        </div>
+      <div class="postmeta mb-4">
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/transformer/">transformer</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/pre_training/">pre_training</a>&nbsp;
+    </span>
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-12-05
+    
+  </div>
+</div>
+
+      </div>
       
 
+
+      
       
 
 
@@ -266,13 +268,14 @@ attentionの実装はtorchのものを使用している。</p>
 <p><a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html">https://pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html</a></p>
 <p>queryとkeyの積を計算し、maskを適応、softmaxを取り、attention_weightを算出している。</p>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>attn_weight = query @ key.transpose(-2, -1) * scale_factor
-attn_weight += attn_bias
-attn_weight = torch.softmax(attn_weight, dim=-1)
-...
-return attn_weight @ value</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>attn_weight = query @ key.transpose(-2, -1) * scale_factor
+</span></span><span style="display:flex;"><span>attn_weight += attn_bias
+</span></span><span style="display:flex;"><span>attn_weight = torch.softmax(attn_weight, dim=-1)
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>return attn_weight @ value</span></span></code></pre></div>
   </div>
-
 </div>
 <p>このあたりを修正する</p>
 <h2 id="学習">学習</h2>
@@ -380,33 +383,36 @@ val lossについては、<code>非線形活性化関数+bias</code>が一番低
 ここでは形容詞「小さな」に続く名詞を期待。</p>
 <h4 id="非線形活性化bias-2">非線形活性化+bias</h4>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>p:0.33, 町
-p:0.23, 街
-p:0.19, お
-p:0.16, 村
-p:0.10, 温泉</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>p:0.33, 町
+</span></span><span style="display:flex;"><span>p:0.23, 街
+</span></span><span style="display:flex;"><span>p:0.19, お
+</span></span><span style="display:flex;"><span>p:0.16, 村
+</span></span><span style="display:flex;"><span>p:0.10, 温泉</span></span></code></pre></div>
   </div>
-
 </div>
 <h4 id="query-key-valueの生成を分ける-2">query, key, valueの生成を分ける</h4>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>p:0.24, 場所
-p:0.21, 花
-p:0.19, 地
-p:0.18, 山
-p:0.17, 緑</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>p:0.24, 場所
+</span></span><span style="display:flex;"><span>p:0.21, 花
+</span></span><span style="display:flex;"><span>p:0.19, 地
+</span></span><span style="display:flex;"><span>p:0.18, 山
+</span></span><span style="display:flex;"><span>p:0.17, 緑</span></span></code></pre></div>
   </div>
-
 </div>
 <h4 id="querykeyにscaleを追加-2">query*keyにscaleを追加</h4>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>p:0.21, 島
-p:0.20, 場所
-p:0.16, 山
-p:0.14, 町
-p:0.14, 地</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>p:0.21, 島
+</span></span><span style="display:flex;"><span>p:0.20, 場所
+</span></span><span style="display:flex;"><span>p:0.16, 山
+</span></span><span style="display:flex;"><span>p:0.14, 町
+</span></span><span style="display:flex;"><span>p:0.14, 地</span></span></code></pre></div>
   </div>
-
 </div>
 <h3 id="所感-2">所感</h3>
 <p>いずれのモデルも形容詞に対して、名詞を予想できている。</p>
@@ -415,33 +421,36 @@ p:0.14, 地</code></pre>
 「過ごす」や「暮らす」などの動詞を期待。</p>
 <h4 id="非線形活性化bias-3">非線形活性化+bias</h4>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>p:0.26, 過ご
-p:0.23, 暮ら
-p:0.20, 眠
-p:0.18, 寝
-p:0.12, お</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>p:0.26, 過ご
+</span></span><span style="display:flex;"><span>p:0.23, 暮ら
+</span></span><span style="display:flex;"><span>p:0.20, 眠
+</span></span><span style="display:flex;"><span>p:0.18, 寝
+</span></span><span style="display:flex;"><span>p:0.12, お</span></span></code></pre></div>
   </div>
-
 </div>
 <h4 id="query-key-valueの生成を分ける-3">query, key, valueの生成を分ける</h4>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>p:0.35, な
-p:0.27, して
-p:0.15, なって
-p:0.12, 感じ
-p:0.11, 「</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>p:0.35, な
+</span></span><span style="display:flex;"><span>p:0.27, して
+</span></span><span style="display:flex;"><span>p:0.15, なって
+</span></span><span style="display:flex;"><span>p:0.12, 感じ
+</span></span><span style="display:flex;"><span>p:0.11, 「</span></span></code></pre></div>
   </div>
-
 </div>
 <h4 id="querykeyにscaleを追加-3">query*keyにscaleを追加</h4>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>p:0.24, した
-p:0.23, 過ご
-p:0.21, 歩いて
-p:0.16, 歩き
-p:0.16, 立ち</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>p:0.24, した
+</span></span><span style="display:flex;"><span>p:0.23, 過ご
+</span></span><span style="display:flex;"><span>p:0.21, 歩いて
+</span></span><span style="display:flex;"><span>p:0.16, 歩き
+</span></span><span style="display:flex;"><span>p:0.16, 立ち</span></span></code></pre></div>
   </div>
-
 </div>
 <h3 id="所感-3">所感</h3>
 <p>どのモデルも特定の1つの単語の確率が高いわけではなく、次の単語に迷っている感じ<br>
@@ -496,10 +505,48 @@ p:0.16, 立ち</code></pre>
 <p>小さいモデルを前提とすると学習時間の増加はあまり大きな問題ではなく、<code>query, key, valueの生成を分けるモデル</code>や<code>query*keyにscaleを追加するモデル</code>のバランスを調整して更に比較を行ってみたい</p>
 
       </div>
+      
+
+      
+      <div class="postmeta mb-2">
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/transformer/">transformer</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/pre_training/">pre_training</a>&nbsp;
+    </span>
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-12-05
+    
+  </div>
+</div>
+
+      </div>
+      
+
       <div class="related-article">
         
 
-  <h2>See Also</h2>
+  <h2 class="see-also">See Also</h2>
   <ul>
     
       <li><a href="/posts/nlp/hf_generation_wrap/">huggingfaceのgenerationの関数をtorch modelから使えるようにしたい</a></li>
@@ -517,11 +564,11 @@ p:0.16, 立ち</code></pre>
 
       </div>
     </article>
+
     
     
     
       
-
     
   </div>
 
@@ -538,15 +585,15 @@ p:0.16, 立ち</code></pre>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site//pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
-      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+      
 
       <p class="credits theme-by">
          <a href="https://gohugo.io">Hugo</a>&nbsp;Theme

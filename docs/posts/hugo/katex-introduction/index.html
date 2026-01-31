@@ -96,12 +96,12 @@
     <meta name="description" content="&lt;p&gt;これまでMathJaxを使っていたが、描画が遅いということもあり、KaTeXを使ってみることにしました。
 KaTeX:https://katex.org/&lt;/p&gt;
 &lt;p&gt;以下を加えるだけでおk&lt;/p&gt;
-&lt;div class=&#34;code-block&#34;&gt;
-  &lt;div class=&#34;body&#34;&gt;&lt;" />
+
+&lt;div style=&#34;border:2px solid red; padding:8px" />
   
 
 
-<meta name="generator" content="Hugo 0.147.5">
+<meta name="generator" content="Hugo 0.155.1">
   </head>
   <body>
     
@@ -163,16 +163,16 @@ KaTeX:https://katex.org/&lt;/p&gt;
           
             
 
-              
-              <h1>
-		
-		KaTeXを使ってみる
-		
-		<span class="draft-tag">(Draft)</span>
-		
-		
-                </h1>
-              
+            
+            <h1 class="post-title">
+		      
+		      KaTeXを使ってみる
+		      
+		      <span class="draft-tag">(Draft)</span>
+		      
+		      
+            </h1>
+            
 
               
 
@@ -191,23 +191,31 @@ KaTeX:https://katex.org/&lt;/p&gt;
     
   <div class="container" role="main">
     <article class="article" class="blog-post">
-      
-        <div class="blog-tags">
-          <i class="fas fa-tag" style="color:#111111"></i>
-          
-            <a href="http://localhost:1313//tags/hugo/">hugo</a
-            >&nbsp;
-          
-        </div>
-      
 
       
-        <div style="margin-bottom: 10px;">
-          <i class="fa fa-calendar-alt"></i
-          >&nbsp;2018-10-16
-        </div>
+      <div class="postmeta mb-4">
+        <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
+  </span>
+  
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2018-10-16
+  
+</div>
+
+      </div>
       
 
+
+      
       
 
 
@@ -215,13 +223,14 @@ KaTeX:https://katex.org/&lt;/p&gt;
         <p>これまでMathJaxを使っていたが、描画が遅いということもあり、KaTeXを使ってみることにしました。
 KaTeX:https://katex.org/</p>
 <p>以下を加えるだけでおk</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">link</span> <span style="color:#50fa7b">rel</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;stylesheet&#34;</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&#34;</span> /&gt;
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">link</span> <span style="color:#50fa7b">rel</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;stylesheet&#34;</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&#34;</span> /&gt;
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span>&gt;$(<span style="color:#8be9fd;font-style:italic">document</span>).ready(<span style="color:#8be9fd;font-style:italic">function</span>(){renderMathInElement(<span style="color:#8be9fd;font-style:italic">document</span>.body,{delimiters<span style="color:#ff79c6">:</span> [{left<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;[[&#34;</span>, right<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;]]&#34;</span>, display<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>},{left<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;$&#34;</span>, right<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;$&#34;</span>, display<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>}]})});&lt;/<span style="color:#ff79c6">script</span>&gt;</span></span></code></pre></div>
-  </div>
-
 </div>
 <p>MathJaxで表示していた数式も無事表示されてとりあえず問題なしです。
 実際に入れてみた感じやっぱり早い。</p>
@@ -231,10 +240,34 @@ KaTeXを導入しました:http://nshi.jp/contents/other/katex/ \
 KaTeXのデモ:http://sixthform.info/katex/examples/demo.html</p>
 
       </div>
+      
+
+      
+      <div class="postmeta mb-2">
+        <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
+  </span>
+  
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2018-10-16
+  
+</div>
+
+      </div>
+      
+
       <div class="related-article">
         
 
-  <h2>See Also</h2>
+  <h2 class="see-also">See Also</h2>
   <ul>
     
       <li><a href="/posts/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
@@ -252,11 +285,11 @@ KaTeXのデモ:http://sixthform.info/katex/examples/demo.html</p>
 
       </div>
     </article>
+
     
     
     
       
-
     
   </div>
 
@@ -273,7 +306,7 @@ KaTeXのデモ:http://sixthform.info/katex/examples/demo.html</p>
 
   <div class="container">
     <div class="credits copyright">
-      <a href="http://localhost:1313//pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
@@ -281,7 +314,7 @@ KaTeXのデモ:http://sixthform.info/katex/examples/demo.html</p>
         <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
-      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+      
 
       <p class="credits theme-by">
          <a href="https://gohugo.io">Hugo</a>&nbsp;Theme

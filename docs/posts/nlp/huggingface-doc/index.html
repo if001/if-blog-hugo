@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>Hugging Face Transformersのドキュメント読んだ</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.site/index.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -111,7 +100,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.147.5">
+<meta name="generator" content="Hugo 0.155.1">
   </head>
   <body>
     
@@ -173,14 +162,14 @@
           
             
 
-              
-              <h1>
-		
-		Hugging Face Transformersのドキュメント読んだ
-		
-		
-                </h1>
-              
+            
+            <h1 class="post-title">
+		      
+		      Hugging Face Transformersのドキュメント読んだ
+		      
+		      
+            </h1>
+            
 
               
 
@@ -199,32 +188,43 @@
     
   <div class="container" role="main">
     <article class="article" class="blog-post">
-      
-        <div class="blog-tags">
-          <i class="fas fa-tag" style="color:#111111"></i>
-          
-            <a href="https://www.if-blog.site//tags/nlp/">nlp</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/deeplearning/">deeplearning</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/python/">python</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/huggingface/">huggingface</a
-            >&nbsp;
-          
-        </div>
-      
 
       
-        <div style="margin-bottom: 10px;">
-          <i class="fa fa-calendar-alt"></i
-          >&nbsp;2021-12-09
-        </div>
+      <div class="postmeta mb-4">
+        <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+  </span>
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
+  </span>
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+  </span>
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+  </span>
+  
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2021-12-09
+  
+</div>
+
+      </div>
       
 
+
+      
       
 
 
@@ -237,23 +237,25 @@
 <p>学習済モデルを使うだけでなく、モデルのカスタマイズもできるらしい。</p>
 <p>とりあえず入門編くらいまで読んだ</p>
 <h2 id="install">install</h2>
-<div class="code-block">
-  <div class="body"><pre tabindex="0"><code>$ pip install transformers</code></pre>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ pip install transformers</span></span></code></pre></div>
 </div>
 <h2 id="quick-tour">Quick tour</h2>
 <p>文書のpositive/negative判定を行う。</p>
 <p><code>sentiment-analysis</code>というモデルをpipelineに渡す。
 戻り値のclassifierに文章を渡すと判定される。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> <span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> pipeline
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> <span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> pipeline
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> classifier <span style="color:#ff79c6">=</span> pipeline(<span style="color:#f1fa8c">&#39;sentiment-analysis&#39;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> classifier(<span style="color:#f1fa8c">&#39;We are very happy to show you the 🤗 Transformers library.&#39;</span>)
 </span></span><span style="display:flex;"><span>[{<span style="color:#f1fa8c">&#39;label&#39;</span>: <span style="color:#f1fa8c">&#39;POSITIVE&#39;</span>, <span style="color:#f1fa8c">&#39;score&#39;</span>: <span style="color:#bd93f9">0.9998</span>}]</span></span></code></pre></div>
-  </div>
-
 </div>
 <p><a href="https://huggingface.co/docs/transformers/quicktour">https://huggingface.co/docs/transformers/quicktour</a></p>
 <h2 id="summary-of-the-tasks">Summary of the tasks</h2>
@@ -263,8 +265,11 @@
 <p>文章positive/negativeに分類</p>
 <h3 id="extractive-question-answering">Extractive Question Answering</h3>
 <p>与えられた文脈を使って、質問に対する答えを出力</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> <span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> pipeline
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> <span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> pipeline
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> question_answerer <span style="color:#ff79c6">=</span> pipeline(<span style="color:#f1fa8c">&#34;question-answering&#34;</span>)
 </span></span><span style="display:flex;"><span>
@@ -273,15 +278,16 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">... question answering dataset is the SQuAD dataset, which is entirely based on that task. If you would like to fine-tune
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">... a model on a SQuAD task, you may leverage the examples/pytorch/question-answering/run_squad.py script.
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">... &#34;&#34;&#34;</span></span></span></code></pre></div>
-  </div>
-
 </div>
 <h3 id="named-entity-recognition">Named Entity Recognition</h3>
 <p>文章に含まれる単語の人や組織、場所などの固有表現の識別を行う</p>
 <h3 id="summarization">Summarization</h3>
 <p>要約</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> <span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> pipeline
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> <span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> pipeline
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> summarizer <span style="color:#ff79c6">=</span> pipeline(<span style="color:#f1fa8c">&#34;summarization&#34;</span>)
 </span></span><span style="display:flex;"><span>
@@ -303,16 +309,15 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">... Her eighth husband, Rashid Rajput, was deported in 2006 to his native Pakistan after an investigation by the Joint Terrorism Task Force.
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">... If convicted, Barrientos faces up to four years in prison.  Her next court appearance is scheduled for May 18.
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">... &#34;&#34;&#34;</span></span></span></code></pre></div>
-  </div>
-
 </div>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> <span style="color:#8be9fd;font-style:italic">print</span>(summarizer(ARTICLE, max_length<span style="color:#ff79c6">=</span><span style="color:#bd93f9">130</span>, min_length<span style="color:#ff79c6">=</span><span style="color:#bd93f9">30</span>, do_sample<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>))
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> <span style="color:#8be9fd;font-style:italic">print</span>(summarizer(ARTICLE, max_length<span style="color:#ff79c6">=</span><span style="color:#bd93f9">130</span>, min_length<span style="color:#ff79c6">=</span><span style="color:#bd93f9">30</span>, do_sample<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>))
 </span></span><span style="display:flex;"><span>[{<span style="color:#f1fa8c">&#39;summary_text&#39;</span>: <span style="color:#f1fa8c">&#39; Liana Barrientos, 39, is charged with two counts of &#34;offering a false instrument for filing in</span>
 </span></span><span style="display:flex;"><span>the first degree<span style="color:#f1fa8c">&#34; In total, she has been married 10 times, with nine of her marriages occurring between 1999 and</span>
 </span></span><span style="display:flex;"><span><span style="color:#bd93f9">2002</span> <span style="color:#ff79c6">.</span> At one time, she was married to eight men at once, prosecutors say <span style="color:#ff79c6">.</span><span style="color:#f1fa8c">&#39;}]</span></span></span></code></pre></div>
-  </div>
-
 </div>
 <h3 id="translation">Translation</h3>
 <p>翻訳</p>
@@ -325,53 +330,58 @@
 <p>与えられた単語列から次の単語を予測する</p>
 <h4 id="text-generation">Text Generation</h4>
 <p>文章の書き出しを入力すると、その後の文章を生成する。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> pipeline
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> pipeline
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>text_generator <span style="color:#ff79c6">=</span> pipeline(<span style="color:#f1fa8c">&#34;text-generation&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(text_generator(<span style="color:#f1fa8c">&#34;As far as I am concerned, I will&#34;</span>, max_length<span style="color:#ff79c6">=</span><span style="color:#bd93f9">50</span>, do_sample<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>))
 </span></span><span style="display:flex;"><span>[{<span style="color:#f1fa8c">&#39;generated_text&#39;</span>: <span style="color:#f1fa8c">&#39;As far as I am concerned, I will be the first to admit that I am not a fan of the idea of a &#34;free market.&#34; I think that the idea of a free market is a bit of a stretch. I think that the idea&#39;</span>}]</span></span></code></pre></div>
-  </div>
-
 </div>
 <h2 id="preprocessing-data">preprocessing data</h2>
 <p><a href="https://huggingface.co/docs/transformers/master/en/preprocessing">https://huggingface.co/docs/transformers/master/en/preprocessing</a></p>
 <h3 id="tokeninze">tokeninze</h3>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>encoded_input <span style="color:#ff79c6">=</span> tokenizer(<span style="color:#f1fa8c">&#34;Hello, I&#39;m a single sentence!&#34;</span>)
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>encoded_input <span style="color:#ff79c6">=</span> tokenizer(<span style="color:#f1fa8c">&#34;Hello, I&#39;m a single sentence!&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> <span style="color:#8be9fd;font-style:italic">print</span>(encoded_input)
 </span></span><span style="display:flex;"><span>{<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [<span style="color:#bd93f9">101</span>, <span style="color:#bd93f9">138</span>, <span style="color:#bd93f9">18696</span>, <span style="color:#bd93f9">155</span>, <span style="color:#bd93f9">1942</span>, <span style="color:#bd93f9">3190</span>, <span style="color:#bd93f9">1144</span>, <span style="color:#bd93f9">1572</span>, <span style="color:#bd93f9">13745</span>, <span style="color:#bd93f9">1104</span>, <span style="color:#bd93f9">159</span>, <span style="color:#bd93f9">9664</span>, <span style="color:#bd93f9">2107</span>, <span style="color:#bd93f9">102</span>], 
 </span></span><span style="display:flex;"><span> <span style="color:#f1fa8c">&#39;token_type_ids&#39;</span>: [<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>], 
 </span></span><span style="display:flex;"><span> <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]}</span></span></code></pre></div>
-  </div>
-
 </div>
 <h3 id="decode">decode</h3>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>tokenizer<span style="color:#ff79c6">.</span>decode(encoded_input[<span style="color:#f1fa8c">&#34;input_ids&#34;</span>])
-</span></span><span style="display:flex;"><span><span style="color:#f1fa8c">&#34;[CLS] Hello, I&#39;m a single sentence! [SEP]&#34;</span></span></span></code></pre></div>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>tokenizer<span style="color:#ff79c6">.</span>decode(encoded_input[<span style="color:#f1fa8c">&#34;input_ids&#34;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#f1fa8c">&#34;[CLS] Hello, I&#39;m a single sentence! [SEP]&#34;</span></span></span></code></pre></div>
 </div>
 <h2 id="pairs-of-sentences">pairs of sentences</h2>
 <p>文章のtokenizeや文章のペアのtokeninzeをやってくれる</p>
 <h3 id="tokeninze-1">tokeninze</h3>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>encoded_input <span style="color:#ff79c6">=</span> tokenizer(<span style="color:#f1fa8c">&#34;How old are you?&#34;</span>, <span style="color:#f1fa8c">&#34;I&#39;m 6 years old&#34;</span>)
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>encoded_input <span style="color:#ff79c6">=</span> tokenizer(<span style="color:#f1fa8c">&#34;How old are you?&#34;</span>, <span style="color:#f1fa8c">&#34;I&#39;m 6 years old&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> <span style="color:#8be9fd;font-style:italic">print</span>(encoded_input)
 </span></span><span style="display:flex;"><span>{<span style="color:#f1fa8c">&#39;input_ids&#39;</span>: [<span style="color:#bd93f9">101</span>, <span style="color:#bd93f9">1731</span>, <span style="color:#bd93f9">1385</span>, <span style="color:#bd93f9">1132</span>, <span style="color:#bd93f9">1128</span>, <span style="color:#bd93f9">136</span>, <span style="color:#bd93f9">102</span>, <span style="color:#bd93f9">146</span>, <span style="color:#bd93f9">112</span>, <span style="color:#bd93f9">182</span>, <span style="color:#bd93f9">127</span>, <span style="color:#bd93f9">1201</span>, <span style="color:#bd93f9">1385</span>, <span style="color:#bd93f9">102</span>], 
 </span></span><span style="display:flex;"><span> <span style="color:#f1fa8c">&#39;token_type_ids&#39;</span>: [<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>], 
 </span></span><span style="display:flex;"><span> <span style="color:#f1fa8c">&#39;attention_mask&#39;</span>: [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>]}</span></span></code></pre></div>
-  </div>
-
 </div>
 <h3 id="decode-1">decode</h3>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> tokenizer<span style="color:#ff79c6">.</span>decode(encoded_input[<span style="color:#f1fa8c">&#34;input_ids&#34;</span>])
-</span></span><span style="display:flex;"><span><span style="color:#f1fa8c">&#34;[CLS] How old are you? [SEP] I&#39;m 6 years old [SEP]&#34;</span></span></span></code></pre></div>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">&gt;&gt;&gt;</span> tokenizer<span style="color:#ff79c6">.</span>decode(encoded_input[<span style="color:#f1fa8c">&#34;input_ids&#34;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#f1fa8c">&#34;[CLS] How old are you? [SEP] I&#39;m 6 years old [SEP]&#34;</span></span></span></code></pre></div>
 </div>
 <h2 id="summary-of-the-models">summary of the models</h2>
 <p>利用可能なモデル</p>
@@ -387,8 +397,11 @@
 <h2 id="fine-tuning-for-keras">Fine-tuning (for Keras)</h2>
 <p><a href="https://huggingface.co/docs/transformers/training#finetuning-with-keras">https://huggingface.co/docs/transformers/training#finetuning-with-keras</a></p>
 <p>サンプルのデータセットを準備</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> datasets <span style="color:#ff79c6">import</span> load_dataset
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">from</span> datasets <span style="color:#ff79c6">import</span> load_dataset
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>raw_datasets <span style="color:#ff79c6">=</span> load_dataset(<span style="color:#f1fa8c">&#34;imdb&#34;</span>)
 </span></span><span style="display:flex;"><span>
@@ -402,21 +415,23 @@
 </span></span><span style="display:flex;"><span>small_eval_dataset <span style="color:#ff79c6">=</span> tokenized_datasets[<span style="color:#f1fa8c">&#34;test&#34;</span>]<span style="color:#ff79c6">.</span>shuffle(seed<span style="color:#ff79c6">=</span><span style="color:#bd93f9">42</span>)<span style="color:#ff79c6">.</span>select(<span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">1000</span>)) 
 </span></span><span style="display:flex;"><span>full_train_dataset <span style="color:#ff79c6">=</span> tokenized_datasets[<span style="color:#f1fa8c">&#34;train&#34;</span>]
 </span></span><span style="display:flex;"><span>full_eval_dataset <span style="color:#ff79c6">=</span> tokenized_datasets[<span style="color:#f1fa8c">&#34;test&#34;</span>]</span></span></code></pre></div>
-  </div>
-
 </div>
 <p>モデルをロード</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tensorflow <span style="color:#ff79c6">as</span> tf
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> tensorflow <span style="color:#ff79c6">as</span> tf
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> transformers <span style="color:#ff79c6">import</span> TFAutoModelForSequenceClassification
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>model <span style="color:#ff79c6">=</span> TFAutoModelForSequenceClassification<span style="color:#ff79c6">.</span>from_pretrained(<span style="color:#f1fa8c">&#34;bert-base-cased&#34;</span>, num_labels<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>)</span></span></code></pre></div>
-  </div>
-
 </div>
 <p>keras用にデータセットを使うには少しformatする必要がある</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>tf_train_dataset <span style="color:#ff79c6">=</span> small_train_dataset<span style="color:#ff79c6">.</span>remove_columns([<span style="color:#f1fa8c">&#34;text&#34;</span>])<span style="color:#ff79c6">.</span>with_format(<span style="color:#f1fa8c">&#34;tensorflow&#34;</span>)
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>tf_train_dataset <span style="color:#ff79c6">=</span> small_train_dataset<span style="color:#ff79c6">.</span>remove_columns([<span style="color:#f1fa8c">&#34;text&#34;</span>])<span style="color:#ff79c6">.</span>with_format(<span style="color:#f1fa8c">&#34;tensorflow&#34;</span>)
 </span></span><span style="display:flex;"><span>tf_eval_dataset <span style="color:#ff79c6">=</span> small_eval_dataset<span style="color:#ff79c6">.</span>remove_columns([<span style="color:#f1fa8c">&#34;text&#34;</span>])<span style="color:#ff79c6">.</span>with_format(<span style="color:#f1fa8c">&#34;tensorflow&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
@@ -427,27 +442,62 @@
 </span></span><span style="display:flex;"><span>eval_features <span style="color:#ff79c6">=</span> {x: tf_eval_dataset[x] <span style="color:#ff79c6">for</span> x <span style="color:#ff79c6">in</span> tokenizer<span style="color:#ff79c6">.</span>model_input_names}
 </span></span><span style="display:flex;"><span>eval_tf_dataset <span style="color:#ff79c6">=</span> tf<span style="color:#ff79c6">.</span>data<span style="color:#ff79c6">.</span>Dataset<span style="color:#ff79c6">.</span>from_tensor_slices((eval_features, tf_eval_dataset[<span style="color:#f1fa8c">&#34;label&#34;</span>]))
 </span></span><span style="display:flex;"><span>eval_tf_dataset <span style="color:#ff79c6">=</span> eval_tf_dataset<span style="color:#ff79c6">.</span>batch(<span style="color:#bd93f9">8</span>)</span></span></code></pre></div>
-  </div>
-
 </div>
 <p>あとはいつもどおり</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model<span style="color:#ff79c6">.</span>compile(
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model<span style="color:#ff79c6">.</span>compile(
 </span></span><span style="display:flex;"><span>    optimizer<span style="color:#ff79c6">=</span>tf<span style="color:#ff79c6">.</span>keras<span style="color:#ff79c6">.</span>optimizers<span style="color:#ff79c6">.</span>Adam(learning_rate<span style="color:#ff79c6">=</span><span style="color:#bd93f9">5e-5</span>),
 </span></span><span style="display:flex;"><span>    loss<span style="color:#ff79c6">=</span>tf<span style="color:#ff79c6">.</span>keras<span style="color:#ff79c6">.</span>losses<span style="color:#ff79c6">.</span>SparseCategoricalCrossentropy(from_logits<span style="color:#ff79c6">=</span><span style="color:#ff79c6">True</span>),
 </span></span><span style="display:flex;"><span>    metrics<span style="color:#ff79c6">=</span>tf<span style="color:#ff79c6">.</span>metrics<span style="color:#ff79c6">.</span>SparseCategoricalAccuracy(),
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>model<span style="color:#ff79c6">.</span>fit(train_tf_dataset, validation_data<span style="color:#ff79c6">=</span>eval_tf_dataset, epochs<span style="color:#ff79c6">=</span><span style="color:#bd93f9">3</span>)</span></span></code></pre></div>
-  </div>
-
 </div>
 
       </div>
+      
+
+      
+      <div class="postmeta mb-2">
+        <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+  </span>
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
+  </span>
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+  </span>
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/huggingface/">huggingface</a>&nbsp;
+  </span>
+  
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2021-12-09
+  
+</div>
+
+      </div>
+      
+
       <div class="related-article">
         
 
-  <h2>See Also</h2>
+  <h2 class="see-also">See Also</h2>
   <ul>
     
       <li><a href="/posts/nlp/calm_lora_quantize/">OpenCALM-7Bをloraで学習して、quantizeするまで</a></li>
@@ -456,20 +506,20 @@
     
       <li><a href="/posts/nlp/rinna_3b_cpp/">rinna 3Bをcppで動かす</a></li>
     
-      <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
+      <li><a href="/posts/nlp/redpajama_lora_start/">RedPajamaをLoRaで日本語fine tuning</a></li>
     
-      <li><a href="/posts/nlp/bloom_lora_start/">BloomをLoRaで日本語finetuning</a></li>
+      <li><a href="/posts/nlp/rs-tokenizer/">Rust TokenizerをC&#43;&#43;から呼び出す</a></li>
     
   </ul>
 
 
       </div>
     </article>
+
     
     
     
       
-
     
   </div>
 
@@ -486,15 +536,15 @@
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site//pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
-      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+      
 
       <p class="credits theme-by">
          <a href="https://gohugo.io">Hugo</a>&nbsp;Theme

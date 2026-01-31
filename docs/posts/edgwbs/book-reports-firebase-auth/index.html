@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.site/index.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -109,7 +98,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.147.5">
+<meta name="generator" content="Hugo 0.155.1">
   </head>
   <body>
     
@@ -171,14 +160,14 @@
           
             
 
-              
-              <h1>
-		
-		Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理
-		
-		
-                </h1>
-              
+            
+            <h1 class="post-title">
+		      
+		      Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理
+		      
+		      
+            </h1>
+            
 
               
 
@@ -197,29 +186,39 @@
     
   <div class="container" role="main">
     <article class="article" class="blog-post">
-      
-        <div class="blog-tags">
-          <i class="fas fa-tag" style="color:#111111"></i>
-          
-            <a href="https://www.if-blog.site//tags/webapp/">WebApp</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/firebase/">firebase</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/golang/">golang</a
-            >&nbsp;
-          
-        </div>
-      
 
       
-        <div style="margin-bottom: 10px;">
-          <i class="fa fa-calendar-alt"></i
-          >&nbsp;2019-09-28
-        </div>
+      <div class="postmeta mb-4">
+        <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/webapp/">WebApp</a>&nbsp;
+  </span>
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/firebase/">firebase</a>&nbsp;
+  </span>
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/golang/">golang</a>&nbsp;
+  </span>
+  
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-28
+  
+</div>
+
+      </div>
       
 
+
+      
       
 
 
@@ -232,16 +231,20 @@
 <p>VueCLI3を使い、typescriptのプロジェクトを作成します。今回は、vueのrouter guardは省略します。</p>
 <h3 id="準備">準備</h3>
 <p>npmからインストールします。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ npm install firebase</span></span></code></pre></div>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ npm install firebase</span></span></code></pre></div>
 </div>
 <p>firebaseの認証情報は、以下のドキュメントを参考に取得しておきます。<br>
 <a href="https://firebase.google.com/docs/auth/web/password-auth?authuser=1">https://firebase.google.com/docs/auth/web/password-auth?authuser=1</a></p>
 <p><code>src/main.ts</code>にfirebaseをimportし、上記で取得した認証情報を貼り付けます。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> firebase <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;firebase/app&#39;</span>;
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> firebase <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;firebase/app&#39;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> fireBaseConfig <span style="color:#ff79c6">=</span> {
 </span></span><span style="display:flex;"><span>  apiKey<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;*****&#39;</span>,
@@ -253,16 +256,17 @@
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>firebase.initializeApp(fireBaseConfig);</span></span></code></pre></div>
-  </div>
-
 </div>
 <h3 id="ログイン処理">ログイン処理</h3>
 <p>firebaseではemail+passwordの通常の認証に加え、GoogleアカウントやTwitter、Githubのアカウントでのログインが1つのメソッドだけで行えます。</p>
 <p>Googleなどのアカウントでログインしたい場合は、あらかじめfirebaseから認証を許可するよう設定しておく必要があります。</p>
 <h4 id="signin-with-emailpassword">signIn with email+password</h4>
 <p>コンポーネントにfirebaseのログイン画面を作ります。以下はその例です。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> {Component, Vue} <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;vue-property-decorator&#39;</span>;
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> {Component, Vue} <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;vue-property-decorator&#39;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> firebase <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;firebase/app&#39;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">@Component</span>
@@ -283,8 +287,6 @@
 </span></span><span style="display:flex;"><span>            .<span style="color:#ff79c6">catch</span>((err) <span style="color:#ff79c6">=&gt;</span> console.log(err))
 </span></span><span style="display:flex;"><span>            .<span style="color:#ff79c6">finally</span>(() <span style="color:#ff79c6">=&gt;</span> console.log(<span style="color:#f1fa8c">&#39;end&#39;</span>));
 </span></span><span style="display:flex;"><span>  }</span></span></code></pre></div>
-  </div>
-
 </div>
 <p>見て分かる通り、以下のメソッドの引数にメールアドレスとパスワードを渡すだけです。<br>
 <code>firebase.auth().signInWithEmailAndPassword(this.email, this.password)</code></p>
@@ -296,8 +298,11 @@
 <p><a href="https://firebase.google.com/docs/reference/js/firebase.User.html#getidtoken">https://firebase.google.com/docs/reference/js/firebase.User.html#getidtoken</a></p>
 <h4 id="signin-with-googlepopup">signIn with Google(popup)</h4>
 <p>ログイン方法には、Popupで別ウィンドウが開きログインを行う方法とリダイレクトを用いた方法があります。 Googleアカウントを使いpopupでログインしたい場合は、以下のようにします。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span>  <span style="color:#ff79c6">import</span> {Component, Vue} <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;vue-property-decorator&#39;</span>;
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span>  <span style="color:#ff79c6">import</span> {Component, Vue} <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;vue-property-decorator&#39;</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">import</span> firebase <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;firebase/app&#39;</span>;
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">private</span> provider <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> firebase.auth.GoogleAuthProvider();
@@ -310,8 +315,6 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 省略
 </span></span></span></code></pre></div>
-  </div>
-
 </div>
 <p>providerにGoogleを指定し、<code>firebase.auth().signInWithPopup(this.provider)</code>を呼ぶと、popupで見慣れたログイン画面が表示されます。
 図</p>
@@ -319,8 +322,11 @@
 <h4 id="signin-with-googleredirect">signIn with Google(redirect)</h4>
 <p>PWAでは、リダイレクトでのログインが推奨されています。</p>
 <p>リダイレクトは以下のようにします。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span>  <span style="color:#ff79c6">private</span> siginInByGoogleWithRedirect() {
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span>  <span style="color:#ff79c6">private</span> siginInByGoogleWithRedirect() {
 </span></span><span style="display:flex;"><span>    firebase.auth().signInWithRedirect(<span style="color:#ff79c6">this</span>.provider)
 </span></span><span style="display:flex;"><span>            .<span style="color:#ff79c6">catch</span>((err) <span style="color:#ff79c6">=&gt;</span> {
 </span></span><span style="display:flex;"><span>              console.log(err);
@@ -329,42 +335,43 @@
 </span></span><span style="display:flex;"><span>              console.log(<span style="color:#f1fa8c">&#39;end&#39;</span>);
 </span></span><span style="display:flex;"><span>            });
 </span></span><span style="display:flex;"><span>  }</span></span></code></pre></div>
-  </div>
-
 </div>
 <p><code>siginInByGoogleWithRedirect</code>が呼ばれるとログイン画面にリダイレクトされます。</p>
 <p>ログイン画面から元のページへ遷移後、リダイレクトによる認証が正しく行えたか確認します。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span> <span style="color:#ff79c6">private</span> afterRedirect() {
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span> <span style="color:#ff79c6">private</span> afterRedirect() {
 </span></span><span style="display:flex;"><span>    firebase.auth().getRedirectResult()
 </span></span><span style="display:flex;"><span>              .then((res: <span style="color:#8be9fd">firebase.auth.UserCredential</span>) <span style="color:#ff79c6">=&gt;</span> {
 </span></span><span style="display:flex;"><span>              <span style="color:#6272a4">// 省略
 </span></span></span></code></pre></div>
-  </div>
-
 </div>
 <p><code>getRedirectResult</code>が<code>firebase.auth.UserCredential</code>を返すので、正しく認証できていれば、ここから先ほどと同様にユーザー情報やトークンを取得できます。</p>
 <h4 id="github-or-twitter">github or twitter</h4>
 <p>Googleアカウントを使った場合と同様に、プロバイダを指定しログインできます。
 予めTwitterでデベロッパーアプリケーションとしてアプリを登録し、APIキーとAPI Secretを取得しておきます。
 Twitterデベロッパー側に、OAuthコールバックとして、firebaseのURLを指定します。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span>provider <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> firebase.auth.GithubAuthProvider();
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span>provider <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> firebase.auth.GithubAuthProvider();
 </span></span><span style="display:flex;"><span><span style="color:#6272a4">// or 
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>provider <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> firebase.auth.TwitterAuthProvider();
+</span></span></span><span style="display:flex;"><span>provider <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> firebase.auth.TwitterAuthProvider();
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>firebase.auth().signInWithPopup(provider)</span></span></code></pre></div>
-  </div>
-
 </div>
 <p><a href="https://firebase.google.com/docs/auth/web/github-auth?hl=ja">https://firebase.google.com/docs/auth/web/github-auth?hl=ja</a>
 <a href="https://firebase.google.com/docs/auth/web/twitter-login?hl=ja">https://firebase.google.com/docs/auth/web/twitter-login?hl=ja</a></p>
 <h3 id="パスワードの再設定">パスワードの再設定</h3>
 <p>パスワードの再設定のメールを送信するのも、メソッド1つで行えます。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span>firebase.auth().sendPasswordResetEmail(<span style="color:#ff79c6">this</span>.email)</span></span></code></pre></div>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span>firebase.auth().sendPasswordResetEmail(<span style="color:#ff79c6">this</span>.email)</span></span></code></pre></div>
 </div>
 <p>送信されるメールのbodyは、firebaseから設定が行えます。</p>
 <p>ユーザーの更新、削除も同様に行えます。
@@ -381,8 +388,11 @@ Twitterデベロッパー側に、OAuthコールバックとして、firebaseの
 ユーザーのログインのフローは簡単に書くと以下の図のような流れになります。</p>
 <p><img src="../../../images/bookreports_edgwbs/vuejs_golang_firebase_2.png" alt="vuejs_golang_firebase_2"></p>
 <p>コード例は、以下の用になります。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>ctx <span style="color:#ff79c6">:=</span> context.<span style="color:#50fa7b">Background</span>()
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>ctx <span style="color:#ff79c6">:=</span> context.<span style="color:#50fa7b">Background</span>()
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">var</span> opt option.ClientOption
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4">// localのjson keyから認証する場合</span>
@@ -420,8 +430,6 @@ Twitterデベロッパー側に、OAuthコールバックとして、firebaseの
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>log.<span style="color:#50fa7b">Printf</span>(<span style="color:#f1fa8c">&#34;Verified ID token: %v\n&#34;</span>, token)</span></span></code></pre></div>
-  </div>
-
 </div>
 <p>参考
 <a href="https://firebase.google.com/docs/auth/admin/verify-id-tokens?hl=ja">https://firebase.google.com/docs/auth/admin/verify-id-tokens?hl=ja</a></p>
@@ -431,10 +439,42 @@ Twitterデベロッパー側に、OAuthコールバックとして、firebaseの
 <p>一方、firebaseは認証トークンにJWT(json web token)を使っており、JWTは使うべきでないというような記事も割と見かけるので、この辺りはもう少し詳しく調べて見ようかと思います。</p>
 
       </div>
+      
+
+      
+      <div class="postmeta mb-2">
+        <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/webapp/">WebApp</a>&nbsp;
+  </span>
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/firebase/">firebase</a>&nbsp;
+  </span>
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/golang/">golang</a>&nbsp;
+  </span>
+  
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2019-09-28
+  
+</div>
+
+      </div>
+      
+
       <div class="related-article">
         
 
-  <h2>See Also</h2>
+  <h2 class="see-also">See Also</h2>
   <ul>
     
       <li><a href="/posts/edgwbs/book-reports-firebase-hosting/">Firebase Hostingを使ってみた</a></li>
@@ -443,18 +483,20 @@ Twitterデベロッパー側に、OAuthコールバックとして、firebaseの
     
       <li><a href="/posts/edgwbs/book-reports-review/">三行で読書感想文を書いて、SNSでシェアできるサービスを作った</a></li>
     
-      <li><a href="/posts/edgwbs/book-storage-vue/">Vue.js&#43;typescriptでVuetifyを使いマテリアルデザインに入門する</a></li>
+      <li><a href="/posts/edgwbs/book-reports-firebase/">Firebaseを使ってwebアプリを公開した</a></li>
+    
+      <li><a href="/posts/edgwbs/book-reports-storage-firestore/">Vue.jsからFirebase StorageとDatabaseを使う</a></li>
     
   </ul>
 
 
       </div>
     </article>
+
     
     
     
       
-
     
   </div>
 
@@ -471,15 +513,15 @@ Twitterデベロッパー側に、OAuthコールバックとして、firebaseの
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site//pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
-      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+      
 
       <p class="credits theme-by">
          <a href="https://gohugo.io">Hugo</a>&nbsp;Theme

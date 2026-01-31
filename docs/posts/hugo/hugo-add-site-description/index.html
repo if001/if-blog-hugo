@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>Hugoの記事にdescriptionを追加する</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.site/index.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -110,7 +99,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.147.5">
+<meta name="generator" content="Hugo 0.155.1">
   </head>
   <body>
     
@@ -172,14 +161,14 @@
           
             
 
-              
-              <h1>
-		
-		Hugoの記事にdescriptionを追加する
-		
-		
-                </h1>
-              
+            
+            <h1 class="post-title">
+		      
+		      Hugoの記事にdescriptionを追加する
+		      
+		      
+            </h1>
+            
 
               
 
@@ -198,23 +187,31 @@
     
   <div class="container" role="main">
     <article class="article" class="blog-post">
-      
-        <div class="blog-tags">
-          <i class="fas fa-tag" style="color:#111111"></i>
-          
-            <a href="https://www.if-blog.site//tags/hugo/">hugo</a
-            >&nbsp;
-          
-        </div>
-      
 
       
-        <div style="margin-bottom: 10px;">
-          <i class="fa fa-calendar-alt"></i
-          >&nbsp;2018-10-16
-        </div>
+      <div class="postmeta mb-4">
+        <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
+  </span>
+  
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2018-10-16
+  
+</div>
+
+      </div>
       
 
+
+      
       
 
 
@@ -222,47 +219,55 @@
         <p>Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。
 これでは検索に引っかからないのでdescriptionタグをつけましょう!</p>
 <p>html側で次のように書くと、markdownに書いたdescriptionが参照できます。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ .Description }}</span></span></code></pre></div>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ .Description }}</span></span></code></pre></div>
 </div>
 <p>markdown側では、ヘッダーに次のように記述します。</p>
-<div class="code-block">
-  <div class="body"><pre tabindex="0"><code>description=&#34;hogehoge&#34;</code></pre>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>description=&#34;hogehoge&#34;</span></span></code></pre></div>
 </div>
 <p>これまで書いた記事全てに、descriptionをつけていくのは面倒ですね。</p>
 <p>次のようにサイトサマリーを参照することも可能です</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ .Summary }}</span></span></code></pre></div>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ .Summary }}</span></span></code></pre></div>
 </div>
 <p>ただし、デフォルトでサマリーが大きくなりすぎるので、config.tomlに次のような記述を追加します。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>hasCJKLanguage = true</span></span></code></pre></div>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>hasCJKLanguage = true</span></span></code></pre></div>
 </div>
 <p>こうすることでサマリーがいい感じのサイズになります。</p>
 <p>参考：https://blog.awm.jp/2016/01/02/hugo/</p>
 <p>最終的に、header.htmlなどに次のように記述しておけば、descriptionを書いておくとそちらが使われるようになります。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ if .Description }}
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ if .Description }}
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;description&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{{ .Description }}&#34;</span>&gt;
 </span></span><span style="display:flex;"><span>{{ else }}
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;description&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{{ .Summary }}&#34;</span>&gt;
 </span></span><span style="display:flex;"><span>{{ end }}</span></span></code></pre></div>
-  </div>
-
 </div>
 <h2 id="サイトのディスクリプションと記事のディスクリプションを分ける追記">サイトのディスクリプションと記事のディスクリプションを分ける(追記)</h2>
 <p><code>{{ if .IsHome }}</code>でトップページかどうか判定できるので、トップページならば、configのディスクリプションを使い、記事内ならば記事に設定してあるディスクリプションを使う。</p>
 <p>html側は次のように記述する。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ if .IsHome }}
+
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ if .IsHome }}
 </span></span><span style="display:flex;"><span>{{ with .Site.Params.description }}
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;description&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{{ . }}&#34;</span>&gt;
 </span></span><span style="display:flex;"><span>{{ end }}
@@ -273,25 +278,48 @@
 </span></span><span style="display:flex;"><span>{{ else }}
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;description&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;{{ .Summary }}&#34;</span>&gt;
 </span></span><span style="display:flex;"><span>{{ end }}</span></span></code></pre></div>
-  </div>
-
 </div>
 <p>configに次のように記述する。</p>
-<div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>[params]
-</span></span><span style="display:flex;"><span>description=&#34;hogehoge&#34;</span></span></code></pre></div>
-  </div>
 
+<div style="border:2px solid red; padding:8px; margin:8px 0;">
+  <div><strong>DEBUG codeblock hook fired</strong></div>
+  
+  <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>[params]
+</span></span><span style="display:flex;"><span>description=&#34;hogehoge&#34;</span></span></code></pre></div>
 </div>
 <p>configで任意の変数を指定するのは、paramsの中じゃないとだめなので注意。
 参考：https://gohugo.io/getting-started/configuration/</p>
 <p>他のもっとスマートな方法があれば教えてください。</p>
 
       </div>
+      
+
+      
+      <div class="postmeta mb-2">
+        <div class="meta-post blog-tags" style="display:inline-block">
+  <i class="fas fa-tag" style="color:#111111"></i>
+  
+  
+  <span class="blog-tag">
+    <a href="http://localhost:1313//tags/hugo/">hugo</a>&nbsp;
+  </span>
+  
+  
+</div>
+
+<div class="meta-post" style="display:inline-block; float: right;">
+  <i class="fa fa-calendar-alt"></i
+  >&nbsp;2018-10-16
+  
+</div>
+
+      </div>
+      
+
       <div class="related-article">
         
 
-  <h2>See Also</h2>
+  <h2 class="see-also">See Also</h2>
   <ul>
     
       <li><a href="/posts/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
@@ -309,11 +337,11 @@
 
       </div>
     </article>
+
     
     
     
       
-
     
   </div>
 
@@ -330,15 +358,15 @@
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site//pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
-      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+      
 
       <p class="credits theme-by">
          <a href="https://gohugo.io">Hugo</a>&nbsp;Theme

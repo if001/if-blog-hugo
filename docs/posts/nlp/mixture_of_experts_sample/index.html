@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <title>Mixture of expertsのサンプル実装</title>
-
-  
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127416809-1');
-  </script>
-  
 
 
 <script
@@ -27,11 +16,11 @@
 <link
   rel="alternate"
   type="application/rss+xml"
-  href="https://www.if-blog.site/index.xml"
+  href="http://localhost:1313/index.xml"
   title="アンドロイドは推理小説を書くか?"
 />
 
-<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
+<link rel="stylesheet" href="http://localhost:1313//fontawesome/css/all.min.css" />
 
 
 
@@ -111,7 +100,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.147.5">
+<meta name="generator" content="Hugo 0.155.1">
   </head>
   <body>
     
@@ -173,14 +162,14 @@
           
             
 
-              
-              <h1>
-		
-		Mixture of expertsのサンプル実装
-		
-		
-                </h1>
-              
+            
+            <h1 class="post-title">
+		      
+		      Mixture of expertsのサンプル実装
+		      
+		      
+            </h1>
+            
 
               
 
@@ -199,29 +188,41 @@
     
   <div class="container" role="main">
     <article class="article" class="blog-post">
-      
-        <div class="blog-tags">
-          <i class="fas fa-tag" style="color:#111111"></i>
-          
-            <a href="https://www.if-blog.site//tags/python/">python</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/nlp/">nlp</a
-            >&nbsp;
-          
-            <a href="https://www.if-blog.site//tags/torch/">torch</a
-            >&nbsp;
-          
-        </div>
-      
 
       
-        <div style="margin-bottom: 10px;">
-          <i class="fa fa-calendar-alt"></i
-          >&nbsp;2023-12-16
-        </div>
+      <div class="postmeta mb-4">
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/torch/">torch</a>&nbsp;
+    </span>
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-12-16
+    
+  </div>
+</div>
+
+      </div>
       
 
+
+      
       
 
 
@@ -259,7 +260,9 @@ $P_i$は$expert_i$に割り振られる可能性の確率</p>
 <h2 id="実装">実装</h2>
 <p>今回はsparseでなく、もっと単純なもので動きを確認する。</p>
 <div class="code-block">
-  <div class="body"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn <span style="color:#ff79c6">as</span> nn
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> torch.nn.functional <span style="color:#ff79c6">as</span> F
 </span></span><span style="display:flex;"><span>
@@ -306,7 +309,6 @@ $P_i$は$expert_i$に割り振られる可能性の確率</p>
 </span></span><span style="display:flex;"><span>        output <span style="color:#ff79c6">=</span> torch<span style="color:#ff79c6">.</span>sum(gating_weights<span style="color:#ff79c6">.</span>unsqueeze(<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">*</span> expert_outputs, dim<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>) <span style="color:#6272a4">#  (batch_size, seq_len, embed_size)        </span>
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> output</span></span></code></pre></div>
   </div>
-
 </div>
 <p>実装自体はシンプルで、gate関数の出力をsoftmaxを取ったもので、各expertを割合で増減させるイメージ。</p>
 <p>例えば、以下のような例を入力とする
@@ -314,30 +316,32 @@ $P_i$は$expert_i$に割り振られる可能性の確率</p>
 <p>sequence_length=3
 埋め込みサイズ=4</p>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>[I am running] =&gt; [[0.4081, 0.7244, 0.0221, 0.1677],[0.2508, 0.8103, 0.3783, 0.0399],[0.6584, 0.4243, 0.5941, 0.6102]]</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[I am running] =&gt; [[0.4081, 0.7244, 0.0221, 0.1677],[0.2508, 0.8103, 0.3783, 0.0399],[0.6584, 0.4243, 0.5941, 0.6102]]</span></span></code></pre></div>
   </div>
-
 </div>
 <p>expert=2, batch_size=1の例を入力する</p>
 <p>入力shapeは(batch_size,sequence_length, 埋め込みサイズ)<br>
 gating_weightsは、sequence_length毎にどのexpertに割り振られるかの確率となっている</p>
 <div class="code-block">
-  <div class="body"><pre tabindex="0"><code>input: torch.Size([1, 3, 4]) 
-tensor([[[0.4081, 0.7244, 0.0221, 0.1677],
-         [0.2508, 0.8103, 0.3783, 0.0399],
-         [0.6584, 0.4243, 0.5941, 0.6102]]])
-
-gating_weights torch.Size([1, 3, 2]) 
-tensor([[[0.5903, 0.4097],
-         [0.6000, 0.4000],
-         [0.6028, 0.3972]]], grad_fn=&lt;SoftmaxBackward0&gt;)
-
-output: torch.Size([1, 3, 4]) 
-tensor([[[ 0.5622, -0.0714,  0.0197, -0.2871],
-         [ 0.6389, -0.1067, -0.0396, -0.2993],
-         [ 0.4812, -0.0484,  0.0448, -0.4018]]], grad_fn=&lt;SumBackward1&gt;)</code></pre>
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>input: torch.Size([1, 3, 4]) 
+</span></span><span style="display:flex;"><span>tensor([[[0.4081, 0.7244, 0.0221, 0.1677],
+</span></span><span style="display:flex;"><span>         [0.2508, 0.8103, 0.3783, 0.0399],
+</span></span><span style="display:flex;"><span>         [0.6584, 0.4243, 0.5941, 0.6102]]])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gating_weights torch.Size([1, 3, 2]) 
+</span></span><span style="display:flex;"><span>tensor([[[0.5903, 0.4097],
+</span></span><span style="display:flex;"><span>         [0.6000, 0.4000],
+</span></span><span style="display:flex;"><span>         [0.6028, 0.3972]]], grad_fn=&lt;SoftmaxBackward0&gt;)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>output: torch.Size([1, 3, 4]) 
+</span></span><span style="display:flex;"><span>tensor([[[ 0.5622, -0.0714,  0.0197, -0.2871],
+</span></span><span style="display:flex;"><span>         [ 0.6389, -0.1067, -0.0396, -0.2993],
+</span></span><span style="display:flex;"><span>         [ 0.4812, -0.0484,  0.0448, -0.4018]]], grad_fn=&lt;SumBackward1&gt;)</span></span></code></pre></div>
   </div>
-
 </div>
 <h2 id="参考">参考</h2>
 <h3 id="moeについて">MoEについて</h3>
@@ -350,10 +354,44 @@ tensor([[[ 0.5622, -0.0714,  0.0197, -0.2871],
 <p><a href="https://github.com/lucidrains/mixture-of-experts/blob/master/mixture_of_experts/mixture_of_experts.py">https://github.com/lucidrains/mixture-of-experts/blob/master/mixture_of_experts/mixture_of_experts.py</a></p>
 
       </div>
+      
+
+      
+      <div class="postmeta mb-2">
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/python/">python</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
+    </span>
+    
+    <span class="blog-tag">
+      <a href="http://localhost:1313//tags/torch/">torch</a>&nbsp;
+    </span>
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2023-12-16
+    
+  </div>
+</div>
+
+      </div>
+      
+
       <div class="related-article">
         
 
-  <h2>See Also</h2>
+  <h2 class="see-also">See Also</h2>
   <ul>
     
       <li><a href="/posts/nlp/hf_generation_wrap/">huggingfaceのgenerationの関数をtorch modelから使えるようにしたい</a></li>
@@ -371,11 +409,11 @@ tensor([[[ 0.5622, -0.0714,  0.0197, -0.2871],
 
       </div>
     </article>
+
     
     
     
       
-
     
   </div>
 
@@ -392,15 +430,15 @@ tensor([[[ 0.5622, -0.0714,  0.0197, -0.2871],
 
   <div class="container">
     <div class="credits copyright">
-      <a href="https://www.if-blog.site//pages/about">if_004</a>
+      <a href="http://localhost:1313//pages/about"></a>
       &nbsp;&copy;
       2025
       
         &nbsp;/&nbsp;
-        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
+        <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>
       
       &nbsp;&ndash;&nbsp;
-      <i class="fas fa-moon" id="dark-mode-toggle"></i>
+      
 
       <p class="credits theme-by">
          <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
