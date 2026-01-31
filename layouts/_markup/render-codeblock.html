@@ -1,0 +1,14 @@
+<div class="code-block">
+  {{- $name := .Attributes.name -}}
+  {{ with $name }}<div class="name">{{ . }}</div>{{ end }}
+  <div class="body">
+    {{ $result := transform.HighlightCodeBlock . }}
+    {{ $result.Wrapped }}
+  </div>
+  {{- $ref := .Attributes.ref -}}
+  {{ with $ref }}
+    <div class="ref">
+      <span class="label">参照:</span
+      ><a href="{{ . }}" target="_black">{{ . }}</a>
+    </div>{{ end }}
+</div>
