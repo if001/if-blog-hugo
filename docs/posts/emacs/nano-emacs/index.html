@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>nano-emacsを使ってみる</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.site/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="&lt;p&gt;emacsのシンプルなテーマ。極限まで無駄を削ぎ落としたミニマルで洗練された外観が特徴。editorとしてnanoがあるがそれとは別。&lt;/p&gt;
+&lt;h2 id=&#34;nano-emacs&#34;&gt;nano-emacs&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/rougier/" />
+  
+
+
+<meta name="generator" content="Hugo 0.155.1">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+            
+            <h1 class="post-title">
+		      
+		      nano-emacsを使ってみる
+		      
+		      
+            </h1>
+            
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+
+      
+      <div class="postmeta mb-4">
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+      <a class="blog-tag" href="/tags/emacs/">Emacs</a>&nbsp;
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2026-06-26
+    
+  </div>
+</div>
+
+      </div>
+      
+
+
+      
+      
+
+
+      <div class="article-main">
+        <p>emacsのシンプルなテーマ。極限まで無駄を削ぎ落としたミニマルで洗練された外観が特徴。editorとしてnanoがあるがそれとは別。</p>
+<h2 id="nano-emacs">nano-emacs</h2>
+<p><a href="https://github.com/rougier/nano-emacs">https://github.com/rougier/nano-emacs</a></p>
+<p>白をベースとしたシンプルなテーマ。 reditとかで結構使ってる人見る</p>
+<p>On the design of text Editorsという論文の原則を元にデザインされているらしい。</p>
+<p>modelineが上部に配置され、情報も最低限になっている。</p>
+<figure><img src="../../../images/emacs/nano-emacs-light.png"
+    alt="nano-emacs-light" width="500">
+</figure>
+
+<p>基本的にはテーマが設定されるだけなので、既存の設定と合わせて使うことができる。
+Moduleとしても提供されているので、必要なもののみを有効にするという運用も可能</p>
+<p>use-package, straightだと以下のように設定できる</p>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">nano</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:ensure</span> t
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:straight</span> (<span style="color:#8be9fd;font-style:italic">nano</span> <span style="color:#f1fa8c">:type</span> <span style="color:#8be9fd;font-style:italic">git</span> <span style="color:#f1fa8c">:host</span> <span style="color:#8be9fd;font-style:italic">github</span> <span style="color:#f1fa8c">:repo</span> <span style="color:#f1fa8c">&#34;rougier/nano-emacs&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:config</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;; fontやsizeの設定</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;; (setq nano-font-family-monospaced &#34;Roboto Mono Light 14&#34;)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;; (setq nano-font-size 12)</span>
+</span></span><span style="display:flex;"><span>  )</span></span></code></pre></div>
+  </div>
+</div>
+<h2 id="nano-vertico">nano-vertico</h2>
+<p>nanoのデザインに合わせたminibufferのテーマ。nanoを使うのであれば入れたほうがかっこいい</p>
+<p><a href="https://github.com/rougier/nano-vertico">https://github.com/rougier/nano-vertico</a></p>
+<figure><img src="../../../images/emacs/nano-vertico.png"
+    alt="nano-vertico" width="800">
+</figure>
+
+<p>use-package, straightだと以下のように設定できる
+(vertico入っている前提)</p>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">nano-vertico</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:ensure</span> t
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:after</span> (<span style="color:#8be9fd;font-style:italic">nano</span> <span style="color:#8be9fd;font-style:italic">vertico</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:straight</span> (<span style="color:#8be9fd;font-style:italic">nano-vertico</span> <span style="color:#f1fa8c">:type</span> <span style="color:#8be9fd;font-style:italic">git</span> <span style="color:#f1fa8c">:host</span> <span style="color:#8be9fd;font-style:italic">github</span> <span style="color:#f1fa8c">:repo</span> <span style="color:#f1fa8c">&#34;rougier/nano-vertico&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;; :custom</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;; カーソルは以下のようにカスタマイズ可能</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;; (nano-vertico-symbols &#39;(</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;;                        (pill-left . &#34;&#34;)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;;                        (pill-right . &#34;&gt;&gt;&#34;)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;;                         (selection . &#34;&gt;&#34;)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;;                         (line       . ?╴)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;;                         ))</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:config</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#8be9fd;font-style:italic">nano-vertico-mode</span> <span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>  )</span></span></code></pre></div>
+  </div>
+</div>
+<h2 id="vertico-buffer-frame">vertico-buffer-frame</h2>
+<p>minibufferを画面の中央全面に表示できる。</p>
+<p>nanoのテーマを踏襲しつつ設定可能。かっこいい</p>
+<figure><img src="../../../images/emacs/vertico-buffer-frame.png"
+    alt="nano-vertico" width="600">
+</figure>
+
+<p><a href="https://github.com/kn66/vertico-buffer-frame">https://github.com/kn66/vertico-buffer-frame</a></p>
+<p>use-package, straightだと以下のように設定できる</p>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">vertico-buffer-frame</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:ensure</span> t
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:after</span> (<span style="color:#8be9fd;font-style:italic">vertico</span> <span style="color:#8be9fd;font-style:italic">nano-vertico</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:straight</span> (<span style="color:#8be9fd;font-style:italic">vertico-buffer-frame</span> <span style="color:#f1fa8c">:type</span> <span style="color:#8be9fd;font-style:italic">git</span> <span style="color:#f1fa8c">:host</span> <span style="color:#8be9fd;font-style:italic">github</span> <span style="color:#f1fa8c">:repo</span> <span style="color:#f1fa8c">&#34;kn66/vertico-buffer-frame&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:custom</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;; (vertico-buffer-frame-consult-preview nil) ;; preview off</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#8be9fd;font-style:italic">vertico-buffer-frame-golden-ratio-scale</span> <span style="color:#bd93f9">1.2</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:config</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#8be9fd;font-style:italic">vertico-buffer-frame-mode</span>)
+</span></span><span style="display:flex;"><span>  )</span></span></code></pre></div>
+  </div>
+</div>
+<h2 id="vertico-posframe-preview">vertico-posframe-preview</h2>
+<p>vertico-buffer-frameと同様に、minibufferを画面の中央全面に表示できる。
+左側にminibufferの内容、右側にpreviewが表示される。</p>
+<p>vertico-buffer-frameかこちらか好きな方を使うのが良い。
+ただし、nano-verticoと併用する場合、追加の設定が必要</p>
+<figure><img src="../../../images/emacs/vertico-posframe.png"
+    alt="nano-vertico" width="600">
+</figure>
+
+<p><a href="https://github.com/kn66/vertico-posframe-preview">https://github.com/kn66/vertico-posframe-preview</a></p>
+<h2 id="所感">所感</h2>
+<p>nanoのテーマは洗練されてて良い。なんかおしゃれでかわいい。コントラストの低さも最初は戸惑うが徐々になれてくる。
+ただしばらく使ってるとmodelineにlspのON/OFFやflymake状態など欲しくなる。</p>
+<p>minibufferが全面に出てくるのはかっこいいけど、minibufferで入力しつつ別のbufferで操作する系(embark actなど)を使う場合、
+後ろが見えなくなり設定変えるのが面倒&hellip;</p>
+
+      </div>
+      
+
+      
+      <div class="postmeta mb-2">
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+      <a class="blog-tag" href="/tags/emacs/">Emacs</a>&nbsp;
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2026-06-26
+    
+  </div>
+</div>
+
+      </div>
+      
+
+      <div class="related-article">
+        
+
+  <h2 class="see-also">See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/emacs/ef-theme-github-light-emacs/">ef-themeでemacsにgithub light風のthemeを設定する</a></li>
+    
+      <li><a href="/posts/emacs/hud-emacs/">emacsにおしゃれなHUDを表示する</a></li>
+    
+      <li><a href="/posts/emacs/text-lint/">emacsにtext-lintを導入する</a></li>
+    
+      <li><a href="/posts/emacs/gopls-introduction/">emacsのgo lang用のlanguage serverをgoplsに乗り換える</a></li>
+    
+      <li><a href="/posts/emacs/emacs-hinamatsuri/">emacsひな祭りいってきたのでためになったpackageなどをまとめておく</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site//pages/about">if_004</a>
+      &nbsp;&copy;
+      2026
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

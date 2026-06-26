@@ -104,9 +104,9 @@
 <script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
 
   
-    <meta name="description" content="&lt;p&gt;できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。&lt;br&gt;
+    <meta name="description" content="&lt;p&gt;できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。
 比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する&lt;/p&gt;
-&lt;p&gt;t" />
+&lt;p&gt;trans" />
   
 
 
@@ -206,21 +206,13 @@
     <i class="fas fa-tag" style="color:#111111"></i>
     
     
-    <span class="blog-tag">
-      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/python/">Python</a>&nbsp;
     
-    <span class="blog-tag">
-      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/nlp/">Nlp</a>&nbsp;
     
-    <span class="blog-tag">
-      <a href="https://www.if-blog.site//tags/transformer/">transformer</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/transformer/">Transformer</a>&nbsp;
     
-    <span class="blog-tag">
-      <a href="https://www.if-blog.site//tags/pre_training/">pre_training</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/pre_training/">Pre_training</a>&nbsp;
     
     
   </div>
@@ -241,12 +233,12 @@
 
 
       <div class="article-main">
-        <p>できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。<br>
+        <p>できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。
 比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する</p>
 <p>transformerのattention部分に対して修正や変更を加えたものはEfficient Transformerと呼ばれる。attentionの計算では、keyとvalueの行列積の計算のコストが高く、この部分を近似や次元削減を行い、計算効率やメモリ効率の向上を目指したものがいくつか提案されてる。Linformerでは近似により、ReformerではLSHというアルゴリズムによりattentionの計算を行っている。</p>
-<p>Linformer<br>
+<p>Linformer
 <a href="https://arxiv.org/abs/2006.04768">https://arxiv.org/abs/2006.04768</a></p>
-<p>Reformer<br>
+<p>Reformer
 <a href="https://arxiv.org/abs/2001.04451">https://arxiv.org/abs/2001.04451</a></p>
 <h2 id="モデル">モデル</h2>
 <p>ベースのモデルに対し少しづつ複雑さを増したモデルを作成する</p>
@@ -254,18 +246,18 @@
 <p>head数1、layer数10のモデルをベースモデルとする。
 attentionの部分を簡単に表すと以下のようになる。attentionへの入力は全結合層を通り、queryとkey, valueに分割される。queryとkeyの積を取りscaleした後softmaxを取ったものとvalueの積を取る。(実際にはhead数の次元やgrouped queryが含まれるが省略)</p>
 <p><img src="../../../images/transformer_any_architecture/basic_model.png" alt="basic"></p>
-<p>ベースのモデルに対していくつかの修正を行う<br>
+<p>ベースのモデルに対していくつかの修正を行う
 いずれのモデルもhead数やlayer数はベースモデルと同じ</p>
 <h4 id="モデル1非線形活性化関数bias">モデル1(非線形活性化関数+bias)</h4>
 <p>query, key, valueを出力するFCNに対して、biasと活性化関数geluを追加する。</p>
 <p><img src="../../../images/transformer_any_architecture/non_linear_model.png" alt="non_linear"></p>
 <h4 id="モデル2query-key-valueを別々の全結合層で生成">モデル2(query, key, valueを別々の全結合層で生成)</h4>
-<p>query, key, valueは一つの全結合層の出力を分割して作られていたが、これを別々の層で計算させる。<br>
+<p>query, key, valueは一つの全結合層の出力を分割して作られていたが、これを別々の層で計算させる。
 queryとkeyで異なる特徴を捉えてほしい期待</p>
 <p><img src="../../../images/transformer_any_architecture/separate_model.png" alt="separate"></p>
 <h4 id="モデル3querykeyにscaleを追加">モデル3(query*keyにscaleを追加)</h4>
-<p>通常のattention weightでは、queryとkeyの積をsoftmaxを取り、valueとの積を取る。<br>
-queryとkeyの積に対して、別のFCNを追加しその出力を足し合わせて、softmax、valueとの積を取るようにする。<br>
+<p>通常のattention weightでは、queryとkeyの積をsoftmaxを取り、valueとの積を取る。
+queryとkeyの積に対して、別のFCNを追加しその出力を足し合わせて、softmax、valueとの積を取るようにする。
 これは、queryに対応するkeyを取り出す処理に対し、attentionへの入力を使いquery,key以外の別の視点でscaleを行ってほしいという期待</p>
 <p><img src="../../../images/transformer_any_architecture/scaled_model.png" alt="scaled"></p>
 <h2 id="実装">実装</h2>
@@ -274,7 +266,7 @@ queryとkeyの積に対して、別のFCNを追加しその出力を足し合わ
 <p>attention部分はここ</p>
 <p><a href="https://github.com/Lightning-AI/lit-gpt/blob/main/lit_gpt/model.py#L169">https://github.com/Lightning-AI/lit-gpt/blob/main/lit_gpt/model.py#L169</a></p>
 <p>attentionへの入力は線形結合を通った後、query, key, valueに分割される。</p>
-<p>query, key, valueに対し、head数に対する次元操作や、grouped queryの操作を行った後、attentionを計算している。<br>
+<p>query, key, valueに対し、head数に対する次元操作や、grouped queryの操作を行った後、attentionを計算している。
 attentionの実装はtorchのものを使用している。</p>
 <p><a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html">https://pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html</a></p>
 <p>queryとkeyの積を計算し、maskを適応、softmaxを取り、attention_weightを算出している。</p>
@@ -292,7 +284,7 @@ attentionの実装はtorchのものを使用している。</p>
 <h2 id="学習">学習</h2>
 <p>100Mのモデルに対し、1Bの日本語と英語のデータセットで2epoch学習行う</p>
 <p>モデル1とモデル2は100Mのサイズ、モデル3のみ追加の層があるので120M</p>
-<p>学習はPaperspace Gradientを使う<br>
+<p>学習はPaperspace Gradientを使う
 <a href="https://www.paperspace.com/">https://www.paperspace.com/</a></p>
 <h2 id="lossと学習時間の結果">lossと学習時間の結果</h2>
 <h3 id="lossとval-lossの比較">lossとval lossの比較</h3>
@@ -328,9 +320,9 @@ attentionの実装はtorchのものを使用している。</p>
       </tr>
   </tbody>
 </table>
-<p>ベースモデルについて、他のモデルと比べlossは一番低いが、val lossは高くなっており、過学習の可能性がある。<br>
+<p>ベースモデルについて、他のモデルと比べlossは一番低いが、val lossは高くなっており、過学習の可能性がある。
 val lossについては、<code>非線形活性化関数+bias</code>が一番低く、<code>query, key, valueの生成を分ける</code>と<code>query*keyにscaleを追加 </code>は近い値となった。</p>
-<p>今回のモデルサイズとデータセット的にベースモデルより少し<strong>複雑なモデルのほうが適していそう</strong><br>
+<p>今回のモデルサイズとデータセット的にベースモデルより少し<strong>複雑なモデルのほうが適していそう</strong>
 ただし、<code>query, key, valueの生成を分ける</code>や<code>query*keyにscaleを追加</code>ほどの複雑さは不要かもしれない</p>
 <h3 id="学習にかかった時間">学習にかかった時間</h3>
 <table>
@@ -359,8 +351,8 @@ val lossについては、<code>非線形活性化関数+bias</code>が一番低
       </tr>
   </tbody>
 </table>
-<p>ベースモデルと<code>非線形活性化関数+bias</code>は同じくらいの学習時間であり、非線形の計算やbiasは大きなコストではないことがわかる。<br>
-<code>query, key, valueの生成を分ける</code>はベースモデルより学習時間は短くなっている。これは、<strong>query, key, valueの計算が効率的に行われた可能性</strong>がある。<br>
+<p>ベースモデルと<code>非線形活性化関数+bias</code>は同じくらいの学習時間であり、非線形の計算やbiasは大きなコストではないことがわかる。
+<code>query, key, valueの生成を分ける</code>はベースモデルより学習時間は短くなっている。これは、<strong>query, key, valueの計算が効率的に行われた可能性</strong>がある。
 <code>query*keyにscaleを追加</code>ではparameterが増えている分、より多くの時間が必要となったと考えられる。</p>
 <p>まとめると、複雑過ぎるモデルでは学習時間が長くなりlossやval lossにおいても良い結果とはならなかった。
 一方で、<code>非線形活性化関数+bias</code>や<code>query, key, valueの生成を分ける</code>ではlossや学習時間の面でベースモデルよりよい結果となった。
@@ -390,7 +382,7 @@ val lossについては、<code>非線形活性化関数+bias</code>が一番低
 <h3 id="所感-1">所感</h3>
 <p>短い文章からの予測はいずれのモデルもうまく生成できていない。</p>
 <h2 id="形容詞に続く予想">形容詞に続く予想</h2>
-<p>「彼女が子供の頃に住んでいた、海の見える小さな」に続く文章を生成させる<br>
+<p>「彼女が子供の頃に住んでいた、海の見える小さな」に続く文章を生成させる
 ここでは形容詞「小さな」に続く名詞を期待。</p>
 <h4 id="非線形活性化bias-2">非線形活性化+bias</h4>
 <div class="code-block">
@@ -428,7 +420,7 @@ val lossについては、<code>非線形活性化関数+bias</code>が一番低
 <h3 id="所感-2">所感</h3>
 <p>いずれのモデルも形容詞に対して、名詞を予想できている。</p>
 <h2 id="動詞が期待される文章">動詞が期待される文章</h2>
-<p>「海の見える小さな町で彼女は、静かに」に続く文章を生成<br>
+<p>「海の見える小さな町で彼女は、静かに」に続く文章を生成
 「過ごす」や「暮らす」などの動詞を期待。</p>
 <h4 id="非線形活性化bias-3">非線形活性化+bias</h4>
 <div class="code-block">
@@ -464,7 +456,7 @@ val lossについては、<code>非線形活性化関数+bias</code>が一番低
   </div>
 </div>
 <h3 id="所感-3">所感</h3>
-<p>どのモデルも特定の1つの単語の確率が高いわけではなく、次の単語に迷っている感じ<br>
+<p>どのモデルも特定の1つの単語の確率が高いわけではなく、次の単語に迷っている感じ
 <code>query, key, valueの生成を分ける</code>モデルでは、「して」、「なって」などの機能動詞が選択肢として現れている。</p>
 <h2 id="主語に続く文章">主語に続く文章</h2>
 <p>「海の見える小さな町で、彼女は」に続く文章を予測</p>
@@ -495,18 +487,18 @@ val lossについては、<code>非線形活性化関数+bias</code>が一番低
 <p>ベースモデルのヒートマップをみると、文章の前半(queryの前半)部分で自己注意が高くなっている。ただし、中盤では値は小さくなっており文全体は捉えきれてない可能性がある。</p>
 <p><img src="../../../images/transformer_any_architecture/basic_last.png" alt="basic_last"></p>
 <h3 id="非線形活性化bias-6">非線形活性化+bias</h3>
-<p>文章の前半部分で自己注意が高くなっており、後半は値は小さくなっている。また、いずれのqueryに対してもkey「、」が高い値となっており、<br>
+<p>文章の前半部分で自己注意が高くなっており、後半は値は小さくなっている。また、いずれのqueryに対してもkey「、」が高い値となっており、
 前半部分が重要な部分であると捉えている可能性がある。</p>
 <p><img src="../../../images/transformer_any_architecture/non_linear_last.png" alt="linear_last"></p>
 <h3 id="query-key-valueの生成を分ける-6">query, key, valueの生成を分ける</h3>
-<p>自己注意は全体的に少ないが「彼女が」「子供の」、「海の」などいくつかの単語は捉えている。<br>
+<p>自己注意は全体的に少ないが「彼女が」「子供の」、「海の」などいくつかの単語は捉えている。
 多くのqueryで、key「子供の」やkey「海の」が値が高くなっており、この文章において重要な単語として捉えている可能性がある。</p>
 <p><img src="../../../images/transformer_any_architecture/separate_last.png" alt="separate_last"></p>
 <h4 id="querykeyにscaleを追加-6">query*keyにscaleを追加</h4>
-<p>全体的に値が高く、自己注意も全体にわたり、文章全体を捉えようとしている可能性がある。<br>
+<p>全体的に値が高く、自己注意も全体にわたり、文章全体を捉えようとしている可能性がある。
 また「彼女が」や「海の」などのいくつかの単語に対しては自己注意が高くなっており、文脈において重要な単語についても関心を示している。</p>
 <p><img src="../../../images/transformer_any_architecture/scaled_last.png" alt="scaled_last"></p>
-<p>まとめると、<code>非線形活性化+bias</code>では文章の前半部分に強く注意を行い、<code>query, key, valueの生成を分ける</code>では特定の単語に高い注意を行っている。<br>
+<p>まとめると、<code>非線形活性化+bias</code>では文章の前半部分に強く注意を行い、<code>query, key, valueの生成を分ける</code>では特定の単語に高い注意を行っている。
 <code>query*keyにscaleを追加</code>では全体的な文章や特定の単語への注意を行っており、文章の意味理解としては優秀かもしれない</p>
 <h2 id="まとめと所感">まとめと所感</h2>
 <p><code>非線形活性化関数+bias</code>はモデルの複雑性は他のモデルと比べ低いものの、ベースモデルに比べ単純な変更で一般化性能を向上させた。文章中の重要な単語への注意は行えていたものの、文脈を考慮した文章の生成などは難しかった。</p>
@@ -525,21 +517,13 @@ val lossについては、<code>非線形活性化関数+bias</code>が一番低
     <i class="fas fa-tag" style="color:#111111"></i>
     
     
-    <span class="blog-tag">
-      <a href="https://www.if-blog.site//tags/python/">python</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/python/">Python</a>&nbsp;
     
-    <span class="blog-tag">
-      <a href="https://www.if-blog.site//tags/nlp/">nlp</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/nlp/">Nlp</a>&nbsp;
     
-    <span class="blog-tag">
-      <a href="https://www.if-blog.site//tags/transformer/">transformer</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/transformer/">Transformer</a>&nbsp;
     
-    <span class="blog-tag">
-      <a href="https://www.if-blog.site//tags/pre_training/">pre_training</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/pre_training/">Pre_training</a>&nbsp;
     
     
   </div>
@@ -599,7 +583,7 @@ val lossについては、<code>非線形活性化関数+bias</code>が一番低
     <div class="credits copyright">
       <a href="https://www.if-blog.site//pages/about">if_004</a>
       &nbsp;&copy;
-      2025
+      2026
       
         &nbsp;/&nbsp;
         <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>

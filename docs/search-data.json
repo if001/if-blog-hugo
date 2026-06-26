@@ -5,6 +5,36 @@
         
             {
                 "id": 0,
+                "href": "https://www.if-blog.site/posts/emacs/nano-emacs/",
+                "title": "nano-emacsを使ってみる",
+                "section": "posts",
+                "date" : "2026.06.26",
+                "body": "emacsのシンプルなテーマ。極限まで無駄を削ぎ落としたミニマルで洗練された外観が特徴。editorとしてnanoがあるがそれとは別。\nnano-emacs https://github.com/rougier/nano-emacs\n白をベースとしたシンプルなテーマ。 reditとかで結構使ってる人見る\nOn the design of text Editorsという論文の原則を元にデザインされているらしい。\nmodelineが上部に配置され、情報も最低限になっている。\n基本的にはテーマが設定されるだけなので、既存の設定と合わせて使うことができる。 Moduleとしても提供されているので、必要なもののみを有効にするという運用も可能\nuse-package, straightだと以下のように設定できる\n(use-package nano :ensure t :straight (nano :type git :host github :repo \u0026#34;rougier/nano-emacs\u0026#34;) :config ;; fontやsizeの設定 ;; (setq nano-font-family-monospaced \u0026#34;Roboto Mono Light 14\u0026#34;) ;; (setq nano-font-size 12) ) nano-vertico nanoのデザインに合わせたminibufferのテーマ。nanoを使うのであれば入れたほうがかっこいい\nhttps://github.com/rougier/nano-vertico\nuse-package, straightだと以下のように設定できる (vertico入っている前提)\n(use-package nano-vertico :ensure t :after (nano vertico) :straight (nano-vertico :type git :host github :repo \u0026#34;rougier/nano-vertico\u0026#34;) ;; :custom ;; カーソルは以下のようにカスタマイズ可能 ;; (nano-vertico-symbols \u0026#39;( ;; (pill-left . \u0026#34;\u0026#34;) ;; (pill-right . \u0026#34;\u0026gt;\u0026gt;\u0026#34;) ;; (selection . \u0026#34;\u0026gt;\u0026#34;) ;; (line . ?╴) ;; )) :config (nano-vertico-mode 1) ) vertico-buffer-frame minibufferを画面の中央全面に表示できる。\nnanoのテーマを踏襲しつつ設定可能。かっこいい\nhttps://github.com/kn66/vertico-buffer-frame\nuse-package, straightだと以下のように設定できる\n(use-package vertico-buffer-frame :ensure t :after (vertico nano-vertico) :straight (vertico-buffer-frame :type git :host github :repo \u0026#34;kn66/vertico-buffer-frame\u0026#34;) :custom ;; (vertico-buffer-frame-consult-preview nil) ;; preview off (vertico-buffer-frame-golden-ratio-scale 1.2) :config (vertico-buffer-frame-mode) ) vertico-posframe-preview vertico-buffer-frameと同様に、minibufferを画面の中央全面に表示できる。 左側にminibufferの内容、右側にpreviewが表示される。\nvertico-buffer-frameかこちらか好きな方を使うのが良い。 ただし、nano-verticoと併用する場合、追加の設定が必要\nhttps://github.com/kn66/vertico-posframe-preview\n所感 nanoのテーマは洗練されてて良い。なんかおしゃれでかわいい。コントラストの低さも最初は戸惑うが徐々になれてくる。 ただしばらく使ってるとmodelineにlspのON/OFFやflymake状態など欲しくなる。\nminibufferが全面に出てくるのはかっこいいけど、minibufferで入力しつつ別のbufferで操作する系(embark actなど)を使う場合、 後ろが見えなくなり設定変えるのが面倒\u0026hellip;\n"
+            }
+    
+        ,
+            {
+                "id": 1,
+                "href": "https://www.if-blog.site/posts/emacs/ef-theme-github-light-emacs/",
+                "title": "ef-themeでemacsにgithub light風のthemeを設定する",
+                "section": "posts",
+                "date" : "2026.06.24",
+                "body": "githubでコードを読むことも多いので、emacsのthemeもgithub風に寄せようと思う。\ngithub風のthemeはいくつか配布されていが、最近のgithub themeっぽくなかったので、ef-themesをベースに設定していく。\nhttps://github.com/protesilaos/ef-themes/tree/main https://github.com/protesilaos/modus-themes/tree/main\npreview 設定しきれない部分もありつつ、まぁまぁ近づいたはず\npython typescript golang 設定サンプル (setq github-theme-palette \u0026#39;( ;; Basic value (bg-main \u0026#34;#ffffff\u0026#34;) (bg-dim \u0026#34;#f2f2f2\u0026#34;) (fg-main \u0026#34;#24292f\u0026#34;) (fg-dim \u0026#34;#595959\u0026#34;) (fg-alt \u0026#34;#193668\u0026#34;) ;; (bg-active \u0026#34;#c4c4c4\u0026#34;) ;; (bg-inactive \u0026#34;#e0e0e0\u0026#34;) ;; (border \u0026#34;#9f9f9f\u0026#34;) ;; Uncommon accent foregrounds ;; (orange \u0026#34;#bc4c00\u0026#34;) (orange \u0026#34;#D67200\u0026#34;) (yellow-light \u0026#34;#fff8c5\u0026#34;) ;; Special purpose (bg-region yellow-light) (bg-tab-current bg-main) (bg-tab-bar bg-active) (bg-tab-other bg-active) ;; Code mappings (comment fg-dim) (operator blue-faint) (keyword orange) (variable fg-main) (type fg-main) (property blue-warmer) (string fg-alt) (fnname blue-warmer) ;; General mappings (cursor fg-dim) )) (use-package ef-themes :ensure t :config (setq ef-themes-mixed-fonts t ef-themes-variable-pitch-ui t) (modus-themes-load-theme \u0026#39;ef-duo-light) (custom-set-faces \u0026#39;(font-lock-property-use-face ((t (:foreground \u0026#34;#3548cf\u0026#34;)))) \u0026#39;(corfu-default ((t (:background nil)))) \u0026#39;(corfu-current ((t (:background nil)))) \u0026#39;(corfu--cbar ((t (:background nil)))) ) :custom (ef-duo-light-palette-overrides github-theme-palette) ) 設定の確認 ef-themesではthemeごとにパレットが設定してある。\n例えば、ef-duo-lightは以下のように設定されている\n(defconst ef-duo-light-palette-partial \u0026#39;((cursor \u0026#34;#1144ff\u0026#34;) (bg-main \u0026#34;#fff8f0\u0026#34;) (bg-dim \u0026#34;#f6ece8\u0026#34;) (bg-alt \u0026#34;#e7e0da\u0026#34;) ... https://github.com/protesilaos/ef-themes/blob/main/ef-duo-light-theme.el\nこれをベースに、bg-mainやbg-dimの色を設定していくことにする。この方法が正攻法なのかは不明。\nこのパレットがどのようにfaceに対応しているかは、modus-themesに実装を見る。 modus-themesでは、bg-mainやcommentを各faceに色を設定している。\n例えば、modus-themesのconsultは以下のようになっている。\n;;;;; consult `(consult-async-split ((,c :foreground ,err))) `(consult-file ((,c :inherit modus-themes-bold :foreground ,info))) `(consult-highlight-mark ((,c :background ,bg-search-static :foreground ,fg-search-static))) `(consult-highlight-match ((,c :background ,bg-search-static :foreground ,fg-search-static))) `(consult-imenu-prefix ((,c :foreground ,fg-dim))) `(consult-key ((,c :inherit (bold modus-themes-fixed-pitch) :foreground ,keybind))) `(consult-line-number ((,c :foreground ,fg-dim))) `(consult-line-number-prefix ((,c :foreground ,fg-dim))) `(consult-preview-insertion ((,c :background ,bg-dim))) https://github.com/protesilaos/modus-themes/blob/main/modus-themes.el#L4856\nしたがって、ベースのパレットを設定するとその他のfaceもいい感じに設定されるので、パレットをいい感じに設定していく。\n基本的には、上記の設定サンプルの例で上げたような、bg-mainやbg-dimやCode mappingsの部分を設定すると概ね設定されるはず。\n細かい部分はfaceを確認しつつ調整する。 例えば、typescriptのあるクラスにカーソルを当てて、M-x describe-font or M-x describe-charでどのfaceが設定されているか確認できる。\n"
+            }
+    
+        ,
+            {
+                "id": 2,
+                "href": "https://www.if-blog.site/posts/emacs/hud-emacs/",
+                "title": "emacsにおしゃれなHUDを表示する",
+                "section": "posts",
+                "date" : "2026.06.20",
+                "body": "Emacsのフレーム右上に状態管理HUDがreditで紹介されていた\nhttps://github.com/nohzafk/emacs-workspace-hud\nhttps://www.reddit.com/r/emacs/comments/1tw7u87/i_built_a_floating_hud_for_emacs_rendered_in_rust/\nHUD Gitのブランチや変更ステータス、LSPの接続状態、flymake/flycheckのエラーなどの診断情報を確認できる。 Agent-Shellを使っている場合は、追加でagent-shell-hudを入れるとAgentの状態も見れて便利\nhttps://github.com/nohzafk/agent-shell-hud\nこのライブラリでは、RustのGUIライブラリ「egui」を採用し、WASM（WebAssembly）にコンパイルした上でEmacsのxwidget経由で描画している。\nxwidgetの利用はbuild時に(\u0026ndash;with-xwidget)をつける必要がある。 emacs25以降でGUI環境で使っていれば基本的にはxwidgetがONになってるはず。\nuse-packageの設定は以下。\nuse-packageのvcでのinstallがうまくいかなかったので手元でbuild\nRustとjustは事前に入れておく https://github.com/casey/just\n// hud git clone --recurse-submodules https://github.com/nohzafk/emacs-workspace-hud.git \\ ~/src/emacs-workspace-hud cd ~/src/emacs-workspace-hud just setup just wasm // agent-shell-hud git clone https://github.com/nohzafk/agent-shell-hud emacs-eguiへのpathも通さないとうまくうごかなかったので通しておく。 なぜかagent-shell-hudもstraightで取得できなかったので、ここではcloneしてload-pathを通す。\n(add-to-list \u0026#39;load-path \u0026#34;~/src/emacs-workspace-hud/emacs-egui/lisp\u0026#34;) (use-package workspace-hud :straight nil :ensure nil :load-path \u0026#34;~/src/emacs-workspace-hud/lisp\u0026#34; :custom (workspace-hud-margin-top 43) (workspace-hud-margin-right 50) ;; :config ;; (workspace-hud-auto-mode) ;;自動でhudをONにする場合 ) (use-package agent-shell-hud :ensure nil :straight nil :load-path \u0026#34;~/src/agent-shell-hud\u0026#34; :after (agent-shell workspace-hud) ;; :config ;; (agent-shell-hud-mode 1) ;;自動でhudをONにする場合 ) 所感 reditには「Emacsの『すべてはバッファである』という哲学に反する」や「サイドウィンドウやチャイルドフレームとElispだけで十分」などのコメントもあり確かにと思う。\n一方で、xwidgetで描画することでレンダリングすることでブロックされずになめらかに表示できるので、可能性は感じる\n"
+            }
+    
+        ,
+            {
+                "id": 3,
                 "href": "https://www.if-blog.site/posts/paper/paper25/",
                 "title": "EVALUATING THE DIVERSITY AND QUALITY OF LLM GENERATED CONTENT",
                 "section": "posts",
@@ -14,7 +44,7 @@
     
         ,
             {
-                "id": 1,
+                "id": 4,
                 "href": "https://www.if-blog.site/posts/paper/paper24/",
                 "title": "Texygen: A Benchmarking Platform for Text Generation Models",
                 "section": "posts",
@@ -24,17 +54,17 @@
     
         ,
             {
-                "id": 2,
+                "id": 5,
                 "href": "https://www.if-blog.site/posts/chats/chat2/",
                 "title": "データセット評価指標",
                 "section": "posts",
                 "date" : "2025.05.20",
-                "body": "以下では LLM 学習用データセットの多様性（あるいは「同質性」を避けられているか）を測る代表的な指標を、定義 → 計算方法 → 読み取り方 → 長所/限界 の順で簡潔に整理します。\ndistinct-N paper\ncode\n定義\n生成コーパス（または学習データ）の中で 重複を除いた n-gram の種類数 を、総 n-gram 数で割った比率。\n$$ \\text{distinct-}n=\\frac{\\lvert{\\text{unique }n\\text{-grams}}\\rvert}{\\text{total }n\\text{-grams}} $$\n読み取り方\n値は 0〜1。1 に近いほど語彙的な反復が少なく、表層的に多様。 distinct-1 / distinct-2（1,2-gram）が最も一般的。 強み\n軽量・参照不要・タスク非依存。 限界 長文ほど分母が大きくなり過大評価されやすい。 内容的（意味的）な多様性は把握できない。 Diversity Coefficient（Task2Vec-DC） paper\n着想 Task2Vec で「サンプル1 バッチ = 1 タスク」と見立て、タスク埋め込み間の平均距離でデータ内部の潜在概念のばらつきを定量化する。\n計算フロー（概要）\nデータセットからランダムに $B$ サンプルを抽出（= 1 タスク）。\nTask2Vec (Barrett et al., 2019) で各タスクをベクトル化（勾配のFisher情報行列対角を縮約）。\nタスク埋め込み集合 ${\\mathbf{t}_i}$ の分散（例：平均コサイン距離や Frobenius ノルム）を取り\n$$ \\text{DC} = \\frac{2}{B(B-1)}\\sum_{i\u0026lt;j} d(\\mathbf{t}_i,\\mathbf{t}_j) $$\n大きいほど「タスクが互いに異なる」= より多様。\n強み 意味レベルでの多様性を高速に近似。\n限界 Task2Vecの前提（モデルと層選択）に依存／語順など表層のばらつきは捉えにくい。\nSelf-BLEU paper\n参考\n定義\nコーパス内の 各文を「仮説」、残り全文を 「参照」 とみなして BLEU を計算し、文ごとに平均。 低いほど多様（互いに似ていない）。 計算\n$$ \\text{Self-BLEU} = \\frac1{N}\\sum_{i=1}^{N}\\text{BLEU}\\bigl(\\text{sent}_i,; \\mathcal{D}\\setminus{\\text{sent}_i}\\bigr) $$\n読み取り方\n0 に近いほど高多様性。 BLEU ベースなので n-gram 重み付けや平滑化は通常の BLEU と同一。 長所 distinct-n より“語順を伴う重複”を強くペナルティ。\n弱点 計算が $O(N^2)$、BLEU の問題（語義を見ない）を継承。 LLM Cluster Score paper\nアイデア\nLLM に各サンプルのメタ特徴（トピックなど）を要約・埋め込みさせる。\n埋め込みをクラスタリング（K-means 等）。\nクラスタ数 $K$ と 各クラスタのエントロピー から\n$$ \\text{Cluster Score}=H(\\text{cluster labels}) \\times \\frac{K}{K_{\\max}} $$\n— 直感的に「サンプルが均等に多くの話題に散らばっているほど高得点」。\n用途 巨大合成コーパスで従来指標が飽和・不安定になる問題を緩和。\n注意点 LLM の“まとめ方”がクラスタ品質を左右／高次元でのクラスタ個数設定がハイパーパラメータになる。\nDCScore paper\ncode\n発想 「もし各サンプルを分類クラスだと思って識別器を訓練したら、正解率が高いほど互いに違う＝多様」と捉える。\n手順\n$N$ サンプルを N-way 1-shot のようにラベル付け（サンプル $i$ はクラス $i$)。 小型テキスト分類器 $f_\\theta$ を数エポックだけ学習。 開発セットでの 分類精度を Diversity Classification Score (DCScore) として採用。 高精度 = サンプルを容易に区別 ⇒ データが互いに異質で多様 低精度 = 似た文が多く誤分類 ⇒ 同質的 利点 語彙・構文・意味差分をまとめて反映しつつ計算コストを抑制（学習回数はごく少ない）。\n欠点 分類器設計・学習ハイパラに感度がある。\nまとめ 指標 捉える多様性 軽量 意味情報 大規模データ適性 主な弱点 distinct-N 表層 n-gram ◎ ✕ ◎ 長文補正が必要 Self-BLEU 表層＋語順 △ ✕ ○ (要サンプリング) 計算 $O(N^2)$ Diversity Coefficient 概念・タスク ○ ◎ ◎ Task2Vec 依存 LLM Cluster Score トピック分布 ○ ◎ ◎ クラスタ数選定 DCScore サンプル識別難度 △ ◎ ○ 分類器依存 高速スクリーニング → distinct-N, Self-BLEU 意味レベルの網羅性 → DC, LLM Cluster, DCScore 超大規模コーパス → DC, LLM Cluster（計算がバッチ並列化しやすい） 生成モデルの出力評価 → distinct-N + Self-BLEU（表層反復チェック） これらの指標を併用し、表層と意味の両面からバランス良く評価することが、実際の LLM 学習データ選定では推奨されます。\n"
+                "body": "以下では LLM 学習用データセットの多様性（あるいは「同質性」を避けられているか）を測る代表的な指標を、定義 → 計算方法 → 読み取り方 → 長所/限界 の順で簡潔に整理します。\ndistinct-N paper code\n定義\n生成コーパス（または学習データ）の中で 重複を除いた n-gram の種類数 を、総 n-gram 数で割った比率。\n$$ \\text{distinct-}n=\\frac{\\lvert{\\text{unique }n\\text{-grams}}\\rvert}{\\text{total }n\\text{-grams}} $$\n読み取り方\n値は 0〜1。1 に近いほど語彙的な反復が少なく、表層的に多様。 distinct-1 / distinct-2（1,2-gram）が最も一般的。 強み\n軽量・参照不要・タスク非依存。 限界 長文ほど分母が大きくなり過大評価されやすい。 内容的（意味的）な多様性は把握できない。 Diversity Coefficient（Task2Vec-DC） paper\n着想 Task2Vec で「サンプル1 バッチ = 1 タスク」と見立て、タスク埋め込み間の平均距離でデータ内部の潜在概念のばらつきを定量化する。\n計算フロー（概要）\nデータセットからランダムに $B$ サンプルを抽出（= 1 タスク）。\nTask2Vec (Barrett et al., 2019) で各タスクをベクトル化（勾配のFisher情報行列対角を縮約）。\nタスク埋め込み集合 ${\\mathbf{t}_i}$ の分散（例：平均コサイン距離や Frobenius ノルム）を取り\n$$ \\text{DC} = \\frac{2}{B(B-1)}\\sum_{i\u0026lt;j} d(\\mathbf{t}_i,\\mathbf{t}_j) $$\n大きいほど「タスクが互いに異なる」= より多様。\n強み 意味レベルでの多様性を高速に近似。 限界 Task2Vecの前提（モデルと層選択）に依存／語順など表層のばらつきは捉えにくい。\nSelf-BLEU paper 参考\n定義\nコーパス内の 各文を「仮説」、残り全文を 「参照」 とみなして BLEU を計算し、文ごとに平均。 低いほど多様（互いに似ていない）。 計算\n$$ \\text{Self-BLEU} = \\frac1{N}\\sum_{i=1}^{N}\\text{BLEU}\\bigl(\\text{sent}_i,; \\mathcal{D}\\setminus{\\text{sent}_i}\\bigr) $$\n読み取り方\n0 に近いほど高多様性。 BLEU ベースなので n-gram 重み付けや平滑化は通常の BLEU と同一。 長所 distinct-n より“語順を伴う重複”を強くペナルティ。 弱点 計算が $O(N^2)$、BLEU の問題（語義を見ない）を継承。\nLLM Cluster Score paper\nアイデア\nLLM に各サンプルのメタ特徴（トピックなど）を要約・埋め込みさせる。\n埋め込みをクラスタリング（K-means 等）。\nクラスタ数 $K$ と 各クラスタのエントロピー から\n$$ \\text{Cluster Score}=H(\\text{cluster labels}) \\times \\frac{K}{K_{\\max}} $$\n— 直感的に「サンプルが均等に多くの話題に散らばっているほど高得点」。\n用途 巨大合成コーパスで従来指標が飽和・不安定になる問題を緩和。 注意点 LLM の“まとめ方”がクラスタ品質を左右／高次元でのクラスタ個数設定がハイパーパラメータになる。\nDCScore paper code\n発想 「もし各サンプルを分類クラスだと思って識別器を訓練したら、正解率が高いほど互いに違う＝多様」と捉える。\n手順\n$N$ サンプルを N-way 1-shot のようにラベル付け（サンプル $i$ はクラス $i$)。 小型テキスト分類器 $f_\\theta$ を数エポックだけ学習。 開発セットでの 分類精度を Diversity Classification Score (DCScore) として採用。 高精度 = サンプルを容易に区別 ⇒ データが互いに異質で多様 低精度 = 似た文が多く誤分類 ⇒ 同質的 利点 語彙・構文・意味差分をまとめて反映しつつ計算コストを抑制（学習回数はごく少ない）。 欠点 分類器設計・学習ハイパラに感度がある。\nまとめ 指標 捉える多様性 軽量 意味情報 大規模データ適性 主な弱点 distinct-N 表層 n-gram ◎ ✕ ◎ 長文補正が必要 Self-BLEU 表層＋語順 △ ✕ ○ (要サンプリング) 計算 $O(N^2)$ Diversity Coefficient 概念・タスク ○ ◎ ◎ Task2Vec 依存 LLM Cluster Score トピック分布 ○ ◎ ◎ クラスタ数選定 DCScore サンプル識別難度 △ ◎ ○ 分類器依存 高速スクリーニング → distinct-N, Self-BLEU 意味レベルの網羅性 → DC, LLM Cluster, DCScore 超大規模コーパス → DC, LLM Cluster（計算がバッチ並列化しやすい） 生成モデルの出力評価 → distinct-N + Self-BLEU（表層反復チェック） これらの指標を併用し、表層と意味の両面からバランス良く評価することが、実際の LLM 学習データ選定では推奨されます。\n"
             }
     
         ,
             {
-                "id": 3,
+                "id": 6,
                 "href": "https://www.if-blog.site/posts/paper/paper23_b/",
                 "title": "Measuring Diversity in Synthetic Datasets",
                 "section": "posts",
@@ -44,7 +74,7 @@
     
         ,
             {
-                "id": 4,
+                "id": 7,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-katex/",
                 "title": "Hugoでkatexを使った数式が表示されなくて困った",
                 "section": "posts",
@@ -54,7 +84,7 @@
     
         ,
             {
-                "id": 5,
+                "id": 8,
                 "href": "https://www.if-blog.site/posts/paper/paper22/",
                 "title": "Beyond Scale: The Diversity Coefficient as a Data Quality Metric for Variability in Natural Language Data",
                 "section": "posts",
@@ -64,7 +94,7 @@
     
         ,
             {
-                "id": 6,
+                "id": 9,
                 "href": "https://www.if-blog.site/posts/paper/paper21/",
                 "title": "On the Diversity of Synthetic Data and its Impact on Training Large Language Models",
                 "section": "posts",
@@ -74,7 +104,7 @@
     
         ,
             {
-                "id": 7,
+                "id": 10,
                 "href": "https://www.if-blog.site/posts/paper/paper20/",
                 "title": "Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)",
                 "section": "posts",
@@ -84,7 +114,7 @@
     
         ,
             {
-                "id": 8,
+                "id": 11,
                 "href": "https://www.if-blog.site/posts/paper/paper19/",
                 "title": "Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)",
                 "section": "posts",
@@ -94,7 +124,7 @@
     
         ,
             {
-                "id": 9,
+                "id": 12,
                 "href": "https://www.if-blog.site/posts/paper/paper17-2/",
                 "title": "TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)",
                 "section": "posts",
@@ -104,7 +134,7 @@
     
         ,
             {
-                "id": 10,
+                "id": 13,
                 "href": "https://www.if-blog.site/posts/paper/paper18/",
                 "title": "Towards Data-Efficient Language Models: A Child-Inspired Approach to Language Learning (AI論文要約)",
                 "section": "posts",
@@ -114,7 +144,7 @@
     
         ,
             {
-                "id": 11,
+                "id": 14,
                 "href": "https://www.if-blog.site/posts/paper/paper16/",
                 "title": "Language Model Can Listen While Speaking (AI論文要約)",
                 "section": "posts",
@@ -124,7 +154,7 @@
     
         ,
             {
-                "id": 12,
+                "id": 15,
                 "href": "https://www.if-blog.site/posts/paper/paper13/",
                 "title": "MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)",
                 "section": "posts",
@@ -134,7 +164,7 @@
     
         ,
             {
-                "id": 13,
+                "id": 16,
                 "href": "https://www.if-blog.site/posts/paper/paper10/",
                 "title": "SentenceVAE: Enable Next-sentence Prediction for Large Language Models with Faster Speed, Higher Accuracy and Longer Context (AI論文要約)",
                 "section": "posts",
@@ -144,7 +174,7 @@
     
         ,
             {
-                "id": 14,
+                "id": 17,
                 "href": "https://www.if-blog.site/posts/paper/paper15/",
                 "title": "Small Language Models (SLMs) Can Still Pack a Punch: A survey (AI論文要約)",
                 "section": "posts",
@@ -154,7 +184,7 @@
     
         ,
             {
-                "id": 15,
+                "id": 18,
                 "href": "https://www.if-blog.site/posts/paper/paper14/",
                 "title": "Tensor Product Attention Is All You Need (AI論文要約)",
                 "section": "posts",
@@ -164,7 +194,7 @@
     
         ,
             {
-                "id": 16,
+                "id": 19,
                 "href": "https://www.if-blog.site/posts/paper/paper11/",
                 "title": "Titans: Learning to Memorize at Test Time (AI論文要約)",
                 "section": "posts",
@@ -174,7 +204,7 @@
     
         ,
             {
-                "id": 17,
+                "id": 20,
                 "href": "https://www.if-blog.site/posts/paper/paper12/",
                 "title": "Transformer2 : Self-adaptive LLMs (AI論文要約)",
                 "section": "posts",
@@ -184,7 +214,7 @@
     
         ,
             {
-                "id": 18,
+                "id": 21,
                 "href": "https://www.if-blog.site/posts/paper/paper9/",
                 "title": "Phi-4 Technical Report (AI論文要約)",
                 "section": "posts",
@@ -194,7 +224,7 @@
     
         ,
             {
-                "id": 19,
+                "id": 22,
                 "href": "https://www.if-blog.site/posts/paper/paper8/",
                 "title": "Can LLMs Design Good Questions Based on Context? (AI論文要約)",
                 "section": "posts",
@@ -204,7 +234,7 @@
     
         ,
             {
-                "id": 20,
+                "id": 23,
                 "href": "https://www.if-blog.site/posts/paper/paper7/",
                 "title": "rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking (AI論文要約)",
                 "section": "posts",
@@ -214,7 +244,7 @@
     
         ,
             {
-                "id": 21,
+                "id": 24,
                 "href": "https://www.if-blog.site/posts/paper/paper5/",
                 "title": "Fact-aware Sentence Split and Rephrase with Permutation Invariant Training (AI論文要約)",
                 "section": "posts",
@@ -224,7 +254,7 @@
     
         ,
             {
-                "id": 22,
+                "id": 25,
                 "href": "https://www.if-blog.site/posts/paper/paper4/",
                 "title": "Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)",
                 "section": "posts",
@@ -234,7 +264,7 @@
     
         ,
             {
-                "id": 23,
+                "id": 26,
                 "href": "https://www.if-blog.site/posts/paper/paper3/",
                 "title": "Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)",
                 "section": "posts",
@@ -244,7 +274,7 @@
     
         ,
             {
-                "id": 24,
+                "id": 27,
                 "href": "https://www.if-blog.site/posts/paper/paper2/",
                 "title": "Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (AI論文要約)",
                 "section": "posts",
@@ -254,7 +284,7 @@
     
         ,
             {
-                "id": 25,
+                "id": 28,
                 "href": "https://www.if-blog.site/posts/paper/paper1/",
                 "title": "Mechanistic Unlearning: Robust Knowledge Unlearning and Editing via Mechanistic Localization(AI論文要約)",
                 "section": "posts",
@@ -264,7 +294,7 @@
     
         ,
             {
-                "id": 26,
+                "id": 29,
                 "href": "https://www.if-blog.site/posts/nlp/mixture_of_experts_sample/",
                 "title": "Mixture of expertsのサンプル実装",
                 "section": "posts",
@@ -274,7 +304,7 @@
     
         ,
             {
-                "id": 27,
+                "id": 30,
                 "href": "https://www.if-blog.site/posts/nlp/hf_generation_wrap/",
                 "title": "huggingfaceのgenerationの関数をtorch modelから使えるようにしたい",
                 "section": "posts",
@@ -284,17 +314,17 @@
     
         ,
             {
-                "id": 28,
+                "id": 31,
                 "href": "https://www.if-blog.site/posts/nlp/transformer_any_architecture/",
                 "title": "llama2のアーキテクチャを変更してpre trainingしてみる",
                 "section": "posts",
                 "date" : "2023.12.05",
-                "body": "できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。\n比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する\ntransformerのattention部分に対して修正や変更を加えたものはEfficient Transformerと呼ばれる。attentionの計算では、keyとvalueの行列積の計算のコストが高く、この部分を近似や次元削減を行い、計算効率やメモリ効率の向上を目指したものがいくつか提案されてる。Linformerでは近似により、ReformerではLSHというアルゴリズムによりattentionの計算を行っている。\nLinformer\nhttps://arxiv.org/abs/2006.04768\nReformer\nhttps://arxiv.org/abs/2001.04451\nモデル ベースのモデルに対し少しづつ複雑さを増したモデルを作成する\nベースのモデル head数1、layer数10のモデルをベースモデルとする。 attentionの部分を簡単に表すと以下のようになる。attentionへの入力は全結合層を通り、queryとkey, valueに分割される。queryとkeyの積を取りscaleした後softmaxを取ったものとvalueの積を取る。(実際にはhead数の次元やgrouped queryが含まれるが省略)\nベースのモデルに対していくつかの修正を行う\nいずれのモデルもhead数やlayer数はベースモデルと同じ\nモデル1(非線形活性化関数+bias) query, key, valueを出力するFCNに対して、biasと活性化関数geluを追加する。\nモデル2(query, key, valueを別々の全結合層で生成) query, key, valueは一つの全結合層の出力を分割して作られていたが、これを別々の層で計算させる。\nqueryとkeyで異なる特徴を捉えてほしい期待\nモデル3(query*keyにscaleを追加) 通常のattention weightでは、queryとkeyの積をsoftmaxを取り、valueとの積を取る。\nqueryとkeyの積に対して、別のFCNを追加しその出力を足し合わせて、softmax、valueとの積を取るようにする。\nこれは、queryに対応するkeyを取り出す処理に対し、attentionへの入力を使いquery,key以外の別の視点でscaleを行ってほしいという期待\n実装 参考にするコード https://github.com/Lightning-AI/lit-gpt\nattention部分はここ\nhttps://github.com/Lightning-AI/lit-gpt/blob/main/lit_gpt/model.py#L169\nattentionへの入力は線形結合を通った後、query, key, valueに分割される。\nquery, key, valueに対し、head数に対する次元操作や、grouped queryの操作を行った後、attentionを計算している。\nattentionの実装はtorchのものを使用している。\nhttps://pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html\nqueryとkeyの積を計算し、maskを適応、softmaxを取り、attention_weightを算出している。\nattn_weight = query @ key.transpose(-2, -1) * scale_factor attn_weight += attn_bias attn_weight = torch.softmax(attn_weight, dim=-1) ... return attn_weight @ value このあたりを修正する\n学習 100Mのモデルに対し、1Bの日本語と英語のデータセットで2epoch学習行う\nモデル1とモデル2は100Mのサイズ、モデル3のみ追加の層があるので120M\n学習はPaperspace Gradientを使う\nhttps://www.paperspace.com/\nlossと学習時間の結果 lossとval lossの比較 2epoch学習させた最終的なlossとval lossを表にまとめる\nmodel loss val loss ベースモデル 4.0861 4.8150 非線形活性化関数+bias 4.2262 4.6753 query, key, valueの生成を分ける 4.8802 4.7191 query*keyにscaleを追加 4.9979 4.7278 ベースモデルについて、他のモデルと比べlossは一番低いが、val lossは高くなっており、過学習の可能性がある。\nval lossについては、非線形活性化関数+biasが一番低く、query, key, valueの生成を分けるとquery*keyにscaleを追加 は近い値となった。\n今回のモデルサイズとデータセット的にベースモデルより少し複雑なモデルのほうが適していそう\nただし、query, key, valueの生成を分けるやquery*keyにscaleを追加ほどの複雑さは不要かもしれない\n学習にかかった時間 model 学習にかかった時間 (h) ベースモデル 13.6 非線形活性化関数+bias 13.3 query, key, valueの生成を分ける 12.2 query*keyにscaleを追加 14.6 ベースモデルと非線形活性化関数+biasは同じくらいの学習時間であり、非線形の計算やbiasは大きなコストではないことがわかる。\nquery, key, valueの生成を分けるはベースモデルより学習時間は短くなっている。これは、query, key, valueの計算が効率的に行われた可能性がある。\nquery*keyにscaleを追加ではparameterが増えている分、より多くの時間が必要となったと考えられる。\nまとめると、複雑過ぎるモデルでは学習時間が長くなりlossやval lossにおいても良い結果とはならなかった。 一方で、非線形活性化関数+biasやquery, key, valueの生成を分けるではlossや学習時間の面でベースモデルよりよい結果となった。 ある程度の複雑性は必要だが、そのバランスは注意する必要がある。\n生成された文章での比較 「彼女が子供の頃に住んでいた、海の見える小さな町は、」を与えて続く文章を生成する。\nベースモデル 彼女が子供の頃に住んでいた、海の見える小さな町は、その町と隣接し、町は、町が広がる場所にある。\n非線形活性化+bias 彼女が子供の頃に住んでいた、海の見える小さな町は、その街の風景を描いた。そしてこの村には「おとな」という名前が残っている\nquery, key, valueの生成を分ける 彼女が子供の頃に住んでいた、海の見える小さな町は、この村には「山」と呼ばれている。また北部に位置する島として知られる\nquery*keyにscaleを追加 彼女が子供の頃に住んでいた、海の見える小さな町は、その地形が広がる。この山には「水」の由来がある。\n所感 ベースモデルでは、「町」の繰り返しが発生している。非線形活性化+biasでは「おとな」などの追加情報が含まれるようになっている。 query, key, valueの生成を分けるやquery*keyにscaleを追加では「山」や「水」に加え、地形の要素など文脈を考慮や具体的な追加情報が含まれている。\nベースモデルではシンプルな文章が生成されたのに対し、query, key, valueの生成を分けるやquery*keyにscaleを追加では創造的なものや文脈を考慮するような文章が生成されている。\n短い文章の場合 「彼女が」を与えて続く文章を生成する。\n非線形活性化+bias 彼女が、1990年代後半から2000年に\nquery, key, valueの生成を分ける 彼女が、「」と言われた。 \u0026hellip;\nquery*keyにscaleを追加 彼女が\n所感 短い文章からの予測はいずれのモデルもうまく生成できていない。\n形容詞に続く予想 「彼女が子供の頃に住んでいた、海の見える小さな」に続く文章を生成させる\nここでは形容詞「小さな」に続く名詞を期待。\n非線形活性化+bias p:0.33, 町 p:0.23, 街 p:0.19, お p:0.16, 村 p:0.10, 温泉 query, key, valueの生成を分ける p:0.24, 場所 p:0.21, 花 p:0.19, 地 p:0.18, 山 p:0.17, 緑 query*keyにscaleを追加 p:0.21, 島 p:0.20, 場所 p:0.16, 山 p:0.14, 町 p:0.14, 地 所感 いずれのモデルも形容詞に対して、名詞を予想できている。\n動詞が期待される文章 「海の見える小さな町で彼女は、静かに」に続く文章を生成\n「過ごす」や「暮らす」などの動詞を期待。\n非線形活性化+bias p:0.26, 過ご p:0.23, 暮ら p:0.20, 眠 p:0.18, 寝 p:0.12, お query, key, valueの生成を分ける p:0.35, な p:0.27, して p:0.15, なって p:0.12, 感じ p:0.11, 「 query*keyにscaleを追加 p:0.24, した p:0.23, 過ご p:0.21, 歩いて p:0.16, 歩き p:0.16, 立ち 所感 どのモデルも特定の1つの単語の確率が高いわけではなく、次の単語に迷っている感じ\nquery, key, valueの生成を分けるモデルでは、「して」、「なって」などの機能動詞が選択肢として現れている。\n主語に続く文章 「海の見える小さな町で、彼女は」に続く文章を予測\n非線形活性化+bias 海の見える小さな町で、彼女は「アクション」と題した。\nquery, key, valueの生成を分ける 海の見える小さな町で、彼女は「お悩みやご相談をさせていただきます\nquery*keyにscaleを追加 海の見える小さな町で、彼女は「お友達に会いしていいのかな\n所感 いずれのモデルもあまり意味のある文章は生成されていない。どのモデルでも事前の文脈があまり考慮されず、直前の「彼女は」の影響で会話文の「が生成されている。\n主語に続く文章2 「海の見える小さな町で彼女は、」に続く文章を予測\n非線形活性化+bias 海の見える小さな町で彼女は、「アクション」と題した写真を\nquery, key, valueの生成を分ける 海の見える小さな町で彼女は、「おしゃれの」と言われることから\nquery*keyにscaleを追加 海の見える小さな町で彼女は、その場所に乗る。そしてこの建物の\n所感 非線形活性化+biasとquery, key, valueの生成を分けるでは「主語に続く文章」と同様に会話文が生成されている。 一方でquery*keyにscaleを追加では、文脈を考慮したような「その場所」が生成されている。\n「、」句点に対する注意がそれぞれのモデルで異なり、query*keyにscaleを追加ではより文脈を考慮できている可能性がある。\nヒートマップ ベースモデル 縦軸がquery、横軸がkeyを表す。値が大きいほど青色が強く表される。\n右上の三角形の値が0となっており、これはcausal modelとして先の単語を使って予測しないようなmaskが適応されていることを表す。query「彼女が」に対して、key「彼女が」では高い値となっており、これは自己注意が行われていることを表す。自己注意の高さは文章中でその単語が重要であることを表している。\nベースモデルのヒートマップをみると、文章の前半(queryの前半)部分で自己注意が高くなっている。ただし、中盤では値は小さくなっており文全体は捉えきれてない可能性がある。\n非線形活性化+bias 文章の前半部分で自己注意が高くなっており、後半は値は小さくなっている。また、いずれのqueryに対してもkey「、」が高い値となっており、\n前半部分が重要な部分であると捉えている可能性がある。\nquery, key, valueの生成を分ける 自己注意は全体的に少ないが「彼女が」「子供の」、「海の」などいくつかの単語は捉えている。\n多くのqueryで、key「子供の」やkey「海の」が値が高くなっており、この文章において重要な単語として捉えている可能性がある。\nquery*keyにscaleを追加 全体的に値が高く、自己注意も全体にわたり、文章全体を捉えようとしている可能性がある。\nまた「彼女が」や「海の」などのいくつかの単語に対しては自己注意が高くなっており、文脈において重要な単語についても関心を示している。\nまとめると、非線形活性化+biasでは文章の前半部分に強く注意を行い、query, key, valueの生成を分けるでは特定の単語に高い注意を行っている。\nquery*keyにscaleを追加では全体的な文章や特定の単語への注意を行っており、文章の意味理解としては優秀かもしれない\nまとめと所感 非線形活性化関数+biasはモデルの複雑性は他のモデルと比べ低いものの、ベースモデルに比べ単純な変更で一般化性能を向上させた。文章中の重要な単語への注意は行えていたものの、文脈を考慮した文章の生成などは難しかった。\nquery, key, valueの生成を分けるモデルでは、文章に対して広範囲に注意を向けており、重要な単語の抽出も行えていた。\nquery*keyにscaleを追加するモデルでは文脈を捉え、重要な単語へ注意を向けており、その他のモデルに比べ優秀な文章理解が行えていた。一方で、学習時間が増え、lossやval lossは低い値とならなかったため、さらなる調整が必要である。\nシンプルなモデルでは、文脈理解が難しかったものの、複雑にしたモデルでは文章全体や単語に対する注意など注意の幅は広がっていた。一方で複雑過ぎるモデルでは、学習時間の増加やlossやval lossは大きくなっており複雑性のバランスは必要である。\n小さいモデルを前提とすると学習時間の増加はあまり大きな問題ではなく、query, key, valueの生成を分けるモデルやquery*keyにscaleを追加するモデルのバランスを調整して更に比較を行ってみたい\n"
+                "body": "できるだけ小さいサイズのモデルで日本語を喋れるモデルを作りたい、ということでllama2のpre_trainingはすでにおこなったがさらなる改善のため、いくつかのアーキテクチャを考えてみる。 比較のベースとなる標準的なモデルに対し、新たに3つのモデルを作成し比較する\ntransformerのattention部分に対して修正や変更を加えたものはEfficient Transformerと呼ばれる。attentionの計算では、keyとvalueの行列積の計算のコストが高く、この部分を近似や次元削減を行い、計算効率やメモリ効率の向上を目指したものがいくつか提案されてる。Linformerでは近似により、ReformerではLSHというアルゴリズムによりattentionの計算を行っている。\nLinformer https://arxiv.org/abs/2006.04768\nReformer https://arxiv.org/abs/2001.04451\nモデル ベースのモデルに対し少しづつ複雑さを増したモデルを作成する\nベースのモデル head数1、layer数10のモデルをベースモデルとする。 attentionの部分を簡単に表すと以下のようになる。attentionへの入力は全結合層を通り、queryとkey, valueに分割される。queryとkeyの積を取りscaleした後softmaxを取ったものとvalueの積を取る。(実際にはhead数の次元やgrouped queryが含まれるが省略)\nベースのモデルに対していくつかの修正を行う いずれのモデルもhead数やlayer数はベースモデルと同じ\nモデル1(非線形活性化関数+bias) query, key, valueを出力するFCNに対して、biasと活性化関数geluを追加する。\nモデル2(query, key, valueを別々の全結合層で生成) query, key, valueは一つの全結合層の出力を分割して作られていたが、これを別々の層で計算させる。 queryとkeyで異なる特徴を捉えてほしい期待\nモデル3(query*keyにscaleを追加) 通常のattention weightでは、queryとkeyの積をsoftmaxを取り、valueとの積を取る。 queryとkeyの積に対して、別のFCNを追加しその出力を足し合わせて、softmax、valueとの積を取るようにする。 これは、queryに対応するkeyを取り出す処理に対し、attentionへの入力を使いquery,key以外の別の視点でscaleを行ってほしいという期待\n実装 参考にするコード https://github.com/Lightning-AI/lit-gpt\nattention部分はここ\nhttps://github.com/Lightning-AI/lit-gpt/blob/main/lit_gpt/model.py#L169\nattentionへの入力は線形結合を通った後、query, key, valueに分割される。\nquery, key, valueに対し、head数に対する次元操作や、grouped queryの操作を行った後、attentionを計算している。 attentionの実装はtorchのものを使用している。\nhttps://pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html\nqueryとkeyの積を計算し、maskを適応、softmaxを取り、attention_weightを算出している。\nattn_weight = query @ key.transpose(-2, -1) * scale_factor attn_weight += attn_bias attn_weight = torch.softmax(attn_weight, dim=-1) ... return attn_weight @ value このあたりを修正する\n学習 100Mのモデルに対し、1Bの日本語と英語のデータセットで2epoch学習行う\nモデル1とモデル2は100Mのサイズ、モデル3のみ追加の層があるので120M\n学習はPaperspace Gradientを使う https://www.paperspace.com/\nlossと学習時間の結果 lossとval lossの比較 2epoch学習させた最終的なlossとval lossを表にまとめる\nmodel loss val loss ベースモデル 4.0861 4.8150 非線形活性化関数+bias 4.2262 4.6753 query, key, valueの生成を分ける 4.8802 4.7191 query*keyにscaleを追加 4.9979 4.7278 ベースモデルについて、他のモデルと比べlossは一番低いが、val lossは高くなっており、過学習の可能性がある。 val lossについては、非線形活性化関数+biasが一番低く、query, key, valueの生成を分けるとquery*keyにscaleを追加 は近い値となった。\n今回のモデルサイズとデータセット的にベースモデルより少し複雑なモデルのほうが適していそう ただし、query, key, valueの生成を分けるやquery*keyにscaleを追加ほどの複雑さは不要かもしれない\n学習にかかった時間 model 学習にかかった時間 (h) ベースモデル 13.6 非線形活性化関数+bias 13.3 query, key, valueの生成を分ける 12.2 query*keyにscaleを追加 14.6 ベースモデルと非線形活性化関数+biasは同じくらいの学習時間であり、非線形の計算やbiasは大きなコストではないことがわかる。 query, key, valueの生成を分けるはベースモデルより学習時間は短くなっている。これは、query, key, valueの計算が効率的に行われた可能性がある。 query*keyにscaleを追加ではparameterが増えている分、より多くの時間が必要となったと考えられる。\nまとめると、複雑過ぎるモデルでは学習時間が長くなりlossやval lossにおいても良い結果とはならなかった。 一方で、非線形活性化関数+biasやquery, key, valueの生成を分けるではlossや学習時間の面でベースモデルよりよい結果となった。 ある程度の複雑性は必要だが、そのバランスは注意する必要がある。\n生成された文章での比較 「彼女が子供の頃に住んでいた、海の見える小さな町は、」を与えて続く文章を生成する。\nベースモデル 彼女が子供の頃に住んでいた、海の見える小さな町は、その町と隣接し、町は、町が広がる場所にある。\n非線形活性化+bias 彼女が子供の頃に住んでいた、海の見える小さな町は、その街の風景を描いた。そしてこの村には「おとな」という名前が残っている\nquery, key, valueの生成を分ける 彼女が子供の頃に住んでいた、海の見える小さな町は、この村には「山」と呼ばれている。また北部に位置する島として知られる\nquery*keyにscaleを追加 彼女が子供の頃に住んでいた、海の見える小さな町は、その地形が広がる。この山には「水」の由来がある。\n所感 ベースモデルでは、「町」の繰り返しが発生している。非線形活性化+biasでは「おとな」などの追加情報が含まれるようになっている。 query, key, valueの生成を分けるやquery*keyにscaleを追加では「山」や「水」に加え、地形の要素など文脈を考慮や具体的な追加情報が含まれている。\nベースモデルではシンプルな文章が生成されたのに対し、query, key, valueの生成を分けるやquery*keyにscaleを追加では創造的なものや文脈を考慮するような文章が生成されている。\n短い文章の場合 「彼女が」を与えて続く文章を生成する。\n非線形活性化+bias 彼女が、1990年代後半から2000年に\nquery, key, valueの生成を分ける 彼女が、「」と言われた。 \u0026hellip;\nquery*keyにscaleを追加 彼女が\n所感 短い文章からの予測はいずれのモデルもうまく生成できていない。\n形容詞に続く予想 「彼女が子供の頃に住んでいた、海の見える小さな」に続く文章を生成させる ここでは形容詞「小さな」に続く名詞を期待。\n非線形活性化+bias p:0.33, 町 p:0.23, 街 p:0.19, お p:0.16, 村 p:0.10, 温泉 query, key, valueの生成を分ける p:0.24, 場所 p:0.21, 花 p:0.19, 地 p:0.18, 山 p:0.17, 緑 query*keyにscaleを追加 p:0.21, 島 p:0.20, 場所 p:0.16, 山 p:0.14, 町 p:0.14, 地 所感 いずれのモデルも形容詞に対して、名詞を予想できている。\n動詞が期待される文章 「海の見える小さな町で彼女は、静かに」に続く文章を生成 「過ごす」や「暮らす」などの動詞を期待。\n非線形活性化+bias p:0.26, 過ご p:0.23, 暮ら p:0.20, 眠 p:0.18, 寝 p:0.12, お query, key, valueの生成を分ける p:0.35, な p:0.27, して p:0.15, なって p:0.12, 感じ p:0.11, 「 query*keyにscaleを追加 p:0.24, した p:0.23, 過ご p:0.21, 歩いて p:0.16, 歩き p:0.16, 立ち 所感 どのモデルも特定の1つの単語の確率が高いわけではなく、次の単語に迷っている感じ query, key, valueの生成を分けるモデルでは、「して」、「なって」などの機能動詞が選択肢として現れている。\n主語に続く文章 「海の見える小さな町で、彼女は」に続く文章を予測\n非線形活性化+bias 海の見える小さな町で、彼女は「アクション」と題した。\nquery, key, valueの生成を分ける 海の見える小さな町で、彼女は「お悩みやご相談をさせていただきます\nquery*keyにscaleを追加 海の見える小さな町で、彼女は「お友達に会いしていいのかな\n所感 いずれのモデルもあまり意味のある文章は生成されていない。どのモデルでも事前の文脈があまり考慮されず、直前の「彼女は」の影響で会話文の「が生成されている。\n主語に続く文章2 「海の見える小さな町で彼女は、」に続く文章を予測\n非線形活性化+bias 海の見える小さな町で彼女は、「アクション」と題した写真を\nquery, key, valueの生成を分ける 海の見える小さな町で彼女は、「おしゃれの」と言われることから\nquery*keyにscaleを追加 海の見える小さな町で彼女は、その場所に乗る。そしてこの建物の\n所感 非線形活性化+biasとquery, key, valueの生成を分けるでは「主語に続く文章」と同様に会話文が生成されている。 一方でquery*keyにscaleを追加では、文脈を考慮したような「その場所」が生成されている。\n「、」句点に対する注意がそれぞれのモデルで異なり、query*keyにscaleを追加ではより文脈を考慮できている可能性がある。\nヒートマップ ベースモデル 縦軸がquery、横軸がkeyを表す。値が大きいほど青色が強く表される。\n右上の三角形の値が0となっており、これはcausal modelとして先の単語を使って予測しないようなmaskが適応されていることを表す。query「彼女が」に対して、key「彼女が」では高い値となっており、これは自己注意が行われていることを表す。自己注意の高さは文章中でその単語が重要であることを表している。\nベースモデルのヒートマップをみると、文章の前半(queryの前半)部分で自己注意が高くなっている。ただし、中盤では値は小さくなっており文全体は捉えきれてない可能性がある。\n非線形活性化+bias 文章の前半部分で自己注意が高くなっており、後半は値は小さくなっている。また、いずれのqueryに対してもkey「、」が高い値となっており、 前半部分が重要な部分であると捉えている可能性がある。\nquery, key, valueの生成を分ける 自己注意は全体的に少ないが「彼女が」「子供の」、「海の」などいくつかの単語は捉えている。 多くのqueryで、key「子供の」やkey「海の」が値が高くなっており、この文章において重要な単語として捉えている可能性がある。\nquery*keyにscaleを追加 全体的に値が高く、自己注意も全体にわたり、文章全体を捉えようとしている可能性がある。 また「彼女が」や「海の」などのいくつかの単語に対しては自己注意が高くなっており、文脈において重要な単語についても関心を示している。\nまとめると、非線形活性化+biasでは文章の前半部分に強く注意を行い、query, key, valueの生成を分けるでは特定の単語に高い注意を行っている。 query*keyにscaleを追加では全体的な文章や特定の単語への注意を行っており、文章の意味理解としては優秀かもしれない\nまとめと所感 非線形活性化関数+biasはモデルの複雑性は他のモデルと比べ低いものの、ベースモデルに比べ単純な変更で一般化性能を向上させた。文章中の重要な単語への注意は行えていたものの、文脈を考慮した文章の生成などは難しかった。\nquery, key, valueの生成を分けるモデルでは、文章に対して広範囲に注意を向けており、重要な単語の抽出も行えていた。\nquery*keyにscaleを追加するモデルでは文脈を捉え、重要な単語へ注意を向けており、その他のモデルに比べ優秀な文章理解が行えていた。一方で、学習時間が増え、lossやval lossは低い値とならなかったため、さらなる調整が必要である。\nシンプルなモデルでは、文脈理解が難しかったものの、複雑にしたモデルでは文章全体や単語に対する注意など注意の幅は広がっていた。一方で複雑過ぎるモデルでは、学習時間の増加やlossやval lossは大きくなっており複雑性のバランスは必要である。\n小さいモデルを前提とすると学習時間の増加はあまり大きな問題ではなく、query, key, valueの生成を分けるモデルやquery*keyにscaleを追加するモデルのバランスを調整して更に比較を行ってみたい\n"
             }
     
         ,
             {
-                "id": 29,
+                "id": 32,
                 "href": "https://www.if-blog.site/posts/nlp/hf_ds_upload/",
                 "title": "複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ",
                 "section": "posts",
@@ -304,7 +334,7 @@
     
         ,
             {
-                "id": 30,
+                "id": 33,
                 "href": "https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/",
                 "title": "HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める",
                 "section": "posts",
@@ -314,7 +344,7 @@
     
         ,
             {
-                "id": 31,
+                "id": 34,
                 "href": "https://www.if-blog.site/posts/nlp/xgen-jglue/",
                 "title": "xgenでJGLUEを試す",
                 "section": "posts",
@@ -324,7 +354,7 @@
     
         ,
             {
-                "id": 32,
+                "id": 35,
                 "href": "https://www.if-blog.site/posts/nlp/calm_lora_quantize/",
                 "title": "OpenCALM-7Bをloraで学習して、quantizeするまで",
                 "section": "posts",
@@ -334,7 +364,7 @@
     
         ,
             {
-                "id": 33,
+                "id": 36,
                 "href": "https://www.if-blog.site/posts/nlp/rinna_lora_ja/",
                 "title": "loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す",
                 "section": "posts",
@@ -344,7 +374,7 @@
     
         ,
             {
-                "id": 34,
+                "id": 37,
                 "href": "https://www.if-blog.site/posts/nlp/rinna_3b_cpp/",
                 "title": "rinna 3Bをcppで動かす",
                 "section": "posts",
@@ -354,7 +384,7 @@
     
         ,
             {
-                "id": 35,
+                "id": 38,
                 "href": "https://www.if-blog.site/posts/nlp/react_start/",
                 "title": "VicunaでReActっぽいことを試してみる",
                 "section": "posts",
@@ -364,7 +394,7 @@
     
         ,
             {
-                "id": 36,
+                "id": 39,
                 "href": "https://www.if-blog.site/posts/nlp/rs-tokenizer/",
                 "title": "Rust TokenizerをC++から呼び出す",
                 "section": "posts",
@@ -374,7 +404,7 @@
     
         ,
             {
-                "id": 37,
+                "id": 40,
                 "href": "https://www.if-blog.site/posts/nlp/bloom_lora_start/",
                 "title": "BloomをLoRaで日本語finetuning",
                 "section": "posts",
@@ -384,7 +414,7 @@
     
         ,
             {
-                "id": 38,
+                "id": 41,
                 "href": "https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/",
                 "title": "LlamaIndex(GPTIndex)を触る",
                 "section": "posts",
@@ -394,7 +424,7 @@
     
         ,
             {
-                "id": 39,
+                "id": 42,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-render-block/",
                 "title": "code blockにrefarenceをつける",
                 "section": "posts",
@@ -404,7 +434,7 @@
     
         ,
             {
-                "id": 40,
+                "id": 43,
                 "href": "https://www.if-blog.site/posts/nlp/flexgen_start/",
                 "title": "FlexGenで遊ぶ",
                 "section": "posts",
@@ -414,7 +444,7 @@
     
         ,
             {
-                "id": 41,
+                "id": 44,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-text-gen/",
                 "title": "Huggingfaceのtext generation pipelineとtext2text generation pipeline",
                 "section": "posts",
@@ -424,7 +454,7 @@
     
         ,
             {
-                "id": 42,
+                "id": 45,
                 "href": "https://www.if-blog.site/posts/nlp/start-xglm-t5/",
                 "title": "xglmをquick start",
                 "section": "posts",
@@ -434,7 +464,7 @@
     
         ,
             {
-                "id": 43,
+                "id": 46,
                 "href": "https://www.if-blog.site/posts/nlp/start-flan-t5/",
                 "title": "flan_t5をquick start",
                 "section": "posts",
@@ -444,7 +474,7 @@
     
         ,
             {
-                "id": 44,
+                "id": 47,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-tokenizer/",
                 "title": "Hugging Faceのtokenizerで迷ったのでまとめておく",
                 "section": "posts",
@@ -454,7 +484,7 @@
     
         ,
             {
-                "id": 45,
+                "id": 48,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-conv/",
                 "title": "Hugging Faceのpipelineで会話モデルを動かす",
                 "section": "posts",
@@ -464,7 +494,7 @@
     
         ,
             {
-                "id": 46,
+                "id": 49,
                 "href": "https://www.if-blog.site/posts/typescript/react-render-prop-typescript/",
                 "title": "reactのrender propsをtypescriptでやる",
                 "section": "posts",
@@ -474,7 +504,7 @@
     
         ,
             {
-                "id": 47,
+                "id": 50,
                 "href": "https://www.if-blog.site/posts/typescript/typescript-oreilly/",
                 "title": "プログラミングTypeScript――スケールするJavaScriptアプリケーション開発",
                 "section": "posts",
@@ -484,7 +514,7 @@
     
         ,
             {
-                "id": 48,
+                "id": 51,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-doc/",
                 "title": "Hugging Face Transformersのドキュメント読んだ",
                 "section": "posts",
@@ -494,7 +524,7 @@
     
         ,
             {
-                "id": 49,
+                "id": 52,
                 "href": "https://www.if-blog.site/posts/emacs/text-lint/",
                 "title": "emacsにtext-lintを導入する",
                 "section": "posts",
@@ -504,7 +534,7 @@
     
         ,
             {
-                "id": 50,
+                "id": 53,
                 "href": "https://www.if-blog.site/posts/neuralnet/flax-jax/",
                 "title": "Flaxに入門してみる",
                 "section": "posts",
@@ -514,7 +544,7 @@
     
         ,
             {
-                "id": 51,
+                "id": 54,
                 "href": "https://www.if-blog.site/posts/python/arxiv-translate/",
                 "title": "Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る",
                 "section": "posts",
@@ -524,7 +554,7 @@
     
         ,
             {
-                "id": 52,
+                "id": 55,
                 "href": "https://www.if-blog.site/posts/python/arxiv-py-lib/",
                 "title": "pythonでarxivのAPIを使う",
                 "section": "posts",
@@ -534,7 +564,7 @@
     
         ,
             {
-                "id": 53,
+                "id": 56,
                 "href": "https://www.if-blog.site/posts/others/gas-translate/",
                 "title": "Google Apps ScriptでGoogle Translateを使う",
                 "section": "posts",
@@ -544,7 +574,7 @@
     
         ,
             {
-                "id": 54,
+                "id": 57,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-related-posts/",
                 "title": "Hugoの記事に関連記事を表示させる",
                 "section": "posts",
@@ -554,7 +584,7 @@
     
         ,
             {
-                "id": 55,
+                "id": 58,
                 "href": "https://www.if-blog.site/posts/python/open-ai-gym-quick/",
                 "title": "Open AI Gymをとりあえず動かす",
                 "section": "posts",
@@ -564,7 +594,7 @@
     
         ,
             {
-                "id": 56,
+                "id": 59,
                 "href": "https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/",
                 "title": "End-to-End Text Classification via Image-basedEmbedding using Character-level Networks",
                 "section": "posts",
@@ -574,7 +604,7 @@
     
         ,
             {
-                "id": 57,
+                "id": 60,
                 "href": "https://www.if-blog.site/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/",
                 "title": "Enhanced character embedding for Chinese named entity recognition",
                 "section": "posts",
@@ -584,7 +614,7 @@
     
         ,
             {
-                "id": 58,
+                "id": 61,
                 "href": "https://www.if-blog.site/posts/github/workflow-dispatch/",
                 "title": "GitHub Actionsを手動実行する",
                 "section": "posts",
@@ -594,7 +624,7 @@
     
         ,
             {
-                "id": 59,
+                "id": 62,
                 "href": "https://www.if-blog.site/posts/android/bottom-sheet/",
                 "title": "Bottom Sheetをつける",
                 "section": "posts",
@@ -604,7 +634,7 @@
     
         ,
             {
-                "id": 60,
+                "id": 63,
                 "href": "https://www.if-blog.site/posts/android/android-introduction/",
                 "title": "Webアプリケーションしか作ったことがない人がAndroidの開発を始めたときの情報収集の流れ",
                 "section": "posts",
@@ -614,7 +644,7 @@
     
         ,
             {
-                "id": 61,
+                "id": 64,
                 "href": "https://www.if-blog.site/posts/android/book-reports-firebase/",
                 "title": "ボタン以外のコンポーネントに波紋エフェクト(ripple effect)つける",
                 "section": "posts",
@@ -624,7 +654,7 @@
     
         ,
             {
-                "id": 62,
+                "id": 65,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-storage-vue/",
                 "title": "Vue.js+typescriptでVuetifyを使いマテリアルデザインに入門する",
                 "section": "posts",
@@ -634,7 +664,7 @@
     
         ,
             {
-                "id": 63,
+                "id": 66,
                 "href": "https://www.if-blog.site/posts/gatsby/gatsby-intro/",
                 "title": "技術ブログ用にGatsbyを整える",
                 "section": "posts",
@@ -644,7 +674,7 @@
     
         ,
             {
-                "id": 64,
+                "id": 67,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-hosting/",
                 "title": "Firebase Hostingを使ってみた",
                 "section": "posts",
@@ -654,7 +684,7 @@
     
         ,
             {
-                "id": 65,
+                "id": 68,
                 "href": "https://www.if-blog.site/posts/emacs/gopls-introduction/",
                 "title": "emacsのgo lang用のlanguage serverをgoplsに乗り換える",
                 "section": "posts",
@@ -664,7 +694,7 @@
     
         ,
             {
-                "id": 66,
+                "id": 69,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-cloud-functions/",
                 "title": "Firebase Cloud Functionsを使ってTwitterのOGPを設定する",
                 "section": "posts",
@@ -674,7 +704,7 @@
     
         ,
             {
-                "id": 67,
+                "id": 70,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-auth/",
                 "title": "Vue.js + Golang + Firebase Authenticationでログイン処理",
                 "section": "posts",
@@ -684,7 +714,7 @@
     
         ,
             {
-                "id": 68,
+                "id": 71,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-review/",
                 "title": "三行で読書感想文を書いて、SNSでシェアできるサービスを作った",
                 "section": "posts",
@@ -694,7 +724,7 @@
     
         ,
             {
-                "id": 69,
+                "id": 72,
                 "href": "https://www.if-blog.site/posts/python/python-matplotlib-base/",
                 "title": "matplotlibのよく使う記法まとめ",
                 "section": "posts",
@@ -704,7 +734,7 @@
     
         ,
             {
-                "id": 70,
+                "id": 73,
                 "href": "https://www.if-blog.site/posts/neuralnet/pepar-summary/",
                 "title": "Deeplearningまわりの最新論文を浅く広くみてまわる",
                 "section": "posts",
@@ -714,7 +744,7 @@
     
         ,
             {
-                "id": 71,
+                "id": 74,
                 "href": "https://www.if-blog.site/posts/others/http-portal-for-blog/",
                 "title": "Hugoで作ったwebサイトを公開する",
                 "section": "posts",
@@ -724,7 +754,7 @@
     
         ,
             {
-                "id": 72,
+                "id": 75,
                 "href": "https://www.if-blog.site/posts/neuralnet/combine-model/",
                 "title": "kerasでモデルを結合する",
                 "section": "posts",
@@ -734,7 +764,7 @@
     
         ,
             {
-                "id": 73,
+                "id": 76,
                 "href": "https://www.if-blog.site/posts/others/aws-cli-at-pyenv/",
                 "title": "pyenv環境でaws cli入れたらコマンドが見つからない",
                 "section": "posts",
@@ -744,7 +774,7 @@
     
         ,
             {
-                "id": 74,
+                "id": 77,
                 "href": "https://www.if-blog.site/posts/others/rust-macro-use-another/",
                 "title": "Rustでmodule間にまたがるmacro呼び出し",
                 "section": "posts",
@@ -754,7 +784,7 @@
     
         ,
             {
-                "id": 75,
+                "id": 78,
                 "href": "https://www.if-blog.site/posts/nlp/seqgan-paper/",
                 "title": "SeqGANの論文を読む",
                 "section": "posts",
@@ -764,7 +794,7 @@
     
         ,
             {
-                "id": 76,
+                "id": 79,
                 "href": "https://www.if-blog.site/posts/nlp/word2vec-output-word/",
                 "title": "word2vecでベクトルから単語を出力する",
                 "section": "posts",
@@ -774,7 +804,7 @@
     
         ,
             {
-                "id": 77,
+                "id": 80,
                 "href": "https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/",
                 "title": "ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数",
                 "section": "posts",
@@ -784,7 +814,7 @@
     
         ,
             {
-                "id": 78,
+                "id": 81,
                 "href": "https://www.if-blog.site/posts/others/tex-notation-numerical-formula/",
                 "title": "機械学習系の数式によく出てくる記号などのTex表記まとめ",
                 "section": "posts",
@@ -794,7 +824,7 @@
     
         ,
             {
-                "id": 79,
+                "id": 82,
                 "href": "https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/",
                 "title": "自然言語処理シリーズの構文解析を読む（概要）",
                 "section": "posts",
@@ -804,7 +834,7 @@
     
         ,
             {
-                "id": 80,
+                "id": 83,
                 "href": "https://www.if-blog.site/posts/nlp/char-vec/",
                 "title": "文字をベクトル化する",
                 "section": "posts",
@@ -814,7 +844,7 @@
     
         ,
             {
-                "id": 81,
+                "id": 84,
                 "href": "https://www.if-blog.site/posts/python/colaboratory-google-drive-mount/",
                 "title": "Google ColaboratoryでGoogle driveをマウントする",
                 "section": "posts",
@@ -824,7 +854,7 @@
     
         ,
             {
-                "id": 82,
+                "id": 85,
                 "href": "https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/",
                 "title": "emacsひな祭りいってきたのでためになったpackageなどをまとめておく",
                 "section": "posts",
@@ -834,7 +864,7 @@
     
         ,
             {
-                "id": 83,
+                "id": 86,
                 "href": "https://www.if-blog.site/posts/python/python-get-extn/",
                 "title": "pythonで拡張子を取得する",
                 "section": "posts",
@@ -844,7 +874,7 @@
     
         ,
             {
-                "id": 84,
+                "id": 87,
                 "href": "https://www.if-blog.site/posts/emacs/lsp-mode/",
                 "title": "lsp-modeを導入する",
                 "section": "posts",
@@ -854,7 +884,7 @@
     
         ,
             {
-                "id": 85,
+                "id": 88,
                 "href": "https://www.if-blog.site/posts/emacs/emacs-use-package/",
                 "title": "use-packagesを使ってみる",
                 "section": "posts",
@@ -864,7 +894,7 @@
     
         ,
             {
-                "id": 86,
+                "id": 89,
                 "href": "https://www.if-blog.site/posts/falcon/falcon-img-upload/",
                 "title": "falconでアップロードサーバーを作る",
                 "section": "posts",
@@ -874,7 +904,7 @@
     
         ,
             {
-                "id": 87,
+                "id": 90,
                 "href": "https://www.if-blog.site/posts/falcon/falcon-tips/",
                 "title": "falconを使ってみた",
                 "section": "posts",
@@ -884,7 +914,7 @@
     
         ,
             {
-                "id": 88,
+                "id": 91,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-start-article/",
                 "title": "Hugoでブログを作る",
                 "section": "posts",
@@ -894,7 +924,7 @@
     
         ,
             {
-                "id": 89,
+                "id": 92,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-href-to-target-blank/",
                 "title": "Hugoでリンクを新しいウィンドウで開く",
                 "section": "posts",
@@ -904,7 +934,7 @@
     
         ,
             {
-                "id": 90,
+                "id": 93,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-ga/",
                 "title": "Hugoにgoogle analyticsを導入する",
                 "section": "posts",
@@ -914,7 +944,7 @@
     
         ,
             {
-                "id": 91,
+                "id": 94,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/",
                 "title": "Hugoのディレクトリ構造やデプロイ方法の備忘録",
                 "section": "posts",
@@ -924,7 +954,7 @@
     
         ,
             {
-                "id": 92,
+                "id": 95,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-code-highlight/",
                 "title": "Hugoの記事でコードハイライトする",
                 "section": "posts",
@@ -934,7 +964,7 @@
     
         ,
             {
-                "id": 93,
+                "id": 96,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-add-site-description/",
                 "title": "Hugoの記事にdescriptionを追加する",
                 "section": "posts",
@@ -944,7 +974,7 @@
     
         ,
             {
-                "id": 94,
+                "id": 97,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-on-image/",
                 "title": "Hugoの記事に画像を載せる",
                 "section": "posts",
@@ -954,7 +984,7 @@
     
         ,
             {
-                "id": 95,
+                "id": 98,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-date-sort/",
                 "title": "Hugoの記事を更新順にソートする",
                 "section": "posts",
@@ -964,7 +994,7 @@
     
         ,
             {
-                "id": 96,
+                "id": 99,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-git-pages/",
                 "title": "HugoをGitHub Pagesで公開する",
                 "section": "posts",

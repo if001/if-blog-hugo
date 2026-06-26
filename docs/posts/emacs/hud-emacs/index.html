@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+<title>emacsにおしゃれなHUDを表示する</title>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127416809-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127416809-1');
+  </script>
+  
+
+
+<script
+  data-ad-client="ca-pub-7303877370233278"
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+></script>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://www.if-blog.site/index.xml"
+  title="アンドロイドは推理小説を書くか?"
+/>
+
+<link rel="stylesheet" href="https://www.if-blog.site//fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/js/instantpage.min.js" integrity=""></script>
+
+  
+    <meta name="description" content="&lt;p&gt;Emacsのフレーム右上に状態管理HUDがreditで紹介されていた&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/nohzafk/emacs-workspace-hud&#34;&gt;https://github.com/nohzafk/emacs-workspace-hud&lt;/" />
+  
+
+
+<meta name="generator" content="Hugo 0.155.1">
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/" name="Home" class="tooltip"
+              ><i class="fas fa-home fa-lg"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/about" name="About" class="tooltip"
+              ><i class="fas fa-user fa-lg"></i>
+              <span>About</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/tags" name="Tags" class="tooltip"
+              ><i class="fas fa-tag fa-lg"></i>
+              <span>Tags</span>
+            </a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/pages/search" name="Search" class="tooltip"
+              ><i class="fas fa-search fa-lg"></i>
+              <span>Search</span>
+            </a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            
+
+            
+            <h1 class="post-title">
+		      
+		      emacsにおしゃれなHUDを表示する
+		      
+		      
+            </h1>
+            
+
+              
+
+              
+            
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+
+      
+      <div class="postmeta mb-4">
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+      <a class="blog-tag" href="/tags/emacs/">Emacs</a>&nbsp;
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2026-06-20
+    
+  </div>
+</div>
+
+      </div>
+      
+
+
+      
+      
+
+
+      <div class="article-main">
+        <p>Emacsのフレーム右上に状態管理HUDがreditで紹介されていた</p>
+<p><a href="https://github.com/nohzafk/emacs-workspace-hud">https://github.com/nohzafk/emacs-workspace-hud</a></p>
+<p><a href="https://www.reddit.com/r/emacs/comments/1tw7u87/i_built_a_floating_hud_for_emacs_rendered_in_rust/">https://www.reddit.com/r/emacs/comments/1tw7u87/i_built_a_floating_hud_for_emacs_rendered_in_rust/</a></p>
+<h2 id="hud">HUD</h2>
+<p>Gitのブランチや変更ステータス、LSPの接続状態、flymake/flycheckのエラーなどの診断情報を確認できる。
+Agent-Shellを使っている場合は、追加でagent-shell-hudを入れるとAgentの状態も見れて便利</p>
+<p><a href="https://github.com/nohzafk/agent-shell-hud">https://github.com/nohzafk/agent-shell-hud</a></p>
+<figure><img src="../../../images/emacs/hud.png"
+    alt="nano-emacs-light" width="800">
+</figure>
+
+<figure><img src="../../../images/emacs/hud2.png"
+    alt="nano-emacs-light" width="400">
+</figure>
+
+<p>このライブラリでは、RustのGUIライブラリ「egui」を採用し、WASM（WebAssembly）にコンパイルした上でEmacsのxwidget経由で描画している。</p>
+<p>xwidgetの利用はbuild時に(&ndash;with-xwidget)をつける必要がある。
+emacs25以降でGUI環境で使っていれば基本的にはxwidgetがONになってるはず。</p>
+<p>use-packageの設定は以下。</p>
+<p>use-packageのvcでのinstallがうまくいかなかったので手元でbuild</p>
+<p>Rustとjustは事前に入れておく
+<a href="https://github.com/casey/just">https://github.com/casey/just</a></p>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>// hud
+</span></span><span style="display:flex;"><span>git clone --recurse-submodules https://github.com/nohzafk/emacs-workspace-hud.git <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span>  ~/src/emacs-workspace-hud
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">cd</span> ~/src/emacs-workspace-hud
+</span></span><span style="display:flex;"><span>just setup
+</span></span><span style="display:flex;"><span>just wasm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// agent-shell-hud
+</span></span><span style="display:flex;"><span>git clone https://github.com/nohzafk/agent-shell-hud</span></span></code></pre></div>
+  </div>
+</div>
+<p>emacs-eguiへのpathも通さないとうまくうごかなかったので通しておく。
+なぜかagent-shell-hudもstraightで取得できなかったので、ここではcloneしてload-pathを通す。</p>
+<div class="code-block">
+  <div class="body">
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lisp" data-lang="lisp"><span style="display:flex;"><span>(<span style="color:#8be9fd;font-style:italic">add-to-list</span> <span style="color:#f1fa8c">&#39;load-path</span> <span style="color:#f1fa8c">&#34;~/src/emacs-workspace-hud/emacs-egui/lisp&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">workspace-hud</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:straight</span> nil
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:ensure</span> nil
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:load-path</span> <span style="color:#f1fa8c">&#34;~/src/emacs-workspace-hud/lisp&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:custom</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#8be9fd;font-style:italic">workspace-hud-margin-top</span> <span style="color:#bd93f9">43</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#8be9fd;font-style:italic">workspace-hud-margin-right</span> <span style="color:#bd93f9">50</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;; :config</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;; (workspace-hud-auto-mode) ;;自動でhudをONにする場合</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#50fa7b">use-package</span> <span style="color:#8be9fd;font-style:italic">agent-shell-hud</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:ensure</span> nil
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:straight</span> nil
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:load-path</span> <span style="color:#f1fa8c">&#34;~/src/agent-shell-hud&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">:after</span> (<span style="color:#8be9fd;font-style:italic">agent-shell</span> <span style="color:#8be9fd;font-style:italic">workspace-hud</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;; :config</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">;; (agent-shell-hud-mode 1) ;;自動でhudをONにする場合</span>
+</span></span><span style="display:flex;"><span>  )</span></span></code></pre></div>
+  </div>
+</div>
+<h2 id="所感">所感</h2>
+<p>reditには「Emacsの『すべてはバッファである』という哲学に反する」や「サイドウィンドウやチャイルドフレームとElispだけで十分」などのコメントもあり確かにと思う。</p>
+<p>一方で、xwidgetで描画することでレンダリングすることでブロックされずになめらかに表示できるので、可能性は感じる</p>
+
+      </div>
+      
+
+      
+      <div class="postmeta mb-2">
+        <div style='display:flex;justify-content: space-between'>
+  <div class="meta-post blog-tags">
+    <i class="fas fa-tag" style="color:#111111"></i>
+    
+    
+      <a class="blog-tag" href="/tags/emacs/">Emacs</a>&nbsp;
+    
+    
+  </div>
+
+  <div class="meta-post">
+    <i class="fa fa-calendar-alt"></i
+                                    >&nbsp;2026-06-20
+    
+  </div>
+</div>
+
+      </div>
+      
+
+      <div class="related-article">
+        
+
+  <h2 class="see-also">See Also</h2>
+  <ul>
+    
+      <li><a href="/posts/emacs/nano-emacs/">nano-emacsを使ってみる</a></li>
+    
+      <li><a href="/posts/emacs/ef-theme-github-light-emacs/">ef-themeでemacsにgithub light風のthemeを設定する</a></li>
+    
+      <li><a href="/posts/emacs/text-lint/">emacsにtext-lintを導入する</a></li>
+    
+      <li><a href="/posts/emacs/gopls-introduction/">emacsのgo lang用のlanguage serverをgoplsに乗り換える</a></li>
+    
+      <li><a href="/posts/emacs/emacs-hinamatsuri/">emacsひな祭りいってきたのでためになったpackageなどをまとめておく</a></li>
+    
+  </ul>
+
+
+      </div>
+    </article>
+
+    
+    
+    
+      
+
+    
+  </div>
+
+    <footer>
+  
+  <div>
+    
+      <a href="https://twitter.com/if_004" name="twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    
+  </div>
+
+
+  <div class="container">
+    <div class="credits copyright">
+      <a href="https://www.if-blog.site//pages/about">if_004</a>
+      &nbsp;&copy;
+      2026
+      
+        &nbsp;/&nbsp;
+        <a href="https://www.if-blog.site/">アンドロイドは推理小説を書くか?</a>
+      
+      &nbsp;&ndash;&nbsp;
+      
+
+      <p class="credits theme-by">
+         <a href="https://gohugo.io">Hugo</a>&nbsp;Theme
+        <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
