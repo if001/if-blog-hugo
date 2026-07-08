@@ -109,7 +109,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.155.1">
+<meta name="generator" content="Hugo 0.163.3">
   </head>
   <body>
     
@@ -337,58 +337,58 @@ $$</p>
 <strong>欠点</strong> 分類器設計・学習ハイパラに感度がある。</p>
 <h2 id="まとめ">まとめ</h2>
 <table>
-  <thead>
-      <tr>
-          <th>指標</th>
-          <th>捉える多様性</th>
-          <th>軽量</th>
-          <th>意味情報</th>
-          <th>大規模データ適性</th>
-          <th>主な弱点</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>distinct-N</td>
-          <td>表層 n-gram</td>
-          <td>◎</td>
-          <td>✕</td>
-          <td>◎</td>
-          <td>長文補正が必要</td>
-      </tr>
-      <tr>
-          <td>Self-BLEU</td>
-          <td>表層＋語順</td>
-          <td>△</td>
-          <td>✕</td>
-          <td>○ (要サンプリング)</td>
-          <td>計算 $O(N^2)$</td>
-      </tr>
-      <tr>
-          <td>Diversity Coefficient</td>
-          <td>概念・タスク</td>
-          <td>○</td>
-          <td>◎</td>
-          <td>◎</td>
-          <td>Task2Vec 依存</td>
-      </tr>
-      <tr>
-          <td>LLM Cluster Score</td>
-          <td>トピック分布</td>
-          <td>○</td>
-          <td>◎</td>
-          <td>◎</td>
-          <td>クラスタ数選定</td>
-      </tr>
-      <tr>
-          <td>DCScore</td>
-          <td>サンプル識別難度</td>
-          <td>△</td>
-          <td>◎</td>
-          <td>○</td>
-          <td>分類器依存</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>指標</th>
+					<th>捉える多様性</th>
+					<th>軽量</th>
+					<th>意味情報</th>
+					<th>大規模データ適性</th>
+					<th>主な弱点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>distinct-N</td>
+					<td>表層 n-gram</td>
+					<td>◎</td>
+					<td>✕</td>
+					<td>◎</td>
+					<td>長文補正が必要</td>
+			</tr>
+			<tr>
+					<td>Self-BLEU</td>
+					<td>表層＋語順</td>
+					<td>△</td>
+					<td>✕</td>
+					<td>○ (要サンプリング)</td>
+					<td>計算 $O(N^2)$</td>
+			</tr>
+			<tr>
+					<td>Diversity Coefficient</td>
+					<td>概念・タスク</td>
+					<td>○</td>
+					<td>◎</td>
+					<td>◎</td>
+					<td>Task2Vec 依存</td>
+			</tr>
+			<tr>
+					<td>LLM Cluster Score</td>
+					<td>トピック分布</td>
+					<td>○</td>
+					<td>◎</td>
+					<td>◎</td>
+					<td>クラスタ数選定</td>
+			</tr>
+			<tr>
+					<td>DCScore</td>
+					<td>サンプル識別難度</td>
+					<td>△</td>
+					<td>◎</td>
+					<td>○</td>
+					<td>分類器依存</td>
+			</tr>
+	</tbody>
 </table>
 <ul>
 <li><strong>高速スクリーニング</strong> → distinct-N, Self-BLEU</li>

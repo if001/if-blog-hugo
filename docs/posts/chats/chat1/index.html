@@ -101,7 +101,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.155.1">
+<meta name="generator" content="Hugo 0.163.3">
   </head>
   <body>
     
@@ -199,17 +199,11 @@
     <i class="fas fa-tag" style="color:#111111"></i>
     
     
-    <span class="blog-tag">
-      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/nlp/">Nlp</a>&nbsp;
     
-    <span class="blog-tag">
-      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/deeplearning/">Deeplearning</a>&nbsp;
     
-    <span class="blog-tag">
-      <a href="http://localhost:1313//tags/chat/">chat</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/chat/">Chat</a>&nbsp;
     
     
   </div>
@@ -248,34 +242,34 @@
 </ul>
 <h2 id="重みエントロピーと学習動態">重みエントロピーと学習動態</h2>
 <table>
-  <thead>
-      <tr>
-          <th>トピック</th>
-          <th>要点</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>定義</strong></td>
-          <td>シャノンエントロピー（離散化後） $H=-\sum p_i\log_2 p_i$ ／ 微分エントロピー $h=\tfrac12\log_2!\bigl((2\pi e)^d\det\Sigma\bigr)$</td>
-      </tr>
-      <tr>
-          <td><strong>計算法</strong></td>
-          <td>- <strong>ヒストグラム法</strong>：256 ビン量子化 → 平均 bits/weight<!-- raw HTML omitted -->- <strong>Laplace 近似</strong>：Hessian 逆行列で共分散推定</td>
-      </tr>
-      <tr>
-          <td><strong>学習での挙動</strong></td>
-          <td>初期低→中盤増→終盤横ばい/減 が典型だが、ReLU 大規模ネットでは圧縮相が観測されないケースも報告</td>
-      </tr>
-      <tr>
-          <td><strong>Loss と H の非単調性</strong></td>
-          <td>Loss↓でも <strong>H↑, H→一定, H↓</strong> の全パターンが起こり得る（正則化・学習率・データ難度に依存）</td>
-      </tr>
-      <tr>
-          <td><strong>LLM 標準レシピ</strong></td>
-          <td>Dropout 0＋L2＋LR アニーリング＝学習安定＆高速化優先。潜在自由度はモデル規模で既に過剰</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>トピック</th>
+					<th>要点</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>定義</strong></td>
+					<td>シャノンエントロピー（離散化後） $H=-\sum p_i\log_2 p_i$ ／ 微分エントロピー $h=\tfrac12\log_2!\bigl((2\pi e)^d\det\Sigma\bigr)$</td>
+			</tr>
+			<tr>
+					<td><strong>計算法</strong></td>
+					<td>- <strong>ヒストグラム法</strong>：256 ビン量子化 → 平均 bits/weight<!-- raw HTML omitted -->- <strong>Laplace 近似</strong>：Hessian 逆行列で共分散推定</td>
+			</tr>
+			<tr>
+					<td><strong>学習での挙動</strong></td>
+					<td>初期低→中盤増→終盤横ばい/減 が典型だが、ReLU 大規模ネットでは圧縮相が観測されないケースも報告</td>
+			</tr>
+			<tr>
+					<td><strong>Loss と H の非単調性</strong></td>
+					<td>Loss↓でも <strong>H↑, H→一定, H↓</strong> の全パターンが起こり得る（正則化・学習率・データ難度に依存）</td>
+			</tr>
+			<tr>
+					<td><strong>LLM 標準レシピ</strong></td>
+					<td>Dropout 0＋L2＋LR アニーリング＝学習安定＆高速化優先。潜在自由度はモデル規模で既に過剰</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="高エントロピー維持手法とデータ多様性評価">高エントロピー維持手法とデータ多様性評価</h2>
 <h3 id="高エントロピー維持loss-低減の代表手法">高エントロピー維持・Loss 低減の代表手法</h3>
@@ -286,30 +280,30 @@
 </ul>
 <h3 id="データ多様性評価指標推奨-3-系統併用">データ多様性評価指標（推奨 3 系統併用）</h3>
 <table>
-  <thead>
-      <tr>
-          <th>系統</th>
-          <th>代表指標</th>
-          <th>コメント</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>語彙</strong></td>
-          <td>TTR・MTLD・n-gram Shannon Entropy・Distinct-n</td>
-          <td>テキスト長補正済み指標を推奨</td>
-      </tr>
-      <tr>
-          <td><strong>意味</strong></td>
-          <td>Sentence-BERT 距離平均／Self-BLEU、Task2Vec Diversity Coefficient、DCScore</td>
-          <td>embed 空間の分散を定量化</td>
-      </tr>
-      <tr>
-          <td><strong>構造・トピック</strong></td>
-          <td>BERTopic トピック数＋Entropy、依存構造 n-gram カバレッジ、Hill 数</td>
-          <td>文体・構文の偏り検出</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>系統</th>
+					<th>代表指標</th>
+					<th>コメント</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>語彙</strong></td>
+					<td>TTR・MTLD・n-gram Shannon Entropy・Distinct-n</td>
+					<td>テキスト長補正済み指標を推奨</td>
+			</tr>
+			<tr>
+					<td><strong>意味</strong></td>
+					<td>Sentence-BERT 距離平均／Self-BLEU、Task2Vec Diversity Coefficient、DCScore</td>
+					<td>embed 空間の分散を定量化</td>
+			</tr>
+			<tr>
+					<td><strong>構造・トピック</strong></td>
+					<td>BERTopic トピック数＋Entropy、依存構造 n-gram カバレッジ、Hill 数</td>
+					<td>文体・構文の偏り検出</td>
+			</tr>
+	</tbody>
 </table>
 <blockquote>
 <p><strong>実務フロー（最小セット）</strong></p>
@@ -351,17 +345,11 @@
     <i class="fas fa-tag" style="color:#111111"></i>
     
     
-    <span class="blog-tag">
-      <a href="http://localhost:1313//tags/nlp/">nlp</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/nlp/">Nlp</a>&nbsp;
     
-    <span class="blog-tag">
-      <a href="http://localhost:1313//tags/deeplearning/">deeplearning</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/deeplearning/">Deeplearning</a>&nbsp;
     
-    <span class="blog-tag">
-      <a href="http://localhost:1313//tags/chat/">chat</a>&nbsp;
-    </span>
+      <a class="blog-tag" href="/tags/chat/">Chat</a>&nbsp;
     
     
   </div>
@@ -421,7 +409,7 @@
     <div class="credits copyright">
       <a href="http://localhost:1313//pages/about">if_004</a>
       &nbsp;&copy;
-      2025
+      2026
       
         &nbsp;/&nbsp;
         <a href="http://localhost:1313/">アンドロイドは推理小説を書くか?</a>

@@ -110,7 +110,7 @@
   
 
 
-<meta name="generator" content="Hugo 0.155.1">
+<meta name="generator" content="Hugo 0.163.3">
   </head>
   <body>
     
@@ -290,35 +290,35 @@ attentionの実装はtorchのものを使用している。</p>
 <h3 id="lossとval-lossの比較">lossとval lossの比較</h3>
 <p>2epoch学習させた最終的なlossとval lossを表にまとめる</p>
 <table>
-  <thead>
-      <tr>
-          <th>model</th>
-          <th>loss</th>
-          <th>val loss</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>ベースモデル</td>
-          <td>4.0861</td>
-          <td>4.8150</td>
-      </tr>
-      <tr>
-          <td>非線形活性化関数+bias</td>
-          <td>4.2262</td>
-          <td>4.6753</td>
-      </tr>
-      <tr>
-          <td>query, key, valueの生成を分ける</td>
-          <td>4.8802</td>
-          <td>4.7191</td>
-      </tr>
-      <tr>
-          <td>query*keyにscaleを追加</td>
-          <td>4.9979</td>
-          <td>4.7278</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>model</th>
+					<th>loss</th>
+					<th>val loss</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>ベースモデル</td>
+					<td>4.0861</td>
+					<td>4.8150</td>
+			</tr>
+			<tr>
+					<td>非線形活性化関数+bias</td>
+					<td>4.2262</td>
+					<td>4.6753</td>
+			</tr>
+			<tr>
+					<td>query, key, valueの生成を分ける</td>
+					<td>4.8802</td>
+					<td>4.7191</td>
+			</tr>
+			<tr>
+					<td>query*keyにscaleを追加</td>
+					<td>4.9979</td>
+					<td>4.7278</td>
+			</tr>
+	</tbody>
 </table>
 <p>ベースモデルについて、他のモデルと比べlossは一番低いが、val lossは高くなっており、過学習の可能性がある。
 val lossについては、<code>非線形活性化関数+bias</code>が一番低く、<code>query, key, valueの生成を分ける</code>と<code>query*keyにscaleを追加 </code>は近い値となった。</p>
@@ -326,30 +326,30 @@ val lossについては、<code>非線形活性化関数+bias</code>が一番低
 ただし、<code>query, key, valueの生成を分ける</code>や<code>query*keyにscaleを追加</code>ほどの複雑さは不要かもしれない</p>
 <h3 id="学習にかかった時間">学習にかかった時間</h3>
 <table>
-  <thead>
-      <tr>
-          <th>model</th>
-          <th>学習にかかった時間 (h)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>ベースモデル</td>
-          <td>13.6</td>
-      </tr>
-      <tr>
-          <td>非線形活性化関数+bias</td>
-          <td>13.3</td>
-      </tr>
-      <tr>
-          <td>query, key, valueの生成を分ける</td>
-          <td>12.2</td>
-      </tr>
-      <tr>
-          <td>query*keyにscaleを追加</td>
-          <td>14.6</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>model</th>
+					<th>学習にかかった時間 (h)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>ベースモデル</td>
+					<td>13.6</td>
+			</tr>
+			<tr>
+					<td>非線形活性化関数+bias</td>
+					<td>13.3</td>
+			</tr>
+			<tr>
+					<td>query, key, valueの生成を分ける</td>
+					<td>12.2</td>
+			</tr>
+			<tr>
+					<td>query*keyにscaleを追加</td>
+					<td>14.6</td>
+			</tr>
+	</tbody>
 </table>
 <p>ベースモデルと<code>非線形活性化関数+bias</code>は同じくらいの学習時間であり、非線形の計算やbiasは大きなコストではないことがわかる。
 <code>query, key, valueの生成を分ける</code>はベースモデルより学習時間は短くなっている。これは、<strong>query, key, valueの計算が効率的に行われた可能性</strong>がある。

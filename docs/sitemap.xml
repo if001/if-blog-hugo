@@ -3,26 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.if-blog.site/tags/emacs/</loc>
+    <lastmod>2026-07-07T10:30:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/posts/</loc>
+    <lastmod>2026-07-07T10:30:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/tags/</loc>
+    <lastmod>2026-07-07T10:30:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/posts/emacs/treemacs/</loc>
+    <lastmod>2026-07-07T10:30:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/</loc>
+    <lastmod>2026-07-07T10:30:00+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://www.if-blog.site/posts/emacs/emacs-build/</loc>
     <lastmod>2026-06-26T10:30:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://www.if-blog.site/posts/emacs/nano-emacs/</loc>
-    <lastmod>2026-06-26T10:30:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.if-blog.site/posts/</loc>
-    <lastmod>2026-06-26T10:30:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.if-blog.site/tags/</loc>
-    <lastmod>2026-06-26T10:30:00+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://www.if-blog.site/</loc>
     <lastmod>2026-06-26T10:30:00+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

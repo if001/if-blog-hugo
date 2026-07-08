@@ -5,6 +5,26 @@
         
             {
                 "id": 0,
+                "href": "https://www.if-blog.site/posts/emacs/treemacs/",
+                "title": "treemacsを使う",
+                "section": "posts",
+                "date" : "2026.07.07",
+                "body": "これまでneotreeを使っていたが、treemacsに変えてみたのでメモ\nhttps://github.com/Alexander-Miller/treemacs https://github.com/rainstormstudio/treemacs-nerd-icons\n使う機能はこのあたり\ntreeをダブルクリックでopne/close 右クリックでメニュー表示 treemacs-project-dirを作成し、現在のディレクトリのプロジェクトルートからtreeを表示、表示していれば閉じる 開いているファイルをtree側でもハイライト ネストしたディレクトリやファイルなどのindentを狭くする 変更されたファイルやignoreファイルなどを表示 設定例\n(defun treemacs-project-dir () \u0026#34;現在のプロジェクトをルートとしてTreemacsを開閉する。\u0026#34; (interactive) (require \u0026#39;treemacs) (if (eq (treemacs-current-visibility) \u0026#39;visible) (treemacs) (treemacs-add-and-display-current-project-exclusively))) (use-package treemacs :ensure t :defer t :custom (treemacs-indentation 1) :bind ((\u0026#34;\u0026lt;f8\u0026gt;\u0026#34; . treemacs-project-dir)) :hook (treemacs-mode . (lambda () (display-line-numbers-mode -1))) ;; :config ;; (treemacs-follow-mode 1) ;; 現在選択中のファイルへ追従 ;; (treemacs-project-follow-mode 1) ;; 現在のバッファに対応するプロジェクトへ切り替える ) (use-package treemacs-nerd-icons :after (treemacs nerd-icons) ) 開いているファイルをtree側でもハイライトはneotreeでは自作してたので入っていると便利\nneotreeだとファイルが多い場合、ネストしたディレクトリやファイルなどのindentが広く見ずらかったが調整できなかった。treemacsでは、treemacs-indentationで調整可能。\n標準のproject.elのみで、projectileは使っていない。\n"
+            }
+    
+        ,
+            {
+                "id": 1,
+                "href": "https://www.if-blog.site/posts/emacs/emacs-build/",
+                "title": "emacsのソースビルドメモ",
+                "section": "posts",
+                "date" : "2026.06.26",
+                "body": "emacs30の使うためのbuildメモ\nlinuxのGUI利用で、tree-sitter, xwidget, native compile, svg描画あたりを動作させたい想定\n準備 公式のサイトからzip or tarをダウンロードして展開\nhttps://www.gnu.org/savannah-checkouts/gnu/emacs/download.html\n事前に必要そうなものを入れておく\nsudo apt update sudo apt install -y \\ build-essential \\ autoconf \\ texinfo \\ libgtk-3-dev \\ webkit2gtk-4.1-dev \\ libgccjit-14-dev \\ librsvg2-dev \\ libpng-dev \\ libjpeg-dev \\ libgif-dev \\ libtiff-dev \\ libxml2-dev \\ libjansson-dev \\ libncurses-dev \\ gnutls-dev libwebkit2gtk-4.1-devがなければlibwebkit2gtk-4.0-dev\nconfigの作成\n./autogen.sh ./configure \\ --with-x-toolkit=gtk3 \\ --with-xwidgets \\ --with-native-compilation=aot \\ --with-modules \\ --with-tree-sitter make -j$(nproc) sudo make install "
+            }
+    
+        ,
+            {
+                "id": 2,
                 "href": "https://www.if-blog.site/posts/emacs/nano-emacs/",
                 "title": "nano-emacsを使ってみる",
                 "section": "posts",
@@ -14,7 +34,7 @@
     
         ,
             {
-                "id": 1,
+                "id": 3,
                 "href": "https://www.if-blog.site/posts/emacs/ef-theme-github-light-emacs/",
                 "title": "ef-themeでemacsにgithub light風のthemeを設定する",
                 "section": "posts",
@@ -24,7 +44,7 @@
     
         ,
             {
-                "id": 2,
+                "id": 4,
                 "href": "https://www.if-blog.site/posts/emacs/hud-emacs/",
                 "title": "emacsにおしゃれなHUDを表示する",
                 "section": "posts",
@@ -34,7 +54,7 @@
     
         ,
             {
-                "id": 3,
+                "id": 5,
                 "href": "https://www.if-blog.site/posts/paper/paper25/",
                 "title": "EVALUATING THE DIVERSITY AND QUALITY OF LLM GENERATED CONTENT",
                 "section": "posts",
@@ -44,7 +64,7 @@
     
         ,
             {
-                "id": 4,
+                "id": 6,
                 "href": "https://www.if-blog.site/posts/paper/paper24/",
                 "title": "Texygen: A Benchmarking Platform for Text Generation Models",
                 "section": "posts",
@@ -54,7 +74,7 @@
     
         ,
             {
-                "id": 5,
+                "id": 7,
                 "href": "https://www.if-blog.site/posts/chats/chat2/",
                 "title": "データセット評価指標",
                 "section": "posts",
@@ -64,7 +84,7 @@
     
         ,
             {
-                "id": 6,
+                "id": 8,
                 "href": "https://www.if-blog.site/posts/paper/paper23_b/",
                 "title": "Measuring Diversity in Synthetic Datasets",
                 "section": "posts",
@@ -74,7 +94,7 @@
     
         ,
             {
-                "id": 7,
+                "id": 9,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-katex/",
                 "title": "Hugoでkatexを使った数式が表示されなくて困った",
                 "section": "posts",
@@ -84,7 +104,7 @@
     
         ,
             {
-                "id": 8,
+                "id": 10,
                 "href": "https://www.if-blog.site/posts/paper/paper22/",
                 "title": "Beyond Scale: The Diversity Coefficient as a Data Quality Metric for Variability in Natural Language Data",
                 "section": "posts",
@@ -94,7 +114,7 @@
     
         ,
             {
-                "id": 9,
+                "id": 11,
                 "href": "https://www.if-blog.site/posts/paper/paper21/",
                 "title": "On the Diversity of Synthetic Data and its Impact on Training Large Language Models",
                 "section": "posts",
@@ -104,7 +124,7 @@
     
         ,
             {
-                "id": 10,
+                "id": 12,
                 "href": "https://www.if-blog.site/posts/paper/paper20/",
                 "title": "Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)",
                 "section": "posts",
@@ -114,7 +134,7 @@
     
         ,
             {
-                "id": 11,
+                "id": 13,
                 "href": "https://www.if-blog.site/posts/paper/paper19/",
                 "title": "Between Circuits and Chomsky: Pre-pretraining on Formal Languages Imparts Linguistic Biases (AI論文要約)",
                 "section": "posts",
@@ -124,7 +144,7 @@
     
         ,
             {
-                "id": 12,
+                "id": 14,
                 "href": "https://www.if-blog.site/posts/paper/paper17-2/",
                 "title": "TinyHelen’s First Curriculum: Training and Evaluating Tiny Language Models in a Simpler Language Environment (AI論文要約)",
                 "section": "posts",
@@ -134,7 +154,7 @@
     
         ,
             {
-                "id": 13,
+                "id": 15,
                 "href": "https://www.if-blog.site/posts/paper/paper18/",
                 "title": "Towards Data-Efficient Language Models: A Child-Inspired Approach to Language Learning (AI論文要約)",
                 "section": "posts",
@@ -144,7 +164,7 @@
     
         ,
             {
-                "id": 14,
+                "id": 16,
                 "href": "https://www.if-blog.site/posts/paper/paper16/",
                 "title": "Language Model Can Listen While Speaking (AI論文要約)",
                 "section": "posts",
@@ -154,7 +174,7 @@
     
         ,
             {
-                "id": 15,
+                "id": 17,
                 "href": "https://www.if-blog.site/posts/paper/paper13/",
                 "title": "MiniMax-01: Scaling Foundation Models with Lightning Attention (AI論文要約)",
                 "section": "posts",
@@ -164,7 +184,7 @@
     
         ,
             {
-                "id": 16,
+                "id": 18,
                 "href": "https://www.if-blog.site/posts/paper/paper10/",
                 "title": "SentenceVAE: Enable Next-sentence Prediction for Large Language Models with Faster Speed, Higher Accuracy and Longer Context (AI論文要約)",
                 "section": "posts",
@@ -174,7 +194,7 @@
     
         ,
             {
-                "id": 17,
+                "id": 19,
                 "href": "https://www.if-blog.site/posts/paper/paper15/",
                 "title": "Small Language Models (SLMs) Can Still Pack a Punch: A survey (AI論文要約)",
                 "section": "posts",
@@ -184,7 +204,7 @@
     
         ,
             {
-                "id": 18,
+                "id": 20,
                 "href": "https://www.if-blog.site/posts/paper/paper14/",
                 "title": "Tensor Product Attention Is All You Need (AI論文要約)",
                 "section": "posts",
@@ -194,7 +214,7 @@
     
         ,
             {
-                "id": 19,
+                "id": 21,
                 "href": "https://www.if-blog.site/posts/paper/paper11/",
                 "title": "Titans: Learning to Memorize at Test Time (AI論文要約)",
                 "section": "posts",
@@ -204,7 +224,7 @@
     
         ,
             {
-                "id": 20,
+                "id": 22,
                 "href": "https://www.if-blog.site/posts/paper/paper12/",
                 "title": "Transformer2 : Self-adaptive LLMs (AI論文要約)",
                 "section": "posts",
@@ -214,7 +234,7 @@
     
         ,
             {
-                "id": 21,
+                "id": 23,
                 "href": "https://www.if-blog.site/posts/paper/paper9/",
                 "title": "Phi-4 Technical Report (AI論文要約)",
                 "section": "posts",
@@ -224,7 +244,7 @@
     
         ,
             {
-                "id": 22,
+                "id": 24,
                 "href": "https://www.if-blog.site/posts/paper/paper8/",
                 "title": "Can LLMs Design Good Questions Based on Context? (AI論文要約)",
                 "section": "posts",
@@ -234,7 +254,7 @@
     
         ,
             {
-                "id": 23,
+                "id": 25,
                 "href": "https://www.if-blog.site/posts/paper/paper7/",
                 "title": "rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking (AI論文要約)",
                 "section": "posts",
@@ -244,7 +264,7 @@
     
         ,
             {
-                "id": 24,
+                "id": 26,
                 "href": "https://www.if-blog.site/posts/paper/paper5/",
                 "title": "Fact-aware Sentence Split and Rephrase with Permutation Invariant Training (AI論文要約)",
                 "section": "posts",
@@ -254,7 +274,7 @@
     
         ,
             {
-                "id": 25,
+                "id": 27,
                 "href": "https://www.if-blog.site/posts/paper/paper4/",
                 "title": "Leave No Context Behind: Efficient Infinite Context Transformers with Infini-attention (AI論文要約)",
                 "section": "posts",
@@ -264,7 +284,7 @@
     
         ,
             {
-                "id": 26,
+                "id": 28,
                 "href": "https://www.if-blog.site/posts/paper/paper3/",
                 "title": "Only-IF :Revealing the Decisive Effect of instruction diversity on Generalization (AI論文要約)",
                 "section": "posts",
@@ -274,7 +294,7 @@
     
         ,
             {
-                "id": 27,
+                "id": 29,
                 "href": "https://www.if-blog.site/posts/paper/paper2/",
                 "title": "Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering (AI論文要約)",
                 "section": "posts",
@@ -284,7 +304,7 @@
     
         ,
             {
-                "id": 28,
+                "id": 30,
                 "href": "https://www.if-blog.site/posts/paper/paper1/",
                 "title": "Mechanistic Unlearning: Robust Knowledge Unlearning and Editing via Mechanistic Localization(AI論文要約)",
                 "section": "posts",
@@ -294,7 +314,7 @@
     
         ,
             {
-                "id": 29,
+                "id": 31,
                 "href": "https://www.if-blog.site/posts/nlp/mixture_of_experts_sample/",
                 "title": "Mixture of expertsのサンプル実装",
                 "section": "posts",
@@ -304,7 +324,7 @@
     
         ,
             {
-                "id": 30,
+                "id": 32,
                 "href": "https://www.if-blog.site/posts/nlp/hf_generation_wrap/",
                 "title": "huggingfaceのgenerationの関数をtorch modelから使えるようにしたい",
                 "section": "posts",
@@ -314,7 +334,7 @@
     
         ,
             {
-                "id": 31,
+                "id": 33,
                 "href": "https://www.if-blog.site/posts/nlp/transformer_any_architecture/",
                 "title": "llama2のアーキテクチャを変更してpre trainingしてみる",
                 "section": "posts",
@@ -324,7 +344,7 @@
     
         ,
             {
-                "id": 32,
+                "id": 34,
                 "href": "https://www.if-blog.site/posts/nlp/hf_ds_upload/",
                 "title": "複数ファイルに分割されたデータセットをHuggingface Hubにアップロードするメモ",
                 "section": "posts",
@@ -334,7 +354,7 @@
     
         ,
             {
-                "id": 33,
+                "id": 35,
                 "href": "https://www.if-blog.site/posts/nlp/hf_dataloader_datacollator/",
                 "title": "HuggingfaceのDataLoaderとDatacollatorのソースコードを眺める",
                 "section": "posts",
@@ -344,7 +364,7 @@
     
         ,
             {
-                "id": 34,
+                "id": 36,
                 "href": "https://www.if-blog.site/posts/nlp/xgen-jglue/",
                 "title": "xgenでJGLUEを試す",
                 "section": "posts",
@@ -354,7 +374,7 @@
     
         ,
             {
-                "id": 35,
+                "id": 37,
                 "href": "https://www.if-blog.site/posts/nlp/calm_lora_quantize/",
                 "title": "OpenCALM-7Bをloraで学習して、quantizeするまで",
                 "section": "posts",
@@ -364,7 +384,7 @@
     
         ,
             {
-                "id": 36,
+                "id": 38,
                 "href": "https://www.if-blog.site/posts/nlp/rinna_lora_ja/",
                 "title": "loraで学習する場合のpromptって何でも良いんだっけ？rinna instruction 3Bで試す",
                 "section": "posts",
@@ -374,7 +394,7 @@
     
         ,
             {
-                "id": 37,
+                "id": 39,
                 "href": "https://www.if-blog.site/posts/nlp/rinna_3b_cpp/",
                 "title": "rinna 3Bをcppで動かす",
                 "section": "posts",
@@ -384,7 +404,7 @@
     
         ,
             {
-                "id": 38,
+                "id": 40,
                 "href": "https://www.if-blog.site/posts/nlp/react_start/",
                 "title": "VicunaでReActっぽいことを試してみる",
                 "section": "posts",
@@ -394,7 +414,7 @@
     
         ,
             {
-                "id": 39,
+                "id": 41,
                 "href": "https://www.if-blog.site/posts/nlp/rs-tokenizer/",
                 "title": "Rust TokenizerをC++から呼び出す",
                 "section": "posts",
@@ -404,7 +424,7 @@
     
         ,
             {
-                "id": 40,
+                "id": 42,
                 "href": "https://www.if-blog.site/posts/nlp/bloom_lora_start/",
                 "title": "BloomをLoRaで日本語finetuning",
                 "section": "posts",
@@ -414,7 +434,7 @@
     
         ,
             {
-                "id": 41,
+                "id": 43,
                 "href": "https://www.if-blog.site/posts/nlp/gpt_index_llama_index_start/",
                 "title": "LlamaIndex(GPTIndex)を触る",
                 "section": "posts",
@@ -424,7 +444,7 @@
     
         ,
             {
-                "id": 42,
+                "id": 44,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-render-block/",
                 "title": "code blockにrefarenceをつける",
                 "section": "posts",
@@ -434,7 +454,7 @@
     
         ,
             {
-                "id": 43,
+                "id": 45,
                 "href": "https://www.if-blog.site/posts/nlp/flexgen_start/",
                 "title": "FlexGenで遊ぶ",
                 "section": "posts",
@@ -444,7 +464,7 @@
     
         ,
             {
-                "id": 44,
+                "id": 46,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-text-gen/",
                 "title": "Huggingfaceのtext generation pipelineとtext2text generation pipeline",
                 "section": "posts",
@@ -454,7 +474,7 @@
     
         ,
             {
-                "id": 45,
+                "id": 47,
                 "href": "https://www.if-blog.site/posts/nlp/start-xglm-t5/",
                 "title": "xglmをquick start",
                 "section": "posts",
@@ -464,7 +484,7 @@
     
         ,
             {
-                "id": 46,
+                "id": 48,
                 "href": "https://www.if-blog.site/posts/nlp/start-flan-t5/",
                 "title": "flan_t5をquick start",
                 "section": "posts",
@@ -474,7 +494,7 @@
     
         ,
             {
-                "id": 47,
+                "id": 49,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-tokenizer/",
                 "title": "Hugging Faceのtokenizerで迷ったのでまとめておく",
                 "section": "posts",
@@ -484,7 +504,7 @@
     
         ,
             {
-                "id": 48,
+                "id": 50,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-conv/",
                 "title": "Hugging Faceのpipelineで会話モデルを動かす",
                 "section": "posts",
@@ -494,7 +514,7 @@
     
         ,
             {
-                "id": 49,
+                "id": 51,
                 "href": "https://www.if-blog.site/posts/typescript/react-render-prop-typescript/",
                 "title": "reactのrender propsをtypescriptでやる",
                 "section": "posts",
@@ -504,7 +524,7 @@
     
         ,
             {
-                "id": 50,
+                "id": 52,
                 "href": "https://www.if-blog.site/posts/typescript/typescript-oreilly/",
                 "title": "プログラミングTypeScript――スケールするJavaScriptアプリケーション開発",
                 "section": "posts",
@@ -514,7 +534,7 @@
     
         ,
             {
-                "id": 51,
+                "id": 53,
                 "href": "https://www.if-blog.site/posts/nlp/huggingface-doc/",
                 "title": "Hugging Face Transformersのドキュメント読んだ",
                 "section": "posts",
@@ -524,7 +544,7 @@
     
         ,
             {
-                "id": 52,
+                "id": 54,
                 "href": "https://www.if-blog.site/posts/emacs/text-lint/",
                 "title": "emacsにtext-lintを導入する",
                 "section": "posts",
@@ -534,7 +554,7 @@
     
         ,
             {
-                "id": 53,
+                "id": 55,
                 "href": "https://www.if-blog.site/posts/neuralnet/flax-jax/",
                 "title": "Flaxに入門してみる",
                 "section": "posts",
@@ -544,7 +564,7 @@
     
         ,
             {
-                "id": 54,
+                "id": 56,
                 "href": "https://www.if-blog.site/posts/python/arxiv-translate/",
                 "title": "Github Actionsでrxivの論文をsummaryを翻訳して、日々slackに送る",
                 "section": "posts",
@@ -554,7 +574,7 @@
     
         ,
             {
-                "id": 55,
+                "id": 57,
                 "href": "https://www.if-blog.site/posts/python/arxiv-py-lib/",
                 "title": "pythonでarxivのAPIを使う",
                 "section": "posts",
@@ -564,7 +584,7 @@
     
         ,
             {
-                "id": 56,
+                "id": 58,
                 "href": "https://www.if-blog.site/posts/others/gas-translate/",
                 "title": "Google Apps ScriptでGoogle Translateを使う",
                 "section": "posts",
@@ -574,7 +594,7 @@
     
         ,
             {
-                "id": 57,
+                "id": 59,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-related-posts/",
                 "title": "Hugoの記事に関連記事を表示させる",
                 "section": "posts",
@@ -584,7 +604,7 @@
     
         ,
             {
-                "id": 58,
+                "id": 60,
                 "href": "https://www.if-blog.site/posts/python/open-ai-gym-quick/",
                 "title": "Open AI Gymをとりあえず動かす",
                 "section": "posts",
@@ -594,7 +614,7 @@
     
         ,
             {
-                "id": 59,
+                "id": 61,
                 "href": "https://www.if-blog.site/posts/nlp/end-to-end_text_classification_via_image-based_embedding_using_character-level_networks/",
                 "title": "End-to-End Text Classification via Image-basedEmbedding using Character-level Networks",
                 "section": "posts",
@@ -604,7 +624,7 @@
     
         ,
             {
-                "id": 60,
+                "id": 62,
                 "href": "https://www.if-blog.site/posts/nlp/enhanced-character-embedding-for-chinese-named-entity-recognition/",
                 "title": "Enhanced character embedding for Chinese named entity recognition",
                 "section": "posts",
@@ -614,7 +634,7 @@
     
         ,
             {
-                "id": 61,
+                "id": 63,
                 "href": "https://www.if-blog.site/posts/github/workflow-dispatch/",
                 "title": "GitHub Actionsを手動実行する",
                 "section": "posts",
@@ -624,7 +644,7 @@
     
         ,
             {
-                "id": 62,
+                "id": 64,
                 "href": "https://www.if-blog.site/posts/android/bottom-sheet/",
                 "title": "Bottom Sheetをつける",
                 "section": "posts",
@@ -634,7 +654,7 @@
     
         ,
             {
-                "id": 63,
+                "id": 65,
                 "href": "https://www.if-blog.site/posts/android/android-introduction/",
                 "title": "Webアプリケーションしか作ったことがない人がAndroidの開発を始めたときの情報収集の流れ",
                 "section": "posts",
@@ -644,7 +664,7 @@
     
         ,
             {
-                "id": 64,
+                "id": 66,
                 "href": "https://www.if-blog.site/posts/android/book-reports-firebase/",
                 "title": "ボタン以外のコンポーネントに波紋エフェクト(ripple effect)つける",
                 "section": "posts",
@@ -654,7 +674,7 @@
     
         ,
             {
-                "id": 65,
+                "id": 67,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-storage-vue/",
                 "title": "Vue.js+typescriptでVuetifyを使いマテリアルデザインに入門する",
                 "section": "posts",
@@ -664,7 +684,7 @@
     
         ,
             {
-                "id": 66,
+                "id": 68,
                 "href": "https://www.if-blog.site/posts/gatsby/gatsby-intro/",
                 "title": "技術ブログ用にGatsbyを整える",
                 "section": "posts",
@@ -674,7 +694,7 @@
     
         ,
             {
-                "id": 67,
+                "id": 69,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-hosting/",
                 "title": "Firebase Hostingを使ってみた",
                 "section": "posts",
@@ -684,7 +704,7 @@
     
         ,
             {
-                "id": 68,
+                "id": 70,
                 "href": "https://www.if-blog.site/posts/emacs/gopls-introduction/",
                 "title": "emacsのgo lang用のlanguage serverをgoplsに乗り換える",
                 "section": "posts",
@@ -694,7 +714,7 @@
     
         ,
             {
-                "id": 69,
+                "id": 71,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-cloud-functions/",
                 "title": "Firebase Cloud Functionsを使ってTwitterのOGPを設定する",
                 "section": "posts",
@@ -704,7 +724,7 @@
     
         ,
             {
-                "id": 70,
+                "id": 72,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-firebase-auth/",
                 "title": "Vue.js + Golang + Firebase Authenticationでログイン処理",
                 "section": "posts",
@@ -714,7 +734,7 @@
     
         ,
             {
-                "id": 71,
+                "id": 73,
                 "href": "https://www.if-blog.site/posts/edgwbs/book-reports-review/",
                 "title": "三行で読書感想文を書いて、SNSでシェアできるサービスを作った",
                 "section": "posts",
@@ -724,7 +744,7 @@
     
         ,
             {
-                "id": 72,
+                "id": 74,
                 "href": "https://www.if-blog.site/posts/python/python-matplotlib-base/",
                 "title": "matplotlibのよく使う記法まとめ",
                 "section": "posts",
@@ -734,7 +754,7 @@
     
         ,
             {
-                "id": 73,
+                "id": 75,
                 "href": "https://www.if-blog.site/posts/neuralnet/pepar-summary/",
                 "title": "Deeplearningまわりの最新論文を浅く広くみてまわる",
                 "section": "posts",
@@ -744,7 +764,7 @@
     
         ,
             {
-                "id": 74,
+                "id": 76,
                 "href": "https://www.if-blog.site/posts/others/http-portal-for-blog/",
                 "title": "Hugoで作ったwebサイトを公開する",
                 "section": "posts",
@@ -754,7 +774,7 @@
     
         ,
             {
-                "id": 75,
+                "id": 77,
                 "href": "https://www.if-blog.site/posts/neuralnet/combine-model/",
                 "title": "kerasでモデルを結合する",
                 "section": "posts",
@@ -764,7 +784,7 @@
     
         ,
             {
-                "id": 76,
+                "id": 78,
                 "href": "https://www.if-blog.site/posts/others/aws-cli-at-pyenv/",
                 "title": "pyenv環境でaws cli入れたらコマンドが見つからない",
                 "section": "posts",
@@ -774,7 +794,7 @@
     
         ,
             {
-                "id": 77,
+                "id": 79,
                 "href": "https://www.if-blog.site/posts/others/rust-macro-use-another/",
                 "title": "Rustでmodule間にまたがるmacro呼び出し",
                 "section": "posts",
@@ -784,7 +804,7 @@
     
         ,
             {
-                "id": 78,
+                "id": 80,
                 "href": "https://www.if-blog.site/posts/nlp/seqgan-paper/",
                 "title": "SeqGANの論文を読む",
                 "section": "posts",
@@ -794,7 +814,7 @@
     
         ,
             {
-                "id": 79,
+                "id": 81,
                 "href": "https://www.if-blog.site/posts/nlp/word2vec-output-word/",
                 "title": "word2vecでベクトルから単語を出力する",
                 "section": "posts",
@@ -804,7 +824,7 @@
     
         ,
             {
-                "id": 80,
+                "id": 82,
                 "href": "https://www.if-blog.site/posts/nlp/diversity-neural-conversation-model/",
                 "title": "ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数",
                 "section": "posts",
@@ -814,7 +834,7 @@
     
         ,
             {
-                "id": 81,
+                "id": 83,
                 "href": "https://www.if-blog.site/posts/others/tex-notation-numerical-formula/",
                 "title": "機械学習系の数式によく出てくる記号などのTex表記まとめ",
                 "section": "posts",
@@ -824,7 +844,7 @@
     
         ,
             {
-                "id": 82,
+                "id": 84,
                 "href": "https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/",
                 "title": "自然言語処理シリーズの構文解析を読む（概要）",
                 "section": "posts",
@@ -834,7 +854,7 @@
     
         ,
             {
-                "id": 83,
+                "id": 85,
                 "href": "https://www.if-blog.site/posts/nlp/char-vec/",
                 "title": "文字をベクトル化する",
                 "section": "posts",
@@ -844,7 +864,7 @@
     
         ,
             {
-                "id": 84,
+                "id": 86,
                 "href": "https://www.if-blog.site/posts/python/colaboratory-google-drive-mount/",
                 "title": "Google ColaboratoryでGoogle driveをマウントする",
                 "section": "posts",
@@ -854,7 +874,7 @@
     
         ,
             {
-                "id": 85,
+                "id": 87,
                 "href": "https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/",
                 "title": "emacsひな祭りいってきたのでためになったpackageなどをまとめておく",
                 "section": "posts",
@@ -864,7 +884,7 @@
     
         ,
             {
-                "id": 86,
+                "id": 88,
                 "href": "https://www.if-blog.site/posts/python/python-get-extn/",
                 "title": "pythonで拡張子を取得する",
                 "section": "posts",
@@ -874,7 +894,7 @@
     
         ,
             {
-                "id": 87,
+                "id": 89,
                 "href": "https://www.if-blog.site/posts/emacs/lsp-mode/",
                 "title": "lsp-modeを導入する",
                 "section": "posts",
@@ -884,7 +904,7 @@
     
         ,
             {
-                "id": 88,
+                "id": 90,
                 "href": "https://www.if-blog.site/posts/emacs/emacs-use-package/",
                 "title": "use-packagesを使ってみる",
                 "section": "posts",
@@ -894,7 +914,7 @@
     
         ,
             {
-                "id": 89,
+                "id": 91,
                 "href": "https://www.if-blog.site/posts/falcon/falcon-img-upload/",
                 "title": "falconでアップロードサーバーを作る",
                 "section": "posts",
@@ -904,7 +924,7 @@
     
         ,
             {
-                "id": 90,
+                "id": 92,
                 "href": "https://www.if-blog.site/posts/falcon/falcon-tips/",
                 "title": "falconを使ってみた",
                 "section": "posts",
@@ -914,7 +934,7 @@
     
         ,
             {
-                "id": 91,
+                "id": 93,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-start-article/",
                 "title": "Hugoでブログを作る",
                 "section": "posts",
@@ -924,7 +944,7 @@
     
         ,
             {
-                "id": 92,
+                "id": 94,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-href-to-target-blank/",
                 "title": "Hugoでリンクを新しいウィンドウで開く",
                 "section": "posts",
@@ -934,7 +954,7 @@
     
         ,
             {
-                "id": 93,
+                "id": 95,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-ga/",
                 "title": "Hugoにgoogle analyticsを導入する",
                 "section": "posts",
@@ -944,7 +964,7 @@
     
         ,
             {
-                "id": 94,
+                "id": 96,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/",
                 "title": "Hugoのディレクトリ構造やデプロイ方法の備忘録",
                 "section": "posts",
@@ -954,7 +974,7 @@
     
         ,
             {
-                "id": 95,
+                "id": 97,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-code-highlight/",
                 "title": "Hugoの記事でコードハイライトする",
                 "section": "posts",
@@ -964,7 +984,7 @@
     
         ,
             {
-                "id": 96,
+                "id": 98,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-add-site-description/",
                 "title": "Hugoの記事にdescriptionを追加する",
                 "section": "posts",
@@ -974,7 +994,7 @@
     
         ,
             {
-                "id": 97,
+                "id": 99,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-on-image/",
                 "title": "Hugoの記事に画像を載せる",
                 "section": "posts",
@@ -984,7 +1004,7 @@
     
         ,
             {
-                "id": 98,
+                "id": 100,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-date-sort/",
                 "title": "Hugoの記事を更新順にソートする",
                 "section": "posts",
@@ -994,7 +1014,7 @@
     
         ,
             {
-                "id": 99,
+                "id": 101,
                 "href": "https://www.if-blog.site/posts/hugo/hugo-git-pages/",
                 "title": "HugoをGitHub Pagesで公開する",
                 "section": "posts",
