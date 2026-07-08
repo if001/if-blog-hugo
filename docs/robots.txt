@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /tags/
-Disallow: /authors/
-Sitemap: http://if-blog.site/sitemap.xml
