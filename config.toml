@@ -11,6 +11,7 @@ footnoteReturnLinkContents = "^"
 publishDir= "docs"
 pluralizeListTitles = false
 ignoreFiles = ["/posts/*/\\.#*"]
+enableRobotsTXT = true
 
 [services]
   [services.googleAnalytics]
