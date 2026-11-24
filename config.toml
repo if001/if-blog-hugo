@@ -1,9 +1,10 @@
 # baseURL = "https://if001.github.io/if-blog-hugo/"
 baseURL = "https://www.if-blog.site"
 
-languageCode = "ja"
+locale = "ja"
 title = "アンドロイドは推理小説を書くか?"
-theme = "my_harbor"
+enableRobotsTXT = true
+theme = "ifblog"
 
 DefaultContentLanguage = "ja"
 enableInlineShortcodes = true
@@ -13,6 +14,9 @@ pluralizeListTitles = false
 ignoreFiles = ["/posts/*/\\.#*"]
 enableRobotsTXT = true
 
+[taxonomies]
+  tag = "tags"
+
 [services]
   [services.googleAnalytics]
     id="UA-127416809-1"
@@ -20,13 +24,21 @@ enableRobotsTXT = true
 [params.author]
   name = "if_004"
   discription = "自然言語処理を中心に技術系の記事を書いていきます。"
-  language = ["react", "golang", "python", "emacs"]
+  language = ["Python", "Go", "TypeScript", "Emacs Lisp"]
 
 [params]
   description="自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。"
+  since = 2018
+
+[params.about]
+  role = "Natural Language Processing / Software Engineer"
+  focus = "自然言語処理 / LLM"
+  tools = ["Emacs", "Hugo"]
+  quote = "アンドロイドは、推理小説を書くか。"
 
 [outputs]
-  section = ["JSON", "HTML"]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML"]
 
 [markup]
   [markup.tableOfContents]
@@ -42,8 +54,8 @@ enableRobotsTXT = true
     lineNoStart = 1
     lineNos = false
     lineNumbersInTable = true
-    noClasses = true
-    style = "dracula"
+    noClasses = false
+    style = "monokai"
     tabWidth = 4
 
 hasCJKLanguage = true
