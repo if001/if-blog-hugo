@@ -3,7 +3,6 @@ baseURL = "https://www.if-blog.site"
 
 locale = "ja"
 title = "アンドロイドは推理小説を書くか?"
-enableRobotsTXT = true
 theme = "ifblog"
 
 DefaultContentLanguage = "ja"
@@ -27,7 +26,7 @@ enableRobotsTXT = true
   language = ["Python", "Go", "TypeScript", "Emacs Lisp"]
 
 [params]
-  description="自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。"
+  description="自然言語処理を中心に技術系の記事を書いていきます。"
   since = 2018
 
 [params.about]
