@@ -11,23 +11,26 @@ $ hugo serve -D
 $ hugo new {content title}
 ```
 
-## fix theme css 
+## fix theme css
 ```
-cd theme/havor/
-```
-
-
-```
-# for development version
-$ npm run build-dev
-
-# for production version
-$ npm run build-prod
+themes/ifblog/assets/css/style.css
 ```
 
+コードブロックの色は `themes/ifblog/assets/css/chroma.css` で管理しています。
+`markup.highlight.style` を変更した場合は以下で再生成してください。
+
+```
+$ hugo gen chromastyles --style=monokai > themes/ifblog/assets/css/chroma.css
+```
 
 ## theme
-https://github.com/matsuyoshi30/harbor
+`themes/ifblog`（自作テーマ）
+- デザイン: Editorial / Paper
+- ヒーローマーク: Neural brain
+- テンプレート: `themes/ifblog/layouts/`
+- テーマの説明: `themes/ifblog/README.md`
+
+旧テーマ（`themes/my_harbor`）は submodule として残しています。
 
 
 ## submodule
